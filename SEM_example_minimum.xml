@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<entry xmlns="http://mdmc.kit.edu/schema/sem_metadata" xsi:schemaLocation="http://mdmc.kit.edu/schema/sem_metadata schema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <entryID>
+  <identifierValue>www.int.kit.edu/fe3456</identifierValue>
+  <identifierType>URL</identifierType>
+ </entryID>
+ <title>FeMoOx pellet cross section at region of interest</title>
+ <startTime>2021-07-13T13:00:00.00</startTime>
+ <endTime>2021-07-13T18:23:35.00</endTime>
+ <definition>SEM</definition>
+ <user>
+  <givenName>Charlotte</givenName>
+  <familyName>Neidiger</familyName>
+ </user>
+ <sample>
+  <sampleName>FeMoOx_Laser3_Markers</sampleName>
+  <conductive>true</conductive>
+  <magnetic>false</magnetic>
+  <eBeamSensitive>1</eBeamSensitive>
+  <iBeamSensitive>1</iBeamSensitive>
+  <embeddingMedium>none</embeddingMedium>
+ </sample>
+ <instrument>
+  <instrumentName>Auriga 60</instrumentName>
+  <chamberPressure>
+   <value>2.16E-06</value>
+   <unit>mbar</unit>
+  </chamberPressure>
+  <eBeamSource>
+   <accelerationVoltage>
+    <value>5</value>
+    <unit>kV</unit>
+   </accelerationVoltage>
+  </eBeamSource>
+  <stage>
+   <tiltAngle>
+    <value>54</value>
+    <unit>degree</unit>
+   </tiltAngle>
+   <eBeamWorkingDistance>
+    <value>5.1</value>
+    <unit>mm</unit>
+   </eBeamWorkingDistance>
+  </stage>
+  <imaging>
+   <numberOfPixels>
+    <xPixels>1024</xPixels>
+    <yPixels>768</yPixels>
+   </numberOfPixels>
+   <pixelSize>
+    <xPixelSize>
+     <value>74.43</value>
+     <unit>nm/pixel</unit>
+    </xPixelSize>
+   </pixelSize>
+   <collectionMethod>normal scan</collectionMethod>
+   <apertureSetting>
+    <size>
+     <value>120</value>
+     <unit>um</unit>
+    </size>
+   </apertureSetting>
+  </imaging>
+  <detectors>
+   <signalMixingDone>0</signalMixingDone>
+   <detector1>
+    <detectorType>SE 1 surface electron detection</detectorType>
+    <detectorName>InLens</detectorName>
+   </detector1>
+  </detectors>
+ </instrument>
+</entry>
