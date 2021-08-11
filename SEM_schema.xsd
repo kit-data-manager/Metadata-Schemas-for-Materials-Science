@@ -899,7 +899,7 @@ detectorBias (optional) - bias voltage applied to the detector expressed as comp
    <xsd:element name="detectorID" type="identifier" minOccurs="0"/>
    <xsd:element name="detectorManufacturer" type="manufacturerDetails" minOccurs="0"/>
    <xsd:element name="componentGeometry" type="coordinateSet" minOccurs="0"/>
-   <xsd:element name="detectorLastCalibration" type="xsd:dateTime" minOccurs="0"/>
+   <xsd:element name="lastCalibration" type="xsd:dateTime" minOccurs="0"/>
    <xsd:element name="detectorBias" type="voltageDetails" minOccurs="0"/>
   </xsd:all>
  </xsd:complexType>
