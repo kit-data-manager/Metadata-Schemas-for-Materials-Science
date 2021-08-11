@@ -182,7 +182,7 @@ institutionIdentifier (optional) - Identifier for the institution defined as the
 </xsd:documentation>
   </xsd:annotation>
   <xsd:all>
-   <xsd:element name="institutionName" type="xsd:string"/>
+   <xsd:element name="institutionName" type="xsd:string" minOccurs="0"/>
    <xsd:element name="institutionAcronym" type="xsd:string" minOccurs="0"/>
    <xsd:element name="institutionDepartment" type="xsd:string" minOccurs="0"/>
    <xsd:element name="institutionID" type="identifier" minOccurs="0"/>
