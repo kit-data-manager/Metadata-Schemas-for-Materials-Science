@@ -68,12 +68,12 @@ children:
 identifierValue (optional) - a string containing the value of an identifier
 
 identifierType (optional) - type of the identifier to be chosen from a controlled list of values
-ROR 
-GRID
-ISNI
-URL 
-DOI
-Handle
+*ROR 
+*GRID
+*ISNI
+*URL 
+*DOI
+*Handle
 </xsd:documentation>
   </xsd:annotation>
   <xsd:all>
@@ -1018,11 +1018,11 @@ depositionSize (optional) - the size of the deposition, expressed as the complex
 depositionTime (optional) - total time for deposition, expressed as the complex type timeDetails. Allowed units ps,ns,us,ms,s</xsd:documentation>
   </xsd:annotation>
   <xsd:all>
-   <xsd:element name="GISName" type="xsd:string"/>
-   <xsd:element name="beamDepositionType" type="depositionType"/>
-   <xsd:element name="depositionCurrent" type="currentDetails"/>
-   <xsd:element name="depositionSize" type="distanceDetails"/>
-   <xsd:element name="depositionTime" type="timeDetails"/>
+   <xsd:element name="GISName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="beamDepositionType" type="depositionType" minOccurs="0"/>
+   <xsd:element name="depositionCurrent" type="currentDetails" minOccurs="0"/>
+   <xsd:element name="depositionSize" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="depositionTime" type="timeDetails" minOccurs="0"/>
   </xsd:all>
  </xsd:complexType>
  <xsd:simpleType name="depositionType">
