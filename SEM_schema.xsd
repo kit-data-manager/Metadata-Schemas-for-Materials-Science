@@ -216,7 +216,7 @@ complex type describing the sample on which the measurement is performed
 
 sampleName (required) - Name of the sample, datatype string
 
-sampleID (required) - Identifier for the sample of the complex type identifier
+sampleID (optional) - Identifier for the sample of the complex type identifier
 
 conductive (required) - Indicates whether the sample  is conductive, datatype boolean
 
