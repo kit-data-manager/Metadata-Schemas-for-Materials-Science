@@ -283,7 +283,7 @@ children:
 
 value (required) - The distance, size or length expressed as an integer or floating point value, datatype float
 
-unit (required) - the unit of the value to be selected from a controlled list nm, um, mm, cm, m, default value - mm, datatype string
+unit (required) - the unit of the value to be selected from a controlled list nm, µm, mm, cm, m, default value - mm, datatype string
 
 qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
 
@@ -340,7 +340,7 @@ children:
 
 value (required) - The weight expressed as an integer or floating point value, datatype float
 
-unit (required) - the unit of the value to be selected from a controlled list ng, ug, mg, g, kg, default value - ug, datatype string
+unit (required) - the unit of the value to be selected from a controlled list ng, µg, mg, g, kg, default value - ug, datatype string
 
 qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
 
@@ -769,7 +769,7 @@ The z-pixel-size can be ignored if it is greater than voxel size.</xsd:documenta
  </xsd:complexType>
  <xsd:complexType name="pixelSizeDetails">
   <xsd:annotation>
-   <xsd:documentation>*************************pixelDetails*************************
+   <xsd:documentation>*************************pixelSizeDetails*************************
 complex type describing the size of a pixel
 
 children:
