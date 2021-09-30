@@ -16,6 +16,7 @@ The entry level contains all the metadata describing a single measurement. The d
 It is the root element of the schema.</xsd:documentation>
   </xsd:annotation>
  </xsd:element>
+ <xsd:complexType name="STM" minOccurs="0"/>
  <xsd:complexType name="SEM">
   <xsd:annotation>
    <xsd:documentation xml:lang="en">*************************complexType SEM*************************
@@ -654,6 +655,8 @@ isCorrelationImage (required) - Whether the image is used for correlating in xyz
 
 coordinates (optional) - the xyz coordinates of a point expressed as a complex type coordinateSet which allows entering each of the xyz coordinates along with their optional uncertainties. If correllation images (two reference spots) are available, the coordinates enable correlative microscopy and they need to be entered.
 
+coordinateReference (optional) - description of the reference used for defining the coordinates, for eg. - origin at centre of sample, distances from two edges, etc.
+
 numberOfPixels (required) - The number of x, y pixels of the image, defined as a complex type pixelNumberType with separate entries for integer values of xPixels and yPixels.
 
 pixelSize (required) - Physical x,y,z length imaged by a single pixel imaged by a single pixel, normally expressed in nm/pixel, expressed as a complex type pixelSize3D for the mapping along x,y and z directions, with each pixel having a pixelSize, optional uncertainty, optional qualifier and optional notes. The y-pixel-size is to be given only if it is different from the x-pixel-size, and z-pixel-size can be ignored if it is greater than voxel size.
@@ -671,6 +674,7 @@ voxel (optional) - Size of the voxel in case 3D imaging is done for Energy-dispe
   <xsd:all>
    <xsd:element name="isCorrelationImage" type="xsd:boolean" minOccurs="0"/>
    <xsd:element name="coordinates" type="coordinateSet" minOccurs="0"/>
+   <xsd:element name="coordinateReference" type="xsd:string" default="origin at centre of sample" minOccurs="0"/>
    <xsd:element name="numberOfPixels" type="pixelNumberType"/>
    <xsd:element name="pixelSize" type="pixelSize3D"/>
    <xsd:element name="collectionMethod" type="xsd:string" default="normal scan"/>
