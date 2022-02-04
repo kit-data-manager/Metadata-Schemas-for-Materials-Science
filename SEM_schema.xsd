@@ -489,8 +489,6 @@ beamCurrent (optional) - the measured current of the e-beam, defined to be of th
 
 sourceLifetime (optional) - lifetime of the e-beam source, default value - uAh, datatype string 
 
-chamberPressure (required) - pressure maintained inside the chamber in which the sample is housed, defined to be of the complex type pressureDetails, which includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen-Allowed units: Pa, hPa, kPa, MPa, GPa, mbar, bar, psi
-
 </xsd:documentation>
   </xsd:annotation>
   <xsd:all>
