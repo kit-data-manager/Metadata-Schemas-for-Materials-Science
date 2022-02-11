@@ -858,7 +858,7 @@ This group gives information about signal mixing between two detectors and provi
 
 children:
 
-signalMixingDone (required) - whether the detector signals are mixed, true or false, datatype boolean
+signalMixingDone (required) - whether the detector signals are mixed, true or false, datatype boolean, default: no
 
 signalmixingDescription (optional) - Describes the purpose and technique of signal mixing, datatype string.
 
@@ -867,7 +867,7 @@ detector1 (required) - gives the settings of one detector expressed as a complex
 detector2 (optional) - gives the settings of a second detector expressed as a complex type detectorDetails</xsd:documentation>
   </xsd:annotation>
   <xsd:all>
-   <xsd:element name="signalMixingDone" type="xsd:boolean"/>
+   <xsd:element name="signalMixingDone" type="xsd:boolean" default="0"/>
    <xsd:element name="signalMixingDescription" type="xsd:string" minOccurs="0"/>
    <xsd:element name="detector1" type="detectorDetails"/>
    <xsd:element name="detector2" type="detectorDetails" minOccurs="0"/>
