@@ -3,7 +3,7 @@
  <xsd:annotation>
   <xsd:documentation>*******************************Documentation for SEM measurements*************************************
 
-The purpose of this XML Schema is to provide describe a scanning electron microscopy(SEM) measurement.
+The purpose of this XML Schema is to provide description of a scanning electron microscopy(SEM) measurement.
 
 The cardinality of all parameters are either defined as required or optional and wherever possible a list of controlled vocabularies is provided.</xsd:documentation>
  </xsd:annotation>
