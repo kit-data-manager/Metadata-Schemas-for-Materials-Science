@@ -16,7 +16,6 @@ The entry level contains all the metadata describing a single measurement. The d
 It is the root element of the schema.</xsd:documentation>
   </xsd:annotation>
  </xsd:element>
- <xsd:complexType name="STM" minOccurs="0"/>
  <xsd:complexType name="SEM">
   <xsd:annotation>
    <xsd:documentation xml:lang="en">*************************complexType SEM*************************
