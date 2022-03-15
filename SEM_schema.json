@@ -19,7 +19,7 @@
          "additionalProperties":false,
          "properties":{
             "entryID":{
-               "$ref":"#/$defs/entryID"
+               "$ref":"#/$defs/identifier"
             },
             "title":{
                "type":"string"
@@ -60,14 +60,6 @@
             "instrument"
          ],
          "title":"entry"
-      },
-      "entryID":{
-         "type":"object",
-         "additionalProperties":false,
-         "properties":{
-            "$ref":"#/$defs/identifier"
-         },
-         "title":"entryID"
       },
       "identifier":{
          "type":"object",
@@ -765,12 +757,6 @@
                "$ref":"#/$defs/currentDetails"
             }
          },
-         "required":{
-            "oneOf":[
-               "size",
-               "current"
-            ]
-         }
       },
       "pixelsize3D":{
          "type":"object",
