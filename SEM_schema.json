@@ -2,7 +2,7 @@
    "$schema":"https://json-schema.org/draft/2019-09/schema",
    "$id":"https://mdmc.kit.edu/schemas/sem_metadata",
    "type":"object",
-   "description":"The purpose of this XML Schema is to provide description of a scanning electron microscopy(SEM) measurement. The cardinality of all parameters are either defined as required or optional and wherever possible a list of controlled vocabularies is provided.",
+   "description":"The purpose of this JSON Schema is to provide description of a scanning electron microscopy(SEM) measurement. The cardinality of all parameters are either defined as required or optional and wherever possible a list of controlled vocabularies is provided.",
    "properties":{
       "entry":{
          "$ref":"#/$defs/entry"
