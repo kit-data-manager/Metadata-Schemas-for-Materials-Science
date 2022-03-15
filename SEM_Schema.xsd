@@ -55,7 +55,7 @@ title (required)- Extended title of the measurement, datatype string
 
 
 
-startTime (required)- Start time of the measurement, datatype xsd:dateTime in the format CCYY-MM-DDThh:mm:ss.sss
+startTime (optional)- Start time of the measurement, datatype xsd:dateTime in the format CCYY-MM-DDThh:mm:ss.sss
 
 
 
@@ -65,7 +65,7 @@ endTime (required)- End time of the measurement, datatype xsd:dateTime in the fo
 
 
 
-definition (optional)- Name of the schema to which this entry conforms, datatype string
+definition (required)- Name of the schema to which this entry conforms, datatype string
 
 
 
