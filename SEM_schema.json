@@ -142,7 +142,7 @@
             },
             "ORCID":{
                "type":"string",
-               "pattern":"^https://orcid.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
+               "pattern":"^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
             }
          },
          "required":[
