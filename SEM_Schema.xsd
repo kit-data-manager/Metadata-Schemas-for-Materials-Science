@@ -222,7 +222,7 @@ This complex type lists the contact information of the user responsible for the 
 
 children:
 
-userName (required) - Full name of the user, datatype string
+userName (required) - Full name of the user in the format (Family Name, Given Name), datatype string
 
 
 givenName (optional) - Given name (first name) of the user, datatype string
