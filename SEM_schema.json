@@ -115,6 +115,9 @@
          "additionalProperties":false,
          "description":"Lists the contact information of the user responsible for the measurement. Properties: givenName (required)-Given name (first name) of the user, familyName (required) - Family name or last name of the user, role (optional) - Role of the user to be selected from an enumerated list - *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader, affiliation (optional) - Details of the institution to which the user is affiliated, email (optional) -Email of the userof datatype string (only valid email-ids are acceptable), ORCID (optional) - Open Researcher and Contributor ID expressed as a URI",
          "properties":{
+            "userName":{
+               "type":"string"
+            },
             "givenName":{
                "type":"string"
             },
@@ -146,8 +149,7 @@
             }
          },
          "required":[
-            "familyName",
-            "givenName",
+            "userName",
             "role"
          ],
          "title":"user"
