@@ -222,17 +222,13 @@ This complex type lists the contact information of the user responsible for the 
 
 children:
 
+userName (required) - Full name of the user, datatype string
 
 
-
-givenName (required) - Given name (first name) of the user, datatype string
-
+givenName (optional) - Given name (first name) of the user, datatype string
 
 
-
-familyName (required) - Family name or last name of the user, datatype string
-
-
+familyName (optional) - Family name or last name of the user, datatype string
 
 
 role (optional) - Role of the user to be selected from a controlled list
@@ -267,16 +263,12 @@ email (optional)- Email of the user, datatype string (only valid email-ids are a
 ORCID (optional) - Open Researcher and Contributor ID expressed as a URI
 
 
-
-
-
-
-
 </xsd:documentation>
   </xsd:annotation>
   <xsd:all>
-   <xsd:element name="givenName" type="xsd:string"/>
-   <xsd:element name="familyName" type="xsd:string"/>
+   <xsd:element name="userName" type="xsd:string"/>
+   <xsd:element name="givenName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="familyName" type="xsd:string" minOccurs="0"/>
    <xsd:element name="role" type="roleType" minOccurs="0"/>
    <xsd:element name="affiliation" type="institutionDetails" minOccurs="0"/>
    <xsd:element name="email" type="emailType" minOccurs="0"/>
