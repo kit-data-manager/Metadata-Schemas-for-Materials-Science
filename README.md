@@ -13,4 +13,7 @@ Sample files are also provided which are written according to the respective sch
   * [Example xml file which is populated only with the required fields](SEM_example_minimum.xml)
   * [SEM_schema.json](SEM_schema.json)
   
-2. Upcoming...
+2. Schema for transmission electron microscopy (TEM)
+  * [TEM_schema.json](TEM_schema.json)
+
+3. Upcoming...
