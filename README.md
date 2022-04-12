@@ -15,6 +15,6 @@ Sample files are also provided which are written according to the respective sch
 
   
 2. Schema for transmission electron microscopy (TEM)
-  * [TEM_schema.json](TEM_schema.json)
+  * [JSON Schema](TEM_schema.json)
 
 3. Upcoming...
