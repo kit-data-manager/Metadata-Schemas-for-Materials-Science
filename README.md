@@ -10,6 +10,7 @@ Sample files are also provided which are written according to the respective sch
 1. Schema for scanning electron microscopy (SEM)
   * [XSD Schema](SEM_Schema.xsd)
   * [JSON Schema](SEM_schema.json)
+  * [Sample SEM Image](FeMoOx_AntiA_04_1k5x_CN.tif)
   * [Example xml file written with the SEM schema](SEM_example.xml)
   * [Example xml file which is populated only with the required fields](SEM_example_minimum.xml)
 
