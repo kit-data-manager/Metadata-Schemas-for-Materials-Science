@@ -8,7 +8,7 @@ Sample files are also provided which are written according to the respective sch
 ## List of available Schemas:
 
 1. Schema for scanning electron microscopy (SEM)
-  * [XML Schema Definition](SEM_Schema.xsd)
+  * [XSD Schema](SEM_Schema.xsd)
   * [JSON Schema](SEM_schema.json)
   * [Example xml file written with the SEM schema](SEM_example.xml)
   * [Example xml file which is populated only with the required fields](SEM_example_minimum.xml)
