@@ -11,9 +11,9 @@ Sample files are also provided which are written according to the respective sch
   * [XSD Schema](SEM_Schema.xsd)
   * [JSON Schema](SEM_schema.json)
   * [Sample SEM Image](FeMoOx_AntiA_04_1k5x_CN.tif)
-  * [Example xml file written according to the SEM schema](SEM_example.xml)
+  * [Example XML file written according to the SEM schema](SEM_example.xml)
   * [Exampla JSON file written according to the SEM schema](SEM_JSON_example.json)
-  * [Example xml file which is populated only with the required fields](SEM_example_minimum.xml)
+  * [Example XML file which is populated only with the required fields](SEM_example_minimum.xml)
 
   
 2. Schema for transmission electron microscopy (TEM)
