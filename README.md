@@ -11,8 +11,8 @@ Sample files are also provided which are written according to the respective sch
   * [XSD Schema](SEM_Schema.xsd)
   * [JSON Schema](SEM_schema.json)
   * [Sample SEM Image](FeMoOx_AntiA_04_1k5x_CN.tif)
-  * [Example XML file written according to the SEM schema](SEM_example.xml)
-  * [Exampla JSON file written according to the SEM schema](SEM_JSON_example.json)
+  * [Example XML file](SEM_example.xml)
+  * [Exampla JSON file](SEM_JSON_example.json)
   * [Example XML file which is populated only with the required fields](SEM_example_minimum.xml)
 
   
