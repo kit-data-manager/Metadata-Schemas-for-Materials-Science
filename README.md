@@ -12,7 +12,7 @@ Sample files are also provided which are written according to the respective sch
   * [JSON Schema](SEM_schema.json)
   * [Sample SEM Image](FeMoOx_AntiA_04_1k5x_CN.tif)
   * [Example XML file](SEM_example.xml)
-  * [Exampla JSON file](SEM_JSON_example.json)
+  * [Example JSON file](SEM_JSON_example.json)
   * [Example XML file which is populated only with the required fields](SEM_example_minimum.xml)
 
   
