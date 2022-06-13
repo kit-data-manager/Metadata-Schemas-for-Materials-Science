@@ -298,7 +298,7 @@
          },
          "required":[
             "value",
-            "unit"
+            "type"
          ],
          "title":"uncertaintyDetails"
       },
