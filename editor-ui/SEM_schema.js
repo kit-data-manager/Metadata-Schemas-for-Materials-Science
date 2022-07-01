@@ -482,9 +482,7 @@ var dataModel = {
             }
          },
          "required":[
-            "accelerationVoltage",
-            "beamCurrent",
-            "sourceLifetime"
+            "accelerationVoltage"
          ],
          "title":"sourceDetails"
       },
