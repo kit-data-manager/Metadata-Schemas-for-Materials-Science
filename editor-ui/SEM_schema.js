@@ -71,7 +71,7 @@ var dataModel = {
             },
             "identifierType":{
                "type":"string",
-               "description":"(Optional) - Type of the identifier to be chosen from a controlled list of values, e.g. *ROR *GRID *ISNI *URL *DOI *Handle""
+               "description":"(Optional) - Type of the identifier to be chosen from a controlled list of values, e.g. *ROR *GRID *ISNI *URL *DOI *Handle"
                "enum":[
                   "ROR",
                   "GRID",
