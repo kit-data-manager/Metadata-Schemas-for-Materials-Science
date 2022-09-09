@@ -252,6 +252,7 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
+               "description":"(required) - The distance, size or length expressed as an integer or floating point value of datatype number",
                "default":-9999
             },
             "unit":{
