@@ -25,8 +25,8 @@ var uiSchema =
             },
             {
                 "legend": "Program",
-                "description":"(Optional) - Details concerning the program (or software) used for aquisition",
                 "type": "fieldset",
+                "description":"(Optional) - Details concerning the program (or software) used for aquisition",
                 "htmlClass": "myclass",
                 "items": [
                     {"title": "Name", "key": "entry.program.programName"},
@@ -36,6 +36,7 @@ var uiSchema =
             {
                 "legend": "Revision",
                 "type": "fieldset",
+                "description":"(Optional) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format",
                 "htmlClass": "myclass",
                 "items": [
                     {"title": "Id Type", "key": "entry.revision.revisonID.identifierType"},
