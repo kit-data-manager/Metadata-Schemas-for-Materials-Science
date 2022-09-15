@@ -2,7 +2,7 @@ var dataModel = {
    "$schema":"https://json-schema.org/draft/2019-09/schema",
    "$id":"https://mdmc.kit.edu/schemas/sem_metadata",
    "type":"object",
-   "description":"The purpose of this JSON Schema is to provide description of a scanning electron microscopy(SEM) measurement. The cardinality of all parameters are either defined as required or optional and wherever possible a list of controlled vocabularies is provided.",
+   "description":"This JSON Schema describes a Scanning Electron Microscopy (SEM) image in order to reproduce the measurement. The cardinality (required or optional) of all metadata is defined and wherever possible a list of controlled vocabularies is provided.",
    "properties":{
       "entry":{
          "$ref":"#/$defs/entry"
@@ -15,25 +15,29 @@ var dataModel = {
    "$defs":{
       "entry":{
          "type":"object",
-         "description":"The entry level contains all the metadata describing a single measurement. The design of the schema is modular: in case of multiple measurements, an entry for each measurement can be included. It is the root element of the schema. Properties: entryID (required)- Identifier of the measurement usually provided by the project or the laboratory, title (required)- Extended title of the measurement of datatype string, startTime (optional)- Start time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss, endTime (required)- End time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss, definition (optional)- Name of the schema to which this entry conforms of datatype string, program (optional)- details concerning the program (or software) used for aquisition, defined separately as programDetails, revision (optional)- details concerning any revision to the xml document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format defined separately as revisionDetails, user (required)- the contact information of the user responsible for the measurement defined separately as userDetails, sample (required)- details concerning the sample defined separately as sampleDetails, instrument (required)- details concerning the instrument settings defined separately as instrumentDetails.",
+         "description":"The entry level is the root element of the schema. It contains all the metadata describing a single image measured. The design of the schema is modular: in case of multiple measurements, an entry for each measurement can be included. Properties: entryID (Optional)- Identifier of the measurement usually provided by the project or the laboratory, title (Required)- Extended title of the measurement, startTime (Optional)- Start time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss, endTime (Required)- End time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss, definition (Required)- Name of the schema to which this entry conforms, program (Optional)- Details concerning the program (or software) used for aquisition, revision (Optional)- Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format, user (Required)- The contact information of the user responsible for the measurement, sample (Required)- Details concerning the sample, instrument (Required)- Details concerning the instrument settings.",
          "additionalProperties":false,
          "properties":{
             "entryID":{
                "$ref":"#/$defs/identifier"
             },
             "title":{
-               "type":"string"
+               "type":"string",
+               "description":"(Required)- Extended title of the measurement",
             },
             "startTime":{
                "type":"string",
+               "description":"(Optional)- Start time of the measurement",
                "pattern":"(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)"
             },
             "endTime":{
                "type":"string",
+               "description":"(Required)- End time of the measurement",
                "pattern":"(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)"
             },
             "definition":{
-               "type":"string"
+               "type":"string",
+               "description":"(Required)- Name of the schema to which this entry conforms. In this case, SEM should be written",
             },
             "program":{
                "$ref":"#/$defs/program"
@@ -63,12 +67,12 @@ var dataModel = {
       },
       "identifier":{
          "type":"object",
-         "description":"Details of an identifier element. Properties: identifierValue (optional) - a string containing the value of an identifier, identifierType (optional) - type of the identifier to be chosen from a controlled list of values -*ROR *GRID *ISNI *URL *DOI *Handle",
+         "description":"(Optional) - Details of an identifier element. Properties: identifierValue (Optional) - a string containing the value of an identifier, identifierType (Optional) - type of the identifier to be chosen from a controlled list of values -*ROR *GRID *ISNI *URL *DOI *Handle",
          "additionalProperties":false,
          "properties":{
             "identifierValue":{
                "type":"string",
-               "description":"(Optional) - a string containing the value of an identifier",
+               "description":"(Optional) - String containing the value of an identifier",
             },
             "identifierType":{
                "type":"string",
@@ -86,14 +90,16 @@ var dataModel = {
       },
       "program":{
          "type":"object",
-         "description":"Details concerning the program (or software) used for aquisition. Properties: programName (optional) - Name of the program (or software) used for acquisition of datatype string, programVersion (optional)- Program (or software) version number of datatype string",
+         "description":"(Optional) - Details concerning the program (or software) used for aquisition. Properties: programName (Optional) - Name of the program (or software) used for acquisition, programVersion (Optional) - Program (or software) version number",
          "additionalProperties":false,
          "properties":{
             "programName":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - Name of the program (or software) used for acquisition"
             },
             "programVersion":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - Program (or software) version number"
             }
          },
          "title":"program"
@@ -101,7 +107,7 @@ var dataModel = {
       "revision":{
          "type":"object",
          "additionalProperties":false,
-         "description":"details concerning any revision to the xml document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format. Properties: revisionID (optional) - Identifier of the file, revisionComment (optional)- any comments to the revision of the datatype string",
+         "description":"(Optional) - Details concerning any revision to the xml document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format. Properties: revisionID (optional) - Identifier of the file, revisionComment (optional)- any comments to the revision of the datatype string",
          "properties":{
             "revisonID":{
                "$ref":"#/$defs/identifier"
