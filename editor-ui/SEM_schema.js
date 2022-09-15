@@ -63,7 +63,7 @@ var dataModel = {
       },
       "identifier":{
          "type":"object",
-         "description":"Details of an identifier element. Properties: identifierValue (optional) - a string containing the value of an identifier, identifierType (optional) - type of the identifier to be chosen from a controlled list of values -*ROR *GRID *ISNI *URL *DOI *Handle"
+         "description":"Details of an identifier element. Properties: identifierValue (optional) - a string containing the value of an identifier, identifierType (optional) - type of the identifier to be chosen from a controlled list of values -*ROR *GRID *ISNI *URL *DOI *Handle",
          "additionalProperties":false,
          "properties":{
             "identifierValue":{
