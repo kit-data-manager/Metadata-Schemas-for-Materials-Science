@@ -67,7 +67,8 @@ var dataModel = {
          "additionalProperties":false,
          "properties":{
             "identifierValue":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - a string containing the value of an identifier",
             },
             "identifierType":{
                "type":"string",
