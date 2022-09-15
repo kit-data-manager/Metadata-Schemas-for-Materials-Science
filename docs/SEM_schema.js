@@ -76,7 +76,7 @@ var dataModel = {
             },
             "identifierType":{
                "type":"string",
-               "description":"(Optional) - Type of the identifier to be chosen from a controlled list of values, e.g. *ROR *GRID *ISNI *URL *DOI *Handle",
+               "description":"(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
                "enum":[
                   "ROR",
                   "GRID",
@@ -107,13 +107,14 @@ var dataModel = {
       "revision":{
          "type":"object",
          "additionalProperties":false,
-         "description":"(Optional) - Details concerning any revision to the xml document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format. Properties: revisionID (optional) - Identifier of the file, revisionComment (optional)- any comments to the revision of the datatype string",
+         "description":"(Optional) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format. Properties: revisionID (Optional) - Identifier of the file, revisionComment (Optional)- Any comments to the revision",
          "properties":{
             "revisonID":{
                "$ref":"#/$defs/identifier"
             },
             "revisionComment":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional)- Any comments to the revision"
             }
          },
          "title":"revision"
@@ -121,19 +122,23 @@ var dataModel = {
       "user":{
          "type":"object",
          "additionalProperties":false,
-         "description":"Lists the contact information of the user responsible for the measurement. Properties: userName (required) - the full name of the user in the format (Family Name, Given Name) of the datatytpe string, givenName (optional)-Given name (first name) of the user, familyName (optional) - Family name or last name of the user, role (optional) - Role of the user to be selected from an enumerated list - *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader, affiliation (optional) - Details of the institution to which the user is affiliated, email (optional) -Email of the userof datatype string (only valid email-ids are acceptable), ORCID (optional) - Open Researcher and Contributor ID expressed as a URI",
+         "description":"Contact information of the user responsible for the measurement. Properties: userName (Required) - Full name of the user in the format (Family Name, Given Name), givenName (Optional) - Given name of the user, familyName (Optional) - Family name of the user, role (Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader, affiliation (Optional) - Details of the institution to which the user is affiliated, email (Optional) - Email of the user, ORCID (Optional) - Open Researcher and Contributor ID expressed as a URI",
          "properties":{
             "userName":{
-               "type":"string"
+               "type":"string",
+               "description":"(Required) - Full name of the user in the format (Family Name, Given Name)"
             },
             "givenName":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - Given name of the user"
             },
             "familyName":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - Family name of the user"
             },
             "role":{
                "type":"string",
+               "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
                "enum":[
                   "Data Curator",
                   "Instrument Scientist",
@@ -149,10 +154,12 @@ var dataModel = {
             },
             "email":{
                "type":"string",
+               "description":"(Optional) - Email of the user",
                "format":"email"
             },
             "ORCID":{
                "type":"string",
+               "description":"(Optional) - Open Researcher and Contributor ID expressed as a URI",
                "pattern":"^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
             }
          },
