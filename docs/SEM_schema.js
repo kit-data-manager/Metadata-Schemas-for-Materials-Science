@@ -172,16 +172,19 @@ var dataModel = {
       "institutionDetails":{
          "type":"object",
          "additionalProperties":false,
-         "description":"Details of the institution to which the user is affiliated. Properties: institutionName (optional) - The full name of an institution of datatype string, institutionAcronym (optional) - The acronym of the institution. Note that authors often cite with acronyms, so this information can be important in matching a query of datatype string, institutionDepartment (optional)- The department within an institution of datatype string, institutionIdentifier (optional) - Identifier pertaining to the institution",
+         "description":"(Optional) - Details of the institution to which the user is affiliated. Properties: institutionName (Optional) - Full name of the institution, institutionAcronym (Recommended) - Acronym of the institution, institutionDepartment (Optional) - Department within an institution, institutionIdentifier (Optional) - Identifier pertaining to the institution (e.g. ROR)",
          "properties":{
             "institutionName":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - Full name of the institution"
             },
             "institutionAcronym":{
-               "type":"string"
+               "type":"string",
+               "description":"(Recommended) - Acronym of the institution"
             },
             "institutionDepartment":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - Department within an institution"
             },
             "institutionID":{
                "$ref":"#/$defs/identifier"
@@ -191,35 +194,43 @@ var dataModel = {
       "sample":{
          "type":"object",
          "additionalProperties":false,
-         "description":"details concerning the sample: properties- sampleName (required) - Name of the sample of the datatype string, sampleID (optional) - Identifier for the sample, conductive (required) - Indicates whether the sample  is conductive of datatype boolean, magnetic (required) - Indicates whether the sample is magnetic of datatype boolean, eBeamSensitive (required) - Indicates whether the sample is not stable under electron beam of datatype boolean, iBeamSensitive (required) - Indicates whether the sample is not stable under ion beam of datatype boolean, embeddingMedium (required) - Supporting medium in which the specimen are embedded (e.g., none, demotec 30, 70, Epoxy) of datatype string with default value set as none, sampleForm (optional) - Description of the sample form (e.g., bulk, nanostructured, powder, pellet) of datatype string, sampleSize (optional) - Size of the sample defined separately as distanceDetails (includes value, optional uncertainty, optional qualifier, optional notes and a controlled list of units for length - nm, um, mm, cm, m), sampleWeight (optional) - Weight of the sample defined separately as weightDetails (includes the value, optional uncertainty, optional qualifier, optional notes and a controlled list of units for weight - ng, ug, mg, g, kg), finalSpecimen (optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp;view experiment)of datatype string, sampleHolder (optional) - Type of sample holder used (e.g., stub, dish, cylinder) of datatype string, fixingMethod (optional) - The method used to attach the sample to the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue) of datatype string, conductiveCoatingApplied (optional) - Whether a conductive coating is applied of datatype boolean, conductiveCoating (optional) - Conductive coating material used of datatype string, storageConditions (optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure etc) of datatype string, measurementConditions (optional) - Conditions to be maintained during the measurement inside the machine (e.g., water vapor, cryogenic temperature) of datatype string, samplePreparation (optional) - Details about the sample preparation defined separately as samplePrepType (includes details like date of preparation, description of preparation and preparationID) of datatype string",
+         "description":"Details concerning the sampl. Properties: sampleName (Required) - Name of the sample, sampleID (Optional) - Identifier for the sample, conductive (Required) - Whether the sample is conductive, magnetic (Required) - Whether the sample is magnetic, eBeamSensitive (Required) - Whether the sample is not stable under electron beam, iBeamSensitive (Required) - Whether the sample is not stable under ion beam, embeddingMedium (Required) - Supporting medium in which the sample is embedded (e.g., none, demotec 30, 70, Epoxy), default value set as none, sampleForm (Optional) - Description of the sample form (e.g., bulk, nanostructured, powder, pellet), sampleSize (Optional) - Size of the sample, sampleWeight (Optional) - Weight of the sample, finalSpecimen (Optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp), sampleHolder (Optional) - Type of sample holder used (e.g., stub, dish, cylinder), fixingMethod (Optional) - Method used to hold the sample on the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue), conductiveCoatingApplied (Optional) - Whether a conductive coating is applied, conductiveCoating (Optional) - Conductive coating material, storageConditions (Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure), measurementConditions (Optional) - Conditions to be maintained during the measurement inside the instrument (e.g., water vapor, cryogenic temperature), samplePreparation (optional)",
          "properties":{
             "sampleName":{
-               "type":"string"
+               "type":"string",
+               "description":"(Required) - Name of the sample"
             },
             "sampleID":{
-               "$ref":"#/$defs/identifier"
+               "$ref":"#/$defs/identifier",
+               "description":"(Optional) - Identifier for the sample"
             },
             "conductive":{
-               "type":"boolean"
+               "type":"boolean",
+               "description":"(Required) - Whether the sample is conductive"
             },
             "magnetic":{
-               "type":"boolean"
+               "type":"boolean",
+               "description":"(Required) - Whether the sample is magnetic"
             },
             "eBeamSensitive":{
-               "type":"boolean"
+               "type":"boolean",
+               "description":"(Required) - Whether the sample is not stable under electron beam"
             },
             "iBeamSensitive":{
-               "type":"boolean"
+               "type":"boolean",
+               "description":"(Required) - Whether the sample is not stable under ion beam"
             },
             "embeddingMedium":{
                "type":"string",
+               "description":"(Required) - Supporting medium in which the sample is embedded (e.g., none, demotec 30, 70, Epoxy), default value set as none",
                "default":"none"
             },
             "sampleForm":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - Description of the sample form (e.g., bulk, nanostructured, powder, pellet)"
             },
             "sampleSize":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
             },
             "sampleWeight":{
                "$ref":"#/$defs/weightDetails"
