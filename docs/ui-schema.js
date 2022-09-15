@@ -74,6 +74,7 @@ var uiSchema =
                                     {
                                         "legend": "Affiliation",
                                         "type": "fieldset",
+                                        "description":"Details of the institution to which the user is affiliated",
                                         "htmlClass": "myclass",
                                         "items": [
                                             {
@@ -84,8 +85,14 @@ var uiSchema =
                                                 "title": "Id Value",
                                                 "key": "entry.user.affiliation.institutionID.identifierValue"
                                             },
-                                            {"title": "Name", "key": "entry.user.affiliation.institutionName"},
-                                            {"title": "Acronym", "key": "entry.user.affiliation.institutionAcronym"},
+                                            {
+                                                "title": "Name", 
+                                                "key": "entry.user.affiliation.institutionName"
+                                            },
+                                            {
+                                                "title": "Acronym", 
+                                                "key": "entry.user.affiliation.institutionAcronym"
+                                            },
                                             {
                                                 "title": "Department",
                                                 "key": "entry.user.affiliation.institutionDepartment"
@@ -160,6 +167,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "Sample Size",
                                                                 "type": "fieldset",
+                                                                "description":"(Optional) - Size of the sample",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
@@ -183,6 +191,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "Sample Weight",
                                                                 "type": "fieldset",
+                                                                "description":"(Optional) - Weight of the sample",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
