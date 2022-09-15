@@ -5,6 +5,7 @@ var uiSchema =
             {
                 "legend": "Id",
                 "type": "fieldset",
+                "description":"(Optional) - Identifier of the measurement, usually provided by the project or the laboratory",
                 "htmlClass": "myclass",
                 "items": [
                     {"title": "Type", "key": "entry.entryID.identifierType"},
@@ -24,6 +25,7 @@ var uiSchema =
             },
             {
                 "legend": "Program",
+                "description":"(Optional) - Details concerning the program (or software) used for aquisition",
                 "type": "fieldset",
                 "htmlClass": "myclass",
                 "items": [
