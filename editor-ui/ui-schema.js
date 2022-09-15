@@ -5,6 +5,7 @@ var uiSchema =
             {
                 "legend": "Id",
                 "type": "fieldset",
+                "description":"Details of an identifier element",
                 "htmlClass": "myclass",
                 "items": [
                     {"title": "Type", "key": "entry.entryID.identifierType"},
