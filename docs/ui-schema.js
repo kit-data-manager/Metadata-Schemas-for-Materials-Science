@@ -4,6 +4,7 @@ var uiSchema =
         "items": [
             {
                 "legend": "Id",
+                "description": "A test description for testing descriptions.",
                 "type": "fieldset",
                 "htmlClass": "myclass",
                 "items": [
