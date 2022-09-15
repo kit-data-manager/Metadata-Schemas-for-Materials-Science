@@ -71,6 +71,7 @@ var dataModel = {
             },
             "identifierType":{
                "type":"string",
+               "description":"(Optional) - Type of the identifier to be chosen from a controlled list of values, e.g. *ROR *GRID *ISNI *URL *DOI *Handle",
                "enum":[
                   "ROR",
                   "GRID",
@@ -251,6 +252,7 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
+               "description":"(required) - The distance, size or length expressed as an integer or floating point value of datatype number",
                "default":-9999
             },
             "unit":{
