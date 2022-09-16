@@ -194,7 +194,7 @@ var dataModel = {
       "sample":{
          "type":"object",
          "additionalProperties":false,
-         "description":"Details concerning the sampl. Properties: sampleName (Required) - Name of the sample, sampleID (Optional) - Identifier for the sample, conductive (Required) - Whether the sample is conductive, magnetic (Required) - Whether the sample is magnetic, eBeamSensitive (Required) - Whether the sample is not stable under electron beam, iBeamSensitive (Required) - Whether the sample is not stable under ion beam, embeddingMedium (Required) - Supporting medium in which the sample is embedded (e.g., none, demotec 30, 70, Epoxy), default value set as none, sampleForm (Optional) - Description of the sample form (e.g., bulk, nanostructured, powder, pellet), sampleSize (Optional) - Size of the sample, sampleWeight (Optional) - Weight of the sample, finalSpecimen (Optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp), sampleHolder (Optional) - Type of sample holder used (e.g., stub, dish, cylinder), fixingMethod (Optional) - Method used to hold the sample on the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue), conductiveCoatingApplied (Optional) - Whether a conductive coating is applied, conductiveCoating (Optional) - Conductive coating material, storageConditions (Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure), measurementConditions (Optional) - Conditions to be maintained during the measurement inside the instrument (e.g., water vapor, cryogenic temperature), samplePreparation (optional)",
+         "description":"Details concerning the sample. Properties: sampleName (Required) - Name of the sample, sampleID (Optional) - Identifier for the sample, conductive (Required) - Whether the sample is conductive, magnetic (Required) - Whether the sample is magnetic, eBeamSensitive (Required) - Whether the sample is not stable under electron beam, iBeamSensitive (Required) - Whether the sample is not stable under ion beam, embeddingMedium (Required) - Supporting medium in which the sample is embedded (e.g., none, demotec 30, 70, Epoxy), sampleForm (Optional) - Description of the sample form (e.g., bulk, nanostructured, powder, pellet), sampleSize (Optional) - Size of the sample, sampleWeight (Optional) - Weight of the sample, finalSpecimen (Optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp), sampleHolder (Optional) - Type of sample holder used (e.g., stub, dish, cylinder), fixingMethod (Optional) - Method used to hold the sample on the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue), conductiveCoatingApplied (Optional) - Whether a conductive coating is applied, conductiveCoating (Optional) - Conductive coating material, storageConditions (Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure), measurementConditions (Optional) - Conditions to be maintained during the measurement inside the instrument (e.g., water vapor, cryogenic temperature), samplePreparation (optional)",
          "properties":{
             "sampleName":{
                "type":"string",
@@ -222,7 +222,7 @@ var dataModel = {
             },
             "embeddingMedium":{
                "type":"string",
-               "description":"(Required) - Supporting medium in which the sample is embedded (e.g., none, demotec 30, 70, Epoxy), default value set as none",
+               "description":"(Required) - Supporting medium in which the sample is embedded (e.g., none, demotec 30, 70, Epoxy)",
                "default":"none"
             },
             "sampleForm":{
@@ -237,18 +237,27 @@ var dataModel = {
             },
             "finalSpecimen":{
                "type":"string",
+               "description":"(optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp)",
                "default":"TEM Lamella"
             },
             "sampleHolder":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - Type of sample holder used (e.g., stub, dish, cylinder)"
             },
             "fixingMethod":{
                "type":"string",
+               "description":"(Optional) - Method used to hold the sample on the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue)",
                "default":"Carbon Tape"
             },
             "conductiveCoatingApplied":{
-               "type":"boolean"
+               "type":"boolean",
+               "description":"(Optional) - Whether a conductive coating is applied"
             },
+            "conductiveCoating":{
+               "type":"string",
+               "description":"(Optional) - Conductive coating material",
+               "default":"Au"
+            }
             "storageConditions":{
                "type":"string",
                "default":"Ambient, dry environment"
