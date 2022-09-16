@@ -260,10 +260,12 @@ var dataModel = {
             },
             "storageConditions":{
                "type":"string",
+               "description":"(Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure)",
                "default":"Ambient, dry environment"
             },
             "measurementConditions":{
                "type":"string",
+               "description":"(Optional) - Conditions to be maintained during the measurement inside the instrument (e.g., water vapor, cryogenic temperature)",
                "default":"water vapour"
             },
             "samplePreparation":{
