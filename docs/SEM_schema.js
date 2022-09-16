@@ -230,7 +230,7 @@ var dataModel = {
                "description":"(Optional) - Description of the sample form (e.g., bulk, nanostructured, powder, pellet)"
             },
             "sampleSize":{
-               "$ref":"#/$defs/distanceDetails",
+               "$ref":"#/$defs/distanceDetails"
             },
             "sampleWeight":{
                "$ref":"#/$defs/weightDetails"
