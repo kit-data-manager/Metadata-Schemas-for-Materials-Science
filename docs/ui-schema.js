@@ -130,7 +130,8 @@ var uiSchema =
                                                     {"title": "Conductive", "key": "entry.sample.conductive"},
                                                     {"title": "Magnetic", "key": "entry.sample.magnetic"},
                                                     {"title": "eBeamSensitive", "key": "entry.sample.eBeamSensitive"},
-                                                    {"title": "iBeamSensitive", "key": "entry.sample.iBeamSensitive"}
+                                                    {"title": "iBeamSensitive", "key": "entry.sample.iBeamSensitive"},
+                                                    {"title": "Conductive Coating Applied", "key": "entry.sample.conductiveCoatingApplied"}
                                                 ]
                                             },
                                             {"title": "Sample Form", "key": "entry.sample.sampleForm"},
@@ -138,8 +139,8 @@ var uiSchema =
                                             {"title": "Final Specimen", "key": "entry.sample.finalSpecimen"},
                                             {"title": "Fixing Method", "key": "entry.sample.fixingMethod"},
                                             {
-                                                "title": "Conductive Coating Applied",
-                                                "key": "entry.sample.conductiveCoatingApplied"
+                                                "title": "Embedding Medium",
+                                                "key": "entry.sample.embeddingMedium"
                                             },
                                             {"title": "Storage Conditions", "key": "entry.sample.storageConditions"},
                                             {
