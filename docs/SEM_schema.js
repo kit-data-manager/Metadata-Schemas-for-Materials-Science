@@ -257,7 +257,7 @@ var dataModel = {
                "type":"string",
                "description":"(Optional) - Conductive coating material",
                "default":"Au"
-            }
+            },
             "storageConditions":{
                "type":"string",
                "default":"Ambient, dry environment"
