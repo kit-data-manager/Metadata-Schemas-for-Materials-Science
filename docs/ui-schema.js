@@ -108,6 +108,7 @@ var uiSchema =
                                     {
                                         "legend": "Id",
                                         "type": "fieldset",
+                                        "description":"(Optional) - Identifier of the sample, usually provided by the vendor or the laboratory",
                                         "htmlClass": "myclass",
                                         "items": [
                                             {"title": "Sample Id Type", "key": "entry.sample.sampleID.identifierType"},
