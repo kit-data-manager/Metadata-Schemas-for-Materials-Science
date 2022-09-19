@@ -283,16 +283,17 @@ var dataModel = {
       },
       "distanceDetails":{
          "type":"object",
-         "description":"describes a distance, size or length. Properties: value (required) - The distance, size or length expressed as an integer or floating point value of datatype number, unit (required) - the unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm) of datatype string, qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min, default value - max) of datatype string, uncertainty (optional) - Uncertainty in the value defined separately as uncertaintyDetails,(allows choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number), notes (optional) - Further notes about the value of datatype string",
+         "description":"(Optional) - Describes a distance, size or length. Properties: value (Required) - The distance, size or length, unit (Required) - the unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm), qualifier (Optional) - A qualifier to describe the value (e.g., average, maximum, minimum, default value - max), uncertainty (Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative, notes (Optional) - Further notes about the value",
          "additionalProperties":false,
          "properties":{
             "value":{
                "type":"number",
-               "description":"(required) - The distance, size or length expressed as an integer or floating point value of datatype number",
+               "description":"(Required) - The value of the distance, size or length",
                "default":-9999
             },
             "unit":{
                "type":"string",
+               "description":"(Required) - The unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
                "default":"mm",
                "enum":[
                   "nm",
@@ -304,13 +305,15 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
+               "description":"(Optional) - A qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
                "default":"max"
             },
             "uncertainty":{
                "$ref":"#/$defs/uncertaintyDetails"
             },
             "notes":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - Further notes about the value"
             }
          },
          "required":[
@@ -321,11 +324,12 @@ var dataModel = {
       },
       "uncertaintyDetails":{
          "type":"object",
-         "description":"describes an uncertainty. Properties: type (required) - type of the uncertainty to be chosen between absolute or relative of datatype string, value (required) -  value of the uncertainty expressed as a number",
+         "description":"(Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative. Properties: type (Required) - Type of the uncertainty to be chosen between absolute or relative, value (Required) - value of the uncertainty",
          "additionalProperties":false,
          "properties":{
             "uncertaintyType":{
                "type":"string",
+               "description":"(Required) - Type of the uncertainty to be chosen between absolute or relative",
                "enum":[
                   "absolute",
                   "relative"
@@ -333,6 +337,7 @@ var dataModel = {
             },
             "value":{
                "type":"number",
+               "description":"(Required) - value of the uncertainty",
                "default":-9999
             }
          },
@@ -343,15 +348,17 @@ var dataModel = {
       },
       "weightDetails":{
          "type":"object",
-         "description":"describes a weight. Properties: value (required) - The weight expressed as an integer or floating point value of datatype number, unit (required) - the unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug) of datatype string, qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min, default value - max), of datatype string, uncertainty (optional) - Uncertainty in the value defined separately as uncertaintyDetails which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (optional) - Further notes about the value of datatype string",
+         "description":"(Optional) - Describes a weight. Properties: value (Required) - The value of the weight, unit (Required) - The unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug), qualifier (Optional) - A qualifier to describe the value (e.g., average, maximum, minimum, default value - max), uncertainty (Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative, notes (Optional) - Further notes about the value",
          "additionalProperties":false,
          "properties":{
             "value":{
                "type":"number",
+               "description":"(Required) - The value of the weight",
                "default":-9999
             },
             "unit":{
                "type":"string",
+               "description":"(Required) - The unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
                "default":"ug",
                "enum":[
                   "ng",
@@ -363,6 +370,7 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
+               "description":"(Optional) - A qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
                "default":"max"
             },
             "uncertainty":{
@@ -380,15 +388,17 @@ var dataModel = {
       },
       "samplePrepType":{
          "type":"object",
-         "description":"describes the sample preparation process. Properties: preparationDate (optional) - Date of preparation in the form CCYY-MM-DD, preparationDescription (optional) -Short description of the preparation of datatype string, preparationID (optional) - Identifier for the sample preparation",
+         "description":"(Optional) - Describes the sample preparation process. Properties: preparationDate (Optional) - Date of the sample preparation, preparationDescription (Optional) - Short description of the sample preparation, preparationID (Optional) - Identifier of the sample preparation",
          "additionalProperties":false,
          "properties":{
             "preparationDate":{
                "type":"string",
+               "description":"(Optional) - Date of the sample preparation",
                "format":"date"
             },
             "preparationDescription":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - Short description of the sample preparation"
             },
             "preparationID":{
                "$ref":"#/$defs/identifier"
@@ -399,7 +409,7 @@ var dataModel = {
       "instrumentDetails":{
          "type":"object",
          "additionalProperties":false,
-         "description":"details giving the relevant instrument settings and the collection of the components of the instrument. Properties: instrumentName (required) - Name of the instrument of datatype string, instrumentID (optional) - Identifier for the instrument, instrumentManufacturer (optional) - details like manufacturer name, model name and manufacturer ID, grouped together and defined separately as manufacturerDetails, chamberPressure (required) - pressure maintained inside the chamber (in which the sample is housed) during the measurement defined separately as pressureDetails, eBeamSource (required) - Details about the electron beam source defined separately as sourceDetails, stage (required) - Details about the stage defined separately as stageDetails, imaging (required) - Details about the imaging settings of the instrument defined separately as imagingDetails, detectors (required) - this group for the SEM contains at least one detector, with further option to include a second one in case of signal mixing. The group itself is defined separately as detectorSetDetails, which contains the elements to indicate if signal mixing is done, a description for signal mixing and options for details of two detectors; Each of the detector groups are defined separately as detectorDetails, eBeamDeceleration (required) - Details about the instrument settings for electron beam deceleration defined separately as eBeamDecelerationDetails, FIB (optional) - Details about an additional focussed ion beam (FIB) extension to the instrument, defined separately as FIBDetails",
+         "description":"Details giving the relevant instrument settings and the collection of the components of the instrument. Properties: instrumentName (required) - Name of the instrument of datatype string, instrumentID (optional) - Identifier for the instrument, instrumentManufacturer (optional) - details like manufacturer name, model name and manufacturer ID, grouped together and defined separately as manufacturerDetails, chamberPressure (required) - pressure maintained inside the chamber (in which the sample is housed) during the measurement defined separately as pressureDetails, eBeamSource (required) - Details about the electron beam source defined separately as sourceDetails, stage (required) - Details about the stage defined separately as stageDetails, imaging (required) - Details about the imaging settings of the instrument defined separately as imagingDetails, detectors (required) - this group for the SEM contains at least one detector, with further option to include a second one in case of signal mixing. The group itself is defined separately as detectorSetDetails, which contains the elements to indicate if signal mixing is done, a description for signal mixing and options for details of two detectors; Each of the detector groups are defined separately as detectorDetails, eBeamDeceleration (required) - Details about the instrument settings for electron beam deceleration defined separately as eBeamDecelerationDetails, FIB (optional) - Details about an additional focussed ion beam (FIB) extension to the instrument, defined separately as FIBDetails",
          "properties":{
             "instrumentName":{
                "type":"string"
