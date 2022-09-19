@@ -222,6 +222,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "Id",
                                                                 "type": "fieldset",
+                                                                "description":"(Optional) - Identifier of the sample preparation",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
@@ -237,6 +238,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "Details",
                                                                 "type": "fieldset",
+                                                                "description":"(Optional) - Details on the sample preparation process",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
