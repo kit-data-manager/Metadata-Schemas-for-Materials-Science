@@ -271,7 +271,9 @@ var uiSchema =
                                         "type": "fieldset",
                                         "htmlClass": "myclass",
                                         "items": [
-                                            {"title": "Name", "key": "entry.instrument.instrumentName"},
+                                            {
+                                                "title": "Name", 
+                                                "key": "entry.instrument.instrumentName"},
                                             {
                                                 "title": "Id Type",
                                                 "key": "entry.instrument.instrumentID.identifierType"
@@ -299,6 +301,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "Manufacturer",
                                                                 "type": "fieldset",
+                                                                "description":"(Optional) - Details about the manufacturer or vendor of the instrument",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
