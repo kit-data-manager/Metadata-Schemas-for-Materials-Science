@@ -283,17 +283,17 @@ var dataModel = {
       },
       "distanceDetails":{
          "type":"object",
-         "description":"(Optional) - Describes a distance, size or length. Properties: value (Required) - The distance, size or length, unit (Required) - the unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm), qualifier (Optional) - A qualifier to describe the value (e.g., average, maximum, minimum, default value - max), uncertainty (Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative, notes (Optional) - Further notes about the value",
+         "description":"(Optional) - Describes a distance, size or length. Properties: value (Required) - Value of the istance, size or length, unit (Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm), qualifier (Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max), uncertainty (Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative, notes (Optional) - Further notes about the value",
          "additionalProperties":false,
          "properties":{
             "value":{
                "type":"number",
-               "description":"(Required) - The value of the distance, size or length",
+               "description":"(Required) - Value of the distance, size or length",
                "default":-9999
             },
             "unit":{
                "type":"string",
-               "description":"(Required) - The unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
+               "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
                "default":"mm",
                "enum":[
                   "nm",
@@ -305,7 +305,7 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "description":"(Optional) - A qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
                "default":"max"
             },
             "uncertainty":{
@@ -337,7 +337,7 @@ var dataModel = {
             },
             "value":{
                "type":"number",
-               "description":"(Required) - value of the uncertainty",
+               "description":"(Required) - Value of the uncertainty",
                "default":-9999
             }
          },
@@ -348,17 +348,17 @@ var dataModel = {
       },
       "weightDetails":{
          "type":"object",
-         "description":"(Optional) - Describes a weight. Properties: value (Required) - The value of the weight, unit (Required) - The unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug), qualifier (Optional) - A qualifier to describe the value (e.g., average, maximum, minimum, default value - max), uncertainty (Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative, notes (Optional) - Further notes about the value",
+         "description":"(Optional) - Describes a weight. Properties: value (Required) - Value of the weight, unit (Required) - Unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug), qualifier (Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max), uncertainty (Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative, notes (Optional) - Further notes about the value",
          "additionalProperties":false,
          "properties":{
             "value":{
                "type":"number",
-               "description":"(Required) - The value of the weight",
+               "description":"(Required) - Value of the weight",
                "default":-9999
             },
             "unit":{
                "type":"string",
-               "description":"(Required) - The unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
+               "description":"(Required) - Unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
                "default":"ug",
                "enum":[
                   "ng",
@@ -370,7 +370,7 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "description":"(Optional) - A qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
                "default":"max"
             },
             "uncertainty":{
@@ -409,10 +409,11 @@ var dataModel = {
       "instrumentDetails":{
          "type":"object",
          "additionalProperties":false,
-         "description":"Details giving the relevant instrument settings and the collection of the components of the instrument. Properties: instrumentName (required) - Name of the instrument of datatype string, instrumentID (optional) - Identifier for the instrument, instrumentManufacturer (optional) - details like manufacturer name, model name and manufacturer ID, grouped together and defined separately as manufacturerDetails, chamberPressure (required) - pressure maintained inside the chamber (in which the sample is housed) during the measurement defined separately as pressureDetails, eBeamSource (required) - Details about the electron beam source defined separately as sourceDetails, stage (required) - Details about the stage defined separately as stageDetails, imaging (required) - Details about the imaging settings of the instrument defined separately as imagingDetails, detectors (required) - this group for the SEM contains at least one detector, with further option to include a second one in case of signal mixing. The group itself is defined separately as detectorSetDetails, which contains the elements to indicate if signal mixing is done, a description for signal mixing and options for details of two detectors; Each of the detector groups are defined separately as detectorDetails, eBeamDeceleration (required) - Details about the instrument settings for electron beam deceleration defined separately as eBeamDecelerationDetails, FIB (optional) - Details about an additional focussed ion beam (FIB) extension to the instrument, defined separately as FIBDetails",
+         "description":"(Required) - Details giving the relevant components and settings of the instrument. Properties: instrumentName (Required) - Name of the instrument, instrumentID (Optional) - Identifier of the instrument, instrumentManufacturer (Optional) - Details about the manufacturer or vendor of the instrument, chamberPressure (Required) - Pressure maintained inside the chamber (in which the sample is housed) during the measurement, eBeamSource (Required) - Details about the electron-beam source, stage (Required) - Details about the stage, imaging (Required) - Details about the imaging settings of the instrument, detectors (Required) - This group contains for SEM at least one detector, with the option to include a second one in case of signal mixing, eBeamDeceleration (Required) - Details about the instrument settings for electron-beam deceleration, FIB (Optional) - Details about an additional Focused Oon Beam (FIB) extension to the instrument",
          "properties":{
             "instrumentName":{
-               "type":"string"
+               "type":"string",
+               "description":"(Required) - Name of the instrument"
             },
             "instrumentID":{
                "$ref":"#/$defs/identifier"
@@ -454,14 +455,16 @@ var dataModel = {
       },
       "manufacturerDetails":{
          "type":"object",
-         "description":"gives details like the name of the manufacturer and model of the instrument and an ID. Properties: manufacturerName (optional) - Name of the manufacturer of datatype string, modelName (optional) - Model of the instrument of datatype string, manufacturerID (optional) - Identifier for the manufacturer",
+         "description":"(Optional) - Details about the manufacturer or vendor of the instrument. Properties: manufacturerName (Optional) - Name of the manufacturer, modelName (Optional) - Model of the instrument, manufacturerID (Optional) - Identifier of the manufacturer",
          "additionalProperties":false,
          "properties":{
             "manufacturerName":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - Name of the manufacturer"
             },
             "modelName":{
-               "type":"string"
+               "type":"string",
+               "description":"(Optional) - Model of the instrument"
             },
             "manufacturerID":{
                "$ref":"#/$defs/identifier"
@@ -470,7 +473,7 @@ var dataModel = {
       },
       "pressureDetails":{
          "type":"object",
-         "description":"describes a pressure measurement. Properties: value (required) - The pressure expressed as an integer or floating point value of datatype number, unit (required) - the unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi, default value - Pa) of datatype string, qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max) of datatype string, uncertainty (optional) - Uncertainty in the value defined separately as uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (optional) - Further notes about the value of datatype string",
+         "description":"(Required) - Describes a pressure. Properties: value (Required) - Value of the pressure, unit (Required) - Unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi, default value - Pa), qualifier (Optional) - (Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max), uncertainty (Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative, notes (Optional) - Further notes about the value",
          "additionalProperties":false,
          "properties":{
             "value":{
