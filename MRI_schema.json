@@ -1,0 +1,319 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "title": "Image data label schema",
+    "description": "This schema provides description of an MRI study with at least one series.",
+    "definitions": {
+    },
+    "required": ["study"],
+    "type": "object",
+    "properties": {
+        "study": {
+            "required": ["studyID", "studyDateTime"],
+            "type": "object",
+            "properties": {
+                "studyID": {
+                    "type": "string"
+                },
+                "studyTitle": {
+                    "type": "string"
+                },
+                "studyDateTime": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "program": {
+                    "type": "string"
+                },
+                "user": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "role": {
+                            "type": "string"
+                        },
+                        "affiliation": {
+                            "type": "object",
+                            "properties": {
+                                "institutionName": {
+                                    "type": "string"
+                                },
+                                "institutionAcronym": {
+                                    "type": "string"
+                                },
+                                "institutionDepartment": {
+                                    "type": "string"
+                                },
+                                "institutionID": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "email": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "sample": {
+                    "type": "object",
+                    "properties": {
+                        "sampleName": {
+                            "type": "string"
+                        },
+                        "sampleID": {
+                            "type": "string"
+                        },
+                        "sampleSize": {
+                            "type": "object",
+                            "description": "Length or size of the sample, in meters.",
+							"properties": {
+								"value": {
+									"type": "number"
+								},
+                                "unit":{
+                                    "type": "string",
+                                    "default":"m",
+                                    "enum":[
+                                       "nm",
+                                       "um",
+                                       "mm",
+                                       "cm",
+                                       "m"
+                                    ]
+                                }
+                            }
+                        },
+                        "sampleWeight": {
+                            "type": "object",
+                            "description": "Weight of the sample, in kilograms.",
+                            "properties": {
+								"value": {
+									"type": "number"
+								},
+                                "unit":{
+                                    "type": "string",
+                                    "default":"kg",
+                                    "enum":[
+                                       "kg",
+                                       "g"
+                                    ]
+                                }
+                            }
+                        },
+                        "measurementConditions": {
+                            "type": "object",
+                            "description": "Nominal field strength of the MR Magnet, in Tesla.",
+                            "properties": {
+								"value": {
+									"type": "number"
+								},
+                                "unit":{
+                                    "type":"string",
+                                    "default":"T",
+                                    "enum":[ "T"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "instrument": {
+                    "type": "object",
+                    "properties": {
+                        "instrumentName": {
+                            "type": "string"
+                        },
+                        "instrumentID": {
+                            "type": "string"
+                        },
+                        "instrumentManufacturer": {
+                            "type": "object",
+                            "properties": {
+                                "manufacturerName": {
+                                    "type": "string"
+                                },
+                                "modelName": {
+                                    "type": "string"
+                                },
+                                "manufacturerID": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "series": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "seriesID": {
+                                "type": "string"
+                            },
+                            "seriesTitle": {
+                                "type": "string"
+                            },
+                            "sequenceProtocol": {
+                                "type": "object",
+                                "properties": {
+                                    "sequenceProtocolName": {
+                                        "type": "string"
+                                    },
+                                    "effectiveEchoTime": {
+                                        "type": "object",
+                                        "properties": {
+                                            "value": {
+                                                "type": "number"
+                                            },
+                                            "unit":{
+                                                "type":"string",
+                                                "default":"ms",
+                                                "enum":[
+                                                   "ms"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "repetitionTime": {
+                                        "type": "object",
+                                        "properties": {
+                                            "value": {
+                                                "type": "number"
+                                            },
+                                            "unit":{
+                                                "type":"string",
+                                                "default":"ms",
+                                                "enum":[
+                                                   "ms"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "flipAngle": {
+                                        "type": "object",
+                                        "properties": {
+                                            "value": {
+                                                "type": "number"
+                                            },
+                                            "unit":{
+                                                "type":"string",
+                                                "default":"°",
+                                                "enum":[
+                                                   "°"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "images": {
+                                "type": "object",
+                                "properties": {
+                                    "allImages": {
+                                        "type": "object",
+                                        "properties": {
+                                            "numberOfImages": {
+                                                "type": "string"
+                                            },
+                                            "imageOrientation": {
+                                                "type": "string"
+                                            },
+                                            "pixelSpacing": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "value": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "unit":{
+                                                        "type": "string",
+                                                        "default":"mm",
+                                                        "enum":[
+                                                           "mm"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "sliceThickness": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "value": {
+                                                        "type": "number"
+                                                    },
+                                                    "unit":{
+                                                        "type": "string",
+                                                        "default":"mm",
+                                                        "enum":[
+                                                           "mm"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "imageSize": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "rows": {
+                                                        "type": "integer"
+                                                    },
+                                                    "columns": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            },
+                                            "perImage": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "imageType": {
+                                                        "type": "string"
+                                                    },
+                                                    "sampleImagePosition": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "pixelRepresentation": {
+                                                        "type": "integer"
+                                                    },
+                                                    "pixelRange": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "pixelBandwidth": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "value": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "unit":{
+                                                                        "type":"string",
+                                                                        "default":"Hz",
+                                                                        "enum":[
+                                                                           "Hz"
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            },
+                                                            "smallestImagePixelValue": {
+                                                                "type": "integer"
+                                                            },
+                                                            "largestImagePixelValue": {
+                                                                "type": "integer"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
