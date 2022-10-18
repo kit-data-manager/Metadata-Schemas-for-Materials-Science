@@ -138,7 +138,7 @@ var uiSchema =
                                             {"title": "Sample Holder", "key": "entry.sample.sampleHolder"},
                                             {"title": "Final Specimen", "key": "entry.sample.finalSpecimen"},
                                             {"title": "Fixing Method", "key": "entry.sample.fixingMethod"},
-                                            {"title": "Embedding Medium", "key": "entry.sample.embeddingMedium"},
+                                            {"title": "Embedding Medium", "key": "entry.sample.embeddingMaterial"},
                                             {"title": "Conductive Coating Applied", "key": "entry.sample.conductiveCoatingApplied"},
                                             {"title": "Conductive Coating", "key": "entry.sample.conductiveCoating"},
                                             {"title": "Storage Conditions", "key": "entry.sample.storageConditions"},
