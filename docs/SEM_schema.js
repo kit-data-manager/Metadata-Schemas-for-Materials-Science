@@ -698,7 +698,7 @@ var dataModel = {
          "properties":{
             "stageAlignmentDone":{
                "type":"boolean",
-               "description":"(Optional) - was stage alignment done? (true or false) of datatype boolean"
+               "description":"(Optional) - was stage alignment done? (check if true)"
             },
             "tiltAngle":{
                "$ref":"#/$defs/angleDetails",
@@ -761,7 +761,7 @@ var dataModel = {
          "properties":{
             "isCorrelationImage":{
                "type":"boolean",
-               "description":"(Required) - Whether the image is used for correlating in xyz coordinates with another image? true or false. If true the coordinates have to be entered for the sake of correlative characterization of datatype boolean"
+               "description":"(Required) - Whether the image is used for correlating in xyz coordinates with another image? Check if true. If true the coordinates have to be entered for the sake of correlative characterization of datatype boolean"
             },
             "coordinates":{
                "$ref":"#/$defs/coordinateSet",
