@@ -77,7 +77,7 @@ var dataModel = {
          "properties":{
             "identifierValue":{
                "type":"string",
-               "description":"(Optional) - String containing the value of an identifier",
+               "description":"(Optional) - String containing the value of an identifier"
             },
             "identifierType":{
                "type":"string",
@@ -448,7 +448,7 @@ var dataModel = {
             },
             "stage":{
                "$ref":"#/$defs/stageDetails",
-               "(Required) - Details about the stage"
+               "description":"(Required) - Details about the stage"
             },
             "imaging":{
                "$ref":"#/$defs/imagingDetails",
@@ -821,7 +821,6 @@ var dataModel = {
                "type":"number",
                "default":-9999,
                "description":"(Optional) - value of the x coordinate of datatype number"
-            }
             },
             "xUncertainty":{
                "$ref":"#/$defs/uncertaintyDetails",
@@ -1235,3 +1234,4 @@ var dataModel = {
          "title":"GISDetails"
       }
    }
+}
