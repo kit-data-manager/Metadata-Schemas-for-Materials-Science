@@ -778,7 +778,7 @@ var dataModel = {
             },
             "pixelSize":{
                "$ref":"#/$defs/pixelsize3D",
-               "description":"(Required) - Physical x,y,z length imaged by a single pixel imaged by a single pixel, normally expressed in nm/pixel, defined separately as pixelSize3D for the mapping along x,y and z directions, with each pixel having a pixelSize, optional uncertainty, optional qualifier and optional notes. The y-pixel-size is to be given only if it is different from the x-pixel-size, and z-pixel-size can be ignored if it is greater than voxel size"
+               "description":"(Required) - Physical x,y,z length imaged by a single pixel, normally expressed in nm/pixel, defined separately as pixelSize3D for the mapping along x,y and z directions, with each pixel having a pixelSize, optional uncertainty, optional qualifier and optional notes. The y-pixel-size is to be given only if it is different from the x-pixel-size, and z-pixel-size can be ignored if it is greater than voxel size"
             },
             "collectionMethod":{
                "type":"string",

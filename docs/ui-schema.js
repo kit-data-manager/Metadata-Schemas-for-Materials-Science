@@ -379,6 +379,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "Acceleration Voltage",
                                                                 "type": "fieldset",
+                                                                "description":"(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
@@ -402,6 +403,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "Beam Current",
                                                                 "type": "fieldset",
+                                                                "description":"(Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
@@ -425,6 +427,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "Source Lifetime",
                                                                 "type": "fieldset",
+                                                                "description":"(Optional) - lifetime of the e-beam source (default value - uAh) of datatype string",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
@@ -466,6 +469,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "Tilt Angle",
                                                                 "type": "fieldset",
+                                                                "description":"(Required) - angle by which the stage is tilted defined separately as angleDetails with the angle value, optional uncertainty, optional notes, optional qualifier and choice of units between degree and radian",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
@@ -489,6 +493,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "eBeam Working Distance",
                                                                 "type": "fieldset",
+                                                                "description":"(Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, um, mm, cm and m",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
@@ -573,6 +578,7 @@ var uiSchema =
                                                                                     },
                                                                                     {
                                                                                         "legend": "X Value",
+                                                                                        "description":"(Optional) - value of the x coordinate",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
@@ -589,6 +595,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Y Value",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - value of the y coordinate",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -604,6 +611,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Z Value",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - value of the zcoordinate",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -626,6 +634,7 @@ var uiSchema =
 
                                                                                     {
                                                                                         "legend": "X Pixel Size",
+                                                                                        "description":"(Required) - Physical length in x coordinates imaged by a single pixel, normally expressed in nm/pixel, for the mapping along x direction, with each pixel having a pixelSize, optional uncertainty, optional qualifier and optional notes.",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
@@ -654,6 +663,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Y Pixel Size",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - The y-pixel-size is to be given only if it is different from the x-pixel-size.",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -681,6 +691,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Z Pixel Size",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - The z-pixel-size can be ignored if it is greater than voxel size",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -712,7 +723,8 @@ var uiSchema =
                                                                                 "type": "tab",
                                                                                 "items": [
                                                                                     {
-                                                                                        "legend": "Size",
+                                                                                        "legend": "Aperture Size",
+                                                                                        "description":"(Optional) - The setting for controlling the aperture size, using the aperture size directly. Either the aperture size or beam current must be given. If the size can be set directly, then it is defined with the complex type distanceDetails.",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
@@ -736,6 +748,7 @@ var uiSchema =
                                                                                     },
                                                                                     {
                                                                                         "legend": "Current",
+                                                                                        "description":"(Optional) - The setting for controlling the aperture size, using the beam current indirectly. Either the size or beam current must be given. If the aperture setting is controlled with the beam current, it is defined separately as currentDetails",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
@@ -766,6 +779,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Dwell Time",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - the dwell time of the beam per pixel, defined separately as  timeDetails",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -795,6 +809,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Voxel",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - Size of the voxel in case 3D imaging is done for Energy-dispersive X-ray Spectroscopy or Electron-backscatter Diffraction, defined separately as voxelDetails",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -863,6 +878,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Detector 1",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Required) - gives the settings of one detector defined separately as detectorDetails; entering the details of at least one detector is compulsory",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -886,6 +902,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Manufacturer",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - describes the details of the detector (manufacturerName, modelName and detectorID) as part of manufacturerDetails",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -913,6 +930,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Component Geometry - xValue",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - x coordinate describing the position of the detector",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -928,6 +946,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Component Geometry - yValue",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - y coordinate describing the position of the detector",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -943,6 +962,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Component Geometry - zValue",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - z coordinate describing the position of the detector",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -959,6 +979,7 @@ var uiSchema =
                                                                                         "legend": "Detector Bias",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, uV, mV, V, kV",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -991,6 +1012,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Detector 2",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - gives the settings of an additional detector defined separately as detectorDetails",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -1014,6 +1036,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Manufacturer",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - describes the details of the detector (manufacturerName, modelName and detectorID) as part of manufacturerDetails",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -1041,6 +1064,7 @@ var uiSchema =
                                                                                     {
                                                                                         "legend": "Component Geometry - xValue",
                                                                                         "type": "fieldset",
+                                                                                        "description":"(Optional) - x coordinate describing the position of the detector",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
                                                                                             {
@@ -1057,6 +1081,7 @@ var uiSchema =
                                                                                         "legend": "Component Geometry - yValue",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - y coordinate describing the position of the detector",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1072,6 +1097,7 @@ var uiSchema =
                                                                                         "legend": "Component Geometry - zValue",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - z coordinate describing the position of the detector",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1087,6 +1113,7 @@ var uiSchema =
                                                                                         "legend": "Detector Bias",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, uV, mV, V, kV",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1127,6 +1154,7 @@ var uiSchema =
                                                                 "legend": "Landing Energy",
                                                                 "type": "fieldset",
                                                                 "htmlClass": "myclass",
+                                                                "description":"(Optional) - Landing energy of the e-beam defined separately as energyDetails (allowed units - meV, eV, keV, nJ, mJ, J, kJ, MJ)",
                                                                 "items": [
                                                                     {
                                                                         "title": "Value",
@@ -1154,6 +1182,7 @@ var uiSchema =
                                                                 "legend": "Stage Bias",
                                                                 "type": "fieldset",
                                                                 "htmlClass": "myclass",
+                                                                "description":"(Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, uV, mV, V, kV, nA, uA, mA, A, kA)",
                                                                 "items": [
                                                                     {
                                                                         "title": "Value",
@@ -1201,6 +1230,7 @@ var uiSchema =
                                                                                         "legend": "iBeam Source",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Required) - describes the details of the FIB source, defined separately as sourceDetails in which it is important to note the accelerating voltage and beam current of the i-beam",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Name",
@@ -1220,6 +1250,7 @@ var uiSchema =
                                                                                         "legend": "Acceleration Voltage",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Required) - the voltage with which the i-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1243,6 +1274,7 @@ var uiSchema =
                                                                                         "legend": "Beam Current",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Required) - the measured current of the i-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1266,6 +1298,7 @@ var uiSchema =
                                                                                         "legend": "Source Lifetime",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - lifetime of the i-beam source (default value - uAh) of datatype string",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1295,6 +1328,7 @@ var uiSchema =
                                                                                         "legend": "angleToEBeam",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - angle between e-beam and i-beam defined separately as angleDetails (Allowed units: degree, radian)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1324,6 +1358,7 @@ var uiSchema =
                                                                                         "legend": "gunPressure",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Required) - pressure of the FIB gun, defined separately as pressureDetails (Allowed units Pa, hPa, kPa, MPa, GPa, mbar, bar, psi)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1357,6 +1392,7 @@ var uiSchema =
                                                                                         "legend": "gasInjectionSystem",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - Details about the gas injection system (GIS)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Name",
@@ -1372,6 +1408,7 @@ var uiSchema =
                                                                                         "legend": "Deposition Current",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - the current used for performing beam deposition defined separately as currentDetails (Allowed units pA,nA,uA,mA,A)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1399,6 +1436,7 @@ var uiSchema =
                                                                                         "legend": "Deposition Size",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - the size of the deposition defined separately as distanceDetails (Allowed units nm,um,mm,cm,m)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1426,6 +1464,7 @@ var uiSchema =
                                                                                         "legend": "Deposition Time",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,us,ms,s)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1460,6 +1499,7 @@ var uiSchema =
                                                                                         "legend": "iBeamWorkingDistance",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, um, mm, cm, m)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1493,6 +1533,7 @@ var uiSchema =
                                                                                         "legend": "FIBSpotSize",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, um, mm, cm, m)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
