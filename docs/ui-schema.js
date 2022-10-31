@@ -332,6 +332,7 @@ var uiSchema =
                                                                 "legend": "Chamber Pressure",
                                                                 "type": "fieldset",
                                                                 "htmlClass": "myclass",
+                                                                "description":"(Required) - Pressure maintained inside the chamber (in which the sample is housed) during the measurement",
                                                                 "items": [
                                                                     {
                                                                         "title": "Value",
@@ -361,6 +362,7 @@ var uiSchema =
                                                                 "legend": "eBeam Source",
                                                                 "type": "fieldset",
                                                                 "htmlClass": "myclass",
+                                                                "description":"(Required) - Details about the electron-beam source",
                                                                 "items": [
                                                                     {
                                                                         "title": "Id Type",
@@ -850,6 +852,7 @@ var uiSchema =
                                                                 "legend": "Mixing",
                                                                 "type": "fieldset",
                                                                 "htmlClass": "myclass",
+                                                                "description":"gives information about signal mixing between two detectors",
                                                                 "items": [
                                                                     {
                                                                         "title": "Signal Mixing Done",
