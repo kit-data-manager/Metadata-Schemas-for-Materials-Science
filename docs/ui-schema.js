@@ -74,7 +74,7 @@ var uiSchema =
                                     {
                                         "legend": "Affiliation",
                                         "type": "fieldset",
-                                        "description":"Details of the institution to which the user is affiliated",
+                                        "description":"(Optional) - Details of the institution to which the user is affiliated",
                                         "htmlClass": "myclass",
                                         "items": [
                                             {
@@ -852,7 +852,7 @@ var uiSchema =
                                                                 "legend": "Mixing",
                                                                 "type": "fieldset",
                                                                 "htmlClass": "myclass",
-                                                                "description":"gives information about signal mixing between two detectors",
+                                                                "description":"(Required) - gives information about signal mixing between two detectors",
                                                                 "items": [
                                                                     {
                                                                         "title": "Signal Mixing Done",
