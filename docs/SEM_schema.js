@@ -280,7 +280,7 @@ var dataModel = {
             },
             "samplePreparation":{
                "$ref":"#/$defs/samplePrepType",
-               "description":"(Optional) - Details pertaining to the sample prepapration like date, ID, etc",
+               "description":"(Optional) - Details pertaining to the sample prepapration like date, ID, etc"
             }
          },
          "required":[
