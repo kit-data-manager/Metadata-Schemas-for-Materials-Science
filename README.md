@@ -21,3 +21,6 @@ Sample files are also provided which are written according to the respective sch
 
 3. Schema for Magnetic Resonance Imaging (MRI)
   * [JSON Schema](MRI_schema.json)
+  
+4. General Schema for describing a User
+  * [JSON Schema](user_description.json)
