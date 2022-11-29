@@ -43,9 +43,25 @@ var uiSchema = {
                                     "key": "sampleIDNumber.IDnumberPosition",
                                     "type": "checkboxes"
                                 },
+                                {"title": "Axis Orientation", "key": "sampleIDNumber.axisOrientation"},
                                 {
-                                    "title": "Reference Points",
-                                    "key": "sampleIDNumber.referencePoints"
+                                    "type": "selectfieldset",
+                                    "title": "Reference Points: coordinate system",
+                                    "key": "sampleIDNumber.referencePoints",
+                                    "titleMap":
+                                    {
+                                        "notApplicable": "Not applicable",
+                                        "carthesian": "Carthesian",
+                                        "polar": "Polar",
+                                        "other": "Other (please add in the comments)"
+                                    },
+                                    "items": 
+                                    [
+                                        "sampleIDNumber.notApplicable",
+                                        "sampleIDNumber.carthesian",
+                                        "sampleIDNumber.polar",
+                                        "sampleIDNumber.other"
+                                    ]
                                 },
                                 {"title": "Comments", "key": "sampleIDNumber.comments"}
                             ]
@@ -305,8 +321,25 @@ var uiSchema = {
                             "items":
                             [
                                 {"title": "Axis Orientation", "key": "sampleReferencing.axisOrientation"},
-                                {"title": "Coordinate System", "key": "sampleReferencing.coordinateSystem"},
-                                {"title": "Sample Reference", "key": "sampleReferencing.sampleReference"},
+                                {
+                                    "type": "selectfieldset",
+                                    "title": "Coordinate System",
+                                    "key": "sampleReferencing.sampleReference",
+                                    "titleMap":
+                                    {
+                                        "notApplicable": "Not applicable",
+                                        "carthesian": "Carthesian",
+                                        "polar": "Polar",
+                                        "other": "Other (please add in the comments)"
+                                    },
+                                    "items": 
+                                    [
+                                        "sampleReferencing.notApplicable",
+                                        "sampleReferencing.carthesian",
+                                        "sampleReferencing.polar",
+                                        "sampleReferencing.other"
+                                    ]
+                                },
                                 {"title": "Comments", "key": "sampleReferencing.comments"}
                             ]
                         },
@@ -316,9 +349,44 @@ var uiSchema = {
                             "items":
                             [
                                 {"title": "Axis Orientation", "key": "holderReferencing.axisOrientation"},
-                                {"title": "Coordinate System", "key": "holderReferencing.coordinateSystem"},
-                                {"title": "Sample position on Holder", "key": "holderReferencing.samplePositionOnHolder"},
-                                {"title": "Holder Reference", "key": "holderReferencing.holderReference"},
+                                {
+                                    "type": "selectfieldset",
+                                    "title": "Sample position on Holder: Coordinate System",
+                                    "key": "holderReferencing.sampleOnHolder.samplePositionOnHolder",
+                                    "titleMap":
+                                    {
+                                        "notApplicable": "Not applicable",
+                                        "carthesian": "Carthesian",
+                                        "polar": "Polar",
+                                        "other": "Other (please add in the comments)"
+                                    },
+                                    "items": 
+                                    [
+                                        "holderReferencing.sampleOnHolder.notApplicable",
+                                        "holderReferencing.sampleOnHolder.carthesian",
+                                        "holderReferencing.sampleOnHolder.polar",
+                                        "holderReferencing.sampleOnHolder.other"
+                                    ]
+                                },
+                                {
+                                    "type": "selectfieldset",
+                                    "title": "Markers position on Holder: Coordinate System",
+                                    "key": "holderReferencing.markerOnHolder.holderReference",
+                                    "titleMap":
+                                    {
+                                        "notApplicable": "Not applicable",
+                                        "carthesian": "Carthesian",
+                                        "polar": "Polar",
+                                        "other": "Other (please add in the comments)"
+                                    },
+                                    "items": 
+                                    [
+                                        "holderReferencing.markerOnHolder.notApplicable",
+                                        "holderReferencing.markerOnHolder.carthesian",
+                                        "holderReferencing.markerOnHolder.polar",
+                                        "holderReferencing.markerOnHolder.other"
+                                    ]
+                                },
                                 {"title": "Comments", "key": "holderReferencing.comments"}
                             ]
                         },
@@ -328,9 +396,44 @@ var uiSchema = {
                             "items":
                             [
                                 {"title": "Axis Orientation", "key": "carrierReferencing.axisOrientation"},
-                                {"title": "Coordinate System", "key": "carrierReferencing.coordinateSystem"},
-                                {"title": "Holder position on Carrier", "key": "carrierReferencing.holderPositionOnCarrier"},
-                                {"title": "Carrier Reference", "key": "carrierReferencing.carrierReference"},
+                                {
+                                    "type": "selectfieldset",
+                                    "title": "Holder position on Carrier: Coordinate System",
+                                    "key": "carrierReferencing.holderOnCarrier.holderPositionOnCarrier",
+                                    "titleMap":
+                                    {
+                                        "notApplicable": "Not applicable",
+                                        "carthesian": "Carthesian",
+                                        "polar": "Polar",
+                                        "other": "Other (please add in the comments)"
+                                    },
+                                    "items": 
+                                    [
+                                        "carrierReferencing.holderOnCarrier.notApplicable",
+                                        "carrierReferencing.holderOnCarrier.carthesian",
+                                        "carrierReferencing.holderOnCarrier.polar",
+                                        "carrierReferencing.holderOnCarrier.other"
+                                    ]
+                                },
+                                {
+                                    "type": "selectfieldset",
+                                    "title": "Markers position on Carrier: Coordinate System",
+                                    "key": "carrierReferencing.markerOnCarrier.carrierReference",
+                                    "titleMap":
+                                    {
+                                        "notApplicable": "Not applicable",
+                                        "carthesian": "Carthesian",
+                                        "polar": "Polar",
+                                        "other": "Other (please add in the comments)"
+                                    },
+                                    "items": 
+                                    [
+                                        "carrierReferencing.markerOnCarrier.notApplicable",
+                                        "carrierReferencing.markerOnCarrier.carthesian",
+                                        "carrierReferencing.markerOnCarrier.polar",
+                                        "carrierReferencing.markerOnCarrier.other"
+                                    ]
+                                },
                                 {"title": "Comments", "key": "carrierReferencing.comments"}
                             ]
                         },
@@ -340,32 +443,26 @@ var uiSchema = {
                             "items":
                             [
                                 {"title": "Axis Orientation", "key": "ROI.axisOrientation"},
-                                {"title": "Coordinate System", "key": "ROI.coordinateSystem"},
-                                {"title": "ROI Reference", "key": "ROI.ROIReference"},
-                                {"title": "Comments", "key": "ROI.comments"}
-                            ]
-                        },
-                        {
-                            "title": "Test ROI",
-                            "type": "tab",
-                            "items":
-                            [
                                 {
                                     "type": "selectfieldset",
                                     "title": "Coordinate System",
-                                    "key": "test.ROI1",
+                                    "key": "ROI.ROIReference",
                                     "titleMap":
                                     {
+                                        "notApplicable": "Not applicable",
                                         "carthesian": "Carthesian",
-                                        "polar": "Polar"
+                                        "polar": "Polar",
+                                        "other": "Other (please add in the comments)"
                                     },
                                     "items": 
                                     [
-                                        "test.carthesian",
-                                        "test.polar"
+                                        "ROI.notApplicable",
+                                        "ROI.carthesian",
+                                        "ROI.polar",
+                                        "ROI.other"
                                     ]
                                 },
-                                {"title": "Comments", "key": "test.comments"}
+                                {"title": "Comments", "key": "ROI.comments"}
                             ]
                         }
                         

@@ -60,6 +60,8 @@ var dataModel = {
                 }
             }
         },
+        noneType: {"title": "Not applicable (please specify why)", "type": "string"},
+        otherType: {"title": "Other (please add in the comments)", "type": "string"},
         "coordinateTypeOld":
         {
             "type": "object",
@@ -158,23 +160,23 @@ var dataModel = {
                         ]
                     }
                 },
+                "axisOrientation": {"type": "string"},
                 "referencePoints":
                 {
+                    "description": "Coordinates of the reference points for the sample Identification number in the sample reference system.",
                     "type": "array",
-                    "items":
-                    {
-                        "type": "object",
-                        "properties":
-                        {
-                            "pointName":
-                            {
-                                "description": "Name of the point, for reference. E.g., P0 (usually the zero point of the coordinate system), P1, P2, P3",
-                                "type": "string"
-                            },
-                            "coordinates": {"$ref":"#/$defs/coordinateTypeOld"}    
-                        }
-                    }
+                    "enum": 
+                    [
+                        "notApplicable",
+                        "carthesian",
+                        "polar",
+                        "other"
+                    ]
                 },
+                "carthesian": {"$ref": "#/$defs/carthesianType"},
+                "polar": {"$ref": "#/$defs/polarType"},
+                "notApplicable": {"$ref": "#/$defs/noneType"},
+                "other": {"$ref": "#/$defs/otherType"},
                 "comments": {"type": "string"}
             }
         },
@@ -761,35 +763,22 @@ var dataModel = {
             "properties":
             {
                 "axisOrientation": {"type": "string"},
-                "coordinateSystem":
-                {
-                    "type": "string",
-                    "enum": 
-                    [
-                        "Not applicable",
-                        "carthesian",
-                        "polar",
-                        "Other (please add in the comments)"
-                    ]
-                },
                 "sampleReference":
                 {
                     "description": "Coordinates of the markers in the sample reference system.",
                     "type": "array",
-                    "items":
-                    {
-                        "type": "object",
-                        "properties":
-                        {
-                            "markerName":
-                            {
-                                "description": "Name of the marker, for reference. E.g., P0 (usually the zero point of the coordinate system), P1, P2, P3",
-                                "type": "string"
-                            },                                   
-                            "coordinates": {"$ref":"#/$defs/coordinateTypeOld"}    
-                        }
-                    }   
+                    "enum": 
+                    [
+                        "notApplicable",
+                        "carthesian",
+                        "polar",
+                        "other"
+                    ]
                 },
+                "carthesian": {"$ref": "#/$defs/carthesianType"},
+                "polar": {"$ref": "#/$defs/polarType"},
+                "notApplicable": {"$ref": "#/$defs/noneType"},
+                "other": {"$ref": "#/$defs/otherType"},
                 "comments": {"type": "string"}
             }
         },
@@ -799,51 +788,50 @@ var dataModel = {
             "properties":
             {
                 "axisOrientation": {"type": "string"},
-                "coordinateSystem":
+                "sampleOnHolder":
                 {
-                    "type": "string",
-                    "enum": 
-                    [
-                        "Not applicable",
-                        "carthesian",
-                        "polar",
-                        "Other (please add in the comments)"
-                    ]
-                },
-                "samplePositionOnHolder":
-                {
-                    "description": "Sample position in the holder reference system.",
-                    "type": "array",
-                    "items":
+                    "type": "object",
+                    "properties": 
                     {
-                        "type": "object",
-                        "properties":
+                        "samplePositionOnHolder":
                         {
-                            "pointName":
-                            {
-                                "description": "Name of the point, for reference. E.g., P0 (usually the zero point of the coordinate system), P1, P2, P3",
-                                "type": "string"
-                            },                                   
-                            "coordinates": {"$ref":"#/$defs/coordinateTypeOld"}    
-                        }
-                    } 
+                            "description": "Sample position in the holder reference system.",
+                            "type": "array",
+                            "enum": 
+                            [
+                                "notApplicable",
+                                "carthesian",
+                                "polar",
+                                "other"
+                            ]
+                        },
+                        "carthesian": {"$ref": "#/$defs/carthesianType"},
+                        "polar": {"$ref": "#/$defs/polarType"},
+                        "notApplicable": {"$ref": "#/$defs/noneType"},
+                        "other": {"$ref": "#/$defs/otherType"}
+                    }    
                 },
-                "holderReference":
+                "markerOnHolder":
                 {
-                    "description": "Coordinates of the markers in the holder reference system.",
-                    "type": "array",
-                    "items":
+                    "type": "object",
+                    "properties":
                     {
-                        "type": "object",
-                        "properties":
+                        "holderReference":
                         {
-                            "markerName":
-                            {
-                                "description": "Name of the marker, for reference. E.g., P0 (usually the zero point of the coordinate system), P1, P2, P3",
-                                "type": "string"
-                            },
-                            "coordinates": {"$ref":"#/$defs/coordinateTypeOld"}    
-                        }
+                            "description": "Coordinates of the markers in the holder reference system.",
+                            "type": "array",
+                            "enum": 
+                            [
+                                "notApplicable",
+                                "carthesian",
+                                "polar",
+                                "other"
+                            ]
+                        },
+                        "carthesian": {"$ref": "#/$defs/carthesianType"},
+                        "polar": {"$ref": "#/$defs/polarType"},
+                        "notApplicable": {"$ref": "#/$defs/noneType"},
+                        "other": {"$ref": "#/$defs/otherType"}
                     }
                 },
                 "comments": {"type": "string"}
@@ -855,111 +843,77 @@ var dataModel = {
             "properties":
             {
                 "axisOrientation": {"type": "string"},
-                "coordinateSystem":
+                "holderOnCarrier":
                 {
-                    "type": "string",
-                    "enum": 
-                    [
-                        "Not applicable",
-                        "carthesian",
-                        "polar",
-                        "Other (please add in the comments)"
-                    ]
-                },
-                "holderPositionOnCarrier":
-                {
-                    "description": "Holder position in the carrier reference system.",
-                    "type": "array",
-                    "items":
+                    "type": "object",
+                    "properties":
                     {
-                        "type": "object",
-                        "properties":
+                        "holderPositionOnCarrier":
                         {
-                            "pointName":
-                            {
-                                "description": "Name of the point, for reference. E.g., P0 (usually the zero point of the coordinate system), P1, P2, P3",
-                                "type": "string"
-                            },                                   
-                            "coordinates": {"$ref":"#/$defs/coordinateTypeOld"}    
-                        }
-                    } 
+                            "description": "Holder position in the carrier reference system.",
+                            "type": "array",
+                            "enum": 
+                            [
+                                "notApplicable",
+                                "carthesian",
+                                "polar",
+                                "other"
+                            ]
+                        },
+                        "carthesian": {"$ref": "#/$defs/carthesianType"},
+                        "polar": {"$ref": "#/$defs/polarType"},
+                        "notApplicable": {"$ref": "#/$defs/noneType"},
+                        "other": {"$ref": "#/$defs/otherType"}
+                    }
                 },
-                "carrierReference":
+                "markerOnCarrier":
                 {
-                    "description": "Coordinates of the markers in the carrier reference system.",
-                    "type": "array",
-                    "items":
+                    "type": "object",
+                    "properties":
                     {
-                        "type": "object",
-                        "properties":
+                        "carrierReference":
                         {
-                            "markerName":
-                            {
-                                "description": "Name of the marker, for reference. E.g., P0 (usually the zero point of the coordinate system), P1, P2, P3",
-                                "type": "string"
-                            },
-                            "coordinates": {"$ref":"#/$defs/coordinateTypeOld"}    
-                        }
+                            "description": "Coordinates of the markers in the carrier reference system.",
+                            "type": "array",
+                            "enum": 
+                            [
+                                "notApplicable",
+                                "carthesian",
+                                "polar",
+                                "other"
+                            ]
+                        },
+                        "carthesian": {"$ref": "#/$defs/carthesianType"},
+                        "polar": {"$ref": "#/$defs/polarType"},
+                        "notApplicable": {"$ref": "#/$defs/noneType"},
+                        "other": {"$ref": "#/$defs/otherType"}
                     }
                 },
                 "comments": {"type": "string"}
             }
         },
-        "ROI":
+        "ROI": 
         {
             "type": "object",
             "properties":
             {
                 "axisOrientation": {"type": "string"},
-                "coordinateSystem":
-                {
-                    "type": "string",
-                    "enum": 
-                    [
-                        "Not applicable",
-                        "carthesian",
-                        "polar",
-                        "Other (please add in the comments)"
-                    ]
-                },
                 "ROIReference":
                 {
                     "description": "Coordinates of the points defining the sample ROI (Region of Interest) in the sample reference system.",
                     "type": "array",
-                    "items":
-                    {
-                        "type": "object",
-                        "properties":
-                        {
-                            "pointName":
-                            {
-                                "description": "Name of the point, for reference. E.g., P0 (usually the zero point of the coordinate system), P1, P2, P3",
-                                "type": "string"
-                            },                                   
-                            "coordinates": {"$ref":"#/$defs/coordinateTypeOld"}    
-                        }
-                    }   
-                },
-                "comments": {"type": "string"}
-            }
-        },
-        "test": 
-        {
-            "type": "object",
-            "properties":
-            {
-                "ROI1":
-                {
-                    "description": "Coordinates of the points defining the sample ROI (Region of Interest) in the sample reference system.",
-                    "type": "array",
                     "enum": 
                     [
+                        "notApplicable",
                         "carthesian",
-                        "polar"
+                        "polar",
+                        "other"
                     ]
                 },
                 "carthesian": {"$ref": "#/$defs/carthesianType"},
                 "polar": {"$ref": "#/$defs/polarType"},
+                "notApplicable": {"$ref": "#/$defs/noneType"},
+                "other": {"$ref": "#/$defs/otherType"},
                 "comments": {"type": "string"}
             }
         }
