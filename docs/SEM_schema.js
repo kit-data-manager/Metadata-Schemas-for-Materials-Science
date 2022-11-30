@@ -301,7 +301,6 @@ var dataModel = {
             "unit":{
                "type":"string",
                "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
-               "default":"mm",
                "enum":[
                   "Not applicable",
                   "nm",
@@ -366,7 +365,6 @@ var dataModel = {
             "unit":{
                "type":"string",
                "description":"(Required) - Unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
-               "default":"ug",
                "enum":[
                   "Not applicable",
                   "ng",
@@ -502,7 +500,6 @@ var dataModel = {
             },
             "unit":{
                "type":"string",
-               "default":"Pa",
                "enum":[
                   "Not applicable",
                   "Pa",
@@ -577,7 +574,6 @@ var dataModel = {
             },
             "unit":{
                "type":"string",
-               "default":"µAh",
                "description":"(Required) - the unit of the value (default value - µAh) of datatype string"
             },
             "qualifier":{
@@ -610,7 +606,6 @@ var dataModel = {
             },
             "unit":{
                "type":"string",
-               "default":"kV",
                "enum":[
                   "Not applicable",
                   "µV",
@@ -651,7 +646,6 @@ var dataModel = {
             },
             "unit":{
                "type":"string",
-               "default":"pA",
                "enum":[
                   "pA",
                   "nA",
@@ -716,7 +710,6 @@ var dataModel = {
             },
             "unit":{
                "type":"string",
-               "default":"degree",
                "enum":[
                   "Not applicable",
                   "degree",
@@ -758,7 +751,6 @@ var dataModel = {
             },
             "coordinateReference":{
                "type":"string",
-               "default":"origin at centre of sample",
                "description":"(Optional) - description of the reference used for defining the coordinates (for eg. - origin at centre of sample, distances from two edges, etc.)"
             },
             "numberOfPixels":{
@@ -832,7 +824,6 @@ var dataModel = {
             },
             "coordinatesUnit":{
                "type":"string",
-               "default":"µm",
                "enum":[
                   "Not applicable",
                   "nm",
@@ -919,7 +910,6 @@ var dataModel = {
             },
             "unit":{
                "type":"string",
-               "default":"nm/pixel",
                "description":"(Required) - the unit of the value (default value - nm/pixel) of datatype string"
             },
             "qualifier":{
@@ -952,7 +942,6 @@ var dataModel = {
             },
             "unit":{
                "type":"string",
-               "default":"µs",
                "enum":[
                   "Not applicable",
                   "ps",
@@ -961,7 +950,7 @@ var dataModel = {
                   "ms",
                   "s"
                ],
-               "description":"(Required) - the unit of the value to be selected from a controlled list (ps, ns, us, ms, s default value - us) of datatype string"
+               "description":"(Required) - the unit of the value to be selected from a controlled list (ps, ns, us, ms, s default value - µs) of datatype string"
             },
             "qualifier":{
                "type":"string",
@@ -993,7 +982,6 @@ var dataModel = {
             },
             "unit":{
                "type":"string",
-               "default":"mm",
                "description":"(Required) - the unit of the value of datatype string"
             },
             "qualifier":{
@@ -1051,7 +1039,11 @@ var dataModel = {
          "properties":{
             "detectorType":{
                "type":"string",
-               "default":"Secondary Electron",
+               "enum":[
+                  "Secondary Electron",
+                  "Back-Scattered Electron",
+                  "Surface Electron"
+               ],
                "description":"(Required) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string"
             },
             "detectorName":{
@@ -1112,7 +1104,6 @@ var dataModel = {
             },
             "unit":{
                "type":"string",
-               "default":"keV",
                "enum":[
                   "Not applicable",
                   "meV",
