@@ -83,6 +83,7 @@ var dataModel = {
                "type":"string",
                "description":"(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
                "enum":[
+                  "Not applicable",
                   "ROR",
                   "GRID",
                   "ISNI",
@@ -146,6 +147,7 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
                "enum":[
+                  "Not applicable",
                   "Data Curator",
                   "Instrument Scientist",
                   "Principal Investigator",
@@ -299,14 +301,14 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "description":"(Required) - Value of the distance, size or length",
-               "default":-9999
+               "description":"(Required) - Value of the distance, size or length"
             },
             "unit":{
                "type":"string",
                "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
                "default":"mm",
                "enum":[
+                  "Not applicable",
                   "nm",
                   "um",
                   "mm",
@@ -343,14 +345,14 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Type of the uncertainty to be chosen between absolute or relative",
                "enum":[
+                  "Not applicable",
                   "absolute",
                   "relative"
                ]
             },
             "value":{
                "type":"number",
-               "description":"(Required) - Value of the uncertainty",
-               "default":-9999
+               "description":"(Required) - Value of the uncertainty"
             }
          },
          "required":[
@@ -365,14 +367,14 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "description":"(Required) - Value of the weight",
-               "default":-9999
+               "description":"(Required) - Value of the weight"
             },
             "unit":{
                "type":"string",
                "description":"(Required) - Unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
                "default":"ug",
                "enum":[
+                  "Not applicable",
                   "ng",
                   "ug",
                   "mg",
@@ -503,13 +505,13 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - Value of the pressure"
             },
             "unit":{
                "type":"string",
                "default":"Pa",
                "enum":[
+                  "Not applicable",
                   "Pa",
                   "hPa",
                   "kPa",
@@ -579,7 +581,6 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The lifetime of the source expressed as an integer or floating point value of datatype number"
             },
             "unit":{
@@ -614,13 +615,13 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The voltage expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
                "default":"kV",
                "enum":[
+                  "Not applicable",
                   "uV",
                   "mV",
                   "V",
@@ -656,13 +657,13 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Optional) - Further notes about the value of datatype string"
             },
             "unit":{
                "type":"string",
                "default":"pA",
                "enum":[
+                  "Not applicable",
                   "pA",
                   "nA",
                   "uA",
@@ -722,13 +723,13 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The angle expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
                "default":"degree",
                "enum":[
+                  "Not applicable",
                   "degree",
                   "radian"
                ],
@@ -819,7 +820,6 @@ var dataModel = {
          "properties":{
             "xValue":{
                "type":"number",
-               "default":-9999,
                "description":"(Optional) - value of the x coordinate of datatype number"
             },
             "xUncertainty":{
@@ -828,7 +828,6 @@ var dataModel = {
             },
             "yValue":{
                "type":"number",
-               "default":-9999,
                "description":"(Optional) - value of the y coordinate of datatype number"
             },
             "yUncertainty":{
@@ -837,7 +836,6 @@ var dataModel = {
             },
             "zValue":{
                "type":"number",
-               "default":-9999,
                "description":"(Optional) - value of the zcoordinate of datatype number"
             },
             "zUncertainty":{
@@ -848,6 +846,7 @@ var dataModel = {
                "type":"string",
                "default":"um",
                "enum":[
+                  "Not applicable",
                   "nm",
                   "um",
                   "mm",
@@ -928,7 +927,6 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The pixel-size expressed as an integer or floating point value of datatype number"
             },
             "unit":{
@@ -963,13 +961,13 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The time expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
                "default":"us",
                "enum":[
+                  "Not applicable",
                   "ps",
                   "ns",
                   "us",
@@ -1005,7 +1003,6 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The voxel-size expressed as an integer or floating point value of datatype number"
             },
             "unit":{
@@ -1126,13 +1123,13 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The energy expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
                "default":"keV",
                "enum":[
+                  "Not applicable",
                   "meV",
                   "eV",
                   "keV",
@@ -1213,6 +1210,7 @@ var dataModel = {
             "beamDepositionType":{
                "type":"string",
                "enum":[
+                  "Not applicable",
                   "E-beam Deposition",
                   "I-beam Deposition"
                ],
