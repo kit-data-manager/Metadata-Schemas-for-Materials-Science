@@ -6,10 +6,10 @@ var dataModel = {
     "required": [],
     "$defs":
     {
-        "carthesianType":
+        "cartesianType":
         {
             "type": "array",
-            "title": "carthesian coordinates",
+            "title": "cartesian coordinates",
             "items":
             {
                 "type": "object",
@@ -62,28 +62,6 @@ var dataModel = {
         },
         noneType: {"title": "Not applicable (please specify why)", "type": "string"},
         otherType: {"title": "Other (please add in the comments)", "type": "string"},
-        "coordinateTypeOld":
-        {
-            "type": "object",
-            "properties":
-            {
-                "x or Radius": 
-                {
-                    "description": "x if carthesian coordinates, Radius if polar coordinates",
-                    "type": "string"
-                },
-                "y or theta": 
-                {
-                    "description": "y if carthesian coordinates, theta if polar coordinates",
-                    "type": "string"
-                },
-                "z or phi":
-                {
-                    "description": "z if carthesian coordinates, phi if polar coordinates",
-                    "type": "string"
-                }
-            }
-        }
     },
     "properties": 
     {
@@ -168,12 +146,12 @@ var dataModel = {
                     "enum": 
                     [
                         "notApplicable",
-                        "carthesian",
+                        "cartesian",
                         "polar",
                         "other"
                     ]
                 },
-                "carthesian": {"$ref": "#/$defs/carthesianType"},
+                "cartesian": {"$ref": "#/$defs/cartesianType"},
                 "polar": {"$ref": "#/$defs/polarType"},
                 "notApplicable": {"$ref": "#/$defs/noneType"},
                 "other": {"$ref": "#/$defs/otherType"},
@@ -770,12 +748,12 @@ var dataModel = {
                     "enum": 
                     [
                         "notApplicable",
-                        "carthesian",
+                        "cartesian",
                         "polar",
                         "other"
                     ]
                 },
-                "carthesian": {"$ref": "#/$defs/carthesianType"},
+                "cartesian": {"$ref": "#/$defs/cartesianType"},
                 "polar": {"$ref": "#/$defs/polarType"},
                 "notApplicable": {"$ref": "#/$defs/noneType"},
                 "other": {"$ref": "#/$defs/otherType"},
@@ -800,12 +778,12 @@ var dataModel = {
                             "enum": 
                             [
                                 "notApplicable",
-                                "carthesian",
+                                "cartesian",
                                 "polar",
                                 "other"
                             ]
                         },
-                        "carthesian": {"$ref": "#/$defs/carthesianType"},
+                        "cartesian": {"$ref": "#/$defs/cartesianType"},
                         "polar": {"$ref": "#/$defs/polarType"},
                         "notApplicable": {"$ref": "#/$defs/noneType"},
                         "other": {"$ref": "#/$defs/otherType"}
@@ -823,12 +801,12 @@ var dataModel = {
                             "enum": 
                             [
                                 "notApplicable",
-                                "carthesian",
+                                "cartesian",
                                 "polar",
                                 "other"
                             ]
                         },
-                        "carthesian": {"$ref": "#/$defs/carthesianType"},
+                        "cartesian": {"$ref": "#/$defs/cartesianType"},
                         "polar": {"$ref": "#/$defs/polarType"},
                         "notApplicable": {"$ref": "#/$defs/noneType"},
                         "other": {"$ref": "#/$defs/otherType"}
@@ -855,12 +833,12 @@ var dataModel = {
                             "enum": 
                             [
                                 "notApplicable",
-                                "carthesian",
+                                "cartesian",
                                 "polar",
                                 "other"
                             ]
                         },
-                        "carthesian": {"$ref": "#/$defs/carthesianType"},
+                        "cartesian": {"$ref": "#/$defs/cartesianType"},
                         "polar": {"$ref": "#/$defs/polarType"},
                         "notApplicable": {"$ref": "#/$defs/noneType"},
                         "other": {"$ref": "#/$defs/otherType"}
@@ -878,12 +856,12 @@ var dataModel = {
                             "enum": 
                             [
                                 "notApplicable",
-                                "carthesian",
+                                "cartesian",
                                 "polar",
                                 "other"
                             ]
                         },
-                        "carthesian": {"$ref": "#/$defs/carthesianType"},
+                        "cartesian": {"$ref": "#/$defs/cartesianType"},
                         "polar": {"$ref": "#/$defs/polarType"},
                         "notApplicable": {"$ref": "#/$defs/noneType"},
                         "other": {"$ref": "#/$defs/otherType"}
@@ -905,12 +883,12 @@ var dataModel = {
                     "enum": 
                     [
                         "notApplicable",
-                        "carthesian",
+                        "cartesian",
                         "polar",
                         "other"
                     ]
                 },
-                "carthesian": {"$ref": "#/$defs/carthesianType"},
+                "cartesian": {"$ref": "#/$defs/cartesianType"},
                 "polar": {"$ref": "#/$defs/polarType"},
                 "notApplicable": {"$ref": "#/$defs/noneType"},
                 "other": {"$ref": "#/$defs/otherType"},

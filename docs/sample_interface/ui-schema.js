@@ -9,7 +9,7 @@ var uiSchema = {
             "items": 
             [
                 {"title": "Sample Name", "key": "sampleName.sampleName"},
-                {"title": "Comments",  "type":"textarea", "htmlClass": "comments",  "key": "sampleName.comments"}
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments",  "key": "sampleName.comments"}
             ]
         },
         {
@@ -30,7 +30,7 @@ var uiSchema = {
                             [
                                 {"title": "Sample ID Type", "key": "sampleID.sampleID.identifierType"},
                                 {"title": "Sample ID Value", "key": "sampleID.sampleID.identifierValue"},
-                                {"title": "Comments", "key": "sampleID.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleID.comments"}
                             ]
                         },
                         {
@@ -51,19 +51,19 @@ var uiSchema = {
                                     "titleMap":
                                     {
                                         "notApplicable": "Not applicable",
-                                        "carthesian": "Carthesian",
+                                        "cartesian": "Cartesian",
                                         "polar": "Polar",
                                         "other": "Other (please add in the comments)"
                                     },
                                     "items": 
                                     [
                                         "sampleIDNumber.notApplicable",
-                                        "sampleIDNumber.carthesian",
+                                        "sampleIDNumber.cartesian",
                                         "sampleIDNumber.polar",
                                         "sampleIDNumber.other"
                                     ]
                                 },
-                                {"title": "Comments", "key": "sampleIDNumber.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleIDNumber.comments"}
                             ]
                         }
                     ]
@@ -77,7 +77,7 @@ var uiSchema = {
             "items":
             [
                 {"title": "Use the + to insert each Sample Component", "key": "sampleComponents.sampleComponents"},
-                {"title": "Comments", "key": "sampleComponents.comments"}
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleComponents.comments"}
             ]
         },
         {
@@ -87,7 +87,7 @@ var uiSchema = {
             "items": 
             [
                 {"title": "Chemical Formula", "key": "chemicalFormula.chemicalFormula"},
-                {"title": "Comments", "key": "chemicalFormula.comments"}
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "chemicalFormula.comments"}
             ]   
         },
         {
@@ -97,7 +97,7 @@ var uiSchema = {
             "items": 
             [
                 {"title": "Sample Mass", "key": "sampleMass.sampleMass"},
-                {"title": "Comments", "key": "sampleMass.comments"}
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleMass.comments"}
             ]   
         },
         {
@@ -138,7 +138,7 @@ var uiSchema = {
                 {"title": "Melting Temperature", "key": "temperatures.meltingTemperature"},
                 {"title": "Recrystallization Temperature", "key": "temperatures.recrystallizationTemperature"},
                 {"title": "Evaporation Temperature", "key": "temperatures.evaporationTemperature"},
-                {"title": "Comments", "key": "temperatures.comments"}
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "temperatures.comments"}
             ]
         },
         {
@@ -148,7 +148,7 @@ var uiSchema = {
             "items": 
             [
                 {"title": "Sample Producer", "key": "sampleProducer.sampleProducer"},
-                {"title": "Comments", "key": "sampleProducer.comments"}
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleProducer.comments"}
             ]
         },
         {
@@ -162,7 +162,7 @@ var uiSchema = {
                 {"title": "Sample Preparation Method", "key": "samplePreparation.preparationMethod"},
                 {"title": "Sample Preparation Description", "key": "samplePreparation.preparationDescription"},
                 {"title": "Sample Preparation ID", "key": "samplePreparation.preparationID"},
-                {"title": "Comments", "key": "samplePreparation.comments"}
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "samplePreparation.comments"}
             ]
         },
         {
@@ -172,7 +172,7 @@ var uiSchema = {
             "items":
             [
                 {"title": "Expiration Date", "key": "expirationDate.expirationDate"},
-                {"title": "Comments", "key": "expirationDate.comments"}
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "expirationDate.comments"}
             ]
         },
         {
@@ -196,7 +196,7 @@ var uiSchema = {
                                     "key": "sampleHandling.sampleProperties.samplePropertiesList",
                                     "type": "checkboxes"
                                 },
-                                {"title": "Comments", "key": "sampleHandling.sampleProperties.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHandling.sampleProperties.comments"}
                             ]
                         },
                         {
@@ -209,7 +209,7 @@ var uiSchema = {
                                     "key": "sampleHandling.sensitivityAgainst.sensitivityList",
                                     "type": "checkboxes"
                                 },
-                                {"title": "Comments", "key": "sampleHandling.sensitivityAgainst.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHandling.sensitivityAgainst.comments"}
                             ]
                         },
                         {
@@ -222,7 +222,7 @@ var uiSchema = {
                                     "key": "sampleHandling.safetyInfo.hazard",
                                     "type": "checkboxes"
                                 },
-                                {"title": "Comments", "key": "sampleHandling.safetyInfo.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHandling.safetyInfo.comments"}
                             ]
                         },
                         {
@@ -234,7 +234,7 @@ var uiSchema = {
                                 {"title": "Clean Room Conditions", "key": "sampleHandling.sampleHandling.cleanRoom"},
                                 {"title": "Humidity", "key": "sampleHandling.sampleHandling.humidity"},
                                 {"title": "Gas Atmosphere", "key": "sampleHandling.sampleHandling.gasAtmosphere"},
-                                {"title": "Comments", "key": "sampleHandling.sampleHandling.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHandling.sampleHandling.comments"}
                             ]
                         },
                         {
@@ -252,7 +252,7 @@ var uiSchema = {
                                     "type": "checkboxes"
                                 },
                                 {"title": "Additional Notes", "key": "sampleHandling.storageConditions.additionalNotes"},
-                                {"title": "Comments", "key": "sampleHandling.storageConditions.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHandling.storageConditions.comments"}
                             ]
                         },
                     ]
@@ -266,7 +266,7 @@ var uiSchema = {
             "items":
             [
                 {"title": "Embedding Material", "key": "embeddingMaterial.embeddingMaterial"},
-                {"title": "Comments", "key": "embeddingMaterial.comments"}
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "embeddingMaterial.comments"}
             ]  
         },
         {
@@ -281,7 +281,7 @@ var uiSchema = {
                 {"title": "Sample Holder Supported Samples", "key": "sampleHolder.supportedSamples"},
                 {"title": "Sample Holder Description", "key": "sampleHolder.sampleHolderDescription"},
                 {"title": "Fixing Method", "key": "sampleHolder.fixingMethod"},
-                {"title": "Comments", "key": "sampleHolder.comments"}
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHolder.comments"}
 
             ]
         },
@@ -300,7 +300,7 @@ var uiSchema = {
                 {"title": "Sample Carrier Supported Samples", "key": "sampleCarrier.supportedSamples"},
                 {"title": "Sample Carrier Supported Holders", "key": "sampleCarrier.supportedHolders"},
                 {"title": "Sample Carrier Description", "key": "sampleCarrier.sampleCarrierDescription"},
-                {"title": "Comments", "key": "sampleHolder.comments"}
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHolder.comments"}
 
             ]
         },
@@ -328,19 +328,19 @@ var uiSchema = {
                                     "titleMap":
                                     {
                                         "notApplicable": "Not applicable",
-                                        "carthesian": "Carthesian",
+                                        "cartesian": "Cartesian",
                                         "polar": "Polar",
                                         "other": "Other (please add in the comments)"
                                     },
                                     "items": 
                                     [
                                         "sampleReferencing.notApplicable",
-                                        "sampleReferencing.carthesian",
+                                        "sampleReferencing.cartesian",
                                         "sampleReferencing.polar",
                                         "sampleReferencing.other"
                                     ]
                                 },
-                                {"title": "Comments", "key": "sampleReferencing.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleReferencing.comments"}
                             ]
                         },
                         {
@@ -356,14 +356,14 @@ var uiSchema = {
                                     "titleMap":
                                     {
                                         "notApplicable": "Not applicable",
-                                        "carthesian": "Carthesian",
+                                        "cartesian": "Cartesian",
                                         "polar": "Polar",
                                         "other": "Other (please add in the comments)"
                                     },
                                     "items": 
                                     [
                                         "holderReferencing.sampleOnHolder.notApplicable",
-                                        "holderReferencing.sampleOnHolder.carthesian",
+                                        "holderReferencing.sampleOnHolder.cartesian",
                                         "holderReferencing.sampleOnHolder.polar",
                                         "holderReferencing.sampleOnHolder.other"
                                     ]
@@ -375,19 +375,19 @@ var uiSchema = {
                                     "titleMap":
                                     {
                                         "notApplicable": "Not applicable",
-                                        "carthesian": "Carthesian",
+                                        "cartesian": "Cartesian",
                                         "polar": "Polar",
                                         "other": "Other (please add in the comments)"
                                     },
                                     "items": 
                                     [
                                         "holderReferencing.markerOnHolder.notApplicable",
-                                        "holderReferencing.markerOnHolder.carthesian",
+                                        "holderReferencing.markerOnHolder.cartesian",
                                         "holderReferencing.markerOnHolder.polar",
                                         "holderReferencing.markerOnHolder.other"
                                     ]
                                 },
-                                {"title": "Comments", "key": "holderReferencing.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "holderReferencing.comments"}
                             ]
                         },
                         {
@@ -403,14 +403,14 @@ var uiSchema = {
                                     "titleMap":
                                     {
                                         "notApplicable": "Not applicable",
-                                        "carthesian": "Carthesian",
+                                        "cartesian": "Cartesian",
                                         "polar": "Polar",
                                         "other": "Other (please add in the comments)"
                                     },
                                     "items": 
                                     [
                                         "carrierReferencing.holderOnCarrier.notApplicable",
-                                        "carrierReferencing.holderOnCarrier.carthesian",
+                                        "carrierReferencing.holderOnCarrier.cartesian",
                                         "carrierReferencing.holderOnCarrier.polar",
                                         "carrierReferencing.holderOnCarrier.other"
                                     ]
@@ -422,19 +422,19 @@ var uiSchema = {
                                     "titleMap":
                                     {
                                         "notApplicable": "Not applicable",
-                                        "carthesian": "Carthesian",
+                                        "cartesian": "Cartesian",
                                         "polar": "Polar",
                                         "other": "Other (please add in the comments)"
                                     },
                                     "items": 
                                     [
                                         "carrierReferencing.markerOnCarrier.notApplicable",
-                                        "carrierReferencing.markerOnCarrier.carthesian",
+                                        "carrierReferencing.markerOnCarrier.cartesian",
                                         "carrierReferencing.markerOnCarrier.polar",
                                         "carrierReferencing.markerOnCarrier.other"
                                     ]
                                 },
-                                {"title": "Comments", "key": "carrierReferencing.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "carrierReferencing.comments"}
                             ]
                         },
                         {
@@ -450,19 +450,19 @@ var uiSchema = {
                                     "titleMap":
                                     {
                                         "notApplicable": "Not applicable",
-                                        "carthesian": "Carthesian",
+                                        "cartesian": "Cartesian",
                                         "polar": "Polar",
                                         "other": "Other (please add in the comments)"
                                     },
                                     "items": 
                                     [
                                         "ROI.notApplicable",
-                                        "ROI.carthesian",
+                                        "ROI.cartesian",
                                         "ROI.polar",
                                         "ROI.other"
                                     ]
                                 },
-                                {"title": "Comments", "key": "ROI.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "ROI.comments"}
                             ]
                         }
                         
