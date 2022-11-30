@@ -683,7 +683,7 @@ var dataModel = {
       },
       "stageDetails":{
          "type":"object",
-         "description":"describes the stage settings during a measurement. Properties: stageAlignmentDone (Optional) - was stage alignment done? (true or false) of datatype boolean, tiltAngle (Required) - angle by which the stage is tilted defined separately as angleDetails with the angle value, optional uncertainty, optional notes, optional qualifier and choice of units between degree and radian, eBeamWorkingDistance (Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, um, mm, cm and m",
+         "description":"describes the stage settings during a measurement. Properties: stageAlignmentDone (Optional) - was stage alignment done? (true or false) of datatype boolean, tiltAngle (Required) - angle by which the stage is tilted defined separately as angleDetails with the angle value, optional uncertainty, optional notes, optional qualifier and choice of units between degree and radian, eBeamWorkingDistance (Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, µm, mm, cm and m",
          "additionalProperties":false,
          "properties":{
             "stageAlignmentDone":{
@@ -696,7 +696,7 @@ var dataModel = {
             },
             "eBeamWorkingDistance":{
                "$ref":"#/$defs/distanceDetails",
-               "description":"(Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, um, mm, cm and m"
+               "description":"(Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, µm, mm, cm and m"
             }
          },
          "required":[
@@ -803,7 +803,7 @@ var dataModel = {
       },
       "coordinateSet":{
          "type":"object",
-         "description":"The set of xyz values describing a point of reference for correlative characterization. Properties: xValue (Optional) - value of the x coordinate of datatype number, xUncertainty (Optional) - uncertainty in the x value defined separately as uncertaintyDetails, yValue (Optional) - value of the y coordinate of datatype number, yUncertainty (Optional) -uncertainty in the y value defined separately as uncertaintyDetails, zValue (Optional) - value of the zcoordinate of datatype number, zUncertainty (Optional) -uncertainty in the z value defined separately as uncertaintyDetails, coordinatesUnit (Optional) - unit of the coordinates (allowed units - nm, um, mm, cm, m)",
+         "description":"The set of xyz values describing a point of reference for correlative characterization. Properties: xValue (Optional) - value of the x coordinate of datatype number, xUncertainty (Optional) - uncertainty in the x value defined separately as uncertaintyDetails, yValue (Optional) - value of the y coordinate of datatype number, yUncertainty (Optional) -uncertainty in the y value defined separately as uncertaintyDetails, zValue (Optional) - value of the zcoordinate of datatype number, zUncertainty (Optional) -uncertainty in the z value defined separately as uncertaintyDetails, coordinatesUnit (Optional) - unit of the coordinates (allowed units - nm, µm, mm, cm, m)",
          "additionalProperties":false,
          "properties":{
             "xValue":{
@@ -841,7 +841,7 @@ var dataModel = {
                   "cm",
                   "m"
                ],
-               "description":"(Optional) - unit of the coordinates (allowed units - nm, um, mm, cm, m)"
+               "description":"(Optional) - unit of the coordinates (allowed units - nm, µm, mm, cm, m)"
             }
          },
          "required":[
@@ -1046,7 +1046,7 @@ var dataModel = {
       },
       "detectorDetails":{
          "type":"object",
-         "description":"gives the settings of a detector. Properties: detectorType (Required) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string, detectorName (Required) -Name of the detector of datatype string, detectorID (Optional) - Identifier for the detector, detectorManufacturer (Optional) - describes the details of the detector (manufacturerName, modelName and detectorID) as part of manufacturerDetails, componentGeometry (Optional) - xyz coordinates describing the position of the detector defined separately as coordinateSet, lastCalibration (Optional) - date and time of last calibration (CCYY-MM-DDThh:mm:ss.sss) of the date-time format, detectorBias (Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, uV, mV, V, kV",
+         "description":"gives the settings of a detector. Properties: detectorType (Required) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string, detectorName (Required) -Name of the detector of datatype string, detectorID (Optional) - Identifier for the detector, detectorManufacturer (Optional) - describes the details of the detector (manufacturerName, modelName and detectorID) as part of manufacturerDetails, componentGeometry (Optional) - xyz coordinates describing the position of the detector defined separately as coordinateSet, lastCalibration (Optional) - date and time of last calibration (CCYY-MM-DDThh:mm:ss.sss) of the date-time format, detectorBias (Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, µV, mV, V, kV",
          "additionalProperties":false,
          "properties":{
             "detectorType":{
@@ -1077,7 +1077,7 @@ var dataModel = {
             },
             "detectorBias":{
                "$ref":"#/$defs/voltageDetails",
-               "description":"(Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, uV, mV, V, kV"
+               "description":"(Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, µV, mV, V, kV"
             }
          },
          "required":[
@@ -1088,7 +1088,7 @@ var dataModel = {
       },
       "eBeamDecelerationDetails":{
          "type":"object",
-         "description":"Details about deceleration of the e- beam. Properties: landingEnergy (Optional) - Landing energy of the e-beam defined separately as energyDetails (allowed units - meV, eV, keV, nJ, mJ, J, kJ, MJ), stageBias (Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, uV, mV, V, kV, nA, uA, mA, A, kA)",
+         "description":"Details about deceleration of the e- beam. Properties: landingEnergy (Optional) - Landing energy of the e-beam defined separately as energyDetails (allowed units - meV, eV, keV, nJ, mJ, J, kJ, MJ), stageBias (Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, µV, mV, V, kV, nA, uA, mA, A, kA)",
          "additionalProperties":false,
          "properties":{
             "landingEnergy":{
@@ -1097,7 +1097,7 @@ var dataModel = {
             },
             "stageBias":{
                "$ref":"#/$defs/voltageDetails",
-               "description":"(Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, uV, mV, V, kV, nA, uA, mA, A, kA)"
+               "description":"(Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, µV, mV, V, kV, nA, uA, mA, A, kA)"
             }
          }
       },
@@ -1169,11 +1169,11 @@ var dataModel = {
             },
             "iBeamWorkingDistance":{
                "$ref":"#/$defs/distanceDetails",
-               "description":"(Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, um, mm, cm, m)"
+               "description":"(Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, µm, mm, cm, m)"
             },
             "FIBSpotSize":{
                "$ref":"#/$defs/distanceDetails",
-               "description":"(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, um, mm, cm, m)"
+               "description":"(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, µm, mm, cm, m)"
             }
          },
          "required":[
@@ -1206,11 +1206,11 @@ var dataModel = {
             },
             "depositionSize":{
                "$ref":"#/$defs/distanceDetails",
-               "description":"(Optional) - the size of the deposition defined separately as distanceDetails (Allowed units nm,um,mm,cm,m)"
+               "description":"(Optional) - the size of the deposition defined separately as distanceDetails (Allowed units nm,µm,mm,cm,m)"
             },
             "depositionTime":{
                "$ref":"#/$defs/timeDetails",
-               "description":"(Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,us,ms,s)"
+               "description":"(Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,µs,ms,s)"
             }
          },
          "title":"GISDetails"
