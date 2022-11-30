@@ -537,7 +537,7 @@ var dataModel = {
       },
       "sourceDetails":{
          "type":"object",
-         "description":"gives details about the electron beam source. Properties: sourceName (Optional) - name of the e-beam source of datatype string, sourceID (Optional) - identifier for the e-beam source, accelerationVoltage (Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV), beamCurrent (Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA), sourceLifetime (Optional) - lifetime of the e-beam source (default value - uAh) of datatype string",
+         "description":"gives details about the electron beam source. Properties: sourceName (Optional) - name of the e-beam source of datatype string, sourceID (Optional) - identifier for the e-beam source, accelerationVoltage (Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV), beamCurrent (Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, µA, mA, A, kA), sourceLifetime (Optional) - lifetime of the e-beam source (default value - µAh) of datatype string",
          "additionalProperties":false,
          "properties":{
             "sourceName":{
@@ -550,15 +550,15 @@ var dataModel = {
             },
             "accelerationVoltage":{
                "$ref":"#/$defs/voltageDetails",
-               "description":"(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)"
+               "description":"(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV)"
             },
             "beamCurrent":{
                "$ref":"#/$defs/currentDetails",
-               "description":"(Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)"
+               "description":"(Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, µA, mA, A, kA)"
             },
             "sourceLifetime":{
                "$ref":"#/$defs/lifetimeDetails",
-               "description":"(Optional) - lifetime of the e-beam source (default value - uAh) of datatype string"
+               "description":"(Optional) - lifetime of the e-beam source (default value - µAh) of datatype string"
             }
          },
          "required":[
@@ -568,7 +568,7 @@ var dataModel = {
       },
       "lifetimeDetails":{
          "type":"object",
-         "description":"describes a lifetime. Properties: value (Required) - The lifetime of the source expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value (default value - uAh) of datatype string, qualifier (Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional) - Further notes about the value of datatype string",
+         "description":"describes a lifetime. Properties: value (Required) - The lifetime of the source expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value (default value - µAh) of datatype string, qualifier (Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional) - Further notes about the value of datatype string",
          "additionalProperties":false,
          "properties":{
             "value":{
@@ -577,8 +577,8 @@ var dataModel = {
             },
             "unit":{
                "type":"string",
-               "default":"uAh",
-               "description":"(Required) - the unit of the value (default value - uAh) of datatype string"
+               "default":"µAh",
+               "description":"(Required) - the unit of the value (default value - µAh) of datatype string"
             },
             "qualifier":{
                "type":"string",
@@ -653,12 +653,12 @@ var dataModel = {
                "type":"string",
                "default":"pA",
                "enum":[
-                  "Not applicable",
                   "pA",
                   "nA",
                   "µA",
                   "mA",
-                  "A"
+                  "A",
+                  "Not applicable"
                ],
                "description":"(Required) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A default value - pA) of datatype string"
             },
@@ -832,7 +832,7 @@ var dataModel = {
             },
             "coordinatesUnit":{
                "type":"string",
-               "default":"um",
+               "default":"µm",
                "enum":[
                   "Not applicable",
                   "nm",
@@ -952,7 +952,7 @@ var dataModel = {
             },
             "unit":{
                "type":"string",
-               "default":"us",
+               "default":"µs",
                "enum":[
                   "Not applicable",
                   "ps",
@@ -1148,7 +1148,7 @@ var dataModel = {
       },
       "FIBDetails":{
          "type":"object",
-         "description":"Details about the focussed ion beam (FIB) extension if present. Properties: angleToEBeam (Optional) - angle between e-beam and i-beam defined separately as angleDetails (Allowed units: degree, radian), iBeamSource (Required) - describes the details of the FIB source, defined separately as sourceDetails in which it is important to note the accelerating voltage and beam current of the i-beam, gunPressure (Required) - pressure of the FIB gun, defined separately as pressureDetails (Allowed units Pa, hPa, kPa, MPa, GPa, mbar, bar, psi), gasInjectionSystem (Optional) - Details about the gas injection system (GIS) defined separately as GISDetails, iBeamWorkingDistance (Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, um, mm, cm, m), FIBSpotSize (Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, um, mm, cm, m), ",
+         "description":"Details about the focussed ion beam (FIB) extension if present. Properties: angleToEBeam (Optional) - angle between e-beam and i-beam defined separately as angleDetails (Allowed units: degree, radian), iBeamSource (Required) - describes the details of the FIB source, defined separately as sourceDetails in which it is important to note the accelerating voltage and beam current of the i-beam, gunPressure (Required) - pressure of the FIB gun, defined separately as pressureDetails (Allowed units Pa, hPa, kPa, MPa, GPa, mbar, bar, psi), gasInjectionSystem (Optional) - Details about the gas injection system (GIS) defined separately as GISDetails, iBeamWorkingDistance (Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, µm, mm, cm, m), FIBSpotSize (Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, µm, mm, cm, m), ",
          "additionalProperties":false,
          "properties":{
             "angleToEBeam":{
@@ -1184,7 +1184,7 @@ var dataModel = {
       },
       "GISDetails":{
          "type":"object",
-         "description":"gives the details of the gas injection system (GIS). Properties: GISName (Optional) - Name of the GIS system of datatype string, beamDepositionType (Optional) - type of beam deposition of datatype string to choose between e-beam deposition and i-beam deposition, depositionCurrent (Optional) - the current used for performing beam deposition defined separately as currentDetails (Allowed units pA,nA,uA,mA,A), depositionSize (Optional) - the size of the deposition defined separately as distanceDetails (Allowed units nm,um,mm,cm,m), depositionTime (Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,us,ms,s)",
+         "description":"gives the details of the gas injection system (GIS). Properties: GISName (Optional) - Name of the GIS system of datatype string, beamDepositionType (Optional) - type of beam deposition of datatype string to choose between e-beam deposition and i-beam deposition, depositionCurrent (Optional) - the current used for performing beam deposition defined separately as currentDetails (Allowed units pA,nA,µA,mA,A), depositionSize (Optional) - the size of the deposition defined separately as distanceDetails (Allowed units nm,µm,mm,cm,m), depositionTime (Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,µs,ms,s)",
          "additionalProperties":false,
          "properties":{
             "GISName":{
@@ -1202,7 +1202,7 @@ var dataModel = {
             },
             "depositionCurrent":{
                "$ref":"#/$defs/currentDetails",
-               "description":"(Optional) - the current used for performing beam deposition defined separately as currentDetails (Allowed units pA,nA,uA,mA,A)"
+               "description":"(Optional) - the current used for performing beam deposition defined separately as currentDetails (Allowed units pA,nA,µA,mA,A)"
             },
             "depositionSize":{
                "$ref":"#/$defs/distanceDetails",
