@@ -249,8 +249,7 @@ var dataModel = {
             },
             "finalSpecimen":{
                "type":"string",
-               "description":"(Optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp)",
-               "default":"TEM Lamella"
+               "description":"(Optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp)"
             },
             "sampleHolder":{
                "type":"string",
@@ -258,8 +257,7 @@ var dataModel = {
             },
             "fixingMethod":{
                "type":"string",
-               "description":"(Optional) - Method used to hold the sample on the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue)",
-               "default":"Carbon Tape"
+               "description":"(Optional) - Method used to hold the sample on the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue)"
             },
             "conductiveCoatingApplied":{
                "type":"boolean",
@@ -267,18 +265,16 @@ var dataModel = {
             },
             "conductiveCoating":{
                "type":"string",
-               "description":"(Optional) - Conductive coating material",
-               "default":"Au"
+               "description":"(Optional) - Conductive coating material, eg. Au"
             },
             "storageConditions":{
                "type":"string",
-               "description":"(Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure)",
+               "description":"(Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure, ambient, dry environment)",
                "default":"Ambient, dry environment"
             },
             "measurementConditions":{
                "type":"string",
-               "description":"(Optional) - Conditions to be maintained during the measurement inside the instrument (e.g., water vapor, cryogenic temperature)",
-               "default":"water vapour"
+               "description":"(Optional) - Conditions to be maintained during the measurement inside the instrument (e.g., water vapor, cryogenic temperature)"
             },
             "samplePreparation":{
                "$ref":"#/$defs/samplePrepType",
@@ -318,8 +314,7 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-               "default":"max"
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
             },
             "uncertainty":{
                "$ref":"#/$defs/uncertaintyDetails",
@@ -384,8 +379,7 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-               "default":"max"
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
             },
             "uncertainty":{
                "$ref":"#/$defs/uncertaintyDetails",
@@ -525,7 +519,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
             },
             "uncertainty":{
@@ -590,7 +583,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -632,7 +624,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -674,7 +665,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -737,7 +727,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -936,7 +925,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -978,7 +966,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -1012,7 +999,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -1144,7 +1130,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
