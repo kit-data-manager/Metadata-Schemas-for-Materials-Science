@@ -147,12 +147,11 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
                "enum":[
-                  "Not applicable",
+                  "Research user",
                   "Data Curator",
                   "Instrument Scientist",
                   "Principal Investigator",
                   "Project Member",
-                  "Research user",
                   "Site Leader",
                   "Work Package Leader"
                ]
@@ -306,7 +305,7 @@ var dataModel = {
                "enum":[
                   "Not applicable",
                   "nm",
-                  "um",
+                  "µm",
                   "mm",
                   "cm",
                   "m"
@@ -371,7 +370,7 @@ var dataModel = {
                "enum":[
                   "Not applicable",
                   "ng",
-                  "ug",
+                  "µg",
                   "mg",
                   "g",
                   "kg"
@@ -614,7 +613,7 @@ var dataModel = {
                "default":"kV",
                "enum":[
                   "Not applicable",
-                  "uV",
+                  "µV",
                   "mV",
                   "V",
                   "kV",
@@ -657,7 +656,7 @@ var dataModel = {
                   "Not applicable",
                   "pA",
                   "nA",
-                  "uA",
+                  "µA",
                   "mA",
                   "A"
                ],
@@ -837,7 +836,7 @@ var dataModel = {
                "enum":[
                   "Not applicable",
                   "nm",
-                  "um",
+                  "µm",
                   "mm",
                   "cm",
                   "m"
@@ -958,7 +957,7 @@ var dataModel = {
                   "Not applicable",
                   "ps",
                   "ns",
-                  "us",
+                  "µs",
                   "ms",
                   "s"
                ],
