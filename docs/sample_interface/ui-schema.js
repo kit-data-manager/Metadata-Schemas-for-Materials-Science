@@ -9,7 +9,7 @@ var uiSchema = {
             "items": 
             [
                 {"title": "Sample Name", "key": "sampleName.sampleName"},
-                {"title": "Comments", "key": "sampleName.comments"}
+                {"title": "Comments",  "type":"textarea", "htmlClass": "comments",  "key": "sampleName.comments"}
             ]
         },
         {
