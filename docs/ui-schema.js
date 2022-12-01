@@ -8,7 +8,7 @@ var uiSchema =
                 "description":"(Optional) - Identifier of the measurement, usually provided by the project or the laboratory",
                 "htmlClass": "myclass",
                 "items": [
-                    {"title": "Type", "key": "entry.entryID.identifierType", "placeholder": "Not Applicable"},
+                    {"title": "Type", "key": "entry.entryID.identifierType", "allowEmpty": true},
                     {"title": "Value", "key": "entry.entryID.identifierValue"},
                 ]
             },
