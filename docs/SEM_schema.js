@@ -82,7 +82,6 @@ var dataModel = {
             "identifierType":{
                "description":"(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
                "enum":[
-                  null,
                   "Not applicable",
                   "ROR",
                   "GRID",
