@@ -1039,12 +1039,7 @@ var dataModel = {
          "properties":{
             "detectorType":{
                "type":"string",
-               "enum":[
-                  "Secondary Electron",
-                  "Back-Scattered Electron",
-                  "Surface Electron"
-               ],
-               "description":"(Required) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string"
+               "description":"(Required) - The type of detector (e.g., surface electron detection,  secondary electron (SE), back-scattered electron (BSE)) of datatype string"
             },
             "detectorName":{
                "type":"string",
