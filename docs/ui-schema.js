@@ -8,7 +8,7 @@ var uiSchema =
                 "description":"(Optional) - Identifier of the measurement, usually provided by the project or the laboratory",
                 "htmlClass": "myclass",
                 "items": [
-                    {"title": "Type", "key": "entry.entryID.identifierType"},
+                    {"title": "Type", "key": "entry.entryID.identifierType", "placeholder": "Not Applicable"},
                     {"title": "Value", "key": "entry.entryID.identifierValue"},
                 ]
             },
@@ -381,7 +381,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "Acceleration Voltage",
                                                                 "type": "fieldset",
-                                                                "description":"(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)",
+                                                                "description":"(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV)",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
@@ -405,7 +405,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "Beam Current",
                                                                 "type": "fieldset",
-                                                                "description":"(Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)",
+                                                                "description":"(Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, µA, mA, A, kA)",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
@@ -429,7 +429,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "Source Lifetime",
                                                                 "type": "fieldset",
-                                                                "description":"(Optional) - lifetime of the e-beam source (default value - uAh) of datatype string",
+                                                                "description":"(Optional) - lifetime of the e-beam source (default value - µAh) of datatype string",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
@@ -495,7 +495,7 @@ var uiSchema =
                                                             {
                                                                 "legend": "eBeam Working Distance",
                                                                 "type": "fieldset",
-                                                                "description":"(Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, um, mm, cm and m",
+                                                                "description":"(Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, µm, mm, cm and m",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
@@ -982,7 +982,7 @@ var uiSchema =
                                                                                         "legend": "Detector Bias",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
-                                                                                        "description":"(Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, uV, mV, V, kV",
+                                                                                        "description":"(Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, µV, mV, V, kV",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1116,7 +1116,7 @@ var uiSchema =
                                                                                         "legend": "Detector Bias",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
-                                                                                        "description":"(Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, uV, mV, V, kV",
+                                                                                        "description":"(Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, µV, mV, V, kV",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1185,7 +1185,7 @@ var uiSchema =
                                                                 "legend": "Stage Bias",
                                                                 "type": "fieldset",
                                                                 "htmlClass": "myclass",
-                                                                "description":"(Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, uV, mV, V, kV, nA, uA, mA, A, kA)",
+                                                                "description":"(Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, µV, mV, V, kV, nA, uA, mA, A, kA)",
                                                                 "items": [
                                                                     {
                                                                         "title": "Value",
@@ -1253,7 +1253,7 @@ var uiSchema =
                                                                                         "legend": "Acceleration Voltage",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
-                                                                                        "description":"(Required) - the voltage with which the i-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)",
+                                                                                        "description":"(Required) - the voltage with which the i-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1277,7 +1277,7 @@ var uiSchema =
                                                                                         "legend": "Beam Current",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
-                                                                                        "description":"(Required) - the measured current of the i-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)",
+                                                                                        "description":"(Required) - the measured current of the i-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, µA, mA, A, kA)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1301,7 +1301,7 @@ var uiSchema =
                                                                                         "legend": "Source Lifetime",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
-                                                                                        "description":"(Optional) - lifetime of the i-beam source (default value - uAh) of datatype string",
+                                                                                        "description":"(Optional) - lifetime of the i-beam source (default value - µAh) of datatype string",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1411,7 +1411,7 @@ var uiSchema =
                                                                                         "legend": "Deposition Current",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
-                                                                                        "description":"(Optional) - the current used for performing beam deposition defined separately as currentDetails (Allowed units pA,nA,uA,mA,A)",
+                                                                                        "description":"(Optional) - the current used for performing beam deposition defined separately as currentDetails (Allowed units pA,nA,µA,mA,A)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1439,7 +1439,7 @@ var uiSchema =
                                                                                         "legend": "Deposition Size",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
-                                                                                        "description":"(Optional) - the size of the deposition defined separately as distanceDetails (Allowed units nm,um,mm,cm,m)",
+                                                                                        "description":"(Optional) - the size of the deposition defined separately as distanceDetails (Allowed units nm,µm,mm,cm,m)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1467,7 +1467,7 @@ var uiSchema =
                                                                                         "legend": "Deposition Time",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
-                                                                                        "description":"(Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,us,ms,s)",
+                                                                                        "description":"(Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,µs,ms,s)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1502,7 +1502,7 @@ var uiSchema =
                                                                                         "legend": "iBeamWorkingDistance",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
-                                                                                        "description":"(Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, um, mm, cm, m)",
+                                                                                        "description":"(Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, µm, mm, cm, m)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
@@ -1536,7 +1536,7 @@ var uiSchema =
                                                                                         "legend": "FIBSpotSize",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
-                                                                                        "description":"(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, um, mm, cm, m)",
+                                                                                        "description":"(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, µm, mm, cm, m)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",

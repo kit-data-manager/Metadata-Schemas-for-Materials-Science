@@ -83,6 +83,7 @@ var dataModel = {
                "type":"string",
                "description":"(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
                "enum":[
+                  "Not applicable",
                   "ROR",
                   "GRID",
                   "ISNI",
@@ -146,11 +147,11 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
                "enum":[
+                  "Research user",
                   "Data Curator",
                   "Instrument Scientist",
                   "Principal Investigator",
                   "Project Member",
-                  "Research user",
                   "Site Leader",
                   "Work Package Leader"
                ]
@@ -247,8 +248,7 @@ var dataModel = {
             },
             "finalSpecimen":{
                "type":"string",
-               "description":"(Optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp)",
-               "default":"TEM Lamella"
+               "description":"(Optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp)"
             },
             "sampleHolder":{
                "type":"string",
@@ -256,8 +256,7 @@ var dataModel = {
             },
             "fixingMethod":{
                "type":"string",
-               "description":"(Optional) - Method used to hold the sample on the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue)",
-               "default":"Carbon Tape"
+               "description":"(Optional) - Method used to hold the sample on the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue)"
             },
             "conductiveCoatingApplied":{
                "type":"boolean",
@@ -265,18 +264,16 @@ var dataModel = {
             },
             "conductiveCoating":{
                "type":"string",
-               "description":"(Optional) - Conductive coating material",
-               "default":"Au"
+               "description":"(Optional) - Conductive coating material, eg. Au"
             },
             "storageConditions":{
                "type":"string",
-               "description":"(Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure)",
+               "description":"(Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure, ambient, dry environment)",
                "default":"Ambient, dry environment"
             },
             "measurementConditions":{
                "type":"string",
-               "description":"(Optional) - Conditions to be maintained during the measurement inside the instrument (e.g., water vapor, cryogenic temperature)",
-               "default":"water vapour"
+               "description":"(Optional) - Conditions to be maintained during the measurement inside the instrument (e.g., water vapor, cryogenic temperature)"
             },
             "samplePreparation":{
                "$ref":"#/$defs/samplePrepType",
@@ -299,16 +296,15 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "description":"(Required) - Value of the distance, size or length",
-               "default":-9999
+               "description":"(Required) - Value of the distance, size or length"
             },
             "unit":{
                "type":"string",
                "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
-               "default":"mm",
                "enum":[
+                  "Not applicable",
                   "nm",
-                  "um",
+                  "µm",
                   "mm",
                   "cm",
                   "m"
@@ -316,8 +312,7 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-               "default":"max"
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
             },
             "uncertainty":{
                "$ref":"#/$defs/uncertaintyDetails",
@@ -343,14 +338,14 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Type of the uncertainty to be chosen between absolute or relative",
                "enum":[
+                  "Not applicable",
                   "absolute",
                   "relative"
                ]
             },
             "value":{
                "type":"number",
-               "description":"(Required) - Value of the uncertainty",
-               "default":-9999
+               "description":"(Required) - Value of the uncertainty"
             }
          },
          "required":[
@@ -365,16 +360,15 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "description":"(Required) - Value of the weight",
-               "default":-9999
+               "description":"(Required) - Value of the weight"
             },
             "unit":{
                "type":"string",
                "description":"(Required) - Unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
-               "default":"ug",
                "enum":[
+                  "Not applicable",
                   "ng",
-                  "ug",
+                  "µg",
                   "mg",
                   "g",
                   "kg"
@@ -382,8 +376,7 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-               "default":"max"
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
             },
             "uncertainty":{
                "$ref":"#/$defs/uncertaintyDetails",
@@ -503,13 +496,12 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - Value of the pressure"
             },
             "unit":{
                "type":"string",
-               "default":"Pa",
                "enum":[
+                  "Not applicable",
                   "Pa",
                   "hPa",
                   "kPa",
@@ -523,7 +515,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
             },
             "uncertainty":{
@@ -543,7 +534,7 @@ var dataModel = {
       },
       "sourceDetails":{
          "type":"object",
-         "description":"gives details about the electron beam source. Properties: sourceName (Optional) - name of the e-beam source of datatype string, sourceID (Optional) - identifier for the e-beam source, accelerationVoltage (Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV), beamCurrent (Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA), sourceLifetime (Optional) - lifetime of the e-beam source (default value - uAh) of datatype string",
+         "description":"gives details about the electron beam source. Properties: sourceName (Optional) - name of the e-beam source of datatype string, sourceID (Optional) - identifier for the e-beam source, accelerationVoltage (Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV), beamCurrent (Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, µA, mA, A, kA), sourceLifetime (Optional) - lifetime of the e-beam source (default value - µAh) of datatype string",
          "additionalProperties":false,
          "properties":{
             "sourceName":{
@@ -556,15 +547,15 @@ var dataModel = {
             },
             "accelerationVoltage":{
                "$ref":"#/$defs/voltageDetails",
-               "description":"(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)"
+               "description":"(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV)"
             },
             "beamCurrent":{
                "$ref":"#/$defs/currentDetails",
-               "description":"(Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)"
+               "description":"(Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, µA, mA, A, kA)"
             },
             "sourceLifetime":{
                "$ref":"#/$defs/lifetimeDetails",
-               "description":"(Optional) - lifetime of the e-beam source (default value - uAh) of datatype string"
+               "description":"(Optional) - lifetime of the e-beam source (default value - µAh) of datatype string"
             }
          },
          "required":[
@@ -574,22 +565,19 @@ var dataModel = {
       },
       "lifetimeDetails":{
          "type":"object",
-         "description":"describes a lifetime. Properties: value (Required) - The lifetime of the source expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value (default value - uAh) of datatype string, qualifier (Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional) - Further notes about the value of datatype string",
+         "description":"describes a lifetime. Properties: value (Required) - The lifetime of the source expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value (default value - µAh) of datatype string, qualifier (Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional) - Further notes about the value of datatype string",
          "additionalProperties":false,
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The lifetime of the source expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"uAh",
-               "description":"(Required) - the unit of the value (default value - uAh) of datatype string"
+               "description":"(Required) - the unit of the value (default value - µAh) of datatype string"
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -614,14 +602,13 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The voltage expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"kV",
                "enum":[
-                  "uV",
+                  "Not applicable",
+                  "µV",
                   "mV",
                   "V",
                   "kV",
@@ -631,7 +618,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -656,24 +642,22 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Optional) - Further notes about the value of datatype string"
             },
             "unit":{
                "type":"string",
-               "default":"pA",
                "enum":[
                   "pA",
                   "nA",
-                  "uA",
+                  "µA",
                   "mA",
-                  "A"
+                  "A",
+                  "Not applicable"
                ],
                "description":"(Required) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A default value - pA) of datatype string"
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -693,7 +677,7 @@ var dataModel = {
       },
       "stageDetails":{
          "type":"object",
-         "description":"describes the stage settings during a measurement. Properties: stageAlignmentDone (Optional) - was stage alignment done? (true or false) of datatype boolean, tiltAngle (Required) - angle by which the stage is tilted defined separately as angleDetails with the angle value, optional uncertainty, optional notes, optional qualifier and choice of units between degree and radian, eBeamWorkingDistance (Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, um, mm, cm and m",
+         "description":"describes the stage settings during a measurement. Properties: stageAlignmentDone (Optional) - was stage alignment done? (true or false) of datatype boolean, tiltAngle (Required) - angle by which the stage is tilted defined separately as angleDetails with the angle value, optional uncertainty, optional notes, optional qualifier and choice of units between degree and radian, eBeamWorkingDistance (Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, µm, mm, cm and m",
          "additionalProperties":false,
          "properties":{
             "stageAlignmentDone":{
@@ -706,7 +690,7 @@ var dataModel = {
             },
             "eBeamWorkingDistance":{
                "$ref":"#/$defs/distanceDetails",
-               "description":"(Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, um, mm, cm and m"
+               "description":"(Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, µm, mm, cm and m"
             }
          },
          "required":[
@@ -722,13 +706,12 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The angle expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"degree",
                "enum":[
+                  "Not applicable",
                   "degree",
                   "radian"
                ],
@@ -736,7 +719,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -769,7 +751,6 @@ var dataModel = {
             },
             "coordinateReference":{
                "type":"string",
-               "default":"origin at centre of sample",
                "description":"(Optional) - description of the reference used for defining the coordinates (for eg. - origin at centre of sample, distances from two edges, etc.)"
             },
             "numberOfPixels":{
@@ -814,12 +795,11 @@ var dataModel = {
       },
       "coordinateSet":{
          "type":"object",
-         "description":"The set of xyz values describing a point of reference for correlative characterization. Properties: xValue (Optional) - value of the x coordinate of datatype number, xUncertainty (Optional) - uncertainty in the x value defined separately as uncertaintyDetails, yValue (Optional) - value of the y coordinate of datatype number, yUncertainty (Optional) -uncertainty in the y value defined separately as uncertaintyDetails, zValue (Optional) - value of the zcoordinate of datatype number, zUncertainty (Optional) -uncertainty in the z value defined separately as uncertaintyDetails, coordinatesUnit (Optional) - unit of the coordinates (allowed units - nm, um, mm, cm, m)",
+         "description":"The set of xyz values describing a point of reference for correlative characterization. Properties: xValue (Optional) - value of the x coordinate of datatype number, xUncertainty (Optional) - uncertainty in the x value defined separately as uncertaintyDetails, yValue (Optional) - value of the y coordinate of datatype number, yUncertainty (Optional) -uncertainty in the y value defined separately as uncertaintyDetails, zValue (Optional) - value of the zcoordinate of datatype number, zUncertainty (Optional) -uncertainty in the z value defined separately as uncertaintyDetails, coordinatesUnit (Optional) - unit of the coordinates (allowed units - nm, µm, mm, cm, m)",
          "additionalProperties":false,
          "properties":{
             "xValue":{
                "type":"number",
-               "default":-9999,
                "description":"(Optional) - value of the x coordinate of datatype number"
             },
             "xUncertainty":{
@@ -828,7 +808,6 @@ var dataModel = {
             },
             "yValue":{
                "type":"number",
-               "default":-9999,
                "description":"(Optional) - value of the y coordinate of datatype number"
             },
             "yUncertainty":{
@@ -837,7 +816,6 @@ var dataModel = {
             },
             "zValue":{
                "type":"number",
-               "default":-9999,
                "description":"(Optional) - value of the zcoordinate of datatype number"
             },
             "zUncertainty":{
@@ -846,15 +824,15 @@ var dataModel = {
             },
             "coordinatesUnit":{
                "type":"string",
-               "default":"um",
                "enum":[
+                  "Not applicable",
                   "nm",
-                  "um",
+                  "µm",
                   "mm",
                   "cm",
                   "m"
                ],
-               "description":"(Optional) - unit of the coordinates (allowed units - nm, um, mm, cm, m)"
+               "description":"(Optional) - unit of the coordinates (allowed units - nm, µm, mm, cm, m)"
             }
          },
          "required":[
@@ -928,17 +906,14 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The pixel-size expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"nm/pixel",
                "description":"(Required) - the unit of the value (default value - nm/pixel) of datatype string"
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -963,24 +938,22 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The time expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"us",
                "enum":[
+                  "Not applicable",
                   "ps",
                   "ns",
-                  "us",
+                  "µs",
                   "ms",
                   "s"
                ],
-               "description":"(Required) - the unit of the value to be selected from a controlled list (ps, ns, us, ms, s default value - us) of datatype string"
+               "description":"(Required) - the unit of the value to be selected from a controlled list (ps, ns, us, ms, s default value - µs) of datatype string"
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -1005,17 +978,14 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The voxel-size expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"mm",
                "description":"(Required) - the unit of the value of datatype string"
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -1064,13 +1034,12 @@ var dataModel = {
       },
       "detectorDetails":{
          "type":"object",
-         "description":"gives the settings of a detector. Properties: detectorType (Required) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string, detectorName (Required) -Name of the detector of datatype string, detectorID (Optional) - Identifier for the detector, detectorManufacturer (Optional) - describes the details of the detector (manufacturerName, modelName and detectorID) as part of manufacturerDetails, componentGeometry (Optional) - xyz coordinates describing the position of the detector defined separately as coordinateSet, lastCalibration (Optional) - date and time of last calibration (CCYY-MM-DDThh:mm:ss.sss) of the date-time format, detectorBias (Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, uV, mV, V, kV",
+         "description":"gives the settings of a detector. Properties: detectorType (Required) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string, detectorName (Required) -Name of the detector of datatype string, detectorID (Optional) - Identifier for the detector, detectorManufacturer (Optional) - describes the details of the detector (manufacturerName, modelName and detectorID) as part of manufacturerDetails, componentGeometry (Optional) - xyz coordinates describing the position of the detector defined separately as coordinateSet, lastCalibration (Optional) - date and time of last calibration (CCYY-MM-DDThh:mm:ss.sss) of the date-time format, detectorBias (Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, µV, mV, V, kV",
          "additionalProperties":false,
          "properties":{
             "detectorType":{
                "type":"string",
-               "default":"Secondary Electron",
-               "description":"(Required) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string"
+               "description":"(Required) - The type of detector (e.g., surface electron detection,  secondary electron (SE), back-scattered electron (BSE)) of datatype string"
             },
             "detectorName":{
                "type":"string",
@@ -1095,7 +1064,7 @@ var dataModel = {
             },
             "detectorBias":{
                "$ref":"#/$defs/voltageDetails",
-               "description":"(Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, uV, mV, V, kV"
+               "description":"(Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, µV, mV, V, kV"
             }
          },
          "required":[
@@ -1106,7 +1075,7 @@ var dataModel = {
       },
       "eBeamDecelerationDetails":{
          "type":"object",
-         "description":"Details about deceleration of the e- beam. Properties: landingEnergy (Optional) - Landing energy of the e-beam defined separately as energyDetails (allowed units - meV, eV, keV, nJ, mJ, J, kJ, MJ), stageBias (Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, uV, mV, V, kV, nA, uA, mA, A, kA)",
+         "description":"Details about deceleration of the e- beam. Properties: landingEnergy (Optional) - Landing energy of the e-beam defined separately as energyDetails (allowed units - meV, eV, keV, nJ, mJ, J, kJ, MJ), stageBias (Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, µV, mV, V, kV, nA, uA, mA, A, kA)",
          "additionalProperties":false,
          "properties":{
             "landingEnergy":{
@@ -1115,7 +1084,7 @@ var dataModel = {
             },
             "stageBias":{
                "$ref":"#/$defs/voltageDetails",
-               "description":"(Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, uV, mV, V, kV, nA, uA, mA, A, kA)"
+               "description":"(Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, µV, mV, V, kV, nA, uA, mA, A, kA)"
             }
          }
       },
@@ -1126,13 +1095,12 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The energy expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"keV",
                "enum":[
+                  "Not applicable",
                   "meV",
                   "eV",
                   "keV",
@@ -1147,7 +1115,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -1167,7 +1134,7 @@ var dataModel = {
       },
       "FIBDetails":{
          "type":"object",
-         "description":"Details about the focussed ion beam (FIB) extension if present. Properties: angleToEBeam (Optional) - angle between e-beam and i-beam defined separately as angleDetails (Allowed units: degree, radian), iBeamSource (Required) - describes the details of the FIB source, defined separately as sourceDetails in which it is important to note the accelerating voltage and beam current of the i-beam, gunPressure (Required) - pressure of the FIB gun, defined separately as pressureDetails (Allowed units Pa, hPa, kPa, MPa, GPa, mbar, bar, psi), gasInjectionSystem (Optional) - Details about the gas injection system (GIS) defined separately as GISDetails, iBeamWorkingDistance (Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, um, mm, cm, m), FIBSpotSize (Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, um, mm, cm, m), ",
+         "description":"Details about the focussed ion beam (FIB) extension if present. Properties: angleToEBeam (Optional) - angle between e-beam and i-beam defined separately as angleDetails (Allowed units: degree, radian), iBeamSource (Required) - describes the details of the FIB source, defined separately as sourceDetails in which it is important to note the accelerating voltage and beam current of the i-beam, gunPressure (Required) - pressure of the FIB gun, defined separately as pressureDetails (Allowed units Pa, hPa, kPa, MPa, GPa, mbar, bar, psi), gasInjectionSystem (Optional) - Details about the gas injection system (GIS) defined separately as GISDetails, iBeamWorkingDistance (Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, µm, mm, cm, m), FIBSpotSize (Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, µm, mm, cm, m), ",
          "additionalProperties":false,
          "properties":{
             "angleToEBeam":{
@@ -1188,11 +1155,11 @@ var dataModel = {
             },
             "iBeamWorkingDistance":{
                "$ref":"#/$defs/distanceDetails",
-               "description":"(Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, um, mm, cm, m)"
+               "description":"(Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, µm, mm, cm, m)"
             },
             "FIBSpotSize":{
                "$ref":"#/$defs/distanceDetails",
-               "description":"(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, um, mm, cm, m)"
+               "description":"(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, µm, mm, cm, m)"
             }
          },
          "required":[
@@ -1203,7 +1170,7 @@ var dataModel = {
       },
       "GISDetails":{
          "type":"object",
-         "description":"gives the details of the gas injection system (GIS). Properties: GISName (Optional) - Name of the GIS system of datatype string, beamDepositionType (Optional) - type of beam deposition of datatype string to choose between e-beam deposition and i-beam deposition, depositionCurrent (Optional) - the current used for performing beam deposition defined separately as currentDetails (Allowed units pA,nA,uA,mA,A), depositionSize (Optional) - the size of the deposition defined separately as distanceDetails (Allowed units nm,um,mm,cm,m), depositionTime (Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,us,ms,s)",
+         "description":"gives the details of the gas injection system (GIS). Properties: GISName (Optional) - Name of the GIS system of datatype string, beamDepositionType (Optional) - type of beam deposition of datatype string to choose between e-beam deposition and i-beam deposition, depositionCurrent (Optional) - the current used for performing beam deposition defined separately as currentDetails (Allowed units pA,nA,µA,mA,A), depositionSize (Optional) - the size of the deposition defined separately as distanceDetails (Allowed units nm,µm,mm,cm,m), depositionTime (Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,µs,ms,s)",
          "additionalProperties":false,
          "properties":{
             "GISName":{
@@ -1213,6 +1180,7 @@ var dataModel = {
             "beamDepositionType":{
                "type":"string",
                "enum":[
+                  "Not applicable",
                   "E-beam Deposition",
                   "I-beam Deposition"
                ],
@@ -1220,15 +1188,15 @@ var dataModel = {
             },
             "depositionCurrent":{
                "$ref":"#/$defs/currentDetails",
-               "description":"(Optional) - the current used for performing beam deposition defined separately as currentDetails (Allowed units pA,nA,uA,mA,A)"
+               "description":"(Optional) - the current used for performing beam deposition defined separately as currentDetails (Allowed units pA,nA,µA,mA,A)"
             },
             "depositionSize":{
                "$ref":"#/$defs/distanceDetails",
-               "description":"(Optional) - the size of the deposition defined separately as distanceDetails (Allowed units nm,um,mm,cm,m)"
+               "description":"(Optional) - the size of the deposition defined separately as distanceDetails (Allowed units nm,µm,mm,cm,m)"
             },
             "depositionTime":{
                "$ref":"#/$defs/timeDetails",
-               "description":"(Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,us,ms,s)"
+               "description":"(Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,µs,ms,s)"
             }
          },
          "title":"GISDetails"
