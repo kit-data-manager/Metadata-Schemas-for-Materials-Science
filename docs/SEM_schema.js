@@ -80,7 +80,6 @@ var dataModel = {
                "description":"(Optional) - String containing the value of an identifier"
             },
             "identifierType":{
-               "type":["string","null"],
                "description":"(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
                "enum":[
                   null,
