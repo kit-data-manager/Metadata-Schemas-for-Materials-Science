@@ -60,8 +60,16 @@ var dataModel = {
                 }
             }
         },
-        noneType: {"title": "Not applicable (please specify why)", "type": "string"},
-        otherType: {"title": "Other (please add in the comments)", "type": "string"},
+        noneType: 
+        {
+            "type": "object",
+            "properties": {}
+        },
+        otherType: 
+        {
+            "type": "object",
+            "properties": {}
+        },
     },
     "properties": 
     {
@@ -200,144 +208,147 @@ var dataModel = {
         {
             "description": "(Required) - Physical state of the sample",
             "type": "object",
-            "enum": [
-                "notApplicable",
-                "solid",
-                "powder",
-                "liquid",
-                "gas"
-            ]
-        },
-        "notApplicable":
-        {
-            "type": "object",
-            "properties":
+            "properties": 
             {
-                "comments": {"type": "string"}
-            }
-        },
-        "solid": 
-        {
-            "type": "object",
-            "properties":
-            {
-                "sampleShape":
+                "physicalState":
                 {
-                    "type": "string",
-                    "enum":
+                    "description": "Phisical state of the sample",
+                    "type": "object",
+                    "enum": 
                     [
-                        "Not applicable",
-                        "foil/sheet/thin film/multilayer",
-                        "monolith/pellet/tubes/rodes",
-                        "wire/filament",
-                        "Other (please add in the comments)"
+                        "notApplicable",
+                        "solid",
+                        "powder",
+                        "liquid",
+                        "gas"
                     ]
                 },
-                "sampleSize": 
+                "comments": {"type": "string"},
+                "notApplicable":
                 {
-                    "description": "(Optional) - Size of the sample, mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY). Please note that for numerical simulation, a different notation may be required (e.g. steps and scale)",
+                    "type": "object",
+                    "properties":{}
+                },
+                "solid": 
+                {
                     "type": "object",
                     "properties":
                     {
-                        "sizeX":
+                        "sampleShape":
+                        {
+                            "type": "string",
+                            "enum":
+                            [
+                                "Not applicable",
+                                "foil/sheet/thin film/multilayer",
+                                "monolith/pellet/tubes/rodes",
+                                "wire/filament",
+                                "Other (please add in the comments)"
+                            ]
+                        },
+                        "sampleSize": 
                         {
                             "description": "(Optional) - Size of the sample, mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY). Please note that for numerical simulation, a different notation may be required (e.g. steps and scale)",
-                            "type": "string"
-                        },
-                        "sizeY":
+                            "type": "object",
+                            "properties":
+                            {
+                                "sizeX":
+                                {
+                                    "description": "(Optional) - Size of the sample, mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY). Please note that for numerical simulation, a different notation may be required (e.g. steps and scale)",
+                                    "type": "string"
+                                },
+                                "sizeY":
+                                {
+                                    "description": "(Optional) - Size of the sample, mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY). Please note that for numerical simulation, a different notation may be required (e.g. steps and scale)",
+                                    "type": "string"
+                                },
+                                "sizeZ":
+                                {
+                                    "description": "(Optional) - Size of the sample, mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY). Please note that for numerical simulation, a different notation may be required (e.g. steps and scale)",
+                                    "type": "string"
+                                },
+                            }
+                        }, 
+                        "crystallinity":
                         {
-                            "description": "(Optional) - Size of the sample, mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY). Please note that for numerical simulation, a different notation may be required (e.g. steps and scale)",
+                            "description": "(Optional) - It refers to the degree of structural order in a solid. Usually specified as a percentage of the volume of the material that is crystalline",
                             "type": "string"
                         },
-                        "sizeZ":
+                        "surfaceRoughness": 
                         {
-                            "description": "(Optional) - Size of the sample, mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY). Please note that for numerical simulation, a different notation may be required (e.g. steps and scale)",
+                            "description": "(Optional) - Expressed as a lenght",
                             "type": "string"
-                        },
+                        }
                     }
-                }, 
-                "crystallinity":
-                {
-                    "description": "(Optional) - It refers to the degree of structural order in a solid. Usually specified as a percentage of the volume of the material that is crystalline",
-                    "type": "string"
                 },
-                "surfaceRoughness": 
+                "powder":
                 {
-                    "description": "(Optional) - Expressed as a lenght",
-                    "type": "string"
+                    "type": "object",
+                    "properties":
+                    {
+                        "grainSize": 
+                        {
+                            "type": "string"
+                        },
+                        "grainShape": 
+                        {
+                            "type": "string"
+                        },
+                        "sampleVolume": 
+                        {
+                            "type": "string"
+                        },
+                        "surfaceRoughness": 
+                        {
+                            "description": "(Optional) - Expressed as a lenght",
+                            "type": "string"
+                        }
+                    }
                 },
-                "comments": {"type": "string"}
-            }
-        },
-        "powder":
-        {
-            "type": "object",
-            "properties":
-            {
-                "grainSize": 
+                "liquid":
                 {
-                    "type": "string"
+                    "type": "object",
+                    "properties":
+                    {
+                        "dispersionType": 
+                        {
+                            "type": "string",
+                            "enum":
+                            [
+                                "Not applicable",
+                                "pure",
+                                "colloid",
+                                "solution",
+                                "slurry",
+                                "suspension",
+                                "Other (please add in the comments)"
+                            ]
+                        }, 
+                        "sampleVolume": 
+                        {
+                            "type": "string"
+                        },
+                        "sampleConcentration": 
+                        {
+                            "type": "string"
+                        }
+                    }
                 },
-                "grainShape": 
+                "gas":
                 {
-                    "type": "string"
-                },
-                "sampleVolume": 
-                {
-                    "type": "string"
-                },
-                "surfaceRoughness": 
-                {
-                    "description": "(Optional) - Expressed as a lenght",
-                    "type": "string"
-                },
-                "comments": {"type": "string"}
-            }
-        },
-        "liquid":
-        {
-            "type": "object",
-            "properties":
-            {
-                "dispersionType": 
-                {
-                    "type": "string",
-                    "enum":
-                    [
-                        "Not applicable",
-                        "pure",
-                        "colloid",
-                        "solution",
-                        "slurry",
-                        "suspension",
-                        "Other (please add in the comments)"
-                    ]
-                }, 
-                "sampleVolume": 
-                {
-                    "type": "string"
-                },
-                "sampleConcentration": 
-                {
-                    "type": "string"
-                },
-                "comments": {"type": "string"}
-            }
-        },
-        "gas":
-        {
-            "type": "object",
-            "properties":
-            {
-                "sampleVolume": 
-                {
-                    "type": "string"
-                },
-                "gasPressure": 
-                {
-                    "type": "string"
-                }, 
-                "comments": {"type": "string"}
+                    "type": "object",
+                    "properties":
+                    {
+                        "sampleVolume": 
+                        {
+                            "type": "string"
+                        },
+                        "gasPressure": 
+                        {
+                            "type": "string"
+                        }
+                    }
+                }
             }
         },
         "temperatures":

@@ -109,7 +109,7 @@ var uiSchema = {
                 {
                     "type": "selectfieldset",
                     "title": "Physical State",
-                    "key": "physicalState",
+                    "key": "physicalState.physicalState",
                     "titleMap": 
                     {
                         "notApplicable": "Not Applicable",
@@ -120,13 +120,14 @@ var uiSchema = {
                     },
                     "items": 
                     [
-                        "notApplicable",
-                        "solid",
-                        "powder",
-                        "liquid",
-                        "gas"
+                        "physicalState.notApplicable",
+                        "physicalState.solid",
+                        "physicalState.powder",
+                        "physicalState.liquid",
+                        "physicalState.gas"
                     ]
-                }
+                },
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "physicalState.comments"}
             ]
         },
         {
