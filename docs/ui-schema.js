@@ -18,7 +18,7 @@ var uiSchema =
                 "htmlClass": "myclass",
                 "items": [
                     {"title": "Title", "key": "entry.title"},
-                    {"title": "Start Time", "key": "entry.startTime", "placeholder": "2022-06-12T12:00:00Z"},
+                    {"title": "Start Time", "key": "entry.startTime"},
                     {"title": "End Time", "key": "entry.endTime", "placeholder": "2022-06-12T12:00:00Z"},
                     {"title": "Definition", "key": "entry.definition"},
                 ]
