@@ -294,7 +294,7 @@ var uiSchema = {
             [
                 {"title": "Sample Carrier Type", "key": "sampleCarrier.sampleCarrierType"},
                 {"title": "Sample Carrier Material", "key": "sampleCarrier.sampleCarrierMaterial"},
-                {"title": "Sample Carrier Lenght", "key": "sampleCarrier.sampleCarrierLenght"},
+                {"title": "Sample Carrier Length", "key": "sampleCarrier.sampleCarrierLength"},
                 {"title": "Sample Carrier Width", "key": "sampleCarrier.sampleCarrierWidth"},
                 {"title": "Sample Carrier Height", "key": "sampleCarrier.sampleCarrierHeight"},
                 {"title": "Sample Carrier Temperature Range", "key": "sampleCarrier.sampleCarrierTemperatureRange"},

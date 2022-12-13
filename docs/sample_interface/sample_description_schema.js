@@ -720,7 +720,7 @@ var dataModel = {
                 {
                     "type": "string"
                 },
-                "sampleCarrierLenght": {"type": "string"},
+                "sampleCarrierLength": {"type": "string"},
                 "sampleCarrierWidth": {"type": "string"},
                 "sampleCarrierHeight": {"type": "string"},
                 "sampleCarrierTemperatureRange":
