@@ -83,7 +83,7 @@ var dataModel = {
                "type":"string",
                "description":"(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
                "enum":[
-                  "Not applicable",
+                  "",
                   "ROR",
                   "GRID",
                   "ISNI",
@@ -147,6 +147,7 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
                "enum":[
+                  "",
                   "Research user",
                   "Data Curator",
                   "Instrument Scientist",
@@ -302,7 +303,7 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
                "enum":[
-                  "Not applicable",
+                  "",
                   "nm",
                   "µm",
                   "mm",
@@ -338,7 +339,7 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Type of the uncertainty to be chosen between absolute or relative",
                "enum":[
-                  "Not applicable",
+                  "",
                   "absolute",
                   "relative"
                ]
@@ -366,7 +367,7 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
                "enum":[
-                  "Not applicable",
+                  "",
                   "ng",
                   "µg",
                   "mg",
@@ -501,7 +502,7 @@ var dataModel = {
             "unit":{
                "type":"string",
                "enum":[
-                  "Not applicable",
+                  "",
                   "Pa",
                   "hPa",
                   "kPa",
@@ -597,7 +598,7 @@ var dataModel = {
       },
       "voltageDetails":{
          "type":"object",
-         "description":"describes a voltage. Properties: value (Required) - The voltage expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value to be selected from a controlled list (uV, mV, V, kV, MV, GV default value - V) of datatype string, qualifier (Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional) - Further notes about the value of datatype string",
+         "description":"describes a voltage. Properties: value (Required) - The voltage expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value to be selected from a controlled list (µV, mV, V, kV, MV, GV default value - V) of datatype string, qualifier (Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional) - Further notes about the value of datatype string",
          "additionalProperties":false,
          "properties":{
             "value":{
@@ -607,7 +608,7 @@ var dataModel = {
             "unit":{
                "type":"string",
                "enum":[
-                  "Not applicable",
+                  "",
                   "µV",
                   "mV",
                   "V",
@@ -637,7 +638,7 @@ var dataModel = {
       },
       "currentDetails":{
          "type":"object",
-         "description":"describes a current. Properties: value (Required) - The voltage expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A default value - pA) of datatype string, qualifier (Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional) - Further notes about the value of datatype string",
+         "description":"describes a current. Properties: value (Required) - The voltage expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value to be selected from a controlled list (pA, nA, µA, mA, A default value - pA) of datatype string, qualifier (Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional) - Further notes about the value of datatype string",
          "additionalProperties":false,
          "properties":{
             "value":{
@@ -647,12 +648,12 @@ var dataModel = {
             "unit":{
                "type":"string",
                "enum":[
+                  "",
                   "pA",
                   "nA",
                   "µA",
                   "mA",
                   "A",
-                  "Not applicable"
                ],
                "description":"(Required) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A default value - pA) of datatype string"
             },
@@ -711,7 +712,7 @@ var dataModel = {
             "unit":{
                "type":"string",
                "enum":[
-                  "Not applicable",
+                  "",
                   "degree",
                   "radian"
                ],
@@ -825,7 +826,7 @@ var dataModel = {
             "coordinatesUnit":{
                "type":"string",
                "enum":[
-                  "Not applicable",
+                  "",
                   "nm",
                   "µm",
                   "mm",
@@ -933,7 +934,7 @@ var dataModel = {
       },
       "timeDetails":{
          "type":"object",
-         "description":"describes a time. Properties: value (Required) - The time expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value to be selected from a controlled list (ps, ns, us, ms, s default value - us) of datatype string, qualifier (Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional) - Uncertainty in the value defined as a complex type uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional) - Further notes about the value of datatype string",
+         "description":"describes a time. Properties: value (Required) - The time expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value to be selected from a controlled list (ps, ns, µs, ms, s default value - µs) of datatype string, qualifier (Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional) - Uncertainty in the value defined as a complex type uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional) - Further notes about the value of datatype string",
          "additionalProperties":false,
          "properties":{
             "value":{
@@ -943,7 +944,7 @@ var dataModel = {
             "unit":{
                "type":"string",
                "enum":[
-                  "Not applicable",
+                  "",
                   "ps",
                   "ns",
                   "µs",
@@ -1100,7 +1101,7 @@ var dataModel = {
             "unit":{
                "type":"string",
                "enum":[
-                  "Not applicable",
+                  "",
                   "meV",
                   "eV",
                   "keV",
@@ -1180,7 +1181,7 @@ var dataModel = {
             "beamDepositionType":{
                "type":"string",
                "enum":[
-                  "Not applicable",
+                  "",
                   "E-beam Deposition",
                   "I-beam Deposition"
                ],

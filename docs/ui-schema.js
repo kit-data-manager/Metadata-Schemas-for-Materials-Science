@@ -8,7 +8,7 @@ var uiSchema =
                 "description":"(Optional) - Identifier of the measurement, usually provided by the project or the laboratory",
                 "htmlClass": "myclass",
                 "items": [
-                    {"title": "Type", "key": "entry.entryID.identifierType", "placeholder": "Not Applicable"},
+                    {"title": "Type", "key": "entry.entryID.identifierType"},
                     {"title": "Value", "key": "entry.entryID.identifierValue"},
                 ]
             },
@@ -18,7 +18,7 @@ var uiSchema =
                 "htmlClass": "myclass",
                 "items": [
                     {"title": "Title", "key": "entry.title"},
-                    {"title": "Start Time", "key": "entry.startTime", "placeholder": "2022-06-12T12:00:00Z"},
+                    {"title": "Start Time", "key": "entry.startTime"},
                     {"title": "End Time", "key": "entry.endTime", "placeholder": "2022-06-12T12:00:00Z"},
                     {"title": "Definition", "key": "entry.definition"},
                 ]
