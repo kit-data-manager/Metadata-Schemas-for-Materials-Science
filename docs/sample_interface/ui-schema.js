@@ -301,7 +301,7 @@ var uiSchema = {
                 {"title": "Sample Carrier Supported Samples", "key": "sampleCarrier.supportedSamples"},
                 {"title": "Sample Carrier Supported Holders", "key": "sampleCarrier.supportedHolders"},
                 {"title": "Sample Carrier Description", "key": "sampleCarrier.sampleCarrierDescription"},
-                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHolder.comments"}
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleCarrier.comments"}
 
             ]
         },
