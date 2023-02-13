@@ -28,7 +28,7 @@ var uiSchema = {
                             "type": "tab",
                             "items":
                             [
-                                {"title": "Sample ID Type", "key": "sampleID.sampleID"},
+                                {"title": "Sample ID", "key": "sampleID.sampleID"},
                                 {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleID.comments"}
                             ]
                         },
