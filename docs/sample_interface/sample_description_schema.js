@@ -93,32 +93,8 @@ var dataModel = {
             {
                 "sampleID": 
                 {
-                    "description": "(Optional) - Identifier of the sample",
-                    "type": "object",
-                    "properties": 
-                    {
-                        "identifierValue": 
-                        {
-                            "description": "(Optional) - String containing the value of an identifier", 
-                            "type": "string"
-                        },
-                        "identifierType": 
-                        {
-                            "description": "(Optional) - Type of the identifier to be chosen from a controlled list of values (*ROR *GRID *ISNI *URL *DOI *Handle)",
-                            "type": "string",
-                            "enum":
-                            [
-                                "Not applicable",
-                                "ROR",
-                                "GRID",
-                                "ISNI",
-                                "URL",
-                                "DOI",
-                                "Handle",
-                                "Other (please add in the comments)"
-                            ]
-                        }
-                    }
+                    "description": "(Optional) - Identifier of the sample. The naming is not univocal among laboratories, thus the conventions may differ. In case of biological samples, it may be the internal ID; in case of outcome of a sample preparation, it may be the sample preparation ID; in other cases it can be the number on the box containing the sample; in other cases a convention is established. The choice of how to identify a specific sample is given to the laboratory.",
+                    "type": "string"
                 },
                 "comments": {"type": "string"}
             }
