@@ -36,6 +36,18 @@
                 "Team Member"
            ]
         },
+        "email":
+        {
+            "type":"string",
+            "description":"(Optional) - Email of the user",
+            "format":"email"
+        },
+        "ORCID":
+        {
+            "type":"string",
+            "description":"(Optional) - Open Researcher and Contributor ID expressed as a URI",
+            "pattern":"^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
+        },
         "affiliation":
         {
            "type": "object",
@@ -58,7 +70,8 @@
                     "description":"(Optional) - Department within an institution"
                 },
                 "institutionID":
-                {   "type": "object",
+                {   
+                    "type": "object",
                     "description": "(Optional) -Identifier of the institution to which the user is affiliated",
                     "properties":
                     {
@@ -80,22 +93,10 @@
                             "DOI",
                             "Handle"
                         ]
-                     }
-                   }
+                      }
+                    }
                 }
-            }
-        },
-        "email":
-        {
-            "type":"string",
-            "description":"(Optional) - Email of the user",
-            "format":"email"
-        },
-        "ORCID":
-        {
-            "type":"string",
-            "description":"(Optional) - Open Researcher and Contributor ID expressed as a URI",
-            "pattern":"^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
+           }
         }
     }
 }
