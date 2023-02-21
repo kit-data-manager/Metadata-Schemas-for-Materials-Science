@@ -400,10 +400,23 @@ var dataModel = {
                     "description": "(Optional) - Short description to keep track of the preparation procedures and treatments required to obtain the sample.",
                     "type": "string"
                 },
-                "preparationID":
+                "preparationHistoryFile":
                 {
-                    "description": "(Optional) - Ideally, the unique identifier or a reference to the location in the ELN or in a repository of the sample preparation document where the whole preparation is described.",
-                    "type": "string"
+                    "description": "(Optional) - Type of file, if any, where the complete sample preparation history is described",
+                    "type": "string",
+                    "enum":
+                    [
+                        "Not Applicable",
+                        "ELN",
+                        "Data Repository",
+                        "Included in the Raw Data file",
+                        "Paper log book"
+                    ]
+                },
+                "preparationHistoryFileReference":
+                {
+                    "description": "(Optional) - Reference to the location of the file where the complete sample preparation history is described. Ideally, the unique identifier to the ELN or to a data repository. Not needed in case of a paper log book",
+                    "type": "string"   
                 },
                 "comments": {"type": "string"}
             }
