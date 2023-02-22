@@ -18,6 +18,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor@0.9.3/deps/opt/code-editor/ace/ace.min.js"></script>
 
 
+
+    
     <!--Metadata Editor library-->
     <script src="./js/popper.js"></script>
     <!--script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/jsonform/jsonform.min.js"></script-->
@@ -26,8 +28,8 @@
     <script type="text/javascript" src="./js/metadataeditor.js"></script>
     <script type="text/javascript" src="./js/FileSaver.min.js"></script>
     <!--Input data-->
-    <script type="text/javascript" src="./SEM_schema.js"></script>
-    <script type="text/javascript" src="./ui-schema.js"></script>
+    <script type="text/javascript" src="./test_schema.js"></script>
+    <script type="text/javascript" src="./test_ui_schema.js"></script>
 
     <!--Basic stylesheet-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/opt/bootstrap/css/bootstrap-theme.min.css"/>
@@ -43,7 +45,7 @@
     <div class="col-12">
         <div class="boxlist margin-top-30" id="training-box">
             <div class="box-header bg-green-blue">
-                <h3 class="box-title">SEM Metadata Editor</h3>
+                <h3 class="box-title">Metadata Editor</h3>
             </div>
             <div class="row g-3">
                 <div class="col-sm-2">
@@ -68,76 +70,146 @@
     </div>
 </div>
 
+
 <script>
-   /* var editor = ace.edit("editor");
-    editor.setOptions({
-        autoScrollEditorIntoView: true,
-        copyWithEmptySelection: true,
-    });*/
-   const urlSearchParams = new URLSearchParams(window.location.search);
-   const params = Object.fromEntries(urlSearchParams.entries());
-   const cb = document.querySelector('#validateCheck')
-   const doValidate = (params.validate == "true");
-   if(doValidate){
-       cb.checked = true;
-   }else{
-       cb.checked = false;
-   }
-
-   resolveRefs(dataModel, dataModel.$defs);
-
-   var options = {
-       operation: "CREATE",
-       buttonTitle: "Download",
-       uiForm: this.uiSchema,
-       dataModel: this.dataModel,
-       validate: doValidate
-   };
-
-   var data = localStorage.getItem("sem_resource");
-   var resource = undefined;
-   if(data){
-       options.operation = "UPDATE";
-       resource = JSON.parse(data);
-       options.resource = this.resource;
-   }
-
-   document.getElementById("validateCheck").addEventListener("click", function() {
-       const cb = document.querySelector('#validateCheck')
-       window.location.href = window.location.pathname+"?validate=" + cb.checked;
-   });
-
-   document.getElementById("reset").addEventListener("click", function() {
-       localStorage.removeItem('sem_resource');
-       window.location.reload();
-   });
-
-   document.getElementById("jsonfileinput").addEventListener("change", function() {
-       var file_to_read = document.getElementById("jsonfileinput").files[0];
-       var fileread = new FileReader();
-       fileread.onload = function(e) {
-           var content = e.target.result;
-           var intern = JSON.parse(content); // parse json
-           localStorage.setItem('sem_resource', JSON.stringify(intern));
-           window.location.reload();
-       };
-       fileread.readAsText(file_to_read);
-   });
-
-    $('body').initializeModals();
 
 
-    $('#plain').metadataeditorForm(options, (value) => {
-        var fileName = 'sem_metadata.json';
+    
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    const cb = document.querySelector('#validateCheck')
+    const doValidate = (params.validate == "true");
+    if(doValidate){
+        cb.checked = true;
+    }else{
+        cb.checked = false;
+            }
 
-        // Create a blob of the data
-        var fileToSave = new Blob([value], {
-            type: 'application/json'
-        });
+    var dataObjList = []
 
-        // Save the file
-        saveAs(fileToSave, fileName);
-    });
+    //var urlLinkPhysStatusValues = "http://localhost:8001/rest/v1/TestJson-1/narrower?uri=http%3A%2F%2Flocalhost%3A8001%2FMDMCfirst-1%2Fen%2Fpage%2Fphysicalstatus"
+    //var uriLinkPhysStatus = 'http://localhost:8001/rest/v1/TestJson-1/label?uri=http%3A%2F%2Flocalhost%3A8001%2FMDMCfirst-1%2Fen%2Fpage%2Fphysicalstatus'
+    //var physStatusValues = []
+    //var dataModelName = "Physical Status"
+
+    var urlLinkUserRole = 'http://matwerk.datamanager.kit.edu:8001/rest/v1/DemoTerms-1/narrower?uri=http://matwerk.datamanager.kit.edu:8001/DemoTerms-1/en/page/userrole'
+    //var userRoleValues = []
+    var dataModelUserRole = "UserRole" 
+    
+  
+    const readValues = (uriTerm, dataModelName, dataObjList) => {
+        return new Promise(resolve => {
+            fetch(uriTerm).then(response => {
+            return response.json()
+        }).then(data => {
+
+            var jsonValues
+            var dataModelValues = []
+            var narrower_terms = data.narrower
+            console.log(narrower_terms) 
+            jsonValues = narrower_terms.slice()
+            console.log("Json Values1", jsonValues)       
+
+            narrower_terms.forEach(term => {
+                console.log(term.prefLabel)
+                dataModelValues.push(term.prefLabel)})
+
+            dataObj = {
+                "dataModelName" : dataModelName,
+                "dataModelValues" : dataModelValues,
+                "jsonValues" : jsonValues
+            }
+
+            dataObjList.push(dataObj)
+
+            resolve(dataObjList)})
+        })
+    }
+
+    Promise.all([readValues(urlLinkUserRole,dataModelUserRole, dataObjList)])
+        .then(dataObj => {
+                
+
+            //const dataObjValue = dataObjList.find(obj => obj.dataModelName === "Physical Status")
+            //var physStatusValuesArr = dataObjValue.jsonValues
+            //dataModel.$defs.Physicalstatus.properties.PhysicalstatusValues.enum  = dataObjValue.dataModelValues
+
+            const dataUserRole = dataObjList.find(obj => obj.dataModelName === "UserRole")
+            var dataUserRoleValuesArr = dataUserRole.jsonValues
+            dataModel.$defs.UserRole.properties.UserRoleValues.enum  = dataUserRole.dataModelValues
+            
+
+            resolveRefs(dataModel, dataModel.$defs);
+
+            var options = {     
+                operation: "CREATE",
+                buttonTitle: "Download",
+                uiForm: this.uiSchema,
+                dataModel: this.dataModel,
+                validate: doValidate
+            };
+
+            
+
+            var data = localStorage.getItem("sem_resource");
+            var resource = undefined;
+            if(data){
+                options.operation = "UPDATE";
+                resource = JSON.parse(data);
+                options.resource = this.resource;
+            }
+
+            document.getElementById("validateCheck").addEventListener("click", function() {
+                const cb = document.querySelector('#validateCheck')
+                window.location.href = window.location.pathname+"?validate=" + cb.checked;
+            });
+
+            document.getElementById("reset").addEventListener("click", function() {
+                localStorage.removeItem('sem_resource');
+                window.location.reload();
+            });
+
+            document.getElementById("jsonfileinput").addEventListener("change", function() {
+                var file_to_read = document.getElementById("jsonfileinput").files[0];
+                var fileread = new FileReader();
+                fileread.onload = function(e) {
+                    var content = e.target.result;
+                    var intern = JSON.parse(content); // parse json
+                    localStorage.setItem('sem_resource', JSON.stringify(intern));
+                    window.location.reload();
+                };
+                fileread.readAsText(file_to_read);
+            });
+
+            $('body').initializeModals();
+
+
+            $('#plain').metadataeditorForm(options, (value) => {
+
+                var value_new = JSON.parse(value)
+
+                const userrole = dataUserRoleValuesArr.find(terms => terms.prefLabel === value_new.UserRole.UserRoleValues);
+                value_new.UserRole.UserRoleValues = userrole.uri
+
+                const valueWithUri = JSON.stringify(value_new)
+
+                var fileName = 'sem_metadata.json';
+
+                // Create a blob of the data
+                var fileToSave = new Blob([valueWithUri], {
+                    type: 'application/json'
+                });
+
+                // Save the file
+                saveAs(fileToSave, fileName);
+            });
+
+                    })
+                    
+        
+    
 </script>
+
+
 </body>
 </html>
