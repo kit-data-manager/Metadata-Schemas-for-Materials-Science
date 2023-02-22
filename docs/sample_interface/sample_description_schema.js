@@ -415,7 +415,7 @@ var dataModel = {
                 },
                 "preparationHistoryFileReference":
                 {
-                    "description": "(Optional) - Reference to the location of the file where the complete sample preparation history is described. Ideally, the unique identifier to the ELN or to a data repository. Not needed in case of a paper log book",
+                    "description": "(Optional) - Reference to the location of the file where the complete sample preparation history is described. Ideally, the unique identifier to the ELN or to a data repository. Not needed in case of a paper log book, or if sample preparation history is included in the raw data",
                     "type": "string"   
                 },
                 "comments": {"type": "string"}
