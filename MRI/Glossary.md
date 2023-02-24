@@ -3,7 +3,7 @@
 This glossary is based on a semantic model that describes the terms in the context of the specific domain of MRI. The definitions of the terms are partly aligned with those that already exist in related communities, i.e. DICOM definitions ([DICOM Standard Browser by Innolitics](https://dicom.innolitics.com/ciods)), the [NEP Glossary](https://www.nffa.eu/apply/data-policy/glossary/) and the Joint Lab "Integrated Model and Data-driven Materials Characterization [(MDMC) Glossary](https://github.com/Materials-Data-Science-and-Informatics/MDMC-NEP-top-level-ontology/blob/master/mdmc-glossary/mdmc-glossary-terms.md). The main terms are reported in the following in alphabetical order.
 
 ### DICOM File
-A file in the DICOM format. It stores one or multiple images or spectra ([Processed Data](#processed-data)) which are the output of the Fourier transformation of signals coming from a scan collected into the k-space ([Raw Data](#raw-data)), and a header which contains the [Metadata](#metadata) organized as tags following the DICOM standard. The term has been adapted from Varma (2012)[^1].
+A file in the DICOM format. It stores one or multiple images or spectra ([Processed Data](#processed-data)) revealed by the Fourier transformation of signals coming from a scan collected into the k-space ([Raw Data](#raw-data)), and a header which contains the [Metadata](#metadata) organized as tags following the DICOM standard. The term has been adapted from Varma (2012)[^1].
 
 ### Echo Time
 Time in ms between the middle of the excitation pulse and the peak of the echo signal produced. The term has been adopted from DICOM[^2].
