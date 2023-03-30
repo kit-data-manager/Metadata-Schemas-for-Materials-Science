@@ -12,7 +12,7 @@ Time in ms between the middle of the excitation pulse and the peak of the echo s
 Identifiable and reproducible activity with clear start time and end time, which may consist of one or more [Measurements](#measurement), performed by one or more [Users](#user), resulting in one or more [Studies](#study). The term has been adapted from the NEP Glossary[^3], and the MDMC Glossary[^4].
 
 ### Image
-The Fourier transformation of spatially encoded signals collected in k-space ([Raw Data](#raw-data)) as an array of pixel values representing the intensity of mainly the H-atom signals from the [Sample](#sample).
+The Fourier transformation of spatially encoded signals collected in k-space ([Raw Data](#raw-data)) as an array of pixel values representing the intensity of mainly the H-atom signals from the [Sample](#sample).[^5]
 
 ### Instrument
 Identifiable piece of equipment used by one or more [Users](#user) to perform one or more [Measurements](#measurement) and to generate [Raw Data](#raw-data). The [Instrument](#instrument) is located in a laboratory hosted by an institution. The term has been adopted from the NEP Glossary[^3], and the MDMC Glossary[^4]. In our case, the imaging system of the [Instrument](#instrument) already includes the software to process the [Raw Data](#raw-data) into [Processed Data](#processed-data).
@@ -42,7 +42,7 @@ A physical object (or a collection of objects) which is considered as a single d
 A set of one or more images or spectra (i.e. [Processed Data](#processed-data)) generated after the processing of [Raw Data](#raw-data) collected during [Measurements](#measurement) along the z-axis of a [Sample](#sample) as part of the same [Study](#study) and stored in one or multiple [DICOM Files](#dicom-file). The term has been adopted from DICOM[^2].
 
 ### Spectrum
-A representation of the distribution of resonance frequencies present in the signal and determined by the chemical environment of the atoms in the [Sample](#sample).
+A representation of the distribution of resonance frequencies present in the signal and determined by the chemical environment of the atoms in the [Sample](#sample).[^5]
 
 ### Spin Echo Sequence
 Fundamental pulse sequence in MRI, consisting of an excitation pulse (90°) and a refocusing pulse (180°). It is usually applied to measure the signal of the transversal magnetization, which represents the T2-relaxation (or spin-spin relaxation) value of a [Sample](#sample). The [Spin Echo Sequence](#spin-echo-sequence) is performed by setting the [Echo Time](#echo-time) and the [Repetition Time](#repetition-time) of the [Protocol](#protocol).
