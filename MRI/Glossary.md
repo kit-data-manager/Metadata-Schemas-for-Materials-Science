@@ -11,7 +11,7 @@ Time in ms between the middle of the excitation pulse and the peak of the echo s
 ### Experiment
 Identifiable and reproducible activity with clear start time and end time, which may consist of one or more [Measurements](#measurement), performed by one or more [Users](#user), resulting in one or more [Studies](#study). The term has been adapted from the NEP Glossary[^3], and the MDMC Glossary[^4].
 
-## Image
+### Image
 The Fourier transformation of spatially encoded signals collected in k-space ([Raw Data](#raw-data)) as an array of pixel values representing the intensity of mainly the H-atom signals from the [Sample](#sample).
 
 ### Instrument
@@ -41,7 +41,7 @@ A physical object (or a collection of objects) which is considered as a single d
 ### Series
 A set of one or more images or spectra (i.e. [Processed Data](#processed-data)) generated after the processing of [Raw Data](#raw-data) collected during [Measurements](#measurement) along the z-axis of a [Sample](#sample) as part of the same [Study](#study) and stored in one or multiple [DICOM Files](#dicom-file). The term has been adopted from DICOM[^2].
 
-## Spectrum
+### Spectrum
 A representation of the distribution of resonance frequencies present in the signal and determined by the chemical environment of the atoms in the [Sample](#sample).
 
 ### Spin Echo Sequence
