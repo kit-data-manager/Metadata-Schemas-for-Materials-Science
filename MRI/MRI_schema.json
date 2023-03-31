@@ -158,7 +158,7 @@
 				},
 				"series": {
 					"type": "array",
-					"description": "A set of one or more images or spectra (i.e. Processed Data) generated after the processing of Raw Data collected during Measurements along the z-axis of a Sample as part of the same Study and stored in one or multiple DICOM Files",
+					"description": "A set of one or more Images or Spectra (i.e. Processed Data) generated after the processing of Raw Data collected during Measurements along the z-axis of a Sample as part of the same Study and stored in one or multiple DICOM Files",
 					"items": {
 						"type": "object",
 						"properties": {
@@ -180,7 +180,10 @@
 										"description": "Time in ms between the middle of the excitation pulse and the peak of the echo signal produced",
 										"properties": {
 											"value": {
-												"type": "number"
+												"type": [
+													"number",
+													"array"
+												]
 											},
 											"unit": {
 												"type": "string",
@@ -196,7 +199,10 @@
 										"description": "Time in ms between the beginning of a pulse sequence and the beginning of the subsequent (essentially identical) pulse sequence",
 										"properties": {
 											"value": {
-												"type": "number"
+												"type": [
+													"number",
+													"array"
+												]
 											},
 											"unit": {
 												"type": "string",
@@ -212,12 +218,16 @@
 										"description": "The amount of rotation in degree the net magnetization experiences during application of a pulse",
 										"properties": {
 											"value": {
-												"type": "number"
+												"type": [
+													"number",
+													"array"
+												]
 											},
 											"unit": {
 												"type": "string",
 												"default": "degree",
 												"enum": [
+													"degree",
 													"°"
 												]
 											}
@@ -227,6 +237,7 @@
 							},
 							"images": {
 								"type": "object",
+								"description": "The Fourier transformation of spatially encoded signals collected in k-space (Raw Data) as an array of pixel values representing the intensity of mainly the H-atom signals from the Sample.",
 								"properties": {
 									"allImages": {
 										"type": "object",
@@ -235,7 +246,13 @@
 												"type": "string"
 											},
 											"imageOrientation": {
-												"type": "string"
+												"type": "array",
+												"items": {
+													"type": [
+														"number",
+														"array"
+													]
+												}
 											},
 											"pixelSpacing": {
 												"type": "object",
@@ -323,7 +340,10 @@
 												"sampleImagePosition": {
 													"type": "array",
 													"items": {
-														"type": "number"
+														"type": [
+															"number",
+															"array"
+														]
 													}
 												}
 											}
