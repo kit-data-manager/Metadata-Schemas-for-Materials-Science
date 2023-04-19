@@ -69,7 +69,7 @@ var dataModel = {
         {
             "type": "object",
             "properties": {}
-        },
+        }
     },
     "properties": 
     {
@@ -151,19 +151,23 @@ var dataModel = {
                 {
                     "description": "Identifiable entity (typically a piece of material) with distinctive properties (structural, chemical, dimensional, functional and others), which is fabricated during the Sample Component Fabrication and is used during the Sample Preparation to produce a Sample. It may include one or more substrates, layers, masks, evaporation materials, coatings, and molecules.",
                     "type": "array",
-                    "items": {"type": "string"}
-                },
-                "comments": {"type": "string"}
-            }
-        },
-        "chemicalFormula": 
-        {
-            "type": "object",
-            "properties": 
-            {
-                "chemicalFormula":
-                {
-                    "type": "string"
+                    "items": 
+                    {
+                        "type": "object",
+                        "properties":
+                        {
+                            "componentName":
+                            {
+                                "description": "(Required) - Name of the sample component",
+                                "type": "string"
+                            },
+                            "componentChemicalFormula":
+                            {
+                                "description": "(Recommended) - Chemical formula of the sample component",
+                                "type": "string"
+                            }
+                        }
+                    }
                 },
                 "comments": {"type": "string"}
             }

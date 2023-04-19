@@ -80,16 +80,6 @@ var uiSchema = {
             ]
         },
         {
-            "legend": "Sample Chemical Formula",
-            "type": "fieldset",
-            "htmlClass": "myclass",
-            "items": 
-            [
-                {"title": "Chemical Formula", "key": "chemicalFormula.chemicalFormula"},
-                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "chemicalFormula.comments"}
-            ]   
-        },
-        {
             "legend": "Sample Mass",
             "type": "fieldset",
             "htmlClass": "myclass",
