@@ -399,6 +399,33 @@ var dataModel = {
                         "Other (please add in the comments)"
                     ]
                 },
+                "precursors":
+                {
+                    "description": "Identifiable entity (typically a piece of material) with distinctive properties (structural, chemical, dimensional, functional and others), which is fabricated during the Fabrication and is used during the Sample Preparation to produce a Sample. It may include one or more substrates, layers, masks, evaporation materials, coatings, and molecules. A single Precursor might itself become the only Sample Component of a Sample in case it undergoes a Measurement. ",
+                    "type": "array",
+                    "items": 
+                    {
+                        "type": "object",
+                        "properties":
+                        {
+                            "precursorName":
+                            {
+                                "description": "(Required) - Name of the precursor",
+                                "type": "string"
+                            },
+                            "precursorChemicalFormula":
+                            {
+                                "description": "(Recommended) - Chemical formula of the precursor",
+                                "type": "string"
+                            },
+                            "fabrication":
+                            {
+                                "description": "The production of a Precursor in controlled conditions performed by a commercial enterprise, one or more Research Users or a third party. Fabrication may require the use of Equipment, Consumables and Instrument(s). A Measurement may also be performed during the Fabrication, e.g., to characterize the intermediate and/or final resulting Precursor(s).",
+                                "type":"string"
+                            }
+                        }
+                    }
+                },
                 "preparationDescription":
                 {
                     "description": "(Optional) - Short description to keep track of the preparation procedures and treatments required to obtain the sample.",

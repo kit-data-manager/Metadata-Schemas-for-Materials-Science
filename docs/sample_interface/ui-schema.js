@@ -150,9 +150,9 @@ var uiSchema = {
                 {"title": "Sample Preparation Date", "key": "samplePreparation.preparationDate"},
                 {"title": "Sample Preparation Purpose", "key": "samplePreparation.preparationPurpose"},
                 {"title": "Sample Preparation Method", "key": "samplePreparation.preparationMethod"},
+                {"title": "Use the + to insert each Precursor", "key": "samplePreparation.precursors"},
                 {"title": "Sample Preparation Description", "key": "samplePreparation.preparationDescription"},
                 {"title": "Sample Preparation File", "key": "samplePreparation.preparationHistoryFile"},
-                
                 {"title": "Sample Preparation File Reference", "key": "samplePreparation.preparationHistoryFileReference"},
                 {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "samplePreparation.comments"}
             ]
