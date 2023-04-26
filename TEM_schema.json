@@ -77,7 +77,8 @@
                   "ISNI",
                   "URL",
                   "DOI",
-                  "Handle"
+                  "Handle",
+                  "String"
                ]
             }
          }
@@ -557,6 +558,9 @@
             "ASTAR":{
                "$ref":"#/$defs/ASTARdetails"
             },
+            "EFTEM":{
+               "$ref":"#/$defs/EFTEMdetails"
+            },
             "detector":{
                "$ref":"#/$defs/detectorDetails"
             }
@@ -604,7 +608,7 @@
             },
             "precessionFrequency":{
               "$ref":"#/$defs/frequencyDetails"
-            },
+            }
          },
          "title":"precessionDetails"
       },
@@ -819,7 +823,7 @@
             }
          },
          "required":[
-            "accelerationVoltage",
+            "accelerationVoltage"
          ],
          "title":"sourceDetails"
       },
@@ -997,7 +1001,7 @@
             },
             "rotation":{
                "$ref":"#/$defs/angleDetails"
-            },
+            }
          },
          "required":[
             "specimenPosition",
@@ -1169,7 +1173,7 @@
           },
           "beamConvergence":{
             "$ref":"#/$defs/angleDetails"
-          },
+          }
         },
         "required":[
           "beamConvergence"
@@ -1222,6 +1226,71 @@
           "ASTARactive"
         ],
         "title":"ASTARdetails"
+      },
+      "EFTEMdetails":{
+         "type":"object",
+         "description":"(optional, AE) -  Details about Energy Filtered TEM (EFTEM) Mode defined separately as EFTEMdetails",
+         "additionalProperties":false,
+         "properties":{
+            "EFTEMenabled":{
+               "type":"boolean",
+               "description":"(optional, AE) -  Is Energy Filtered TEM (EFTEM) Mode active?",
+               "default":false
+            },
+            "zeroEnergyLoss":{
+               "type":"boolean",
+               "description":"(optional, AE) -  Is energy loss set at zero?",
+               "default":false
+            },
+            "setEnergyLoss":{
+               "$ref":"#/$defs/energyDetails",
+               "description":"(optional, AE) -  specific non-zero energy loss selected for the filter. Default unit: eV"
+            },
+            "inColumnFilter":{
+               "type":"object",
+               "description":"(optional, AE) -  in-column filters are used between intermediate and projector lenses",
+               "additionalProperties":false,
+               "properties":{
+                  "inColumnFilterType":{
+                     "type":"string",
+                     "description":"(optional, AE) -  type of the in-column filter used : -JEOL omega filter"
+                  },
+                  "slitOffset":{
+                     "$ref":"#/$defs/energyDetails",
+                     "description":"(optional, AE) -  Offset used to adjust the slit position when an omega filter allows only positive energy shifts. Default unit: eV"
+                  },
+                  "slitWidth":{
+                     "$ref":"#/$defs/energyDetails",
+                     "description":"(optional, AE) -  Slit width in electron volts, it is also represents a physical slit opening in µm. Default unit: eV"
+                  }
+               }
+            },
+            "postColumnFilter":{
+               "type":"object",
+               "description":"(optional, AE) -  To be used if a post column filter (gatan Image Filter - GIF) active? (same as energy filter) for EELS",
+               "additionalProperties":false,
+               "properties":{
+                  "energyOffset":{
+                     "$ref":"#/$defs/energyDetails",
+                     "description":"(optional, AE) -  It is the centroid/middle of the energy range used for forming the EFTEM. Default unit: eV"
+                  },
+                  "slitWidth":{
+                     "$ref":"#/$defs/energyDetails",
+                     "description":"(optional, AE) -  Slit width in electron volts, it is also represents a physical slit opening in µm. Default unit: eV"
+                  },
+                  "matchPixelSIzeON":{
+                     "type":"boolean",
+                     "description":"(optional, AE) -  Is the function to adjust the magnification to minimize the change in pixel size when switching between EFTEM and regular magnifications enabled?",
+                     "default":false
+                  },
+                  "matchIntensityON":{
+                     "type":"boolean",
+                     "description":"(optional, AE) -  Does the program change beam intensity when switching between regular and EFTEM magnifications, so as to maintain a constant electron flux per camera pixel?",
+                     "default":false
+                  }
+               }
+            }
+         }
       },
       "detectorDetails":{
          "type":"object",
@@ -1619,9 +1688,9 @@
              "2D"
            ]
          },
-         "dwellTime":{
-           "$ref":"#/$defs/pixelNumberType"
-         },
+         "scanSize":{
+            "$ref":"#/$defs/scanSizeDetails"
+          },
          "mainsLock":{
            "type":"boolean",
            "default":false
@@ -1644,6 +1713,19 @@
          "scanType"
        ],
        "title":"SCANdetails"
+     },
+     "scanSizeDetails":{
+      "type":"object",
+      "description":"(optional, NAE) - based on if scan is 1D or 2D, the corresponding no. of pixels in x and y directions are to be entered defined separately as pixelNumberType",
+      "additionalProperties":false,
+       "properties":{
+         "xscanSize":{
+            "$ref":"#/$defs/pixelNumberType"
+         },
+         "yscanSize":{
+            "$ref":"#/$defs/pixelNumberType"
+         }
+       }
      },
      "EELSdetails":{
        "type":"object",
