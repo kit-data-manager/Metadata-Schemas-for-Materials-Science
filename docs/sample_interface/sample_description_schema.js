@@ -149,7 +149,7 @@ var dataModel = {
             {
                 "sampleComponents":
                 {
-                    "description": "Identifiable entity (typically a piece of material) with distinctive properties (structural, chemical, dimensional, functional and others), which is fabricated during the Sample Component Fabrication and is used during the Sample Preparation to produce a Sample. It may include one or more substrates, layers, masks, evaporation materials, coatings, and molecules.",
+                    "description": "Identifiable entity (typically a piece of material) which constitutes a part of a Sample, usually with distinctive properties (structural, chemical, dimensional, functional and others).",
                     "type": "array",
                     "items": 
                     {
