@@ -105,3 +105,6 @@ dist
 
 # Idea IDE files
 .idea
+
+# VS Code Source Control
+.DS_Store
