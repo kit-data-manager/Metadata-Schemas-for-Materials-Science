@@ -50,7 +50,11 @@
                "temperature":{
                   "$ref":"#/$defs/temperatureDetails",
                   "description":"(Required)- Temperature of the smaple during acquisition"
-               }
+               },
+               "specimenCurrent":{
+                  "$ref":"#/$defs/currentDetails",
+                  "description":"(Required)- Current on the smaple during acquisition"
+               } 
             },
             "required":[
                "fileName",
@@ -315,6 +319,43 @@
             "unit"
          ],
          "title":"temperatureDetails"
+      },
+         "currentDetails":{
+         "type":"object",
+         "description":"Describes a current.",
+         "additionalProperties":false,
+         "properties":{
+            "value":{
+               "type":"number",
+               "default":-9999,
+               "description":"(Optional) - Further notes about the value of datatype string"
+            },
+            "unit":{
+               "type":"string",
+               "default":"pA",
+               "enum":[
+                  "pA",
+                  "nA",
+                  "uA",
+                  "mA",
+                  "A"
+               ],
+               "description":"(Optional) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A default value - pA) of datatype string"
+            },
+            "qualifier":{
+               "type":"string",
+               "default":"max",
+               "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+            },
+            "notes":{
+               "type":"string",
+               "description":"(Optional) - Further notes about the value of datatype string"
+            }
+         },
+         "required":[
+            "value"
+         ],
+         "title":"currentDetails"
       }
    }    
 
