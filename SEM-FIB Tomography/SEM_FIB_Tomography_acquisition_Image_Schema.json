@@ -1,0 +1,321 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id":"https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/main/SEM_FIB_Tomography/Acquisition_Image.json",
+    "type": "object",
+    "description": "This JSON Schema describes an individual image acquired during the course of a SEM/FIB Tomography experiment.  Each image is taken using a detector (SE, BSE, EDS, EBSD) at each slice cut using FIB. This Schema contains only the parameters which are specific to the individual image. The parameters which are common to the entire set are described by another schema which describes the dataset as a whole and is located at ...",
+    "properties": {
+        "entry": {
+            "$ref": "#/$defs/entry"
+        }
+    },
+    "required":[
+        "entry"
+     ],
+     "title":"acquisition_image",
+     "$defs":{
+        "entry":{
+            "type":"object",
+            "description":"The entry level is the root element of the schema. It contains all the metadata describing a single image.",
+            "additionalProperties":false,
+            "properties":{
+               "entryID":{
+                  "$ref":"#/$defs/identifier",
+                  "description":"(Optional)- Identifier of the image produced by the machine"
+               },
+               "fileName":{
+                  "type":"string",
+                  "description":"(Required)- File name of the image"
+               },
+               "fileLink":{
+                  "$ref":"#/$defs/identifier",
+                  "description":"(Optional)- Link to the location of the image"
+               },
+               "creationTime":{
+                  "type":"string",
+                  "description":"(Required)- Time of creation of the image",
+                  "pattern":"(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)"
+               },
+               "definition":{
+                  "type":"string",
+                  "description":"(Required)- Name of the schema to which this entry conforms. In this case, acquisition_image should be written"
+               },
+               "stage":{
+                  "$ref":"#/$defs/stage",
+                  "description":"(Required)- Details concerning stage settings used for aquisition"
+               },
+               "vacuum":{
+                  "$ref":"#/$defs/vacuum",
+                  "description":"(Required)- Details concerning the vacuum during aquisition"
+               },
+               "temperature":{
+                  "$ref":"#/$defs/temperatureDetails",
+                  "description":"(Required)- Temperature of the smaple during acquisition"
+               }
+            },
+            "required":[
+               "fileName",
+               "creationTime",
+               "definition",
+               "stage",
+               "vacuum",
+               "temperature"
+            ]
+        },
+        "stage":{
+         "type":"object",
+         "description":"Describes the stage.",
+         "additionalProperties":false,
+         "properties":{
+            "workingDistance":{
+               "$ref":"#/$defs/distanceDetails",
+               "description":"(Required)- The working distance with which the acquisition was made"
+            },
+            "stageX":{
+               "$ref":"#/$defs/distanceDetails",
+               "description":"(Required)- X coordinate of the position of the stage"
+            },
+            "stageY":{
+               "$ref":"#/$defs/distanceDetails",
+               "description":"(Required)- Y coordinate of the position of the stage"
+            }, 
+            "stageZ":{
+               "$ref":"#/$defs/distanceDetails",
+               "description":"(Required)- Z coordinate of the position of the stage"
+            },
+            "stageR":{
+               "$ref":"#/$defs/angleDetails",
+               "description":"(Required)- Angle by which the stage is rotated"
+            },
+            "stageTa":{
+               "$ref":"#/$defs/angleDetails",
+               "description":"(Required)- Tilt angle alpha of the stage"
+            },
+            "stageTb":{
+               "$ref":"#/$defs/angleDetails",
+               "description":"(Required)- Tilt angle beta of the stage"
+            },
+            "specTilt":{
+               "$ref":"#/$defs/angleDetails",
+               "description":"(Optional)- Special tilt angle"
+            },
+            "activeStage":{
+               "type":"string",
+               "description":"(Required)- Describes the stage in use"
+            }
+         },
+         "required":[
+            "workingDistance",
+            "stageX",
+            "stageY",
+            "stageZ",
+            "stageR",
+            "stageTa",
+            "stageTb",
+            "activeStage"
+         ]
+        },
+        "vacuum":{
+         "type":"object",
+         "description":"Describes the vacuum maintained in the system.",
+         "additionalProperties":false,
+         "properties":{
+            "chamberPressure":{
+               "$ref":"#/$defs/pressureDetails",
+               "description":"(Required)- The pressure maintained in the electron chamber"
+            },
+            "gas":{
+               "type":"string",
+               "description":"(Required)- The gas used in the electron chamber"
+            },
+            "userMode":{
+               "type":"string",
+               "description":"(Required)- The type of vacuum slected by the user",
+               "enum": [
+                  "High vacuum",
+                  "Medium vacuum",
+                  "Low vacuum"
+               ]
+            },
+            "humidity":{
+               "type":"string",
+               "description":"(Required)- Describes the humidity in the chamber during the measurement"
+            }
+         }
+      },
+         "identifier":{
+         "type":"object",
+         "description":"(Optional) - Details of an identifier element.",
+         "additionalProperties":false,
+         "properties":{
+            "identifierValue":{
+               "type":"string",
+               "description":"(Optional) - String containing the value of an identifier"
+            },
+            "identifierType":{
+               "type":"string",
+               "description":"(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle *String",
+               "enum":[
+                  "ROR",
+                  "GRID",
+                  "ISNI",
+                  "URL",
+                  "DOI",
+                  "Handle",
+                  "String"
+               ]
+            }
+         }
+      },
+      "pressureDetails":{
+         "type":"object",
+         "description":"(Required) - Describes a pressure.",
+         "additionalProperties":false,
+         "properties":{
+            "value":{
+               "type":"number",
+               "default":-9999,
+               "description":"(Required) - Value of the pressure"
+            },
+            "unit":{
+               "type":"string",
+               "default":"Pa",
+               "enum":[
+                  "Pa",
+                  "hPa",
+                  "kPa",
+                  "MPa",
+                  "GPa",
+                  "mbar",
+                  "bar",
+                  "psi"
+               ],
+               "description":"(Required) - Unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi, default value - Pa)"
+            },
+            "qualifier":{
+               "type":"string",
+               "default":"max",
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
+            },
+            "notes":{
+               "type":"string",
+               "description":"(Optional) - Further notes about the value"
+            }
+         },
+         "required":[
+            "unit",
+            "value"
+         ],
+         "title":"pressureDetails"
+      }, 
+      "angleDetails":{
+         "type":"object",
+         "description":"describes an angle.",
+         "additionalProperties":false,
+         "properties":{
+            "value":{
+               "type":"number",
+               "default":-9999,
+               "description":"(Required) - The angle expressed as an integer or floating point value of datatype number"
+            },
+            "unit":{
+               "type":"string",
+               "default":"degree",
+               "enum":[
+                  "degree",
+                  "radian"
+               ],
+               "description":"(Required) - the unit of the value to be selected from a controlled list (degree, radian; default value - degree) of datatype string"
+            },
+            "qualifier":{
+               "type":"string",
+               "default":"max",
+               "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+            },
+            "notes":{
+               "type":"string",
+               "description":"(Optional) - Further notes about the value of datatype string"
+            }
+         },
+         "required":[
+            "unit",
+            "value"
+         ],
+         "title":"angleDetails"
+      },
+      "distanceDetails":{
+         "type":"object",
+         "description":"(Optional) - Describes a distance, size or length.",
+         "additionalProperties":false,
+         "properties":{
+            "value":{
+               "type":"number",
+               "description":"(Required) - Value of the distance, size or length",
+               "default":-9999
+            },
+            "unit":{
+               "type":"string",
+               "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
+               "default":"mm",
+               "enum":[
+                  "nm",
+                  "um",
+                  "mm",
+                  "cm",
+                  "m"
+               ]
+            },
+            "qualifier":{
+               "type":"string",
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
+               "default":"max"
+            },
+            "notes":{
+               "type":"string",
+               "description":"(Optional) - Further notes about the value"
+            }
+         },
+         "required":[
+            "value",
+            "unit"
+         ],
+         "title":"distanceDetails"
+      },
+      "temperatureDetails":{
+         "type":"object",
+         "description":"(Optional) - Describes a temperature.",
+         "additionalProperties":false,
+         "properties":{
+            "value":{
+               "type":"number",
+               "description":"(Required) - Value of the temperature",
+               "default":-9999
+            },
+            "unit":{
+               "type":"string",
+               "description":"(Required) - Unit of the value to be selected from a controlled list (K, ºC, ºF)",
+               "default":"mm",
+               "enum":[
+                  "K",
+                  "ºC",
+                  "ºF"
+               ]
+            },
+            "qualifier":{
+               "type":"string",
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
+               "default":"max"
+            },
+            "notes":{
+               "type":"string",
+               "description":"(Optional) - Further notes about the value"
+            }
+         },
+         "required":[
+            "value",
+            "unit"
+         ],
+         "title":"temperatureDetails"
+      }
+   }    
+
+}

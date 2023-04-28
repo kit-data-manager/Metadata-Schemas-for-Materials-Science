@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/main/SEM_FIB_Tomography/Acquisition_Main.json",
+  "type": "object",
+  "description": "This JSON Schema describes the entire acquisition process during an SEM_FIB_Tomography measurement.  The acquisition comprises of multiple datasets which are described using the schema located at https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/main/SEM_FIB_Tomography/Acquisition_Dataset.json. The images in each dataset is taken using a detector (SE, BSE, EDS, EBSD) using a specific configuration. Each image is described by the schema located at https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/main/SEM_FIB_Tomography/Acquisition_Image.json The units are by default to be considred as the SI units unless otherwise specified",
+  "properties": {
+    "entry": {
+      "$ref": "#/$defs/entry"
+    }
+  },
+  "required": [
+    "entry"
+  ],
+  "title": "acquisition_main",
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "description": "The entry level is the root element of the schema. It contains all the metadata describing an acquisition as part of an SEM/FIB Tomography measurement which might include multiple detectors.",
+      "additionalProperties": false,
+      "properties": {
+        "genericMetadata": {
+          "type": "object",
+          "description": "Describes all the generic metadata common to the acquisition",
+          "additionalProperties": false,
+          "properties": {
+            "program": {
+              "$ref": "#/$defs/program",
+              "description": "(Optional)- Details concerning the program (or software) used for aquisition"
+            },
+            "applicationID": {
+              "$ref": "#/$defs/identifier",
+              "description": "(Optional)- Details concerning the program (or software) used for aquisition"
+            },
+            "fileVersion": {
+              "type": "string",
+              "description": "The file version of the measurement data of the project"
+            },
+            "projectName": {
+              "type": "string",
+              "description": "The name of the project containing the acquistion datasets"
+            },
+            "zCutSpacing": {
+              "$ref": "#/$defs/distanceDetails",
+              "description": "The spacing between individual slices in z dimension"
+            },
+            "numberOfCuts": {
+              "type": "number",
+              "description": "The number of slices into which the sample is cut during the course of the SEM/FIB Tomography"
+            },
+            "pump": {
+              "type": "string",
+              "description": "The name of the pump used in the instrument"
+            },
+            "column": {
+              "type": "string",
+              "description": "The name of the column used in the instrument"
+            },
+            "source": {
+              "type": "string",
+              "description": "The type of the source used in the instrument"
+            },
+            "eucentricWorkingDistance": {
+              "$ref": "#/$defs/distanceDetails",
+              "description": "The Working Distance when the smaple is at the eucentric height"
+            },
+            "ESEM": {
+              "type": "boolean",
+              "description": "To be set to true if environmental SEM is used"
+            },
+            "systemType": {
+              "type": "string",
+              "description": "Describes the system type used - the name of the instrument"
+            },
+            "stage": {
+              "type": "string",
+              "description": "The dimensions of the stage used in the instrument"
+            }
+          },
+          "required": [
+            "stage",
+            "systemType",
+            "ESEM",
+            "eucentricWorkingDistance",
+            "source",
+            "column",
+            "pump",
+            "numberOfCuts",
+            "zCutSpacing",
+            "projectName",
+            "fileVersion",
+            "applicationID",
+            "applicationVersion",
+            "applicationName"
+          ],
+          "title": "genericMetadata"
+        },
+        "datasetMetadataArray": {
+          "type": "array",
+          "description": "Array of all the dataset-metadata acquired using multiple detetors",
+          "items": {
+            "$ref": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/main/SEM_FIB_Tomography/Acquisition_Dataset.json"
+          }
+        }
+      }
+    },
+    "program": {
+      "type": "object",
+      "description": "(Optional) - Details concerning the program (or software) used for aquisition.",
+      "additionalProperties": false,
+      "properties": {
+        "programName": {
+          "type": "string",
+          "description": "(Optional) - Name of the program (or software) used for acquisition"
+        },
+        "programVersion": {
+          "type": "string",
+          "description": "(Optional) - Program (or software) version number"
+        }
+      },
+      "title": "program"
+    },
+    "identifier": {
+      "type": "object",
+      "description": "(Optional) - Details of an identifier element.",
+      "additionalProperties": false,
+      "properties": {
+        "identifierValue": {
+          "type": "string",
+          "description": "(Optional) - String containing the value of an identifier"
+        },
+        "identifierType": {
+          "type": "string",
+          "description": "(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle *String",
+          "enum": [
+            "ROR",
+            "GRID",
+            "ISNI",
+            "URL",
+            "DOI",
+            "Handle",
+            "String"
+          ]
+        }
+      }
+    },
+    "distanceDetails": {
+      "type": "object",
+      "description": "(Optional) - Describes a distance, size or length.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - Value of the distance, size or length",
+          "default": -9999
+        },
+        "unit": {
+          "type": "string",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
+          "default": "mm",
+          "enum": [
+            "nm",
+            "um",
+            "mm",
+            "cm",
+            "m"
+          ]
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
+          "default": "max"
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "distanceDetails"
+    }
+  }
+}
