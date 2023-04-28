@@ -57,7 +57,7 @@
             },
             "source": {
               "type": "string",
-              "description": "The type of the source used in the instrument"
+              "description": "The type of the source used in the instrument. The source is a physical part of an electron or ion microscope from which the particles that form the beam are emitted. IRI: https://iris.hmc-services.de/EM_Glossary/term_00000013"
             },
             "eucentricWorkingDistance": {
               "$ref": "#/$defs/distanceDetails",
