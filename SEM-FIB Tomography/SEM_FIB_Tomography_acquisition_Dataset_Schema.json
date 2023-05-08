@@ -86,7 +86,7 @@
         },
         "images": {
           "$ref": "#/$defs/imagesDetails",
-          "description": "(Required) - The displayed energy level on the detector"
+          "description": "(Required) - Details describing the images in the dataset, including location and image specific parameters"
         }
       },
       "required": [
