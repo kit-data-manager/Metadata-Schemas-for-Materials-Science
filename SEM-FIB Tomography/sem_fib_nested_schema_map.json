@@ -94,7 +94,7 @@
         "acquisition.dataset.entry.images.entry.vacuum.userMode":"Images.SEM Image.SliceImage.Vacuum.usermode",
         "acquisition.dataset.entry.images.entry.vacuum.humidity":"Images.SEM Image.SliceImage.Vacuum.humidity",
         "acquisition.dataset.entry.images.entry.temperature.value":"Images.SEM Image.SliceImage.Specimen.temperature",
-        
+        "acquisition.dataset.entry.images.entry.specimenCurrent.value":"Images.SEM Image.SliceImage.Specimen.specimencurrent"
         
     }
 }
