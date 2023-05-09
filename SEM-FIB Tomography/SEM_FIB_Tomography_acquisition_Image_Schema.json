@@ -49,7 +49,11 @@
                },
                "temperature":{
                   "$ref":"#/$defs/temperatureDetails",
-                  "description":"(Required)- Temperature of the smaple during acquisition"
+                  "description":"(Required)- Temperature of the sample during acquisition"
+               },
+               "specimenCurrent":{
+                  "$ref":"#/$defs/currentDetails",
+                  "description":"(Required)- Current measured on the specimen during acquisition of the image"
                }
             },
             "required":[
@@ -189,7 +193,7 @@
                   "bar",
                   "psi"
                ],
-               "description":"(Required) - Unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi, default value - Pa)"
+               "description":"(Optional) - Unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi, default value - Pa)"
             },
             "qualifier":{
                "type":"string",
@@ -202,7 +206,6 @@
             }
          },
          "required":[
-            "unit",
             "value"
          ],
          "title":"pressureDetails"
@@ -224,7 +227,7 @@
                   "degree",
                   "radian"
                ],
-               "description":"(Required) - the unit of the value to be selected from a controlled list (degree, radian; default value - degree) of datatype string"
+               "description":"(Optional) - the unit of the value to be selected from a controlled list (degree, radian; default value - degree) of datatype string"
             },
             "qualifier":{
                "type":"string",
@@ -237,7 +240,6 @@
             }
          },
          "required":[
-            "unit",
             "value"
          ],
          "title":"angleDetails"
@@ -254,7 +256,7 @@
             },
             "unit":{
                "type":"string",
-               "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
+               "description":"(Optional) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
                "default":"mm",
                "enum":[
                   "nm",
@@ -275,8 +277,7 @@
             }
          },
          "required":[
-            "value",
-            "unit"
+            "value"
          ],
          "title":"distanceDetails"
       },
@@ -292,7 +293,7 @@
             },
             "unit":{
                "type":"string",
-               "description":"(Required) - Unit of the value to be selected from a controlled list (K, ºC, ºF)",
+               "description":"(Optional) - Unit of the value to be selected from a controlled list (K, ºC, ºF)",
                "default":"mm",
                "enum":[
                   "K",
@@ -311,10 +312,46 @@
             }
          },
          "required":[
-            "value",
-            "unit"
+            "value"
          ],
          "title":"temperatureDetails"
+      },
+      "currentDetails":{
+         "type":"object",
+         "description":"(Optional) - Describes a current.",
+         "additionalProperties":false,
+         "properties":{
+            "value":{
+               "type":"number",
+               "description":"(Required) - Value of the current",
+               "default":-9999
+            },
+            "unit":{
+               "type":"string",
+               "description":"(Optional) - Unit of the value to be selected from a controlled list (pA, nA, µA, mA, A)",
+               "default":"mm",
+               "enum":[
+                  "pA",
+                  "nA",
+                  "µA",
+                  "mA",
+                  "A"
+               ]
+            },
+            "qualifier":{
+               "type":"string",
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
+               "default":"max"
+            },
+            "notes":{
+               "type":"string",
+               "description":"(Optional) - Further notes about the value"
+            }
+         },
+         "required":[
+            "value"
+         ],
+         "title":"currentDetails"
       }
    }    
 

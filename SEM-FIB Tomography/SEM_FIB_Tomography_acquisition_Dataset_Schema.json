@@ -24,7 +24,7 @@
         },
         "definition": {
           "type": "string",
-          "description": "(Required)- Name of the schema to which this entry conforms. In this case, acquisition_dataset should be written"
+          "description": "(Optional)- Name of the schema to which this entry conforms. In this case, acquisition_dataset is to be written"
         },
         "user": {
           "$ref": "#/$defs/user",
@@ -54,10 +54,6 @@
           "description": "(Required) - Number of Items (images, files). Depends on the number of slices",
           "type": "number"
         },
-        "name": {
-          "type": "string",
-          "description": "(Required) - Name of the dataset"
-        },
         "rows": {
           "type": "number",
           "description": "(Optional) - Number of rows in the tiled image grab setting"
@@ -73,10 +69,6 @@
         "tileRow": {
           "type": "number",
           "description": "(Optional) - The selected row in the tiled image grab setting"
-        },
-        "displayedEnergyLevel": {
-          "$ref": "#/$defs/energyDetails",
-          "description": "(Optional) - The displayed energy level on the detector"
         },
         "images": {
           "$ref": "#/$defs/imagesDetails",
@@ -334,7 +326,7 @@
             "Field-Free"
           ]
         },
-        "tiltCorrectionAngle ": {
+        "tiltCorrectionAngle": {
           "$ref": "#/$defs/angleDetails",
           "description": "(Required) - the Angle set to correct the tilt of the sample."
         },
