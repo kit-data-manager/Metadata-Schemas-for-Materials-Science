@@ -45,9 +45,15 @@
           "enum": [
             "SEM Image",
             "SEM Image 2",
+            "SEM Image 3",
+            "SEM Image 4",
+            "SEM Image 5"
             "EDS",
             "EBSD",
-            "BSE"
+            "BSE",
+            "ISE Image",
+            "ISI Image",
+            "SI Image"
           ]
         },
         "numberOfItems": {
@@ -72,7 +78,7 @@
         },
         "images": {
           "$ref": "#/$defs/imagesDetails",
-          "description": "(Required) - The displayed energy level on the detector"
+          "description": "(Required) - Details describing the images in the dataset, including location and image specific parameters"
         }
       },
       "required": [
