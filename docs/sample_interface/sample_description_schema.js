@@ -364,6 +364,98 @@ var dataModel = {
                 "comments": {"type": "string"}
             }
         },
+        "fabrication":
+        {
+            "type": "object",
+            "properties":
+            {
+                "fabricationStep":
+                {
+                    "type": "object",
+                    "description": "(Optional) - The production of a Precursor in controlled conditions performed by a commercial enterprise, one or more Research Users or a third party. Fabrication may require the use of Equipment, Consumables and Instrument(s). A Measurement may also be performed during the Fabrication, e.g., to characterize the intermediate and/or final resulting Precursor(s).",
+                    "enum":
+                    [
+                        "notApplicable",
+                        "annealingHomogenization",
+                        "forming"
+                    ]
+                },
+                "comments": {"type": "string"},
+                "notApplicable":
+                {
+                    "type": "object",
+                    "properties":{}
+                },
+                "annealingHomogenization":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "annealingHomogenizationMethod":
+                        {
+                            "type": "string",
+                            "enum":
+                            [
+                                "unspecified annealing and homogenization",
+                                "aging",
+                                "dry blending",
+                                "homogenization",
+                                "mechanical mixing",
+                                "melt mixing",
+                                "normalizing",
+                                "recrystallization",
+                                "stress relieving",
+                                "tempering",
+                                "twin screw excrusion",
+                                "ultrasonication",
+                                "annealing/heating",
+                                "curing/hardening"
+                            ]
+                        }
+                    }
+                },
+                "forming":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "formingMethod":
+                        {
+                            "type": "string",
+                            "enum":
+                            [
+                                "unspecified molding or casting",
+                                "cold rolling",
+                                "compression molding",
+                                "drawing",
+                                "extrusion",
+                                "forging",
+                                "hot pressing",
+                                "cold pressing",
+                                "hot rolling",
+                                "injection molding",
+                                "3D-printing",
+                                "milling",
+                                "lathing",
+                                "rotational molding",
+                                "vacuum molding",
+                                "centrifugal casting",
+                                "continuous casting",
+                                "die casting",
+                                "investment casting",
+                                "sand casting",
+                                "slip casting",
+                                "vacuum arc melting",
+                                "vacuum casting",
+                                "permanent mould casting",
+                                "direct chill casting"
+                            ]
+                        }
+                        
+                    }
+                }
+            }
+        },
         "samplePreparation":
         {
             "type": "object",
@@ -382,22 +474,53 @@ var dataModel = {
                 },
                 "preparationMethod":
                 {
-                    "type": "string",
-                    "enum":
-                    [
-                        "Not applicable",
-                        "not yet done",
-                        "FIB",
-                        "conventional grinding, polishing, dimpling, ion milling",
-                        "ultramicrotome",
-                        "multiprep",
-                        "combination of several methods",
-                        "dispersion in solvent, dropping on TEM-grid",
-                        "dry shaking with powder sample",
-                        "electropolishing",
-                        "thin film deposited on TEM-grid",
-                        "Other (please add in the comments)"
-                    ]
+                    "type": "object",
+                    "properties":
+                    {
+                        "preparationStep":
+                        {
+                            "type": "object",
+                            "enum":
+                            [
+                                "notApplicable",
+                                "annealingHomogenization"
+                            ]
+                        },
+                        "comments": {"type": "string"},
+                        "notApplicable":
+                        {
+                            "type": "object",
+                            "properties":{}
+                        },
+                        "annealingHomogenization":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "annealingHomogenizationMethod":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "unspecified annealing and homogenization",
+                                        "aging",
+                                        "dry blending",
+                                        "homogenization",
+                                        "mechanical mixing",
+                                        "melt mixing",
+                                        "normalizing",
+                                        "recrystallization",
+                                        "stress relieving",
+                                        "tempering",
+                                        "twin screw excrusion",
+                                        "ultrasonication",
+                                        "annealing/heating",
+                                        "curing/hardening"
+                                    ]
+                                }
+                            }
+                        } 
+                    }
                 },
                 "precursors":
                 {
@@ -418,7 +541,7 @@ var dataModel = {
                                 "description": "(Recommended) - Chemical formula of the precursor",
                                 "type": "string"
                             },
-                            "fabrication":
+                            "precursorFabricationDescription":
                             {
                                 "description": "The production of a Precursor in controlled conditions performed by a commercial enterprise, one or more Research Users or a third party. Fabrication may require the use of Equipment, Consumables and Instrument(s). A Measurement may also be performed during the Fabrication, e.g., to characterize the intermediate and/or final resulting Precursor(s).",
                                 "type":"string"
