@@ -155,13 +155,17 @@ var uiSchema = {
                     {
                         "notApplicable": "Not Applicable",
                         "annealingHomogenization": "Annealing and Homogenization",
-                        "forming": "Forming"
+                        "forming": "Forming",
+                        "depositionCoating": "Deposition and Coating",
+                        "other": "Other (please add in the comments)"
                     },
                     "items": 
                     [
                         "fabrication.notApplicable", 
                         "fabrication.annealingHomogenization",
-                        "fabrication.forming"
+                        "fabrication.forming",
+                        "fabrication.depositionCoating",
+                        "fabrication.other"
                     ]
                 },
                 {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "fabrication.comments"}
@@ -183,12 +187,16 @@ var uiSchema = {
                     "titleMap": 
                     {
                         "notApplicable": "Not Applicable",
-                        "annealingHomogenization": "Annealing and Homogenization"
+                        "annealingHomogenization": "Annealing and Homogenization",
+                        "depositionCoating": "Deposition and Coating",
+                        "other": "Other (please add in the comments)"
                     },
                     "items": 
                     [
                         "samplePreparation.preparationMethod.notApplicable", 
-                        "samplePreparation.preparationMethod.annealingHomogenization"
+                        "samplePreparation.preparationMethod.annealingHomogenization",
+                        "samplePreparation.preparationMethod.depositionCoating",
+                        "samplePreparation.preparationMethod.other"
                     ]
                 },
                 {"title": "Sample Preparation Description", "key": "samplePreparation.preparationDescription"},

@@ -165,6 +165,11 @@ var dataModel = {
                             {
                                 "description": "(Recommended) - Chemical formula of the sample component",
                                 "type": "string"
+                            },
+                            "componentCASNumber":
+                            {
+                                "description": "(Optional) - CAS number of the sample component, if known and applicable",
+                                "type": "string"
                             }
                         }
                     }
@@ -377,7 +382,9 @@ var dataModel = {
                     [
                         "notApplicable",
                         "annealingHomogenization",
-                        "forming"
+                        "forming",
+                        "depositionCoating",
+                        "other (please add in the comments)"
                     ]
                 },
                 "comments": {"type": "string"},
@@ -408,8 +415,9 @@ var dataModel = {
                                 "tempering",
                                 "twin screw excrusion",
                                 "ultrasonication",
-                                "annealing/heating",
-                                "curing/hardening"
+                                "vacuum annealing/heating",
+                                "curing/hardening",
+                                "other (please add in the comments)"
                             ]
                         }
                     }
@@ -448,11 +456,34 @@ var dataModel = {
                                 "vacuum arc melting",
                                 "vacuum casting",
                                 "permanent mould casting",
-                                "direct chill casting"
+                                "direct chill casting",
+                                "other (please add in the comments)"
                             ]
                         }
                         
                     }
+                },
+                "depositionCoating":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "depositionCoatingMethod":
+                        {
+                            "type": "string",
+                            "enum":
+                            [
+                                "unspecified deposition and coating",
+                                "gold-sputter coating",
+                                "other (please add in the comments)"
+                            ]
+                        }
+                    }
+                },
+                "other": 
+                {
+                    "type": "object",
+                    "properties": {}
                 }
             }
         },
@@ -483,7 +514,9 @@ var dataModel = {
                             "enum":
                             [
                                 "notApplicable",
-                                "annealingHomogenization"
+                                "annealingHomogenization",
+                                "depositionCoating",
+                                "other (please add in the comments)"
                             ]
                         },
                         "comments": {"type": "string"},
@@ -514,11 +547,51 @@ var dataModel = {
                                         "tempering",
                                         "twin screw excrusion",
                                         "ultrasonication",
-                                        "annealing/heating",
-                                        "curing/hardening"
+                                        "vacuum annealing/heating",
+                                        "curing/hardening",
+                                        "other (please add in the comments)"
                                     ]
                                 }
                             }
+                        },
+                        "depositionCoating":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "depositionCoatingMethod":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "unspecified deposition and coating",
+                                        "chemical vapour deposition",
+                                        "atomic layer deposition",
+                                        "gas dosing/gas exposure",
+                                        "sputtering",
+                                        "gold-sputter coating",
+                                        "ion implantation",
+                                        "electrodeposition",
+                                        "evaporation/physical vapor deposition",
+                                        "electron beam deposition",
+                                        "ion beam deposition",
+                                        "beam epitaxy",
+                                        "ink-jet deposition",
+                                        "pulsed laser deposition",
+                                        "Langmuir-Blodgett film deposition",
+                                        "plasma spraying",
+                                        "carbon evaporation coating",
+                                        "spin coating",
+                                        "sputter coating",
+                                        "other (please add in the comments)"
+                                    ]
+                                }
+                            }
+                        },
+                        "other": 
+                        {
+                            "type": "object",
+                            "properties": {}
                         } 
                     }
                 },
@@ -539,6 +612,11 @@ var dataModel = {
                             "precursorChemicalFormula":
                             {
                                 "description": "(Recommended) - Chemical formula of the precursor",
+                                "type": "string"
+                            },
+                            "precursorCASNumber":
+                            {
+                                "description": "(Optional) - CAS number of the precursor, if known and applicable",
                                 "type": "string"
                             },
                             "precursorFabricationDescription":
@@ -616,7 +694,8 @@ var dataModel = {
                                     "nonmagnetic",
                                     "conductor",
                                     "semiconductor",
-                                    "superconductor"
+                                    "superconductor",
+                                    "other (please add in the comments)"
                                 ]
                             }
                         },
@@ -643,7 +722,8 @@ var dataModel = {
                                     "eBeam",
                                     "iBeam",
                                     "radiation",
-                                    "shock"
+                                    "shock",
+                                    "other (please add in the comments)"
                                 ]
                             }
                         },
@@ -674,7 +754,8 @@ var dataModel = {
                                     "inflammable",
                                     "toxic or irritant",
                                     "explosive",
-                                    "nanostructured/nanoparticles"
+                                    "nanostructured/nanoparticles",
+                                    "other (please add in the comments)"
                                 ]
                             }
                         },
