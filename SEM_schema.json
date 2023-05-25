@@ -1209,7 +1209,7 @@
          "properties":{
             "FIBColumn":{
                "type":"string",
-               "description":"The name of the I-beam column used"
+               "description":"(Required) - The name of the I-beam column used"
             },
             "angleToEBeam":{
                "$ref":"#/$defs/angleDetails",
@@ -1221,11 +1221,11 @@
             },
             "FIBExtractor":{
                "$ref":"#/$defs/voltageDetails",
-               "description":"The extractor voltage used for the I-Beam"
+               "description":"(Required) - The extractor voltage used for the I-Beam"
             },
             "FIBProbe":{
                "type":"string",
-               "description":"The settings used for the probe, extractor voltage:milling current. eg. 30kV:50pA"
+               "description":"(Required) - The settings used for the probe, extractor voltage:milling current. eg. 30kV:50pA"
             },
             "gasInjectionSystem":{
                "$ref":"#/$defs/GISDetails",
@@ -1241,8 +1241,10 @@
             }
          },
          "required":[
-            "gunPressure",
-            "iBeamSource"
+            "FIBColumn",
+            "iBeamSource",
+            "FIBExtractor",
+            "FIBProbe"
          ],
          "title":"FIBDetails"
       },
