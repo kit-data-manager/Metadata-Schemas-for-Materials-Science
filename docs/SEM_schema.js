@@ -233,8 +233,7 @@ var dataModel = {
             },
             "embeddingMaterial":{
                "type":"string",
-               "description":"(Required) - Supporting material in which the sample is embedded (e.g., none, demotec 30, 70, Epoxy)",
-               "default":"none"
+               "description":"(Required) - Supporting material in which the sample is embedded (e.g., none, demotec 30, 70, Epoxy)"
             },
             "sampleForm":{
                "type":"string",
@@ -250,8 +249,7 @@ var dataModel = {
             },
             "finalSpecimen":{
                "type":"string",
-               "description":"(Optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp)",
-               "default":"TEM Lamella"
+               "description":"(Optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp)"
             },
             "sampleHolder":{
                "type":"string",
@@ -259,8 +257,7 @@ var dataModel = {
             },
             "fixingMethod":{
                "type":"string",
-               "description":"(Optional) - Method used to hold the sample on the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue)",
-               "default":"Carbon Tape"
+               "description":"(Optional) - Method used to hold the sample on the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue)"
             },
             "conductiveCoatingApplied":{
                "type":"boolean",
@@ -268,18 +265,15 @@ var dataModel = {
             },
             "conductiveCoating":{
                "type":"string",
-               "description":"(Optional) - Conductive coating material",
-               "default":"Au"
+               "description":"(Optional) - Conductive coating material"
             },
             "storageConditions":{
                "type":"string",
-               "description":"(Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure)",
-               "default":"Ambient, dry environment"
+               "description":"(Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure)"
             },
             "measurementConditions":{
                "type":"string",
-               "description":"(Optional) - Conditions to be maintained during the measurement inside the instrument (e.g., water vapor, cryogenic temperature)",
-               "default":"water vapour"
+               "description":"(Optional) - Conditions to be maintained during the measurement inside the instrument (e.g., water vapor, cryogenic temperature)"
             },
             "samplePreparation":{
                "$ref":"#/$defs/samplePrepType",
@@ -302,13 +296,11 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "description":"(Required) - Value of the distance, size or length",
-               "default":-9999
+               "description":"(Required) - Value of the distance, size or length"
             },
             "unit":{
                "type":"string",
-               "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
-               "default":"mm",
+               "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",  
                "enum":[
                   "",
                   "nm",
@@ -320,8 +312,7 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-               "default":"max"
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
             },
             "uncertainty":{
                "$ref":"#/$defs/uncertaintyDetails",
@@ -354,8 +345,7 @@ var dataModel = {
             },
             "value":{
                "type":"number",
-               "description":"(Required) - Value of the uncertainty",
-               "default":-9999
+               "description":"(Required) - Value of the uncertainty"
             }
          },
          "required":[
@@ -370,13 +360,11 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "description":"(Required) - Value of the weight",
-               "default":-9999
+               "description":"(Required) - Value of the weight"
             },
             "unit":{
                "type":"string",
                "description":"(Required) - Unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
-               "default":"ug",
                "enum":[
                   "",
                   "ng",
@@ -388,8 +376,7 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-               "default":"max"
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
             },
             "uncertainty":{
                "$ref":"#/$defs/uncertaintyDetails",
@@ -509,12 +496,10 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - Value of the pressure"
             },
             "unit":{
                "type":"string",
-               "default":"Pa",
                "enum":[
                   "",
                   "Pa",
@@ -530,7 +515,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
             },
             "uncertainty":{
@@ -598,17 +582,14 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The lifetime of the source expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"uAh",
                "description":"(Required) - the unit of the value (default value - uAh) of datatype string"
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -633,12 +614,10 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The voltage expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"kV",
                "enum":[
                   "",
                   "uV",
@@ -651,7 +630,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -676,12 +654,10 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Optional) - Further notes about the value of datatype string"
             },
             "unit":{
                "type":"string",
-               "default":"pA",
                "enum":[
                   "",
                   "pA",
@@ -694,7 +670,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -731,7 +706,6 @@ var dataModel = {
             },
             "coordinateReference":{
                "type":"string",
-               "default":"origin at centre of sample",
                "description":"(Optional) - description of the reference used for defining the coordinates (for eg. - origin at centre of sample, distances from two edges, etc.)"
             },
             "stageTiltAngle":{
@@ -744,7 +718,6 @@ var dataModel = {
             },
             "tiltCorrectionType":{
                "type":"string",
-               "default":"none",
                "description":"(Optional) - the tilt correction type applied to the image to compensate for the tilting, for e.g., sample surface, cross-section, none or manual, default value- none of datatype string"
             },
             "eBeamWorkingDistance":{
@@ -766,12 +739,10 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The angle expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"degree",
                "enum":[
                   "",
                   "degree",
@@ -781,7 +752,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -814,7 +784,6 @@ var dataModel = {
             },
             "collectionMethod":{
                "type":"string",
-               "default":"normal scan",
                "description":"(Required) - the method of collection of the image, for e.g., normal scan, average of multiple images, integration of multiple images, default value - normal scan of datatype string"
             },
             "dynamicFocus":{
@@ -866,7 +835,6 @@ var dataModel = {
          "properties":{
             "xValue":{
                "type":"number",
-               "default":-9999,
                "description":"(Optional) - value of the x coordinate of datatype number"
             },
             "xUncertainty":{
@@ -875,7 +843,6 @@ var dataModel = {
             },
             "yValue":{
                "type":"number",
-               "default":-9999,
                "description":"(Optional) - value of the y coordinate of datatype number"
             },
             "yUncertainty":{
@@ -884,7 +851,6 @@ var dataModel = {
             },
             "zValue":{
                "type":"number",
-               "default":-9999,
                "description":"(Optional) - value of the zcoordinate of datatype number"
             },
             "zUncertainty":{
@@ -893,7 +859,6 @@ var dataModel = {
             },
             "coordinatesUnit":{
                "type":"string",
-               "default":"um",
                "enum":[
                   "",
                   "nm",
@@ -976,17 +941,14 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The pixel-size expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"nm/pixel",
                "description":"(Required) - the unit of the value (default value - nm/pixel) of datatype string"
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -1011,12 +973,10 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The time expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"us",
                "enum":[
                   "",
                   "ps",
@@ -1029,7 +989,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -1054,17 +1013,14 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The voxel-size expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"mm",
                "description":"(Required) - the unit of the value of datatype string"
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -1089,7 +1045,6 @@ var dataModel = {
          "properties":{
             "signalMixingDone":{
                "type":"boolean",
-               "default":"false",
                "description":"(Required) - whether the detector signals are mixed, true or false, of datatype boolean"
             },
             "signalMixingDescription":{
@@ -1118,7 +1073,6 @@ var dataModel = {
          "properties":{
             "detectorType":{
                "type":"string",
-               "default":"Secondary Electron",
                "description":"(Required) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string"
             },
             "detectorName":{
@@ -1175,12 +1129,10 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "default":-9999,
                "description":"(Required) - The energy expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "default":"keV",
                "enum":[
                   "",
                   "meV",
@@ -1197,7 +1149,6 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
