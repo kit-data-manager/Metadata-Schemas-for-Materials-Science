@@ -1,5 +1,4 @@
-var uiSchema =
-    {
+var uiSchema = {
         "type": "fieldset",
         "items": [
             {
@@ -1681,4 +1680,4 @@ var uiSchema =
             }
         ]
 
-    };
+    }
