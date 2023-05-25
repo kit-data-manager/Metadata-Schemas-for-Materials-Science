@@ -84,6 +84,7 @@ var dataModel = {
                "type":"string",
                "description":"(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
                "enum":[
+                  "",
                   "ROR",
                   "GRID",
                   "ISNI",
@@ -147,6 +148,7 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
                "enum":[
+                  "",
                   "Data Curator",
                   "Instrument Scientist",
                   "Principal Investigator",
@@ -308,6 +310,7 @@ var dataModel = {
                "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
                "default":"mm",
                "enum":[
+                  "",
                   "nm",
                   "um",
                   "mm",
@@ -344,6 +347,7 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Type of the uncertainty to be chosen between absolute or relative",
                "enum":[
+                  "",
                   "absolute",
                   "relative"
                ]
@@ -374,6 +378,7 @@ var dataModel = {
                "description":"(Required) - Unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
                "default":"ug",
                "enum":[
+                  "",
                   "ng",
                   "ug",
                   "mg",
@@ -511,6 +516,7 @@ var dataModel = {
                "type":"string",
                "default":"Pa",
                "enum":[
+                  "",
                   "Pa",
                   "hPa",
                   "kPa",
@@ -634,6 +640,7 @@ var dataModel = {
                "type":"string",
                "default":"kV",
                "enum":[
+                  "",
                   "uV",
                   "mV",
                   "V",
@@ -676,6 +683,7 @@ var dataModel = {
                "type":"string",
                "default":"pA",
                "enum":[
+                  "",
                   "pA",
                   "nA",
                   "uA",
@@ -765,6 +773,7 @@ var dataModel = {
                "type":"string",
                "default":"degree",
                "enum":[
+                  "",
                   "degree",
                   "radian"
                ],
@@ -828,6 +837,7 @@ var dataModel = {
                "type":"string",
                "description":"(Optional) - The type of noise reduction used as an enumerated list of six parameters: Pixel Avg, Line Avg, Frame Avg,  Pixel Int, Line Int, Frame Int.",
                "enum":[
+                  "",
                   "Pixel Avg",
                   "Line Avg",
                   "Frame Avg",
@@ -885,6 +895,7 @@ var dataModel = {
                "type":"string",
                "default":"um",
                "enum":[
+                  "",
                   "nm",
                   "um",
                   "mm",
@@ -1007,6 +1018,7 @@ var dataModel = {
                "type":"string",
                "default":"us",
                "enum":[
+                  "",
                   "ps",
                   "ns",
                   "us",
@@ -1170,6 +1182,7 @@ var dataModel = {
                "type":"string",
                "default":"keV",
                "enum":[
+                  "",
                   "meV",
                   "eV",
                   "keV",
@@ -1260,6 +1273,7 @@ var dataModel = {
             "beamDepositionType":{
                "type":"string",
                "enum":[
+                  "",
                   "E-beam Deposition",
                   "I-beam Deposition"
                ],
