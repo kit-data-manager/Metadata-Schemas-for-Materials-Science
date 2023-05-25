@@ -18,9 +18,9 @@ var uiSchema =
                 "htmlClass": "myclass",
                 "items": [
                     {"title": "Title", "key": "entry.title"},
-                    {"title": "Start Time", "key": "entry.startTime"},
+                    {"title": "Start Time", "key": "entry.startTime", "placeholder": "2022-06-12T12:00:00Z"},
                     {"title": "End Time", "key": "entry.endTime", "placeholder": "2022-06-12T12:00:00Z"},
-                    {"title": "Definition", "key": "entry.definition"},
+                    {"title": "Definition", "key": "entry.definition", "placeholder": "SEM"}
                 ]
             },
             {
@@ -426,6 +426,7 @@ var uiSchema =
                                                                     }
                                                                 ]
                                                             },
+                                                            { "title": "High Current", "key": "entry.instrument.eBeamSource.highCurrent"},
                                                             {
                                                                 "legend": "Source Lifetime",
                                                                 "type": "fieldset",
@@ -449,7 +450,33 @@ var uiSchema =
                                                                         "key": "entry.instrument.eBeamSource.sourceLifetime.uncertainty"
                                                                     }
                                                                 ]
-                                                            }
+                                                            },
+                                                            { "legend": "Gun Vacuum",
+                                                            "type": "fieldset",
+                                                            "htmlClass": "myclass",
+                                                            "description":"(Required) - pressure of the electron gun",
+                                                            "items": [
+                                                                {
+                                                                    "title": "Value",
+                                                                    "key": "entry.instrument.eBeamSource.gunVacuum.value"
+                                                                },
+                                                                {
+                                                                    "title": "Unit",
+                                                                    "key": "entry.instrument.eBeamSource.gunVacuum.unit"
+                                                                },
+                                                                {
+                                                                    "title": "Qualifier",
+                                                                    "key": "entry.instrument.eBeamSource.gunVacuum.qualifier"
+                                                                },
+                                                                {
+                                                                    "title": "Notes",
+                                                                    "key": "entry.instrument.eBeamSource.gunVacuum.notes"
+                                                                },
+                                                                {
+                                                                    "title": "Uncertainty",
+                                                                    "key": "entry.instrument.eBeamSource.gunVacuum.uncertainty"
+                                                                }
+                                                            ]}
                                                         ]
                                                     },
                                                     {
@@ -463,34 +490,130 @@ var uiSchema =
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
-                                                                        "title": "Alignment Done",
+                                                                        "title": "stage Alignment Done",
                                                                         "key": "entry.instrument.stage.stageAlignmentDone"
-                                                                    }
+                                                                    },
+                                                                    {
+                                                                        "title": "Is Correlation Image?",
+                                                                        "key": "entry.instrument.stage.isCorrelationImage"
+                                                                    },
                                                                 ]
                                                             },
                                                             {
-                                                                "legend": "Tilt Angle",
+                                                                "title": "Coordinates",
+                                                                "type": "tab",
+                                                                "items": [
+                                                                    {
+                                                                        "title": "Coordinates Unit",
+                                                                        "key": "entry.instrument.stage.coordinates.coordinatesUnit"
+                                                                    },
+                                                                    {
+                                                                        "legend": "X Value",
+                                                                        "description":"(Optional) - value of the x coordinate",
+                                                                        "type": "fieldset",
+                                                                        "htmlClass": "myclass",
+                                                                        "items": [
+                                                                            {
+                                                                                "title": "Value",
+                                                                                "key": "entry.instrument.stage.coordinates.xValue"
+                                                                            },
+                                                                            {
+                                                                                "title": "Uncertainty",
+                                                                                "key": "entry.instrument.stage.coordinates.xUncertainty"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "legend": "Y Value",
+                                                                        "type": "fieldset",
+                                                                        "description":"(Optional) - value of the y coordinate",
+                                                                        "htmlClass": "myclass",
+                                                                        "items": [
+                                                                            {
+                                                                                "title": "Value",
+                                                                                "key": "entry.instrument.stage.coordinates.yValue"
+                                                                            },
+                                                                            {
+                                                                                "title": "Uncertainty",
+                                                                                "key": "entry.instrument.stage.coordinates.yUncertainty"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "legend": "Z Value",
+                                                                        "type": "fieldset",
+                                                                        "description":"(Optional) - value of the zcoordinate",
+                                                                        "htmlClass": "myclass",
+                                                                        "items": [
+                                                                            {
+                                                                                "title": "Value",
+                                                                                "key": "entry.instrument.stage.coordinates.zValue"
+                                                                            },
+                                                                            {
+                                                                                "title": "Uncertainty",
+                                                                                "key": "entry.instrument.stage.coordinates.zUncertainty"
+                                                                            }
+                                                                        ]
+                                                                    }
+
+                                                                ]
+                                                            },
+                                                            {
+                                                                "title": "Coordinate Reference",
+                                                                "key": "entry.instrument.stage.coordinateReference"
+                                                            },
+                                                            {
+                                                                "legend": "Stage Tilt Angle",
                                                                 "type": "fieldset",
-                                                                "description":"(Required) - angle by which the stage is tilted defined separately as angleDetails with the angle value, optional uncertainty, optional notes, optional qualifier and choice of units between degree and radian",
+                                                                "description":"(Required) - angle by which the stage is actually tilted (Stage at T) defined separately as angleDetails with the angle value, optional uncertainty, optional notes, optional qualifier and choice of units between degree and radian",
                                                                 "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
                                                                         "title": "Value",
-                                                                        "key": "entry.instrument.stage.tiltAngle.value"
+                                                                        "key": "entry.instrument.stage.stageTiltAngle.value"
                                                                     },
                                                                     {
                                                                         "title": "Unit",
-                                                                        "key": "entry.instrument.stage.tiltAngle.unit"
+                                                                        "key": "entry.instrument.stage.stageTiltAngle.unit"
                                                                     },
                                                                     {
                                                                         "title": "Qualifier",
-                                                                        "key": "entry.instrument.stage.tiltAngle.qualifier"
+                                                                        "key": "entry.instrument.stage.stageTiltAngle.qualifier"
                                                                     },
                                                                     {
                                                                         "title": "Uncertainty",
-                                                                        "key": "entry.instrument.stage.tiltAngle.uncertainty"
+                                                                        "key": "entry.instrument.stage.stageTiltAngle.uncertainty"
                                                                     }
                                                                 ]
+                                                            },
+                                                            {
+                                                                "legend": "Tilt Correction Angle",
+                                                                "type": "fieldset",
+                                                                "description":"(Optional) - angle used to correct the tilt of the sample defined separately as angleDetails with the angle value, optional uncertainty, optional notes, optional qualifier and choice of units between degree and radian notes, optional qualifier and choice of units between degree and radian",
+                                                                "htmlClass": "myclass",
+                                                                "items": [
+                                                                    {
+                                                                        "title": "Value",
+                                                                        "key": "entry.instrument.stage.tiltCorrectionAngle.value"
+                                                                    },
+                                                                    {
+                                                                        "title": "Unit",
+                                                                        "key": "entry.instrument.stage.tiltCorrectionAngle.unit"
+                                                                    },
+                                                                    {
+                                                                        "title": "Qualifier",
+                                                                        "key": "entry.instrument.stage.tiltCorrectionAngle.qualifier"
+                                                                    },
+                                                                    {
+                                                                        "title": "Uncertainty",
+                                                                        "key": "entry.instrument.stage.tiltCorrectionAngle.uncertainty"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "title": "Tilt Correction Type",
+                                                                "key": "entry.instrument.stage.tiltCorrectionType",
+                                                                "placeholder": "none"
                                                             },
                                                             {
                                                                 "legend": "eBeam Working Distance",
@@ -536,20 +659,6 @@ var uiSchema =
                                                                                 "title": "General",
                                                                                 "type": "tab",
                                                                                 "items": [
-                                                                                    {
-                                                                                        "legend": "General",
-                                                                                        "type": "fieldset",
-                                                                                        "htmlClass": "myclass",
-                                                                                        "items": [
-
-                                                                                            {
-                                                                                                "title": "Is Correlation Image",
-                                                                                                "key": "entry.instrument.imaging.isCorrelationImage"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Coordinate Reference",
-                                                                                                "key": "entry.instrument.imaging.coordinateReference"
-                                                                                            },
                                                                                             {
                                                                                                 "title": "Number of Pixels (x)",
                                                                                                 "key": "entry.instrument.imaging.numberOfPixels.xPixels"
@@ -563,72 +672,15 @@ var uiSchema =
                                                                                                 "key": "entry.instrument.imaging.collectionMethod"
                                                                                             },
                                                                                             {
-                                                                                                "title": "Tilt Correction",
-                                                                                                "key": "entry.instrument.imaging.tiltCorrection"
-                                                                                            }
-                                                                                        ]
-                                                                                    }
-                                                                                ]
-                                                                            },
-                                                                            {
-                                                                                "title": "Coordinates",
-                                                                                "type": "tab",
-                                                                                "items": [
-                                                                                    {
-                                                                                        "title": "Coordinates Unit",
-                                                                                        "key": "entry.instrument.imaging.coordinates.coordinatesUnit"
-                                                                                    },
-                                                                                    {
-                                                                                        "legend": "X Value",
-                                                                                        "description":"(Optional) - value of the x coordinate",
-                                                                                        "type": "fieldset",
-                                                                                        "htmlClass": "myclass",
-                                                                                        "items": [
-                                                                                            {
-                                                                                                "title": "Value",
-                                                                                                "key": "entry.instrument.imaging.coordinates.xValue"
+                                                                                                "title": "Dynamic Focus",
+                                                                                                "key": "entry.instrument.imaging.dynamicFocus"
                                                                                             },
                                                                                             {
-                                                                                                "title": "Uncertainty",
-                                                                                                "key": "entry.instrument.imaging.coordinates.xUncertainty"
+                                                                                                "title": "Noise Reduction",
+                                                                                                "key": "entry.instrument.imaging.noiseReduction"
                                                                                             }
                                                                                         ]
                                                                                     },
-                                                                                    {
-                                                                                        "legend": "Y Value",
-                                                                                        "type": "fieldset",
-                                                                                        "description":"(Optional) - value of the y coordinate",
-                                                                                        "htmlClass": "myclass",
-                                                                                        "items": [
-                                                                                            {
-                                                                                                "title": "Value",
-                                                                                                "key": "entry.instrument.imaging.coordinates.yValue"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Uncertainty",
-                                                                                                "key": "entry.instrument.imaging.coordinates.yUncertainty"
-                                                                                            }
-                                                                                        ]
-                                                                                    },
-                                                                                    {
-                                                                                        "legend": "Z Value",
-                                                                                        "type": "fieldset",
-                                                                                        "description":"(Optional) - value of the zcoordinate",
-                                                                                        "htmlClass": "myclass",
-                                                                                        "items": [
-                                                                                            {
-                                                                                                "title": "Value",
-                                                                                                "key": "entry.instrument.imaging.coordinates.zValue"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Uncertainty",
-                                                                                                "key": "entry.instrument.imaging.coordinates.zUncertainty"
-                                                                                            }
-                                                                                        ]
-                                                                                    }
-
-                                                                                ]
-                                                                            },
                                                                             {
                                                                                 "title": "Pixel Size",
                                                                                 "type": "tab",
@@ -636,7 +688,7 @@ var uiSchema =
 
                                                                                     {
                                                                                         "legend": "X Pixel Size",
-                                                                                        "description":"(Required) - Physical length in x coordinates imaged by a single pixel, normally expressed in nm/pixel, for the mapping along x direction, with each pixel having a pixelSize, optional uncertainty, optional qualifier and optional notes.",
+                                                                                        "description":"(Required) - distance on the sample covered by a pixel in the x direction defined separately as pixelSizeDetails.",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
@@ -726,7 +778,7 @@ var uiSchema =
                                                                                 "items": [
                                                                                     {
                                                                                         "legend": "Aperture Size",
-                                                                                        "description":"(Optional) - The setting for controlling the aperture size, using the aperture size directly. Either the aperture size or beam current must be given. If the size can be set directly, then it is defined with the complex type distanceDetails.",
+                                                                                        "description":"(Optional) - The setting for controlling the aperture size, using either the aperture size directly or indirectly using the beam current. Therefore one of the two properties must be selected: size or current.",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
                                                                                         "items": [
@@ -774,7 +826,7 @@ var uiSchema =
                                                                                     }
                                                                                 ]
                                                                             },
-                                                                            {
+                                                                             {
                                                                                 "title": "Dwell Time",
                                                                                 "type": "tab",
                                                                                 "items": [
@@ -799,6 +851,35 @@ var uiSchema =
                                                                                             {
                                                                                                 "title": "Uncertainty",
                                                                                                 "key": "entry.instrument.imaging.dwellTime.uncertainty"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "title": "Cycle Time",
+                                                                                "type": "tab",
+                                                                                "items": [
+                                                                                    {
+                                                                                        "legend": "Cycle Time",
+                                                                                        "type": "fieldset",
+                                                                                        "description":"Optional) - the time taken by the beam to , defined separately as  timeDetails",
+                                                                                        "items": [
+                                                                                            {
+                                                                                                "title": "Value",
+                                                                                                "key": "entry.instrument.imaging.cycleTime.value"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Unit",
+                                                                                                "key": "entry.instrument.imaging.cycleTime.unit"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Qualifier",
+                                                                                                "key": "entry.instrument.imaging.cycleTime.qualifier"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Uncertainty",
+                                                                                                "key": "entry.instrument.imaging.cycleTime.uncertainty"
                                                                                             }
                                                                                         ]
                                                                                     }
@@ -852,7 +933,7 @@ var uiSchema =
                                                                 "legend": "Mixing",
                                                                 "type": "fieldset",
                                                                 "htmlClass": "myclass",
-                                                                "description":"(Required) - gives information about signal mixing between two detectors",
+                                                                "description":"(Required) - gives information about signal mixing between two detectors and provides the information about the detector(s)",
                                                                 "items": [
                                                                     {
                                                                         "title": "Signal Mixing Done",
@@ -1226,6 +1307,124 @@ var uiSchema =
                                                                         "htmlClass": "myclass",
                                                                         "items": [
                                                                             {
+                                                                                "title": "General",
+                                                                                "type": "tab",
+                                                                                "items": [
+                                                                                    {
+                                                                                        "legend": "angleToEBeam",
+                                                                                        "type": "fieldset",
+                                                                                        "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - angle between e-beam and i-beam defined separately as angleDetails (Allowed units: degree, radian)",
+                                                                                        "items": [
+                                                                                            {
+                                                                                                "title": "Value",
+                                                                                                "key": "entry.instrument.FIB.angleToEBeam.value"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Unit",
+                                                                                                "key": "entry.instrument.FIB.angleToEBeam.unit"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Qualifier",
+                                                                                                "key": "entry.instrument.FIB.angleToEBeam.qualifier"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Uncertainty",
+                                                                                                "key": "entry.instrument.FIB.angleToEBeam.uncertainty"
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "title": "FIB Column",
+                                                                                        "key": "entry.instrument.FIB.FIBColumn.value"
+                                                                                    },
+                                                                                    {
+                                                                                        "title": "FIB Probe",
+                                                                                        "key": "entry.instrument.FIB.FIBProbe.value"
+                                                                                    },
+                                                                                    {
+                                                                                        "legend": "FIB Extractor",
+                                                                                        "type": "fieldset",
+                                                                                        "htmlClass": "myclass",
+                                                                                        "description":"(Required) - The extractor voltage used for the I-Beam",
+                                                                                        "items": [
+                                                                                            {
+                                                                                                "title": "Value",
+                                                                                                "key": "entry.instrument.FIB.FIBExtractor.value"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Unit",
+                                                                                                "key": "entry.instrument.FIB.FIBExtractor.unit"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Qualifier",
+                                                                                                "key": "eentry.instrument.FIB.FIBExtractor.qualifier"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Uncertainty",
+                                                                                                "key": "entry.instrument.FIB.FIBExtractor.uncertainty"
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "legend": "iBeamWorkingDistance",
+                                                                                        "type": "fieldset",
+                                                                                        "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, µm, mm, cm, m)",
+                                                                                        "items": [
+                                                                                            {
+                                                                                                "title": "Value",
+                                                                                                "key": "entry.instrument.FIB.iBeamWorkingDistance.value"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Unit",
+                                                                                                "key": "entry.instrument.FIB.iBeamWorkingDistance.unit"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Qualifier",
+                                                                                                "key": "entry.instrument.FIB.iBeamWorkingDistance.qualifier"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Notes",
+                                                                                                "key": "entry.instrument.FIB.iBeamWorkingDistance.notes"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Uncertainty",
+                                                                                                "key": "entry.instrument.FIB.iBeamWorkingDistance.uncertainty"
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "legend": "FIBSpotSize",
+                                                                                        "type": "fieldset",
+                                                                                        "htmlClass": "myclass",
+                                                                                        "description":"(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, µm, mm, cm, m)",
+                                                                                        "items": [
+                                                                                            {
+                                                                                                "title": "Value",
+                                                                                                "key": "entry.instrument.FIB.FIBSpotSize.value"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Unit",
+                                                                                                "key": "entry.instrument.FIB.FIBSpotSize.unit"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Qualifier",
+                                                                                                "key": "entry.instrument.FIB.FIBSpotSize.qualifier"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Notes",
+                                                                                                "key": "entry.instrument.FIB.FIBSpotSize.notes"
+                                                                                            },
+                                                                                            {
+                                                                                                "title": "Uncertainty",
+                                                                                                "key": "entry.instrument.FIB.FIBSpotSize.uncertainty"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
                                                                                 "title": "iBeamSource",
                                                                                 "type": "tab",
                                                                                 "items": [
@@ -1324,64 +1523,34 @@ var uiSchema =
                                                                                 ]
                                                                             },
                                                                             {
-                                                                                "title": "angleToEBeam",
+                                                                                "title": "FIB Gun Pressure",
                                                                                 "type": "tab",
                                                                                 "items": [
                                                                                     {
-                                                                                        "legend": "angleToEBeam",
-                                                                                        "type": "fieldset",
-                                                                                        "htmlClass": "myclass",
-                                                                                        "description":"(Optional) - angle between e-beam and i-beam defined separately as angleDetails (Allowed units: degree, radian)",
-                                                                                        "items": [
-                                                                                            {
-                                                                                                "title": "Value",
-                                                                                                "key": "entry.instrument.FIB.angleToEBeam.value"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Unit",
-                                                                                                "key": "entry.instrument.FIB.angleToEBeam.unit"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Qualifier",
-                                                                                                "key": "entry.instrument.FIB.angleToEBeam.qualifier"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Uncertainty",
-                                                                                                "key": "entry.instrument.FIB.angleToEBeam.uncertainty"
-                                                                                            }
-                                                                                        ]
-                                                                                    }
-                                                                                ]
-                                                                            },
-                                                                            {
-                                                                                "title": "gunPressure",
-                                                                                "type": "tab",
-                                                                                "items": [
-                                                                                    {
-                                                                                        "legend": "gunPressure",
+                                                                                        "legend": "Gun Pressure",
                                                                                         "type": "fieldset",
                                                                                         "htmlClass": "myclass",
                                                                                         "description":"(Required) - pressure of the FIB gun, defined separately as pressureDetails (Allowed units Pa, hPa, kPa, MPa, GPa, mbar, bar, psi)",
                                                                                         "items": [
                                                                                             {
                                                                                                 "title": "Value",
-                                                                                                "key": "entry.instrument.FIB.gunPressure.value"
+                                                                                                "key": "entry.instrument.FIB.iBeamSource.gunPressure.value"
                                                                                             },
                                                                                             {
                                                                                                 "title": "Unit",
-                                                                                                "key": "entry.instrument.FIB.gunPressure.unit"
+                                                                                                "key": "entry.instrument.FIB.iBeamSource.gunPressure.unit"
                                                                                             },
                                                                                             {
                                                                                                 "title": "Qualifier",
-                                                                                                "key": "entry.instrument.FIB.gunPressure.qualifier"
+                                                                                                "key": "entry.instrument.FIB.iBeamSource.gunPressure.qualifier"
                                                                                             },
                                                                                             {
                                                                                                 "title": "Notes",
-                                                                                                "key": "entry.instrument.FIB.gunPressure.notes"
+                                                                                                "key": "entry.instrument.FIB.iBeamSource.gunPressure.notes"
                                                                                             },
                                                                                             {
                                                                                                 "title": "Uncertainty",
-                                                                                                "key": "entry.instrument.FIB.gunPressure.uncertainty"
+                                                                                                "key": "entry.instrument.FIB.iBeamSource.gunPressure.uncertainty"
                                                                                             }
                                                                                         ]
                                                                                     }
@@ -1492,74 +1661,6 @@ var uiSchema =
                                                                                         ]
                                                                                     }
 
-                                                                                ]
-                                                                            },
-                                                                            {
-                                                                                "title": "iBeamWorkingDistance",
-                                                                                "type": "tab",
-                                                                                "items": [
-                                                                                    {
-                                                                                        "legend": "iBeamWorkingDistance",
-                                                                                        "type": "fieldset",
-                                                                                        "htmlClass": "myclass",
-                                                                                        "description":"(Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, µm, mm, cm, m)",
-                                                                                        "items": [
-                                                                                            {
-                                                                                                "title": "Value",
-                                                                                                "key": "entry.instrument.FIB.iBeamWorkingDistance.value"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Unit",
-                                                                                                "key": "entry.instrument.FIB.iBeamWorkingDistance.unit"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Qualifier",
-                                                                                                "key": "entry.instrument.FIB.iBeamWorkingDistance.qualifier"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Notes",
-                                                                                                "key": "entry.instrument.FIB.iBeamWorkingDistance.notes"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Uncertainty",
-                                                                                                "key": "entry.instrument.FIB.iBeamWorkingDistance.uncertainty"
-                                                                                            }
-                                                                                        ]
-                                                                                    }
-                                                                                ]
-                                                                            },
-                                                                            {
-                                                                                "title": "FIBSpotSize",
-                                                                                "type": "tab",
-                                                                                "items": [
-                                                                                    {
-                                                                                        "legend": "FIBSpotSize",
-                                                                                        "type": "fieldset",
-                                                                                        "htmlClass": "myclass",
-                                                                                        "description":"(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, µm, mm, cm, m)",
-                                                                                        "items": [
-                                                                                            {
-                                                                                                "title": "Value",
-                                                                                                "key": "entry.instrument.FIB.FIBSpotSize.value"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Unit",
-                                                                                                "key": "entry.instrument.FIB.FIBSpotSize.unit"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Qualifier",
-                                                                                                "key": "entry.instrument.FIB.FIBSpotSize.qualifier"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Notes",
-                                                                                                "key": "entry.instrument.FIB.FIBSpotSize.notes"
-                                                                                            },
-                                                                                            {
-                                                                                                "title": "Uncertainty",
-                                                                                                "key": "entry.instrument.FIB.FIBSpotSize.uncertainty"
-                                                                                            }
-                                                                                        ]
-                                                                                    }
                                                                                 ]
                                                                             }
                                                                         ]
