@@ -47,7 +47,7 @@
             "SEM Image 2",
             "SEM Image 3",
             "SEM Image 4",
-            "SEM Image 5"
+            "SEM Image 5",
             "EDS",
             "EBSD",
             "BSE",
@@ -210,7 +210,7 @@
         },
         "spot": {
           "type": "number",
-          "description": "(Optional) - A number representing the spot selected. eg. 1"
+          "description": "(Optional) - Qualitative index for beam current. Varies with current setting, i.e. 1.6 nA is spot = 1, 3.2 nA is spot = 2, 0.1 nA = spot =-3, so it can also be negative. May vary between different microscope models."
         },
         "eBeam": {
           "$ref": "#/$defs/eBeamDetails",
@@ -329,16 +329,18 @@
           "type": "string",
           "description": "(Required) - The type of image mode used",
           "enum": [
-            "Field-Free"
+            "Field-Free",
+            "Immersion",
+            "EDS"
           ]
         },
         "tiltCorrectionAngle": {
           "$ref": "#/$defs/angleDetails",
-          "description": "(Required) - the Angle set to correct the tilt of the sample."
+          "description": "(Required) - If the sample is tilted, the image is compressed in the vertical direction, i.e. the pixels are not isotropic anymore. Tilt correction adapts the line spacing of the scanning to compensate for this."
         },
         "preTilt ": {
           "$ref": "#/$defs/angleDetails",
-          "description": "(Required) - the Angle set to correct the tilt of the sample."
+          "description": "(Required) - Sometimes, pre-tilted holders are used and the pretilt angle must be given in the acquisition software because actual tilt = stage tilt plus pretilt."
         },
         "magnificationCorrection": {
           "type": "boolean",
@@ -414,7 +416,7 @@
             },
             "scanInterlacing": {
               "type": "number",
-              "description": "(Required) - Number of scans interlaced"
+              "description": "(Required) - Number of scans interlaced. This setting splits an imaging area into blocks defined by the number of lines (from 2 to 8). In the first instance, the first line of each block is scanned, then the second one, etc. This imaging method significantly reduces charging."
             }
           }
         }
@@ -427,15 +429,15 @@
       "properties": {
         "digitalContrast": {
           "type": "number",
-          "description": "(Required) - A number indicating the setting for digital contrast"
+          "description": "(Required) - A number indicating the setting for digital contrast (a basic post-processing method)"
         },
         "digitalBrightness": {
           "type": "number",
-          "description": "(Required) - A number indicating the setting for digital brightness"
+          "description": "(Required) - A number indicating the setting for digital brightness (a basic post-processing method)"
         },
         "digitalGamma": {
           "type": "number",
-          "description": "(Required) - A number indicating the setting for digital Gamma"
+          "description": "(Required) - A number indicating the setting for digital Gamma (a basic post-processing method)"
         },
         "numberOfPixels": {
           "$ref": "#/$defs/pixelNumberType",
@@ -501,11 +503,16 @@
         },
         "mix": {
           "type": "number",
-          "description": "(Required) - A number indicating the signal mixing"
+          "description": "(Required) - Signals from different detectors can be overlaid (mixed) and this should, in theory, be the percentage of this detectors contribution to the end result."
         },
         "signal": {
-          "type": "number",
-          "description": "(Optional) - A number indicating the signal"
+          "type": "string",
+          "description": "(Optional) - The signal used for detection",
+          "enum":[
+            "SE",
+            "BSE",
+            "SI"
+          ]
         },
         "grid": {
           "type": "number",
@@ -521,7 +528,7 @@
         },
         "setting": {
           "type": "number",
-          "description": "(Required) - A number indicating the setting of the ETD"
+          "description": "(Required) - In case of ETD, this is the bias voltage applied to the detector grid. Note that this block looks different for different detectors. "
         }
       },
       "required": [

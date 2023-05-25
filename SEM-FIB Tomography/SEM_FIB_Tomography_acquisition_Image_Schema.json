@@ -100,7 +100,7 @@
             },
             "specTilt":{
                "$ref":"#/$defs/angleDetails",
-               "description":"(Optional)- Special tilt angle"
+               "description":"(Optional)- Pretilt of the sample, usually due to pretilted holder."
             },
             "activeStage":{
                "type":"string",
