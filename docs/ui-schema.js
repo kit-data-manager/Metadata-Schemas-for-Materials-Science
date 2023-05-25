@@ -1354,7 +1354,7 @@ var uiSchema = {
                                                                                             },
                                                                                             {
                                                                                                 "title": "Qualifier",
-                                                                                                "key": "eentry.instrument.FIB.FIBExtractor.qualifier"
+                                                                                                "key": "entry.instrument.FIB.FIBExtractor.qualifier"
                                                                                             },
                                                                                             {
                                                                                                 "title": "Uncertainty",
