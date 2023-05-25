@@ -620,7 +620,7 @@ var dataModel = {
                "type":"string",
                "enum":[
                   "",
-                  "uV",
+                  "µV",
                   "mV",
                   "V",
                   "kV",
@@ -662,7 +662,7 @@ var dataModel = {
                   "",
                   "pA",
                   "nA",
-                  "uA",
+                  "µA",
                   "mA",
                   "A"
                ],
@@ -862,7 +862,7 @@ var dataModel = {
                "enum":[
                   "",
                   "nm",
-                  "um",
+                  "µm",
                   "mm",
                   "cm",
                   "m"
@@ -981,7 +981,7 @@ var dataModel = {
                   "",
                   "ps",
                   "ns",
-                  "us",
+                  "µs",
                   "ms",
                   "s"
                ],
@@ -1118,7 +1118,7 @@ var dataModel = {
             },
             "stageBias":{
                "$ref":"#/$defs/voltageDetails",
-               "description":"(Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, uV, mV, V, kV, nA, uA, mA, A, kA)"
+               "description":"(Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, µV, mV, V, kV)"
             }
          }
       },
