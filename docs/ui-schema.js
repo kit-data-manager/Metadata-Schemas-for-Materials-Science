@@ -49,8 +49,7 @@ var uiSchema = {
                 "items": [
                     {
                         "type": "tabs",
-                        "id": "navtabs",
-                        "legend": "Other Metadata",
+                        "id": "navtabs_other",
                         "htmlClass": "myclass",
                         "items": [
                             {
@@ -147,7 +146,6 @@ var uiSchema = {
                                             },
                                         ]
                                     },
-
                                     {
                                         "title": "Sample Details",
                                         "type": "fieldset",
@@ -158,7 +156,6 @@ var uiSchema = {
                                                 "id": "navtabs_sample",
                                                 "htmlClass": "myclass",
                                                 "items": [
-
                                                     {
                                                         "title": "Sample Dimensions",
                                                         "type": "tab",
@@ -1674,7 +1671,8 @@ var uiSchema = {
                                         ]
                                     }
                                 ]
-                            }]
+                            }
+                        ]
                     }
                 ]
             }
