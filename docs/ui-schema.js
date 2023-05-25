@@ -1332,11 +1332,11 @@ var uiSchema = {
                                                                                     },
                                                                                     {
                                                                                         "title": "FIB Column",
-                                                                                        "key": "entry.instrument.FIB.FIBColumn.value"
+                                                                                        "key": "entry.instrument.FIB.FIBColumn"
                                                                                     },
                                                                                     {
                                                                                         "title": "FIB Probe",
-                                                                                        "key": "entry.instrument.FIB.FIBProbe.value"
+                                                                                        "key": "entry.instrument.FIB.FIBProbe"
                                                                                     },
                                                                                     {
                                                                                         "legend": "FIB Extractor",
