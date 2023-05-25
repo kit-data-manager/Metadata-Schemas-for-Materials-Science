@@ -84,7 +84,6 @@ var dataModel = {
                "type":"string",
                "description":"(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
                "enum":[
-                  "",
                   "ROR",
                   "GRID",
                   "ISNI",
@@ -148,7 +147,6 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
                "enum":[
-                  "",
                   "Data Curator",
                   "Instrument Scientist",
                   "Principal Investigator",
@@ -310,7 +308,6 @@ var dataModel = {
                "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
                "default":"mm",
                "enum":[
-                  "",
                   "nm",
                   "um",
                   "mm",
@@ -347,7 +344,6 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Type of the uncertainty to be chosen between absolute or relative",
                "enum":[
-                  "",
                   "absolute",
                   "relative"
                ]
@@ -378,7 +374,6 @@ var dataModel = {
                "description":"(Required) - Unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
                "default":"ug",
                "enum":[
-                  "",
                   "ng",
                   "ug",
                   "mg",
@@ -516,7 +511,6 @@ var dataModel = {
                "type":"string",
                "default":"Pa",
                "enum":[
-                  "",
                   "Pa",
                   "hPa",
                   "kPa",
@@ -640,7 +634,6 @@ var dataModel = {
                "type":"string",
                "default":"kV",
                "enum":[
-                  "",
                   "uV",
                   "mV",
                   "V",
@@ -683,7 +676,6 @@ var dataModel = {
                "type":"string",
                "default":"pA",
                "enum":[
-                  "",
                   "pA",
                   "nA",
                   "uA",
@@ -754,7 +746,7 @@ var dataModel = {
          },
          "required":[
             "eBeamWorkingDistance",
-            "stageAtT",
+            "stageTiltAngle",
             "isCorrelationImage"
          ],
          "title":"stageDetails"
@@ -773,7 +765,6 @@ var dataModel = {
                "type":"string",
                "default":"degree",
                "enum":[
-                  "",
                   "degree",
                   "radian"
                ],
@@ -823,7 +814,7 @@ var dataModel = {
             },
             "apertureSetting":{
                "$ref":"#/$defs/apertureSettingType",
-               "description":"(Required) - The setting for controlling the aperture size, using either the aperture size (directly) or the beam current (indirectly). The element apertureSetting is defined separately as apertureSettingType which gives the option to choose between current or size. If the size can be set directly, then it is defined with the complex type distanceDetails, else if the aperture setting is controlled with the beam current defined separately as currentDetails"
+               "description":"(Optional) - The setting for controlling the aperture size, using either the aperture size (directly) or the beam current (indirectly). The element apertureSetting is defined separately as apertureSettingType which gives the option to choose between current or size. If the size can be set directly, then it is defined with the complex type distanceDetails, else if the aperture setting is controlled with the beam current defined separately as currentDetails"
             },
             "dwellTime":{
                "$ref":"#/$defs/timeDetails",
@@ -837,7 +828,6 @@ var dataModel = {
                "type":"string",
                "description":"(Optional) - The type of noise reduction used as an enumerated list of six parameters: Pixel Avg, Line Avg, Frame Avg,  Pixel Int, Line Int, Frame Int.",
                "enum":[
-                  "",
                   "Pixel Avg",
                   "Line Avg",
                   "Frame Avg",
@@ -853,7 +843,6 @@ var dataModel = {
          },
          "required":[
             "isCorrelationImage",
-            "apertureSetting",
             "collectionMethod",
             "numberOfPixels",
             "pixelSize"
@@ -896,7 +885,6 @@ var dataModel = {
                "type":"string",
                "default":"um",
                "enum":[
-                  "",
                   "nm",
                   "um",
                   "mm",
@@ -1019,7 +1007,6 @@ var dataModel = {
                "type":"string",
                "default":"us",
                "enum":[
-                  "",
                   "ps",
                   "ns",
                   "us",
@@ -1183,7 +1170,6 @@ var dataModel = {
                "type":"string",
                "default":"keV",
                "enum":[
-                  "",
                   "meV",
                   "eV",
                   "keV",
@@ -1223,7 +1209,7 @@ var dataModel = {
          "properties":{
             "FIBColumn":{
                "type":"string",
-               "description":"The name of the I-beam column used"
+               "description":"(Required) - The name of the I-beam column used"
             },
             "angleToEBeam":{
                "$ref":"#/$defs/angleDetails",
@@ -1235,11 +1221,11 @@ var dataModel = {
             },
             "FIBExtractor":{
                "$ref":"#/$defs/voltageDetails",
-               "description":"The extractor voltage used for the I-Beam"
+               "description":"(Required) - The extractor voltage used for the I-Beam"
             },
             "FIBProbe":{
                "type":"string",
-               "description":"The settings used for the probe, extractor voltage:milling current. eg. 30kV:50pA"
+               "description":"(Required) - The settings used for the probe, extractor voltage:milling current. eg. 30kV:50pA"
             },
             "gasInjectionSystem":{
                "$ref":"#/$defs/GISDetails",
@@ -1255,8 +1241,10 @@ var dataModel = {
             }
          },
          "required":[
-            "gunPressure",
-            "iBeamSource"
+            "FIBColumn",
+            "iBeamSource",
+            "FIBExtractor",
+            "FIBProbe"
          ],
          "title":"FIBDetails"
       },
@@ -1272,7 +1260,6 @@ var dataModel = {
             "beamDepositionType":{
                "type":"string",
                "enum":[
-                  "",
                   "E-beam Deposition",
                   "I-beam Deposition"
                ],
