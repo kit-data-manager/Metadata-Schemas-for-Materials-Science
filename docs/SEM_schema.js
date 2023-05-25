@@ -586,7 +586,7 @@ var dataModel = {
             },
             "unit":{
                "type":"string",
-               "description":"(Required) - the unit of the value (default value - uAh) of datatype string"
+               "description":"(Required) - the unit of the value (default value - µAh) of datatype string"
             },
             "qualifier":{
                "type":"string",
