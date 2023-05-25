@@ -746,7 +746,7 @@
          },
          "required":[
             "eBeamWorkingDistance",
-            "stageAtT",
+            "stageTiltAngle",
             "isCorrelationImage"
          ],
          "title":"stageDetails"
@@ -814,7 +814,7 @@
             },
             "apertureSetting":{
                "$ref":"#/$defs/apertureSettingType",
-               "description":"(Required) - The setting for controlling the aperture size, using either the aperture size (directly) or the beam current (indirectly). The element apertureSetting is defined separately as apertureSettingType which gives the option to choose between current or size. If the size can be set directly, then it is defined with the complex type distanceDetails, else if the aperture setting is controlled with the beam current defined separately as currentDetails"
+               "description":"(Optional) - The setting for controlling the aperture size, using either the aperture size (directly) or the beam current (indirectly). The element apertureSetting is defined separately as apertureSettingType which gives the option to choose between current or size. If the size can be set directly, then it is defined with the complex type distanceDetails, else if the aperture setting is controlled with the beam current defined separately as currentDetails"
             },
             "dwellTime":{
                "$ref":"#/$defs/timeDetails",
@@ -843,7 +843,6 @@
          },
          "required":[
             "isCorrelationImage",
-            "apertureSetting",
             "collectionMethod",
             "numberOfPixels",
             "pixelSize"
