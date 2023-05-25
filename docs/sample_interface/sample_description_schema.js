@@ -165,6 +165,11 @@ var dataModel = {
                             {
                                 "description": "(Recommended) - Chemical formula of the sample component",
                                 "type": "string"
+                            },
+                            "componentCASNumber":
+                            {
+                                "description": "(Optional) - CAS number of the sample component, if known and applicable",
+                                "type": "string"
                             }
                         }
                     }
@@ -364,6 +369,124 @@ var dataModel = {
                 "comments": {"type": "string"}
             }
         },
+        "fabrication":
+        {
+            "type": "object",
+            "properties":
+            {
+                "fabricationStep":
+                {
+                    "type": "object",
+                    "description": "(Optional) - The production of a Precursor in controlled conditions performed by a commercial enterprise, one or more Research Users or a third party. Fabrication may require the use of Equipment, Consumables and Instrument(s). A Measurement may also be performed during the Fabrication, e.g., to characterize the intermediate and/or final resulting Precursor(s).",
+                    "enum":
+                    [
+                        "notApplicable",
+                        "annealingHomogenization",
+                        "forming",
+                        "depositionCoating",
+                        "other (please add in the comments)"
+                    ]
+                },
+                "comments": {"type": "string"},
+                "notApplicable":
+                {
+                    "type": "object",
+                    "properties":{}
+                },
+                "annealingHomogenization":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "annealingHomogenizationMethod":
+                        {
+                            "type": "string",
+                            "enum":
+                            [
+                                "unspecified annealing and homogenization",
+                                "aging",
+                                "dry blending",
+                                "homogenization",
+                                "mechanical mixing",
+                                "melt mixing",
+                                "normalizing",
+                                "recrystallization",
+                                "stress relieving",
+                                "tempering",
+                                "twin screw excrusion",
+                                "ultrasonication",
+                                "vacuum annealing/heating",
+                                "curing/hardening",
+                                "other (please add in the comments)"
+                            ]
+                        }
+                    }
+                },
+                "forming":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "formingMethod":
+                        {
+                            "type": "string",
+                            "enum":
+                            [
+                                "unspecified molding or casting",
+                                "cold rolling",
+                                "compression molding",
+                                "drawing",
+                                "extrusion",
+                                "forging",
+                                "hot pressing",
+                                "cold pressing",
+                                "hot rolling",
+                                "injection molding",
+                                "3D-printing",
+                                "milling",
+                                "lathing",
+                                "rotational molding",
+                                "vacuum molding",
+                                "centrifugal casting",
+                                "continuous casting",
+                                "die casting",
+                                "investment casting",
+                                "sand casting",
+                                "slip casting",
+                                "vacuum arc melting",
+                                "vacuum casting",
+                                "permanent mould casting",
+                                "direct chill casting",
+                                "other (please add in the comments)"
+                            ]
+                        }
+                        
+                    }
+                },
+                "depositionCoating":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "depositionCoatingMethod":
+                        {
+                            "type": "string",
+                            "enum":
+                            [
+                                "unspecified deposition and coating",
+                                "gold-sputter coating",
+                                "other (please add in the comments)"
+                            ]
+                        }
+                    }
+                },
+                "other": 
+                {
+                    "type": "object",
+                    "properties": {}
+                }
+            }
+        },
         "samplePreparation":
         {
             "type": "object",
@@ -382,22 +505,95 @@ var dataModel = {
                 },
                 "preparationMethod":
                 {
-                    "type": "string",
-                    "enum":
-                    [
-                        "Not applicable",
-                        "not yet done",
-                        "FIB",
-                        "conventional grinding, polishing, dimpling, ion milling",
-                        "ultramicrotome",
-                        "multiprep",
-                        "combination of several methods",
-                        "dispersion in solvent, dropping on TEM-grid",
-                        "dry shaking with powder sample",
-                        "electropolishing",
-                        "thin film deposited on TEM-grid",
-                        "Other (please add in the comments)"
-                    ]
+                    "type": "object",
+                    "properties":
+                    {
+                        "preparationStep":
+                        {
+                            "type": "object",
+                            "enum":
+                            [
+                                "notApplicable",
+                                "annealingHomogenization",
+                                "depositionCoating",
+                                "other (please add in the comments)"
+                            ]
+                        },
+                        "comments": {"type": "string"},
+                        "notApplicable":
+                        {
+                            "type": "object",
+                            "properties":{}
+                        },
+                        "annealingHomogenization":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "annealingHomogenizationMethod":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "unspecified annealing and homogenization",
+                                        "aging",
+                                        "dry blending",
+                                        "homogenization",
+                                        "mechanical mixing",
+                                        "melt mixing",
+                                        "normalizing",
+                                        "recrystallization",
+                                        "stress relieving",
+                                        "tempering",
+                                        "twin screw excrusion",
+                                        "ultrasonication",
+                                        "vacuum annealing/heating",
+                                        "curing/hardening",
+                                        "other (please add in the comments)"
+                                    ]
+                                }
+                            }
+                        },
+                        "depositionCoating":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "depositionCoatingMethod":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "unspecified deposition and coating",
+                                        "chemical vapour deposition",
+                                        "atomic layer deposition",
+                                        "gas dosing/gas exposure",
+                                        "sputtering",
+                                        "gold-sputter coating",
+                                        "ion implantation",
+                                        "electrodeposition",
+                                        "evaporation/physical vapor deposition",
+                                        "electron beam deposition",
+                                        "ion beam deposition",
+                                        "beam epitaxy",
+                                        "ink-jet deposition",
+                                        "pulsed laser deposition",
+                                        "Langmuir-Blodgett film deposition",
+                                        "plasma spraying",
+                                        "carbon evaporation coating",
+                                        "spin coating",
+                                        "sputter coating",
+                                        "other (please add in the comments)"
+                                    ]
+                                }
+                            }
+                        },
+                        "other": 
+                        {
+                            "type": "object",
+                            "properties": {}
+                        } 
+                    }
                 },
                 "precursors":
                 {
@@ -418,7 +614,12 @@ var dataModel = {
                                 "description": "(Recommended) - Chemical formula of the precursor",
                                 "type": "string"
                             },
-                            "fabrication":
+                            "precursorCASNumber":
+                            {
+                                "description": "(Optional) - CAS number of the precursor, if known and applicable",
+                                "type": "string"
+                            },
+                            "precursorFabricationDescription":
                             {
                                 "description": "The production of a Precursor in controlled conditions performed by a commercial enterprise, one or more Research Users or a third party. Fabrication may require the use of Equipment, Consumables and Instrument(s). A Measurement may also be performed during the Fabrication, e.g., to characterize the intermediate and/or final resulting Precursor(s).",
                                 "type":"string"
@@ -493,7 +694,8 @@ var dataModel = {
                                     "nonmagnetic",
                                     "conductor",
                                     "semiconductor",
-                                    "superconductor"
+                                    "superconductor",
+                                    "other (please add in the comments)"
                                 ]
                             }
                         },
@@ -520,7 +722,8 @@ var dataModel = {
                                     "eBeam",
                                     "iBeam",
                                     "radiation",
-                                    "shock"
+                                    "shock",
+                                    "other (please add in the comments)"
                                 ]
                             }
                         },
@@ -551,7 +754,8 @@ var dataModel = {
                                     "inflammable",
                                     "toxic or irritant",
                                     "explosive",
-                                    "nanostructured/nanoparticles"
+                                    "nanostructured/nanoparticles",
+                                    "other (please add in the comments)"
                                 ]
                             }
                         },

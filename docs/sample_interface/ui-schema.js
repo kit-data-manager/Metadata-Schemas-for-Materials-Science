@@ -142,19 +142,67 @@ var uiSchema = {
             ]
         },
         {
+            "legend": "Fabrication",
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items": 
+            [
+                {
+                    "type": "selectfieldset",
+                    "title": "Fabrication Step",
+                    "key": "fabrication.fabricationStep",
+                    "titleMap": 
+                    {
+                        "notApplicable": "Not Applicable",
+                        "annealingHomogenization": "Annealing and Homogenization",
+                        "forming": "Forming",
+                        "depositionCoating": "Deposition and Coating",
+                        "other": "Other (please add in the comments)"
+                    },
+                    "items": 
+                    [
+                        "fabrication.notApplicable", 
+                        "fabrication.annealingHomogenization",
+                        "fabrication.forming",
+                        "fabrication.depositionCoating",
+                        "fabrication.other"
+                    ]
+                },
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "fabrication.comments"}
+            ]
+        },
+        {
             "legend": "Sample Preparation",
             "type": "fieldset",
             "htmlClass": "myclass",
             "items":
             [
+                {"title": "Use the + to insert each Precursor", "key": "samplePreparation.precursors"},
                 {"title": "Sample Preparation Date", "key": "samplePreparation.preparationDate"},
                 {"title": "Sample Preparation Purpose", "key": "samplePreparation.preparationPurpose"},
-                {"title": "Sample Preparation Method", "key": "samplePreparation.preparationMethod"},
-                {"title": "Use the + to insert each Precursor", "key": "samplePreparation.precursors"},
+                {
+                    "type": "selectfieldset",
+                    "title": "Sample Preparation Method",
+                    "key": "samplePreparation.preparationMethod.preparationStep",
+                    "titleMap": 
+                    {
+                        "notApplicable": "Not Applicable",
+                        "annealingHomogenization": "Annealing and Homogenization",
+                        "depositionCoating": "Deposition and Coating",
+                        "other": "Other (please add in the comments)"
+                    },
+                    "items": 
+                    [
+                        "samplePreparation.preparationMethod.notApplicable", 
+                        "samplePreparation.preparationMethod.annealingHomogenization",
+                        "samplePreparation.preparationMethod.depositionCoating",
+                        "samplePreparation.preparationMethod.other"
+                    ]
+                },
                 {"title": "Sample Preparation Description", "key": "samplePreparation.preparationDescription"},
                 {"title": "Sample Preparation File", "key": "samplePreparation.preparationHistoryFile"},
                 {"title": "Sample Preparation File Reference", "key": "samplePreparation.preparationHistoryFileReference"},
-                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "samplePreparation.comments"}
+                {"title": "Comments", "type": "textarea", "htmlClass": "comments", "key": "samplePreparation.comments"}
             ]
         },
         {
