@@ -496,8 +496,9 @@ var uiSchema = {
                                                                 ]
                                                             },
                                                             {
-                                                                "title": "Coordinates",
-                                                                "type": "tab",
+                                                                "legend": "Coordinates",
+                                                                "type": "fieldset",
+                                                                "htmlClass": "myclass",
                                                                 "items": [
                                                                     {
                                                                         "title": "Coordinates Unit",
