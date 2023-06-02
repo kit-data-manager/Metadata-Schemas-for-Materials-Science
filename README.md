@@ -24,3 +24,6 @@ Sample files are also provided which are written according to the respective sch
   
 4. General Schema for describing a user
   * [JSON Schema](user_description.json)
+
+5. Schema for Metadata contained in [BAM reference dataset for creep tests](https://zenodo.org/record/7764161)
+  * [JSON Schema](PP18_dataset_metadata_Schema.json)
