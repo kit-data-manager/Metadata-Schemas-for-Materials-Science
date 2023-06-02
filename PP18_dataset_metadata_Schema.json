@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/edit/main/PP18_Schema.json",
+  "$id": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/main/PP18_dataset_metadata_Schema.json",
   "type": "object",
   "description": "This JSON Schema describes the metadata of the reference dataset by BAM It contains the metadata of the results of ASTM E139 -11 creep tests on a reference material of Nimonic 75 nickel-base alloy",
   "title": "Metadata of BAM reference data: results of ASTM E139 -11 creep tests on a reference material of Nimonic 75 nickel-base alloy",
