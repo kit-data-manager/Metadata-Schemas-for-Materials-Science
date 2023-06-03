@@ -384,6 +384,9 @@ var dataModel = {
                         "annealingHomogenization",
                         "forming",
                         "depositionCoating",
+                        "mechanicalAndSurface",
+                        "powderProcessing",
+                        "cooling",
                         "other (please add in the comments)"
                     ]
                 },
@@ -455,6 +458,7 @@ var dataModel = {
                                 "slip casting",
                                 "vacuum arc melting",
                                 "vacuum casting",
+                                "solvent casting",
                                 "permanent mould casting",
                                 "direct chill casting",
                                 "other (please add in the comments)"
@@ -474,7 +478,74 @@ var dataModel = {
                             "enum":
                             [
                                 "unspecified deposition and coating",
-                                "gold-sputter coating",
+                                "sputter coating",
+                                "other (please add in the comments)"
+                            ]
+                        }
+                    }
+                },
+                "mechanicalAndSurface":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "mechanicalAndSurfaceMethod":
+                        {
+                            "type": "string",
+                            "enum":
+                            [
+                                "unspecified mechanical and surface",
+                                "polishing",
+                                "sectioning",
+                                "other (please add in the comments)"
+                            ]
+                        }
+                    }
+                },
+                "powderProcessing":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "powderProcessingMethod":
+                        {
+                            "type": "string",
+                            "enum":
+                            [
+                                "unspecified powder processing",
+                                "atomization",
+                                "bar milling",
+                                "centrifugal disintegration",
+                                "hot pressing",
+                                "sintering",
+                                "sponge iron process",
+                                "blending",
+                                "feedstock blending",
+                                "other (please add in the comments)"
+                            ]
+                        }
+                    }
+                },
+                "cooling":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "coolingMethod":
+                        {
+                            "type": "string",
+                            "enum":
+                            [
+                                "unspecified cooling",
+                                "air cooling/quench",
+                                "brine quench",
+                                "furnace cooling",
+                                "gas cooling",
+                                "ice quench",
+                                "liquid nitrogen quench",
+                                "oil quench",
+                                "water quench",
+                                "vacuum cooling",
                                 "other (please add in the comments)"
                             ]
                         }
@@ -516,6 +587,8 @@ var dataModel = {
                                 "notApplicable",
                                 "annealingHomogenization",
                                 "depositionCoating",
+                                "mechanicalAndSurface",
+                                "cooling",
                                 "other (please add in the comments)"
                             ]
                         },
@@ -568,8 +641,7 @@ var dataModel = {
                                         "chemical vapour deposition",
                                         "atomic layer deposition",
                                         "gas dosing/gas exposure",
-                                        "sputtering",
-                                        "gold-sputter coating",
+                                        "sputter coating",
                                         "ion implantation",
                                         "electrodeposition",
                                         "evaporation/physical vapor deposition",
@@ -583,6 +655,51 @@ var dataModel = {
                                         "carbon evaporation coating",
                                         "spin coating",
                                         "sputter coating",
+                                        "other (please add in the comments)"
+                                    ]
+                                }
+                            }
+                        },
+                        "mechanicalAndSurface":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "mechanicalAndSurfaceMethod":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "unspecified mechanical and surface",
+                                        "focused ion beam",
+                                        "lithography",
+                                        "polishing",
+                                        "sectioning",
+                                        "sputtering",
+                                        "thermal plasma processing",
+                                        "exfoliation/cleavage/decapping",
+                                        "grinding",
+                                        "etching",
+                                        "grit blasting",
+                                        "sterilization",
+                                        "other (please add in the comments)"
+                                    ]
+                                }
+                            }
+                        },
+                        "cooling":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "coolingMethod":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "unspecified cooling",
+                                        "gas cooling",
+                                        "vacuum cooling",
                                         "other (please add in the comments)"
                                     ]
                                 }

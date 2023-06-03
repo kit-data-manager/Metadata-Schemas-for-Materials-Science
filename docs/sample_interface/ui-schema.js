@@ -157,6 +157,9 @@ var uiSchema = {
                         "annealingHomogenization": "Annealing and Homogenization",
                         "forming": "Forming",
                         "depositionCoating": "Deposition and Coating",
+                        "mechanicalAndSurface": "Mechanical and Surface",
+                        "powderProcessing": "Powder Processing",
+                        "cooling": "Cooling",
                         "other": "Other (please add in the comments)"
                     },
                     "items": 
@@ -165,6 +168,9 @@ var uiSchema = {
                         "fabrication.annealingHomogenization",
                         "fabrication.forming",
                         "fabrication.depositionCoating",
+                        "fabrication.mechanicalAndSurface",
+                        "fabrication.powderProcessing",
+                        "fabrication.cooling",
                         "fabrication.other"
                     ]
                 },
@@ -189,6 +195,8 @@ var uiSchema = {
                         "notApplicable": "Not Applicable",
                         "annealingHomogenization": "Annealing and Homogenization",
                         "depositionCoating": "Deposition and Coating",
+                        "mechanicalAndSurface": "Mechanical and Surface",
+                        "cooling": "Cooling",
                         "other": "Other (please add in the comments)"
                     },
                     "items": 
@@ -196,6 +204,8 @@ var uiSchema = {
                         "samplePreparation.preparationMethod.notApplicable", 
                         "samplePreparation.preparationMethod.annealingHomogenization",
                         "samplePreparation.preparationMethod.depositionCoating",
+                        "samplePreparation.preparationMethod.mechanicalAndSurface",
+                        "samplePreparation.preparationMethod.cooling",
                         "samplePreparation.preparationMethod.other"
                     ]
                 },
