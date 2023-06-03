@@ -197,6 +197,7 @@ var uiSchema = {
                         "depositionCoating": "Deposition and Coating",
                         "mechanicalAndSurface": "Mechanical and Surface",
                         "cooling": "Cooling",
+                        "reactive": "Reactive",
                         "other": "Other (please add in the comments)"
                     },
                     "items": 
@@ -206,6 +207,7 @@ var uiSchema = {
                         "samplePreparation.preparationMethod.depositionCoating",
                         "samplePreparation.preparationMethod.mechanicalAndSurface",
                         "samplePreparation.preparationMethod.cooling",
+                        "samplePreparation.preparationMethod.reactive",
                         "samplePreparation.preparationMethod.other"
                     ]
                 },

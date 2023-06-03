@@ -589,6 +589,7 @@ var dataModel = {
                                 "depositionCoating",
                                 "mechanicalAndSurface",
                                 "cooling",
+                                "reactive",
                                 "other (please add in the comments)"
                             ]
                         },
@@ -701,6 +702,31 @@ var dataModel = {
                                         "gas cooling",
                                         "vacuum cooling",
                                         "other (please add in the comments)"
+                                    ]
+                                }
+                            }
+                        },
+                        "reactive":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "reactiveMethod":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "unspecified reactive",
+                                        "addition polymerization",
+                                        "curing",
+                                        "dissolving/etching",
+                                        "drying",
+                                        "in-situ polymerization",
+                                        "post-polymerization modification",
+                                        "reductive roasting",
+                                        "solution processing",
+                                        "reactive ion etching",
+                                        "other (please specify in the comments)"
                                     ]
                                 }
                             }
