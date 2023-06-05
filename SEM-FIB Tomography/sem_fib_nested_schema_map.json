@@ -1,5 +1,5 @@
 {
-    "acquisition":{
+    "acquisition_main_schema":{
         "acquisition.genericMetadata.program.programName":"EMProject.ApplicationName",
         "acquisition.genericMetadata.program.programVersion":"EMProject.ApplicationVersion",
         "acquisition.genericMetadata.applicationId.identifierValue":"EMProject.ApplicationId",
@@ -15,7 +15,7 @@
         "acquisition.genericMetadata.systemType":"Images.SEM Image.SliceImage.System.systemtype",
         "acquisition.genericMetadata.stage":"Images.SEM Image.SliceImage.System.stage"
     },
-    "dataset":{
+    "dataset_schema":{
         "acquisition.dataset.entry.user.userName":"Images.SEM Image.SliceImage.User.user",
         "acquisition.dataset.entry.program.programName":"Images.SEM Image.SliceImage.System.software",
         "acquisition.dataset.entry.rows":"EMProject.DataSets.Dataset.Rows",
@@ -78,7 +78,7 @@
         "acquisition.dataset.entry.instrument.hotStageMEMS.sampleBias.value":"Images.SEM Image.SliceImage.HotStageMEMS.samplebias",
         "acquisition.dataset.entry.instrument.hotStageMEMS.sampleResistance.value":"Images.SEM Image.SliceImage.HotStageMEMS.sampleresistance"
     },
-    "image":{
+    "image_schema":{
         "acquisition.dataset.entry.images.entry.creationTime":"Images.SEM Image.SliceImage.PrivateFei.timeofcreation",
         "acquisition.dataset.entry.images.entry.stage.workingDistance.value":"Images.SEM Image.SliceImage.Stage.workingdistance",
         "acquisition.dataset.entry.images.entry.stage.stageX.value":"Images.SEM Image.SliceImage.Stage.stagex",
