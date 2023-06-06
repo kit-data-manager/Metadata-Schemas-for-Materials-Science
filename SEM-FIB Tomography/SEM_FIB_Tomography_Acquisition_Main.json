@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/main/SEM-FIB%20Tomography/SEM_FIB_Tomography_Acquisition_Main.json",
+  "$id": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/68fd9fa5de5dbe56bd7665b6320eb1ca47b4b1e5/SEM-FIB%20Tomography/SEM_FIB_Tomography_Acquisition_Main.json",
   "type": "object",
-  "description": "This JSON Schema describes the entire acquisition process during an SEM_FIB_Tomography measurement.  The acquisition comprises of multiple datasets which are described using the schema located at https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/main/SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json. The images in each dataset is taken using a detector (SE, BSE, EDS, EBSD) using a specific configuration. Each image is described by the schema located at https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/main/SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json. The units are by default to be considred as the SI units unless otherwise specified",
+  "description": "This JSON Schema describes the entire acquisition process during an SEM_FIB_Tomography measurement.  The acquisition comprises of multiple datasets which are described using the schema located at https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/68fd9fa5de5dbe56bd7665b6320eb1ca47b4b1e5/SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json. The images in each dataset is taken using a detector (SE, BSE, EDS, EBSD) using a specific configuration. Each image is described by the schema located at https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/68fd9fa5de5dbe56bd7665b6320eb1ca47b4b1e5/SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json. The units are by default to be considred as the SI units unless otherwise specified",
   "properties": {
     "acquisition": {
       "$ref": "#/$defs/acquisition"
@@ -98,7 +98,7 @@
           "type": "array",
           "description": "Array of all the dataset-metadata acquired using multiple detetors",
           "items": {
-            "$ref": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/edit/main/SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json"
+            "$ref": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/68fd9fa5de5dbe56bd7665b6320eb1ca47b4b1e5/SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json"
           }
         }
       }

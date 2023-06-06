@@ -1,23 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/edit/main/SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json",
+  "$id": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/68fd9fa5de5dbe56bd7665b6320eb1ca47b4b1e5/SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json",
   "type": "object",
-  "description": "This JSON Schema describes a set of images acquired during the course of a SEM/FIB Tomography experiment.  The images in each dataset is taken using a detector (SE, BSE, EDS, EBSD) using a specific configuration. This Schema contains only the parameters which are specific to the entire dataset. The parameters which are particular to each image is located at https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/main/SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json The units are by default to be considred as the SI units unless otherwise specified",
+  "description": "This JSON Schema describes a set of images acquired during the course of a SEM/FIB Tomography experiment.  The images in each dataset is taken using a detector (SE, BSE, EDS, EBSD) using a specific configuration. This Schema contains only the parameters which are specific to the entire dataset. The parameters which are particular to each image is located at https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/68fd9fa5de5dbe56bd7665b6320eb1ca47b4b1e5/SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json. The units are by default to be considred as the SI units unless otherwise specified",
   "properties": {
-    "entry": {
-      "$ref": "#/$defs/entry"
-    }
-  },
-  "required": [
-    "entry"
-  ],
-  "title": "acquisition_dataset",
-  "$defs": {
-    "entry": {
-      "type": "object",
-      "description": "The entry level is the root element of the schema. It contains all the metadata describing a single image.",
-      "additionalProperties": false,
-      "properties": {
         "entryID": {
           "$ref": "#/$defs/identifier",
           "description": "(Optional)- Identifier of the dataset. It could be the PID of location where the entire dataset is stored"
@@ -94,8 +80,9 @@
         "rows",
         "name",
         "numberOfItems"
-      ]
-    },
+      ],
+  "title": "acquisition_dataset",
+  "$defs": {
     "user": {
       "type": "object",
       "description": "Contact information of the user responsible for the measurement.",
@@ -989,7 +976,7 @@
           "type": "array",
           "desription": "(Required) - Array containing the images and their specific parameters. No. of images in the array is described by the numberOfItems parameter at the entry level of this schema",
           "items": {
-            "$ref": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/edit/main/SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json"
+            "$ref": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/68fd9fa5de5dbe56bd7665b6320eb1ca47b4b1e5/SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json"
           }
         }
       },
