@@ -25,5 +25,11 @@ Sample files are also provided which are written according to the respective sch
 4. General Schema for describing a user
   * [JSON Schema](user_description.json)
 
-5. Schema for Metadata contained in [BAM reference dataset for creep tests](https://zenodo.org/record/7764161)
-  * [JSON Schema](PP18_dataset_metadata_Schema.json)
+5. Schemas for Metadata contained in [BAM reference dataset for creep tests](https://zenodo.org/record/7764161)
+  * [JSON Schema for Datset](Reference_Dataset_Zenodo/PP18_dataset_metadata_Schema.json)
+  * [JSON Schem for Files](Reference_Dataset_Zenodo/pp18_file_schema.json)
+
+6. Schemas for FIB/SEM Serial Sectioning Tomography
+ * [Acquistion Main JSON](SEM-FIB%20Tomography/SEM_FIB_Tomography_Acquisition_Main.json)
+ * [Acquistion Dataset JSON](SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json)
+ * [Acquistion Image JSON](SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json)
