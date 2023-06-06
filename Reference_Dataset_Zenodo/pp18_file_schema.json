@@ -34,7 +34,7 @@
       "description": "(Required) - File type of the document"
     },
     "size": {
-      "type": "string",
+      "type": "number",
       "description": "(Required) - Size of the document in bytes"
     }
   },
