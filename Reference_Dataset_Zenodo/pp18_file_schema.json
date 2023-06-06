@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "needs to be updated",
+  "type": "object",
+  "description": "This JSON Schema describes the metadata of a single file in the reference dataset by BAM. It contains the metadata of the results of ASTM E139 -11 creep tests on a reference material of Nimonic 75 nickel-base alloy",
+  "title": "Metadata of BAM reference data (individual files): results of ASTM E139 -11 creep tests on a reference material of Nimonic 75 nickel-base alloy",
+  "properties": {
+    "links": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "string",
+          "description": "(Required) - URL/ link to the document"
+        }
+      },
+      "required": [
+        "self"
+      ]
+    },
+    "checksum": {
+      "type": "string",
+      "description": "(Required) - checksum of the document"
+    },
+    "bucket": {
+      "type": "string",
+      "description": "(Required) - string indicating the dataset in which the document is contained"
+    },
+    "key": {
+      "type": "string",
+      "description": "(Required) - key of the document (File name)"
+    },
+    "type": {
+      "type": "string",
+      "description": "(Required) - File type of the document"
+    },
+    "size": {
+      "type": "string",
+      "description": "(Required) - Size of the document in bytes"
+    }
+  },
+  "required": [
+    "links",
+    "checksum",
+    "bucket",
+    "key",
+    "type",
+    "size"
+  ]
+}
