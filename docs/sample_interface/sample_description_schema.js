@@ -383,7 +383,7 @@ var dataModel = {
                         "notApplicable",
                         "annealingHomogenization",
                         "forming",
-                        "depositionCoating",
+                        "joining",
                         "mechanicalAndSurface",
                         "powderProcessing",
                         "cooling",
@@ -467,20 +467,34 @@ var dataModel = {
                         
                     }
                 },
-                "depositionCoating":
+                "joining":
                 {
                     "type": "object",
                     "properties":
                     {
-                        "depositionCoatingMethod":
+                        "joiningMethod":
                         {
                             "type": "string",
                             "enum":
-                            [
-                                "unspecified deposition and coating",
-                                "sputter coating",
-                                "other (please add in the comments)"
-                            ]
+                        [
+                            "unspecified joining",
+                            "adhesive bonding",
+                            "soldering/brazing/wire bonding",
+                            "arc welding",
+                            "gas welding",
+                            "resistance welding",
+                            "solid-state welding",
+                            "thermo-chemical welding",
+                            "energy beam welding",
+                            "plastic welding",
+                            "riveting",
+                            "seaming",
+                            "clamping",
+                            "bolting/screwing",
+                            "caulking",
+                            "shrink-fitting",
+                            "other (please add in the comments)"
+                        ]
                         }
                     }
                 },
@@ -521,6 +535,8 @@ var dataModel = {
                                 "sponge iron process",
                                 "blending",
                                 "feedstock blending",
+                                "sieve fraction preparation",
+                                "pressing",
                                 "other (please add in the comments)"
                             ]
                         }
@@ -587,7 +603,9 @@ var dataModel = {
                                 "notApplicable",
                                 "annealingHomogenization",
                                 "depositionCoating",
+                                "joining",
                                 "mechanicalAndSurface",
+                                "powderProcessing",
                                 "cooling",
                                 "reactive",
                                 "other (please add in the comments)"
@@ -655,7 +673,26 @@ var dataModel = {
                                         "plasma spraying",
                                         "carbon evaporation coating",
                                         "spin coating",
-                                        "sputter coating",
+                                        "other (please add in the comments)"
+                                    ]
+                                }
+                            }
+                        },
+                        "joining":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "joiningMethod":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "unspecified joining",
+                                        "adhesive bonding",
+                                        "soldering/brazing/wire bonding",
+                                        "resistance welding",
+                                        "clamping",
                                         "other (please add in the comments)"
                                     ]
                                 }
@@ -683,6 +720,26 @@ var dataModel = {
                                         "etching",
                                         "grit blasting",
                                         "sterilization",
+                                        "Laser Surface Texturing (LST)",
+                                        "dimpling",
+                                        "other (please add in the comments)"
+                                    ]
+                                }
+                            }
+                        },
+                        "powderProcessing":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "powderProcessingMethod":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "unspecified powder processing",
+                                        "sieve fraction preparation",
+                                        "pressing",
                                         "other (please add in the comments)"
                                     ]
                                 }
@@ -718,6 +775,7 @@ var dataModel = {
                                     [
                                         "unspecified reactive",
                                         "addition polymerization",
+                                        "condensation polymerization",
                                         "curing",
                                         "dissolving/etching",
                                         "drying",
@@ -725,7 +783,7 @@ var dataModel = {
                                         "post-polymerization modification",
                                         "reductive roasting",
                                         "solution processing",
-                                        "reactive ion etching",
+                                        "reactive ion etching (RIE/IBE)",
                                         "other (please specify in the comments)"
                                     ]
                                 }
