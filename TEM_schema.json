@@ -604,7 +604,7 @@
             },
             "precessionFrequency":{
               "$ref":"#/$defs/frequencyDetails"
-            },
+            }
          },
          "title":"precessionDetails"
       },
@@ -819,7 +819,7 @@
             }
          },
          "required":[
-            "accelerationVoltage",
+            "accelerationVoltage"
          ],
          "title":"sourceDetails"
       },
@@ -997,7 +997,7 @@
             },
             "rotation":{
                "$ref":"#/$defs/angleDetails"
-            },
+            }
          },
          "required":[
             "specimenPosition",
@@ -1169,7 +1169,7 @@
           },
           "beamConvergence":{
             "$ref":"#/$defs/angleDetails"
-          },
+          }
         },
         "required":[
           "beamConvergence"
