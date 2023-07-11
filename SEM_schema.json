@@ -204,7 +204,7 @@
          "properties":{
             "sampleName":{
                "type":"string",
-               "description":"(Required) - Name of the sample"
+               "description":"(Optional) - Name of the sample"
             },
             "sampleID":{
                "$ref":"#/$defs/identifier",
@@ -212,19 +212,19 @@
             },
             "conductive":{
                "type":"boolean",
-               "description":"(Required) - Whether the sample is conductive"
+               "description":"(Optional) - Whether the sample is conductive"
             },
             "magnetic":{
                "type":"boolean",
-               "description":"(Required) - Whether the sample is magnetic"
+               "description":"(Optional) - Whether the sample is magnetic"
             },
             "eBeamSensitive":{
                "type":"boolean",
-               "description":"(Required) - Whether the sample is not stable under electron beam"
+               "description":"(Optional) - Whether the sample is not stable under electron beam"
             },
             "iBeamSensitive":{
                "type":"boolean",
-               "description":"(Required) - Whether the sample is not stable under ion beam"
+               "description":"(Optional) - Whether the sample is not stable under ion beam"
             },
             "embeddingMaterial":{
                "type":"string",
@@ -281,13 +281,6 @@
                "description":"(Optional) - Details pertaining to the sample prepapration like date, ID, etc"
             }
          },
-         "required":[
-            "conductive",
-            "eBeamSensitive",
-            "iBeamSensitive",
-            "magnetic",
-            "sampleName"
-         ],
          "title":"sample"
       },
       "distanceDetails":{
