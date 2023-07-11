@@ -29,16 +29,16 @@ var dataModel = {
             "startTime":{
                "type":"string",
                "description":"(Optional)- Start time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss",
-               "pattern":"(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)"
+               "format":"date-time"
             },
             "endTime":{
                "type":"string",
                "description":"(Required)- End time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss",
-               "pattern":"(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)"
+               "format":"date-time"
             },
             "definition":{
                "type":"string",
-               "description":"(Required)- Name of the schema to which this entry conforms. In this case, SEM should be written"
+               "description":"(Optional)- Name of the schema to which this entry conforms. In this case, SEM should be written"
             },
             "program":{
                "$ref":"#/$defs/program",
@@ -54,7 +54,7 @@ var dataModel = {
             },
             "sample":{
                "$ref":"#/$defs/sample",
-               "description":"(Required)- Details concerning the sample"
+               "description":"(Optional)- Details concerning the sample"
             },
             "instrument":{
                "$ref":"#/$defs/instrumentDetails",
@@ -64,9 +64,7 @@ var dataModel = {
          "required":[
             "title",
             "endTime",
-            "definition",
             "user",
-            "sample",
             "instrument"
          ],
          "title":"entry"
@@ -84,7 +82,6 @@ var dataModel = {
                "type":"string",
                "description":"(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
                "enum":[
-                  "",
                   "ROR",
                   "GRID",
                   "ISNI",
@@ -146,9 +143,8 @@ var dataModel = {
             },
             "role":{
                "type":"string",
-               "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
+               "description":"(Optional) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
                "enum":[
-                  "",
                   "Data Curator",
                   "Instrument Scientist",
                   "Principal Investigator",
@@ -174,8 +170,7 @@ var dataModel = {
             }
          },
          "required":[
-            "userName",
-            "role"
+            "userName"
          ],
          "title":"user"
       },
@@ -209,7 +204,7 @@ var dataModel = {
          "properties":{
             "sampleName":{
                "type":"string",
-               "description":"(Required) - Name of the sample"
+               "description":"(Optional) - Name of the sample"
             },
             "sampleID":{
                "$ref":"#/$defs/identifier",
@@ -217,23 +212,24 @@ var dataModel = {
             },
             "conductive":{
                "type":"boolean",
-               "description":"(Required) - Whether the sample is conductive"
+               "description":"(Optional) - Whether the sample is conductive"
             },
             "magnetic":{
                "type":"boolean",
-               "description":"(Required) - Whether the sample is magnetic"
+               "description":"(Optional) - Whether the sample is magnetic"
             },
             "eBeamSensitive":{
                "type":"boolean",
-               "description":"(Required) - Whether the sample is not stable under electron beam"
+               "description":"(Optional) - Whether the sample is not stable under electron beam"
             },
             "iBeamSensitive":{
                "type":"boolean",
-               "description":"(Required) - Whether the sample is not stable under ion beam"
+               "description":"(Optional) - Whether the sample is not stable under ion beam"
             },
             "embeddingMaterial":{
                "type":"string",
-               "description":"(Required) - Supporting material in which the sample is embedded (e.g., none, demotec 30, 70, Epoxy)"
+               "description":"(Optional) - Supporting material in which the sample is embedded (e.g., none, demotec 30, 70, Epoxy)",
+               "default":"none"
             },
             "sampleForm":{
                "type":"string",
@@ -249,7 +245,8 @@ var dataModel = {
             },
             "finalSpecimen":{
                "type":"string",
-               "description":"(Optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp)"
+               "description":"(Optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp)",
+               "default":"TEM Lamella"
             },
             "sampleHolder":{
                "type":"string",
@@ -257,7 +254,8 @@ var dataModel = {
             },
             "fixingMethod":{
                "type":"string",
-               "description":"(Optional) - Method used to hold the sample on the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue)"
+               "description":"(Optional) - Method used to hold the sample on the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue)",
+               "default":"Carbon Tape"
             },
             "conductiveCoatingApplied":{
                "type":"boolean",
@@ -265,28 +263,24 @@ var dataModel = {
             },
             "conductiveCoating":{
                "type":"string",
-               "description":"(Optional) - Conductive coating material"
+               "description":"(Optional) - Conductive coating material",
+               "default":"Au"
             },
             "storageConditions":{
                "type":"string",
-               "description":"(Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure)"
+               "description":"(Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure)",
+               "default":"Ambient, dry environment"
             },
             "measurementConditions":{
                "type":"string",
-               "description":"(Optional) - Conditions to be maintained during the measurement inside the instrument (e.g., water vapor, cryogenic temperature)"
+               "description":"(Optional) - Conditions to be maintained during the measurement inside the instrument (e.g., water vapor, cryogenic temperature)",
+               "default":"water vapour"
             },
             "samplePreparation":{
                "$ref":"#/$defs/samplePrepType",
                "description":"(Optional) - Details pertaining to the sample prepapration like date, ID, etc"
             }
          },
-         "required":[
-            "conductive",
-            "eBeamSensitive",
-            "iBeamSensitive",
-            "magnetic",
-            "sampleName"
-         ],
          "title":"sample"
       },
       "distanceDetails":{
@@ -296,15 +290,16 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "description":"(Required) - Value of the distance, size or length"
+               "description":"(Required) - Value of the distance, size or length",
+               "default":-9999
             },
             "unit":{
                "type":"string",
-               "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",  
+               "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
+               "default":"mm",
                "enum":[
-                  "",
                   "nm",
-                  "um",
+                  "µm",
                   "mm",
                   "cm",
                   "m"
@@ -312,7 +307,8 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
+               "default":"max"
             },
             "uncertainty":{
                "$ref":"#/$defs/uncertaintyDetails",
@@ -338,17 +334,18 @@ var dataModel = {
                "type":"string",
                "description":"(Required) - Type of the uncertainty to be chosen between absolute or relative",
                "enum":[
-                  "",
                   "absolute",
                   "relative"
                ]
             },
             "value":{
                "type":"number",
-               "description":"(Required) - Value of the uncertainty"
+               "description":"(Required) - Value of the uncertainty",
+               "default":-9999
             }
          },
          "required":[
+            "uncertaintyType",
             "value"
          ],
          "title":"uncertaintyDetails"
@@ -360,15 +357,16 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
-               "description":"(Required) - Value of the weight"
+               "description":"(Required) - Value of the weight",
+               "default":-9999
             },
             "unit":{
                "type":"string",
                "description":"(Required) - Unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
+               "default":"ug",
                "enum":[
-                  "",
                   "ng",
-                  "ug",
+                  "µg",
                   "mg",
                   "g",
                   "kg"
@@ -376,7 +374,8 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
-               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
+               "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
+               "default":"max"
             },
             "uncertainty":{
                "$ref":"#/$defs/uncertaintyDetails",
@@ -453,7 +452,7 @@ var dataModel = {
             },
             "eBeamDeceleration":{
                "$ref":"#/$defs/eBeamDecelerationDetails",
-               "description":"(Required) - Details about the instrument settings for electron-beam deceleration"
+               "description":"(Optional) - Details about the instrument settings for electron-beam deceleration"
             },
             "FIB":{
                "$ref":"#/$defs/FIBDetails",
@@ -496,12 +495,13 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
+               "default":-9999,
                "description":"(Required) - Value of the pressure"
             },
             "unit":{
                "type":"string",
+               "default":"Pa",
                "enum":[
-                  "",
                   "Pa",
                   "hPa",
                   "kPa",
@@ -515,6 +515,7 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
+               "default":"max",
                "description":"(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
             },
             "uncertainty":{
@@ -547,7 +548,7 @@ var dataModel = {
             },
             "accelerationVoltage":{
                "$ref":"#/$defs/voltageDetails",
-               "description":"(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)"
+               "description":"(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV)"
             },
             "beamCurrent":{
                "$ref":"#/$defs/currentDetails",
@@ -564,10 +565,6 @@ var dataModel = {
             "gunVacuum":{
                "$ref":"#/$defs/pressureDetails",
                "description":"(Optional) - Gives the pressure maintained in the electron gun"
-            },
-            "gunPressure":{
-               "$ref":"#/$defs/pressureDetails",
-               "description":"(Optional) - Gives the pressure maintained in the FIB gun"
             }
          },
          "required":[
@@ -582,14 +579,17 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
+               "default":-9999,
                "description":"(Required) - The lifetime of the source expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
+               "default":"µAh",
                "description":"(Required) - the unit of the value (default value - µAh) of datatype string"
             },
             "qualifier":{
                "type":"string",
+               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -614,22 +614,24 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
+               "default":-9999,
                "description":"(Required) - The voltage expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
+               "default":"kV",
                "enum":[
-                  "",
                   "µV",
                   "mV",
                   "V",
                   "kV",
                   "MV"
                ],
-               "description":"(Required) - the unit of the value to be selected from a controlled list (uV, mV, V, kV, MV, GV default value - V) of datatype string"
+               "description":"(Required) - the unit of the value to be selected from a controlled list (µV, mV, V, kV, MV, GV default value - V) of datatype string"
             },
             "qualifier":{
                "type":"string",
+               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -654,12 +656,13 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
+               "default":-9999,
                "description":"(Optional) - Further notes about the value of datatype string"
             },
             "unit":{
                "type":"string",
+               "default":"pA",
                "enum":[
-                  "",
                   "pA",
                   "nA",
                   "µA",
@@ -670,6 +673,7 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
+               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -698,7 +702,7 @@ var dataModel = {
             },
             "isCorrelationImage":{
                "type":"boolean",
-               "description":"(Required) - Whether the image is used for correlating in xyz coordinates with another image? Check if true. If true the coordinates have to be entered for the sake of correlative characterization of datatype boolean"
+               "description":"(Optional) - Whether the image is used for correlating in xyz coordinates with another image? Check if true. If true the coordinates have to be entered for the sake of correlative characterization of datatype boolean"
             },
             "coordinates":{
                "$ref":"#/$defs/coordinateSet",
@@ -706,6 +710,7 @@ var dataModel = {
             },
             "coordinateReference":{
                "type":"string",
+               "default":"origin at centre of sample",
                "description":"(Optional) - description of the reference used for defining the coordinates (for eg. - origin at centre of sample, distances from two edges, etc.)"
             },
             "stageTiltAngle":{
@@ -718,6 +723,7 @@ var dataModel = {
             },
             "tiltCorrectionType":{
                "type":"string",
+               "default":"none",
                "description":"(Optional) - the tilt correction type applied to the image to compensate for the tilting, for e.g., sample surface, cross-section, none or manual, default value- none of datatype string"
             },
             "eBeamWorkingDistance":{
@@ -727,8 +733,7 @@ var dataModel = {
          },
          "required":[
             "eBeamWorkingDistance",
-            "stageTiltAngle",
-            "isCorrelationImage"
+            "stageTiltAngle"
          ],
          "title":"stageDetails"
       },
@@ -739,12 +744,13 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
+               "default":-9999,
                "description":"(Required) - The angle expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
+               "default":"degree",
                "enum":[
-                  "",
                   "degree",
                   "radian"
                ],
@@ -752,6 +758,7 @@ var dataModel = {
             },
             "qualifier":{
                "type":"string",
+               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -784,7 +791,8 @@ var dataModel = {
             },
             "collectionMethod":{
                "type":"string",
-               "description":"(Required) - the method of collection of the image, for e.g., normal scan, average of multiple images, integration of multiple images, default value - normal scan of datatype string"
+               "default":"normal scan",
+               "description":"(Optional) - the method of collection of the image, for e.g., normal scan, average of multiple images, integration of multiple images, default value - normal scan of datatype string"
             },
             "dynamicFocus":{
                "type":"boolean",
@@ -806,7 +814,6 @@ var dataModel = {
                "type":"string",
                "description":"(Optional) - The type of noise reduction used as an enumerated list of six parameters: Pixel Avg, Line Avg, Frame Avg,  Pixel Int, Line Int, Frame Int.",
                "enum":[
-                  "",
                   "Pixel Avg",
                   "Line Avg",
                   "Frame Avg",
@@ -821,8 +828,6 @@ var dataModel = {
             }
          },
          "required":[
-            "isCorrelationImage",
-            "collectionMethod",
             "numberOfPixels",
             "pixelSize"
          ],
@@ -835,6 +840,7 @@ var dataModel = {
          "properties":{
             "xValue":{
                "type":"number",
+               "default":-9999,
                "description":"(Optional) - value of the x coordinate of datatype number"
             },
             "xUncertainty":{
@@ -843,6 +849,7 @@ var dataModel = {
             },
             "yValue":{
                "type":"number",
+               "default":-9999,
                "description":"(Optional) - value of the y coordinate of datatype number"
             },
             "yUncertainty":{
@@ -851,6 +858,7 @@ var dataModel = {
             },
             "zValue":{
                "type":"number",
+               "default":-9999,
                "description":"(Optional) - value of the zcoordinate of datatype number"
             },
             "zUncertainty":{
@@ -859,15 +867,15 @@ var dataModel = {
             },
             "coordinatesUnit":{
                "type":"string",
+               "default":"um",
                "enum":[
-                  "",
                   "nm",
                   "µm",
                   "mm",
                   "cm",
                   "m"
                ],
-               "description":"(Optional) - unit of the coordinates (allowed units - nm, um, mm, cm, m)"
+               "description":"(Optional) - unit of the coordinates (allowed units - nm, µm, mm, cm, m)"
             }
          },
          "required":[
@@ -941,14 +949,17 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
+               "default":-9999,
                "description":"(Required) - The pixel-size expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
+               "default":"nm/pixel",
                "description":"(Required) - the unit of the value (default value - nm/pixel) of datatype string"
             },
             "qualifier":{
                "type":"string",
+               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -973,22 +984,24 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
+               "default":-9999,
                "description":"(Required) - The time expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
+               "default":"us",
                "enum":[
-                  "",
                   "ps",
                   "ns",
                   "µs",
                   "ms",
                   "s"
                ],
-               "description":"(Required) - the unit of the value to be selected from a controlled list (ps, ns, us, ms, s default value - us) of datatype string"
+               "description":"(Required) - the unit of the value to be selected from a controlled list (ps, ns, µs, ms, s default value - µs) of datatype string"
             },
             "qualifier":{
                "type":"string",
+               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -1013,14 +1026,17 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
+               "default":-9999,
                "description":"(Required) - The voxel-size expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
+               "default":"mm",
                "description":"(Required) - the unit of the value of datatype string"
             },
             "qualifier":{
                "type":"string",
+               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -1045,6 +1061,7 @@ var dataModel = {
          "properties":{
             "signalMixingDone":{
                "type":"boolean",
+               "default":"false",
                "description":"(Required) - whether the detector signals are mixed, true or false, of datatype boolean"
             },
             "signalMixingDescription":{
@@ -1073,7 +1090,8 @@ var dataModel = {
          "properties":{
             "detectorType":{
                "type":"string",
-               "description":"(Required) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string"
+               "default":"Secondary Electron",
+               "description":"(Optional) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string"
             },
             "detectorName":{
                "type":"string",
@@ -1102,8 +1120,7 @@ var dataModel = {
             }
          },
          "required":[
-            "detectorName",
-            "detectorType"
+            "detectorName"
          ],
          "title":"detectorDetails"
       },
@@ -1118,7 +1135,7 @@ var dataModel = {
             },
             "stageBias":{
                "$ref":"#/$defs/voltageDetails",
-               "description":"(Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, µV, mV, V, kV)"
+               "description":"(Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, uV, mV, V, kV, nA, uA, mA, A, kA)"
             }
          }
       },
@@ -1129,26 +1146,29 @@ var dataModel = {
          "properties":{
             "value":{
                "type":"number",
+               "default":-9999,
                "description":"(Required) - The energy expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
+               "default":"keV",
                "enum":[
-                  "",
                   "meV",
                   "eV",
                   "keV",
                   "MeV",
                   "nJ",
                   "mJ",
+                  "µJ",
                   "J",
                   "kJ",
                   "MJ"
                ],
-               "description":"(Required) - the unit of the value to be selected from a controlled list (meV, eV, keV, MeV, nJ, mJ, J, kJ, MJ; default value - keV) of datatype string"
+               "description":"(Required) - the unit of the value to be selected from a controlled list (meV, eV, keV, MeV, nJ, µJ, mJ, J, kJ, MJ; default value - keV) of datatype string"
             },
             "qualifier":{
                "type":"string",
+               "default":"max",
                "description":"(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
             },
             "uncertainty":{
@@ -1202,13 +1222,17 @@ var dataModel = {
             "FIBSpotSize":{
                "$ref":"#/$defs/distanceDetails",
                "description":"(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, um, mm, cm, m)"
+            },
+            "gunPressure":{
+               "$ref":"#/$defs/pressureDetails",
+               "description":"(Required) - Gives the pressure maintained in the FIB gun"
             }
          },
          "required":[
-            "FIBColumn",
             "iBeamSource",
             "FIBExtractor",
-            "FIBProbe"
+            "FIBProbe",
+            "gunPressure"
          ],
          "title":"FIBDetails"
       },
@@ -1224,7 +1248,6 @@ var dataModel = {
             "beamDepositionType":{
                "type":"string",
                "enum":[
-                  "",
                   "E-beam Deposition",
                   "I-beam Deposition"
                ],
@@ -1247,3 +1270,4 @@ var dataModel = {
       }
    }
 }
+
