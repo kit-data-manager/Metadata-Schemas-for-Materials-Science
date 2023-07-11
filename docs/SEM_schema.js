@@ -565,6 +565,10 @@ var dataModel = {
             "gunVacuum":{
                "$ref":"#/$defs/pressureDetails",
                "description":"(Optional) - Gives the pressure maintained in the electron gun"
+            },
+            "gunPressure":{
+               "$ref":"#/$defs/pressureDetails",
+               "description":"(Required) - Gives the pressure maintained in the FIB gun"
             }
          },
          "required":[
@@ -1222,10 +1226,6 @@ var dataModel = {
             "FIBSpotSize":{
                "$ref":"#/$defs/distanceDetails",
                "description":"(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, um, mm, cm, m)"
-            },
-            "gunPressure":{
-               "$ref":"#/$defs/pressureDetails",
-               "description":"(Required) - Gives the pressure maintained in the FIB gun"
             }
          },
          "required":[
