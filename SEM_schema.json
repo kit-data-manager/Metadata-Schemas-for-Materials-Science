@@ -29,12 +29,12 @@
             "startTime":{
                "type":"string",
                "description":"(Optional)- Start time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss",
-               "pattern":"(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)"
+               "format":"date-time"
             },
             "endTime":{
                "type":"string",
                "description":"(Required)- End time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss",
-               "pattern":"(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)"
+               "format":"date-time"
             },
             "definition":{
                "type":"string",
@@ -54,7 +54,7 @@
             },
             "sample":{
                "$ref":"#/$defs/sample",
-               "description":"(Required)- Details concerning the sample"
+               "description":"(Optional)- Details concerning the sample"
             },
             "instrument":{
                "$ref":"#/$defs/instrumentDetails",
@@ -64,7 +64,6 @@
          "required":[
             "title",
             "endTime",
-            "definition",
             "user",
             "instrument"
          ],
@@ -144,7 +143,7 @@
             },
             "role":{
                "type":"string",
-               "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
+               "description":"(Optional) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
                "enum":[
                   "Data Curator",
                   "Instrument Scientist",
@@ -229,7 +228,7 @@
             },
             "embeddingMaterial":{
                "type":"string",
-               "description":"(Required) - Supporting material in which the sample is embedded (e.g., none, demotec 30, 70, Epoxy)",
+               "description":"(Optional) - Supporting material in which the sample is embedded (e.g., none, demotec 30, 70, Epoxy)",
                "default":"none"
             },
             "sampleForm":{
@@ -353,6 +352,7 @@
             }
          },
          "required":[
+            "uncertaintyType",
             "value"
          ],
          "title":"uncertaintyDetails"
@@ -459,7 +459,7 @@
             },
             "eBeamDeceleration":{
                "$ref":"#/$defs/eBeamDecelerationDetails",
-               "description":"(Required) - Details about the instrument settings for electron-beam deceleration"
+               "description":"(Optional) - Details about the instrument settings for electron-beam deceleration"
             },
             "FIB":{
                "$ref":"#/$defs/FIBDetails",
@@ -555,7 +555,7 @@
             },
             "accelerationVoltage":{
                "$ref":"#/$defs/voltageDetails",
-               "description":"(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)"
+               "description":"(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV)"
             },
             "beamCurrent":{
                "$ref":"#/$defs/currentDetails",
@@ -592,7 +592,7 @@
             "unit":{
                "type":"string",
                "default":"µAh",
-               "description":"(Required) - the unit of the value (default value - uAh) of datatype string"
+               "description":"(Required) - the unit of the value (default value - µAh) of datatype string"
             },
             "qualifier":{
                "type":"string",
@@ -634,7 +634,7 @@
                   "kV",
                   "MV"
                ],
-               "description":"(Required) - the unit of the value to be selected from a controlled list (uV, mV, V, kV, MV, GV default value - V) of datatype string"
+               "description":"(Required) - the unit of the value to be selected from a controlled list (µV, mV, V, kV, MV, GV default value - V) of datatype string"
             },
             "qualifier":{
                "type":"string",
@@ -709,7 +709,7 @@
             },
             "isCorrelationImage":{
                "type":"boolean",
-               "description":"(Required) - Whether the image is used for correlating in xyz coordinates with another image? Check if true. If true the coordinates have to be entered for the sake of correlative characterization of datatype boolean"
+               "description":"(Optional) - Whether the image is used for correlating in xyz coordinates with another image? Check if true. If true the coordinates have to be entered for the sake of correlative characterization of datatype boolean"
             },
             "coordinates":{
                "$ref":"#/$defs/coordinateSet",
@@ -740,8 +740,7 @@
          },
          "required":[
             "eBeamWorkingDistance",
-            "stageTiltAngle",
-            "isCorrelationImage"
+            "stageTiltAngle"
          ],
          "title":"stageDetails"
       },
@@ -800,7 +799,7 @@
             "collectionMethod":{
                "type":"string",
                "default":"normal scan",
-               "description":"(Required) - the method of collection of the image, for e.g., normal scan, average of multiple images, integration of multiple images, default value - normal scan of datatype string"
+               "description":"(Optional) - the method of collection of the image, for e.g., normal scan, average of multiple images, integration of multiple images, default value - normal scan of datatype string"
             },
             "dynamicFocus":{
                "type":"boolean",
@@ -883,7 +882,7 @@
                   "cm",
                   "m"
                ],
-               "description":"(Optional) - unit of the coordinates (allowed units - nm, um, mm, cm, m)"
+               "description":"(Optional) - unit of the coordinates (allowed units - nm, µm, mm, cm, m)"
             }
          },
          "required":[
@@ -1005,7 +1004,7 @@
                   "ms",
                   "s"
                ],
-               "description":"(Required) - the unit of the value to be selected from a controlled list (ps, ns, us, ms, s default value - us) of datatype string"
+               "description":"(Required) - the unit of the value to be selected from a controlled list (ps, ns, µs, ms, s default value - µs) of datatype string"
             },
             "qualifier":{
                "type":"string",
@@ -1099,7 +1098,7 @@
             "detectorType":{
                "type":"string",
                "default":"Secondary Electron",
-               "description":"(Required) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string"
+               "description":"(Optional) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string"
             },
             "detectorName":{
                "type":"string",
@@ -1172,7 +1171,7 @@
                   "kJ",
                   "MJ"
                ],
-               "description":"(Required) - the unit of the value to be selected from a controlled list (meV, eV, keV, MeV, nJ, mJ, J, kJ, MJ; default value - keV) of datatype string"
+               "description":"(Required) - the unit of the value to be selected from a controlled list (meV, eV, keV, MeV, nJ, µJ, mJ, J, kJ, MJ; default value - keV) of datatype string"
             },
             "qualifier":{
                "type":"string",
@@ -1233,13 +1232,14 @@
             },
             "gunPressure":{
                "$ref":"#/$defs/pressureDetails",
-               "description":"(Optional) - Gives the pressure maintained in the FIB gun"
+               "description":"(Required) - Gives the pressure maintained in the FIB gun"
             }
          },
          "required":[
             "iBeamSource",
             "FIBExtractor",
-            "FIBProbe"
+            "FIBProbe",
+            "gunPressure"
          ],
          "title":"FIBDetails"
       },
