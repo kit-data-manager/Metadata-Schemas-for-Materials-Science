@@ -1555,7 +1555,7 @@ var uiSchema = {
                                                                             "type": "tab",
                                                                             "items": [
                                                                                 {
-                                                                                    "legend": "Gas Injection System",
+                                                                                    "legend": "gasinjectionSystem",
                                                                                     "type": "fieldset",
                                                                                     "htmlClass": "myclass",
                                                                                     "description": "(Optional) - Details about the gas injection system (GIS)",
