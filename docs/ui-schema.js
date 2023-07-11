@@ -1567,7 +1567,7 @@ var uiSchema = {
                                                                                         {
                                                                                             "title": "Beam Deposition Type",
                                                                                             "key": "entry.instrument.FIB.gasInjectionSystem.beamDepositionType"
-                                                                                        },
+                                                                                        }
                                                                                     ]
                                                                                 },
                                                                                 {

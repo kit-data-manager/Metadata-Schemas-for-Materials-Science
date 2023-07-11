@@ -568,7 +568,7 @@ var dataModel = {
             },
             "gunPressure":{
                "$ref":"#/$defs/pressureDetails",
-               "description":"(Required) - Gives the pressure maintained in the FIB gun"
+               "description":"(Optional) - Gives the pressure maintained in the FIB gun"
             }
          },
          "required":[
