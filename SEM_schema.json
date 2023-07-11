@@ -66,7 +66,6 @@
             "endTime",
             "definition",
             "user",
-            "sample",
             "instrument"
          ],
          "title":"entry"
@@ -172,8 +171,7 @@
             }
          },
          "required":[
-            "userName",
-            "role"
+            "userName"
          ],
          "title":"user"
       },
@@ -309,7 +307,7 @@
                "default":"mm",
                "enum":[
                   "nm",
-                  "um",
+                  "µm",
                   "mm",
                   "cm",
                   "m"
@@ -375,7 +373,7 @@
                "default":"ug",
                "enum":[
                   "ng",
-                  "ug",
+                  "µg",
                   "mg",
                   "g",
                   "kg"
@@ -574,10 +572,6 @@
             "gunVacuum":{
                "$ref":"#/$defs/pressureDetails",
                "description":"(Optional) - Gives the pressure maintained in the electron gun"
-            },
-            "gunPressure":{
-               "$ref":"#/$defs/pressureDetails",
-               "description":"(Optional) - Gives the pressure maintained in the FIB gun"
             }
          },
          "required":[
@@ -597,7 +591,7 @@
             },
             "unit":{
                "type":"string",
-               "default":"uAh",
+               "default":"µAh",
                "description":"(Required) - the unit of the value (default value - uAh) of datatype string"
             },
             "qualifier":{
@@ -634,7 +628,7 @@
                "type":"string",
                "default":"kV",
                "enum":[
-                  "uV",
+                  "µV",
                   "mV",
                   "V",
                   "kV",
@@ -678,7 +672,7 @@
                "enum":[
                   "pA",
                   "nA",
-                  "uA",
+                  "µA",
                   "mA",
                   "A"
                ],
@@ -842,8 +836,6 @@
             }
          },
          "required":[
-            "isCorrelationImage",
-            "collectionMethod",
             "numberOfPixels",
             "pixelSize"
          ],
@@ -886,7 +878,7 @@
                "default":"um",
                "enum":[
                   "nm",
-                  "um",
+                  "µm",
                   "mm",
                   "cm",
                   "m"
@@ -1009,7 +1001,7 @@
                "enum":[
                   "ps",
                   "ns",
-                  "us",
+                  "µs",
                   "ms",
                   "s"
                ],
@@ -1136,8 +1128,7 @@
             }
          },
          "required":[
-            "detectorName",
-            "detectorType"
+            "detectorName"
          ],
          "title":"detectorDetails"
       },
@@ -1176,6 +1167,7 @@
                   "MeV",
                   "nJ",
                   "mJ",
+                  "µJ",
                   "J",
                   "kJ",
                   "MJ"
@@ -1238,10 +1230,13 @@
             "FIBSpotSize":{
                "$ref":"#/$defs/distanceDetails",
                "description":"(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, um, mm, cm, m)"
+            },
+            "gunPressure":{
+               "$ref":"#/$defs/pressureDetails",
+               "description":"(Optional) - Gives the pressure maintained in the FIB gun"
             }
          },
          "required":[
-            "FIBColumn",
             "iBeamSource",
             "FIBExtractor",
             "FIBProbe"
