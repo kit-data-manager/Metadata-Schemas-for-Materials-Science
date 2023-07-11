@@ -38,7 +38,7 @@
             },
             "definition":{
                "type":"string",
-               "description":"(Required)- Name of the schema to which this entry conforms. In this case, SEM should be written"
+               "description":"(Optional)- Name of the schema to which this entry conforms. In this case, SEM should be written"
             },
             "program":{
                "$ref":"#/$defs/program",
