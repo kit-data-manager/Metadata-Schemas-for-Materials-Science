@@ -22,6 +22,7 @@
         "acquisition.dataset.columns":"EMProject.Datasets.Dataset.Columns",
         "acquisition.dataset.tileColumn":"EMProject.Datasets.Dataset.LiveAcquisition.TileColumn",
         "acquisition.dataset.tileRow":"EMProject.Datasets.Dataset.LiveAcquisition.TileRow",
+        "acquisition.dataset.instrument.spot":"Images.SEM Image.SliceImage.Beam.spot",
         "acquisition.dataset.instrument.beamType":"Images.SEM Image.SliceImage.Beam.beam",
         "acquisition.dataset.instrument.eBeam.accelerationVoltage.value":"Images.SEM Image.SliceImage.EBeam.hv",
         "acquisition.dataset.instrument.eBeam.beamCurrent.value":"Images.SEM Image.SliceImage.EBeam.beamcurrent",
