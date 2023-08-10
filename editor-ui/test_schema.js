@@ -8,7 +8,10 @@ var dataModel = {
             "properties": {
 
                 "UserNameValues": {
-                    "type": "string"
+                    "type": "string",
+                    'title' : '',
+                    'description' : ''
+                
                 }
             }
         }, 
@@ -19,6 +22,20 @@ var dataModel = {
             "properties": {
 
                 "UserRoleValues": {
+                    "type": "string",
+                    'title' : '',
+                    'description' : '',
+                    "enum": []
+                }
+            }
+        },
+
+        "PhysStatus": {
+            "type": "object",
+
+            "properties": {
+
+                "PhysStatusValues": {
                     "type": "string",
                     "enum": []
                 }
@@ -37,9 +54,14 @@ var dataModel = {
 
         'UserRole': {
             "$ref": "#/$defs/UserRole"
-        }
+        },
+
+        'PhysStatus': {
+            "$ref": "#/$defs/PhysStatus"
+        },
+
     },
-    "required": ['UserName', 'UserRole']
+    "required": ['UserName', 'UserRole', 'PhysStatus']
 
 }
 
