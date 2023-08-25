@@ -191,30 +191,18 @@ var uiSchema = {
                         {
                             "type": "selectfieldset",
                             "title": "Sample Preparation Step",
-                            "key": "samplePreparation.preparationMethod.preparationStep",
-                            "titleMap": 
-                            {
-                                "notApplicable": "Not Applicable",
-                                "annealingHomogenization": "Annealing and Homogenization",
-                                "depositionCoating": "Deposition and Coating",
-                                "joining": "Joining",
-                                "mechanicalAndSurface": "Mechanical and Surface",
-                                "powderProcessing": "Powder Processing",
-                                "cooling": "Cooling",
-                                "reactive": "Reactive",
-                                "other": "Other (please add in the comments)"
-                            },
+                            "key": "samplePreparation.preparationMethod[].preparationStep",
                             "items": 
                             [
-                                "samplePreparation.preparationMethod.notApplicable", 
-                                "samplePreparation.preparationMethod.annealingHomogenization",
-                                "samplePreparation.preparationMethod.depositionCoating",
-                                "samplePreparation.preparationMethod.joining",
-                                "samplePreparation.preparationMethod.mechanicalAndSurface",
-                                "samplePreparation.preparationMethod.powderProcessing",
-                                "samplePreparation.preparationMethod.cooling",
-                                "samplePreparation.preparationMethod.reactive",
-                                "samplePreparation.preparationMethod.other"
+                                "samplePreparation.preparationMethod[].notApplicable", 
+                                "samplePreparation.preparationMethod[].annealingHomogenization",
+                                "samplePreparation.preparationMethod[].depositionCoating",
+                                "samplePreparation.preparationMethod[].joining",
+                                "samplePreparation.preparationMethod[].mechanicalAndSurface",
+                                "samplePreparation.preparationMethod[].powderProcessing",
+                                "samplePreparation.preparationMethod[].cooling",
+                                "samplePreparation.preparationMethod[].reactive",
+                                "samplePreparation.preparationMethod[].other"
                             ]
                         },
                     ]

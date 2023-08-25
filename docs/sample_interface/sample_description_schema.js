@@ -590,9 +590,9 @@ var dataModel = {
                                     "comments": {"type": "string"}
                                 }
                             }
-                                    }
-                                }
-                            },
+                        }
+                    }
+                },
                 "comments": {"type": "string"}
             }
         },
@@ -614,209 +614,224 @@ var dataModel = {
                 },
                 "preparationMethod":
                 {
-                    "type": "object",
-                    "properties":
+                    "type": "array",
+                    "items":
                     {
-                        "preparationStep":
+                        "type": "object",
+                        "properties":
                         {
-                            "type": "object",
-                            "enum":
-                            [
-                                "notApplicable",
-                                "annealingHomogenization",
-                                "depositionCoating",
-                                "joining",
-                                "mechanicalAndSurface",
-                                "powderProcessing",
-                                "cooling",
-                                "reactive",
-                                "other (please add in the comments)"
-                            ]
-                        },
-                        "comments": {"type": "string"},
-                        "notApplicable":
-                        {
-                            "type": "object",
-                            "properties":
-                            {}
-                        },
-                        "annealingHomogenization":
-                        {
-                            "type": "object",
-                            "properties":
+                            "preparationStep":
                             {
-                                "annealingHomogenizationMethod":
+                                "type": "object",
+                                "enum":
+                                [
+                                    "notApplicable",
+                                    "annealingHomogenization",
+                                    "depositionCoating",
+                                    "joining",
+                                    "mechanicalAndSurface",
+                                    "powderProcessing",
+                                    "cooling",
+                                    "reactive",
+                                    "other (please add in the comments)"
+                                ]
+                            },
+                            "notApplicable":
+                            {
+                                "type": "object",
+                                "properties":
                                 {
-                                    "type": "string",
-                                    "enum":
-                                    [
-                                        "unspecified annealing and homogenization",
-                                        "aging",
-                                        "dry blending",
-                                        "homogenization",
-                                        "mechanical mixing",
-                                        "melt mixing",
-                                        "normalizing",
-                                        "recrystallization",
-                                        "stress relieving",
-                                        "tempering",
-                                        "twin screw excrusion",
-                                        "ultrasonication",
-                                        "vacuum annealing/heating",
-                                        "curing/hardening",
-                                        "other (please add in the comments)"
-                                    ]
+                                    "comments": {"type": "string"}
+                                }
+                            },
+                            "annealingHomogenization":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "annealingHomogenizationMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified annealing and homogenization",
+                                            "aging",
+                                            "dry blending",
+                                            "homogenization",
+                                            "mechanical mixing",
+                                            "melt mixing",
+                                            "normalizing",
+                                            "recrystallization",
+                                            "stress relieving",
+                                            "tempering",
+                                            "twin screw excrusion",
+                                            "ultrasonication",
+                                            "vacuum annealing/heating",
+                                            "curing/hardening",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"}
+                                }
+                            },
+                            "depositionCoating":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "depositionCoatingMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified deposition and coating",
+                                            "chemical vapour deposition",
+                                            "atomic layer deposition",
+                                            "gas dosing/gas exposure",
+                                            "sputter coating",
+                                            "ion implantation",
+                                            "electrodeposition",
+                                            "evaporation/physical vapor deposition",
+                                            "electron beam deposition",
+                                            "ion beam deposition",
+                                            "beam epitaxy",
+                                            "ink-jet deposition",
+                                            "pulsed laser deposition",
+                                            "Langmuir-Blodgett film deposition",
+                                            "plasma spraying",
+                                            "carbon evaporation coating",
+                                            "spin coating",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"}
+                                }
+                            },
+                            "joining":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "joiningMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified joining",
+                                            "adhesive bonding",
+                                            "soldering/brazing/wire bonding",
+                                            "resistance welding",
+                                            "clamping",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"}
+                                }
+                            },
+                            "mechanicalAndSurface":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "mechanicalAndSurfaceMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified mechanical and surface",
+                                            "focused ion beam",
+                                            "lithography",
+                                            "polishing",
+                                            "sectioning",
+                                            "sputtering",
+                                            "thermal plasma processing",
+                                            "exfoliation/cleavage/decapping",
+                                            "grinding",
+                                            "etching",
+                                            "grit blasting",
+                                            "sterilization",
+                                            "Laser Surface Texturing (LST)",
+                                            "dimpling",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"}
+                                }
+                            },
+                            "powderProcessing":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "powderProcessingMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified powder processing",
+                                            "sieve fraction preparation",
+                                            "pressing",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"}
+                                }
+                            },
+                            "cooling":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "coolingMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified cooling",
+                                            "gas cooling",
+                                            "vacuum cooling",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"}
+                                }
+                            },
+                            "reactive":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "reactiveMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified reactive",
+                                            "addition polymerization",
+                                            "condensation polymerization",
+                                            "curing",
+                                            "dissolving/etching",
+                                            "drying",
+                                            "in-situ polymerization",
+                                            "post-polymerization modification",
+                                            "reductive roasting",
+                                            "solution processing",
+                                            "reactive ion etching (RIE/IBE)",
+                                            "other (please specify in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"}
+                                }
+                            },
+                            "other": 
+                            {
+                                "type": "object",
+                                "properties": 
+                                {
+                                    "comments": {"type": "string"}
                                 }
                             }
-                        },
-                        "depositionCoating":
-                        {
-                            "type": "object",
-                            "properties":
-                            {
-                                "depositionCoatingMethod":
-                                {
-                                    "type": "string",
-                                    "enum":
-                                    [
-                                        "unspecified deposition and coating",
-                                        "chemical vapour deposition",
-                                        "atomic layer deposition",
-                                        "gas dosing/gas exposure",
-                                        "sputter coating",
-                                        "ion implantation",
-                                        "electrodeposition",
-                                        "evaporation/physical vapor deposition",
-                                        "electron beam deposition",
-                                        "ion beam deposition",
-                                        "beam epitaxy",
-                                        "ink-jet deposition",
-                                        "pulsed laser deposition",
-                                        "Langmuir-Blodgett film deposition",
-                                        "plasma spraying",
-                                        "carbon evaporation coating",
-                                        "spin coating",
-                                        "other (please add in the comments)"
-                                    ]
-                                }
-                            }
-                        },
-                        "joining":
-                        {
-                            "type": "object",
-                            "properties":
-                            {
-                                "joiningMethod":
-                                {
-                                    "type": "string",
-                                    "enum":
-                                    [
-                                        "unspecified joining",
-                                        "adhesive bonding",
-                                        "soldering/brazing/wire bonding",
-                                        "resistance welding",
-                                        "clamping",
-                                        "other (please add in the comments)"
-                                    ]
-                                }
-                            }
-                        },
-                        "mechanicalAndSurface":
-                        {
-                            "type": "object",
-                            "properties":
-                            {
-                                "mechanicalAndSurfaceMethod":
-                                {
-                                    "type": "string",
-                                    "enum":
-                                    [
-                                        "unspecified mechanical and surface",
-                                        "focused ion beam",
-                                        "lithography",
-                                        "polishing",
-                                        "sectioning",
-                                        "sputtering",
-                                        "thermal plasma processing",
-                                        "exfoliation/cleavage/decapping",
-                                        "grinding",
-                                        "etching",
-                                        "grit blasting",
-                                        "sterilization",
-                                        "Laser Surface Texturing (LST)",
-                                        "dimpling",
-                                        "other (please add in the comments)"
-                                    ]
-                                }
-                            }
-                        },
-                        "powderProcessing":
-                        {
-                            "type": "object",
-                            "properties":
-                            {
-                                "powderProcessingMethod":
-                                {
-                                    "type": "string",
-                                    "enum":
-                                    [
-                                        "unspecified powder processing",
-                                        "sieve fraction preparation",
-                                        "pressing",
-                                        "other (please add in the comments)"
-                                    ]
-                                }
-                            }
-                        },
-                        "cooling":
-                        {
-                            "type": "object",
-                            "properties":
-                            {
-                                "coolingMethod":
-                                {
-                                    "type": "string",
-                                    "enum":
-                                    [
-                                        "unspecified cooling",
-                                        "gas cooling",
-                                        "vacuum cooling",
-                                        "other (please add in the comments)"
-                                    ]
-                                }
-                            }
-                        },
-                        "reactive":
-                        {
-                            "type": "object",
-                            "properties":
-                            {
-                                "reactiveMethod":
-                                {
-                                    "type": "string",
-                                    "enum":
-                                    [
-                                        "unspecified reactive",
-                                        "addition polymerization",
-                                        "condensation polymerization",
-                                        "curing",
-                                        "dissolving/etching",
-                                        "drying",
-                                        "in-situ polymerization",
-                                        "post-polymerization modification",
-                                        "reductive roasting",
-                                        "solution processing",
-                                        "reactive ion etching (RIE/IBE)",
-                                        "other (please specify in the comments)"
-                                    ]
-                                }
-                            }
-                        },
-                        "other": 
-                        {
-                            "type": "object",
-                            "properties": {}
-                        } 
+                        }
                     }
                 },
                 "precursors":
