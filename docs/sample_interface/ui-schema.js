@@ -138,43 +138,39 @@ var uiSchema = {
             "items": 
             [
                 {"title": "Sample Producer", "key": "sampleProducer.sampleProducer"},
-                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleProducer.comments"}
+                {"title": "Comments", "type": "textarea", "htmlClass": "comments", "key": "sampleProducer.comments"}
             ]
         },
         {
             "legend": "Fabrication",
             "type": "fieldset",
             "htmlClass": "myclass",
-            "items": 
+            "items":
             [
                 {
-                    "type": "selectfieldset",
-                    "title": "Fabrication Step",
-                    "key": "fabrication.fabricationStep",
-                    "titleMap": 
-                    {
-                        "notApplicable": "Not Applicable",
-                        "annealingHomogenization": "Annealing and Homogenization",
-                        "forming": "Forming",
-                        "joining": "Joining",
-                        "mechanicalAndSurface": "Mechanical and Surface",
-                        "powderProcessing": "Powder Processing",
-                        "cooling": "Cooling",
-                        "other": "Other (please add in the comments)"
-                    },
-                    "items": 
+                    "type": "array",
+                    "title": "Fabrication", 
+                    "key": "fabrication.fabrication",
+                    "items":
                     [
-                        "fabrication.notApplicable", 
-                        "fabrication.annealingHomogenization",
-                        "fabrication.forming",
-                        "fabrication.joining",
-                        "fabrication.mechanicalAndSurface",
-                        "fabrication.powderProcessing",
-                        "fabrication.cooling",
-                        "fabrication.other"
+                        {
+                            "type": "selectfieldset",
+                            "key": "fabrication.fabrication[].fabricationStep",
+                            "items": 
+                            [
+                                "fabrication.fabrication[].notApplicable", 
+                                "fabrication.fabrication[].annealingHomogenization", 
+                                "fabrication.fabrication[].forming",
+                                "fabrication.fabrication[].joining",
+                                "fabrication.fabrication[].mechanicalAndSurface",
+                                "fabrication.fabrication[].powderProcessing",
+                                "fabrication.fabrication[].cooling",
+                                "fabrication.fabrication[].other"
+                            ]
+                        }
                     ]
                 },
-                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "fabrication.comments"}
+                {"title": "Comments", "type": "textarea", "htmlClass": "comments", "key": "fabrication.comments"}
             ]
         },
         {
@@ -187,32 +183,40 @@ var uiSchema = {
                 {"title": "Sample Preparation Date", "key": "samplePreparation.preparationDate"},
                 {"title": "Sample Preparation Purpose", "key": "samplePreparation.preparationPurpose"},
                 {
-                    "type": "selectfieldset",
-                    "title": "Sample Preparation Method",
-                    "key": "samplePreparation.preparationMethod.preparationStep",
-                    "titleMap": 
-                    {
-                        "notApplicable": "Not Applicable",
-                        "annealingHomogenization": "Annealing and Homogenization",
-                        "depositionCoating": "Deposition and Coating",
-                        "joining": "Joining",
-                        "mechanicalAndSurface": "Mechanical and Surface",
-                        "powderProcessing": "Powder Processing",
-                        "cooling": "Cooling",
-                        "reactive": "Reactive",
-                        "other": "Other (please add in the comments)"
-                    },
+                    "title": "Use the + to insert each Sample Preparation Step",
+                    "type": "array",
+                    "htmlClass": "myclass",
                     "items": 
                     [
-                        "samplePreparation.preparationMethod.notApplicable", 
-                        "samplePreparation.preparationMethod.annealingHomogenization",
-                        "samplePreparation.preparationMethod.depositionCoating",
-                        "samplePreparation.preparationMethod.joining",
-                        "samplePreparation.preparationMethod.mechanicalAndSurface",
-                        "samplePreparation.preparationMethod.powderProcessing",
-                        "samplePreparation.preparationMethod.cooling",
-                        "samplePreparation.preparationMethod.reactive",
-                        "samplePreparation.preparationMethod.other"
+                        {
+                            "type": "selectfieldset",
+                            "title": "Sample Preparation Step",
+                            "key": "samplePreparation.preparationMethod.preparationStep",
+                            "titleMap": 
+                            {
+                                "notApplicable": "Not Applicable",
+                                "annealingHomogenization": "Annealing and Homogenization",
+                                "depositionCoating": "Deposition and Coating",
+                                "joining": "Joining",
+                                "mechanicalAndSurface": "Mechanical and Surface",
+                                "powderProcessing": "Powder Processing",
+                                "cooling": "Cooling",
+                                "reactive": "Reactive",
+                                "other": "Other (please add in the comments)"
+                            },
+                            "items": 
+                            [
+                                "samplePreparation.preparationMethod.notApplicable", 
+                                "samplePreparation.preparationMethod.annealingHomogenization",
+                                "samplePreparation.preparationMethod.depositionCoating",
+                                "samplePreparation.preparationMethod.joining",
+                                "samplePreparation.preparationMethod.mechanicalAndSurface",
+                                "samplePreparation.preparationMethod.powderProcessing",
+                                "samplePreparation.preparationMethod.cooling",
+                                "samplePreparation.preparationMethod.reactive",
+                                "samplePreparation.preparationMethod.other"
+                            ]
+                        },
                     ]
                 },
                 {"title": "Sample Preparation Description", "key": "samplePreparation.preparationDescription"},

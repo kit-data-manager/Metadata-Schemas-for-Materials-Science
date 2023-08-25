@@ -374,204 +374,215 @@ var dataModel = {
             "type": "object",
             "properties":
             {
-                "fabricationStep":
+                "fabrication": 
                 {
-                    "type": "object",
-                    "description": "(Optional) - The production of a Precursor in controlled conditions performed by a commercial enterprise, one or more Research Users or a third party. Fabrication may require the use of Equipment, Consumables and Instrument(s). A Measurement may also be performed during the Fabrication, e.g., to characterize the intermediate and/or final resulting Precursor(s).",
-                    "enum":
-                    [
-                        "notApplicable",
-                        "annealingHomogenization",
-                        "forming",
-                        "joining",
-                        "mechanicalAndSurface",
-                        "powderProcessing",
-                        "cooling",
-                        "other (please add in the comments)"
-                    ]
-                },
-                "comments": {"type": "string"},
-                "notApplicable":
-                {
-                    "type": "object",
-                    "properties":{}
-                },
-                "annealingHomogenization":
-                {
-                    "type": "object",
-                    "properties":
+                    "type": "array",
+                    "items":
                     {
-                        "annealingHomogenizationMethod":
+                        "type": "object",
+                        "properties": 
                         {
-                            "type": "string",
-                            "enum":
-                            [
-                                "unspecified annealing and homogenization",
-                                "aging",
-                                "dry blending",
-                                "homogenization",
-                                "mechanical mixing",
-                                "melt mixing",
-                                "normalizing",
-                                "recrystallization",
-                                "stress relieving",
-                                "tempering",
-                                "twin screw excrusion",
-                                "ultrasonication",
-                                "vacuum annealing/heating",
-                                "curing/hardening",
-                                "other (please add in the comments)"
-                            ]
-                        }
-                    }
-                },
-                "forming":
-                {
-                    "type": "object",
-                    "properties":
-                    {
-                        "formingMethod":
-                        {
-                            "type": "string",
-                            "enum":
-                            [
-                                "unspecified molding or casting",
-                                "cold rolling",
-                                "compression molding",
-                                "drawing",
-                                "extrusion",
-                                "forging",
-                                "hot pressing",
-                                "cold pressing",
-                                "hot rolling",
-                                "injection molding",
-                                "3D-printing",
-                                "milling",
-                                "lathing",
-                                "rotational molding",
-                                "vacuum molding",
-                                "centrifugal casting",
-                                "continuous casting",
-                                "die casting",
-                                "investment casting",
-                                "sand casting",
-                                "slip casting",
-                                "vacuum arc melting",
-                                "vacuum casting",
-                                "solvent casting",
-                                "permanent mould casting",
-                                "direct chill casting",
-                                "other (please add in the comments)"
-                            ]
-                        }
-                        
-                    }
-                },
-                "joining":
-                {
-                    "type": "object",
-                    "properties":
-                    {
-                        "joiningMethod":
-                        {
-                            "type": "string",
-                            "enum":
-                        [
-                            "unspecified joining",
-                            "adhesive bonding",
-                            "soldering/brazing/wire bonding",
-                            "arc welding",
-                            "gas welding",
-                            "resistance welding",
-                            "solid-state welding",
-                            "thermo-chemical welding",
-                            "energy beam welding",
-                            "plastic welding",
-                            "riveting",
-                            "seaming",
-                            "clamping",
-                            "bolting/screwing",
-                            "caulking",
-                            "shrink-fitting",
-                            "other (please add in the comments)"
-                        ]
-                        }
-                    }
-                },
-                "mechanicalAndSurface":
-                {
-                    "type": "object",
-                    "properties":
-                    {
-                        "mechanicalAndSurfaceMethod":
-                        {
-                            "type": "string",
-                            "enum":
-                            [
-                                "unspecified mechanical and surface",
-                                "polishing",
-                                "sectioning",
-                                "other (please add in the comments)"
-                            ]
-                        }
-                    }
-                },
-                "powderProcessing":
-                {
-                    "type": "object",
-                    "properties":
-                    {
-                        "powderProcessingMethod":
-                        {
-                            "type": "string",
-                            "enum":
-                            [
-                                "unspecified powder processing",
-                                "atomization",
-                                "bar milling",
-                                "centrifugal disintegration",
-                                "hot pressing",
-                                "sintering",
-                                "sponge iron process",
-                                "blending",
-                                "feedstock blending",
-                                "sieve fraction preparation",
-                                "pressing",
-                                "other (please add in the comments)"
-                            ]
-                        }
-                    }
-                },
-                "cooling":
-                {
-                    "type": "object",
-                    "properties":
-                    {
-                        "coolingMethod":
-                        {
-                            "type": "string",
-                            "enum":
-                            [
-                                "unspecified cooling",
-                                "air cooling/quench",
-                                "brine quench",
-                                "furnace cooling",
-                                "gas cooling",
-                                "ice quench",
-                                "liquid nitrogen quench",
-                                "oil quench",
-                                "water quench",
-                                "vacuum cooling",
-                                "other (please add in the comments)"
-                            ]
-                        }
-                    }
-                },
-                "other": 
-                {
-                    "type": "object",
-                    "properties": {}
-                }
+                            "fabricationStep": 
+                            {
+                                "type": "object",
+                                "title": "Fabrication Step",
+                                "enum": 
+                                [
+                                    "notApplicable",
+                                    "annealingHomogenization",
+                                    "forming",
+                                    "joining",
+                                    "mechanicalAndSurface",
+                                    "powderProcessing",
+                                    "cooling",
+                                    "other"
+                                ]
+                            },
+                            "notApplicable":
+                            {
+                                "type": "object",
+                                "properties":{}
+                            },
+                            "annealingHomogenization":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "annealingHomogenizationMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified annealing and homogenization",
+                                            "aging",
+                                            "dry blending",
+                                            "homogenization",
+                                            "mechanical mixing",
+                                            "melt mixing",
+                                            "normalizing",
+                                            "recrystallization",
+                                            "stress relieving",
+                                            "tempering",
+                                            "twin screw excrusion",
+                                            "ultrasonication",
+                                            "vacuum annealing/heating",
+                                            "curing/hardening",
+                                            "other (please add in the comments)"
+                                        ]
+                                    }
+                                }
+                            },
+                            "forming":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "formingMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified molding or casting",
+                                            "cold rolling",
+                                            "compression molding",
+                                            "drawing",
+                                            "extrusion",
+                                            "forging",
+                                            "hot pressing",
+                                            "cold pressing",
+                                            "hot rolling",
+                                            "injection molding",
+                                            "3D-printing",
+                                            "milling",
+                                            "lathing",
+                                            "rotational molding",
+                                            "vacuum molding",
+                                            "centrifugal casting",
+                                            "continuous casting",
+                                            "die casting",
+                                            "investment casting",
+                                            "sand casting",
+                                            "slip casting",
+                                            "vacuum arc melting",
+                                            "vacuum casting",
+                                            "solvent casting",
+                                            "permanent mould casting",
+                                            "direct chill casting",
+                                            "other (please add in the comments)"
+                                        ]
+                                    }
+                                    
+                                }
+                            },
+                            "joining":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "joiningMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                    [
+                                        "unspecified joining",
+                                        "adhesive bonding",
+                                        "soldering/brazing/wire bonding",
+                                        "arc welding",
+                                        "gas welding",
+                                        "resistance welding",
+                                        "solid-state welding",
+                                        "thermo-chemical welding",
+                                        "energy beam welding",
+                                        "plastic welding",
+                                        "riveting",
+                                        "seaming",
+                                        "clamping",
+                                        "bolting/screwing",
+                                        "caulking",
+                                        "shrink-fitting",
+                                        "other (please add in the comments)"
+                                    ]
+                                    }
+                                }
+                            },
+                            "mechanicalAndSurface":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "mechanicalAndSurfaceMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified mechanical and surface",
+                                            "polishing",
+                                            "sectioning",
+                                            "other (please add in the comments)"
+                                        ]
+                                    }
+                                }
+                            },
+                            "powderProcessing":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "powderProcessingMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified powder processing",
+                                            "atomization",
+                                            "bar milling",
+                                            "centrifugal disintegration",
+                                            "hot pressing",
+                                            "sintering",
+                                            "sponge iron process",
+                                            "blending",
+                                            "feedstock blending",
+                                            "sieve fraction preparation",
+                                            "pressing",
+                                            "other (please add in the comments)"
+                                        ]
+                                    }
+                                }
+                            },
+                            "cooling":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "coolingMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified cooling",
+                                            "air cooling/quench",
+                                            "brine quench",
+                                            "furnace cooling",
+                                            "gas cooling",
+                                            "ice quench",
+                                            "liquid nitrogen quench",
+                                            "oil quench",
+                                            "water quench",
+                                            "vacuum cooling",
+                                            "other (please add in the comments)"
+                                        ]
+                                    }
+                                }
+                            },
+                            "other": 
+                            {
+                                "type": "object",
+                                "properties": {}
+                            }
+                                    }
+                                }
+                            },
+                "comments": {"type": "string"}
             }
         },
         "samplePreparation":
