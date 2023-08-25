@@ -149,7 +149,7 @@ var uiSchema = {
             [
                 {
                     "type": "array",
-                    "title": "Fabrication", 
+                    "title": "Use the + to insert each Fabrication Step", 
                     "key": "fabrication.fabrication",
                     "items":
                     [

@@ -401,7 +401,10 @@ var dataModel = {
                             "notApplicable":
                             {
                                 "type": "object",
-                                "properties":{}
+                                "properties":
+                                {
+                                    "comments": {"type": "string"}
+                                }
                             },
                             "annealingHomogenization":
                             {
@@ -429,7 +432,8 @@ var dataModel = {
                                             "curing/hardening",
                                             "other (please add in the comments)"
                                         ]
-                                    }
+                                    },
+                                    "comments": {"type": "string"}
                                 }
                             },
                             "forming":
@@ -470,8 +474,8 @@ var dataModel = {
                                             "direct chill casting",
                                             "other (please add in the comments)"
                                         ]
-                                    }
-                                    
+                                    },
+                                    "comments": {"type": "string"}
                                 }
                             },
                             "joining":
@@ -503,7 +507,8 @@ var dataModel = {
                                         "other (please add in the comments)"
                                     ]
                                     }
-                                }
+                                },
+                                "comments": {"type": "string"}
                             },
                             "mechanicalAndSurface":
                             {
@@ -520,7 +525,8 @@ var dataModel = {
                                             "sectioning",
                                             "other (please add in the comments)"
                                         ]
-                                    }
+                                    },
+                                    "comments": {"type": "string"}
                                 }
                             },
                             "powderProcessing":
@@ -546,7 +552,8 @@ var dataModel = {
                                             "pressing",
                                             "other (please add in the comments)"
                                         ]
-                                    }
+                                    },
+                                    "comments": {"type": "string"}
                                 }
                             },
                             "cooling":
@@ -571,13 +578,17 @@ var dataModel = {
                                             "vacuum cooling",
                                             "other (please add in the comments)"
                                         ]
-                                    }
+                                    },
+                                    "comments": {"type": "string"}
                                 }
                             },
                             "other": 
                             {
                                 "type": "object",
-                                "properties": {}
+                                "properties": 
+                                {
+                                    "comments": {"type": "string"}
+                                }
                             }
                                     }
                                 }
@@ -626,7 +637,8 @@ var dataModel = {
                         "notApplicable":
                         {
                             "type": "object",
-                            "properties":{}
+                            "properties":
+                            {}
                         },
                         "annealingHomogenization":
                         {
