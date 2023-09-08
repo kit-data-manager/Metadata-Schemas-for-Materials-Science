@@ -8,8 +8,8 @@ Sample files are also provided which are written according to the respective sch
 ## List of available Schemas:
 
 1. Schema for scanning electron microscopy (SEM)
-  * [XSD Schema](SEM/SEM_Schema.xsd)
   * [JSON Schema](SEM/SEM_schema.json)
+  * [XSD Schema](SEM/SEM_Schema.xsd)
   * [Sample SEM Image](SEM/FeMoOx_AntiA_04_1k5x_CN.tif)
   * [Example XML file](SEM/SEM_example.xml)
   * [Example JSON file](SEM/SEM_JSON_example.json)
