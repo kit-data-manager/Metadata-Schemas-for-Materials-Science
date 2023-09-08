@@ -2,7 +2,7 @@
    "$schema":"https://json-schema.org/draft/2019-09/schema",
    "$id":"https://mdmc.kit.edu/schemas/tem_metadata",
    "type":"object",
-   "description":"The purpose of this JSON Schema is to provide description of a transmission electron microscopy (TEM) measurement. The cardinality of all properties are either defined as required or optional and wherever possible a list of controlled vocabularies is provided. Also each property is labelled to indicate if it is automatically extractable (AE) or not automatically extractable (NAE). Note that some of the items which are of the type - object might have some properties which are AE and some others which are NAE, so the overall automatic extractability of these objects would be given as NAE. The automatic extractability of the individual properties of dimensional quantities are, on the contrary, is not always possible to be labelled in the definition, as these are repeated in multiple instances, with each instance having its own automatic extractability",
+   "description":"The purpose of this JSON Schema is to provide description of a transmission electron microscopy (TEM) measurement. The cardinality of all properties are either defined as required or optional and wherever possible a list of controlled vocabularies is provided. Also each property is labelled to indicate if it is automatically extractable (AE) or not automatically extractable (NAE). Note that some of the items which are of the type - object might have some properties which are AE and some others which are NAE, so the overall automatic extractability of these objects would be given as NAE. The automatic extractability of the individual properties of dimensional quantities are, on the contrary, is not always possible to be labelled in the definition, as these are repeated in multiple instances, with each instance having its own automatic extractability. Contributors: Carina B. Maliakkal, Christian Kübel, Dorothee-Vinga Szabo, Di Wang, Maximilian Töllner, Reetu Elza Joseph, Regina Ciancio, Rossella Aversa, Sabine Schlabach, Shyam Chethala Neelakandhan, Xiaoke Mu, Yuting Dai",
    "properties":{
       "entry":{
          "$ref":"#/$defs/entry"
@@ -15,46 +15,55 @@
    "$defs":{
       "entry":{
          "type":"object",
-         "description":"The entry level contains all the metadata describing a single measurement. The design of the schema is modular: in case of multiple measurements, an entry for each measurement can be included. It is the root element of the schema. Properties: entryID (required, NAE)- Identifier of the measurement usually provided by the project or the laboratory, title (required, AE)- Extended title of the measurement of datatype string, startTime (optional, NAE)- Start time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss, endTime (required, AE)- End time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss, definition (optional, NAE)- Name of the schema to which this entry conforms of datatype string, program (optional, AE)- details concerning the program (or software) used for aquisition, defined separately as programDetails, revision (optional, NAE)- details concerning any revision to the xml document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format defined separately as revisionDetails, user (required, NAE)- the contact information of the user responsible for the measurement defined separately as userDetails, sample (required, NAE)- details concerning the sample defined separately as sampleDetails, instrument (required, NAE)- details concerning the instrument settings defined separately as instrumentDetails.",
+         "description":"The entry level contains all the metadata describing a single measurement. The design of the schema is modular: in case of multiple measurements, an entry for each measurement can be included. It is the root element of the schema.",
          "additionalProperties":false,
          "properties":{
             "entryID":{
-               "$ref":"#/$defs/identifier"
+               "$ref":"#/$defs/identifier",
+               "description":"(required, NAE)- Identifier of the measurement usually provided by the project or the laboratory"
             },
             "title":{
-               "type":"string"
+               "type":"string",
+               "description":"(required, AE)- Extended title of the measurement of datatype string"
             },
             "startTime":{
                "type":"string",
-               "format":"date-time"
+               "format":"date-time",
+               "description":"(optional, NAE)- Start time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss"
             },
             "endTime":{
                "type":"string",
-               "format":"date-time"
+               "format":"date-time",
+               "description":"(required, AE)- End time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss"
             },
             "definition":{
-               "type":"string"
+               "type":"string",
+               "description":"(optional, NAE)- Name of the schema to which this entry conforms of datatype string"
             },
             "program":{
-               "$ref":"#/$defs/program"
+               "$ref":"#/$defs/program",
+               "description":"(optional, AE)- Details concerning the program (or software) used for aquisition"
             },
             "revision":{
-               "$ref":"#/$defs/revision"
+               "$ref":"#/$defs/revision",
+               "description":"(optional, NAE)- Details concerning any revision to the json document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format"
             },
             "user":{
-               "$ref":"#/$defs/user"
+               "$ref":"#/$defs/user",
+               "description":"(required, NAE)- Contact information of the user responsible for the measurement"
             },
             "sample":{
-               "$ref":"#/$defs/sample"
+               "$ref":"#/$defs/sample",
+               "description":"(required, NAE)- Details concerning the sample"
             },
             "instrument":{
-               "$ref":"#/$defs/instrumentDetails"
+               "$ref":"#/$defs/instrumentDetails",
+               "description":"(required, NAE)- Details concerning the instrument settings"
             }
          },
          "required":[
             "title",
             "endTime",
-            "definition",
             "user",
             "sample",
             "instrument"
@@ -67,10 +76,12 @@
          "additionalProperties":false,
          "properties":{
             "identifierValue":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "identifierType":{
                "type":"string",
+               "description":"",
                "enum":[
                   "ROR",
                   "GRID",
@@ -88,10 +99,12 @@
          "additionalProperties":false,
          "properties":{
             "programName":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "programVersion":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "title":"program"
@@ -102,10 +115,12 @@
          "description":"details concerning any revision to the xml document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format. Properties: revisionID (optional, NAE) - Identifier of the file, revisionComment (optional, NAE)- any comments to the revision of the datatype string",
          "properties":{
             "revisonID":{
-               "$ref":"#/$defs/identifier"
+               "$ref":"#/$defs/identifier",
+               "description":""
             },
             "revisionComment":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "title":"revision"
@@ -116,16 +131,20 @@
          "description":"Lists the contact information of the user responsible for the measurement. Properties: userName (required, NAE) - the full name of the user preferrably written in the order (familyName, givenName) defined to be of the datatype string, givenName (optional, NAE)-Given name (first name) of the user, familyName (optional, NAE) - Family name or last name of the user, role (optional, NAE) - Role of the user to be selected from an enumerated list - *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader, affiliation (optional, NAE) - Details of the institution to which the user is affiliated, email (optional, NAE) - Email of the userof datatype string (only valid email-ids are acceptable), ORCID (optional, NAE) - Open Researcher and Contributor ID expressed as a URI",
          "properties":{
            "userName":{
-              "type":"string"
+              "type":"string",
+              "description":""
            },
             "givenName":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "familyName":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "role":{
                "type":"string",
+               "description":"",
                "enum":[
                   "Data Curator",
                   "instrument Scientist",
@@ -137,20 +156,22 @@
                ]
             },
             "affiliation":{
-               "$ref":"#/$defs/institutionDetails"
+               "$ref":"#/$defs/institutionDetails",
+               "description":""
             },
             "email":{
                "type":"string",
-               "format":"email"
+               "format":"email",
+               "description":""
             },
             "ORCID":{
                "type":"string",
+               "description":"",
                "pattern":"^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
             }
          },
          "required":[
-            "userName",
-            "role"
+            "userName"
          ],
          "title":"user"
       },
@@ -160,78 +181,100 @@
          "description":"Details of the institution to which the user is affiliated. Properties: institutionName (optional, NAE) - The full name of an institution of datatype string, institutionAcronym (optional, NAE) - The acronym of the institution. Note that authors often cite with acronyms, so this information can be important in matching a query of datatype string, institutionDepartment (optional, NAE)- The department within an institution of datatype string, institutionIdentifier (optional, NAE) - Identifier pertaining to the institution",
          "properties":{
             "institutionName":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "institutionAcronym":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "institutionDepartment":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "institutionID":{
-               "$ref":"#/$defs/identifier"
+               "$ref":"#/$defs/identifier",
+               "description":""
             }
          }
       },
       "sample":{
          "type":"object",
          "additionalProperties":false,
-         "description":"details concerning the sample: properties- sampleName (required, AE) - Name of the sample of the datatype string, sampleID (optional, NAE) - Identifier for the sample, conductive (required, NAE) - Indicates whether the sample  is conductive of datatype boolean, magnetic (required, NAE) - Indicates whether the sample is magnetic of datatype boolean, eBeamSensitive (required, NAE) - Indicates whether the sample is not stable under electron beam of datatype boolean, eBeamSensitivity (optional, NAE) - Details about the type of sensitivity to the electron beam defined separately as eBeamSensitivityDetails (includes radiolysis, knockON, optimizedVoltage, comment and  beamContaminated), iBeamSensitive (optional, NAE) - Indicates whether the sample is not stable under ion beam of datatype boolean, iBeamSensitivity (optional, NAE) - Details about the type of sensitivity to the ion beam defined separately as iBeamSensitivityDetails (includes GaSensitive, HeSensitive and other), embeddingMaterial (required, NAE) - Supporting medium in which the specimen is embedded (e.g., none, demotec 30, 70, Epoxy) of datatype string with default value set as none, sampleForm (optional, NAE) - Description of the sample form (e.g., bulk, nanostructured, powder, pellet) of datatype string, sampleSize (optional, NAE) - Size of the sample defined separately as distanceDetails (includes value, optional uncertainty, optional qualifier, optional notes and a controlled list of units for length - nm, µm, mm, cm, m), sampleThickness (optional, NAE) - Thickness of the sample defined separately as distanceDetails (includes the value, optional uncertainty, optional qualifier, optional notes and a controlled list of units for length - nm, µm, mm, cm, m), sampleHolder (optional, NAE) - Description of the sample holder used defined separately as sampleHolderDetails (includes holderType, washer1, washer2, clamper and fixingMethod), finalSpecimen (optional, NAE) - Description of type of final specimen to be made in case of in-situ TEM structures of type string, plasmaCleaning (optional, NAE) - Details about plasma cleaning performed to prepare the specimen defined separately as plasmaCleaningDetails (includes gasComposition, power, percentPower and duration), storageConditions (optional, NAE) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., gas atmosphere, humidity, temperature and pressure etc) of datatype string, measurementConditions (optional, NAE) - Conditions to be maintained during the measurement inside the machine (e.g., water vapor, cryogenic temperature, gas atmosphere) of datatype string, samplePreparation (optional, NAE) - Details about the sample preparation defined separately as samplePrepType (includes details like date of preparation, description of preparation and preparationID) of datatype string",
+         "description":"details concerning the sample  sampleID (optional, NAE) - Identifier for the sample, conductive (required, NAE) - Indicates whether the sample  is conductive of datatype boolean, magnetic (required, NAE) - Indicates whether the sample is magnetic of datatype boolean, eBeamSensitive (required, NAE) - Indicates whether the sample is not stable under electron beam of datatype boolean, eBeamSensitivity (optional, NAE) - Details about the type of sensitivity to the electron beam defined separately as eBeamSensitivityDetails (includes radiolysis, knockON, optimizedVoltage, comment and  beamContaminated), iBeamSensitive (optional, NAE) - Indicates whether the sample is not stable under ion beam of datatype boolean, iBeamSensitivity (optional, NAE) - Details about the type of sensitivity to the ion beam defined separately as iBeamSensitivityDetails (includes GaSensitive, HeSensitive and other), embeddingMaterial (required, NAE) - Supporting medium in which the specimen is embedded (e.g., none, demotec 30, 70, Epoxy) of datatype string with default value set as none, sampleForm (optional, NAE) - Description of the sample form (e.g., bulk, nanostructured, powder, pellet) of datatype string, sampleSize (optional, NAE) - Size of the sample defined separately as distanceDetails (includes value, optional uncertainty, optional qualifier, optional notes and a controlled list of units for length - nm, µm, mm, cm, m), sampleThickness (optional, NAE) - Thickness of the sample defined separately as distanceDetails (includes the value, optional uncertainty, optional qualifier, optional notes and a controlled list of units for length - nm, µm, mm, cm, m), sampleHolder (optional, NAE) - Description of the sample holder used defined separately as sampleHolderDetails (includes holderType, washer1, washer2, clamper and fixingMethod), finalSpecimen (optional, NAE) - Description of type of final specimen to be made in case of in-situ TEM structures of type string, plasmaCleaning (optional, NAE) - Details about plasma cleaning performed to prepare the specimen defined separately as plasmaCleaningDetails (includes gasComposition, power, percentPower and duration), storageConditions (optional, NAE) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., gas atmosphere, humidity, temperature and pressure etc) of datatype string, measurementConditions (optional, NAE) - Conditions to be maintained during the measurement inside the machine (e.g., water vapor, cryogenic temperature, gas atmosphere) of datatype string, samplePreparation (optional, NAE) - Details about the sample preparation defined separately as samplePrepType (includes details like date of preparation, description of preparation and preparationID) of datatype string",
          "properties":{
             "sampleName":{
-               "type":"string"
+               "type":"string",
+               "description":"(required, AE) - Name of the sample of the datatype string"
             },
             "sampleID":{
-               "$ref":"#/$defs/identifier"
+               "$ref":"#/$defs/identifier",
+               "description":""
             },
             "conductive":{
-               "type":"boolean"
+               "type":"boolean",
+               "description":""
             },
             "magnetic":{
-               "type":"boolean"
+               "type":"boolean",
+               "description":""
             },
             "eBeamSensitive":{
-               "type":"boolean"
+               "type":"boolean",
+               "description":""
             },
             "eBeamSensitivity":{
-               "$ref":"#/$defs/eBeamSensitivityDetails"
+               "$ref":"#/$defs/eBeamSensitivityDetails",
+               "description":""
             },
             "iBeamSensitive":{
-               "type":"boolean"
+               "type":"boolean",
+               "description":""
             },
             "iBeamSensitivity":{
-               "$ref":"#/$defs/iBeamSensitivityDetails"
+               "$ref":"#/$defs/iBeamSensitivityDetails",
+               "description":""
             },
             "embeddingMaterial":{
                "type":"string",
-               "default":"none"
+               "default":"none",
+               "description":""
             },
             "sampleForm":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "sampleSize":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             },
             "sampleThickness":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             },
             "sampleHolder":{
-               "$ref":"#/$defs/sampleHolderDetails"
+               "$ref":"#/$defs/sampleHolderDetails",
+               "description":""
             },
             "finalSpecimen":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "plasmaCleaning":{
-               "$ref":"#/$defs/plasmaCleaningDetails"
+               "$ref":"#/$defs/plasmaCleaningDetails",
+               "description":""
             },
             "storageConditions":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "measurementConditions":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "samplePreparation":{
-               "$ref":"#/$defs/samplePrepType"
+               "$ref":"#/$defs/samplePrepType",
+               "description":""
             }
          },
          "required":[
@@ -248,10 +291,12 @@
          "additionalProperties":false,
          "properties":{
             "value":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "unit":{
                "type":"string",
+               "description":"",
                "enum":[
                   "nm",
                   "µm",
@@ -263,6 +308,7 @@
             "qualifier":{
                "type":"string",
                "default":"max",
+               "description":"",
                "enum":[
                  "max",
                  "min",
@@ -270,10 +316,12 @@
                  ]
             },
             "uncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "notes":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "required":[
@@ -289,6 +337,7 @@
          "properties":{
             "uncertaintyType":{
                "type":"string",
+               "description":"",
                "enum":[
                   "absolute",
                   "relative"
@@ -311,21 +360,26 @@
         "properties":{
           "radiolysis":{
             "type":"boolean",
-            "default": false
+            "default": false,
+            "description":""
           },
           "knockON":{
             "type":"boolean",
-            "default": false
+            "default": false,
+            "description":""
           },
           "optimizedIncidentEnergy":{
-            "$ref":"#/$defs/energyDetails"
+            "$ref":"#/$defs/energyDetails",
+            "description":""
           },
           "comment":{
-            "type":"string"
+            "type":"string",
+            "description":""
           },
           "beamContaminated":{
             "type":"boolean",
-            "default":false
+            "default":false,
+            "description":""
           }
         },
         "title":"eBeamSensitivityDetails"
@@ -336,14 +390,17 @@
         "properties":{
           "GaSensitive":{
             "type":"boolean",
-            "default":false
+            "default":false,
+            "description":""
           },
           "HeSensitive":{
             "type":"boolean",
-            "default":false
+            "default":false,
+            "description":""
           },
           "other":{
-            "type":"string"
+            "type":"string",
+            "description":""
           }
         },
         "title":"iBeamSensitivityDetails"
@@ -353,19 +410,24 @@
         "description":"Details about the sample holder and its componenets and the way in which the sample is mounted onto the sample holder. Properties: holderType (optional, NAE) - Description about the TEM grid or sample holder (of the datatype string), washer1 (optional, NAE) - material of an additional frame used for supporting/ protecting TEM lamella or a TEM sample holder (of the datatype string), washer2 (optional, NAE) - material of an additional washer if used (of the datatype string), clamper (optional, NAE) - material of the clamper (of the datatype string), fixingMethod (optional, NAE) - description about adhesive used to bond/weld specimen to grid, adhere multiple samples for TEM cross-sections, pre-coat samples prior to encapsulation and for other mounting application (of the datatype string)",
         "properties":{
           "holderType":{
-            "type":"string"
+            "type":"string",
+            "description":""
           },
           "washer1":{
-            "type":"string"
+            "type":"string",
+            "description":""
           },
           "washer2":{
-            "type":"string"
+            "type":"string",
+            "description":""
           },
           "clamper":{
-            "type":"string"
+            "type":"string",
+            "description":""
           },
           "fixingMethod":{
-            "type":"string"
+            "type":"string",
+            "description":""
           }
         },
         "title":"sampleHolderDetails"
@@ -375,16 +437,20 @@
         "description":"describes the details of the plasma cleaning procedure if performed. Properties: gasComposition (optional, NAE) - Description of the composition of gases used for plasma cleaning (of the datatype string), power (optional, NAE) - power used for plasma cleaning defined separately as powerDetails, percentPower (optional, NAE) - percentage (out of 100) of the total power of the plasma cleaning device used (of the datatype number), duration (optional, NAE) - duration of time (in seconds) for which plasma cleaning is performed (defined separately as timeDetails)",
         "properties":{
           "gasComposition":{
-            "type":"string"
+            "type":"string",
+            "description":""
           },
           "power":{
-            "$ref":"#/$defs/powerDetails"
+            "$ref":"#/$defs/powerDetails",
+            "description":""
           },
           "percentPower":{
-            "type":"number"
+            "type":"number",
+            "description":""
           },
           "duration":{
-            "$ref":"#/$defs/timeDetails"
+            "$ref":"#/$defs/timeDetails",
+            "description":""
           }
         },
         "title":"plasmaCleaningDetails"
@@ -395,11 +461,13 @@
         "additionalProperties":false,
         "properties":{
            "value":{
-              "type":"number"
+              "type":"number",
+              "description":""
            },
            "unit":{
               "type":"string",
               "default":"W",
+              "description":"",
               "enum":[
                  "mW",
                  "W",
@@ -409,6 +477,7 @@
            "qualifier":{
               "type":"string",
               "default":"max",
+              "description":"",
               "enum":[
                 "max",
                 "min",
@@ -416,10 +485,12 @@
                 ]
            },
            "uncertainty":{
-              "$ref":"#/$defs/uncertaintyDetails"
+              "$ref":"#/$defs/uncertaintyDetails",
+              "description":""
            },
            "notes":{
-              "type":"string"
+              "type":"string",
+              "description":""
            }
         },
         "required":[
@@ -435,13 +506,16 @@
          "properties":{
             "preparationDate":{
                "type":"string",
-               "format":"date"
+               "format":"date",
+               "description":""
             },
             "preparationDescription":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "preparationID":{
-               "$ref":"#/$defs/identifier"
+               "$ref":"#/$defs/identifier",
+               "description":""
             }
          },
          "title":"samplePrepType"
@@ -452,63 +526,77 @@
          "description":"details giving the relevant instrument settings and the collection of the components of the instrument. Properties: instrumentName (required, AE) - Name of the instrument of datatype string, instrumentID (optional, NAE) - Identifier for the instrument, instrumentManufacturer (optional, AE) - details like manufacturer name, model name and manufacturer ID, grouped together and defined separately as manufacturerDetails, precession (optional, AE) - Details about precession like the angle and frequency of precession (defined separately as precessionDetails), additionalAttachments (optional, NAE) - A string to include any additional attachment(s), setMagnification (required, AE) - The magnification set for the diffraction pattern or image (of the datatype number), actualMagnification (optional, AE) - The actual magnification observed which might differ from the set magnification (of the datatype number), driftCorrectionApplied (optional, AE) - To bet set as true if  drift correction is applied to compensate for xy drift (of the datatype boolean), setCameraLength (required, AE) - the effective distance or magnification between the specimen and the detector plane defined separately as distanceDetails, actualCameraLength (optional, AE) - The actual camera length as opposed to the set camera length defined separately as distanceDetails, operationMode (required, AE) - to select the operation mode between TEM or STEM (of the datatype string), objectiveLensMode (optional, NAE) - to select the objective lens mode used from a controlled list (of the datatype string), illuminationMode (optional, NAE) - to select the illumination mode used from a controlled list (of the datatype string), probeMode (optional, AE) - to select the type of probe mode used (nano probe mode or micro probe mode; of the datatype string), imageMode (required, NAE) - to select the image mode out of a controlled list of strings consisiting of * normal image * Selected Area Diffraction (SAD) * Energy-Dispersive X-Ray Spectroscopy (EDXS) * Scanning Transmission Electron Microscopy (STEM) * Nano-Beam Diffraction (NBD) * Convergent Beam Electron Diffraction (CBED), fieldMode (optional, AE) - to select between dark field and bright field modes (of the datatype string), spotSize (required, NAE) - Spotsize (diameter) of the beam or a parameter (integer) indicating the spread of the beam entering the aperture such that a lower number means more electrons are hitting the sample (alternatively it is the size of the first spot formed by the beam after being emitteed from the gun) defined separately as spotSizeDetails ; it is the size of the first spot formed by the beam after being emitted from the gun, defocus (required, AE) - Value indicating how far the sample is away from the focus of the electron beam defined separately as distanceDetails, probeSize (optional, NAE) - Size of the beam at the sample defined separately as distanceDetails, chamberPressure (required, AE) - pressure maintained inside the chamber (in which the sample is housed) during the measurement defined separately as pressureDetails, monochromator (optional, AE) - details pertaining to the monochromator expressed separately as monochromatorDetails, source (required, NAE) - details pertaining to the source of the electron beam expressed separately as sourceDetails, stage (required, AE) - details pertaining to the stage expressed separately as stageDetails, aperture (optional, AE) - details pertaining to the apertures used expressed separately as apertureDetails, lens (required, AE) - details pertaining to the lenses used expressed separately as lensDetails, ASTAR (optional, AE) - details about an ASTAR attachment used with the microscope for orientation-phase imaging defined separately as ASTARdetails, EFTEM (optional, AE) -  Details about Energy Filtered TEM (EFTEM) Mode defined separately as EFTEMdetails, detector (required, NAE) - details pertaining to the detector used expressed separately as detectorDetails",
          "properties":{
             "instrumentName":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "instrumentID":{
-               "$ref":"#/$defs/identifier"
+               "$ref":"#/$defs/identifier",
+               "description":""
             },
             "instrumentManufacturer":{
-               "$ref":"#/$defs/manufacturerDetails"
+               "$ref":"#/$defs/manufacturerDetails",
+               "description":""
             },
             "precession":{
-               "$ref":"#/$defs/precessionDetails"
+               "$ref":"#/$defs/precessionDetails",
+               "description":""
             },
             "additionalAttachments":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "setMagnification":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "actualMagnification":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "driftCorrectionApplied":{
                "type":"boolean",
-               "default":false
+               "default":false,
+               "description":""
             },
             "setCameraLength":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             },
             "actualCameraLength":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             },
             "operationMode":{
                "type":"string",
                "enum":[
                  "TEM",
                  "STEM"
-               ]
+               ],
+               "description":""
             },
             "objectiveLensMode":{
                "type":"string",
                "enum":[
                  "HM",
                  "normal"
-               ]
+               ],
+               "description":""
             },
             "illuminationMode":{
                "type":"string",
                "enum":[
                  "probe",
                  "parallel"
-               ]
+               ],
+               "description":""
             },
             "probeMode":{
                "type":"string",
                "enum":[
                  "micro probe mode",
                  "nano probe mode"
-               ]
+               ],
+               "description":""
             },
             "imageMode":{
                "type":"string",
@@ -518,47 +606,60 @@
                  "EDS",
                  "NBD",
                  "CBED"
-               ]
+               ],
+               "description":""
             },
             "fieldMode":{
                "type":"string",
                "enum":[
                  "dark field",
                  "bright field"
-               ]
+               ],
+               "description":""
             },
             "spotSize":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             },
             "defocus":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             },
             "probeSize":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             },
             "chamberPressure":{
-               "$ref":"#/$defs/pressureDetails"
+               "$ref":"#/$defs/pressureDetails",
+               "description":""
             },
             "monochromator":{
-               "$ref":"#/$defs/monochromatorDetails"
+               "$ref":"#/$defs/monochromatorDetails",
+               "description":""
             },
             "source":{
-               "$ref":"#/$defs/sourceDetails"
+               "$ref":"#/$defs/sourceDetails",
+               "description":""
             },
             "stage":{
-               "$ref":"#/$defs/stageDetails"
+               "$ref":"#/$defs/stageDetails",
+               "description":""
             },
             "aperture":{
-               "$ref":"#/$defs/apertureDetails"
+               "$ref":"#/$defs/apertureDetails",
+               "description":""
             },
             "lens":{
-               "$ref":"#/$defs/lensDetails"
+               "$ref":"#/$defs/lensDetails",
+               "description":""
             },
             "ASTAR":{
-               "$ref":"#/$defs/ASTARdetails"
+               "$ref":"#/$defs/ASTARdetails",
+               "description":""
             },
             "detector":{
-               "$ref":"#/$defs/detectorDetails"
+               "$ref":"#/$defs/detectorDetails",
+               "description":""
             }
          },
          "required":[
@@ -583,13 +684,16 @@
          "additionalProperties":false,
          "properties":{
             "manufacturerName":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "modelName":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "manufacturerID":{
-               "$ref":"#/$defs/identifier"
+               "$ref":"#/$defs/identifier",
+               "description":""
             }
          },
          "title":"manufacturerDetails"
@@ -600,10 +704,12 @@
          "additionalProperties":false,
          "properties":{
             "precessionAngle":{
-              "$ref":"#/$defs/angleDetails"
+              "$ref":"#/$defs/angleDetails",
+              "description":""
             },
             "precessionFrequency":{
-              "$ref":"#/$defs/frequencyDetails"
+              "$ref":"#/$defs/frequencyDetails",
+              "description":""
             }
          },
          "title":"precessionDetails"
@@ -614,7 +720,8 @@
          "additionalProperties":false,
          "properties":{
             "value":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "unit":{
                "type":"string",
@@ -622,7 +729,8 @@
                "enum":[
                   "Hz",
                   "kHz"
-               ]
+               ],
+               "description":""
             },
             "qualifier":{
                "type":"string",
@@ -631,13 +739,16 @@
                  "max",
                  "min",
                  "average"
-                 ]
+                 ],
+                 "description":""
             },
             "uncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "notes":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "required":[
@@ -652,7 +763,8 @@
          "additionalProperties":false,
          "properties":{
             "value":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "unit":{
                "type":"string",
@@ -666,7 +778,8 @@
                   "mbar",
                   "bar",
                   "psi"
-               ]
+               ],
+               "description":""
             },
             "qualifier":{
                "type":"string",
@@ -675,13 +788,16 @@
                  "max",
                  "min",
                  "average"
-                 ]
+                 ],
+                 "description":""
             },
             "uncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "notes":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "required":[
@@ -697,31 +813,40 @@
          "properties":{
            "monochromatorActive":{
              "type":"boolean",
-             "default":false
+             "default":false,
+             "description":""
            },
            "monoShiftX":{
-             "$ref":"#/$defs/voltageDetails"
+             "$ref":"#/$defs/voltageDetails",
+             "description":""
            },
            "monoShiftY":{
-             "$ref":"#/$defs/voltageDetails"
+             "$ref":"#/$defs/voltageDetails",
+             "description":""
            },
            "monoStigmatorX":{
-             "type":"number"
+             "type":"number",
+             "description":""
            },
            "monoStigmatorY":{
-             "type":"number"
+             "type":"number",
+             "description":""
            },
            "monoFocus":{
-             "type":"number"
+             "type":"number",
+             "description":""
            },
            "selectedSlitNo":{
-             "type":"number"
+             "type":"number",
+             "description":""
            },
            "monoPotential":{
-             "$ref":"#/$defs/voltageDetails"
+             "$ref":"#/$defs/voltageDetails",
+             "description":""
            },
            "monoExcitation":{
-             "type":"number"
+             "type":"number",
+             "description":""
            }
          },
          "required":[
@@ -740,7 +865,8 @@
           "additionalProperties":false,
           "properties":{
              "value":{
-                "type":"number"
+                "type":"number",
+                "description":""
              },
              "unit":{
                 "type":"string",
@@ -751,7 +877,8 @@
                    "V",
                    "kV",
                    "MV"
-                ]
+                ],
+                "description":""
              },
              "qualifier":{
                 "type":"string",
@@ -760,13 +887,16 @@
                   "max",
                   "min",
                   "average"
-                  ]
+                  ],
+                  "description":""
              },
              "uncertainty":{
-                "$ref":"#/$defs/uncertaintyDetails"
+                "$ref":"#/$defs/uncertaintyDetails",
+                "description":""
              },
              "notes":{
-                "type":"string"
+                "type":"string",
+                "description":""
              }
           },
           "required":[
@@ -781,25 +911,32 @@
          "additionalProperties":false,
          "properties":{
             "sourceName":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "sourceID":{
-               "$ref":"#/$defs/identifier"
+               "$ref":"#/$defs/identifier",
+               "description":""
             },
             "accelerationVoltage":{
-               "$ref":"#/$defs/voltageDetails"
+               "$ref":"#/$defs/voltageDetails",
+               "description":""
             },
             "beamCurrent":{
-               "$ref":"#/$defs/currentDetails"
+               "$ref":"#/$defs/currentDetails",
+               "description":""
             },
             "currentDensity":{
-               "$ref":"#/$defs/currentDensityDetails"
+               "$ref":"#/$defs/currentDensityDetails",
+               "description":""
             },
             "beamEnergy":{
-               "$ref":"#/$defs/energyDetails"
+               "$ref":"#/$defs/energyDetails",
+               "description":""
             },
             "sourceLifetime":{
-               "$ref":"#/$defs/lifetimeDetails"
+               "$ref":"#/$defs/lifetimeDetails",
+               "description":""
             },
             "gunType":{
                "type":"string",
@@ -809,13 +946,16 @@
                  "cold FEG",
                  "LaB6",
                  "W"
-               ]
+               ],
+               "description":""
             },
             "gunLens":{
-              "type":"string"
+              "type":"string",
+              "description":""
             },
             "extractor":{
-               "$ref":"#/$defs/voltageDetails"
+               "$ref":"#/$defs/voltageDetails",
+               "description":""
             }
          },
          "required":[
@@ -829,7 +969,8 @@
          "additionalProperties":false,
          "properties":{
             "value":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "unit":{
                "type":"string",
@@ -840,7 +981,8 @@
                   "µA",
                   "mA",
                   "A"
-               ]
+               ],
+               "description":""
             },
             "qualifier":{
                "type":"string",
@@ -849,13 +991,16 @@
                  "max",
                  "min",
                  "average"
-                 ]
+                 ],
+               "description":""
             },
             "uncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "notes":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "required":[
@@ -870,7 +1015,8 @@
          "additionalProperties":false,
          "properties":{
             "value":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "unit":{
                "type":"string",
@@ -883,17 +1029,21 @@
                   "mA/cm2",
                   "A/cm2",
                   "A/m2"
-               ]
+               ],
+               "description":""
             },
             "qualifier":{
                "type":"string",
-               "default":"max"
+               "default":"max",
+               "description":""
             },
             "uncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "notes":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "required":[
@@ -908,7 +1058,8 @@
          "additionalProperties":false,
          "properties":{
             "value":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "unit":{
                "type":"string",
@@ -923,7 +1074,8 @@
                   "J",
                   "kJ",
                   "MJ"
-               ]
+               ],
+               "description":""
             },
             "qualifier":{
                "type":"string",
@@ -932,13 +1084,16 @@
                  "max",
                  "min",
                  "average"
-                 ]
+                 ],
+                 "description":""
             },
             "uncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "notes":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "required":[
@@ -953,11 +1108,13 @@
          "additionalProperties":false,
          "properties":{
             "value":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "unit":{
                "type":"string",
-               "default":"µAh"
+               "default":"µAh",
+               "description":""
             },
             "qualifier":{
                "type":"string",
@@ -966,13 +1123,16 @@
                  "max",
                  "min",
                  "average"
-                 ]
+                 ],
+                 "description":""
             },
             "uncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "notes":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "required":[
@@ -987,16 +1147,20 @@
          "additionalProperties":false,
          "properties":{
             "specimenPosition":{
-               "$ref":"#/$defs/coordinateSet"
+               "$ref":"#/$defs/coordinateSet",
+               "description":""
             },
             "tiltAngleAlpha":{
-               "$ref":"#/$defs/angleDetails"
+               "$ref":"#/$defs/angleDetails",
+               "description":""
             },
             "tiltAngleBeta":{
-               "$ref":"#/$defs/angleDetails"
+               "$ref":"#/$defs/angleDetails",
+               "description":""
             },
             "rotation":{
-               "$ref":"#/$defs/angleDetails"
+               "$ref":"#/$defs/angleDetails",
+               "description":""
             }
          },
          "required":[
@@ -1012,22 +1176,28 @@
          "additionalProperties":false,
          "properties":{
             "xValue":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "xUncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "yValue":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "yUncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "zValue":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "zUncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "coordinatesUnit":{
                "type":"string",
@@ -1038,7 +1208,8 @@
                   "mm",
                   "cm",
                   "m"
-               ]
+               ],
+               "description":""
             }
          },
          "required":[
@@ -1054,7 +1225,8 @@
          "additionalProperties":false,
          "properties":{
             "value":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "unit":{
                "type":"string",
@@ -1062,7 +1234,8 @@
                "enum":[
                   "degree",
                   "radian"
-               ]
+               ],
+               "description":""
             },
             "qualifier":{
                "type":"string",
@@ -1071,13 +1244,16 @@
                  "max",
                  "min",
                  "average"
-                 ]
+                 ],
+                 "description":""
             },
             "uncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "notes":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "required":[
@@ -1092,22 +1268,28 @@
          "additionalProperties":false,
          "properties":{
             "condenser1":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             },
             "condenser2":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             },
             "condenser3":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             },
             "grating":{
-               "$ref":"#/$defs/gratingDetails"
+               "$ref":"#/$defs/gratingDetails",
+               "description":""
             },
             "objectiveAperture":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             },
             "selectedAreaAperture":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             }
          },
          "title":"apertureDetails"
@@ -1118,16 +1300,20 @@
         "additionalProperties":false,
         "properties":{
           "description":{
-            "type":"string"
+            "type":"string",
+            "description":""
           },
           "position":{
-            "$ref":"#/$defs/coordinateSet"
+            "$ref":"#/$defs/coordinateSet",
+            "description":""
           },
           "azimuthAngle":{
-            "$ref":"#/$defs/angleDetails"
+            "$ref":"#/$defs/angleDetails",
+            "description":""
           },
           "voltage":{
-            "$ref":"#/$defs/voltageDetails"
+            "$ref":"#/$defs/voltageDetails",
+            "description":""
           }
         },
         "title":"gratingDetails"
@@ -1138,37 +1324,48 @@
         "additionalProperties":false,
         "properties":{
           "c1":{
-            "type":"number"
+            "type":"number",
+            "description":""
           },
           "c2":{
-            "type":"number"
+            "type":"number",
+            "description":""
           },
           "c3":{
-            "type":"number"
+            "type":"number",
+            "description":""
           },
           "minicondenser":{
-            "type":"number"
+            "type":"number",
+            "description":""
           },
           "objective":{
-            "type":"number"
+            "type":"number",
+            "description":""
           },
           "lorentz":{
-            "type":"number"
+            "type":"number",
+            "description":""
           },
           "diffraction":{
-            "type":"number"
+            "type":"number",
+            "description":""
           },
           "intermediate":{
-            "type":"number"
+            "type":"number",
+            "description":""
           },
           "p1":{
-            "type":"number"
+            "type":"number",
+            "description":""
           },
           "p2":{
-            "type":"number"
+            "type":"number",
+            "description":""
           },
           "beamConvergence":{
-            "$ref":"#/$defs/angleDetails"
+            "$ref":"#/$defs/angleDetails",
+            "description":""
           }
         },
         "required":[
@@ -1183,16 +1380,20 @@
         "properties":{
           "ASTARactive":{
             "type":"boolean",
-            "default":true
+            "default":true,
+            "description":""
           },
           "ASTARname":{
-            "type":"string"
+            "type":"string",
+            "description":""
           },
           "ASTARmanufacturer":{
-              "$ref":"#/$defs/manufacturerDetails"
+              "$ref":"#/$defs/manufacturerDetails",
+              "description":""
           },
           "bufferSize":{
-            "type":"number"
+            "type":"number",
+            "description":""
           },
           "speedRate":{
             "type":"string",
@@ -1200,22 +1401,26 @@
               "slow",
               "medium",
               "fast"
-            ]
+            ],
+            "description":""
           },
           "operationMode":{
             "type":"string",
             "enum":[
               "normal",
               "other"
-            ]
+            ],
+            "description":""
           },
           "systemClockLocked":{
             "type":"boolean",
-            "default":true
+            "default":true,
+            "description":""
           },
           "objectiveApertureRetracted":{
             "type":"boolean",
-            "default":true
+            "default":true,
+            "description":""
           }
         },
         "required":[
@@ -1230,63 +1435,81 @@
          "properties":{
             "detectorType":{
                "type":"string",
-               "default":"Secondary Electron"
+               "default":"Secondary Electron",
+               "description":""
             },
             "detectorName":{
-               "type":"string"
+               "type":"string",
+               "description":""
             },
             "detectorID":{
-               "$ref":"#/$defs/identifier"
+               "$ref":"#/$defs/identifier",
+               "description":""
             },
             "detectorManufacturer":{
-               "$ref":"#/$defs/manufacturerDetails"
+               "$ref":"#/$defs/manufacturerDetails",
+               "description":""
             },
             "lastCalibration":{
                "type":"string",
-               "format":"date-time"
+               "format":"date-time",
+               "description":""
             },
             "isCorrelationImage":{
               "type":"boolean",
-              "default":false
+              "default":false,
+              "description":""
             },
             "coordinates":{
-              "$ref":"#/$defs/coordinateSet"
+              "$ref":"#/$defs/coordinateSet",
+              "description":""
             },
             "coordinateReferenceType":{
-              "type":"string"
+              "type":"string",
+              "description":""
             },
             "bitDepthReadout":{
-              "type":"number"
+              "type":"number",
+              "description":""
             },
             "numberOfPixelsCamera":{
-              "$ref":"#/$defs/pixelNumberType"
+              "$ref":"#/$defs/pixelNumberType",
+              "description":""
             },
             "pixelSizeImage":{
-              "$ref":"#/$defs/pixelSize3D"
+              "$ref":"#/$defs/pixelSize3D",
+              "description":""
             },
             "pixelCalibration":{
-              "$ref":"#/$defs/pixelResolutionDetails"
+              "$ref":"#/$defs/pixelResolutionDetails",
+              "description":""
             },
             "pixelOffset":{
-              "$ref":"#/$defs/pixelOffsetDetails"
+              "$ref":"#/$defs/pixelOffsetDetails",
+              "description":""
             },
             "verticallyFlipped":{
               "type":"boolean",
-              "default":false
+              "default":false,
+              "description":""
             },
             "horizontallyFlipped":{
               "type":"boolean",
-              "default":false
+              "default":false,
+              "description":""
             },
             "diagonallyFlipped":{
               "type":"boolean",
-              "default":false
+              "default":false,
+              "description":""
             },
             "rotationAngle":{
-              "$ref":"#/$defs/angleDetails"
+              "$ref":"#/$defs/angleDetails",
+              "description":""
             },
             "exposureTime":{
-              "$ref":"#/$defs/timeDetails"
+              "$ref":"#/$defs/timeDetails",
+              "description":""
             },
             "binning":{
               "type":"number",
@@ -1298,7 +1521,8 @@
                 64,
                 128,
                 256
-              ]
+              ],
+              "description":""
             },
             "collectionMethod":{
               "type":"string",
@@ -1307,13 +1531,16 @@
                 "averaging",
                 "integration",
                 "summation"
-              ]
+              ],
+              "description":""
             },
             "numberOfCycles":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "darkReferenceCorrection":{
               "type": "array",
+              "description":"",
               "items": {
                 "type": "array",
                 "items":{
@@ -1339,10 +1566,12 @@
          "additionalProperties":false,
          "properties":{
             "xPixels":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "yPixels":{
-               "type":"number"
+               "type":"number",
+               "description":""
             }
          }
       },
@@ -1352,13 +1581,16 @@
          "additionalProperties":false,
          "properties":{
             "xPixelSize":{
-               "$ref":"#/$defs/pixelSizeDetails"
+               "$ref":"#/$defs/pixelSizeDetails",
+               "description":""
             },
             "yPixelSize":{
-               "$ref":"#/$defs/pixelSizeDetails"
+               "$ref":"#/$defs/pixelSizeDetails",
+               "description":""
             },
             "zPixelSize":{
-               "$ref":"#/$defs/pixelSizeDetails"
+               "$ref":"#/$defs/pixelSizeDetails",
+               "description":""
             }
          },
          "required":[
@@ -1372,11 +1604,13 @@
          "additionalProperties":false,
          "properties":{
             "value":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "unit":{
                "type":"string",
-               "default":"nm/pixel"
+               "default":"nm/pixel",
+               "description":""
             },
             "qualifier":{
                "type":"string",
@@ -1385,13 +1619,16 @@
                  "max",
                  "min",
                  "average"
-                 ]
+                 ],
+                 "description":""
             },
             "uncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "notes":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "required":[
@@ -1406,11 +1643,13 @@
          "additionalProperties":false,
          "properties":{
             "value":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "unit":{
                "type":"string",
-               "default":"pixels/nm"
+               "default":"pixels/nm",
+               "description":""
             },
             "qualifier":{
                "type":"string",
@@ -1419,13 +1658,16 @@
                  "max",
                  "min",
                  "average"
-                 ]
+                 ],
+                 "description":""
             },
             "uncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "notes":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "required":[
@@ -1440,10 +1682,12 @@
          "additionalProperties":false,
          "properties":{
             "xPixelOffset":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             },
             "yPixelOffset":{
-               "$ref":"#/$defs/distanceDetails"
+               "$ref":"#/$defs/distanceDetails",
+               "description":""
             }
           },
          "title":"pixelSizeDetails"
@@ -1454,7 +1698,8 @@
          "additionalProperties":false,
          "properties":{
             "value":{
-               "type":"number"
+               "type":"number",
+               "description":""
             },
             "unit":{
                "type":"string",
@@ -1465,7 +1710,8 @@
                   "us",
                   "ms",
                   "s"
-               ]
+               ],
+               "description":""
             },
             "qualifier":{
                "type":"string",
@@ -1474,13 +1720,16 @@
                  "max",
                  "min",
                  "average"
-                 ]
+                 ],
+                 "description":""
             },
             "uncertainty":{
-               "$ref":"#/$defs/uncertaintyDetails"
+               "$ref":"#/$defs/uncertaintyDetails",
+               "description":""
             },
             "notes":{
-               "type":"string"
+               "type":"string",
+               "description":""
             }
          },
          "required":[
@@ -1496,6 +1745,7 @@
          "properties":{
             "gainCorrection":{
                "type":"array",
+               "description":"",
                "items":{
                  "type":"array",
                  "items":{
@@ -1504,13 +1754,16 @@
                }
             },
             "darkGainCorrectionType":{
-              "type":"string"
+              "type":"string",
+              "description":""
             },
             "ADF":{
-              "$ref":"#/$defs/ADFdetails"
+              "$ref":"#/$defs/ADFdetails",
+              "description":""
             },
             "SCAN":{
-               "$ref":"#/$defs/SCANdetails"
+               "$ref":"#/$defs/SCANdetails",
+               "description":""
             }
           },
          "required":[
@@ -1524,20 +1777,25 @@
        "additionalProperties":false,
        "properties":{
          "description":{
-           "type":"string"
+           "type":"string",
+           "description":""
          },
          "enabledHAADF":{
            "type":"boolean",
-           "default":false
+           "default":false,
+           "description":""
          },
          "gain":{
-           "$ref":"#/$defs/gainDetails"
+           "$ref":"#/$defs/gainDetails",
+           "description":""
          },
          "offset":{
-           "type":"number"
+           "type":"number",
+           "description":""
          },
          "collectionAngleRange":{
-           "$ref":"#/$defs/rangeDetails"
+           "$ref":"#/$defs/rangeDetails",
+           "description":""
          }
        },
        "required":[
@@ -1554,7 +1812,8 @@
        "additionalProperties":false,
        "properties":{
           "value":{
-             "type":"number"
+             "type":"number",
+             "description":""
           },
           "unit":{
              "type":"string",
@@ -1562,7 +1821,8 @@
              "enum":[
                 "dB",
                 "%"
-             ]
+             ],
+             "description":""
           },
           "qualifier":{
              "type":"string",
@@ -1570,13 +1830,16 @@
                "max",
                "min",
                "average"
-               ]
+               ],
+               "description":""
           },
           "uncertainty":{
-             "$ref":"#/$defs/uncertaintyDetails"
+             "$ref":"#/$defs/uncertaintyDetails",
+             "description":""
           },
           "notes":{
-             "type":"string"
+             "type":"string",
+             "description":""
           }
        },
        "required":[
@@ -1591,10 +1854,12 @@
        "additionalProperties":false,
        "properties":{
          "value1":{
-            "$ref":"#/$defs/angleDetails"
+            "$ref":"#/$defs/angleDetails",
+            "description":""
          },
          "value2":{
-            "$ref":"#/$defs/angleDetails"
+            "$ref":"#/$defs/angleDetails",
+            "description":""
          }
        },
        "required":[
@@ -1609,7 +1874,8 @@
        "additionalProperties":false,
        "properties":{
          "dwellTime":{
-           "$ref":"#/$defs/timeDetails"
+           "$ref":"#/$defs/timeDetails",
+           "description":""
          },
          "scanType":{
            "type":"string",
@@ -1617,26 +1883,33 @@
              "0D",
              "1D",
              "2D"
-           ]
+           ],
+           "description":""
          },
-         "dwellTime":{
-           "$ref":"#/$defs/pixelNumberType"
+         "scanSize":{
+           "$ref":"#/$defs/pixelNumberType",
+           "description":""
          },
          "mainsLock":{
            "type":"boolean",
-           "default":false
+           "default":false,
+           "description":""
          },
          "frameTime":{
-           "$ref":"#/$defs/timeDetails"
+           "$ref":"#/$defs/timeDetails",
+           "description":""
          },
          "scanRotation":{
-           "$ref":"#/$defs/angleDetails"
+           "$ref":"#/$defs/angleDetails",
+           "description":""
          },
          "xFieldOfView":{
-           "$ref":"#/$defs/distanceDetails"
+           "$ref":"#/$defs/distanceDetails",
+           "description":""
          },
          "yFieldOfView":{
-           "$ref":"#/$defs/distanceDetails"
+           "$ref":"#/$defs/distanceDetails",
+           "description":""
          }
        },
        "required":[
@@ -1651,35 +1924,45 @@
        "additionalProperties":false,
        "properties":{
          "continuousMode":{
-           "type":"number"
+           "type":"number",
+           "description":""
          },
          "dualAcquireEnabled":{
-           "type":"boolean"
+           "type":"boolean",
+           "description":""
          },
          "highQualityDarkReferenceApplied":{
-           "type":"boolean"
+           "type":"boolean",
+           "description":""
          },
          "lowLossDualAcquire":{
-           "type":"boolean"
+           "type":"boolean",
+           "description":""
          },
          "noOfFrames":{
-           "type":"number"
+           "type":"number",
+           "description":""
          },
          "saturationFraction":{
-           "type":"number"
+           "type":"number",
+           "description":""
          },
          "collectionSemiAngle":{
-           "$ref":"#/$defs/angleDetails"
+           "$ref":"#/$defs/angleDetails",
+           "description":""
          },
          "convergenceSemiAngle":{
-           "$ref":"#/$defs/angleDetails"
+           "$ref":"#/$defs/angleDetails",
+           "description":""
          },
          "subPixelAveragingEnabled":{
            "type":"boolean",
-           "default":false
+           "default":false,
+           "description":""
          },
          "spectrometer":{
-           "$ref":"#/$defs/spectrometerDetails"
+           "$ref":"#/$defs/spectrometerDetails",
+           "description":""
          }
        },
        "required":[
@@ -1695,42 +1978,54 @@
        "additionalProperties":false,
        "properties":{
          "apertureSize":{
-           "$ref":"#/$defs/distanceDetails"
+           "$ref":"#/$defs/distanceDetails",
+           "description":""
          },
          "dispersion":{
-           "$ref":"#/$defs/energyDetails"
+           "$ref":"#/$defs/energyDetails",
+           "description":""
          },
          "driftTubeEnabled":{
            "type":"boolean",
-           "default":false
+           "default":false,
+           "description":""
          },
          "driftTubeVoltage":{
-           "$ref":"#/$defs/voltageDetails"
+           "$ref":"#/$defs/voltageDetails",
+           "description":""
          },
          "driftTubeVoltage2":{
-           "$ref":"#/$defs/voltageDetails"
+           "$ref":"#/$defs/voltageDetails",
+           "description":""
          },
          "energyLoss":{
-           "$ref":"#/$defs/energyDetails"
+           "$ref":"#/$defs/energyDetails",
+           "description":""
          },
          "HTOffsetEnabled":{
            "type":"boolean",
-           "default":false
+           "default":false,
+           "description":""
          },
          "HTOffset":{
-           "$ref":"#/$defs/voltageDetails"
+           "$ref":"#/$defs/voltageDetails",
+           "description":""
          },
          "HTOffset2":{
-           "$ref":"#/$defs/voltageDetails"
+           "$ref":"#/$defs/voltageDetails",
+           "description":""
          },
          "spectrometerID":{
-           "$ref":"#/$defs/identifier"
+           "$ref":"#/$defs/identifier",
+           "description":""
          },
          "spectrometerName":{
-           "type":"string"
+           "type":"string",
+           "description":""
          },
          "prismOffset":{
-           "$ref":"#/$defs/voltageDetails"
+           "$ref":"#/$defs/voltageDetails",
+           "description":""
          }
        },
        "required":[
@@ -1745,34 +2040,43 @@
        "additionalProperties":false,
        "properties":{
          "detectorName":{
-           "type":"string"
+           "type":"string",
+           "description":""
          },
          "detectorID":{
-           "$ref":"#/$defs/identifier"
+           "$ref":"#/$defs/identifier",
+           "description":""
          },
          "dispersion":{
-           "$ref":"#/$defs/energyDetails"
+           "$ref":"#/$defs/energyDetails",
+           "description":""
          },
          "offset":{
-           "$ref":"#/$defs/energyDetails"
+           "$ref":"#/$defs/energyDetails",
+           "description":""
          },
          "shapingTime":{
-           "$ref":"#/$defs/timeDetails"
+           "$ref":"#/$defs/timeDetails",
+           "description":""
          },
          "noOfFrames":{
-           "type":"number"
+           "type":"number",
+           "description":""
          },
          "segmentedDetector":{
            "type":"boolean",
-           "default":false
+           "default":false,
+           "description":""
          },
          "noOfUsedSegments":{
-           "type":"number"
+           "type":"number",
+           "description":""
          },
          "usedSegments":{
            "type":"array",
            "items":{
-             "$ref":"#/$defs/usedSegmentDetails"
+             "$ref":"#/$defs/usedSegmentDetails",
+             "description":""
            }
          }
        },
@@ -1789,20 +2093,25 @@
        "additionalProperties":false,
        "properties":{
          "segmentNo":{
-           "type":"number"
+           "type":"number",
+           "description":""
          },
          "enabled":{
            "type":"boolean",
-           "default":false
+           "default":false,
+           "description":""
          },
          "azimuth":{
-           "$ref":"#/$defs/angleDetails"
+           "$ref":"#/$defs/angleDetails",
+           "description":""
          },
          "inputCountRate":{
-           "type":"number"
+           "type":"number",
+           "description":""
          },
          "outputCountRate":{
-           "type":"number"
+           "type":"number",
+           "description":""
          }
        },
        "title":"usedSegmentDetails"
