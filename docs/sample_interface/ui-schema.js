@@ -3,6 +3,16 @@ var uiSchema = {
     "items":
     [
         {
+            "legend": "Reseach User",
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items": 
+            [
+                {"title": "User Name", "key": "researchUser.userName"},
+                {"title": "User Role", "key": "researchUser.userRole"},
+            ]            
+        },
+        {
             "legend": "Sample Name",
             "type": "fieldset",
             "htmlClass": "myclass",

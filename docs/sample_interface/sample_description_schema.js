@@ -73,6 +73,19 @@ var dataModel = {
     },
     "properties": 
     {
+        "researchUser":
+        {
+            "type": "object",
+            "properties":
+            {
+                "userName": {"type": "string"},
+                "userRole":
+                {
+                    "type": "string",
+                    "enum": ["Data Curator", "Instrument Scientist", "Team Leader", "Team Member"]
+                }
+            }
+        },
         "sampleName": 
         {
             "type": "object",
@@ -198,7 +211,7 @@ var dataModel = {
                 "physicalState":
                 {
                     "description": "Phisical state of the sample",
-                    "type": "object",
+                    "type": "string",
                     "enum": 
                     [
                         "notApplicable",
@@ -384,7 +397,7 @@ var dataModel = {
                         {
                             "fabricationStep": 
                             {
-                                "type": "object",
+                                "type": "string",
                                 "title": "Fabrication Step",
                                 "enum": 
                                 [
@@ -487,28 +500,28 @@ var dataModel = {
                                     {
                                         "type": "string",
                                         "enum":
-                                    [
-                                        "unspecified joining",
-                                        "adhesive bonding",
-                                        "soldering/brazing/wire bonding",
-                                        "arc welding",
-                                        "gas welding",
-                                        "resistance welding",
-                                        "solid-state welding",
-                                        "thermo-chemical welding",
-                                        "energy beam welding",
-                                        "plastic welding",
-                                        "riveting",
-                                        "seaming",
-                                        "clamping",
-                                        "bolting/screwing",
-                                        "caulking",
-                                        "shrink-fitting",
-                                        "other (please add in the comments)"
-                                    ]
-                                    }
+                                        [
+                                            "unspecified joining",
+                                            "adhesive bonding",
+                                            "soldering/brazing/wire bonding",
+                                            "arc welding",
+                                            "gas welding",
+                                            "resistance welding",
+                                            "solid-state welding",
+                                            "thermo-chemical welding",
+                                            "energy beam welding",
+                                            "plastic welding",
+                                            "riveting",
+                                            "seaming",
+                                            "clamping",
+                                            "bolting/screwing",
+                                            "caulking",
+                                            "shrink-fitting",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"}
                                 },
-                                "comments": {"type": "string"}
                             },
                             "mechanicalAndSurface":
                             {
@@ -622,7 +635,7 @@ var dataModel = {
                         {
                             "preparationStep":
                             {
-                                "type": "object",
+                                "type": "string",
                                 "enum":
                                 [
                                     "notApplicable",
