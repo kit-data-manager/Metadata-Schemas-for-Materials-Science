@@ -72,16 +72,16 @@
       },
       "identifier":{
          "type":"object",
-         "description":"Details of an identifier element. Properties: identifierValue (optional, NAE) - a string containing the value of an identifier, identifierType (optional, NAE) - type of the identifier to be chosen from a controlled list of values -*ROR *GRID *ISNI *URL *DOI *Handle",
+         "description":"Details of an identifier element",
          "additionalProperties":false,
          "properties":{
             "identifierValue":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE) - a string containing the value of an identifier"
             },
             "identifierType":{
                "type":"string",
-               "description":"",
+               "description":"(optional, NAE) - type of the identifier to be chosen from a controlled list of values -*ROR *GRID *ISNI *URL *DOI *Handle",
                "enum":[
                   "ROR",
                   "GRID",
@@ -95,16 +95,16 @@
       },
       "program":{
          "type":"object",
-         "description":"Details concerning the program (or software) used for aquisition. Properties: programName (optional, AE) - Name of the program (or software) used for acquisition of datatype string, programVersion (optional, AE)- Program (or software) version number of datatype string",
+         "description":"Details concerning the program (or software) used for aquisition",
          "additionalProperties":false,
          "properties":{
             "programName":{
                "type":"string",
-               "description":""
+               "description":"(optional, AE) - Name of the program (or software) used for acquisition of datatype string"
             },
             "programVersion":{
                "type":"string",
-               "description":""
+               "description":"(optional, AE)- Program (or software) version number of datatype string"
             }
          },
          "title":"program"
@@ -112,15 +112,15 @@
       "revision":{
          "type":"object",
          "additionalProperties":false,
-         "description":"details concerning any revision to the xml document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format. Properties: revisionID (optional, NAE) - Identifier of the file, revisionComment (optional, NAE)- any comments to the revision of the datatype string",
+         "description":"Details concerning any revision to the xml document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format",
          "properties":{
             "revisonID":{
                "$ref":"#/$defs/identifier",
-               "description":""
+               "description":"(optional, NAE) - Identifier of the file"
             },
             "revisionComment":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE)- any comments to the revision of the datatype string"
             }
          },
          "title":"revision"
@@ -128,45 +128,42 @@
       "user":{
          "type":"object",
          "additionalProperties":false,
-         "description":"Lists the contact information of the user responsible for the measurement. Properties: userName (required, NAE) - the full name of the user preferrably written in the order (familyName, givenName) defined to be of the datatype string, givenName (optional, NAE)-Given name (first name) of the user, familyName (optional, NAE) - Family name or last name of the user, role (optional, NAE) - Role of the user to be selected from an enumerated list - *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader, affiliation (optional, NAE) - Details of the institution to which the user is affiliated, email (optional, NAE) - Email of the userof datatype string (only valid email-ids are acceptable), ORCID (optional, NAE) - Open Researcher and Contributor ID expressed as a URI",
+         "description":"Lists the contact information of the user responsible for the measurement",
          "properties":{
            "userName":{
               "type":"string",
-              "description":""
+              "description":"(required, NAE) - the full name of the user preferrably written in the order (familyName, givenName) defined to be of the datatype string"
            },
             "givenName":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE)-Given name (first name) of the user"
             },
             "familyName":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE) - Family name or last name of the user"
             },
             "role":{
                "type":"string",
-               "description":"",
+               "description":"(optional, NAE) - Role of the user to be selected from an enumerated list - *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
                "enum":[
-                  "Data Curator",
-                  "instrument Scientist",
-                  "Principal Investigator",
-                  "Project Member",
-                  "Research user",
-                  "Site Leaderr",
-                  "Work Package Leader"
+                     "Data Curator",
+                     "Instrument Scientist",
+                     "Team Leader",
+                     "Team Member"
                ]
             },
             "affiliation":{
                "$ref":"#/$defs/institutionDetails",
-               "description":""
+               "description":"(optional, NAE) - Details of the institution to which the user is affiliated"
             },
             "email":{
                "type":"string",
                "format":"email",
-               "description":""
+               "description":"(optional, NAE) - Email of the userof datatype string (only valid email-ids are acceptable)"
             },
             "ORCID":{
                "type":"string",
-               "description":"",
+               "description":"(optional, NAE) - Open Researcher and Contributor ID expressed as a URI",
                "pattern":"^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
             }
          },
@@ -178,30 +175,30 @@
       "institutionDetails":{
          "type":"object",
          "additionalProperties":false,
-         "description":"Details of the institution to which the user is affiliated. Properties: institutionName (optional, NAE) - The full name of an institution of datatype string, institutionAcronym (optional, NAE) - The acronym of the institution. Note that authors often cite with acronyms, so this information can be important in matching a query of datatype string, institutionDepartment (optional, NAE)- The department within an institution of datatype string, institutionIdentifier (optional, NAE) - Identifier pertaining to the institution",
+         "description":"Details of the institution to which the user is affiliated",
          "properties":{
             "institutionName":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE) - Full name of an institution of datatype string"
             },
             "institutionAcronym":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE) - Acronym of the institution of datatype string. Note that authors often cite with acronyms, so this information can be important in matching a query."
             },
             "institutionDepartment":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE)- The department within an institution of datatype string"
             },
             "institutionID":{
                "$ref":"#/$defs/identifier",
-               "description":""
+               "description":"(optional, NAE) - Identifier pertaining to the institution"
             }
          }
       },
       "sample":{
          "type":"object",
          "additionalProperties":false,
-         "description":"details concerning the sample  sampleID (optional, NAE) - Identifier for the sample, conductive (required, NAE) - Indicates whether the sample  is conductive of datatype boolean, magnetic (required, NAE) - Indicates whether the sample is magnetic of datatype boolean, eBeamSensitive (required, NAE) - Indicates whether the sample is not stable under electron beam of datatype boolean, eBeamSensitivity (optional, NAE) - Details about the type of sensitivity to the electron beam defined separately as eBeamSensitivityDetails (includes radiolysis, knockON, optimizedVoltage, comment and  beamContaminated), iBeamSensitive (optional, NAE) - Indicates whether the sample is not stable under ion beam of datatype boolean, iBeamSensitivity (optional, NAE) - Details about the type of sensitivity to the ion beam defined separately as iBeamSensitivityDetails (includes GaSensitive, HeSensitive and other), embeddingMaterial (required, NAE) - Supporting medium in which the specimen is embedded (e.g., none, demotec 30, 70, Epoxy) of datatype string with default value set as none, sampleForm (optional, NAE) - Description of the sample form (e.g., bulk, nanostructured, powder, pellet) of datatype string, sampleSize (optional, NAE) - Size of the sample defined separately as distanceDetails (includes value, optional uncertainty, optional qualifier, optional notes and a controlled list of units for length - nm, µm, mm, cm, m), sampleThickness (optional, NAE) - Thickness of the sample defined separately as distanceDetails (includes the value, optional uncertainty, optional qualifier, optional notes and a controlled list of units for length - nm, µm, mm, cm, m), sampleHolder (optional, NAE) - Description of the sample holder used defined separately as sampleHolderDetails (includes holderType, washer1, washer2, clamper and fixingMethod), finalSpecimen (optional, NAE) - Description of type of final specimen to be made in case of in-situ TEM structures of type string, plasmaCleaning (optional, NAE) - Details about plasma cleaning performed to prepare the specimen defined separately as plasmaCleaningDetails (includes gasComposition, power, percentPower and duration), storageConditions (optional, NAE) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., gas atmosphere, humidity, temperature and pressure etc) of datatype string, measurementConditions (optional, NAE) - Conditions to be maintained during the measurement inside the machine (e.g., water vapor, cryogenic temperature, gas atmosphere) of datatype string, samplePreparation (optional, NAE) - Details about the sample preparation defined separately as samplePrepType (includes details like date of preparation, description of preparation and preparationID) of datatype string",
+         "description":"Details concerning the sample",
          "properties":{
             "sampleName":{
                "type":"string",
@@ -209,72 +206,64 @@
             },
             "sampleID":{
                "$ref":"#/$defs/identifier",
-               "description":""
+               "description":"(optional, NAE) - Identifier for the sample"
             },
             "conductive":{
                "type":"boolean",
-               "description":""
+               "description":"(required, NAE) - Indicates whether the sample  is conductive, of datatype boolean"
             },
             "magnetic":{
                "type":"boolean",
-               "description":""
+               "description":"(required, NAE) - Indicates whether the sample is magnetic, of datatype boolean"
             },
             "eBeamSensitive":{
                "type":"boolean",
-               "description":""
+               "description":"(required, NAE) - Indicates whether the sample is not stable under electron beam, of datatype boolean"
             },
             "eBeamSensitivity":{
                "$ref":"#/$defs/eBeamSensitivityDetails",
-               "description":""
+               "description":"(optional, NAE) - Details about the type of sensitivity to the electron beam defined separately as eBeamSensitivityDetails (includes radiolysis, knockON, optimizedVoltage, comment and  beamContaminated)"
             },
             "iBeamSensitive":{
                "type":"boolean",
-               "description":""
+               "description":"(optional, NAE) - Indicates whether the sample is not stable under ion beam, of datatype boolean"
             },
             "iBeamSensitivity":{
                "$ref":"#/$defs/iBeamSensitivityDetails",
-               "description":""
+               "description":"(optional, NAE) - Details about the type of sensitivity to the ion beam defined separately as iBeamSensitivityDetails (includes GaSensitive, HeSensitive and other)"
             },
             "embeddingMaterial":{
                "type":"string",
                "default":"none",
-               "description":""
+               "description":"(required, NAE) - Supporting medium in which the specimen is embedded (e.g., none, demotec 30, 70, Epoxy), of datatype string with default value none"
             },
             "sampleForm":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE) - Description of the sample form (e.g., FIB probe, thin section, nanostructured, powder, pellet), of datatype string"
             },
             "sampleSize":{
                "$ref":"#/$defs/distanceDetails",
-               "description":""
+               "description":"(optional, NAE) - Size of the sample defined separately as distanceDetails (includes value, optional uncertainty, optional qualifier, optional notes and a controlled list of units for length - nm, µm, mm, cm, m)"
             },
             "sampleThickness":{
                "$ref":"#/$defs/distanceDetails",
-               "description":""
-            },
-            "sampleHolder":{
-               "$ref":"#/$defs/sampleHolderDetails",
-               "description":""
+               "description":"(optional, NAE) - Thickness of the sample defined separately as distanceDetails (includes the value, optional uncertainty, optional qualifier, optional notes and a controlled list of units for length - nm, µm, mm, cm, m)"
             },
             "finalSpecimen":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE) - Description of type of final specimen to be made in case of in-situ TEM structures of type string"
             },
             "plasmaCleaning":{
                "$ref":"#/$defs/plasmaCleaningDetails",
-               "description":""
+               "description":"(optional, NAE) - Details about plasma cleaning performed to prepare the specimen defined separately as plasmaCleaningDetails (includes gasComposition, power, percentPower, noOfCycles and duration)"
             },
             "storageConditions":{
                "type":"string",
-               "description":""
-            },
-            "measurementConditions":{
-               "type":"string",
-               "description":""
+               "description":"(optional, NAE) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., gas atmosphere, humidity, temperature and pressure etc) of datatype string"
             },
             "samplePreparation":{
                "$ref":"#/$defs/samplePrepType",
-               "description":""
+               "description":"(optional, NAE) - Details about the sample preparation defined separately as samplePrepType (includes details like date of preparation, description of preparation and preparationID) of datatype string)"
             }
          },
          "required":[
@@ -287,16 +276,16 @@
       },
       "distanceDetails":{
          "type":"object",
-         "description":"describes a distance, size or length. Properties: value (required) - The distance, size or length expressed as an integer or floating point value of datatype number, unit (required) - the unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm) of datatype string, qualifier (optional, NAE) - A qualifier to describe the value (e.g., avg, max, min, default value - max) of datatype string, uncertainty (optional, NAE) - Uncertainty in the value defined separately as uncertaintyDetails,(allows choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number), notes (optional, NAE) - Further notes about the value of datatype string",
+         "description":"Describes a distance, size or length",
          "additionalProperties":false,
          "properties":{
             "value":{
                "type":"number",
-               "description":""
+               "description":"(required) Distance, size or length expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
-               "description":"",
+               "description":"(required) - the unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm) of datatype string",
                "enum":[
                   "nm",
                   "µm",
@@ -308,7 +297,7 @@
             "qualifier":{
                "type":"string",
                "default":"max",
-               "description":"",
+               "description":"(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min, default value - max) of datatype string",
                "enum":[
                  "max",
                  "min",
@@ -317,11 +306,11 @@
             },
             "uncertainty":{
                "$ref":"#/$defs/uncertaintyDetails",
-               "description":""
+               "description":"(optional, NAE) - Uncertainty in the value defined separately as uncertaintyDetails,(allows choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number)"
             },
             "notes":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE) - Further notes about the value of datatype string"
             }
          },
          "required":[
@@ -332,19 +321,20 @@
       },
       "uncertaintyDetails":{
          "type":"object",
-         "description":"describes an uncertainty. Properties: type (required, NAE) - type of the uncertainty to be chosen between absolute or relative of datatype string, value (required, NAE) -  value of the uncertainty expressed as a number",
+         "description":"Describes an uncertainty",
          "additionalProperties":false,
          "properties":{
             "uncertaintyType":{
                "type":"string",
-               "description":"",
+               "description":"(required, NAE) - type of the uncertainty to be chosen between absolute or relative of datatype string",
                "enum":[
                   "absolute",
                   "relative"
                ]
             },
             "value":{
-               "type":"number"
+               "type":"number",
+               "description":"(required, NAE) -  value of the uncertainty expressed as a number"
             }
          },
          "required":[
@@ -355,119 +345,123 @@
       },
       "eBeamSensitivityDetails":{
         "type":"object",
-        "description":"describes the details concerning the type of sensitivity to the electron beam. Properties: radiolysis (optional, NAE) - to be set as true if the material undergoes radiolysis upon interaction with the electron beam (of the datatype boolean), knockON (optional, NAE) - to be set as true if the material undergoes knockON upon interaction with the electron beam (of the datatype boolean), optimizedIncidentEnergy (optional, NAE) - The optimized incident energy of electrons selected to reduce effect of the e-beam on the sample usually expressed in keV (defined separately as energyDetails), comment (optional, NAE) - To include any relevant details about the e-beam contamination of the sample of the datatype string, beamContaminated (optional, NAE) - to be set as true is the sample is already contaminated by the e-beam of the datatype boolean",
+        "description":"Describes the details concerning the type of sensitivity to the electron beam",
         "additionalProperties":false,
         "properties":{
           "radiolysis":{
             "type":"boolean",
             "default": false,
-            "description":""
+            "description":"(optional, NAE) - to be set as true if the material undergoes radiolysis upon interaction with the electron beam (of the datatype boolean)"
           },
           "knockON":{
             "type":"boolean",
             "default": false,
-            "description":""
+            "description":"(optional, NAE) - to be set as true if the material undergoes knockON upon interaction with the electron beam (of the datatype boolean)"
           },
           "optimizedIncidentEnergy":{
             "$ref":"#/$defs/energyDetails",
-            "description":""
+            "description":"(optional, NAE) - The optimized incident energy of electrons selected to reduce effect of the e-beam on the sample usually expressed in keV (defined separately as energyDetails)"
           },
           "comment":{
             "type":"string",
-            "description":""
+            "description":"(optional, NAE) - To include any relevant details about the e-beam contamination of the sample of the datatype string"
           },
           "beamContaminated":{
             "type":"boolean",
             "default":false,
-            "description":""
+            "description":"(optional, NAE) - to be set as true is the sample is already contaminated by the e-beam of the datatype boolean"
           }
         },
         "title":"eBeamSensitivityDetails"
       },
       "iBeamSensitivityDetails":{
         "type":"object",
-        "description":"describes the details concerning the type of sensitivity to the ion beam. Properties: GaSensitive (optional, NAE) - to be set as true if the material is sensitive to Ga ions (of the datatype boolean), HeSensitive (optional, NAE) - to be set as true if the material is sensitive to He ions (of the datatype boolean), other (optional, NAE) - option to include any other type of ions other than Ga or He (of the datatype string)",
+        "description":"Describes the details concerning the type of sensitivity to the ion beam",
         "properties":{
           "GaSensitive":{
             "type":"boolean",
             "default":false,
-            "description":""
+            "description":"(optional, NAE) - to be set as true if the material is sensitive to Ga ions (of the datatype boolean)"
           },
           "HeSensitive":{
             "type":"boolean",
             "default":false,
-            "description":""
+            "description":"(optional, NAE) - to be set as true if the material is sensitive to He ions (of the datatype boolean)"
           },
           "other":{
             "type":"string",
-            "description":""
+            "description":"(optional, NAE) - option to include any other type of ions other than Ga or He (of the datatype string)"
           }
         },
         "title":"iBeamSensitivityDetails"
       },
       "sampleHolderDetails":{
         "type":"object",
-        "description":"Details about the sample holder and its componenets and the way in which the sample is mounted onto the sample holder. Properties: holderType (optional, NAE) - Description about the TEM grid or sample holder (of the datatype string), washer1 (optional, NAE) - material of an additional frame used for supporting/ protecting TEM lamella or a TEM sample holder (of the datatype string), washer2 (optional, NAE) - material of an additional washer if used (of the datatype string), clamper (optional, NAE) - material of the clamper (of the datatype string), fixingMethod (optional, NAE) - description about adhesive used to bond/weld specimen to grid, adhere multiple samples for TEM cross-sections, pre-coat samples prior to encapsulation and for other mounting application (of the datatype string)",
+        "description":"Details about the sample holder and its componenets and the way in which the sample is mounted onto the sample holder",
         "properties":{
           "holderType":{
             "type":"string",
-            "description":""
+            "description":"(optional, NAE) - Description about the TEM grid or sample holder (of the datatype string)"
           },
           "washer1":{
             "type":"string",
-            "description":""
+            "description":"(optional, NAE) - material of an additional frame used for supporting/ protecting TEM lamella or a TEM sample holder (of the datatype string)"
           },
           "washer2":{
             "type":"string",
-            "description":""
+            "description":"(optional, NAE) - material of an additional washer if used (of the datatype string)"
           },
           "clamper":{
             "type":"string",
-            "description":""
+            "description":"(optional, NAE) - material of the clamper (of the datatype string)"
           },
           "fixingMethod":{
             "type":"string",
-            "description":""
+            "description":"(optional, NAE) - description about adhesive used to bond/weld specimen to grid, adhere multiple samples for TEM cross-sections, pre-coat samples prior to encapsulation and for other mounting application (of the datatype string)"
           }
         },
         "title":"sampleHolderDetails"
       },
       "plasmaCleaningDetails":{
         "type":"object",
-        "description":"describes the details of the plasma cleaning procedure if performed. Properties: gasComposition (optional, NAE) - Description of the composition of gases used for plasma cleaning (of the datatype string), power (optional, NAE) - power used for plasma cleaning defined separately as powerDetails, percentPower (optional, NAE) - percentage (out of 100) of the total power of the plasma cleaning device used (of the datatype number), duration (optional, NAE) - duration of time (in seconds) for which plasma cleaning is performed (defined separately as timeDetails)",
+        "description":"Describes the details of the plasma cleaning procedure if performed",
         "properties":{
           "gasComposition":{
             "type":"string",
-            "description":""
+            "description":"(optional, NAE) - Description of the composition of gases used for plasma cleaning (of the datatype string)"
           },
           "power":{
             "$ref":"#/$defs/powerDetails",
-            "description":""
+            "description":"(optional, NAE) - power used for plasma cleaning defined separately as powerDetails, percentPower "
           },
           "percentPower":{
             "type":"number",
-            "description":""
+            "description":"(optional, NAE) - percentage (out of 100) of the total power of the plasma cleaning device used (of the datatype number)"
           },
           "duration":{
             "$ref":"#/$defs/timeDetails",
-            "description":""
+            "description":"(optional, NAE) - duration of time (in seconds) for which plasma cleaning is performed (defined separately as timeDetails)"
+          },
+          "noOfCycles":{
+            "type":"number",
+            "description":" (Optional, NAE) - number of cycles of plasma cleaning performed, of datatype integer "
           }
         },
         "title":"plasmaCleaningDetails"
       },
       "powerDetails":{
         "type":"object",
-        "description":"describes a power. Properties: value (required, NAE) - The power expressed as an integer or floating point value of datatype number, unit (required, NAE) - the unit of the value to be selected from a controlled list (mW, W, kW, default value - W) of datatype string, qualifier (optional, NAE) - A qualifier to describe the value (e.g., avg, max, min, default value - max) of datatype string, uncertainty (optional, NAE) - Uncertainty in the value defined separately as uncertaintyDetails,(allows choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number), notes (optional, NAE) - Further notes about the value of datatype string",
+        "description":"Describes a power",
         "additionalProperties":false,
         "properties":{
            "value":{
               "type":"number",
-              "description":""
+              "description":"(required, NAE) - The power expressed as an integer or floating point value of datatype number"
            },
            "unit":{
               "type":"string",
               "default":"W",
-              "description":"",
+              "description":"(required, NAE) - the unit of the value to be selected from a controlled list (mW, W, kW, default value - W) of datatype string",
               "enum":[
                  "mW",
                  "W",
@@ -477,7 +471,7 @@
            "qualifier":{
               "type":"string",
               "default":"max",
-              "description":"",
+              "description":"(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min, default value - max) of datatype string",
               "enum":[
                 "max",
                 "min",
@@ -486,11 +480,11 @@
            },
            "uncertainty":{
               "$ref":"#/$defs/uncertaintyDetails",
-              "description":""
+              "description":"(optional, NAE) - Uncertainty in the value defined separately as uncertaintyDetails,(allows choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number)"
            },
            "notes":{
               "type":"string",
-              "description":""
+              "description":"(optional, NAE) - Further notes about the value of datatype string"
            }
         },
         "required":[
@@ -501,21 +495,21 @@
       },
       "samplePrepType":{
          "type":"object",
-         "description":"describes the sample preparation process. Properties: preparationDate (optional, NAE) - Date of preparation in the form CCYY-MM-DD, preparationDescription (optional, NAE) -Short description of the preparation of datatype string, preparationID (optional, NAE) - Identifier for the sample preparation",
+         "description":"Describes the sample preparation process",
          "additionalProperties":false,
          "properties":{
             "preparationDate":{
                "type":"string",
                "format":"date",
-               "description":""
+               "description":"(optional, NAE) - Date of preparation in the form CCYY-MM-DD"
             },
             "preparationDescription":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE) - Short description of the preparation of datatype string"
             },
             "preparationID":{
                "$ref":"#/$defs/identifier",
-               "description":""
+               "description":"(optional, NAE) - Identifier for the sample preparation"
             }
          },
          "title":"samplePrepType"
@@ -523,23 +517,19 @@
       "instrumentDetails":{
          "type":"object",
          "additionalProperties":false,
-         "description":"details giving the relevant instrument settings and the collection of the components of the instrument. Properties: instrumentName (required, AE) - Name of the instrument of datatype string, instrumentID (optional, NAE) - Identifier for the instrument, instrumentManufacturer (optional, AE) - details like manufacturer name, model name and manufacturer ID, grouped together and defined separately as manufacturerDetails, precession (optional, AE) - Details about precession like the angle and frequency of precession (defined separately as precessionDetails), additionalAttachments (optional, NAE) - A string to include any additional attachment(s), setMagnification (required, AE) - The magnification set for the diffraction pattern or image (of the datatype number), actualMagnification (optional, AE) - The actual magnification observed which might differ from the set magnification (of the datatype number), driftCorrectionApplied (optional, AE) - To bet set as true if  drift correction is applied to compensate for xy drift (of the datatype boolean), setCameraLength (required, AE) - the effective distance or magnification between the specimen and the detector plane defined separately as distanceDetails, actualCameraLength (optional, AE) - The actual camera length as opposed to the set camera length defined separately as distanceDetails, operationMode (required, AE) - to select the operation mode between TEM or STEM (of the datatype string), objectiveLensMode (optional, NAE) - to select the objective lens mode used from a controlled list (of the datatype string), illuminationMode (optional, NAE) - to select the illumination mode used from a controlled list (of the datatype string), probeMode (optional, AE) - to select the type of probe mode used (nano probe mode or micro probe mode; of the datatype string), imageMode (required, NAE) - to select the image mode out of a controlled list of strings consisiting of * normal image * Selected Area Diffraction (SAD) * Energy-Dispersive X-Ray Spectroscopy (EDXS) * Scanning Transmission Electron Microscopy (STEM) * Nano-Beam Diffraction (NBD) * Convergent Beam Electron Diffraction (CBED), fieldMode (optional, AE) - to select between dark field and bright field modes (of the datatype string), spotSize (required, NAE) - Spotsize (diameter) of the beam or a parameter (integer) indicating the spread of the beam entering the aperture such that a lower number means more electrons are hitting the sample (alternatively it is the size of the first spot formed by the beam after being emitteed from the gun) defined separately as spotSizeDetails ; it is the size of the first spot formed by the beam after being emitted from the gun, defocus (required, AE) - Value indicating how far the sample is away from the focus of the electron beam defined separately as distanceDetails, probeSize (optional, NAE) - Size of the beam at the sample defined separately as distanceDetails, chamberPressure (required, AE) - pressure maintained inside the chamber (in which the sample is housed) during the measurement defined separately as pressureDetails, monochromator (optional, AE) - details pertaining to the monochromator expressed separately as monochromatorDetails, source (required, NAE) - details pertaining to the source of the electron beam expressed separately as sourceDetails, stage (required, AE) - details pertaining to the stage expressed separately as stageDetails, aperture (optional, AE) - details pertaining to the apertures used expressed separately as apertureDetails, lens (required, AE) - details pertaining to the lenses used expressed separately as lensDetails, ASTAR (optional, AE) - details about an ASTAR attachment used with the microscope for orientation-phase imaging defined separately as ASTARdetails, EFTEM (optional, AE) -  Details about Energy Filtered TEM (EFTEM) Mode defined separately as EFTEMdetails, detector (required, NAE) - details pertaining to the detector used expressed separately as detectorDetails",
+         "description":"Details giving the relevant instrument settings and the collection of the components of the instrument. Properties: instrumentName , instrumentID, instrumentManufacturer, precession , additionalAttachments (optional, NAE) - A string to include any additional attachment(s), setMagnification (required, AE) - The magnification set for the diffraction pattern or image (of the datatype number), actualMagnification (optional, AE) - The actual magnification observed which might differ from the set magnification (of the datatype number), driftCorrectionApplied (optional, AE) - To bet set as true if  drift correction is applied to compensate for xy drift (of the datatype boolean), setCameraLength (required, AE) - the effective distance or magnification between the specimen and the detector plane defined separately as distanceDetails, actualCameraLength (optional, AE) - The actual camera length as opposed to the set camera length defined separately as distanceDetails, operationMode (required, AE) - to select the operation mode between TEM or STEM (of the datatype string), objectiveLensMode (optional, NAE) - to select the objective lens mode used from a controlled list (of the datatype string), illuminationMode (optional, NAE) - to select the illumination mode used from a controlled list (of the datatype string), probeMode (optional, AE) - to select the type of probe mode used (nano probe mode or micro probe mode; of the datatype string), imageMode (required, NAE) - to select the image mode out of a controlled list of strings consisiting of * normal image * Selected Area Diffraction (SAD) * Energy-Dispersive X-Ray Spectroscopy (EDXS) * Scanning Transmission Electron Microscopy (STEM) * Nano-Beam Diffraction (NBD) * Convergent Beam Electron Diffraction (CBED), fieldMode (optional, AE) - to select between dark field and bright field modes (of the datatype string), spotSize (required, NAE) - Spotsize (diameter) of the beam or a parameter (integer) indicating the spread of the beam entering the aperture such that a lower number means more electrons are hitting the sample (alternatively it is the size of the first spot formed by the beam after being emitteed from the gun) defined separately as spotSizeDetails ; it is the size of the first spot formed by the beam after being emitted from the gun, defocus (required, AE) - Value indicating how far the sample is away from the focus of the electron beam defined separately as distanceDetails, probeSize (optional, NAE) - Size of the beam at the sample defined separately as distanceDetails, chamberPressure (required, AE) - pressure maintained inside the chamber (in which the sample is housed) during the measurement defined separately as pressureDetails, monochromator (optional, AE) - details pertaining to the monochromator expressed separately as monochromatorDetails, source (required, NAE) - details pertaining to the source of the electron beam expressed separately as sourceDetails, stage (required, AE) - details pertaining to the stage expressed separately as stageDetails, aperture (optional, AE) - details pertaining to the apertures used expressed separately as apertureDetails, lens (required, AE) - details pertaining to the lenses used expressed separately as lensDetails, ASTAR (optional, AE) - details about an ASTAR attachment used with the microscope for orientation-phase imaging defined separately as ASTARdetails, EFTEM (optional, AE) -  Details about Energy Filtered TEM (EFTEM) Mode defined separately as EFTEMdetails, detector (required, NAE) - details pertaining to the detector used expressed separately as detectorDetails",
          "properties":{
             "instrumentName":{
                "type":"string",
-               "description":""
+               "description":"(required, AE) - Name of the instrument of datatype string"
             },
             "instrumentID":{
                "$ref":"#/$defs/identifier",
-               "description":""
+               "description":"(optional, NAE) - Identifier for the instrument"
             },
             "instrumentManufacturer":{
                "$ref":"#/$defs/manufacturerDetails",
-               "description":""
-            },
-            "precession":{
-               "$ref":"#/$defs/precessionDetails",
-               "description":""
+               "description":"(optional, AE) - details like manufacturer name, model name and manufacturer ID, grouped together and defined separately as manufacturerDetails"
             },
             "additionalAttachments":{
                "type":"string",
@@ -700,16 +690,182 @@
       },
       "precessionDetails":{
          "type":"object",
-         "description":"gives details about the precession. Properties: precessionAngle (optional, NAE) - Angle of the precession defined separately as angleDetails, precessionFrequency (optional, NAE) - Frequency of the precession defined separately as frequencyDetails",
+         "description":"(Optional, AE) - Gives details about the precession",
          "additionalProperties":false,
          "properties":{
             "precessionAngle":{
               "$ref":"#/$defs/angleDetails",
-              "description":""
+              "description":"optional, AE) - Angle of the precession defined separately as angleDetails"
             },
             "precessionFrequency":{
               "$ref":"#/$defs/frequencyDetails",
-              "description":""
+              "description":"(optional, AE) - Frequency of the precession defined separately as frequencyDetails"
+            },
+            "beamScanAlignment":{
+               "type":"string",
+               "description":"(Optional, AE) - description of how the beam scan is aligned, of datatype string"
+            },
+            "precessionAlignment":{
+               "type":"string",
+               "description":"(Optional, AE) - Description of how precession is aligned, of datatype string"
+            },
+            "precessionOn":{
+               "type":"boolean",
+               "description":"(Optional, AE) - To be set to True if precession is turned on"
+            },
+            "descanOn":{
+               "type":"boolean",
+               "description":"(Optional, AE) - To be set to True if descan is turned on"
+            },
+            "precessionsPerFrame":{
+               "type":"number",
+               "description":"(Optional, AE) - Number of precessions per frame, of datatype integer"
+            },
+            "interactionMode":{
+               "type":"string",
+               "description":"(Optional, AE) - Manual or Auto interaction mode",
+               "enum":[
+                  "Auto",
+                  "Manual"
+               ]
+            },
+            "Optimization":{
+               "type":"object",
+               "description":"(Optional, AE) - Description of the optimization done in terms of x and y compensation points",
+               "additionalProperties":false,
+               "properties":{
+                  "xCompensationPoints":{
+                     "type":"number",
+                     "description":"(Optional, AE) - Number of compensation points in x dimension"
+                  },
+                  "yCompensationPoints":{
+                     "type":"number",
+                     "description":"(Optional, AE) - Number of compensation points in y dimension"
+                  }
+               }
+            },
+            "diffraction":{
+               "type":"object",
+               "description":"(Optional, AE) - Description of the diffraction",
+               "additionalProperties":false,
+               "properties":{
+                  "frameSize":{
+                     "type":"number",
+                     "description":"(Optional, AE) - Size of the frame eg:- 512, 256, 128",
+                     "default":512,
+                     "enum":[
+                        1024,
+                        512,
+                        256,
+                        128
+                     ]
+                  },
+                  "frameTime":{
+                     "$ref":"#/$defs/timeDetails",
+                     "description":"(Optional, AE) - Time per frame"
+                  },
+                  "CameraLength":{
+                     "$ref":"#/$defs/distanceDetails",
+                     "description":"(Optional, AE) - Distance which is present between the specimen surface and the detector plane, iri: https://purls.helmholtz-metadaten.de/EMG/00000005"
+                  }
+               }
+            },
+            "thresholdOverlayEnabled":{
+               "type":"boolean",
+               "description":"(Optional, AE) - Set to True if threshold overlay is Enabled"
+            },
+            "scanning":{
+               "type":"object",
+               "description":"(Optional, AE) - Description of scanning with respect to precession",
+               "additionalProperties":false,
+               "properties":{
+                  "frameSize":{
+                     "type":"number",
+                     "description":"(Optional, AE) - Size of the frame eg:- 512, 256, 128",
+                     "default":512,
+                     "enum":[
+                        1024,
+                        512,
+                        256,
+                        128
+                     ]
+                  },
+                  "rotation":{
+                     "description":"(Optional -AE) - Angle of rotation",
+                     "$ref":"#/$defs/angleDetails"
+                  },
+                  "virtualSTEMSignal":{
+                     "type":"string",
+                     "description":"(Optional -AE) - Is the virtual STEM signal inside or outside?",
+                     "enum":[
+                        "inside",
+                        "outside"
+                     ]
+                  }
+               }
+            },
+            "focus":{
+               "type":"object",
+               "description":"(Optional, AE) - Description of focus with respect to precession",
+               "additionalProperties":false,
+               "properties":{
+                  "frameSize":{
+                     "type":"number",
+                     "description":"(Optional, AE) - Size of the frame eg:- 512, 256, 128",
+                     "default":512,
+                     "enum":[
+                        1024,
+                        512,
+                        256,
+                        128
+                     ]
+                  },
+                  "frameTime":{
+                     "$ref":"#/$defs/timeDetails",
+                     "description":"(Optional, AE) - Time per frame, default unit - s"
+                  }
+               }
+            },
+            "capture":{
+               "type":"object",
+               "description":"(Optional, AE) - Description of capture with respect to precession",
+               "additionalProperties":false,
+               "properties":{
+                  "frameSize":{
+                     "type":"number",
+                     "description":"(Optional, AE) - Size of the frame eg:- 512, 256, 128",
+                     "default":512,
+                     "enum":[
+                        1024,
+                        512,
+                        256,
+                        128
+                     ]
+                  },
+                  "frameTime":{
+                     "$ref":"#/$defs/timeDetails",
+                     "description":"(Optional, AE) - Time per frame, default unit - s "
+                  }
+               }
+            },
+            "scanRange":{
+               "type":"object",
+               "description":"(Optional - AE) - Details regarding STEM with respect to precession",
+               "additionalProperties":false,
+               "properties":{
+                  "alignmentPlatform":{
+                     "type":"boolean",
+                     "description":"(Optional - AE) - To be set True if alignment platform is used"
+                  },
+                  "STEMMagnification":{
+                     "type":"number",
+                     "description":"(Optional -AE) - Set Magnification of the STEM"
+                  },
+                  "scanrotation":{
+                     "$ref":"#/$defs/angleDetails",
+                     "description":"(Optional - AE) - Angle of scan rotation, default unit - degree"
+                  }
+               }
             }
          },
          "title":"precessionDetails"
@@ -1161,6 +1317,22 @@
             "rotation":{
                "$ref":"#/$defs/angleDetails",
                "description":""
+            },
+            "sampleHolder":{
+               "$ref":"#/$defs/sampleHolderDetails",
+               "description":"(optional, NAE) - Description of the sample holder used, defined separately as sampleHolderDetails (includes holderType, holderUsed, washer1, washer2, clamper and fixingMethod)"
+            },
+            "grid":{
+               "$ref":"#/$defs/gridDetails",
+               "description":"(optional, NAE) - Description of the grid used to mount the sample, defined separately as gridDetails (includes gridUsed, gridSupplier, gridTypeNo and plasmaCleaning)"
+            },
+            "inSituChip":{
+               "$ref":"#/$defs/inSituChipDetails",
+               "description":"(optional, NAE) - Description of the inSituChip used, defined separately as inSituChipDetails (includes inSituChipName, inSituChipSerialNo, inSituChipAtmosphere and inSituChipGasMixture)"
+            },
+            "measurementConditions":{
+               "type":"string",
+               "description":"(optional, NAE) - Conditions to be maintained during the measurement inside the machine (e.g., water vapor, cryogenic temperature, gas atmosphere) of datatype string"
             }
          },
          "required":[
@@ -1169,6 +1341,44 @@
             "tiltAngleBeta"
          ],
          "title":"stageDetails"
+      },
+      "gridDetails":{
+         "type":"object",
+         "description":"Details regarding the grid used to support the sample",
+         "additionalProperties":false,
+         "properties":{
+            "GridUsed":{
+
+            },
+            "GridSupplier":{
+
+            },
+            "GridTypeNo":{
+
+            },
+            "plasmaCleaning":{
+               "$ref":"#/$defs/plasmaCleaningDetails",
+               "description":"(optional, NAE) - Details of the plasma cleaning performed to the grid used for supporting the smaple"
+            }
+         },
+         "required":[
+            "gridUsed"
+         ],
+         "title":"gridDetails"
+
+      },
+      "inSituChipDetails":{
+         "type":"object",
+         "description":"",
+         "additionalProperties":false,
+         "properties":{},
+         "required":[
+            "xValue",
+            "yValue",
+            "zValue",
+            "coordinatesUnit"
+         ],
+         "title":"inSituChipDetails"
       },
       "coordinateSet":{
          "type":"object",
@@ -1217,7 +1427,8 @@
             "yValue",
             "zValue",
             "coordinatesUnit"
-         ]
+         ],
+         "title":"coordinateSet"
       },
       "angleDetails":{
          "type":"object",
@@ -1421,6 +1632,10 @@
             "type":"boolean",
             "default":true,
             "description":""
+          },
+          "precession":{
+             "$ref":"#/$defs/precessionDetails",
+             "description":"(optional, AE) - Details about precession like the angle and frequency of precession (defined separately as precessionDetails)"
           }
         },
         "required":[

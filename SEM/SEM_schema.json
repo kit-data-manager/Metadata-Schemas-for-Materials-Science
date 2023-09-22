@@ -147,11 +147,8 @@
                "enum":[
                   "Data Curator",
                   "Instrument Scientist",
-                  "Principal Investigator",
-                  "Project Member",
-                  "Research user",
-                  "Site Leader",
-                  "Work Package Leader"
+                  "Team Leader",
+                  "Team Member"
                ]
             },
             "affiliation":{
@@ -363,7 +360,7 @@
             "unit":{
                "type":"string",
                "description":"(Required) - Unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
-               "default":"ug",
+               "default":"µg",
                "enum":[
                   "ng",
                   "µg",
@@ -871,7 +868,7 @@
             },
             "coordinatesUnit":{
                "type":"string",
-               "default":"um",
+               "default":"µm",
                "enum":[
                   "nm",
                   "µm",
@@ -993,7 +990,7 @@
             },
             "unit":{
                "type":"string",
-               "default":"us",
+               "default":"µs",
                "enum":[
                   "ps",
                   "ns",
