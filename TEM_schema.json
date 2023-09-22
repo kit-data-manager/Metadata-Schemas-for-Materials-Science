@@ -2,7 +2,7 @@
    "$schema":"https://json-schema.org/draft/2019-09/schema",
    "$id":"https://mdmc.kit.edu/schemas/tem_metadata",
    "type":"object",
-   "description":"The purpose of this JSON Schema is to provide description of a transmission electron microscopy (TEM) measurement. The cardinality of all properties are either defined as required or optional and wherever possible a list of controlled vocabularies is provided. Also each property is labelled to indicate if it is automatically extractable (AE) or not automatically extractable (NAE). Note that some of the items which are of the type - object might have some properties which are AE and some others which are NAE, so the overall automatic extractability of these objects would be given as NAE. The automatic extractability of the individual properties of dimensional quantities are, on the contrary, is not always possible to be labelled in the definition, as these are repeated in multiple instances, with each instance having its own automatic extractability. Contributors: Carina B. Maliakkal, Christian Kübel, Dorothee-Vinga Szabo, Di Wang, Maximilian Töllner, Reetu Elza Joseph, Regina Ciancio, Rossella Aversa, Sabine Schlabach, Shyam Chethala Neelakandhan, Xiaoke Mu, Yuting Dai",
+   "description":"Note: This is a working version whihc is continuosly under development. The purpose of this JSON Schema is to provide description of a transmission electron microscopy (TEM) measurement. The cardinality of all properties are either defined as required or optional and wherever possible a list of controlled vocabularies is provided. Also each property is labelled to indicate if it is automatically extractable (AE) or not automatically extractable (NAE). Note that some of the items which are of the type - object might have some properties which are AE and some others which are NAE, so the overall automatic extractability of these objects would be given as NAE. The automatic extractability of the individual properties of dimensional quantities are, on the contrary, is not always possible to be labelled in the definition, as these are repeated in multiple instances, with each instance having its own automatic extractability. Contributors: Carina B. Maliakkal, Christian Kübel, Dorothee-Vinga Szabo, Di Wang, Maximilian Töllner, Reetu Elza Joseph, Regina Ciancio, Rossella Aversa, Sabine Schlabach, Shyam Chethala Neelakandhan, Xiaoke Mu, Yuting Dai",
    "properties":{
       "entry":{
          "$ref":"#/$defs/entry"
@@ -517,7 +517,7 @@
       "instrumentDetails":{
          "type":"object",
          "additionalProperties":false,
-         "description":"Details giving the relevant instrument settings and the collection of the components of the instrument. Properties: instrumentName , instrumentID, instrumentManufacturer, precession , additionalAttachments (optional, NAE) - A string to include any additional attachment(s), setMagnification (required, AE) - The magnification set for the diffraction pattern or image (of the datatype number), actualMagnification (optional, AE) - The actual magnification observed which might differ from the set magnification (of the datatype number), driftCorrectionApplied (optional, AE) - To bet set as true if  drift correction is applied to compensate for xy drift (of the datatype boolean), setCameraLength (required, AE) - the effective distance or magnification between the specimen and the detector plane defined separately as distanceDetails, actualCameraLength (optional, AE) - The actual camera length as opposed to the set camera length defined separately as distanceDetails, operationMode (required, AE) - to select the operation mode between TEM or STEM (of the datatype string), objectiveLensMode (optional, NAE) - to select the objective lens mode used from a controlled list (of the datatype string), illuminationMode (optional, NAE) - to select the illumination mode used from a controlled list (of the datatype string), probeMode (optional, AE) - to select the type of probe mode used (nano probe mode or micro probe mode; of the datatype string), imageMode (required, NAE) - to select the image mode out of a controlled list of strings consisiting of * normal image * Selected Area Diffraction (SAD) * Energy-Dispersive X-Ray Spectroscopy (EDXS) * Scanning Transmission Electron Microscopy (STEM) * Nano-Beam Diffraction (NBD) * Convergent Beam Electron Diffraction (CBED), fieldMode (optional, AE) - to select between dark field and bright field modes (of the datatype string), spotSize (required, NAE) - Spotsize (diameter) of the beam or a parameter (integer) indicating the spread of the beam entering the aperture such that a lower number means more electrons are hitting the sample (alternatively it is the size of the first spot formed by the beam after being emitteed from the gun) defined separately as spotSizeDetails ; it is the size of the first spot formed by the beam after being emitted from the gun, defocus (required, AE) - Value indicating how far the sample is away from the focus of the electron beam defined separately as distanceDetails, probeSize (optional, NAE) - Size of the beam at the sample defined separately as distanceDetails, chamberPressure (required, AE) - pressure maintained inside the chamber (in which the sample is housed) during the measurement defined separately as pressureDetails, monochromator (optional, AE) - details pertaining to the monochromator expressed separately as monochromatorDetails, source (required, NAE) - details pertaining to the source of the electron beam expressed separately as sourceDetails, stage (required, AE) - details pertaining to the stage expressed separately as stageDetails, aperture (optional, AE) - details pertaining to the apertures used expressed separately as apertureDetails, lens (required, AE) - details pertaining to the lenses used expressed separately as lensDetails, ASTAR (optional, AE) - details about an ASTAR attachment used with the microscope for orientation-phase imaging defined separately as ASTARdetails, EFTEM (optional, AE) -  Details about Energy Filtered TEM (EFTEM) Mode defined separately as EFTEMdetails, detector (required, NAE) - details pertaining to the detector used expressed separately as detectorDetails",
+         "description":"Details giving the relevant instrument settings and the collection of the components of the instrument",
          "properties":{
             "instrumentName":{
                "type":"string",
@@ -533,44 +533,48 @@
             },
             "additionalAttachments":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE) - A string to include any additional attachment(s)"
             },
             "setMagnification":{
                "type":"number",
-               "description":""
+               "description":"(required, AE) - The magnification set for the diffraction pattern or image (of the datatype number)"
             },
             "actualMagnification":{
                "type":"number",
-               "description":""
+               "description":"(optional, AE) - The actual magnification observed which might differ from the set magnification (of the datatype number)"
             },
             "driftCorrectionApplied":{
                "type":"boolean",
                "default":false,
-               "description":""
+               "description":"(optional, AE) - To bet set as true if  drift correction is applied to compensate for xy drift (of the datatype boolean)"
             },
             "setCameraLength":{
                "$ref":"#/$defs/distanceDetails",
-               "description":""
+               "description":"(required, AE) - the effective distance or magnification between the specimen and the detector plane defined separately as distanceDetails"
             },
             "actualCameraLength":{
                "$ref":"#/$defs/distanceDetails",
-               "description":""
+               "description":"(optional, AE) - The actual camera length as opposed to the set camera length defined separately as distanceDetails"
             },
             "operationMode":{
                "type":"string",
                "enum":[
                  "TEM",
-                 "STEM"
+                 "STEM",
+                 "4D-STEM"
                ],
-               "description":""
+               "description":"(required, AE) - to select the operation mode between TEM, STEM or 4D-STEM (of the datatype string)"
             },
             "objectiveLensMode":{
                "type":"string",
                "enum":[
                  "HM",
+                 "LM",
+                 "SA",
+                 "Lorentz",
                  "normal"
                ],
-               "description":""
+               "description":"(optional, NAE) - to select the objective lens mode used from a controlled list (of the datatype string)"
             },
             "illuminationMode":{
                "type":"string",
@@ -578,7 +582,7 @@
                  "probe",
                  "parallel"
                ],
-               "description":""
+               "description":"(optional, NAE) - to select the illumination mode used from a controlled list (of the datatype string)"
             },
             "probeMode":{
                "type":"string",
@@ -586,18 +590,19 @@
                  "micro probe mode",
                  "nano probe mode"
                ],
-               "description":""
+               "description":"(optional, AE) - to select the type of probe mode used (nano probe mode or micro probe mode; of the datatype string)"
             },
             "imageMode":{
                "type":"string",
                "enum":[
-                 "normal image",
+                 "TEM",
+                 "STEM",
                  "SAD",
                  "EDS",
                  "NBD",
                  "CBED"
                ],
-               "description":""
+               "description":"(required, NAE) - to select the image mode out of a controlled list of strings consisiting of * TEM * STEM * Selected Area Diffraction (SAD) * Energy-Dispersive X-Ray Spectroscopy (EDXS) * Scanning Transmission Electron Microscopy (STEM) * Nano-Beam Diffraction (NBD) * Convergent Beam Electron Diffraction (CBED) "
             },
             "fieldMode":{
                "type":"string",
@@ -605,51 +610,55 @@
                  "dark field",
                  "bright field"
                ],
-               "description":""
+               "description":"(optional, AE) - to select between dark field and bright field modes (of the datatype string)"
             },
             "spotSize":{
                "$ref":"#/$defs/distanceDetails",
-               "description":""
+               "description":"(required, NAE) - Spotsize (diameter) of the beam or a parameter (integer) indicating the spread of the beam entering the aperture such that a lower number means more electrons are hitting the sample (alternatively it is the size of the first spot formed by the beam after being emitteed from the gun) defined separately as spotSizeDetails ; it is the size of the first spot formed by the beam after being emitted from the gun"
             },
             "defocus":{
                "$ref":"#/$defs/distanceDetails",
-               "description":""
+               "description":"(required, AE) - Value indicating how far the sample is away from the focus of the electron beam defined separately as distanceDetails"
             },
             "probeSize":{
                "$ref":"#/$defs/distanceDetails",
-               "description":""
+               "description":"(optional, NAE) - Size of the beam at the sample defined separately as distanceDetails"
             },
             "chamberPressure":{
                "$ref":"#/$defs/pressureDetails",
-               "description":""
+               "description":"(required, AE) - pressure maintained inside the chamber (in which the sample is housed) during the measurement defined separately as pressureDetails"
             },
             "monochromator":{
                "$ref":"#/$defs/monochromatorDetails",
-               "description":""
+               "description":"(Optional, AE) - details pertaining to the monochromator expressed separately as monochromatorDetails"
             },
             "source":{
                "$ref":"#/$defs/sourceDetails",
-               "description":""
+               "description":"(required, NAE) - details pertaining to the source of the electron beam expressed separately as sourceDetails"
             },
             "stage":{
                "$ref":"#/$defs/stageDetails",
-               "description":""
+               "description":"(required, AE) - details pertaining to the stage expressed separately as stageDetails"
             },
             "aperture":{
                "$ref":"#/$defs/apertureDetails",
-               "description":""
+               "description":"(optional, AE) - details pertaining to the apertures used expressed separately as apertureDetails"
             },
             "lens":{
                "$ref":"#/$defs/lensDetails",
-               "description":""
+               "description":"(required, AE) - details pertaining to the lenses used expressed separately as lensDetails"
             },
             "ASTAR":{
                "$ref":"#/$defs/ASTARdetails",
-               "description":""
+               "description":"(optional, AE) - details about an ASTAR attachment used with the microscope for orientation-phase imaging defined separately as ASTARdetails"
+            },
+            "EFTEM":{
+               "$ref":"#/$defs/EFTEMdetails",
+               "description":"(optional, AE) -  Details about Energy Filtered TEM (EFTEM) Mode defined separately as EFTEMdetails"
             },
             "detector":{
                "$ref":"#/$defs/detectorDetails",
-               "description":""
+               "description":"(required, NAE) - details pertaining to the detector used expressed separately as detectorDetails"
             }
          },
          "required":[
@@ -670,20 +679,20 @@
       },
       "manufacturerDetails":{
          "type":"object",
-         "description":"gives details like the name of the manufacturer and model of the instrument and an ID. Properties: manufacturerName (optional, AE) - Name of the manufacturer of datatype string, modelName (optional, AE) - Model of the instrument of datatype string, manufacturerID (optional, NAE) - Identifier for the manufacturer",
+         "description":"gives details like the name of the manufacturer and model of the instrument and an ID",
          "additionalProperties":false,
          "properties":{
             "manufacturerName":{
                "type":"string",
-               "description":""
+               "description":"(optional, AE) - Name of the manufacturer of datatype string"
             },
             "modelName":{
                "type":"string",
-               "description":""
+               "description":"(optional, AE) - Model of the instrument of datatype string"
             },
             "manufacturerID":{
                "$ref":"#/$defs/identifier",
-               "description":""
+               "description":"(optional, NAE) - Identifier for the manufacturer"
             }
          },
          "title":"manufacturerDetails"
@@ -872,12 +881,12 @@
       },
       "frequencyDetails":{
          "type":"object",
-         "description":"describes a frequency. Properties: value (required, AE) - The frequency expressed as an integer or floating point value of datatype number, unit (required, AE) - the unit of the value to be selected from a controlled list (Hz, kHz, default value - Hz) of datatype string, qualifier (optional, NAE) - A qualifier to describe the value (e.g., avg, max, min), default value - max) of datatype string, uncertainty (optional, NAE) - Uncertainty in the value defined separately as uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (optional, NAE) - Further notes about the value of datatype string",
+         "description":"describes a frequency",
          "additionalProperties":false,
          "properties":{
             "value":{
                "type":"number",
-               "description":""
+               "description":"(required, AE) - The frequency expressed as an integer or floating point value of datatype number"
             },
             "unit":{
                "type":"string",
@@ -886,7 +895,7 @@
                   "Hz",
                   "kHz"
                ],
-               "description":""
+               "description":"(required, AE) - the unit of the value to be selected from a controlled list (Hz, kHz, default value - Hz) of datatype string"
             },
             "qualifier":{
                "type":"string",
@@ -896,15 +905,15 @@
                  "min",
                  "average"
                  ],
-                 "description":""
+                 "description":"(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min), default value - max) of datatype string"
             },
             "uncertainty":{
                "$ref":"#/$defs/uncertaintyDetails",
-               "description":""
+               "description":"(optional, NAE) - Uncertainty in the value defined separately as uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number"
             },
             "notes":{
                "type":"string",
-               "description":""
+               "description":"(optional, NAE) - Further notes about the value of datatype string"
             }
          },
          "required":[
@@ -961,6 +970,44 @@
             "value"
          ],
          "title":"pressureDetails"
+      },
+      "EFTEMdetails":{
+         "type":"object",
+         "description":"",
+         "additionalProperties":false,
+         "properties":{
+            "enabled":{
+               "type":"boolean",
+               "description":""
+            },
+            "zeroEnergyLoss":{
+               "type":"boolean",
+               "description":""
+            },
+            "setEnergyLoss":{
+               "$ref":"#/$defs/energyDetails",
+               "description":""
+            },
+            "inColumnFilter":{
+               "type":"object",
+               "description":"",
+               "additionalProperties":false,
+               "properties":{
+
+               },
+               "title":"inColumnFilter"
+            },
+            "postColumnFilter":{
+               "type":"object",
+               "description":"",
+               "additionalProperties":false,
+               "properties":{
+
+               },
+               "title":"postColumnFilter"
+            }
+         },
+         "title":"EFTEMdetails"
       },
       "monochromatorDetails":{
          "type":"object",
