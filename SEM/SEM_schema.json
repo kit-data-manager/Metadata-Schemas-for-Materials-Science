@@ -292,9 +292,11 @@
             },
             "unit":{
                "type":"string",
-               "description":"(Required) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
+               "description":"(Required) - Unit of the value to be selected from a controlled list (fm, pm, nm, µm, mm, cm, m, default value - mm)",
                "default":"mm",
                "enum":[
+                  "fm",
+                  "pm",
                   "nm",
                   "µm",
                   "mm",
