@@ -3,19 +3,81 @@ var uiSchema = {
     "items":
     [
         {
-            "legend": "Sample Identification",
+            "legend": "Reseach User",
             "type": "fieldset",
             "htmlClass": "myclass",
             "items": 
             [
-                {"title": "Sample Name", "key": "sampleIdentification.sampleName"},
-                {"title": "Sample Producer", "key": "sampleIdentification.sampleProducer"},
-                {"title": "Sample Purpose", "key": "sampleIdentification.samplePurpose", "type": "checkboxes"},
-                {"title": "Sample ID", "key": "sampleIdentification.sampleID.sampleID"},
-                {"title": "Sample ID Type", "key": "sampleIdentification.sampleID.sampleIDType"},
-                {"title": "Comment", "key": "sampleIdentification.sampleID.sampleIDTypeComment"},
-                {"title": "Sample ID Position", "key": "sampleIdentification.sampleID.sampleIDPosition","type": "checkboxes"}
+                {"title": "User Name", "key": "researchUser.userName"},
+                {"title": "User Role", "key": "researchUser.userRole"},
+            ]            
+        },
+        {
+            "legend": "Sample Name",
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items": 
+            [
+                {"title": "Sample Name", "key": "sampleName.sampleName"},
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments",  "key": "sampleName.comments"}
             ]
+        },
+        {
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items":
+            [
+                {
+                    "type": "tabs",
+                    "id": "id_navtabs",
+                    "htmlClass": "myclass",
+                    "items":
+                    [
+                        {
+                            "title": "Sample ID",
+                            "type": "tab",
+                            "items":
+                            [
+                                {"title": "Sample ID", "key": "sampleID.sampleID"},
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleID.comments"}
+                            ]
+                        },
+                        {
+                            "title": "Identification Number",
+                            "type": "tab",
+                            "items":
+                            [
+                                {
+                                    "title": "Identification Number Position on Sample", 
+                                    "key": "sampleIDNumber.IDnumberPosition",
+                                    "type": "checkboxes"
+                                },
+                                {"title": "Axis Orientation", "key": "sampleIDNumber.axisOrientation"},
+                                {
+                                    "type": "selectfieldset",
+                                    "title": "Reference Points: coordinate system",
+                                    "key": "sampleIDNumber.referencePoints",
+                                    "titleMap":
+                                    {
+                                        "notApplicable": "Not applicable",
+                                        "cartesian": "Cartesian",
+                                        "polar": "Polar",
+                                        "other": "Other (please add in the comments)"
+                                    },
+                                    "items": 
+                                    [
+                                        "sampleIDNumber.notApplicable",
+                                        "sampleIDNumber.cartesian",
+                                        "sampleIDNumber.polar",
+                                        "sampleIDNumber.other"
+                                    ]
+                                },
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleIDNumber.comments"}
+                            ]
+                        }
+                    ]
+                }
+            ]   
         },
         {
             "legend": "Sample Components",
@@ -23,228 +85,102 @@ var uiSchema = {
             "htmlClass": "myclass",
             "items":
             [
-                {"title": "Use the + to insert each Sample Component", "key": "sampleComponents"},
+                {"title": "Use the + to insert each Sample Component", "key": "sampleComponents.sampleComponents"},
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleComponents.comments"}
             ]
+        },
+        {
+            "legend": "Sample Mass",
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items": 
+            [
+                {"title": "Sample Mass", "key": "sampleMass.sampleMass"},
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleMass.comments"}
+            ]   
         },
         {
             "legend": "Sample Characterization",
             "type": "fieldset",
             "htmlClass": "myclass",
-            "items":
+            "items": 
             [
-                {"title": "Phase of Matter", "key": "sampleCharacterization.phaseOfMatter.phaseOfMatterOptions", "type": "checkboxes"},
-                {"title": "Comment", "key": "sampleCharacterization.phaseOfMatter.comment"},
                 {
                     "type": "selectfieldset",
-                    "title": "Material Type",
-                    "key": "sampleCharacterization.materialType",
+                    "title": "Physical State",
+                    "key": "physicalState.physicalState",
+                    "titleMap": 
+                    {
+                        "notApplicable": "Not Applicable",
+                        "solid": "Solid",
+                        "powder": "Powder",
+                        "liquid": "Liquid",
+                        "gas": "Gas"
+                    },
                     "items": 
                     [
-                        "sampleCharacterization.notApplicable",
-                        "sampleCharacterization.biological",
-                        "sampleCharacterization.biomaterials",
-                        "sampleCharacterization.ceramics",
-                        "sampleCharacterization.metalsAndAlloys",
-                        "sampleCharacterization.metamaterials",
-                        "sampleCharacterization.molecularFluids",
-                        "sampleCharacterization.organicCompounds",
-                        "sampleCharacterization.organometallics",
-                        "sampleCharacterization.polymers",
-                        "sampleCharacterization.semiconductors"
+                        "physicalState.notApplicable",
+                        "physicalState.solid",
+                        "physicalState.powder",
+                        "physicalState.liquid",
+                        "physicalState.gas"
                     ]
                 },
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "physicalState.comments"}
             ]
         },
         {
-            "title": "Structural Features",
+            "legend": "Relevant Sample Temperatures",
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items": 
+            [
+                {"title": "Melting Temperature", "key": "temperatures.meltingTemperature"},
+                {"title": "Recrystallization Temperature", "key": "temperatures.recrystallizationTemperature"},
+                {"title": "Evaporation Temperature", "key": "temperatures.evaporationTemperature"},
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "temperatures.comments"}
+            ]
+        },
+        {
+            "legend": "Sample Producer",
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items": 
+            [
+                {"title": "Sample Producer", "key": "sampleProducer.sampleProducer"},
+                {"title": "Comments", "type": "textarea", "htmlClass": "comments", "key": "sampleProducer.comments"}
+            ]
+        },
+        {
+            "legend": "Fabrication",
             "type": "fieldset",
             "htmlClass": "myclass",
             "items":
             [
                 {
-                    "type": "tabs",
-                    "id": "struct_navtabs",
-                    "htmlClass": "myclass",
+                    "type": "array",
+                    "title": "Use the + to insert each Fabrication Step", 
+                    "key": "fabrication.fabrication",
                     "items":
                     [
                         {
-                            "title": "Composites",
-                            "type": "tab",
+                            "type": "selectfieldset",
+                            "key": "fabrication.fabrication[].fabricationStep",
                             "items": 
                             [
-                                {
-                                    "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.composites.compositesOptions",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "structuralFeatures.composites.comment"}
-                            ]
-                        },
-                        {
-                            "title": "Defects",
-                            "type": "tab",
-                            "items": 
-                            [
-                                {
-                                    "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.defects.defectsOptions",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "structuralFeatures.defects.comment"}
-                            ]
-                        },
-                        {
-                            "title": "Interfacial",
-                            "type": "tab",
-                            "items": 
-                            [
-                                {
-                                    "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.interfacial.interfacialOptions",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "structuralFeatures.interfacial.comment"}
-                            ]
-                        },
-                        {
-                            "title": "Microstructures",
-                            "type": "tab",
-                            "items": 
-                            [
-                                {
-                                    "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.microstructures.microstructuresOptions",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "structuralFeatures.microstructures.comment"}
-                            ]
-                        },
-                        {
-                            "title": "Molecular Structure",
-                            "type": "tab",
-                            "items": 
-                            [
-                                {
-                                    "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.molecularStructure.molecularStructureOptions",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "structuralFeatures.molecularStructure.comment"}
-                            ]
-                        },
-                        {
-                            "title": "Morphologies",
-                            "type": "tab",
-                            "items": 
-                            [
-                                {
-                                    "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.morphologies.morphologiesOptions",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "structuralFeatures.morphologies.comment"}
-                            ]
-                        },
-                        {
-                            "title": "Properties",
-                            "type": "tab",
-                            "items": 
-                            [
-                                {
-                                    "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.properties.propertiesOptions",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "structuralFeatures.properties.comment"}
+                                "fabrication.fabrication[].notApplicable", 
+                                "fabrication.fabrication[].annealingHomogenization", 
+                                "fabrication.fabrication[].forming",
+                                "fabrication.fabrication[].joining",
+                                "fabrication.fabrication[].mechanicalAndSurface",
+                                "fabrication.fabrication[].powderProcessing",
+                                "fabrication.fabrication[].cooling",
+                                "fabrication.fabrication[].other"
                             ]
                         }
                     ]
-                }
-            ]
-        },      
-        {
-            "type": "fieldset",
-            "htmlClass": "myclass",
-            "items":
-            [
-                {"title": "Sample Description", "key": "sampleDescription"}
-            ]
-        },
-        {
-            "legend": "Sample Handling Precaution",
-            "type": "fieldset",
-            "htmlClass": "myclass",
-            "items":
-            [
-                {
-                    "type": "tabs",
-                    "id": "prop_navtabs",
-                    "htmlClass": "myclass",
-                    "items":
-                    [
-                        {
-                            "title": "Sensitivity Against",
-                            "type": "tab",
-                            "items":
-                            [
-                                {
-                                    "title": "The sample is sensitive to", 
-                                    "key": "sampleHandlingPrecaution.sensitivityAgainst.sensitivityList",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "sampleHandlingPrecaution.sensitivityAgainst.comments"}
-                            ]
-                        },
-                        {
-                            "title": "Safety Information",
-                            "type": "tab",
-                            "items":
-                            [
-                                {
-                                    "title": "Hazard", 
-                                    "key": "sampleHandlingPrecaution.safetyInfo.hazard",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "sampleHandlingPrecaution.safetyInfo.comments"}
-                            ]
-                        },
-                        {
-                            "title": "Sample Handling",
-                            "type": "tab",
-                            "items":
-                            [
-                                {"key": "sampleHandlingPrecaution.sampleHandling"}
-                            ]
-                        },
-                        {
-                            "title": "Storage Conditions",
-                            "type": "tab",
-                            "items":
-                            [
-                                {"title": "Storage Temperature", "key": "sampleHandlingPrecaution.storageConditions.storageTemperature"},
-                                {"title": "Storage Pressure", "key": "sampleHandlingPrecaution.storageConditions.storagePressure"},
-                                {"title": "Storage Humidity", "key": "sampleHandlingPrecaution.storageConditions.storageHumidity"},
-                                {"title": "Storage Gas Atmosphere", "key": "sampleHandlingPrecaution.storageConditions.storageGasAtmosphere"},
-                                {
-                                    "title": "Storage Equipment", 
-                                    "key": "sampleHandlingPrecaution.storageConditions.storageEquipment.storageEquipmentOptions",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "sampleHandlingPrecaution.storageConditions.storageEquipment.comments"},
-                                {"title": "Additional Notes", "key": "sampleHandlingPrecaution.storageConditions.additionalNotes"}
-                            ]
-                        },
-                    ]
-                }
-            ]
-        },
-        {
-            "legend": "Parents",
-            "type": "fieldset",
-            "htmlClass": "myclass",
-            "items":
-            [
-                {"title": "Use the + to insert each Sample Parent", "key": "parents"}
+                },
+                {"title": "Comments", "type": "textarea", "htmlClass": "comments", "key": "fabrication.comments"}
             ]
         },
         {
@@ -253,8 +189,9 @@ var uiSchema = {
             "htmlClass": "myclass",
             "items":
             [
+                {"title": "Use the + to insert each Precursor", "key": "samplePreparation.precursors"},
                 {"title": "Sample Preparation Date", "key": "samplePreparation.preparationDate"},
-                {"title": "Use the + to insert each Consumable", "key": "samplePreparation.consumables", "htmlClass": "myclass"},
+                {"title": "Sample Preparation Purpose", "key": "samplePreparation.preparationPurpose"},
                 {
                     "title": "Use the + to insert each Sample Preparation Step",
                     "type": "array",
@@ -282,8 +219,113 @@ var uiSchema = {
                 },
                 {"title": "Sample Preparation Description", "key": "samplePreparation.preparationDescription"},
                 {"title": "Sample Preparation File", "key": "samplePreparation.preparationHistoryFile"},
-                {"title": "Sample Preparation File Reference", "key": "samplePreparation.preparationHistoryFileReference"}
+                {"title": "Sample Preparation File Reference", "key": "samplePreparation.preparationHistoryFileReference"},
+                {"title": "Comments", "type": "textarea", "htmlClass": "comments", "key": "samplePreparation.comments"}
             ]
+        },
+        {
+            "legend": "Sample Expiration Date",
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items":
+            [
+                {"title": "Expiration Date", "key": "expirationDate.expirationDate"},
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "expirationDate.comments"}
+            ]
+        },
+        {
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items":
+            [
+                {
+                    "type": "tabs",
+                    "id": "sample_navtabs",
+                    "htmlClass": "myclass",
+                    "items":
+                    [
+                        {
+                            "title": "Sample Properties",
+                            "type": "tab",
+                            "items": 
+                            [
+                                {
+                                    "title": "The sample is", 
+                                    "key": "sampleHandling.sampleProperties.samplePropertiesList",
+                                    "type": "checkboxes"
+                                },
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHandling.sampleProperties.comments"}
+                            ]
+                        },
+                        {
+                            "title": "Sensitivity Against",
+                            "type": "tab",
+                            "items":
+                            [
+                                {
+                                    "title": "The sample is sensitive to", 
+                                    "key": "sampleHandling.sensitivityAgainst.sensitivityList",
+                                    "type": "checkboxes"
+                                },
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHandling.sensitivityAgainst.comments"}
+                            ]
+                        },
+                        {
+                            "title": "Safety Information",
+                            "type": "tab",
+                            "items":
+                            [
+                                {
+                                    "title": "Hazard", 
+                                    "key": "sampleHandling.safetyInfo.hazard",
+                                    "type": "checkboxes"
+                                },
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHandling.safetyInfo.comments"}
+                            ]
+                        },
+                        {
+                            "title": "Sample Handling",
+                            "type": "tab",
+                            "items":
+                            [
+                                {"title": "No-Tweezers Regions", "key": "sampleHandling.sampleHandling.noTweezers"},
+                                {"title": "Clean Room Conditions", "key": "sampleHandling.sampleHandling.cleanRoom"},
+                                {"title": "Humidity", "key": "sampleHandling.sampleHandling.humidity"},
+                                {"title": "Gas Atmosphere", "key": "sampleHandling.sampleHandling.gasAtmosphere"},
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHandling.sampleHandling.comments"}
+                            ]
+                        },
+                        {
+                            "title": "Storage Conditions",
+                            "type": "tab",
+                            "items":
+                            [
+                                {"title": "Storage Temperature", "key": "sampleHandling.storageConditions.storageTemperature"},
+                                {"title": "Storage Pressure", "key": "sampleHandling.storageConditions.storagePressure"},
+                                {"title": "Storage Humidity", "key": "sampleHandling.storageConditions.storageHumidity"},
+                                {"title": "Storage Gas Atmosphere", "key": "sampleHandling.storageConditions.storageGasAtmosphere"},
+                                {
+                                    "title": "Storage Equipment", 
+                                    "key": "sampleHandling.storageConditions.storageEquipment",
+                                    "type": "checkboxes"
+                                },
+                                {"title": "Additional Notes", "key": "sampleHandling.storageConditions.additionalNotes"},
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHandling.storageConditions.comments"}
+                            ]
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            "legend": "Sample Embedding Material",
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items":
+            [
+                {"title": "Embedding Material", "key": "embeddingMaterial.embeddingMaterial"},
+                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "embeddingMaterial.comments"}
+            ]  
         },
         {
             "legend": "Sample Holder",
@@ -327,7 +369,7 @@ var uiSchema = {
             [
                 {
                     "type": "tabs",
-                    "id": "refer_navtabs",
+                    "id": "ref_navtabs",
                     "htmlClass": "myclass",
                     "items":
                     [
@@ -356,7 +398,7 @@ var uiSchema = {
                                         "sampleReferencing.other"
                                     ]
                                 },
-                                {"title": "Comments", "key": "sampleReferencing.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleReferencing.comments"}
                             ]
                         },
                         {
@@ -403,7 +445,7 @@ var uiSchema = {
                                         "holderReferencing.markerOnHolder.other"
                                     ]
                                 },
-                                {"title": "Comments", "key": "holderReferencing.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "holderReferencing.comments"}
                             ]
                         },
                         {
@@ -450,7 +492,7 @@ var uiSchema = {
                                         "carrierReferencing.markerOnCarrier.other"
                                     ]
                                 },
-                                {"title": "Comments", "key": "carrierReferencing.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "carrierReferencing.comments"}
                             ]
                         },
                         {
@@ -478,13 +520,14 @@ var uiSchema = {
                                         "ROI.other"
                                     ]
                                 },
-                                {"title": "Comments", "key": "ROI.comments"}
+                                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "ROI.comments"}
                             ]
                         }
                         
                     ]
                 }
             ]   
-        }
+        },    
+
     ]
 }
