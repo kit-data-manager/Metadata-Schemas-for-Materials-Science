@@ -364,6 +364,11 @@ var dataModel = {
                         },
                         "comment": {"type": "string"}
                     }
+                },
+                "materialDataSheet":
+                {
+                    "description": "(Optional) - Link to the file describing the composition specification, usually called Material Data Sheet, if available.",
+                    "type": "string"
                 }
             }
         },

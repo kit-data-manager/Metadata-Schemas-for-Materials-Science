@@ -53,6 +53,7 @@ var uiSchema = {
                         "sampleCharacterization.semiconductors"
                     ]
                 },
+                {"title": "Material Data Sheet", "key": "sampleCharacterization.materialDataSheet"}
             ]
         },
         {
