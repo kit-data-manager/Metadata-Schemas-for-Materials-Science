@@ -39,6 +39,14 @@
               "type": "string",
               "description": "The name of the project containing the acquistion datasets"
             },
+            "projectDescription": {
+              "type": "string",
+              "description": "Description about the project containing the acquistion datasets"
+            },
+            "userDescription": {
+              "type": "string",
+              "description": "Additional description provided by the user about the measurement or the sample"
+            },
             "zCutSpacing": {
               "$ref": "#/$defs/distanceDetails",
               "description": "The spacing between individual slices in z dimension"
@@ -71,26 +79,21 @@
               "type": "string",
               "description": "Describes the system type used - the name of the instrument"
             },
+            "angleToEBeam":{
+              "$ref":"#/$defs/angleDetails",
+              "description":"(Optional) - angle between e-beam and i-beam defined separately as angleDetails (Allowed units: degree, radian). It is specified by the manufacturer and a property of the geometry of the instrument."
+           },
             "stage": {
               "type": "string",
               "description": "The dimensions of the stage used in the instrument"
             }
           },
           "required": [
-            "stage",
-            "systemType",
-            "ESEM",
-            "eucentricWorkingDistance",
-            "source",
-            "column",
-            "pump",
-            "numberOfCuts",
+            "angleToEBeam",
             "zCutSpacing",
             "projectName",
-            "fileVersion",
             "applicationID",
-            "applicationVersion",
-            "applicationName"
+            "program"
           ],
           "title": "genericMetadata"
         },
