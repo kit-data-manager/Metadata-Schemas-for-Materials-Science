@@ -811,7 +811,7 @@
             },
             "cycleTime":{
                "$ref":"#/$defs/timeDetails",
-               "description":"(Optional) - the time taken by the beam to , defined separately as  timeDetails"
+               "description":"(Optional) - the time taken by the beam to scan a frame,  defined separately as  timeDetails. It is the time needed to scan a line times the number of lines in a frame."
             },
             "noiseReduction":{
                "type":"string",
