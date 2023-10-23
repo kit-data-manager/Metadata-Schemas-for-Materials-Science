@@ -265,7 +265,7 @@
         },
         "beamCurrent": {
           "$ref": "#/$defs/currentDetails",
-          "description": "(Optional) - Electrical current which flows along the beam path. IRI: https://iris.hmc-services.de/EM_Glossary/term_00000005 It is defined separately as currentDetails (includes the current value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)"
+          "description": "(Optional) - Electrical current which flows along the beam path. IRI: https://iris.hmc-services.de/EM_Glossary/term_00000005 It is defined separately as currentDetails (includes the current value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)."
         },
         "scanRotation": {
           "$ref": "#/$defs/angleDetails",
@@ -273,10 +273,7 @@
         },
         "imageMode": {
           "type": "string",
-          "description": "(Required) - The type of image mode used",
-          "enum": [
-            "Normal"
-          ]
+          "description": "(Optional) - The type of image mode used. Could be a text or number depending on the instrument."
         },
         "apertureSetting": {
           "type": "object",
@@ -303,11 +300,11 @@
         },
         "tiltCorrectionIsOn": {
           "type": "boolean",
-          "description": "(Required) - To bet set true if tilt correction is on"
+          "description": "(Optional) - To bet set true if tilt correction is on"
         },
         "dynamicFocusIsOn": {
           "type": "boolean",
-          "description": "(Required) - To bet set true if dynamic focus is on"
+          "description": "(Optional) - To bet set true if dynamic focus is on"
         },
         "dynamicWDIsOn": {
           "type": "boolean",
@@ -315,7 +312,7 @@
         },
         "lensMode": {
           "type": "string",
-          "description": "(Required) - The type of image mode used",
+          "description": "(Optional) - The type of image mode used",
           "enum": [
             "Field-Free",
             "Immersion",
@@ -324,26 +321,34 @@
         },
         "tiltCorrectionAngle": {
           "$ref": "#/$defs/angleDetails",
-          "description": "(Required) - If the sample is tilted, the image is compressed in the vertical direction, i.e. the pixels are not isotropic anymore. Tilt correction adapts the line spacing of the scanning to compensate for this."
+          "description": "(Optional) - If the sample is tilted, the image is compressed in the vertical direction, i.e. the pixels are not isotropic anymore. Tilt correction adapts the line spacing of the scanning to compensate for this."
         },
         "preTilt ": {
           "$ref": "#/$defs/angleDetails",
-          "description": "(Required) - Sometimes, pre-tilted holders are used and the pretilt angle must be given in the acquisition software because actual tilt = stage tilt plus pretilt."
+          "description": "(Optional) - Sometimes, pre-tilted holders are used and the pretilt angle must be given in the acquisition software because actual tilt = stage tilt plus pretilt."
         },
         "magnificationCorrection": {
           "type": "boolean",
-          "description": "(Required) - To bet set true if magnification correction is on"
+          "description": "(Optional) - To bet set true if magnification correction is on"
         }
-      }
+      },
+      "required":[
+        "accelerationVoltage",
+        "dynamicWDIsOn",
+        "verticalFieldWidth",
+        "horizontalFieldWidth",
+        "apertureSetting",
+        "scanRotation"
+      ]
     },
     "scanDetails": {
       "type": "object",
-      "description": "(Required) - Details regarding the scan settings.",
+      "description": "(Optional) - Details regarding the scan settings.",
       "additionalProperties": false,
       "properties": {
         "scanType": {
           "type": "string",
-          "description": "(Required) - The type of scan E-Scan or I-Scan",
+          "description": "(Optional) - The type of scan E-Scan or I-Scan",
           "enum": [
             "EScan",
             "IScan"
@@ -351,11 +356,11 @@
         },
         "dwellTime": {
           "$ref": "#/$defs/timeDetails",
-          "description": "(Optional) - Time period during which the beam remains on one position/stationary. IRI: https://iris.hmc-services.de/term_00000018 "
+          "description": "(Required) - Time period during which the beam remains on one position/stationary. IRI: https://iris.hmc-services.de/term_00000018 "
         },
         "internalScan": {
           "type": "boolean",
-          "description": "(Required) - To bet set true if internal scan is on"
+          "description": "(Optional) - To bet set true if internal scan is on"
         },
         "pixelWidth": {
           "$ref": "#/$defs/distanceDetails",
@@ -367,19 +372,19 @@
         },
         "horizontalFieldSize": {
           "$ref": "#/$defs/distanceDetails",
-          "description": "(Required) -  the actual horizontal length scanned on the sample defined separately as distanceDetails"
+          "description": "(Optional) -  the actual horizontal length scanned on the sample defined separately as distanceDetails"
         },
         "verticalFieldSize": {
           "$ref": "#/$defs/distanceDetails",
-          "description": "(Required) -  the actual vertical length scanned on the sample defined separately as distanceDetails"
+          "description": "(Optional) -  the actual vertical length scanned on the sample defined separately as distanceDetails"
         },
         "average": {
           "type": "number",
-          "description": "(Required) - Number of images averaged at each slice"
+          "description": "(Optional) - Number of images averaged at each slice"
         },
         "integrate": {
           "type": "number",
-          "description": "(Required) - Number of images integrated at each slice"
+          "description": "(Optional) - Number of images integrated at each slice"
         },
         "frameTime": {
           "$ref": "#/$defs/timeDetails",
@@ -392,7 +397,7 @@
           "properties": {
             "mainsLock": {
               "type": "boolean",
-              "description": "(Required) - To bet set true if mains lock is on"
+              "description": "(Optional) - To bet set true if mains lock is on"
             },
             "lineTime": {
               "$ref": "#/$defs/timeDetails",
@@ -400,11 +405,15 @@
             },
             "lineIntegration": {
               "type": "number",
-              "description": "(Required) - Number of lines integrated"
+              "description": "(Optional) - Number of lines integrated"
+            },
+            "lineAveraging":{
+              "type": "number",
+              "description": "(Optional) - Number of lines averaged"
             },
             "scanInterlacing": {
               "type": "number",
-              "description": "(Required) - Number of scans interlaced. This setting splits an imaging area into blocks defined by the number of lines (from 2 to 8). In the first instance, the first line of each block is scanned, then the second one, etc. This imaging method significantly reduces charging."
+              "description": "(Optional) - Number of scans interlaced. This setting splits an imaging area into blocks defined by the number of lines (from 2 to 8). In the first instance, the first line of each block is scanned, then the second one, etc. This imaging method significantly reduces charging."
             }
           }
         }

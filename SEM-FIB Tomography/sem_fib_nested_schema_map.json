@@ -38,7 +38,7 @@
         "acquisition.dataset.instrument.eBeam.tiltCorrectionAngle.value":"Images.SEM Image.SliceImage.EBeam.tiltcorrectionangle",
         "acquisition.dataset.instrument.eBeam.preTilt.value":"Images.SEM Image.SliceImage.EBeam.pretilt",
         "acquisition.dataset.instrument.eBeam.magnificationCorrection":"Images.SEM Image.SliceImage.EBeam.magnificationcorrection",
-        "acquisition.dataset.instrument.scan.scanType":"Images.SEM Image.SliceImage.Beam.scan.",
+        "acquisition.dataset.instrument.scan.scanType":"Images.SEM Image.SliceImage.Beam.scan",
         "acquisition.dataset.instrument.scan.dwellTime.value":"Images.SEM Image.SliceImage.Scan.dwelltime",
         "acquisition.dataset.instrument.scan.internalScan":"Images.SEM Image.SliceImage.Scan.internalscan.",
         "acquisition.dataset.instrument.scan.pixelWidth.value":"Images.SEM Image.SliceImage.Scan.pixelwidth",

@@ -73,6 +73,10 @@
           "$ref": "#/$defs/distanceDetails",
           "description": "(Required)- Z coordinate of the position of the stage"
         },
+        "stageM": {
+          "$ref": "#/$defs/distanceDetails",
+          "description": "(Required)- M coordinate of the position of the stage (additional translation axis available in Zeiss instruments)"
+        },
         "stageR": {
           "$ref": "#/$defs/angleDetails",
           "description": "(Required)- Angle by which the stage is rotated"
