@@ -475,32 +475,56 @@
           "type": "string",
           "description": "(Required) - The name of the detector used"
         },
-        "ETD": {
-          "$ref": "#/$defs/ETDdetails",
-          "description": "(Required) - Details about the Everhart Thornley detector (ETD), which is a secondary electron and back-scattered electron detector used in scanning electron microscopes"
+        "detectorType":{
+          "type":"string",
+          "description":"(Optional) - Type of the detector used",
+          "enum": [
+            "ETD",
+            "CDEM",
+            "CBS",
+            "ECD",
+            "External",
+            "GBSD",
+            "GSED",
+            "ICE",
+            "LFD",
+            "LVD",
+            "LVSED",
+            "None",
+            "STEM3",
+            "STEM3_GMode",
+            "STEM4",
+            "T1",
+            "T2",
+            "T3",
+            "TLD"
+          ]
+        },
+        "detectorSettings": {
+          "$ref": "#/$defs/detectorSettings",
+          "description": "(Required) - Settings of the specific detector used. E.g., the Everhart Thornley detector (ETD), is a secondary electron and back-scattered electron detector used in scanning electron microscopes, whihc has then particular settings"
         }
       },
       "required": [
-        "name",
-        "ETD"
+        "name"
       ]
     },
-    "ETDdetails": {
+    "detectorSettings": {
       "type": "object",
-      "description": "describes the parameters of the Everhart Thornley detector (ETD), which is a secondary electron and back-scattered electron detector used in scanning electron microscopes",
+      "description": "describes the parameters of a detector such as the Everhart Thornley detector (ETD), which is a secondary electron and back-scattered electron detector used in scanning electron microscopes",
       "additionalProperties": false,
       "properties": {
         "contrast": {
           "type": "number",
-          "description": "(Required) - A number indicating the contrast"
+          "description": "(Optional) - A number indicating the contrast"
         },
         "brightness": {
           "type": "number",
-          "description": "(Required) - A number indicating the brightness"
+          "description": "(Optional) - A number indicating the brightness"
         },
         "mix": {
           "type": "number",
-          "description": "(Required) - Signals from different detectors can be overlaid (mixed) and this should, in theory, be the percentage of this detectors contribution to the end result."
+          "description": "(Optional) - Signals from different detectors can be overlaid (mixed) and this should, in theory, be the percentage of this detectors contribution to the end result."
         },
         "signal": {
           "type": "string",
@@ -513,30 +537,21 @@
         },
         "grid": {
           "type": "number",
-          "description": "(Required) - A number indicating the number of grid elements"
+          "description": "(Optional) - A number indicating the number of grid elements"
         },
         "contrastdB": {
           "type": "number",
-          "description": "(Required) - Describes the contrast in dB"
+          "description": "(Optional) - Describes the contrast in dB"
         },
         "brightnessdB": {
           "type": "number",
-          "description": "(Required) - Describes the brightness in dB"
+          "description": "(Optional) - Describes the brightness in dB"
         },
         "setting": {
           "type": "string",
-          "description": "(Required) - In case of ETD, this is the bias voltage applied to the detector grid. Note that this block looks different for different detectors. "
+          "description": "(Optional) - In case of ETD, this is the bias voltage applied to the detector grid. Note that this block looks different for different detectors. "
         }
-      },
-      "required": [
-        "contrast",
-        "brightness",
-        "mix",
-        "grid",
-        "contrastdB",
-        "brightnessdB",
-        "setting"
-      ]
+      }
     },
     "hotStageMEMSDetails": {
       "type": "object",
@@ -545,42 +560,33 @@
       "properties": {
         "heatingCurrent": {
           "$ref": "#/$defs/currentDetails",
-          "description": "(Required) - Describes the heating current used in the hot stage MEMS"
+          "description": "(Optional) - Describes the heating current used in the hot stage MEMS"
         },
         "heatingVoltage": {
           "$ref": "#/$defs/voltageDetails",
-          "description": "(Required) - Describes the heating voltage used in the hot stage MEMS"
+          "description": "(Optional) - Describes the heating voltage used in the hot stage MEMS"
         },
         "targetTemperature": {
           "$ref": "#/$defs/temperatureDetails",
-          "description": "(Required) - Describes the target Temperature set in the hot stage MEMS"
+          "description": "(Optional) - Describes the target Temperature set in the hot stage MEMS"
         },
         "actualTemperature": {
           "$ref": "#/$defs/temperatureDetails",
-          "description": "(Required) - Describes the actual Temperature measured in the hot stage MEMS"
+          "description": "(Optional) - Describes the actual Temperature measured in the hot stage MEMS"
         },
         "heatingPower": {
           "$ref": "#/$defs/powerDetails",
-          "description": "(Required) - Describes the heating power used in the hot stage MEMS"
+          "description": "(Optional) - Describes the heating power used in the hot stage MEMS"
         },
         "sampleBias": {
           "$ref": "#/$defs/voltageDetails",
-          "description": "(Required) - Describes the bias voltage applied to the sample in the hot stage MEMS"
+          "description": "(Optional) - Describes the bias voltage applied to the sample in the hot stage MEMS"
         },
         "sampleResistance": {
           "$ref": "#/$defs/resistanceDetails",
-          "description": "(Required) - Describes the target Temperature used in the hot stage MEMS"
+          "description": "(Optional) - Describes the target Temperature used in the hot stage MEMS"
         }
-      },
-      "required": [
-        "heatingCurrent",
-        "heatingVoltage",
-        "targetTemperature",
-        "actualTemperature",
-        "heatingPower",
-        "sampleBias",
-        "sampleResistance"
-      ]
+      }
     },
     "pixelNumberType": {
       "type": "object",

@@ -32,8 +32,8 @@
         "acquisition.dataset.instrument.detector.name":"ImageFolder.Image.Fibics.Image.Detector",
         "acquisition.dataset.instrument.imaging.digitalContrast":"ImageFolder.Image.Fibics.Image.Contrast",
         "acquisition.dataset.instrument.imaging.digitalBrightness":"ImageFolder.Image.Fibics.Image.Brightness",
-        "acquisition.dataset.instrument.detector.ETD.signal":"ImageFolder.Image.Fibics.DetectorInfo.item[0]",
-        "acquisition.dataset.instrument.detector.ETD.setting":"ImageFolder.Image.Fibics.DetectorInfo.item[1]"
+        "acquisition.dataset.instrument.detector.detectorSettings.signal":"ImageFolder.Image.Fibics.DetectorInfo.item[0]",
+        "acquisition.dataset.instrument.detector.detectorSettings.setting":"ImageFolder.Image.Fibics.DetectorInfo.item[1]"
     },
     "image_schema":{
         "acquisition.dataset.images.creationTime":"ImageFolder.Image.Fibics.Application.Date",
