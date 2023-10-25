@@ -23,6 +23,8 @@
         "acquisition.dataset.instrument.eBeam.tiltCorrectionIsOn":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.Settings.Options.TiltCorrectionEnabled",
         "acquisition.dataset.instrument.eBeam.dynamicFocusIsOn":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.Settings.Options.DynamicFocusEnabled",
         "acquisition.dataset.instrument.eBeam.tiltCorrectionAngle":"ImageFolder.Image.Fibics.ScanInfo.item",
+        "acquisition.dataset.instrument.iBeam.millingCurrent.value":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.Settings.NotchTracking.Ti",
+        "acquisition.dataset.instrument.iBeam.accelerationVoltage.value":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.FIB_System_State.AccV",
         "acquisition.dataset.instrument.scan.dwellTime.value":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.Settings.NotchTracking.Dwell",
         "acquisition.dataset.instrument.scan.pixelWidth.value":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.Settings.Imaging.FibicsRasterInfo.PixelSizeX",
         "acquisition.dataset.instrument.scan.pixelHeight.value":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.Settings.Imaging.FibicsRasterInfo.PixelSizeY",

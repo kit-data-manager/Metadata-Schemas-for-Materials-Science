@@ -203,7 +203,11 @@
         },
         "eBeam": {
           "$ref": "#/$defs/eBeamDetails",
-          "description": "(Required) - Details about the electron Beam"
+          "description": "(Required) - Details about the electron beam"
+        },
+        "iBeam": {
+          "$ref": "#/$defs/iBeamDetails",
+          "description": "(Required) - Details about the ion beam"
         },
         "scan": {
           "$ref": "#/$defs/scanDetails",
@@ -256,16 +260,16 @@
     },
     "eBeamDetails": {
       "type": "object",
-      "description": "(Required) - Describes the configuration of the electron beam.",
+      "description": "(Required) - Describes the configuration of the electron beam. IRI:https://purls.helmholtz-metadaten.de/EMG/00000007",
       "additionalProperties": false,
       "properties": {
         "accelerationVoltage": {
           "$ref": "#/$defs/voltageDetails",
-          "description": "(Required) - The potential difference between anode and cathode. The acceleration voltage adds kinetic energy to the particles of the beam. IRI: https://iris.hmc-services.de/EM_Glossary/term_00000015 It is defined separately as voltageDetails, (includes the voltage value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)"
+          "description": "(Required) - The potential difference between anode and cathode. The acceleration voltage adds kinetic energy to the particles of the beam. IRI: https://purls.helmholtz-metadaten.de/EMG/00000001 It is defined separately as voltageDetails, (includes the voltage value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)"
         },
         "beamCurrent": {
           "$ref": "#/$defs/currentDetails",
-          "description": "(Optional) - Electrical current which flows along the beam path. IRI: https://iris.hmc-services.de/EM_Glossary/term_00000005 It is defined separately as currentDetails (includes the current value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)."
+          "description": "(Optional) - Electrical current which flows along the beam path. IRI: https://purls.helmholtz-metadaten.de/EMG/00000003 It is defined separately as currentDetails (includes the current value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)."
         },
         "scanRotation": {
           "$ref": "#/$defs/angleDetails",
@@ -300,15 +304,15 @@
         },
         "tiltCorrectionIsOn": {
           "type": "boolean",
-          "description": "(Optional) - To bet set true if tilt correction is on"
+          "description": "(Optional) - To bet set true if tilt correction is on. IRI:https://purls.helmholtz-metadaten.de/emg/00000037"
         },
         "dynamicFocusIsOn": {
           "type": "boolean",
-          "description": "(Optional) - To bet set true if dynamic focus is on"
+          "description": "(Optional) - To bet set true if dynamic focus is on. IRI:https://purls.helmholtz-metadaten.de/emg/00000039"
         },
         "dynamicWDIsOn": {
           "type": "boolean",
-          "description": "(Required) - To bet set true if dynamic working distance is on"
+          "description": "(Required) - To bet set true if dynamic working distance is on. IRI: https://purls.helmholtz-metadaten.de/EMG/00000026"
         },
         "lensMode": {
           "type": "string",
@@ -321,7 +325,7 @@
         },
         "tiltCorrectionAngle": {
           "$ref": "#/$defs/angleDetails",
-          "description": "(Optional) - If the sample is tilted, the image is compressed in the vertical direction, i.e. the pixels are not isotropic anymore. Tilt correction adapts the line spacing of the scanning to compensate for this."
+          "description": "(Optional) - If the sample is tilted, the image is compressed in the vertical direction, i.e. the pixels are not isotropic anymore. Tilt correction adapts the line spacing of the scanning to compensate for this. IRI:https://purls.helmholtz-metadaten.de/emg/00000037"
         },
         "preTilt ": {
           "$ref": "#/$defs/angleDetails",
@@ -341,6 +345,21 @@
         "scanRotation"
       ]
     },
+    "iBeamDetails": {
+      "type": "object",
+      "description": "(Required) - Describes the configuration of the ion beam. IRI:https://purls.helmholtz-metadaten.de/EMG/00000016",
+      "additionalProperties": false,
+      "properties": {
+        "accelerationVoltage": {
+          "$ref": "#/$defs/voltageDetails",
+          "description": "(Required) - The potential difference between anode and cathode. The acceleration voltage adds kinetic energy to the particles of the beam. IRI:https://purls.helmholtz-metadaten.de/EMG/00000001 It is defined separately as voltageDetails, (includes the voltage value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)"
+        },
+        "millingCurrent": {
+          "$ref": "#/$defs/currentDetails",
+          "description": "(Optional) - Electrical current used in SEM-FIB Tomography to mill/cut the sample. In this case this is the same as the beam current of the ion beam. IRI: https://purls.helmholtz-metadaten.de/EMG/00000003 It is defined separately as currentDetails (includes the current value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)."
+        },
+      }
+    },
     "scanDetails": {
       "type": "object",
       "description": "(Optional) - Details regarding the scan settings.",
@@ -356,7 +375,7 @@
         },
         "dwellTime": {
           "$ref": "#/$defs/timeDetails",
-          "description": "(Required) - Time period during which the beam remains on one position/stationary. IRI: https://iris.hmc-services.de/term_00000018 "
+          "description": "(Required) - Time period during which the beam remains on one position/stationary. IRI: https://purls.helmholtz-metadaten.de/EMG/00000006 "
         },
         "internalScan": {
           "type": "boolean",
@@ -388,7 +407,7 @@
         },
         "frameTime": {
           "$ref": "#/$defs/timeDetails",
-          "description": "(Optional) -Time period during which a frame is fully scanned. IRI: https://iris.hmc-services.de/term_00000021 "
+          "description": "(Optional) -Time period during which a frame is fully scanned. IRI: https://purls.helmholtz-metadaten.de/EMG/00000014 "
         },
         "eScan": {
           "type": "object",
@@ -940,7 +959,7 @@
     },
     "timeDetails": {
       "type": "object",
-      "description": "describes a time.",
+      "description": "describes a time period. IRI:https://purls.helmholtz-metadaten.de/EMG/00000024",
       "additionalProperties": false,
       "properties": {
         "value": {
