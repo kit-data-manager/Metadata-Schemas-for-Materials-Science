@@ -39,6 +39,10 @@
               "type": "string",
               "description": "The name of the project containing the acquistion datasets"
             },
+            "projectID":{
+              "$ref": "#/$defs/identifier",
+              "description": "(Optional)- Details concerning the program (or software) used for aquisition"
+            },
             "projectDescription": {
               "type": "string",
               "description": "Description about the project containing the acquistion datasets"
@@ -50,6 +54,34 @@
             "zCutSpacing": {
               "$ref": "#/$defs/distanceDetails",
               "description": "The spacing between individual slices in z dimension"
+            },
+            "millingLocationHeight":{
+              "$ref": "#/$defs/distanceDetails",
+              "description": "The total height of the area which is cut into slices in the z dimension"
+            },
+            "millingLocationWidth":{
+              "$ref": "#/$defs/distanceDetails",
+              "description": "The total width of the area which is cut into slices in the x dimension"
+            },
+            "millingLocationDepth":{
+              "$ref": "#/$defs/distanceDetails",
+              "description": "The total width of the area which is cut into slices in the y dimension"
+            },
+            "millingLocationX":{
+              "$ref": "#/$defs/distanceDetails",
+              "description": "X coordinate begin of the milling location from the origin."
+            },
+            "millingLocationY":{
+              "$ref": "#/$defs/distanceDetails",
+              "description": "Y coordinate of the begin of the milling location from the origin."
+            },
+            "millingMaterial":{
+              "type": "string",
+              "description": "Material which is milled"
+            },
+            "millingCurrent":{
+              "$ref": "#/$defs/currentDetails",
+              "description": "The total height of the area which is cut into slices in the z dimension. IRI: https://purls.helmholtz-metadaten.de/EMG/00000003"
             },
             "numberOfCuts": {
               "type": "number",
@@ -182,6 +214,43 @@
         "value"
       ],
       "title": "distanceDetails"
+    },
+    "currentDetails": {
+      "type": "object",
+      "description": "Describes a current.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "default": -9999,
+          "description": "(Optional) - Further notes about the value of datatype string"
+        },
+        "unit": {
+          "type": "string",
+          "default": "pA",
+          "enum": [
+            "pA",
+            "nA",
+            "uA",
+            "mA",
+            "A"
+          ],
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A default value - pA) of datatype string"
+        },
+        "qualifier": {
+          "type": "string",
+          "default": "max",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "currentDetails"
     }
   }
 }

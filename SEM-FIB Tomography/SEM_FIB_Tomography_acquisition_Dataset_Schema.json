@@ -217,9 +217,16 @@
           "$ref": "#/$defs/imageDetails",
           "description": "(Optional) - Details about the imaging settings"
         },
+        "numberOfDetectors":{
+          "type":"number",
+          "description":"Number of detectors used for the acquisition"
+        },
         "detector": {
-          "$ref": "#/$defs/detectorDetails",
-          "description": "(Optional) - Details about the detector"
+          "type":"array",
+          "description": "(Required) - Details about the detector(s) used for acquisition.",
+          "items": {
+            "$ref": "#/$defs/detectorDetails"
+          }
         },
         "hotStageMEMS": {
           "$ref": "#/$defs/hotStageMEMSDetails",
@@ -357,7 +364,7 @@
         "millingCurrent": {
           "$ref": "#/$defs/currentDetails",
           "description": "(Optional) - Electrical current used in SEM-FIB Tomography to mill/cut the sample. In this case this is the same as the beam current of the ion beam. IRI: https://purls.helmholtz-metadaten.de/EMG/00000003 It is defined separately as currentDetails (includes the current value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)."
-        },
+        }
       }
     },
     "scanDetails": {
@@ -492,11 +499,11 @@
       "properties": {
         "name": {
           "type": "string",
-          "description": "(Required) - The name of the detector used"
+          "description": "(Optional) - Name of the detector used"
         },
         "detectorType":{
           "type":"string",
-          "description":"(Optional) - Type of the detector used",
+          "description":"(Required) - Type of the detector used",
           "enum": [
             "ETD",
             "CDEM",
@@ -525,7 +532,7 @@
         }
       },
       "required": [
-        "name"
+        "detectorType"
       ]
     },
     "detectorSettings": {
@@ -558,6 +565,10 @@
           "type": "number",
           "description": "(Optional) - A number indicating the number of grid elements"
         },
+        "gridVoltage":{
+          "$ref": "#/$defs/voltageDetails",
+          "description": "(Optional) - Voltage applied to the grid "
+        },
         "contrastdB": {
           "type": "number",
           "description": "(Optional) - Describes the contrast in dB"
@@ -569,6 +580,18 @@
         "setting": {
           "type": "string",
           "description": "(Optional) - In case of ETD, this is the bias voltage applied to the detector grid. Note that this block looks different for different detectors. "
+        },
+        "frontEndVoltage": {
+          "$ref": "#/$defs/voltageDetails",
+          "description": "(Optional) - Bias voltage applied to the front end of the detector "
+        },
+        "enhancedContrast": {
+          "type": "number",
+          "description": "(Optional) - Describes the enhancement in contrast"
+        },
+        "minimumDwellTime":{
+          "$ref": "#/$defs/timeDetails",
+          "description": "(Optional) - Minimum possible dwell time for the detector. IRI: https://purls.helmholtz-metadaten.de/EMG/00000006 "
         }
       }
     },
