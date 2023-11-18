@@ -140,6 +140,7 @@ var dataModel = {
                                 "type": "string",
                                 "enum":
                                 [
+                                    "not applicable",
                                     "top",
                                     "bottom",
                                     "right",
@@ -547,7 +548,7 @@ var dataModel = {
                                 [
                                     "aligned",
                                     "amorphous",
-                                    "anosotropic",
+                                    "anisotropic",
                                     "clusters",
                                     "complex fluids",
                                     "glass",
