@@ -698,6 +698,31 @@ var dataModel = {
                     "description": "(Optional) - Temperature of the sample. It can be a numerical value, a range of numerical values, or some text (e.g., room temperature).",
                     "type": "string"
                 },
+                "sampleVisibleElements":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "sampleVisibleElements":
+                        {
+                            "type": "array",
+                            "items":
+                            {
+                                "type": "string",
+                                "enum":
+                                [
+                                    "none",
+                                    "pattern",
+                                    "orientation",
+                                    "fiducials",
+                                    "sample ID",
+                                    "other (please specify in the comment)"
+                                ]
+                            } 
+                        },
+                        "comment": {"type": "string"}
+                    }   
+                },
                 "sampleAdditionalFeatures":
                 {
                     "description": "(Optional) - Description of the missing relevant features describing the sample, if any.",
