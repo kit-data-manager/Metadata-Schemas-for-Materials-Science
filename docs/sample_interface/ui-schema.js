@@ -10,10 +10,11 @@ var uiSchema = {
             [
                 {"title": "Sample Name", "key": "sampleIdentification.sampleName"},
                 {"title": "Sample Producer", "key": "sampleIdentification.sampleProducer"},
-                {"title": "Sample Purpose", "key": "sampleIdentification.samplePurpose", "type": "checkboxes"},
+                {"title": "Sample Purpose", "key": "sampleIdentification.samplePurpose.samplePurpose", "type": "checkboxes"},
+                {"title": "Other Sample Purpose", "key": "sampleIdentification.samplePurpose.samplePurposeComment"},
                 {"title": "Sample ID", "key": "sampleIdentification.sampleID.sampleID"},
                 {"title": "Sample ID Type", "key": "sampleIdentification.sampleID.sampleIDType"},
-                {"title": "Comment", "key": "sampleIdentification.sampleID.sampleIDTypeComment"},
+                {"title": "Other Sample ID", "key": "sampleIdentification.sampleID.sampleIDTypeComment"},
                 {"title": "Sample ID Position", "key": "sampleIdentification.sampleID.sampleIDPosition","type": "checkboxes"}
             ]
         },

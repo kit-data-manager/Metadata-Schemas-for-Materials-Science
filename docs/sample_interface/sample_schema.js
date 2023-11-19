@@ -90,21 +90,30 @@ var dataModel = {
                 },
                 "samplePurpose":
                 {
-                    "description": "The purpose of the sample (e.g., for which measurement(s) or subsequent analysis the sample was prepared). In this context, Correlative Characterization may be intended as a purpose. Multiple selection is allowed.",
-                    "type": "array",
-                    "items":
+                    "type": "object",
+                    "properties":
                     {
-                        "type": "string",
-                        "enum":
-                        [
-                            "assessment",
-                            "completeness check",
-                            "correlative characterization",
-                            "exploratory",
-                            "feasibility",
-                            "high quality measurement",
-                            "test specific hypothesis"
-                        ]
+                        "samplePurpose":
+                        {
+                            "description": "The tentative purpose of the sample (e.g., for which measurement(s) or subsequent analysis the sample was prepared). In this context, Correlative Characterization may be intended as a purpose. Multiple selection is allowed.",
+                            "type": "array",
+                            "items":
+                            {
+                                "type": "string",
+                                "enum":
+                                [
+                                    "assessment",
+                                    "completeness check",
+                                    "correlative characterization",
+                                    "exploratory",
+                                    "feasibility",
+                                    "high quality measurement",
+                                    "test specific hypothesis",
+                                    "other (please specify in the comment)"
+                                ]
+                            }
+                        },
+                        "samplePurposeComment": {"type": "string"}
                     }
                 },
                 "sampleID":
