@@ -163,6 +163,43 @@ var dataModel = {
                 }
             }
         },
+        "sampleComponents":
+        {
+            "description": "Physical System (typically a piece of material) which constitutes a part of a Sample. It may include one or more substrates, layers, masks, embedding or filler or evaporation materials, coatings, conducting powders and molecules.",
+            "type": "array",
+            "items": 
+            {
+                "type": "object",
+                "properties":
+                {
+                     "componentName":
+                    {
+                        "description": "(Required) - Name of the sample component",
+                        "type": "string"
+                    },
+                    "componentChemicalFormula":
+                    {
+                        "description": "(Recommended) - Chemical formula of the sample component",
+                        "type": "string"
+                    },
+                    "componentCASNumber":
+                    {
+                        "description": "(Optional) - CAS number of the sample component, if known and applicable",
+                        "type": "string"
+                    },
+                    "componentMaterialDataSheet":
+                    {
+                        "description": "(Optional) - Link to the file describing the composition specification, usually called Material Data Sheet, if available.",
+                        "type": "string"
+                    },
+                    "componentAdditionalFeatures": 
+                    {
+                        "description": "(Optional) - Description of the missing relevant features describing the Sample Component, if any.",
+                        "type": "string"
+                    }
+                }
+            }
+        },
         "sampleCharacterization":
         {
             "type": "object",
@@ -665,38 +702,6 @@ var dataModel = {
                 {
                     "description": "(Optional) - Description of the missing relevant features describing the sample, if any.",
                     "type": "string"
-                }
-            }
-        },
-        "sampleComponents":
-        {
-            "description": "Physical System (typically a piece of material) which constitutes a part of a Sample. It may include one or more substrates, layers, masks, embedding or filler or evaporation materials, coatings, conducting powders and molecules.",
-            "type": "array",
-            "items": 
-            {
-                "type": "object",
-                "properties":
-                {
-                     "componentName":
-                    {
-                        "description": "(Required) - Name of the sample component",
-                        "type": "string"
-                    },
-                    "componentChemicalFormula":
-                    {
-                        "description": "(Recommended) - Chemical formula of the sample component",
-                        "type": "string"
-                    },
-                    "componentCASNumber":
-                    {
-                        "description": "(Optional) - CAS number of the sample component, if known and applicable",
-                        "type": "string"
-                    },
-                    "componentAdditionalFeatures": 
-                    {
-                        "description": "(Optional) - Description of the missing relevant features describing the Sample Component, if any.",
-                        "type": "string"
-                    }
                 }
             }
         },

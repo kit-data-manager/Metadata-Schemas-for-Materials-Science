@@ -24,7 +24,7 @@ var uiSchema = {
             "htmlClass": "myclass",
             "items":
             [
-                {"title": "Use the + to insert each Sample Component", "key": "sampleComponents"},
+                {"title": "Use the + to insert each Component of the current Sample (not the Precursors: they can be inserted in Parents)", "key": "sampleComponents"},
             ]
         },
         {
