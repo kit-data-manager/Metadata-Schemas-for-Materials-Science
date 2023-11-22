@@ -66,8 +66,7 @@
         "endTime",
         "user",
         "instrument"
-      ],
-      "title": "entry"
+      ]
     },
     "identifier": {
       "type": "object",
@@ -105,8 +104,7 @@
           "type": "string",
           "description": "(Optional) - Program (or software) version number"
         }
-      },
-      "title": "program"
+      }
     },
     "revision": {
       "type": "object",
@@ -121,8 +119,7 @@
           "type": "string",
           "description": "(Optional)- Any comments to the revision"
         }
-      },
-      "title": "revision"
+      }
     },
     "user": {
       "type": "object",
@@ -168,8 +165,7 @@
       },
       "required": [
         "userName"
-      ],
-      "title": "user"
+      ]
     },
     "institutionDetails": {
       "type": "object",
@@ -277,8 +273,7 @@
           "$ref": "#/$defs/samplePrepType",
           "description": "(Optional) - Details pertaining to the sample prepapration like date, ID, etc"
         }
-      },
-      "title": "sample"
+      }
     },
     "distanceDetails": {
       "type": "object",
@@ -321,8 +316,7 @@
       "required": [
         "value",
         "unit"
-      ],
-      "title": "distanceDetails"
+      ]
     },
     "uncertaintyDetails": {
       "type": "object",
@@ -346,8 +340,7 @@
       "required": [
         "uncertaintyType",
         "value"
-      ],
-      "title": "uncertaintyDetails"
+      ]
     },
     "weightDetails": {
       "type": "object",
@@ -388,8 +381,7 @@
       "required": [
         "value",
         "unit"
-      ],
-      "title": "weightDetails"
+      ]
     },
     "samplePrepType": {
       "type": "object",
@@ -409,8 +401,7 @@
           "$ref": "#/$defs/identifier",
           "description": "(Optional) - Identifier of the sample preparation"
         }
-      },
-      "title": "samplePrepType"
+      }
     },
     "instrumentDetails": {
       "type": "object",
@@ -465,8 +456,7 @@
         "imaging",
         "instrumentName",
         "stage"
-      ],
-      "title": "instrument"
+      ]
     },
     "manufacturerDetails": {
       "type": "object",
@@ -529,8 +519,7 @@
       "required": [
         "unit",
         "value"
-      ],
-      "title": "pressureDetails"
+      ]
     },
     "sourceDetails": {
       "type": "object",
@@ -572,8 +561,7 @@
       },
       "required": [
         "accelerationVoltage"
-      ],
-      "title": "sourceDetails"
+      ]
     },
     "lifetimeDetails": {
       "type": "object",
@@ -607,8 +595,7 @@
       "required": [
         "unit",
         "value"
-      ],
-      "title": "lifetimeDetails"
+      ]
     },
     "voltageDetails": {
       "type": "object",
@@ -649,8 +636,7 @@
       "required": [
         "unit",
         "value"
-      ],
-      "title": "voltageDetails"
+      ]
     },
     "currentDetails": {
       "type": "object",
@@ -691,8 +677,7 @@
       "required": [
         "unit",
         "value"
-      ],
-      "title": "currentDetails"
+      ]
     },
     "stageDetails": {
       "type": "object",
@@ -741,8 +726,7 @@
       "required": [
         "eBeamWorkingDistance",
         "stageTiltAngle"
-      ],
-      "title": "stageDetails"
+      ]
     },
     "angleDetails": {
       "type": "object",
@@ -780,8 +764,7 @@
       "required": [
         "unit",
         "value"
-      ],
-      "title": "angleDetails"
+      ]
     },
     "imagingDetails": {
       "type": "object",
@@ -837,8 +820,7 @@
       "required": [
         "numberOfPixels",
         "pixelSize"
-      ],
-      "title": "imagingDetails"
+      ]
     },
     "coordinateSet": {
       "type": "object",
@@ -946,8 +928,7 @@
       },
       "required": [
         "xPixelSize"
-      ],
-      "title": "pixelsize3D"
+      ]
     },
     "pixelSizeDetails": {
       "type": "object",
@@ -981,8 +962,7 @@
       "required": [
         "unit",
         "value"
-      ],
-      "title": "pixelSizeDetails"
+      ]
     },
     "timeDetails": {
       "type": "object",
@@ -1023,8 +1003,7 @@
       "required": [
         "unit",
         "value"
-      ],
-      "title": "timeDetails"
+      ]
     },
     "voxelDetails": {
       "type": "object",
@@ -1058,8 +1037,7 @@
       "required": [
         "unit",
         "value"
-      ],
-      "title": "voxelDetails"
+      ]
     },
     "detectorSetDetails": {
       "type": "object",
@@ -1086,8 +1064,7 @@
       },
       "required": [
         "detector1"
-      ],
-      "title": "detectorSetDetails"
+      ]
     },
     "detectorDetails": {
       "type": "object",
@@ -1127,8 +1104,7 @@
       },
       "required": [
         "detectorName"
-      ],
-      "title": "detectorDetails"
+      ]
     },
     "eBeamDecelerationDetails": {
       "type": "object",
@@ -1189,8 +1165,7 @@
       "required": [
         "unit",
         "value"
-      ],
-      "title": "energyDetails"
+      ]
     },
     "FIBDetails": {
       "type": "object",
@@ -1234,8 +1209,7 @@
         "iBeamSource",
         "FIBExtractor",
         "FIBProbe"
-      ],
-      "title": "FIBDetails"
+      ]
     },
     "GISDetails": {
       "type": "object",
@@ -1266,8 +1240,7 @@
           "$ref": "#/$defs/timeDetails",
           "description": "(Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,us,ms,s)"
         }
-      },
-      "title": "GISDetails"
+      }
     }
   }
 }
