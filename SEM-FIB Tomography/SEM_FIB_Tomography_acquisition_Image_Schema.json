@@ -198,8 +198,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "pressureDetails"
+      ]
     },
     "angleDetails": {
       "type": "object",
@@ -232,8 +231,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "angleDetails"
+      ]
     },
     "distanceDetails": {
       "type": "object",
@@ -269,8 +267,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "distanceDetails"
+      ]
     },
     "temperatureDetails": {
       "type": "object",
@@ -304,8 +301,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "temperatureDetails"
+      ]
     },
     "currentDetails": {
       "type": "object",
@@ -341,8 +337,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "currentDetails"
+      ]
     }
   }
 }

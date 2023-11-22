@@ -126,8 +126,7 @@
             "projectName",
             "applicationID",
             "program"
-          ],
-          "title": "genericMetadata"
+          ]
         },
         "dataset": {
           "type": "array",
@@ -151,8 +150,7 @@
           "type": "string",
           "description": "(Optional) - Program (or software) version number"
         }
-      },
-      "title": "program"
+      }
     },
     "identifier": {
       "type": "object",
@@ -212,8 +210,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "distanceDetails"
+      ]
     },
     "currentDetails": {
       "type": "object",
@@ -249,8 +246,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "currentDetails"
+      ]
     }
   }
 }

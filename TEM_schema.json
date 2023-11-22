@@ -67,8 +67,7 @@
             "user",
             "sample",
             "instrument"
-         ],
-         "title":"entry"
+         ]
       },
       "identifier":{
          "type":"object",
@@ -106,8 +105,7 @@
                "type":"string",
                "description":"(optional, AE)- Program (or software) version number of datatype string"
             }
-         },
-         "title":"program"
+         }
       },
       "revision":{
          "type":"object",
@@ -122,8 +120,7 @@
                "type":"string",
                "description":"(optional, NAE)- any comments to the revision of the datatype string"
             }
-         },
-         "title":"revision"
+         }
       },
       "user":{
          "type":"object",
@@ -169,8 +166,7 @@
          },
          "required":[
             "userName"
-         ],
-         "title":"user"
+         ]
       },
       "institutionDetails":{
          "type":"object",
@@ -271,8 +267,7 @@
             "eBeamSensitive",
             "magnetic",
             "sampleName"
-         ],
-         "title":"sample"
+         ]
       },
       "distanceDetails":{
          "type":"object",
@@ -316,8 +311,7 @@
          "required":[
             "value",
             "unit"
-         ],
-         "title":"distanceDetails"
+         ]
       },
       "uncertaintyDetails":{
          "type":"object",
@@ -340,8 +334,7 @@
          "required":[
             "value",
             "unit"
-         ],
-         "title":"uncertaintyDetails"
+         ]
       },
       "eBeamSensitivityDetails":{
         "type":"object",
@@ -371,8 +364,7 @@
             "default":false,
             "description":"(optional, NAE) - to be set as true is the sample is already contaminated by the e-beam of the datatype boolean"
           }
-        },
-        "title":"eBeamSensitivityDetails"
+        }
       },
       "iBeamSensitivityDetails":{
         "type":"object",
@@ -392,8 +384,7 @@
             "type":"string",
             "description":"(optional, NAE) - option to include any other type of ions other than Ga or He (of the datatype string)"
           }
-        },
-        "title":"iBeamSensitivityDetails"
+        }
       },
       "sampleHolderDetails":{
         "type":"object",
@@ -419,8 +410,7 @@
             "type":"string",
             "description":"(optional, NAE) - description about adhesive used to bond/weld specimen to grid, adhere multiple samples for TEM cross-sections, pre-coat samples prior to encapsulation and for other mounting application (of the datatype string)"
           }
-        },
-        "title":"sampleHolderDetails"
+        }
       },
       "plasmaCleaningDetails":{
         "type":"object",
@@ -446,8 +436,7 @@
             "type":"number",
             "description":" (Optional, NAE) - number of cycles of plasma cleaning performed, of datatype integer "
           }
-        },
-        "title":"plasmaCleaningDetails"
+        }
       },
       "powerDetails":{
         "type":"object",
@@ -490,8 +479,7 @@
         "required":[
            "value",
            "unit"
-        ],
-        "title":"powerDetails"
+        ]
       },
       "samplePrepType":{
          "type":"object",
@@ -511,8 +499,7 @@
                "$ref":"#/$defs/identifier",
                "description":"(optional, NAE) - Identifier for the sample preparation"
             }
-         },
-         "title":"samplePrepType"
+         }
       },
       "instrumentDetails":{
          "type":"object",
@@ -674,8 +661,7 @@
             "aperture",
             "lens",
             "detector"
-         ],
-         "title":"instrument"
+         ]
       },
       "manufacturerDetails":{
          "type":"object",
@@ -694,8 +680,7 @@
                "$ref":"#/$defs/identifier",
                "description":"(optional, NAE) - Identifier for the manufacturer"
             }
-         },
-         "title":"manufacturerDetails"
+         }
       },
       "precessionDetails":{
          "type":"object",
@@ -876,8 +861,7 @@
                   }
                }
             }
-         },
-         "title":"precessionDetails"
+         }
       },
       "frequencyDetails":{
          "type":"object",
@@ -919,8 +903,7 @@
          "required":[
             "unit",
             "value"
-         ],
-         "title":"pressureDetails"
+         ]
       },
       "pressureDetails":{
          "type":"object",
@@ -968,8 +951,7 @@
          "required":[
             "unit",
             "value"
-         ],
-         "title":"pressureDetails"
+         ]
       },
       "EFTEMdetails":{
          "type":"object",
@@ -994,8 +976,7 @@
                "additionalProperties":false,
                "properties":{
 
-               },
-               "title":"inColumnFilter"
+               }
             },
             "postColumnFilter":{
                "type":"object",
@@ -1003,11 +984,9 @@
                "additionalProperties":false,
                "properties":{
 
-               },
-               "title":"postColumnFilter"
+               }
             }
-         },
-         "title":"EFTEMdetails"
+         }
       },
       "monochromatorDetails":{
          "type":"object",
@@ -1059,8 +1038,7 @@
            "monoStigmatorX",
            "monoStigmatorY",
            "monoFocus"
-         ],
-         "title":"monochromatorDetails"
+         ]
        },
        "voltageDetails":{
           "type":"object",
@@ -1105,8 +1083,7 @@
           "required":[
              "unit",
              "value"
-          ],
-          "title":"voltageDetails"
+          ]
        },
       "sourceDetails":{
          "type":"object",
@@ -1163,8 +1140,7 @@
          },
          "required":[
             "accelerationVoltage"
-         ],
-         "title":"sourceDetails"
+         ]
       },
       "currentDetails":{
          "type":"object",
@@ -1209,8 +1185,7 @@
          "required":[
             "unit",
             "value"
-         ],
-         "title":"currentDetails"
+         ]
       },
       "currentDensityDetails":{
          "type":"object",
@@ -1252,8 +1227,7 @@
          "required":[
             "unit",
             "value"
-         ],
-         "title":"currentDensityDetails"
+         ]
       },
       "energyDetails":{
          "type":"object",
@@ -1302,8 +1276,7 @@
          "required":[
             "unit",
             "value"
-         ],
-         "title":"energyDetails"
+         ]
       },
       "lifetimeDetails":{
          "type":"object",
@@ -1341,8 +1314,7 @@
          "required":[
             "unit",
             "value"
-         ],
-         "title":"lifetimeDetails"
+         ]
       },
       "stageDetails":{
          "type":"object",
@@ -1386,8 +1358,7 @@
             "specimenPosition",
             "tiltAngleAlpha",
             "tiltAngleBeta"
-         ],
-         "title":"stageDetails"
+         ]
       },
       "gridDetails":{
          "type":"object",
@@ -1410,8 +1381,7 @@
          },
          "required":[
             "gridUsed"
-         ],
-         "title":"gridDetails"
+         ]
 
       },
       "inSituChipDetails":{
@@ -1424,8 +1394,7 @@
             "yValue",
             "zValue",
             "coordinatesUnit"
-         ],
-         "title":"inSituChipDetails"
+         ]
       },
       "coordinateSet":{
          "type":"object",
@@ -1474,8 +1443,7 @@
             "yValue",
             "zValue",
             "coordinatesUnit"
-         ],
-         "title":"coordinateSet"
+         ]
       },
       "angleDetails":{
          "type":"object",
@@ -1517,8 +1485,7 @@
          "required":[
             "unit",
             "value"
-         ],
-         "title":"angleDetails"
+         ]
       },
       "apertureDetails":{
          "type":"object",
@@ -1549,8 +1516,7 @@
                "$ref":"#/$defs/distanceDetails",
                "description":""
             }
-         },
-         "title":"apertureDetails"
+         }
       },
       "gratingDetails":{
         "type":"object",
@@ -1573,8 +1539,7 @@
             "$ref":"#/$defs/voltageDetails",
             "description":""
           }
-        },
-        "title":"gratingDetails"
+        }
       },
       "lensDetails":{
         "type":"object",
@@ -1628,8 +1593,7 @@
         },
         "required":[
           "beamConvergence"
-        ],
-        "title":"lensDetails"
+        ]
       },
       "ASTARdetails":{
         "type":"object",
@@ -1687,8 +1651,7 @@
         },
         "required":[
           "ASTARactive"
-        ],
-        "title":"ASTARdetails"
+        ]
       },
       "detectorDetails":{
          "type":"object",
@@ -1819,8 +1782,7 @@
             "verticallyFlipped",
             "horizontallyFlipped",
             "diagonallyFlipped"
-         ],
-         "title":"detectorDetails"
+         ]
       },
       "pixelNumberType":{
          "type":"object",
@@ -1857,8 +1819,7 @@
          },
          "required":[
             "xPixelSize"
-         ],
-         "title":"pixelsize3D"
+         ]
       },
       "pixelSizeDetails":{
          "type":"object",
@@ -1896,8 +1857,7 @@
          "required":[
             "unit",
             "value"
-         ],
-         "title":"pixelSizeDetails"
+         ]
       },
       "pixelResolutionDetails":{
          "type":"object",
@@ -1935,8 +1895,7 @@
          "required":[
             "unit",
             "value"
-         ],
-         "title":"pixelSizeDetails"
+         ]
       },
       "pixelOffsetDetails":{
          "type":"object",
@@ -1951,8 +1910,7 @@
                "$ref":"#/$defs/distanceDetails",
                "description":""
             }
-          },
-         "title":"pixelSizeDetails"
+          }
       },
       "timeDetails":{
          "type":"object",
@@ -1997,8 +1955,7 @@
          "required":[
             "unit",
             "value"
-         ],
-         "title":"timeDetails"
+         ]
       },
       "STEMdetails":{
          "type":"object",
@@ -2030,8 +1987,7 @@
           },
          "required":[
             "SCAN"
-         ],
-       "title":"STEMdetails"
+         ]
      },
      "ADFdetails":{
        "type":"object",
@@ -2065,8 +2021,7 @@
          "gain",
          "offset",
          "collectionAngleRange"
-       ],
-       "title":"ADFdetails"
+       ]
      },
      "gainDetails":{
        "type":"object",
@@ -2107,8 +2062,7 @@
        "required":[
           "unit",
           "value"
-       ],
-       "title":"gainDetails"
+       ]
      },
      "rangeDetails":{
        "type":"object",
@@ -2127,8 +2081,7 @@
        "required":[
          "value1",
          "value2"
-       ],
-       "title":"rangeDetails"
+       ]
      },
      "SCANdetails":{
        "type":"object",
@@ -2177,8 +2130,7 @@
        "required":[
          "dwellTime",
          "scanType"
-       ],
-       "title":"SCANdetails"
+       ]
      },
      "EELSdetails":{
        "type":"object",
@@ -2231,8 +2183,7 @@
          "dualAcquireEnabled",
          "collectionSemiAngle",
          "convergenceSemiAngle"
-       ],
-       "title":"EELSdetails"
+       ]
      },
      "spectrometerDetails":{
        "type":"object",
@@ -2293,8 +2244,7 @@
        "required":[
          "apertureSize",
          "dispersion"
-       ],
-       "title":"spectrometerDetails"
+       ]
      },
      "EDXSDetails":{
        "type":"object",
@@ -2346,8 +2296,7 @@
          "dispersion",
          "offset",
          "noOfFrames"
-       ],
-       "title":"EDXSDetails"
+       ]
      },
      "usedSegmentDetails":{
        "type":"object",
@@ -2375,8 +2324,7 @@
            "type":"number",
            "description":""
          }
-       },
-       "title":"usedSegmentDetails"
+       }
      }
    }
 }

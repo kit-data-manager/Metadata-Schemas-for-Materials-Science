@@ -165,8 +165,7 @@
       },
       "required": [
         "userName"
-      ],
-      "title": "user"
+      ]
     },
     "program": {
       "type": "object",
@@ -181,8 +180,7 @@
           "type": "string",
           "description": "(Optional) - Program (or software) version number"
         }
-      },
-      "title": "program"
+      }
     },
     "instrumentDetails": {
       "type": "object",
@@ -238,8 +236,7 @@
         "scan",
         "imaging",
         "detector"
-      ],
-      "title": "instrumentDetails"
+      ]
     },
     "identifier": {
       "type": "object",
@@ -682,8 +679,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "resistanceDetails"
+      ]
     },
     "powerDetails": {
       "type": "object",
@@ -719,8 +715,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "powerDetails"
+      ]
     },
     "voltageDetails": {
       "type": "object",
@@ -756,8 +751,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "voltageDetails"
+      ]
     },
     "currentDetails": {
       "type": "object",
@@ -793,8 +787,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "currentDetails"
+      ]
     },
     "pressureDetails": {
       "type": "object",
@@ -833,8 +826,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "pressureDetails"
+      ]
     },
     "angleDetails": {
       "type": "object",
@@ -867,8 +859,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "angleDetails"
+      ]
     },
     "distanceDetails": {
       "type": "object",
@@ -904,8 +895,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "distanceDetails"
+      ]
     },
     "temperatureDetails": {
       "type": "object",
@@ -939,8 +929,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "temperatureDetails"
+      ]
     },
     "energyDetails": {
       "type": "object",
@@ -977,8 +966,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "energyDetails"
+      ]
     },
     "timeDetails": {
       "type": "object",
@@ -1014,8 +1002,7 @@
       },
       "required": [
         "value"
-      ],
-      "title": "timeDetails"
+      ]
     },
     "imagesDetails": {
       "type": "object",
@@ -1041,8 +1028,7 @@
       "required": [
         "imageMetadataArray",
         "format"
-      ],
-      "title": "imagesDetails"
+      ]
     }
   }
 }
