@@ -218,9 +218,8 @@
         "detector": {
           "oneOf": [
             {
-              "type": "object",
               "$ref": "#/$defs/detectorDetails",
-              "description": "(Required) - Details about the detector(s) used for acquisition."
+              "description": "(Required) - Details about the detector used for acquisition."
             },
             {
               "type": "array",
