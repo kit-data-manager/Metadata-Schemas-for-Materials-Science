@@ -579,7 +579,7 @@
           "description": "(Optional) - Describes the brightness in dB"
         },
         "setting": {
-          "type": "string",
+          "type": "number",
           "description": "(Optional) - In case of ETD, this is the bias voltage applied to the detector grid. Note that this block looks different for different detectors. "
         },
         "frontEndVoltage": {
