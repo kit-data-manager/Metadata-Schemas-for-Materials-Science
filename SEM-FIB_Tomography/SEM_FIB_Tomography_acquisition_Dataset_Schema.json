@@ -4,85 +4,81 @@
   "type": "object",
   "description": "This JSON Schema describes a set of images acquired during the course of a SEM/FIB Tomography experiment.  The images in each dataset is taken using a detector (SE, BSE, EDS, EBSD) using a specific configuration. This Schema contains only the parameters which are specific to the entire dataset. The parameters which are particular to each image is located at https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json. The units are by default to be considred as the SI units unless otherwise specified",
   "properties": {
-        "entryID": {
-          "$ref": "#/$defs/identifier",
-          "description": "(Optional)- Identifier of the dataset. It could be the PID of location where the entire dataset is stored"
-        },
-        "definition": {
-          "type": "string",
-          "description": "(Optional)- Name of the schema to which this entry conforms. In this case, acquisition_dataset is to be written"
-        },
-        "user": {
-          "$ref": "#/$defs/user",
-          "description": "(Optional)- The contact information of the user responsible for the measurement"
-        },
-        "program": {
-          "$ref": "#/$defs/program",
-          "description": "(Required)- Details concerning the program (or software) used for aquisition"
-        },
-        "instrument": {
-          "$ref": "#/$defs/instrumentDetails",
-          "description": "(Required)- Details concerning the instrument settings"
-        },
-        "datasetType": {
-          "type": "string",
-          "description": "(Required) - To be selected from the enumerated list depending on the detector and the angle at which the sample is measured: * SEM Image * SEM Image 2 * EDS * EBSD * BSE * ISE * ISI * SI * InLens * SESI",
-          "default": "SEM",
-          "enum": [
-            "SEM Image",
-            "SEM Image 2",
-            "SEM Image 3",
-            "SEM Image 4",
-            "SEM Image 5",
-            "EDS",
-            "EBSD",
-            "BSE",
-            "ISE Image",
-            "ISI Image",
-            "SI Image",
-            "InLens",
-            "SESI"
-          ]
-        },
-        "numberOfItems": {
-          "description": "(Required) - Number of Items (images, files). Depends on the number of slices",
-          "type": "number"
-        },
-        "rows": {
-          "type": "number",
-          "description": "(Optional) - Number of rows in the tiled image grab setting"
-        },
-        "columns": {
-          "type": "number",
-          "description": "(Optional) - Number of column in the tiled image grab setting"
-        },
-        "tileColumn": {
-          "type": "number",
-          "description": "(Optional) - The selected column in the tiled image grab setting"
-        },
-        "tileRow": {
-          "type": "number",
-          "description": "(Optional) - The selected row in the tiled image grab setting"
-        },
-        "images": {
-          "$ref": "#/$defs/imagesDetails",
-          "description": "(Required) - Details describing the images in the dataset, including location and image specific parameters"
-        }
-      },
-      "required": [
-        "definition",
-        "program",
-        "instrument",
-        "datasetType",
-        "images",
-        "displayedEnergyLevel",
-        "tileRow",
-        "tileColumn",
-        "columns",
-        "rows",
-        "name",
-        "numberOfItems"
-      ],
+    "entryID": {
+      "$ref": "#/$defs/identifier",
+      "description": "(Optional)- Identifier of the dataset. It could be the PID of location where the entire dataset is stored"
+    },
+    "definition": {
+      "type": "string",
+      "description": "(Optional)- Name of the schema to which this entry conforms. In this case, acquisition_dataset is to be written"
+    },
+    "user": {
+      "$ref": "#/$defs/user",
+      "description": "(Optional)- The contact information of the user responsible for the measurement"
+    },
+    "program": {
+      "$ref": "#/$defs/program",
+      "description": "(Required)- Details concerning the program (or software) used for aquisition"
+    },
+    "instrument": {
+      "$ref": "#/$defs/instrumentDetails",
+      "description": "(Required)- Details concerning the instrument settings"
+    },
+    "datasetType": {
+      "type": "string",
+      "description": "(Optional) - To be selected from the enumerated list depending on the detector and the angle at which the sample is measured: * SEM Image * SEM Image 2 * EDS * EBSD * BSE * ISE * ISI * SI * InLens * SESI",
+      "default": "SEM",
+      "enum": [
+        "SEM Image",
+        "SEM Image 2",
+        "SEM Image 3",
+        "SEM Image 4",
+        "SEM Image 5",
+        "EDS",
+        "EBSD",
+        "BSE",
+        "ISE Image",
+        "ISI Image",
+        "SI Image",
+        "InLens",
+        "SESI"
+      ]
+    },
+    "numberOfItems": {
+      "description": "(Required) - Number of Items (images, files). Depends on the number of slices",
+      "type": "number"
+    },
+    "rows": {
+      "type": "number",
+      "description": "(Optional) - Number of rows in the tiled image grab setting"
+    },
+    "columns": {
+      "type": "number",
+      "description": "(Optional) - Number of column in the tiled image grab setting"
+    },
+    "tileColumn": {
+      "type": "number",
+      "description": "(Optional) - The selected column in the tiled image grab setting"
+    },
+    "tileRow": {
+      "type": "number",
+      "description": "(Optional) - The selected row in the tiled image grab setting"
+    },
+    "images": {
+      "type": "array",
+      "desription": "(Required) - Array containing the images and their specific parameters. No. of images in the array is described by the numberOfItems parameter at the entry level of this schema",
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json"
+      }
+    }
+  },
+  "required": [
+    "program",
+    "instrument",
+    "datasetType",
+    "images",
+    "numberOfItems"
+  ],
   "title": "acquisition_dataset",
   "$defs": {
     "user": {
@@ -215,16 +211,26 @@
           "$ref": "#/$defs/imageDetails",
           "description": "(Optional) - Details about the imaging settings"
         },
-        "numberOfDetectors":{
-          "type":"number",
-          "description":"Number of detectors used for the acquisition"
+        "numberOfDetectors": {
+          "type": "number",
+          "description": "Number of detectors used for the acquisition"
         },
         "detector": {
-          "type":"array",
-          "description": "(Required) - Details about the detector(s) used for acquisition.",
-          "items": {
-            "$ref": "#/$defs/detectorDetails"
-          }
+          "oneOf": [
+            {
+              "type": "object",
+              "$ref": "#/$defs/detectorDetails",
+              "description": "(Required) - Details about the detector(s) used for acquisition."
+            },
+            {
+              "type": "array",
+              "description": "(Required) - Details about the detector(s) used for acquisition.",
+              "items": {
+                "$ref": "#/$defs/detectorDetails"
+              },
+              "minItems": 1
+            }
+          ]
         },
         "hotStageMEMS": {
           "$ref": "#/$defs/hotStageMEMSDetails",
@@ -316,7 +322,7 @@
         },
         "dynamicWDIsOn": {
           "type": "boolean",
-          "description": "(Required) - To bet set true if dynamic working distance is on. IRI: https://purls.helmholtz-metadaten.de/EMG/00000026"
+          "description": "(Optional) - To bet set true if dynamic working distance is on. IRI: https://purls.helmholtz-metadaten.de/EMG/00000026"
         },
         "lensMode": {
           "type": "string",
@@ -340,9 +346,8 @@
           "description": "(Optional) - To bet set true if magnification correction is on"
         }
       },
-      "required":[
+      "required": [
         "accelerationVoltage",
-        "dynamicWDIsOn",
         "verticalFieldWidth",
         "horizontalFieldWidth",
         "apertureSetting",
@@ -430,7 +435,7 @@
               "type": "number",
               "description": "(Optional) - Number of lines integrated"
             },
-            "lineAveraging":{
+            "lineAveraging": {
               "type": "number",
               "description": "(Optional) - Number of lines averaged"
             },
@@ -498,9 +503,9 @@
           "type": "string",
           "description": "(Optional) - Name of the detector used"
         },
-        "detectorType":{
-          "type":"string",
-          "description":"(Required) - Type of the detector used",
+        "detectorType": {
+          "type": "string",
+          "description": "(Required) - Type of the detector used",
           "enum": [
             "ETD",
             "CDEM",
@@ -552,7 +557,7 @@
         "signal": {
           "type": "string",
           "description": "(Optional) - The signal used for detection",
-          "enum":[
+          "enum": [
             "SE",
             "BSE",
             "SI"
@@ -562,7 +567,7 @@
           "type": "number",
           "description": "(Optional) - A number indicating the number of grid elements"
         },
-        "gridVoltage":{
+        "gridVoltage": {
           "$ref": "#/$defs/voltageDetails",
           "description": "(Optional) - Voltage applied to the grid "
         },
@@ -586,7 +591,7 @@
           "type": "number",
           "description": "(Optional) - Describes the enhancement in contrast"
         },
-        "minimumDwellTime":{
+        "minimumDwellTime": {
           "$ref": "#/$defs/timeDetails",
           "description": "(Optional) - Minimum possible dwell time for the detector. IRI: https://purls.helmholtz-metadaten.de/EMG/00000006 "
         }
@@ -1002,32 +1007,6 @@
       },
       "required": [
         "value"
-      ]
-    },
-    "imagesDetails": {
-      "type": "object",
-      "desription": "(Required) - Details describing the images in the dataset, including location and image specific parameters",
-      "properties": {
-        "format": {
-          "type": "string",
-          "default": "tiff",
-          "enum": [
-            "tiff",
-            "raw",
-            "png"
-          ]
-        },
-        "imageMetadataArray": {
-          "type": "array",
-          "desription": "(Required) - Array containing the images and their specific parameters. No. of images in the array is described by the numberOfItems parameter at the entry level of this schema",
-          "items": {
-            "$ref": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json"
-          }
-        }
-      },
-      "required": [
-        "imageMetadataArray",
-        "format"
       ]
     }
   }
