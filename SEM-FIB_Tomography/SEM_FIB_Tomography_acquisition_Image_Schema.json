@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/68fd9fa5de5dbe56bd7665b6320eb1ca47b4b1e5/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json",
+  "$id": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json",
   "type": "object",
-  "description": "This JSON Schema describes an individual image acquired during the course of a SEM/FIB Tomography experiment.  Each image is taken using a detector (SE, BSE, EDS, EBSD) at each slice cut using FIB. This Schema contains only the parameters which are specific to the individual image. The parameters which are common to the entire set are described by another schema which describes the dataset as a whole and is located at https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/edit/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json.",
+  "description": "This JSON Schema describes an individual image acquired during the course of a SEM/FIB Tomography experiment.  Each image is taken using a detector (SE, BSE, EDS, EBSD) at each slice cut using FIB. This Schema contains only the parameters which are specific to the individual image. The parameters which are common to the entire set are described by another schema which describes the dataset as a whole and is located at https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json.",
   "properties": {
     "entryID": {
       "$ref": "#/$defs/identifier",
