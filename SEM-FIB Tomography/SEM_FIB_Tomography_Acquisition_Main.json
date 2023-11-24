@@ -247,6 +247,39 @@
       "required": [
         "value"
       ]
+    },
+    "angleDetails": {
+      "type": "object",
+      "description": "describes an angle.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "default": -9999,
+          "description": "(Required) - The angle expressed as an integer or floating point value of datatype number"
+        },
+        "unit": {
+          "type": "string",
+          "default": "degree",
+          "enum": [
+            "degree",
+            "radian"
+          ],
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (degree, radian; default value - degree) of datatype string"
+        },
+        "qualifier": {
+          "type": "string",
+          "default": "max",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string"
+        }
+      },
+      "required": [
+        "value"
+      ]
     }
   }
 }
