@@ -10,7 +10,7 @@
     },
     "fileName": {
       "type": "string",
-      "description": "(Required)- File name of the image"
+      "description": "(Optional)- File name of the image"
     },
     "fileLink": {
       "$ref": "#/$defs/identifier",
@@ -23,7 +23,7 @@
     },
     "definition": {
       "type": "string",
-      "description": "(Required)- Name of the schema to which this entry conforms. In this case, acquisition_image should be written"
+      "description": "(Optional)- Name of the schema to which this entry conforms. In this case, acquisition_image should be written"
     },
     "stage": {
       "$ref": "#/$defs/stage",
@@ -35,11 +35,11 @@
     },
     "temperature": {
       "$ref": "#/$defs/temperatureDetails",
-      "description": "(Required)- Temperature of the sample during acquisition"
+      "description": "(Optional)- Temperature of the sample during acquisition"
     },
     "specimenCurrent": {
       "$ref": "#/$defs/currentDetails",
-      "description": "(Required)- Current measured on the specimen during acquisition of the image"
+      "description": "(Optional)- Current measured on the specimen during acquisition of the image"
     }
   },
   "required": [
@@ -72,7 +72,7 @@
         },
         "stageM": {
           "$ref": "#/$defs/distanceDetails",
-          "description": "(Required)- M coordinate of the position of the stage (additional translation axis available in Zeiss instruments)"
+          "description": "(Optional)- M coordinate of the position of the stage (additional translation axis available in Zeiss instruments)"
         },
         "stageR": {
           "$ref": "#/$defs/angleDetails",
