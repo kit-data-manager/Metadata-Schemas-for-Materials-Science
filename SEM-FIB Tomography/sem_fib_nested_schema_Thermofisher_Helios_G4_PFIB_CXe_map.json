@@ -2,7 +2,7 @@
     "acquisition_main_schema":{
         "acquisition.genericMetadata.program.programName":"EMProject.ApplicationName",
         "acquisition.genericMetadata.program.programVersion":"EMProject.ApplicationVersion",
-        "acquisition.genericMetadata.applicationId.identifierValue":"EMProject.ApplicationId",
+        "acquisition.genericMetadata.applicationID.identifierValue":"EMProject.ApplicationId",
         "acquisition.genericMetadata.fileVersion":"EMProject.FileVersion",
         "acquisition.genericMetadata.projectName":"EMProject.ProjectName",
         "acquisition.genericMetadata.zCutSpacing.value":"EMProject.ZCutSpacing",
