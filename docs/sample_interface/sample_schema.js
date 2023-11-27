@@ -102,13 +102,13 @@ var dataModel = {
                                 "type": "string",
                                 "enum":
                                 [
-                                    "assessment",
-                                    "completeness check",
-                                    "correlative characterization",
-                                    "exploratory",
-                                    "feasibility",
-                                    "high quality measurement",
-                                    "test specific hypothesis",
+                                    "assessment (to given categories or values)",
+                                    "completeness check (presence or absence of given properties)",
+                                    "correlative characterization (dedicated sample treatment to emphasise given features)",
+                                    "exploratory (routine check of known properties)",
+                                    "feasibility (quick check, rough estimate)",
+                                    "high quality measurement (precise, careful treatment)",
+                                    "test specific hypothesis (focus only on given aspects)" ,
                                     "other (please specify in the comment)"
                                 ]
                             }
@@ -207,35 +207,17 @@ var dataModel = {
             {
                 "phaseOfMatter":
                 {
-                    "description": "A matter object throughout which all physical properties of a material are essentially uniform. Multiple selection is allowed.",
-                    "type": "object",
-                    "properties":
-                    {
-                        "phaseOfMatterOptions":
-                        {
-                            "description": "A matter object throughout which all physical properties of a material are essentially uniform. Multiple selection is allowed.",
-                            "type": "array",
-                            "items":
-                            {
-                                "type": "string",
-                                "enum": 
-                                    [
-                                        "solid",
-                                        "liquid",
-                                        "gas",
-                                        "plasma",
-                                        "crystalline",
-                                        "disordered",
-                                        "melt",
-                                        "metastable",
-                                        "nonequilibrium",
-                                        "ordered",
-                                        "other (please specify in the comment)"
-                                    ]
-                            }  
-                        },
-                        "comment": {"type": "string"}
-                    }
+                    "description": "A matter object throughout which all physical properties of a material are essentially uniform.",
+                    "type": "string",
+                    "enum": 
+                    [
+                        "not applicable",
+                        "solid",
+                        "liquid",
+                        "gas",
+                        "plasma",
+                        "mixture, see https://en.wikipedia.org/wiki/Mixture for definition"
+                    ]
                 },
                 "materialType": 
                 {
@@ -419,7 +401,7 @@ var dataModel = {
                 }
             }
         },
-        "structuralFeatures":
+        "FeaturesOfInterest":
         {
             "type": "object",
             "properties":
