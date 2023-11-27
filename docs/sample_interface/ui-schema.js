@@ -20,7 +20,7 @@ var uiSchema = {
         },
         {
             "legend": "Sample Components",
-            "type": "fieldset",
+            "type": "advancedfieldset",
             "htmlClass": "myclass",
             "items":
             [
@@ -33,8 +33,7 @@ var uiSchema = {
             "htmlClass": "myclass",
             "items":
             [
-                {"title": "Phase of Matter", "key": "sampleCharacterization.phaseOfMatter.phaseOfMatterOptions", "type": "checkboxes"},
-                {"title": "Comment", "key": "sampleCharacterization.phaseOfMatter.comment"},
+                {"title": "Phase of Matter", "key": "sampleCharacterization.phaseOfMatter", "type": "radios"},
                 {
                     "type": "selectfieldset",
                     "title": "Material Type",
@@ -58,7 +57,7 @@ var uiSchema = {
             ]
         },
         {
-            "title": "Structural Features",
+            "title": "Features of Interest",
             "type": "fieldset",
             "htmlClass": "myclass",
             "items":
@@ -76,10 +75,10 @@ var uiSchema = {
                             [
                                 {
                                     "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.composites.compositesOptions",
+                                    "key": "FeaturesOfInterest.composites.compositesOptions",
                                     "type": "checkboxes"
                                 },
-                                {"title": "Comments", "key": "structuralFeatures.composites.comment"}
+                                {"title": "Comments", "key": "FeaturesOfInterest.composites.comment"}
                             ]
                         },
                         {
@@ -89,10 +88,10 @@ var uiSchema = {
                             [
                                 {
                                     "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.defects.defectsOptions",
+                                    "key": "FeaturesOfInterest.defects.defectsOptions",
                                     "type": "checkboxes"
                                 },
-                                {"title": "Comments", "key": "structuralFeatures.defects.comment"}
+                                {"title": "Comments", "key": "FeaturesOfInterest.defects.comment"}
                             ]
                         },
                         {
@@ -102,10 +101,10 @@ var uiSchema = {
                             [
                                 {
                                     "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.interfacial.interfacialOptions",
+                                    "key": "FeaturesOfInterest.interfacial.interfacialOptions",
                                     "type": "checkboxes"
                                 },
-                                {"title": "Comments", "key": "structuralFeatures.interfacial.comment"}
+                                {"title": "Comments", "key": "FeaturesOfInterest.interfacial.comment"}
                             ]
                         },
                         {
@@ -115,10 +114,10 @@ var uiSchema = {
                             [
                                 {
                                     "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.microstructures.microstructuresOptions",
+                                    "key": "FeaturesOfInterest.microstructures.microstructuresOptions",
                                     "type": "checkboxes"
                                 },
-                                {"title": "Comments", "key": "structuralFeatures.microstructures.comment"}
+                                {"title": "Comments", "key": "FeaturesOfInterest.microstructures.comment"}
                             ]
                         },
                         {
@@ -128,36 +127,10 @@ var uiSchema = {
                             [
                                 {
                                     "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.molecularStructure.molecularStructureOptions",
+                                    "key": "FeaturesOfInterest.molecularStructure.molecularStructureOptions",
                                     "type": "checkboxes"
                                 },
-                                {"title": "Comments", "key": "structuralFeatures.molecularStructure.comment"}
-                            ]
-                        },
-                        {
-                            "title": "Morphologies",
-                            "type": "tab",
-                            "items": 
-                            [
-                                {
-                                    "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.morphologies.morphologiesOptions",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "structuralFeatures.morphologies.comment"}
-                            ]
-                        },
-                        {
-                            "title": "Properties",
-                            "type": "tab",
-                            "items": 
-                            [
-                                {
-                                    "title": "Multiple choice is allowed", 
-                                    "key": "structuralFeatures.properties.propertiesOptions",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "structuralFeatures.properties.comment"}
+                                {"title": "Comments", "key": "FeaturesOfInterest.molecularStructure.comment"}
                             ]
                         }
                     ]

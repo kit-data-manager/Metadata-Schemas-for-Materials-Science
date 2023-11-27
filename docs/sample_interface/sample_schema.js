@@ -212,11 +212,11 @@ var dataModel = {
                     "enum": 
                     [
                         "not applicable",
-                        "solid",
-                        "liquid",
-                        "gas",
-                        "plasma",
-                        "mixture, see https://en.wikipedia.org/wiki/Mixture for definition"
+                        "solid - definition: https://en.wikipedia.org/wiki/Solid",
+                        "liquid - definition: https://en.wikipedia.org/wiki/Liquid",
+                        "gas - definition: https://en.wikipedia.org/wiki/Gas",
+                        "plasma - definition: https://en.wikipedia.org/wiki/Plasma_(physics)",
+                        "mixture - definition: https://en.wikipedia.org/wiki/Mixture"
                     ]
                 },
                 "materialType": 
