@@ -1174,7 +1174,7 @@
       "properties": {
         "FIBColumn": {
           "type": "string",
-          "description": "(Required) - The name of the I-beam column used"
+          "description": "(Optional) - The name of the I-beam column used"
         },
         "angleToEBeam": {
           "$ref": "#/$defs/angleDetails",
