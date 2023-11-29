@@ -1,5 +1,5 @@
 {
-    "entry.endTime":"entry.endTime",
+    "entry.endTime":"PrivateFei.TimeOfCreation",
     "entry.program.programVersion":"System.Software",
     "entry.user.userName":"User.User",
     "entry.instrument.eBeamSource.accelerationVoltage.value":"EBeam.HV",
