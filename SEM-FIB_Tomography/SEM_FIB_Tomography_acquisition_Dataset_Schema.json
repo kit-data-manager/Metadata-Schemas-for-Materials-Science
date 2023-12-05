@@ -13,7 +13,7 @@
       "description": "(Optional)- Name of the schema to which this entry conforms. In this case, acquisition_dataset is to be written"
     },
     "user": {
-      "$ref": "#/$defs/user",
+      "$ref": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/user_description.json",
       "description": "(Optional)- The contact information of the user responsible for the measurement"
     },
     "program": {
@@ -81,88 +81,6 @@
   ],
   "title": "acquisition_dataset",
   "$defs": {
-    "user": {
-      "type": "object",
-      "description": "Contact information of the user responsible for the measurement.",
-      "properties": {
-        "userName": {
-          "type": "string",
-          "description": "(Required) - Full name of the user recommended in the format (Family Name, Given Name)"
-        },
-        "givenName": {
-          "type": "string",
-          "description": "(Optional) - Given name of the user"
-        },
-        "familyName": {
-          "type": "string",
-          "description": "(Optional) - Family name of the user"
-        },
-        "role": {
-          "type": "string",
-          "description": "(Optional) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Team Leader *Team Member",
-          "enum": [
-            "Data Curator",
-            "Instrument Scientist",
-            "Team Leader",
-            "Team Member"
-          ]
-        },
-        "affiliation": {
-          "type": "object",
-          "description": "(Optional) - Details of the institution to which the user is affiliated",
-          "properties": {
-            "institutionName": {
-              "type": "string",
-              "description": "(Optional) - Full name of the institution"
-            },
-            "institutionAcronym": {
-              "type": "string",
-              "description": "(Recommended) - Acronym of the institution"
-            },
-            "institutionDepartment": {
-              "type": "string",
-              "description": "(Optional) - Department within an institution"
-            },
-            "institutionID": {
-              "type": "object",
-              "description": "(Optional) -Identifier of the institution to which the user is affiliated",
-              "properties": {
-                "identifierValue": {
-                  "type": "string",
-                  "description": "(Optional) - String containing the value of an identifier"
-                },
-                "identifierType": {
-                  "type": "string",
-                  "description": "(Optional) - Type of the identifier to be chosen from a controlled list of values (*ROR *GRID *ISNI *URL *DOI *Handle)",
-                  "enum": [
-                    "ROR",
-                    "GRID",
-                    "ISNI",
-                    "URL",
-                    "DOI",
-                    "Handle",
-                    "String"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "email": {
-          "type": "string",
-          "description": "(Optional) - Email of the user",
-          "format": "email"
-        },
-        "ORCID": {
-          "type": "string",
-          "description": "(Optional) - Open Researcher and Contributor ID expressed as a URI",
-          "pattern": "^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
-        }
-      },
-      "required": [
-        "userName"
-      ]
-    },
     "program": {
       "type": "object",
       "description": "(Optional) - Details concerning the program (or software) used for aquisition.",

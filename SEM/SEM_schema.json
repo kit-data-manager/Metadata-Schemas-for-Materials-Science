@@ -28,13 +28,15 @@
         },
         "startTime": {
           "type": "string",
-          "description": "(Optional)- Start time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss",
-          "format": "date-time"
+          "description": "(Optional)- Start time of the measurement in the format YYYY-MM-DDTHH:mm:ss.sssZ",
+          "format": "date-time",
+          "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$"
         },
         "endTime": {
           "type": "string",
-          "description": "(Required)- End time of the measurement in the format CCYY-MM-DDThh:mm:ss.sss",
-          "format": "date-time"
+          "description": "(Required)- End time of the measurement in the format YYYY-MM-DDTHH:mm:ss.sssZ",
+          "format": "date-time",
+          "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$"
         },
         "definition": {
           "type": "string",
@@ -1094,8 +1096,9 @@
         },
         "lastCalibration": {
           "type": "string",
-          "pattern": "(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)",
-          "description": "(Optional) - date and time of last calibration (CCYY-MM-DDThh:mm:ss.sss) of the date-time format"
+          "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$",
+          "format": "date-time",
+          "description": "(Optional) - date and time of last calibration (YYYY-MM-DDTHH:mm:ss.sssZ) of the date-time format"
         },
         "detectorBias": {
           "$ref": "#/$defs/voltageDetails",
