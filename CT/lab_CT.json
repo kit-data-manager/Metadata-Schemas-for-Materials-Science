@@ -701,7 +701,7 @@
         },
         "instrumentID": {
           "$ref": "#/$defs/identifier",
-          "description": "(Required) - Identifier of the instrument."
+          "description": "(Optional) - Identifier of the instrument."
         },
         "instrumentManufacturer": {
           "$ref": "#/$defs/manufacturerDetails",
@@ -717,7 +717,7 @@
         },
         "source": {
           "type": "object",
-          "description": "(Required) - Details regarding the X-ray source, separated in two groups - regular Lab CT and SEM based CT",
+          "description": "(Required) - Details regarding the X-ray source, separated in two groups - regular Lab CT and SEM based CT.",
           "additionalProperties": false,
           "properties": {
             "regularLabCT":{
@@ -738,7 +738,7 @@
                         "$ref": "#/$defs/manufacturerDetails"
                     },
                     "cathode":{
-                        "description":"(Optional) - Details regarding the cathode of the x-ray tube",
+                        "description":"(Optional) - Details regarding the cathode of the X-ray tube",
                         "type":"object",
                         "additionalProperties":false,
                         "properties":{
@@ -751,10 +751,122 @@
                                 "description":"(Optional) - Additional details regarding the cathode relevant for the measurement."
                             }
                         }
+                    },
+                    "PowerOrCurrentSetting":{
+                      "description":"(Required) - The power or current setiing set on the X-ray tube. Depending on the manufacturer either one of power or current can be set and one of these values is required.",
+                      "type": "object",
+                      "additionalProperties":false,
+                      "properties":{
+                        "power":{
+                          "description":"(Optional) - Power set in the X-ray source. Default unit - W.",
+                          "$ref":"#/$defs/powerDetails"
+                        },
+                        "current":{
+                          "description":"(Optional) - Current set in the X-ray source (Tube Current). Default unit - µA.",
+                          "$ref":"#/$defs/currentDetails"
+                        }
+                      }
+                    },
+                    "voltage":{
+                      "description":"(Optional) - Voltage set in the X-ray source (Tube Voltage)Please specify in the notes if peak kilovoltage(kVp) is only known instead of tube voltage. Default unit - kV.",
+                      "$ref":"#/$defs/voltageDetails"
+                    },
+                    "xrayEnergySpectrum":{
+                      "description":"(Required) - Details regarding the X-ray enrgy spectrum like chromaticity, characteristic line, filters used, etc.",
+                      "type":"object",
+                      "additionalProperties":false,
+                      "properties":{
+                        "chromaticity":{
+                          "description":"(Required) - Describes if the x-rays are monochromatic or polychromatic. Default value is polychromatic.",
+                          "type":"string",
+                          "enum":[
+                            "monochromatic",
+                            "polychromatic"
+                          ],
+                          "default":"polychromatic"
+                        },
+                        "xrayCharacteristicLine":{
+                          "description":"(Required) - Describes the characteristic line of the X-ray spectrum. e.g.- Cr K alpha, W K alpha.",
+                          "type":"string"
+                        },
+                        "xrayCharacteristicEnergy":{
+                          "description":"(Required) - Describes the characteristic energy of the X-ray spectrum. Default unit - keV.",
+                          "$ref":"#/$defs/energyDetails"
+                        },
+                        "energyFilter":{
+                          "description":"(Required) - Description of the filter(s) used. If no energy filter is used, the material of the primary energy filter is to be set as none/air.",
+                          "type":"object",
+                          "additionalProperties":false,
+                          "properties":{
+                            "filter1":{
+                              "description":"(Required) - Description of the primary energy filter. When no filter is used, the material of the primary energy filter is to be set as none/air.",
+                              "type":"object",
+                              "properties":{
+                                "filterMaterial":{
+                                  "type":"string",
+                                  "default":"none/air",
+                                  "description":"(Required) - Material of the primary energy filter. default - none/air."
+                                },
+                                "filterThickness":{
+                                  "description":"(Optional) - Thickness of the primary energy filter.",
+                                  "$ref":"#/$defs/distanceDetails"
+                                }
+                              },
+                              "required":[
+                                "filterMaterial"
+                              ]
+                            },
+                            "filter2":{
+                              "description":"(Optional) - Description of a second energy filter used in addition to the primary energy filter. ",
+                              "type":"object",
+                              "properties":{
+                                "filterMaterial":{
+                                  "type":"string",
+                                  "description":"(Optional) - Material of the additional energy filter."
+                                },
+                                "filterThickness":{
+                                  "description":"(Optional) - Thickness of the additional energy filter.",
+                                  "$ref":"#/$defs/distanceDetails"
+                                }
+                              }
+                            },
+                            "comments":{
+                              "type":"string",
+                              "description":"(Optional) - Additional comments to include relevant information for the measurement. Sometimes energy filter specifications are confidential, in this case, this field can be used to give the link to the list of energy filters provided by the manufacturer."
+                            }
+                          },
+                          "required":[
+                            "filter1"
+                          ]
+                        }
+                      },
+                      "required":[
+                        "chromaticity",
+                        "xrayCharacteristicLine",
+                        "xrayCharacteristicEnergy",
+                        "energyFilter"
+                      ]
+                    },
+                    "anode":{
+                      "description":"(Optional) - Details about the anode.",
+                      "type":"object",
+                      "additionalProperties":false,
+                      "properties":{
+                        "anodeType":{
+                          "type":"string",
+                          "description":"(Optional) - Type of anode in the X-ray tube. e.g. - rotating anode, liquid jet anode, etc."
+                        },
+                        "anodeMaterial":{
+                          "type":"string",
+                          "description":"(Optional) - Material of the anode. e.g. - Cr."
+                        }
+                      }
                     }
                 },
                 "required":[
-
+                  "PowerOrCurrentSetting",
+                  "voltage",
+                  "xrayEnergySpectrum"
                 ]
             },
             "SEMBasedCT":{
@@ -772,12 +884,10 @@
         }
       },
       "required": [
-        "chamberPressure",
-        "detectors",
-        "eBeamSource",
-        "imaging",
         "instrumentName",
-        "stage"
+        "instrumentManufacturer",
+        "instrumentType",
+        "source"
       ]
     },
     "manufacturerDetails": {
@@ -798,6 +908,49 @@
           "description": "(Optional) - Identifier of the manufacturer"
         }
       }
+    },
+    "powerDetails":{
+      "type":"object",
+      "description":"Describes a power",
+      "additionalProperties":false,
+      "properties":{
+         "value":{
+            "type":"number",
+            "description":"(required, NAE) - The power expressed as an integer or floating point value of datatype number"
+         },
+         "unit":{
+            "type":"string",
+            "default":"W",
+            "description":"(required, NAE) - the unit of the value to be selected from a controlled list (mW, W, kW, default value - W) of datatype string.",
+            "enum":[
+               "mW",
+               "W",
+               "kW"
+            ]
+         },
+         "qualifier":{
+            "type":"string",
+            "default":"max",
+            "description":"(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min, default value - max) of datatype string.",
+            "enum":[
+              "max",
+              "min",
+              "average"
+              ]
+         },
+         "uncertainty":{
+            "$ref":"#/$defs/uncertaintyDetails",
+            "description":"(optional, NAE) - Uncertainty in the value defined separately as uncertaintyDetails,(allows choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number)."
+         },
+         "notes":{
+            "type":"string",
+            "description":"(optional, NAE) - Further notes about the value of datatype string."
+         }
+      },
+      "required":[
+         "value",
+         "unit"
+      ]
     },
     "pressureDetails": {
       "type": "object",
@@ -957,7 +1110,7 @@
       "properties": {
         "value": {
           "type": "number",
-          "description": "(Required) - The voltage expressed as an integer or floating point value of datatype number"
+          "description": "(Required) - The voltage expressed as an integer or floating point value of datatype number."
         },
         "unit": {
           "type": "string",
@@ -969,20 +1122,20 @@
             "kV",
             "MV"
           ],
-          "description": "(Required) - the unit of the value to be selected from a controlled list (µV, mV, V, kV, MV, GV default value - V) of datatype string"
+          "description": "(Required) - the unit of the value to be selected from a controlled list (µV, mV, V, kV, MV, GV default value - V) of datatype string."
         },
         "qualifier": {
           "type": "string",
           "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": "(Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number"
+          "description": "(Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value of datatype string"
+          "description": "(Optional) - Further notes about the value of datatype string."
         }
       },
       "required": [
@@ -997,7 +1150,7 @@
       "properties": {
         "value": {
           "type": "number",
-          "description": "(Optional) - Further notes about the value of datatype string"
+          "description": "(Optional) - Further notes about the value of datatype string."
         },
         "unit": {
           "type": "string",
@@ -1009,20 +1162,20 @@
             "mA",
             "A"
           ],
-          "description": "(Required) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A default value - pA) of datatype string"
+          "description": "(Required) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A default value - pA) of datatype string."
         },
         "qualifier": {
           "type": "string",
           "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": "(Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number"
+          "description": "(Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value of datatype string"
+          "description": "(Optional) - Further notes about the value of datatype string."
         }
       },
       "required": [
