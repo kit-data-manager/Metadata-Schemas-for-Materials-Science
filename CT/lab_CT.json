@@ -20,6 +20,10 @@
       "properties": {
         "entryID": {
           "$ref": "#/$defs/identifier",
+          "description": "entryID (Optional) - Identifier of the metadata entry usually provided by the project or the laboratory"
+        },
+        "experimentID": {
+          "$ref": "#/$defs/identifier",
           "description": "entryID (Optional) - Identifier of the measurement usually provided by the project or the laboratory"
         },
         "title": {
@@ -259,8 +263,8 @@
                   "$ref": "#/$defs/temperatureDetails"
                 },
                 "ramp": {
-                  "description": "(Optional) - The rate at which temperature is increased in K/min.",
-                  "type": "number"
+                  "description": "(Optional) - The rate at which temperature is increased, typically in K/min.",
+                  "$ref": "#/$defs/rampDetails"
                 }
               },
               "required": [
@@ -310,6 +314,14 @@
                 "cellDetails": {
                   "type": "string",
                   "description": "(Optional) - Additional details about the corrosion cell relevant for the measurement."
+                },
+                "pHValue": {
+                  "type": "number",
+                  "description": "(Optional) - The pH value maintained in the in situ cell."
+                },
+                "pHDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the pH in the in situ cell."
                 }
               },
               "required": [
@@ -324,6 +336,10 @@
                 "coolingTemperature": {
                   "description": "(Required) - Final Temperature or temperature at which the cooling furnace is to be maintained.",
                   "$ref": "#/$defs/temperatureDetails"
+                },
+                "ramp": {
+                  "description": "(Optional) - The rate at which temperature is decreased. Typical unit - K/min.",
+                  "$ref": "#/$defs/rampDetails"
                 },
                 "cellName": {
                   "type": "string",
@@ -391,6 +407,14 @@
                 "cellDetails": {
                   "type": "string",
                   "description": "(Optional) - Additional details about the batch cell relevant for the measurement."
+                },
+                "pHValue": {
+                  "type": "number",
+                  "description": "(Optional) - The pH value maintained in the in situ cell."
+                },
+                "pHDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the pH in the in situ cell."
                 }
               },
               "required": [
@@ -398,9 +422,9 @@
                 "batchCellType"
               ]
             },
-            "pH": {
+            "bioReactor": {
               "type": "object",
-              "description": "(Optional) - Details about the pH maintained in the in situ cell.",
+              "description": "(Optional) - Details of an in situ bioreactor.",
               "additionalProperties": false,
               "properties": {
                 "pHValue": {
@@ -410,6 +434,10 @@
                 "pHDetails": {
                   "type": "string",
                   "description": "(Optional) - Additional details about the pH in the in situ cell."
+                },
+                "sterileConditions": {
+                  "type": "boolean",
+                  "description": "(Optional) - To be set to true if the sample has to be handled in sterile conditions."
                 }
               },
               "required": [
@@ -448,6 +476,14 @@
                 "flowComposition": {
                   "description": "(Required) - Composition of the gas or liquid in the flow cell.",
                   "type": "string"
+                },
+                "pHValue": {
+                  "type": "number",
+                  "description": "(Optional) - The pH value maintained in the in situ cell."
+                },
+                "pHDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the pH in the in situ cell."
                 }
               },
               "required": [
@@ -476,6 +512,14 @@
                 "cellDetails": {
                   "type": "string",
                   "description": "(Optional) - Additional details about the degradation cell relevant for the measurement."
+                },
+                "pHValue": {
+                  "type": "number",
+                  "description": "(Optional) - The pH value maintained in the in situ cell."
+                },
+                "pHDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the pH in the in situ cell."
                 }
               }
             },
@@ -504,10 +548,6 @@
               "required": [
                 "pressure"
               ]
-            },
-            "sterileConditions": {
-              "type": "boolean",
-              "description": "(Optional) - To be set to true if the sample has to be handled in steile conditions."
             }
           }
         },
@@ -720,165 +760,198 @@
           "description": "(Required) - Details regarding the X-ray source, separated in two groups - regular Lab CT and SEM based CT.",
           "additionalProperties": false,
           "properties": {
-            "regularLabCT":{
-                "description":"(Optional) - Details regarding the X-ray source in a lab scale CT instrument",
-                "type":"object",
-                "additionalProperties": false,
-                "properties":{
-                    "tubeName":{
-                        "description":"(Optional) - Name of the X-ray tube.",
-                        "type":"string"
+            "regularLabCT": {
+              "description": "(Optional) - Details regarding the X-ray source in a lab scale CT instrument",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "tubeName": {
+                  "description": "(Optional) - Name of the X-ray tube.",
+                  "type": "string"
+                },
+                "tubeID": {
+                  "description": "(Optional) - Identifier of the X-ray tube.",
+                  "$ref": "#/$defs/identifier"
+                },
+                "tubeManufacturer": {
+                  "description": "(Optional) - Details regarding the manufacturer of the X-ray tube.",
+                  "$ref": "#/$defs/manufacturerDetails"
+                },
+                "cathode": {
+                  "description": "(Optional) - Details regarding the cathode of the X-ray tube",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "cathodeMaterial": {
+                      "type": "string",
+                      "description": "(Optional) - Material with which the cathode is made. e.g. - tungsten (W)"
                     },
-                    "tubeID":{
-                        "description":"(Optional) - Identifier of the X-ray tube.",
-                        "$ref": "#/$defs/identifier"
+                    "cathodeDetails": {
+                      "type": "string",
+                      "description": "(Optional) - Additional details regarding the cathode relevant for the measurement."
+                    }
+                  }
+                },
+                "PowerOrCurrentSetting": {
+                  "description": "(Required) - The power or current setiing set on the X-ray tube. Depending on the manufacturer either one of power or current can be set and one of these values is required.",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "power": {
+                      "description": "(Optional) - Power set in the X-ray source. Default unit - W.",
+                      "$ref": "#/$defs/powerDetails"
                     },
-                    "tubeManufacturer":{
-                        "description":"(Optional) - Details regarding the manufacturer of the X-ray tube.",
-                        "$ref": "#/$defs/manufacturerDetails"
+                    "current": {
+                      "description": "(Optional) - Current set in the X-ray source (Tube Current). Default unit - µA.",
+                      "$ref": "#/$defs/currentDetails"
+                    }
+                  }
+                },
+                "voltage": {
+                  "description": "(Optional) - Voltage set in the X-ray source (Tube Voltage)Please specify in the notes if peak kilovoltage(kVp) is only known instead of tube voltage. Default unit - kV.",
+                  "$ref": "#/$defs/voltageDetails"
+                },
+                "xrayEnergySpectrum": {
+                  "description": "(Required) - Details regarding the X-ray enrgy spectrum like chromaticity, characteristic line, filters used, etc.",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "chromaticity": {
+                      "description": "(Required) - Describes if the x-rays are monochromatic or polychromatic. Default value is polychromatic.",
+                      "type": "string",
+                      "enum": [
+                        "monochromatic",
+                        "polychromatic"
+                      ],
+                      "default": "polychromatic"
                     },
-                    "cathode":{
-                        "description":"(Optional) - Details regarding the cathode of the X-ray tube",
-                        "type":"object",
-                        "additionalProperties":false,
-                        "properties":{
-                            "cathodeMaterial":{
-                                "type":"string",
-                                "description":"(Optional) - Material with which the cathode is made. e.g. - tungsten (W)"
-                            },
-                            "cathodeDetails":{
-                                "type":"string",
-                                "description":"(Optional) - Additional details regarding the cathode relevant for the measurement."
-                            }
-                        }
+                    "xrayCharacteristicLine": {
+                      "description": "(Required) - Describes the characteristic line of the X-ray spectrum. e.g.- Cr K alpha, W K alpha.",
+                      "type": "string"
                     },
-                    "PowerOrCurrentSetting":{
-                      "description":"(Required) - The power or current setiing set on the X-ray tube. Depending on the manufacturer either one of power or current can be set and one of these values is required.",
+                    "xrayCharacteristicEnergy": {
+                      "description": "(Required) - Describes the characteristic energy of the X-ray spectrum. Default unit - keV.",
+                      "$ref": "#/$defs/energyDetails"
+                    },
+                    "energyFilter": {
+                      "description": "(Required) - Description of the filter(s) used. If no energy filter is used, the material of the primary energy filter is to be set as none/air.",
                       "type": "object",
-                      "additionalProperties":false,
-                      "properties":{
-                        "power":{
-                          "description":"(Optional) - Power set in the X-ray source. Default unit - W.",
-                          "$ref":"#/$defs/powerDetails"
-                        },
-                        "current":{
-                          "description":"(Optional) - Current set in the X-ray source (Tube Current). Default unit - µA.",
-                          "$ref":"#/$defs/currentDetails"
-                        }
-                      }
-                    },
-                    "voltage":{
-                      "description":"(Optional) - Voltage set in the X-ray source (Tube Voltage)Please specify in the notes if peak kilovoltage(kVp) is only known instead of tube voltage. Default unit - kV.",
-                      "$ref":"#/$defs/voltageDetails"
-                    },
-                    "xrayEnergySpectrum":{
-                      "description":"(Required) - Details regarding the X-ray enrgy spectrum like chromaticity, characteristic line, filters used, etc.",
-                      "type":"object",
-                      "additionalProperties":false,
-                      "properties":{
-                        "chromaticity":{
-                          "description":"(Required) - Describes if the x-rays are monochromatic or polychromatic. Default value is polychromatic.",
-                          "type":"string",
-                          "enum":[
-                            "monochromatic",
-                            "polychromatic"
-                          ],
-                          "default":"polychromatic"
-                        },
-                        "xrayCharacteristicLine":{
-                          "description":"(Required) - Describes the characteristic line of the X-ray spectrum. e.g.- Cr K alpha, W K alpha.",
-                          "type":"string"
-                        },
-                        "xrayCharacteristicEnergy":{
-                          "description":"(Required) - Describes the characteristic energy of the X-ray spectrum. Default unit - keV.",
-                          "$ref":"#/$defs/energyDetails"
-                        },
-                        "energyFilter":{
-                          "description":"(Required) - Description of the filter(s) used. If no energy filter is used, the material of the primary energy filter is to be set as none/air.",
-                          "type":"object",
-                          "additionalProperties":false,
-                          "properties":{
-                            "filter1":{
-                              "description":"(Required) - Description of the primary energy filter. When no filter is used, the material of the primary energy filter is to be set as none/air.",
-                              "type":"object",
-                              "properties":{
-                                "filterMaterial":{
-                                  "type":"string",
-                                  "default":"none/air",
-                                  "description":"(Required) - Material of the primary energy filter. default - none/air."
-                                },
-                                "filterThickness":{
-                                  "description":"(Optional) - Thickness of the primary energy filter.",
-                                  "$ref":"#/$defs/distanceDetails"
-                                }
-                              },
-                              "required":[
-                                "filterMaterial"
-                              ]
+                      "additionalProperties": false,
+                      "properties": {
+                        "filter1": {
+                          "description": "(Required) - Description of the primary energy filter. When no filter is used, the material of the primary energy filter is to be set as none/air.",
+                          "type": "object",
+                          "properties": {
+                            "filterMaterial": {
+                              "type": "string",
+                              "default": "none/air",
+                              "description": "(Required) - Material of the primary energy filter. default - none/air."
                             },
-                            "filter2":{
-                              "description":"(Optional) - Description of a second energy filter used in addition to the primary energy filter. ",
-                              "type":"object",
-                              "properties":{
-                                "filterMaterial":{
-                                  "type":"string",
-                                  "description":"(Optional) - Material of the additional energy filter."
-                                },
-                                "filterThickness":{
-                                  "description":"(Optional) - Thickness of the additional energy filter.",
-                                  "$ref":"#/$defs/distanceDetails"
-                                }
-                              }
-                            },
-                            "comments":{
-                              "type":"string",
-                              "description":"(Optional) - Additional comments to include relevant information for the measurement. Sometimes energy filter specifications are confidential, in this case, this field can be used to give the link to the list of energy filters provided by the manufacturer."
+                            "filterThickness": {
+                              "description": "(Optional) - Thickness of the primary energy filter.",
+                              "$ref": "#/$defs/distanceDetails"
                             }
                           },
-                          "required":[
-                            "filter1"
+                          "required": [
+                            "filterMaterial"
                           ]
+                        },
+                        "filter2": {
+                          "description": "(Optional) - Description of a second energy filter used in addition to the primary energy filter. ",
+                          "type": "object",
+                          "properties": {
+                            "filterMaterial": {
+                              "type": "string",
+                              "description": "(Optional) - Material of the additional energy filter."
+                            },
+                            "filterThickness": {
+                              "description": "(Optional) - Thickness of the additional energy filter.",
+                              "$ref": "#/$defs/distanceDetails"
+                            }
+                          }
+                        },
+                        "comments": {
+                          "type": "string",
+                          "description": "(Optional) - Additional comments to include relevant information for the measurement. Sometimes energy filter specifications are confidential, in this case, this field can be used to give the link to the list of energy filters provided by the manufacturer."
                         }
                       },
-                      "required":[
-                        "chromaticity",
-                        "xrayCharacteristicLine",
-                        "xrayCharacteristicEnergy",
-                        "energyFilter"
+                      "required": [
+                        "filter1"
                       ]
-                    },
-                    "anode":{
-                      "description":"(Optional) - Details about the anode.",
-                      "type":"object",
-                      "additionalProperties":false,
-                      "properties":{
-                        "anodeType":{
-                          "type":"string",
-                          "description":"(Optional) - Type of anode in the X-ray tube. e.g. - rotating anode, liquid jet anode, etc."
-                        },
-                        "anodeMaterial":{
-                          "type":"string",
-                          "description":"(Optional) - Material of the anode. e.g. - Cr."
-                        }
-                      }
                     }
+                  },
+                  "required": [
+                    "chromaticity",
+                    "xrayCharacteristicLine",
+                    "xrayCharacteristicEnergy",
+                    "energyFilter"
+                  ]
                 },
-                "required":[
-                  "PowerOrCurrentSetting",
-                  "voltage",
-                  "xrayEnergySpectrum"
-                ]
+                "anode": {
+                  "description": "(Optional) - Details about the anode.",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "anodeType": {
+                      "type": "string",
+                      "description": "(Optional) - Type of anode in the X-ray tube. e.g. - rotating anode, liquid jet anode, etc."
+                    },
+                    "anodeMaterial": {
+                      "type": "string",
+                      "description": "(Optional) - Material of the anode. e.g. - Cr."
+                    }
+                  }
+                }
+              },
+              "required": [
+                "PowerOrCurrentSetting",
+                "voltage",
+                "xrayEnergySpectrum"
+              ]
             },
-            "SEMBasedCT":{
-                "description":"(Optional) - Details regarding the E-Beam source and X-ray Target in an SEM based CT set-up",
-                "type":"object",
-                "additionalProperties": false,
-                "properties":{
-
+            "SEMBasedCT": {
+              "description": "(Optional) - Details regarding the E-Beam source and X-ray Target in an SEM based CT set-up",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "chamberPressure":{
+                  "$ref": "#/$defs/pressureDetails",
+                  "description": "(Required) - Details of the pressure maintained in the chamber of the SEM."
                 },
-                "required":[
-
-                ]
+                "electronBeamShift":{
+                  "description":"(Required) - The distance by which the electron beam is shifted in the x and y directions.",
+                  "type":"object",
+                  "additionalProperties": false,
+                  "properties":{
+                    "xShift":{
+                      "description":"(Required) - Beam shift in the x direction. Typical unit - µm.",
+                      "$ref":"#/$defs/distanceDetails"
+                    },
+                    "yShift":{
+                      "description":"(Required) - Beam shift in the y direction. Typical unit - µm.",
+                      "$ref":"#/$defs/distanceDetails"
+                    }
+                  },
+                  "required":[
+                    "xShift",
+                    "yShift"
+                  ]
+                },
+                "workingDistance":{},
+                "targetDriftCorrection":{},
+                "objectiveLensAperture":{},
+                "electronProbeCurrent":{},
+                "target":{}
+              },
+              "required": [
+                "chamberPressure",
+                "electronBeamShift",
+                "workingDistance",
+                "targetDriftCorrection",
+                "objectiveLensAperture",
+                "electronProbeCurrent",
+                "target"
+              ]
             }
           }
         }
@@ -909,47 +982,47 @@
         }
       }
     },
-    "powerDetails":{
-      "type":"object",
-      "description":"Describes a power",
-      "additionalProperties":false,
-      "properties":{
-         "value":{
-            "type":"number",
-            "description":"(required, NAE) - The power expressed as an integer or floating point value of datatype number"
-         },
-         "unit":{
-            "type":"string",
-            "default":"W",
-            "description":"(required, NAE) - the unit of the value to be selected from a controlled list (mW, W, kW, default value - W) of datatype string.",
-            "enum":[
-               "mW",
-               "W",
-               "kW"
-            ]
-         },
-         "qualifier":{
-            "type":"string",
-            "default":"max",
-            "description":"(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min, default value - max) of datatype string.",
-            "enum":[
-              "max",
-              "min",
-              "average"
-              ]
-         },
-         "uncertainty":{
-            "$ref":"#/$defs/uncertaintyDetails",
-            "description":"(optional, NAE) - Uncertainty in the value defined separately as uncertaintyDetails,(allows choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number)."
-         },
-         "notes":{
-            "type":"string",
-            "description":"(optional, NAE) - Further notes about the value of datatype string."
-         }
+    "powerDetails": {
+      "type": "object",
+      "description": "Describes a power",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(required, NAE) - The power expressed as an integer or floating point value of datatype number"
+        },
+        "unit": {
+          "type": "string",
+          "default": "W",
+          "description": "(required, NAE) - the unit of the value to be selected from a controlled list (mW, W, kW, default value - W) of datatype string.",
+          "enum": [
+            "mW",
+            "W",
+            "kW"
+          ]
+        },
+        "qualifier": {
+          "type": "string",
+          "default": "max",
+          "description": "(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min, default value - max) of datatype string.",
+          "enum": [
+            "max",
+            "min",
+            "average"
+          ]
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(optional, NAE) - Uncertainty in the value defined separately as uncertaintyDetails,(allows choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(optional, NAE) - Further notes about the value of datatype string."
+        }
       },
-      "required":[
-         "value",
-         "unit"
+      "required": [
+        "value",
+        "unit"
       ]
     },
     "pressureDetails": {
@@ -1037,6 +1110,39 @@
         "accelerationVoltage"
       ]
     },
+    "rampDetails": {
+      "type": "object",
+      "description": "(Optional) - Describes a rate at which temperature is increased or decreased.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - Value of the rate of temperature increase or decrease."
+        },
+        "unit": {
+          "type": "string",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (K/min, K/s)",
+          "default": "K/min",
+          "enum": [
+            "K/min",
+            "K/s"
+          ]
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
+          "default": "max"
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ]
+    },
     "temperatureDetails": {
       "type": "object",
       "description": "(Optional) - Describes a temperature.",
@@ -1049,7 +1155,7 @@
         "unit": {
           "type": "string",
           "description": "(Optional) - Unit of the value to be selected from a controlled list (K, ºC, ºF)",
-          "default": "mm",
+          "default": "K",
           "enum": [
             "K",
             "ºC",
@@ -1067,7 +1173,8 @@
         }
       },
       "required": [
-        "value"
+        "value",
+        "unit"
       ]
     },
     "lifetimeDetails": {
