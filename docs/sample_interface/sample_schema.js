@@ -93,7 +93,7 @@ var dataModel = {
                     "type": "object",
                     "properties":
                     {
-                        "samplePurpose":
+                        "samplePurposeOptions":
                         {
                             "description": "The tentative purpose of the sample (e.g., for which measurement(s) or subsequent analysis the sample was prepared). In this context, Correlative Characterization may be intended as a purpose. Multiple selection is allowed.",
                             "type": "array",
@@ -113,7 +113,7 @@ var dataModel = {
                                 ]
                             }
                         },
-                        "samplePurposeComment": {"type": "string"}
+                        "otherSamplePurpose": {"type": "string"}
                     }
                 },
                 "sampleID":
@@ -139,7 +139,7 @@ var dataModel = {
                                 "other (please specify in the comment)"
                             ]
                         },
-                        "sampleIDTypeComment": {"type": "string"},
+                        "otherSampleIDType": {"type": "string"},
                         "sampleIDPosition":
                         {
                             "description": "The sample has an ID printed on it. It's important to know its position on the sample. Multiple selection is allowed.",
@@ -811,6 +811,21 @@ var dataModel = {
                     "type":"string",
                     "format": "date"
                 },
+                "sampleChemicalFormula":
+                    {
+                        "description": "(Recommended) - Chemical formula of the sample",
+                        "type": "string"
+                    },
+                    "sampleCASNumber":
+                    {
+                        "description": "(Optional) - CAS number of the sample, if known and applicable",
+                        "type": "string"
+                    },
+                    "sampleMaterialDataSheet":
+                    {
+                        "description": "(Optional) - Link to the file describing the composition specification, usually called Material Data Sheet, if available.",
+                        "type": "string"
+                    },
                 "sampleVisibleElements":
                 {
                     "type": "object",

@@ -10,12 +10,89 @@ var uiSchema = {
             [
                 {"title": "Sample Name", "key": "sampleIdentification.sampleName"},
                 {"title": "Sample Producer", "key": "sampleIdentification.sampleProducer"},
-                {"title": "Sample Purpose", "key": "sampleIdentification.samplePurpose.samplePurpose", "type": "checkboxes"},
-                {"title": "Other Sample Purpose", "key": "sampleIdentification.samplePurpose.samplePurposeComment"},
+                {"title": "Sample Purpose", "key": "sampleIdentification.samplePurpose.samplePurposeOptions", "type": "checkboxes"},
+                {"title": "Other Sample Purpose", "key": "sampleIdentification.samplePurpose.otherSamplePurpose"},
                 {"title": "Sample ID", "key": "sampleIdentification.sampleID.sampleID"},
                 {"title": "Sample ID Type", "key": "sampleIdentification.sampleID.sampleIDType", "type": "radios"},
-                {"title": "Other Sample ID", "key": "sampleIdentification.sampleID.sampleIDTypeComment"},
+                {"title": "Other Sample ID", "key": "sampleIdentification.sampleID.otherSampleIDType"},
                 {"title": "Sample ID Position", "key": "sampleIdentification.sampleID.sampleIDPosition","type": "checkboxes"}
+            ]
+        },
+        {
+            "title": "Sample Description",
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items":
+            [
+                {"title": "Sample Expiration Date", "key": "sampleDescription.expirationDate"},
+                {"title": "Sample Chemical Formula", "key": "sampleDescription.sampleChemicalFormula"},
+                {"title": "Sample CAS Number", "key": "sampleDescription.sampleCASNumber"},
+                {"title": "Sample Materials Data Sheet", "key": "sampleDescription.sampleMaterialDataSheet"},
+                {
+                    "type": "section",
+                    "items":
+                    [
+                        {"title": "Sample Visible Elements", "key": "sampleDescription.sampleVisibleElements.visibleElementsOptions", "type": "checkboxes"},
+                        {"title": "Comment", "key": "sampleDescription.sampleVisibleElements.comment"}
+                    ]
+                },
+                {
+                    "title": "Sample Shape",
+                    "type": "fieldset", 
+                    "htmlClass": "myclass",
+                    "items":
+                    [
+                        {"title": "One choice is allowed", "key": "sampleDescription.sampleShape.shapeOptions", "type": "radios"},
+                        {
+                            "title": "Sheet",
+                            "type": "advancedfieldset",
+                            "htmlClass": "myclass",
+                            "items":
+                            [
+                                {"title": "Sheet Type", "key": "sampleDescription.sampleShape.sheet.sheetType"},
+                                {"title": "Sheet Thickness", "key": "sampleDescription.sampleShape.sheet.sheetThickness"},
+                            ]
+                        },
+                        {
+                            "title": "Layer",
+                            "type": "advancedfieldset",
+                            "htmlClass": "myclass",
+                            "items":
+                            [
+                                {"title": "Layer Type", "key": "sampleDescription.sampleShape.layer.layerType"},
+                                {"title": "Layer Thickness", "key": "sampleDescription.sampleShape.layer.layerThickness"},
+                                {"title": "Interlayer Spacing", "key": "sampleDescription.sampleShape.layer.interlayerSpacing"},
+                                {"title": "Number of Layers", "key": "sampleDescription.sampleShape.layer.numberOfLayers"}
+                            ]
+                        },
+                        {
+                            "title": "Wire",
+                            "type": "advancedfieldset",
+                            "htmlClass": "myclass",
+                            "items":
+                            [
+                                {"title": "Wire Diameter", "key": "sampleDescription.sampleShape.wire.diameter"},
+                                {"title": "Aspect Ratio", "key": "sampleDescription.sampleShape.wire.aspectRatio"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Sample Size",
+                    "type": "fieldset", 
+                    "htmlClass": "myclass",
+                    "items":
+                    [
+                        {"title": "Size x", "key": "sampleDescription.sampleSize.sizeX"},
+                        {"title": "Size y", "key": "sampleDescription.sampleSize.sizeY"},
+                        {"title": "Size z", "key": "sampleDescription.sampleSize.sizeZ"}
+                    ]
+                },
+                {"title": "Sample Mass", "key": "sampleDescription.sampleMass"},
+                {"title": "Sample Volume", "key": "sampleDescription.sampleMass"},
+                {"title": "Sample Density", "key": "sampleDescription.sampleDensity"},
+                {"title": "Sample Pressure", "key": "sampleDescription.samplePressure"},
+                {"title": "Sample Temperature", "key": "sampleDescription.sampleTemperature"}
             ]
         },
         {
@@ -238,80 +315,6 @@ var uiSchema = {
                         }  
                     ]
                 }
-            ]
-        },              
-        {
-            "title": "Sample Description",
-            "type": "fieldset",
-            "htmlClass": "myclass",
-            "items":
-            [
-                {"title": "Sample Expiration Date", "key": "sampleDescription.expirationDate"},
-                {
-                    "type": "section",
-                    "items":
-                    [
-                        {"title": "Sample Visible Elements", "key": "sampleDescription.sampleVisibleElements.visibleElementsOptions", "type": "checkboxes"},
-                        {"title": "Comment", "key": "sampleDescription.sampleVisibleElements.comment"}
-                    ]
-                },
-                {
-                    "title": "Sample Shape",
-                    "type": "fieldset", 
-                    "htmlClass": "myclass",
-                    "items":
-                    [
-                        {"title": "One choice is allowed", "key": "sampleDescription.sampleShape.shapeOptions", "type": "radios"},
-                        {
-                            "title": "Sheet",
-                            "type": "advancedfieldset",
-                            "htmlClass": "myclass",
-                            "items":
-                            [
-                                {"title": "Sheet Type", "key": "sampleDescription.sampleShape.sheet.sheetType"},
-                                {"title": "Sheet Thickness", "key": "sampleDescription.sampleShape.sheet.sheetThickness"},
-                            ]
-                        },
-                        {
-                            "title": "Layer",
-                            "type": "advancedfieldset",
-                            "htmlClass": "myclass",
-                            "items":
-                            [
-                                {"title": "Layer Type", "key": "sampleDescription.sampleShape.layer.layerType"},
-                                {"title": "Layer Thickness", "key": "sampleDescription.sampleShape.layer.layerThickness"},
-                                {"title": "Interlayer Spacing", "key": "sampleDescription.sampleShape.layer.interlayerSpacing"},
-                                {"title": "Number of Layers", "key": "sampleDescription.sampleShape.layer.numberOfLayers"}
-                            ]
-                        },
-                        {
-                            "title": "Wire",
-                            "type": "advancedfieldset",
-                            "htmlClass": "myclass",
-                            "items":
-                            [
-                                {"title": "Wire Diameter", "key": "sampleDescription.sampleShape.wire.diameter"},
-                                {"title": "Aspect Ratio", "key": "sampleDescription.sampleShape.wire.aspectRatio"}
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "title": "Sample Size",
-                    "type": "fieldset", 
-                    "htmlClass": "myclass",
-                    "items":
-                    [
-                        {"title": "Size x", "key": "sampleDescription.sampleSize.sizeX"},
-                        {"title": "Size y", "key": "sampleDescription.sampleSize.sizeY"},
-                        {"title": "Size z", "key": "sampleDescription.sampleSize.sizeZ"}
-                    ]
-                },
-                {"title": "Sample Mass", "key": "sampleDescription.sampleMass"},
-                {"title": "Sample Volume", "key": "sampleDescription.sampleMass"},
-                {"title": "Sample Density", "key": "sampleDescription.sampleDensity"},
-                {"title": "Sample Pressure", "key": "sampleDescription.samplePressure"},
-                {"title": "Sample Temperature", "key": "sampleDescription.sampleTemperature"}
             ]
         },
         {
