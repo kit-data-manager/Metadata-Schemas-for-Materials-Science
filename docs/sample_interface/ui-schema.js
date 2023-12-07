@@ -13,47 +13,61 @@ var uiSchema = {
                 {"title": "Sample Purpose", "key": "sampleIdentification.samplePurpose.samplePurpose", "type": "checkboxes"},
                 {"title": "Other Sample Purpose", "key": "sampleIdentification.samplePurpose.samplePurposeComment"},
                 {"title": "Sample ID", "key": "sampleIdentification.sampleID.sampleID"},
-                {"title": "Sample ID Type", "key": "sampleIdentification.sampleID.sampleIDType"},
+                {"title": "Sample ID Type", "key": "sampleIdentification.sampleID.sampleIDType", "type": "radios"},
                 {"title": "Other Sample ID", "key": "sampleIdentification.sampleID.sampleIDTypeComment"},
                 {"title": "Sample ID Position", "key": "sampleIdentification.sampleID.sampleIDPosition","type": "checkboxes"}
             ]
         },
         {
             "legend": "Sample Components",
-            "type": "advancedfieldset",
+            "type": "fieldset",
             "htmlClass": "myclass",
-            "items":
+            "items": 
             [
-                {"title": "Use the + to insert each Component of the current Sample (not the Precursors: they can be inserted in Parents)", "key": "sampleComponents"},
+                {"title": "Use the + to insert each Sample Component (not the Precursors: they can be inserted in Parents)", "key": "sampleComponents"}
             ]
         },
+
         {
             "legend": "Sample Characterization",
             "type": "fieldset",
             "htmlClass": "myclass",
             "items":
             [
-                {"title": "Phase of Matter", "key": "sampleCharacterization.phaseOfMatter", "type": "radios"},
                 {
-                    "type": "selectfieldset",
-                    "title": "Material Type",
-                    "key": "sampleCharacterization.materialType",
-                    "items": 
+                    "type": "tabs",
+                    "id": "material_navtab",
+                    "htmlClass": "myclass",
+                    "items":
                     [
-                        "sampleCharacterization.notApplicable",
-                        "sampleCharacterization.biological",
-                        "sampleCharacterization.biomaterials",
-                        "sampleCharacterization.ceramics",
-                        "sampleCharacterization.metalsAndAlloys",
-                        "sampleCharacterization.metamaterials",
-                        "sampleCharacterization.molecularFluids",
-                        "sampleCharacterization.organicCompounds",
-                        "sampleCharacterization.organometallics",
-                        "sampleCharacterization.polymers",
-                        "sampleCharacterization.semiconductors"
+                        {
+                            "title": "PhaseOfMatter",
+                            "type": "tab",
+                            "items":
+                            [
+                                {"title": "One choice is allowed", "key": "sampleCharacterization.phaseOfMatter", "type": "radios"}
+                            ]
+                        },
+                        {
+                            "title": "Material Type",
+                            "type": "tab",
+                            "items": 
+                            [
+                                {"title": "Multiple choice is allowed", "key": "sampleCharacterization.materialType.materialTypeOptions", "type": "checkboxes"},
+                                {"title": "Material Data Sheet", "key": "sampleCharacterization.materialType.materialDataSheet"}
+                            ]
+                        },
+                        {
+                            "title": "Material Properties",
+                            "type": "tab",
+                            "items":
+                            [
+                                {"title": "Multiple choice is allowed", "key": "sampleCharacterization.materialProperties.propertiesOptions", "type": "checkboxes"},
+                                {"title": "Comment", "key": "sampleCharacterization.materialProperties.comment"}
+                            ]
+                        }
                     ]
-                },
-                {"title": "Material Data Sheet", "key": "sampleCharacterization.materialDataSheet"}
+                }    
             ]
         },
         {
@@ -69,80 +83,235 @@ var uiSchema = {
                     "items":
                     [
                         {
-                            "title": "Composites",
-                            "type": "tab",
-                            "items": 
-                            [
-                                {
-                                    "title": "Multiple choice is allowed", 
-                                    "key": "FeaturesOfInterest.composites.compositesOptions",
-                                    "type": "checkboxes"
-                                },
-                                {"title": "Comments", "key": "FeaturesOfInterest.composites.comment"}
-                            ]
-                        },
-                        {
                             "title": "Defects",
                             "type": "tab",
                             "items": 
                             [
                                 {
                                     "title": "Multiple choice is allowed", 
-                                    "key": "FeaturesOfInterest.defects.defectsOptions",
+                                    "key": "featuresOfInterest.defects.defectsOptions",
                                     "type": "checkboxes"
                                 },
-                                {"title": "Comments", "key": "FeaturesOfInterest.defects.comment"}
+                                {"title": "Comment", "key": "featuresOfInterest.defects.comment"}
                             ]
                         },
                         {
-                            "title": "Interfacial",
+                            "title": "Interfaces",
                             "type": "tab",
                             "items": 
                             [
                                 {
                                     "title": "Multiple choice is allowed", 
-                                    "key": "FeaturesOfInterest.interfacial.interfacialOptions",
+                                    "key": "featuresOfInterest.interfaces.interfacesOptions",
                                     "type": "checkboxes"
                                 },
-                                {"title": "Comments", "key": "FeaturesOfInterest.interfacial.comment"}
+                                {"title": "Comment", "key": "featuresOfInterest.interfaces.comment"}
                             ]
                         },
                         {
-                            "title": "Microstructures",
+                            "title": "Dominant Structures",
                             "type": "tab",
-                            "items": 
+                            "htmlClass": "myclass",
+                            "items":
                             [
                                 {
-                                    "title": "Multiple choice is allowed", 
-                                    "key": "FeaturesOfInterest.microstructures.microstructuresOptions",
-                                    "type": "checkboxes"
+                                    "title": "Reinforcement Structures",
+                                    "type": "advancedfieldset", 
+                                    "htmlClass": "myclass",
+                                    "items":
+                                    [
+                                        {"key": "featuresOfInterest.dominantStructures.reinforcementStructures"}
+                                    ]
                                 },
-                                {"title": "Comments", "key": "FeaturesOfInterest.microstructures.comment"}
-                            ]
-                        },
-                        {
-                            "title": "Molecular Structure",
-                            "type": "tab",
-                            "items": 
-                            [
                                 {
-                                    "title": "Multiple choice is allowed", 
-                                    "key": "FeaturesOfInterest.molecularStructure.molecularStructureOptions",
-                                    "type": "checkboxes"
+                                    "title": "Clusters",
+                                    "type": "advancedfieldset", 
+                                    "htmlClass": "myclass",
+                                    "items":
+                                    [
+                                        {"title": "Cluster Atoms", "key": "featuresOfInterest.dominantStructures.clusters.clusterAtoms"},
+                                        {"title": "Cluster Size", "key": "featuresOfInterest.dominantStructures.clusters.clusterSize"}
+                                    ]
                                 },
-                                {"title": "Comments", "key": "FeaturesOfInterest.molecularStructure.comment"}
+                                {
+                                    "title": "Aligned Structures",
+                                    "type": "advancedfieldset", 
+                                    "htmlClass": "myclass",
+                                    "items":
+                                    [
+                                        {"key": "featuresOfInterest.dominantStructures.alignedStructures"}
+                                    ]
+                                },
+                                {
+                                    "title": "Grains",
+                                    "type": "advancedfieldset", 
+                                    "htmlClass": "myclass",
+                                    "items":
+                                    [
+                                        {"title": "Min Grain Size", "key": "featuresOfInterest.dominantStructures.grains.minGrainSize"},
+                                        {"title": "Max Grain Size", "key": "featuresOfInterest.dominantStructures.grains.maxGrainSize"}
+                                    ]
+                                },
+                                {
+                                    "title": "Lamellar Structures",
+                                    "type": "advancedfieldset", 
+                                    "htmlClass": "myclass",
+                                    "items":
+                                    [
+                                        {"key": "featuresOfInterest.dominantStructures.lamellarStructures"}
+                                    ]
+                                },
+                                {
+                                    "title": "Particles",
+                                    "type": "advancedfieldset", 
+                                    "htmlClass": "myclass",
+                                    "items":
+                                    [
+                                        {"title": "Particle Type", "key": "featuresOfInterest.dominantStructures.particles.particleType"},
+                                        {"title": "Particle Shape", "key": "featuresOfInterest.dominantStructures.particles.particleShape"},
+                                        {"title": "Min Particle Size", "key": "featuresOfInterest.dominantStructures.particles.minParticleSize"},
+                                        {"title": "Max Particle Size", "key": "featuresOfInterest.dominantStructures.particles.maxParticleSize"}
+                                    ]
+                                },
+                                {
+                                    "title": "Porous Structures",
+                                    "type": "advancedfieldset", 
+                                    "htmlClass": "myclass",
+                                    "items":
+                                    [
+                                        {"title": "Porosity", "key": "featuresOfInterest.dominantStructures.porousStructures.porosity"},
+                                        {"title": "Percolated", "key": "featuresOfInterest.dominantStructures.porousStructures.percolated"},
+                                        {"title": "Min Pore Size", "key": "featuresOfInterest.dominantStructures.porousStructures.minPoreSize"},
+                                        {"title": "Max Pore Size", "key": "featuresOfInterest.dominantStructures.porousStructures.maxPoreSize"}
+                                    ]
+                                },
+                                {
+                                    "title": "Crystal Structures",
+                                    "type": "advancedfieldset", 
+                                    "htmlClass": "myclass",
+                                    "items":
+                                    [
+                                        {"title": "Crystallinity", "key": "featuresOfInterest.dominantStructures.crystalStructures.crystallinity"},
+                                        {"title": "Twinned", "key": "featuresOfInterest.dominantStructures.crystalStructures.twinned"},
+                                        {"title": "Scale", "key": "featuresOfInterest.dominantStructures.crystalStructures.scale"}
+                                    ]
+                                },
+                                {
+                                    "title": "Nanostructures",
+                                    "type": "advancedfieldset", 
+                                    "htmlClass": "myclass",
+                                    "items":
+                                    [
+                                        {
+                                            "title": "Nanoparticles",
+                                            "type": "fieldset",
+                                            "htmlClass": "myclass",
+                                            "items":
+                                            [
+                                                {"title": "Particle Shape", "key": "featuresOfInterest.dominantStructures.nanostructures.nanoparticles.particleShape"},
+                                                {"title": "Min Particle Size", "key": "featuresOfInterest.dominantStructures.nanostructures.nanoparticles.minParticleSize"},
+                                                {"title": "Max Particle Size", "key": "featuresOfInterest.dominantStructures.nanostructures.nanoparticles.maxParticleSize"}
+                                            ]
+                                        },
+                                        {
+                                            "title": "Nanowires",
+                                            "type": "fieldset",
+                                            "htmlClass": "myclass",
+                                            "items":
+                                            [
+                                                {"title": "Diameter", "key": "featuresOfInterest.dominantStructures.nanostructures.nanowires.diameter"},
+                                                {"title": "Aspect Ratio", "key": "featuresOfInterest.dominantStructures.nanostructures.nanowires.aspectRatio"}
+                                            ]
+                                        },
+                                        {
+                                            "title": "Nanosheets",
+                                            "type": "fieldset",
+                                            "htmlClass": "myclass",
+                                            "items":
+                                            [
+                                                {"title": "Thickness", "key": "featuresOfInterest.dominantStructures.nanostructures.nanosheets.thickness"}
+                                            ]
+                                        }
+                                    ]
+                                }
                             ]
-                        }
+                        }  
                     ]
                 }
             ]
-        },      
+        },              
         {
+            "title": "Sample Description",
             "type": "fieldset",
             "htmlClass": "myclass",
             "items":
             [
-                {"title": "Sample Description", "key": "sampleDescription"}
+                {"title": "Sample Expiration Date", "key": "sampleDescription.expirationDate"},
+                {
+                    "type": "section",
+                    "items":
+                    [
+                        {"title": "Sample Visible Elements", "key": "sampleDescription.sampleVisibleElements.visibleElementsOptions", "type": "checkboxes"},
+                        {"title": "Comment", "key": "sampleDescription.sampleVisibleElements.comment"}
+                    ]
+                },
+                {
+                    "title": "Sample Shape",
+                    "type": "fieldset", 
+                    "htmlClass": "myclass",
+                    "items":
+                    [
+                        {"title": "One choice is allowed", "key": "sampleDescription.sampleShape.shapeOptions", "type": "radios"},
+                        {
+                            "title": "Sheet",
+                            "type": "advancedfieldset",
+                            "htmlClass": "myclass",
+                            "items":
+                            [
+                                {"title": "Sheet Type", "key": "sampleDescription.sampleShape.sheet.sheetType"},
+                                {"title": "Sheet Thickness", "key": "sampleDescription.sampleShape.sheet.sheetThickness"},
+                            ]
+                        },
+                        {
+                            "title": "Layer",
+                            "type": "advancedfieldset",
+                            "htmlClass": "myclass",
+                            "items":
+                            [
+                                {"title": "Layer Type", "key": "sampleDescription.sampleShape.layer.layerType"},
+                                {"title": "Layer Thickness", "key": "sampleDescription.sampleShape.layer.layerThickness"},
+                                {"title": "Interlayer Spacing", "key": "sampleDescription.sampleShape.layer.interlayerSpacing"},
+                                {"title": "Number of Layers", "key": "sampleDescription.sampleShape.layer.numberOfLayers"}
+                            ]
+                        },
+                        {
+                            "title": "Wire",
+                            "type": "advancedfieldset",
+                            "htmlClass": "myclass",
+                            "items":
+                            [
+                                {"title": "Wire Diameter", "key": "sampleDescription.sampleShape.wire.diameter"},
+                                {"title": "Aspect Ratio", "key": "sampleDescription.sampleShape.wire.aspectRatio"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Sample Size",
+                    "type": "fieldset", 
+                    "htmlClass": "myclass",
+                    "items":
+                    [
+                        {"title": "Size x", "key": "sampleDescription.sampleSize.sizeX"},
+                        {"title": "Size y", "key": "sampleDescription.sampleSize.sizeY"},
+                        {"title": "Size z", "key": "sampleDescription.sampleSize.sizeZ"}
+                    ]
+                },
+                {"title": "Sample Mass", "key": "sampleDescription.sampleMass"},
+                {"title": "Sample Volume", "key": "sampleDescription.sampleMass"},
+                {"title": "Sample Density", "key": "sampleDescription.sampleDensity"},
+                {"title": "Sample Pressure", "key": "sampleDescription.samplePressure"},
+                {"title": "Sample Temperature", "key": "sampleDescription.sampleTemperature"}
             ]
         },
         {
@@ -188,7 +357,13 @@ var uiSchema = {
                             "type": "tab",
                             "items":
                             [
-                                {"key": "sampleHandlingPrecaution.sampleHandling"}
+                                {"title": "No Tweezers", "key": "sampleHandlingPrecaution.sampleHandling.noTweezers"},
+                                {"title": "Gloves", "key": "sampleHandlingPrecaution.sampleHandling.gloves"},
+                                {"title": "Shock Protection", "key": "sampleHandlingPrecaution.sampleHandling.shockProtection"},
+                                {"title": "Clean Room Conditions", "key": "sampleHandlingPrecaution.sampleHandling.cleanRoomConditions"},
+                                {"title": "Humidity", "key": "sampleHandlingPrecaution.sampleHandling.humidity"},
+                                {"title": "Gas Atmosphere", "key": "sampleHandlingPrecaution.sampleHandling.gasAtmosphere"},
+                                {"title": "Additional Notes", "key": "sampleHandlingPrecaution.sampleHandling.additionalNotes"},
                             ]
                         },
                         {
@@ -267,13 +442,10 @@ var uiSchema = {
             "items":
             [
                 {"title": "Sample Holder Type", "key": "sampleHolder.sampleHolderType"},
-                {"title": "Sample Holder Material", "key": "sampleHolder.sampleHolderMaterial"},
-                {"title": "Sample Holder Temperature Range", "key": "sampleHolder.sampleHolderTemperatureRange"},
-                {"title": "Sample Holder Supported Samples", "key": "sampleHolder.supportedSamples"},
+                {"title": "Other Sample Holder Type", "key": "sampleHolder.otherHolderType"},
                 {"title": "Sample Holder Description", "key": "sampleHolder.sampleHolderDescription"},
                 {"title": "Fixing Method", "key": "sampleHolder.fixingMethod"},
-                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleHolder.comments"}
-
+                {"title": "Other Fixing Method", "key": "sampleHolder.otherFixingMethod"}
             ]
         },
         {
@@ -283,16 +455,7 @@ var uiSchema = {
             "items":
             [
                 {"title": "Sample Carrier Type", "key": "sampleCarrier.sampleCarrierType"},
-                {"title": "Sample Carrier Material", "key": "sampleCarrier.sampleCarrierMaterial"},
-                {"title": "Sample Carrier Length", "key": "sampleCarrier.sampleCarrierLength"},
-                {"title": "Sample Carrier Width", "key": "sampleCarrier.sampleCarrierWidth"},
-                {"title": "Sample Carrier Height", "key": "sampleCarrier.sampleCarrierHeight"},
-                {"title": "Sample Carrier Temperature Range", "key": "sampleCarrier.sampleCarrierTemperatureRange"},
-                {"title": "Sample Carrier Supported Samples", "key": "sampleCarrier.supportedSamples"},
-                {"title": "Sample Carrier Supported Holders", "key": "sampleCarrier.supportedHolders"},
                 {"title": "Sample Carrier Description", "key": "sampleCarrier.sampleCarrierDescription"},
-                {"title": "Comments", "type":"textarea", "htmlClass": "comments", "key": "sampleCarrier.comments"}
-
             ]
         },
         {

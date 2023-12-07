@@ -163,6 +163,139 @@ var dataModel = {
                 }
             }
         },
+        "test":
+        {
+            "type": "object",
+            "properties":
+            {
+                "sampleComponents":
+                {
+                    "description": "Physical System (typically a piece of material) which constitutes a part of a Sample. It may include one or more substrates, layers, masks, embedding or filler or evaporation materials, coatings, conducting powders and molecules.",
+                    "type": "array",
+                    "items": 
+                    {
+                        "type": "object",
+                        "properties":
+                        {
+                             "componentName":
+                            {
+                                "description": "(Required) - Name of the sample component",
+                                "type": "string"
+                            },
+                            "componentChemicalFormula":
+                            {
+                                "description": "(Recommended) - Chemical formula of the sample component",
+                                "type": "string"
+                            },
+                            "componentCASNumber":
+                            {
+                                "description": "(Optional) - CAS number of the sample component, if known and applicable",
+                                "type": "string"
+                            },
+                            "componentMaterialDataSheet":
+                            {
+                                "description": "(Optional) - Link to the file describing the composition specification, usually called Material Data Sheet, if available.",
+                                "type": "string"
+                            },
+                            "componentAdditionalFeatures": 
+                            {
+                                "description": "(Optional) - Description of the missing relevant features describing the Sample Component, if any.",
+                                "type": "string"
+                            },
+                            "sampleCharacterization":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "phaseOfMatter":
+                                    {
+                                        "description": "A matter object throughout which all physical properties of a material are essentially uniform.",
+                                        "type": "string",
+                                        "enum": 
+                                        [
+                                            "not applicable",
+                                            "solid - definition: https://en.wikipedia.org/wiki/Solid",
+                                            "liquid - definition: https://en.wikipedia.org/wiki/Liquid",
+                                            "gas - definition: https://en.wikipedia.org/wiki/Gas",
+                                            "plasma - definition: https://en.wikipedia.org/wiki/Plasma_(physics)",
+                                            "mixture - definition: https://en.wikipedia.org/wiki/Mixture"
+                                        ]
+                                    },
+                                    "materialType": 
+                                    {
+                                        "type": "object",
+                                        "properties":
+                                        {
+                                            "materialTypeOptions":
+                                            {
+                                                "type": "array",
+                                                "items":
+                                                {
+                                                    "type": "string",
+                                                    "enum":
+                                                    [
+                                                        "notApplicable",
+                                                        "alloy",
+                                                        "biological",
+                                                        "biomaterial",
+                                                        "ceramic",
+                                                        "composite",
+                                                        "glass",
+                                                        "metal",
+                                                        "metamaterial",
+                                                        "molecularFluid",
+                                                        "organicCompound",
+                                                        "organometallic",
+                                                        "polymer",
+                                                        "smartMaterial"
+                                                    ]
+                                                }
+                                            },
+                                            "materialDataSheet":
+                                            {
+                                                "description": "(Optional) - Link to the file describing the composition specification, usually called Material Data Sheet, if available.",
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "materialProperties":
+                                    {
+                                        "type": "object",
+                                        "properties":
+                                        {
+                                            "propertiesOptions":
+                                            {
+                                                "type": "array",
+                                                "items":
+                                                {
+                                                    "type": "string",
+                                                    "enum":
+                                                    [
+                                                        "diamagnetic",
+                                                        "paramagnetic",
+                                                        "ferromagnetic",
+                                                        "antiferromagnetic",
+                                                        "ferrimagnetic",
+                                                        "nonmagnetic",
+                                                        "conductor",
+                                                        "semiconductor",
+                                                        "superconductor",
+                                                        "insulator",
+                                                        "dielectric",
+                                                        "other (please add in the comment)"
+                                                    ]
+                                                }
+                                            },
+                                            "comment": {"type": "string"}
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }               
+            }
+        },
         "sampleComponents":
         {
             "description": "Physical System (typically a piece of material) which constitutes a part of a Sample. It may include one or more substrates, layers, masks, embedding or filler or evaporation materials, coatings, conducting powders and molecules.",
@@ -221,224 +354,10 @@ var dataModel = {
                 },
                 "materialType": 
                 {
-                    "type": "string",
-                    "enum":
-                    [
-                        "notApplicable",
-                        "biologicals",
-                        "biomaterials",
-                        "ceramics",
-                        "metalsAndAlloys",
-                        "metamaterials",
-                        "molecularFluids",
-                        "organicCompounds",
-                        "organometallics",
-                        "polymers",
-                        "semiconductors"
-                    ]
-                },
-                "notApplicable":
-                {
-                    "type": "object",
-                    "properties": 
-                    {
-                        "comment": {"type": "string"}
-                    }
-                },
-                "biological":
-                {
-                    "type": "object",
-                    "properties": {}
-                },
-                "biomaterials": 
-                {
-                    "type": "object",
-                    "properties": {}
-                },
-                "ceramics":
-                {
                     "type": "object",
                     "properties":
                     {
-                        "ceramicOptions":
-                        {
-                            "type": "string",
-                            "enum":
-                            [
-                                "carbides",
-                                "cements",
-                                "nitrides",
-                                "oxides",
-                                "perovskites",
-                                "silicates",
-                                "other (please specify in the comment)"
-                            ]
-                        },
-                        "comment": {"type": "string"}
-                    }
-                },
-                "metalsAndAlloys":
-                {
-                    "type": "object",
-                    "properties":
-                    {
-                        "metalsAndAlloysOptions":
-                        {
-                            "type": "string",
-                            "enum":
-                            [
-                                "Al-containing",
-                                "commercially pure metals",
-                                "Cu-containing",
-                                "Fe-containing",
-                                "intermetallics",
-                                "Mg-containing",
-                                "Ni-containing",
-                                "rare earths",
-                                "refractory",
-                                "steels",
-                                "superalloys",
-                                "Ti-containing",
-                                "other (please specify in the comment)"
-                            ]
-                        },
-                        "comment": {"type": "string"}
-                    }
-                },
-                "metamaterials":
-                {
-                    "type": "object",
-                    "properties": {}
-                },
-                "molecularFluids":
-                {
-                    "type": "object",
-                    "properties": {}
-                },
-                "organicCompounds":
-                {
-                    "type": "object",
-                    "properties":
-                    {
-                        "organicCompoundsOptions":
-                        {
-                            "type": "string",
-                            "enum":
-                            [
-                                "acohols",
-                                "aldehydes",
-                                "alkanes",
-                                "alkenes",
-                                "alkynes",
-                                "amines",
-                                "carboxylic acids",
-                                "cyclic compounds",
-                                "cycloalkanes",
-                                "esters",
-                                "ketones",
-                                "nitriles",
-                                "other (please specify in the comment)"
-                            ]
-                        },
-                        "comment": {"type": "string"}
-                    }
-                },
-                "organometallics":
-                {
-                    "type": "object",
-                    "properties": {}
-                },
-                "polymers":
-                {
-                    "type": "object",
-                    "properties":
-                    {
-                        "polymersOptions":
-                        {
-                            "type": "string",
-                            "enum":
-                            [
-                                "copolymers",
-                                "elastomers",
-                                "homopolymers",
-                                "liquid crystals",
-                                "polymer blends",
-                                "rubbers",
-                                "thermoplastics",
-                                "thermosets",
-                                "other (please specify in the comment)"
-                            ]
-                        },
-                        "comment": {"type": "string"}
-                    }
-                },
-                "semiconductors":
-                {
-                    "type": "object",
-                    "properties":
-                    {
-                        "semiconductorsOptions":
-                        {
-                            "type": "string",
-                            "enum":
-                            [
-                                "extrinsic",
-                                "II-VI",
-                                "III-V",
-                                "intrinsic",
-                                "n-type",
-                                "p-type",
-                                "other (please specify in the comment)"
-                            ]
-                        },
-                        "comment": {"type": "string"}
-                    }
-                },
-                "materialDataSheet":
-                {
-                    "description": "(Optional) - Link to the file describing the composition specification, usually called Material Data Sheet, if available.",
-                    "type": "string"
-                }
-            }
-        },
-        "FeaturesOfInterest":
-        {
-            "type": "object",
-            "properties":
-            {
-                "composites":
-                {
-                    "type": "object",
-                    "properties":
-                    {
-                        "compositesOptions":
-                        {
-                            "type": "array",
-                            "items": 
-                            {
-                                "type": "string",
-                                "enum": 
-                                [
-                                    "biological or green",
-                                    "fiber-reinforced",
-                                    "metal-matrix",
-                                    "nanocomposites",
-                                    "particle-reinforced",
-                                    "polymer-matrix",
-                                    "structural",
-                                    "other (please specify in the comment)"
-                                ]
-                            }
-                        },
-                        "comment": {"type": "string"}
-                    }
-                },
-                "defects":
-                {
-                    "type": "object",
-                    "properties": 
-                    {
-                        "defectsOptions":
+                        "materialTypeOptions":
                         {
                             "type": "array",
                             "items":
@@ -446,163 +365,31 @@ var dataModel = {
                                 "type": "string",
                                 "enum":
                                 [
-                                    "cracks",
-                                    "crazing",
-                                    "dislocations",
-                                    "inclusions",
-                                    "interstitials",
-                                    "point defects",
-                                    "pores",
-                                    "vacancies",
-                                    "voids",
-                                    "other (please specify in the comment)"
-                                ]
-                            }
-                        },
-                        "comment": {"type": "string"}   
-                    }
-                },
-                "interfacial":
-                {
-                    "type": "object",
-                    "properties": 
-                    {
-                        "interfacialOptions":
-                        {
-                            "type": "array",
-                            "items":
-                            {
-                                "type": "string",
-                                "enum":
-                                [
-                                    "grain boundaries",
-                                    "interfacial surface area",
-                                    "magnetic domain walls",
-                                    "phase boundaries",
-                                    "stacking faults",
-                                    "surfaces",
-                                    "twin boundaries",
-                                    "other (please specify in the comment)"
-                                ]
-                            }
-                        },
-                        "comment": {"type": "string"}
-                    }
-                },
-                "microstructures":
-                {
-                    "type": "object",
-                    "properties": 
-                    {
-                        "microstructuresOptions":
-                        {
-                            "type": "array",
-                            "items":
-                            {
-                                "type": "string",
-                                "enum":
-                                [
-                                    "BBC spheres",
-                                    "cellular",
-                                    "clustering",
-                                    "compound",
-                                    "crystallinity",
-                                    "defect structures",
-                                    "dentritic",
-                                    "dispersion",
-                                    "eutectic",
-                                    "grains",
-                                    "gyroid",
-                                    "HEX cylinders",
-                                    "lamellae",
-                                    "nanocrystalline",
-                                    "particle distribution",
-                                    "particle shape",
-                                    "polycrystalline",
-                                    "porosity",
-                                    "precipitates",
-                                    "quasicrystalline",
-                                    "single crystal",
-                                    "twinned",
-                                    "other (please specify in the comment)"
-                                ]
-                            }
-                        },
-                        "comment": {"type": "string"}
-                    }
-                },
-                "molecularStructure":
-                {
-                    "type": "object",
-                    "properties": 
-                    {
-                        "molecularStructureOptions":
-                        {
-                            "type": "array",
-                            "items":
-                            {
-                                "type": "string",
-                                "enum":
-                                [
-                                    "alternating copolymer",
-                                    "block copolymer",
-                                    "bottlebrush",
-                                    "dendrimer",
-                                    "end-group composition",
-                                    "funtionalization",
-                                    "gradient copolymer",
-                                    "long-chain branching",
-                                    "surfactants",
-                                    "tacticity",
-                                    "other (please specify in the comment)"
-                                ]
-                            }
-                        },
-                        "comment": {"type": "string"}
-                    }
-                },
-                "morphologies":
-                {
-                    "type": "object",
-                    "properties": 
-                    {
-                        "morphologiesOptions":
-                        {
-                            "type": "array",
-                            "items":
-                            {
-                                "type": "string",
-                                "enum":
-                                [
-                                    "aligned",
-                                    "amorphous",
-                                    "anisotropic",
-                                    "clusters",
-                                    "complex fluids",
+                                    "notApplicable",
+                                    "alloy",
+                                    "biological",
+                                    "biomaterial",
+                                    "ceramic",
+                                    "composite",
                                     "glass",
-                                    "isotropic",
-                                    "layered",
-                                    "nanoparticles or nanotubes",
-                                    "one-dimensional",
-                                    "open-framework",
-                                    "particles or colloids",
-                                    "percolated",
-                                    "porous",
-                                    "quantum dots or wires",
-                                    "random",
-                                    "semicrystalline",
-                                    "thin film",
-                                    "two-dimensional",
-                                    "wires",
-                                    "woven",
-                                    "other (please specify in the comment)"
+                                    "metal",
+                                    "metamaterial",
+                                    "molecularFluid",
+                                    "organicCompound",
+                                    "organometallic",
+                                    "polymer",
+                                    "smartMaterial"
                                 ]
                             }
                         },
-                        "comment": {"type": "string"}
+                        "materialDataSheet":
+                        {
+                            "description": "(Optional) - Link to the file describing the composition specification, usually called Material Data Sheet, if available.",
+                            "type": "string"
+                        }
                     }
                 },
-                "properties":
+                "materialProperties":
                 {
                     "type": "object",
                     "properties":
@@ -624,11 +411,391 @@ var dataModel = {
                                     "conductor",
                                     "semiconductor",
                                     "superconductor",
-                                    "other (please add in the comments)"
+                                    "insulator",
+                                    "dielectric",
+                                    "other (please add in the comment)"
                                 ]
                             }
                         },
                         "comment": {"type": "string"}
+                    }
+                }
+            }
+        },
+        "featuresOfInterest":
+        {
+            "type": "object",
+            "properties":
+            {
+                "defects":
+                {
+                    "type": "object",
+                    "properties": 
+                    {
+                        "defectsOptions":
+                        {
+                            "type": "array",
+                            "items":
+                            {
+                                "type": "string",
+                                "enum":
+                                [
+                                    "cracks",
+                                    "crazes",
+                                    "inclusions",
+                                    "pores",
+                                    "voids",
+                                    "dislocations",
+                                    "antisite defects",
+                                    "interstitial defects",
+                                    "topological defects",
+                                    "vacancies",
+                                    "other (please specify in the comment)"
+                                ]
+                            }
+                        },
+                        "comment": {"type": "string"}   
+                    }
+                },
+                "interfaces":
+                {
+                    "type": "object",
+                    "properties": 
+                    {
+                        "interfacesOptions":
+                        {
+                            "description": "Bidimensional region through which a discontinuity occurs in one or more parameter of the material",
+                            "type": "array",
+                            "items":
+                            {
+                                "type": "string",
+                                "enum":
+                                [
+                                    "antiphase boundaries",
+                                    "grain boundaries",
+                                    "magnetic domain walls",
+                                    "matrix-fiber interfaces",
+                                    "matrix-particle interfaces",
+                                    "phase boundaries",
+                                    "stacking faults",
+                                    "surfaces",
+                                    "twin boundaries",
+                                    "other (please specify in the comment)"
+                                ]
+                            }
+                        },
+                        "comment": {"type": "string"}
+                    }
+                },
+                "dominantStructures":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "reinforcementStructures":
+                        {
+                            "description": "Constituent of a composite material which increases its stiffness and tensile strength",
+                            "type": "object",
+                            "properties":
+                            {
+                                "reinforcingMaterial": 
+                                {
+                                    "type": "string"
+                                },
+                                "scale":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "not applicable",
+                                        "atomic/molecular",
+                                        "nanoscopic",
+                                        "microscopic",
+                                        "mesoscopic",
+                                        "macroscopic"
+                                    ]
+                                }
+                            }
+                        },
+                        "clusters":
+                        {
+                            "description": "Aggregates of atoms, molecules, ions which adhere together under e.g. van der Waals forces, ionic forces, covalent bonds, metallic bonds, whose properties differ from those of the corresponding bulk",
+                            "type": "object",
+                            "properties":
+                            {
+                                "clusterAtoms":
+                                {
+                                    "type": "string"
+                                },
+                                "clusterSize": 
+                                {
+                                    "type": "object",
+                                    "properties": 
+                                    {
+                                        "value": {"type": "number"},
+                                        "unit": {"type": "string"}
+                                    }
+                                },  
+                            }
+                        },
+                        "alignedStructures":
+                        {
+                            "description": "Type of arrangement where the constituent elements, such as molecules, particles, fibers, or crystallites, are organized in a specific direction or orientation",
+                            "type": "object",
+                            "properties":
+                            {
+                                "alignedElements":
+                                {
+                                    "type": "string"
+                                },
+                                "scale":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "not applicable",
+                                        "atomic/molecular",
+                                        "nanoscopic",
+                                        "microscopic",
+                                        "mesoscopic",
+                                        "macroscopic"
+                                    ]
+                                }   
+                            }
+                        },
+                        "grains":
+                        {
+                            "description": "Also referred as crystallites. Small crystals within a polycrystalline material which form e.g. during the cooling",
+                            "type": "object",
+                            "properties":
+                            {
+                                "minGrainSize": 
+                                {
+                                    "type": "object",
+                                    "properties": 
+                                    {
+                                        "value": {"type": "number"},
+                                        "unit": {"type": "string"}
+                                    }
+                                },
+                                "maxGrainSize": 
+                                {
+                                    "type": "object",
+                                    "properties": 
+                                    {
+                                        "value": {"type": "number"},
+                                        "unit": {"type": "string"}
+                                    }
+                                }
+                            }
+                        },
+                        "lamellarStructures":
+                        {
+                            "description": "Structures composed of fine, alternating layers of different materials in the form of lamellae",
+                            "type": "object",
+                            "properties":
+                            {
+                                "scale":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "not applicable",
+                                        "atomic/molecular",
+                                        "nanoscopic",
+                                        "microscopic",
+                                        "mesoscopic",
+                                        "macroscopic"
+                                    ]
+                                }
+                            }   
+                        },
+                        "particles":
+                        {
+                            "description": "Small localized units of matter",
+                            "type": "object",
+                            "properties":
+                            {
+                                "particleType":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "not applicable",
+                                        "solid (fleks)",
+                                        "liquid (droplets)",
+                                        "gaseous (bubbles)"
+                                    ]
+                                },
+                                "particleShape":
+                                {
+                                    "type": "string"
+                                },
+                                "minParticleSize": 
+                                {
+                                    "type": "object",
+                                    "properties": 
+                                    {
+                                        "value": {"type": "number"},
+                                        "unit": {"type": "string"}
+                                    }
+                                },
+                                "maxParticleSize": 
+                                {
+                                    "type": "object",
+                                    "properties": 
+                                    {
+                                        "value": {"type": "number"},
+                                        "unit": {"type": "string"}
+                                    }
+                                }
+                            }
+                        },
+                        "porousStructures":
+                        {
+                            "type": "object",
+                            "properties": 
+                            {
+                                "porosity": 
+                                {
+                                    "description": "Also referred as void fraction. Fraction of the volume of voids over the total volume between 0 (no voids) and 1 (all voids)",
+                                    "type": "number"
+                                },
+                                "percolated":
+                                {
+                                    "description": "A substance (such as a liquid, gas, or particles) passes through a porous material or medium",
+                                    "type": "boolean"
+                                },
+                                "minPoreSize": 
+                                {
+                                    "type": "object",
+                                    "properties": 
+                                    {
+                                        "value": {"type": "number"},
+                                        "unit": {"type": "string"}
+                                    }
+                                },
+                                "maxPoreSize": 
+                                {
+                                    "type": "object",
+                                    "properties": 
+                                    {
+                                        "value": {"type": "number"},
+                                        "unit": {"type": "string"}
+                                    }
+                                }
+                            }
+                        },
+                        "crystalStructures":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "crystallinity":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "not applicable",
+                                        "crystalline/single crystal",
+                                        "polycrystalline",
+                                        "semicrystalline",
+                                        "non-crystalline/amorphous"
+                                    ]
+                                },
+                                "twinned": 
+                                {
+                                    "description": "Two separate crystal domains share some of the same crystal lattice points in a symmetrical manner",
+                                    "type": "boolean"
+                                },
+                                "scale":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "not applicable",
+                                        "atomic/molecular",
+                                        "nanoscopic",
+                                        "microscopic",
+                                        "mesoscopic",
+                                        "macroscopic"
+                                    ]
+                                }
+                            }
+                        },
+                        "nanostructures":
+                        {
+                            "description": "",
+                            "type": "object",
+                            "properties":
+                            {
+                                "nanoparticles":
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "particleShape":
+                                        {
+                                            "type": "string"
+                                        },
+                                        "minParticleSize": 
+                                        {
+                                            "type": "object",
+                                            "properties": 
+                                            {
+                                                "value": {"type": "number"},
+                                                "unit": {"type": "string"}
+                                            }
+                                        },
+                                        "maxParticleSize": 
+                                        {
+                                            "type": "object",
+                                            "properties": 
+                                            {
+                                                "value": {"type": "number"},
+                                                "unit": {"type": "string"}
+                                            }
+                                        }
+                                    }
+                                },
+                                "nanowires":
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "diameter":
+                                        {
+                                            "type": "object",
+                                            "properties":
+                                            {
+                                                "value": {"type": "number"},
+                                                "unit": {"type": "string"}
+                                            }
+                                        },
+                                        "aspectRatio":
+                                        {
+                                            "type": "number"
+                                        }
+                                    }
+                                },
+                                "nanosheets":
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "thickness":
+                                        {
+                                            "type": "object",
+                                            "properties":
+                                            {
+                                                "value": {"type": "number"},
+                                                "unit": {"type": "string"}
+                                            }
+                                        }
+                                    }
+                                }
+                            }    
+                        }
                     }
                 }
             }
@@ -644,48 +811,12 @@ var dataModel = {
                     "type":"string",
                     "format": "date"
                 },
-                "sampleSize":
-                {
-                    "description":  "(Optional) - Size of the sample, mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY).",
-                    "type": "object",
-                    "properties":
-                    {
-                        "sizeX":
-                        {
-                            "description": "(Optional) - Size of the sample in the x dimension. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX).",
-                            "type": "string"
-                        },
-                        "sizeY":
-                        {
-                            "description": "(Optional) - Size of the sample in the y dimension. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeY).",
-                            "type": "string"
-                        },
-                        "sizeZ":
-                        {
-                            "description": "(Optional) - Size of the sample in the z dimension. Regardless of the shape, the sample size can be approximated (e.g. the hight of a cylinder can be indicated as sizeZ).",
-                            "type": "string"
-                        }
-                    }
-                },
-                "sampleMass": {"type": "string"},
-                "sampleVolume": {"type": "string"},
-                "sampleDensity": {"type": "string"},
-                "samplePressure":
-                {
-                    "description": "(Optional) - Usually the gas pressure. It can be a numerical value, a range of numerical values, or some text (e.g., vacuum, high vacuum, ultra high vacuum, …)",
-                    "type": "string"
-                },
-                "sampleTemperature":
-                {
-                    "description": "(Optional) - Temperature of the sample. It can be a numerical value, a range of numerical values, or some text (e.g., room temperature).",
-                    "type": "string"
-                },
                 "sampleVisibleElements":
                 {
                     "type": "object",
                     "properties":
                     {
-                        "sampleVisibleElements":
+                        "visibleElementsOptions":
                         {
                             "type": "array",
                             "items":
@@ -705,10 +836,192 @@ var dataModel = {
                         "comment": {"type": "string"}
                     }   
                 },
-                "sampleAdditionalFeatures":
+                "sampleShape":
                 {
-                    "description": "(Optional) - Description of the missing relevant features describing the sample, if any.",
-                    "type": "string"
+                    "type": "object",
+                    "properties":
+                    {
+                        "shapeOptions":
+                        {
+                            "type": "string",
+                            "enum":
+                            [
+                                "bulk material",
+                                "filament",
+                                "pellet",
+                                "powder",
+                                "road/bar"
+                            ]
+                        },
+                        "sheet":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "sheetType":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "not applicable",
+                                        "foil",
+                                        "plate",
+                                        "leaf"
+                                    ]
+                                },
+                                "sheetThickness":
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "value": {"type": "number"},
+                                        "unit": {"type": "string"}
+                                    }
+                                }
+                            }
+                        },
+                        "layer": 
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "layerType":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "not applicable",
+                                        "monolayer",
+                                        "thin film",
+                                        "multilayer"
+                                    ]
+                                },
+                                "layerThickness":
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "value": {"type": "number"},
+                                        "unit": {"type": "string"}
+                                    }
+                                }, 
+                                "interlayerSpacing":
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "value": {"type": "number"},
+                                        "unit": {"type": "string"}
+                                    }
+                                },
+                                "numberOfLayers": {"type": "number"}
+                            }
+                        },
+                        "wire": 
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "diameter":
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "value": {"type": "number"},
+                                        "unit": {"type": "string"}
+                                    }
+                                },
+                                "aspectRatio":
+                                {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                },
+                "sampleSize":
+                {
+                    "description":  "(Optional) - Size of the sample, mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY).",
+                    "type": "object",
+                    "properties":
+                    {
+                        "sizeX":
+                        {
+                            "description": "(Optional) - Size of the sample in the x dimension. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX).",
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}
+                            }
+                        },
+                        "sizeY":
+                        {
+                            "description": "(Optional) - Size of the sample in the y dimension. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeY).",
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}
+                            }
+                        },
+                        "sizeZ":
+                        {
+                            "description": "(Optional) - Size of the sample in the z dimension. Regardless of the shape, the sample size can be approximated (e.g. the hight of a cylinder can be indicated as sizeZ).",
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}
+                            }
+                        }
+                    }
+                },
+                "sampleMass": 
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "value": {"type": "number"},
+                        "unit": {"type": "string"}
+                    }
+                },
+                "sampleVolume": 
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "value": {"type": "number"},
+                        "unit": {"type": "string"}
+                    }
+                },
+                "sampleDensity": 
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "value": {"type": "number"},
+                        "unit": {"type": "string"}
+                    }
+                },
+                "samplePressure":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "value": {"type": "number"},
+                        "unit": {"type": "string"}
+                    }
+                },
+                "sampleTemperature":
+                {
+                    "description": "(Optional) - Temperature of the sample. It can be a numerical value, a range of numerical values, or some text (e.g., room temperature).",
+                    "type": "object",
+                    "properties":
+                    {
+                        "value": {"type": "number"},
+                        "unit": {"type": "string"}
+                    }
                 }
             }
         },
@@ -1069,7 +1382,7 @@ var dataModel = {
                             "description": "The sample must be protected against shocks.",
                             "type": "boolean"
                         },
-                        "cleanRoom": 
+                        "cleanRoomConditions": 
                         {
                             "description": "The sample should be treated only under the given specific clean room conditions.",
                             "type":"string"
@@ -1077,12 +1390,22 @@ var dataModel = {
                         "humidity": 
                         {
                             "description": "The sample should be handled at the given humidity. It can be a numerical value or a range of numerical values.",
-                            "type": "string"
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}                              
+                            }
                         },
                         "gasAtmosphere": 
                         {
                             "description": "The sample has a reactive top layer and needs the given inert gas around it during treatment (e.g. Nitrogen).",
-                            "type": "string"
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}                              
+                            }
                         },
                         "additionalNotes": 
                         {
@@ -1099,17 +1422,32 @@ var dataModel = {
                         "storageTemperature": 
                         {
                             "description": "(Optional) - Commonly known as sample temperature. It can be a numerical value, a range of numerical values, or some text (e.g., room temperature).",
-                            "type":"string"
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}                              
+                            }
                         },
                         "storagePressure": 
                         {
                             "description": "(Optional) - Generally it does not refer to gas pressure, because usually gas pressure = storage pressure. It can be a numerical value, a range of numerical values, or some text (e.g., vacuum, high vacuum, ultra high vacuum, …)",
-                            "type":"string"
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}                              
+                            }
                         },
                         "storageHumidity": 
                         {
                             "description": "(Optional) - To be indicated only if different from the humidity required for sample handling. It can be a numerical value or a range of numerical values.",
-                            "type":"string"
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}                              
+                            }
                         },
                         "storageGasAtmosphere": 
                         {
@@ -1139,7 +1477,7 @@ var dataModel = {
                                     {
                                         "enum":
                                         [
-                                            "Not applicable",
+                                            "None",
                                             "glove box",
                                             "fume hood",
                                             "dessicator",
@@ -1188,20 +1526,7 @@ var dataModel = {
                         "Other (please add in the comments)"
                     ]
                 },
-                "sampleHolderMaterial":
-                {
-                    "type": "string"
-                },
-                "sampleHolderTemperatureRange":
-                {
-                    "description": "Supported range of temperature",
-                    "type": "string"
-                },
-                "supportedSamples":
-                {
-                    "description": "Supported (number and/or type of) samples",
-                    "type": "string"
-                },
+                "otherHolderType": {"type": "string"},
                 "sampleHolderDescription":
                 {
                     "description": "Any additional description which might be useful to identify the sample holder",
@@ -1222,7 +1547,7 @@ var dataModel = {
                         "Other (please add in the comments)"
                     ]
                 },
-                "comments": {"type": "string"}
+                "otherFixingMethod": {"type": "string"}
             }
         },
         "sampleCarrier":
@@ -1235,34 +1560,11 @@ var dataModel = {
                     "description": "Type of sample carrier. It may include the substrate, in case it is used as Sample Carrier.",
                     "type": "string",
                 },
-                "sampleCarrierMaterial":
-                {
-                    "type": "string"
-                },
-                "sampleCarrierLength": {"type": "string"},
-                "sampleCarrierWidth": {"type": "string"},
-                "sampleCarrierHeight": {"type": "string"},
-                "sampleCarrierTemperatureRange":
-                {
-                    "description": "Supported range of temperature",
-                    "type": "string"
-                },
-                "supportedSamples":
-                {
-                    "description": "Supported (number and/or type of) samples",
-                    "type": "string"
-                },
-                "supportedHolders":
-                {
-                    "description": "Supported (number and/or type of) holders",
-                    "type": "string"
-                },
                 "sampleCarrierDescription":
                 {
                     "description": "Any additional description which might be useful to identify the sample carrier",
                     "type": "string"
-                },
-                "comments": {"type": "string"}
+                }
             }
         },
         "sampleReferencing":
