@@ -92,7 +92,17 @@ var uiSchema = {
                 {"title": "Sample Volume", "key": "sampleDescription.sampleMass"},
                 {"title": "Sample Density", "key": "sampleDescription.sampleDensity"},
                 {"title": "Sample Pressure", "key": "sampleDescription.samplePressure"},
-                {"title": "Sample Temperature", "key": "sampleDescription.sampleTemperature"}
+                {"title": "Sample Temperature", "key": "sampleDescription.sampleTemperature"},
+                {
+                    "title": "Sample Surface Roughness", 
+                    "type": "fieldset", 
+                    "htmlClass": "myclass",
+                    "items":
+                    [
+                        {"title": "Qualitative", "key": "sampleDescription.sampleSurfaceRoughness.qualitative"},
+                        {"title": "Quantitative", "key": "sampleDescription.sampleSurfaceRoughness.quantitative"},
+                    ]
+                }
             ]
         },
         {

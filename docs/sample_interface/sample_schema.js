@@ -1037,6 +1037,43 @@ var dataModel = {
                         "value": {"type": "number"},
                         "unit": {"type": "string"}
                     }
+                },
+                "sampleSurfaceRoughness":
+                {
+                    "description": "(Optional) - Quality of a surface of not being smooth.",
+                    "type": "object",
+                    "properties": 
+                    {
+                        "qualitative":
+                        {
+                            "type": "string",
+                            "enum": 
+                            [
+                                "rough",
+                                "smooth",
+                                "polished"
+                            ]
+                        },
+                        "quantitative":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "amplitudeParameter":
+                                {
+                                    "type": "string",
+                                    "enum":
+                                    [
+                                        "Ra",
+                                        "Rq",
+                                        "Rz"
+                                    ]
+                                },
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}
+                            }
+                        }
+                    }
                 }
             }
         },
