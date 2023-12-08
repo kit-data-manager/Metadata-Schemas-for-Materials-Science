@@ -1049,6 +1049,7 @@ var dataModel = {
                             "type": "string",
                             "enum": 
                             [
+                                "not applicable",
                                 "rough",
                                 "smooth",
                                 "polished"
@@ -1064,6 +1065,7 @@ var dataModel = {
                                     "type": "string",
                                     "enum":
                                     [
+                                        "not applicable",
                                         "Ra",
                                         "Rq",
                                         "Rz"
