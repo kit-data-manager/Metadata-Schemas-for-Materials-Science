@@ -1082,6 +1082,19 @@ var dataModel = {
             "type": "object",
             "properties":
             {
+                "researchUser":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "userName": {"type": "string"},
+                        "userRole":
+                        {
+                            "type": "string",
+                            "enum": ["Data Curator", "Instrument Scientist", "Team Leader", "Team Member"]
+                        }
+                    }
+                },
                 "preparationDate":
                 {
                     "description": "(Optional) - Date of preparation",

@@ -416,6 +416,8 @@ var uiSchema = {
             "htmlClass": "myclass",
             "items":
             [
+                {"title": "User Name", "key": "samplePreparation.researchUser.userName"},
+                {"title": "User Role", "key": "samplePreparation.researchUser.userRole", "type": "radios"},
                 {"title": "Sample Preparation Date", "key": "samplePreparation.preparationDate"},
                 {"title": "Use the + to insert each Consumable", "key": "samplePreparation.consumables", "htmlClass": "myclass"},
                 {
