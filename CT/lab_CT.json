@@ -899,6 +899,44 @@
                     "anodeMaterial": {
                       "type": "string",
                       "description": "(Optional) - Material of the anode. e.g. - Cr."
+                    },
+                    "targetCurrent":{
+                      "$ref": "#/$defs/currentDetails",
+                       "description": "(Optional) - the current measured at the X-ray target, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)"
+                    }
+                  }
+                },
+                "sourceDrift":{
+                  "description":"(Optional) - Distance by which the source is shifted during the measurement (i.e., end position - start position).",
+                  "type":"object",
+                  "additionalProperties": false,
+                  "properties":{
+                    "xDrift":{
+                      "description":"(Required) - Drift in the x direction. Typical unit - µm.",
+                      "$ref":"#/$defs/distanceDetails"
+                    },
+                    "yDrift":{
+                      "description":"(Required) - Drift in the y direction. Typical unit - µm.",
+                      "$ref":"#/$defs/distanceDetails"
+                    }
+                  },
+                  "required":[
+                    "xDrift",
+                    "yDrift"
+                  ]
+                },
+                "motorPositions":{
+                  "description":"(Optional) - Positions in cartesian coordinates and tilt angles of the source.",
+                  "type":"object",
+                  "additionalProperties":false,
+                  "properties":{
+                    "sourcePosition":{
+                        "$ref": "#/$defs/coordinateSet",
+                        "description": "(Optional) - The xyz coordinates decribing the motor positions of the source."
+                    },
+                    "sourceTilt":{
+                      "description":"(Optional) - The three tilt angles alpha, beta and gamma describing the motor positions of the source.",
+                      "$ref": "#/$defs/angleSet"
                     }
                   }
                 }
@@ -910,7 +948,7 @@
               ]
             },
             "SEMBasedCT": {
-              "description": "(Optional) - Details regarding the E-Beam source and X-ray Target in an SEM based CT set-up",
+              "description": "(Optional) - Details regarding the E-Beam source and X-ray target in an SEM based CT set-up.",
               "type": "object",
               "additionalProperties": false,
               "properties": {
@@ -937,11 +975,51 @@
                     "yShift"
                   ]
                 },
-                "workingDistance":{},
-                "targetDriftCorrection":{},
-                "objectiveLensAperture":{},
-                "electronProbeCurrent":{},
-                "target":{}
+                "workingDistance":{
+                  "$ref": "#/$defs/distanceDetails",
+                  "description": "(Required)- Distance which is determined along the optical axis within the column from  (1) the lower end of the final optical element between the source and the  specimen stage; to (2) the point where the beam is focused. In SEM based CT, the beam is focussed on the target material which emits the X-rays upon interaction with the electrons. Default unit - µm."
+                },
+                "targetDriftCorrection":{
+                  "type":"boolean",
+                  "description":"(Required) - If drift correction is activated for the target, this parameter has to be set to true."
+                },
+                "objectiveLensAperture":{
+                  "$ref": "#/$defs/apertureSettingType",
+                  "description": "(Required) - The setting for controlling the aperture size, using either the aperture size (directly) or the beam current (indirectly). Typically the diameter of the aperture is set in µm."
+                },
+                "electronProbeCurrent":{
+                  "$ref": "#/$defs/currentDetails",
+                  "description":"(Required) - The electron current measured at the probe. Typical unit - µA."
+                },
+                "target":{
+                  "type":"object",
+                  "description":"(Required) - Details regarding the target in SEM based CT, which upon interaction with the e-beam produces the X-rays.",
+                  "additionalProperties":false,
+                  "properties":{
+                    "targetShape":{
+                      "type":"string",
+                      "description":"(Optional) - Description of the shape or geometry of the target. e.g. - bulk, foil, needle."
+                    },
+                    "targetMaterial":{
+                      "type":"string",
+                      "description":"(Required) - Material with which the target is made."
+                    },
+                    "targetThickness":{
+                      "$ref": "#/$defs/distanceDetails",
+                      "description": "(Required)- Thickness of the target (dimension in Z direction). Default unit - µm."
+                    },
+                    "targetTiltAngle":{
+                      "$ref": "#/$defs/angleDetails",
+                      "description": "(Required) - angle by which the target is tilted. Typical unit - degree."
+                    }
+                  },
+                  "required":[
+                    "targetMaterial",
+                    "targetThickness",
+                    "targetTiltAngle",
+                    "targetCurrent"
+                  ]
+                }
               },
               "required": [
                 "chamberPressure",
@@ -1480,6 +1558,34 @@
         "zValue",
         "coordinatesUnit"
       ]
+    },
+    "angleSet": {
+      "type": "object",
+      "description": "(Optional) - Tilt angles alpha, beta and gamma decribing the three angular positions of an item.",
+      "additionalProperties": false,
+      "properties": {
+        "alpha": {
+          "type": "number",
+          "description": "(Optional) - Tilt angle alpha of the item."
+        },
+        "beta": {
+          "type": "number",
+          "description": "(Optional) - Tilt angle beta of the item."
+        },
+        "gamma": {
+          "type": "number",
+          "description": "(Optional) - Tilt angle gamma of the item."
+        },
+        "anglesUnit": {
+          "type": "string",
+          "default": "degree",
+          "enum": [
+            "degree",
+            "radian"
+          ],
+          "description": "(Optional) - unit of the angles (allowed units - degree or radian)"
+        }
+      }
     },
     "pixelNumberType": {
       "type": "object",
