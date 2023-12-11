@@ -115,7 +115,7 @@ var uiSchema = {
             ]
         },
         {
-            "legend": "Sample Components Test",
+            "legend": "Sample Components Test DO NOT USE!",
             "type": "fieldset",
             "htmlClass": "myclass",
             "items": 
@@ -125,7 +125,7 @@ var uiSchema = {
         },
 
         {
-            "legend": "Test2",
+            "legend": "Test2 DO NOT USE!",
             "type": "fieldset",
             "htmlClass": "myclass",
             "items":
