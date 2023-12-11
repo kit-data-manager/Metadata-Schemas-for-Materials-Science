@@ -60,12 +60,12 @@ var dataModel = {
                 }
             }
         },
-        noneType: 
+        "noneType": 
         {
             "type": "object",
             "properties": {}
         },
-        otherType: 
+        "otherType": 
         {
             "type": "object",
             "properties": {}
@@ -226,31 +226,20 @@ var dataModel = {
                                         "type": "object",
                                         "properties":
                                         {
-                                            "materialTypeOptions":
-                                            {
-                                                "type": "array",
-                                                "items":
-                                                {
-                                                    "type": "string",
-                                                    "enum":
-                                                    [
-                                                        "notApplicable",
-                                                        "alloy",
-                                                        "biological",
-                                                        "biomaterial",
-                                                        "ceramic",
-                                                        "composite",
-                                                        "glass",
-                                                        "metal",
-                                                        "metamaterial",
-                                                        "molecularFluid",
-                                                        "organicCompound",
-                                                        "organometallic",
-                                                        "polymer",
-                                                        "smartMaterial"
-                                                    ]
-                                                }
-                                            },
+                                            "notApplicable": {"type": "boolean"},
+                                            "alloy": {"type": "boolean"},
+                                            "biological": {"type": "boolean"},
+                                            "biomaterial": {"type": "boolean"},
+                                            "ceramic": {"type": "boolean"},
+                                            "composite": {"type": "boolean"},
+                                            "glass": {"type": "boolean"},
+                                            "metal": {"type": "boolean"},
+                                            "metamaterial": {"type": "boolean"},
+                                            "molecularFluid": {"type": "boolean"},
+                                            "organicCompound": {"type": "boolean"},
+                                            "organometallic": {"type": "boolean"},
+                                            "polymer": {"type": "boolean"},
+                                            "smartMaterial": {"type": "boolean"},
                                             "materialDataSheet":
                                             {
                                                 "description": "(Optional) - Link to the file describing the composition specification, usually called Material Data Sheet, if available.",
@@ -290,7 +279,385 @@ var dataModel = {
                                         }
                                     }
                                 }
-                            }
+                            },
+                            "featuresOfInterest":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "defects":
+                                    {
+                                        "type": "object",
+                                        "properties": 
+                                        {
+                                            "defectsOptions":
+                                            {
+                                                "type": "array",
+                                                "items":
+                                                {
+                                                    "type": "string",
+                                                    "enum":
+                                                    [
+                                                        "cracks",
+                                                        "crazes",
+                                                        "inclusions",
+                                                        "pores",
+                                                        "voids",
+                                                        "dislocations",
+                                                        "antisite defects",
+                                                        "interstitial defects",
+                                                        "topological defects",
+                                                        "vacancies",
+                                                        "other (please specify in the comment)"
+                                                    ]
+                                                }
+                                            },
+                                            "comment": {"type": "string"}   
+                                        }
+                                    },
+                                    "interfaces":
+                                    {
+                                        "type": "object",
+                                        "properties": 
+                                        {
+                                            "interfacesOptions":
+                                            {
+                                                "description": "Bidimensional region through which a discontinuity occurs in one or more parameter of the material",
+                                                "type": "array",
+                                                "items":
+                                                {
+                                                    "type": "string",
+                                                    "enum":
+                                                    [
+                                                        "antiphase boundaries",
+                                                        "grain boundaries",
+                                                        "magnetic domain walls",
+                                                        "matrix-fiber interfaces",
+                                                        "matrix-particle interfaces",
+                                                        "phase boundaries",
+                                                        "stacking faults",
+                                                        "surfaces",
+                                                        "twin boundaries",
+                                                        "other (please specify in the comment)"
+                                                    ]
+                                                }
+                                            },
+                                            "comment": {"type": "string"}
+                                        }
+                                    },
+                                    "dominantStructures":
+                                    {
+                                        "type": "object",
+                                        "properties":
+                                        {
+                                            "reinforcementStructures":
+                                            {
+                                                "description": "Constituent of a composite material which increases its stiffness and tensile strength",
+                                                "type": "object",
+                                                "properties":
+                                                {
+                                                    "reinforcingMaterial": 
+                                                    {
+                                                        "type": "string"
+                                                    },
+                                                    "scale":
+                                                    {
+                                                        "type": "string",
+                                                        "enum":
+                                                        [
+                                                            "not applicable",
+                                                            "atomic/molecular",
+                                                            "nanoscopic",
+                                                            "microscopic",
+                                                            "mesoscopic",
+                                                            "macroscopic"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "clusters":
+                                            {
+                                                "description": "Aggregates of atoms, molecules, ions which adhere together under e.g. van der Waals forces, ionic forces, covalent bonds, metallic bonds, whose properties differ from those of the corresponding bulk",
+                                                "type": "object",
+                                                "properties":
+                                                {
+                                                    "clusterAtoms":
+                                                    {
+                                                        "type": "string"
+                                                    },
+                                                    "clusterSize": 
+                                                    {
+                                                        "type": "object",
+                                                        "properties": 
+                                                        {
+                                                            "value": {"type": "number"},
+                                                            "unit": {"type": "string"}
+                                                        }
+                                                    },  
+                                                }
+                                            },
+                                            "alignedStructures":
+                                            {
+                                                "description": "Type of arrangement where the constituent elements, such as molecules, particles, fibers, or crystallites, are organized in a specific direction or orientation",
+                                                "type": "object",
+                                                "properties":
+                                                {
+                                                    "alignedElements":
+                                                    {
+                                                        "type": "string"
+                                                    },
+                                                    "scale":
+                                                    {
+                                                        "type": "string",
+                                                        "enum":
+                                                        [
+                                                            "not applicable",
+                                                            "atomic/molecular",
+                                                            "nanoscopic",
+                                                            "microscopic",
+                                                            "mesoscopic",
+                                                            "macroscopic"
+                                                        ]
+                                                    }   
+                                                }
+                                            },
+                                            "grains":
+                                            {
+                                                "description": "Also referred as crystallites. Small crystals within a polycrystalline material which form e.g. during the cooling",
+                                                "type": "object",
+                                                "properties":
+                                                {
+                                                    "minGrainSize": 
+                                                    {
+                                                        "type": "object",
+                                                        "properties": 
+                                                        {
+                                                            "value": {"type": "number"},
+                                                            "unit": {"type": "string"}
+                                                        }
+                                                    },
+                                                    "maxGrainSize": 
+                                                    {
+                                                        "type": "object",
+                                                        "properties": 
+                                                        {
+                                                            "value": {"type": "number"},
+                                                            "unit": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "lamellarStructures":
+                                            {
+                                                "description": "Structures composed of fine, alternating layers of different materials in the form of lamellae",
+                                                "type": "object",
+                                                "properties":
+                                                {
+                                                    "scale":
+                                                    {
+                                                        "type": "string",
+                                                        "enum":
+                                                        [
+                                                            "not applicable",
+                                                            "atomic/molecular",
+                                                            "nanoscopic",
+                                                            "microscopic",
+                                                            "mesoscopic",
+                                                            "macroscopic"
+                                                        ]
+                                                    }
+                                                }   
+                                            },
+                                            "particles":
+                                            {
+                                                "description": "Small localized units of matter",
+                                                "type": "object",
+                                                "properties":
+                                                {
+                                                    "particleType":
+                                                    {
+                                                        "type": "string",
+                                                        "enum":
+                                                        [
+                                                            "not applicable",
+                                                            "solid (fleks)",
+                                                            "liquid (droplets)",
+                                                            "gaseous (bubbles)"
+                                                        ]
+                                                    },
+                                                    "particleShape":
+                                                    {
+                                                        "type": "string"
+                                                    },
+                                                    "minParticleSize": 
+                                                    {
+                                                        "type": "object",
+                                                        "properties": 
+                                                        {
+                                                            "value": {"type": "number"},
+                                                            "unit": {"type": "string"}
+                                                        }
+                                                    },
+                                                    "maxParticleSize": 
+                                                    {
+                                                        "type": "object",
+                                                        "properties": 
+                                                        {
+                                                            "value": {"type": "number"},
+                                                            "unit": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "porousStructures":
+                                            {
+                                                "type": "object",
+                                                "properties": 
+                                                {
+                                                    "porosity": 
+                                                    {
+                                                        "description": "Also referred as void fraction. Fraction of the volume of voids over the total volume between 0 (no voids) and 1 (all voids)",
+                                                        "type": "number"
+                                                    },
+                                                    "percolated":
+                                                    {
+                                                        "description": "A substance (such as a liquid, gas, or particles) passes through a porous material or medium",
+                                                        "type": "boolean"
+                                                    },
+                                                    "minPoreSize": 
+                                                    {
+                                                        "type": "object",
+                                                        "properties": 
+                                                        {
+                                                            "value": {"type": "number"},
+                                                            "unit": {"type": "string"}
+                                                        }
+                                                    },
+                                                    "maxPoreSize": 
+                                                    {
+                                                        "type": "object",
+                                                        "properties": 
+                                                        {
+                                                            "value": {"type": "number"},
+                                                            "unit": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "crystalStructures":
+                                            {
+                                                "type": "object",
+                                                "properties":
+                                                {
+                                                    "crystallinity":
+                                                    {
+                                                        "type": "string",
+                                                        "enum":
+                                                        [
+                                                            "not applicable",
+                                                            "crystalline/single crystal",
+                                                            "polycrystalline",
+                                                            "semicrystalline",
+                                                            "non-crystalline/amorphous"
+                                                        ]
+                                                    },
+                                                    "twinned": 
+                                                    {
+                                                        "description": "Two separate crystal domains share some of the same crystal lattice points in a symmetrical manner",
+                                                        "type": "boolean"
+                                                    },
+                                                    "scale":
+                                                    {
+                                                        "type": "string",
+                                                        "enum":
+                                                        [
+                                                            "not applicable",
+                                                            "atomic/molecular",
+                                                            "nanoscopic",
+                                                            "microscopic",
+                                                            "mesoscopic",
+                                                            "macroscopic"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "nanostructures":
+                                            {
+                                                "description": "",
+                                                "type": "object",
+                                                "properties":
+                                                {
+                                                    "nanoparticles":
+                                                    {
+                                                        "type": "object",
+                                                        "properties":
+                                                        {
+                                                            "particleShape":
+                                                            {
+                                                                "type": "string"
+                                                            },
+                                                            "minParticleSize": 
+                                                            {
+                                                                "type": "object",
+                                                                "properties": 
+                                                                {
+                                                                    "value": {"type": "number"},
+                                                                    "unit": {"type": "string"}
+                                                                }
+                                                            },
+                                                            "maxParticleSize": 
+                                                            {
+                                                                "type": "object",
+                                                                "properties": 
+                                                                {
+                                                                    "value": {"type": "number"},
+                                                                    "unit": {"type": "string"}
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "nanowires":
+                                                    {
+                                                        "type": "object",
+                                                        "properties":
+                                                        {
+                                                            "diameter":
+                                                            {
+                                                                "type": "object",
+                                                                "properties":
+                                                                {
+                                                                    "value": {"type": "number"},
+                                                                    "unit": {"type": "string"}
+                                                                }
+                                                            },
+                                                            "aspectRatio":
+                                                            {
+                                                                "type": "number"
+                                                            }
+                                                        }
+                                                    },
+                                                    "nanosheets":
+                                                    {
+                                                        "type": "object",
+                                                        "properties":
+                                                        {
+                                                            "thickness":
+                                                            {
+                                                                "type": "object",
+                                                                "properties":
+                                                                {
+                                                                    "value": {"type": "number"},
+                                                                    "unit": {"type": "string"}
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }    
+                                            }
+                                        }
+                                    }
+                                }
+                            },
                         }
                     }
                 }               

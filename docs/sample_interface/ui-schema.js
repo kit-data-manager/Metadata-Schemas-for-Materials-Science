@@ -114,7 +114,41 @@ var uiSchema = {
                 {"title": "Use the + to insert each Sample Component (not the Precursors: they can be inserted in Parents)", "key": "sampleComponents"}
             ]
         },
+        {
+            "legend": "Sample Components Test",
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items": 
+            [
+                {"key": "test"}
+            ]
+        },
 
+        {
+            "legend": "Test2",
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items":
+            [
+                {
+                    "title": "Use the + to insert each Sample Component",
+                    "type": "array",
+                    "htmlClass": "myclass",
+                    "items": 
+                    [
+                        
+                        {
+                            "title": "phase of matter",
+                            "key": "test.sampleComponents[].sampleCharacterization.phaseOfMatter"
+                        },
+                        {
+                            "title": "material type",
+                            "key": "test.sampleComponents[].sampleCharacterization.materialType"
+                        },
+                    ]
+                },              
+            ]
+        },
         {
             "legend": "Sample Characterization",
             "type": "fieldset",
