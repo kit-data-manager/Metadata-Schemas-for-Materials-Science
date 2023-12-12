@@ -1411,6 +1411,15 @@ var dataModel = {
                     "type": "object",
                     "properties": 
                     {
+                        "estimate":
+                        {
+                            "type": "string",
+                            "enum": 
+                            [
+                                "qualitative",
+                                "quantitative"
+                            ]
+                        },
                         "qualitative":
                         {
                             "type": "string",

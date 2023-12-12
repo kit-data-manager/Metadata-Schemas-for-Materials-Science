@@ -95,8 +95,13 @@ var uiSchema = {
                 {"title": "Sample Temperature", "key": "sampleDescription.sampleTemperature"},
                 {
                     "title": "Sample Surface Roughness", 
-                    "type": "fieldset", 
+                    "type": "selectfieldset", 
                     "htmlClass": "myclass",
+                    "titleMap": 
+                    {
+                        "qualitative": "Qualitative",
+                        "quantitative": "Quantitative"
+                    },
                     "items":
                     [
                         {"title": "Qualitative", "key": "sampleDescription.sampleSurfaceRoughness.qualitative"},
