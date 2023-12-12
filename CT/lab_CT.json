@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/CT/lab_CT.json",
   "type": "object",
-  "description": "This JSON Schema describes a nano or micro - computed tomography (CT) measurement done using the instrumentation in a lab using an x-ray tube as a source. The same schema can also be used for an SEM based CT measurement where the x-rays emitted by a material upon interaction with the electron beam from the electron microscope, are used for generating CT images of a sample. For synchrotron based CT, use the synchrotron CT schema provided separately in the same folder as this schema. The cardinality (required or optional) of all metadata is defined and wherever possible a list of controlled vocabularies is provided.",
+  "description": "This JSON Schema describes a nano or micro - computed tomography (CT) measurement done using the instrumentation in a lab using an x-ray tube as a source. The same schema can also be used for an SEM based CT measurement where the x-rays emitted by a material upon interaction with the electron beam from the electron microscope, are used for generating CT images of a sample. For synchrotron based CT, use the synchrotron CT schema provided separately in the same folder as this schema. The cardinality (required or optional) of all metadata is defined and wherever possible a list of controlled vocabularies is provided. Contributors (in alphabetical order of last names): Alexey Boubnov, Rafaela Debastiani, Jonas Fell, Sarah Irvine, Reetu Elza Joseph",
   "properties": {
     "entry": {
       "$ref": "#/$defs/entry"
@@ -77,7 +77,8 @@
         "endTime",
         "program",
         "user",
-        "instrument"
+        "instrument",
+        "data"
       ]
     },
     "identifier": {
@@ -234,6 +235,60 @@
                 "loadFrameManufacturer": {
                   "$ref": "#/$defs/manufacturerDetails",
                   "description": "(Optional) - Details about the manufacturer or vendor of the load frame."
+                },
+                "anvil": {
+                  "type": "string",
+                  "description": "(Optional) - The type of anvil used in the in situ load frame (stage) for applying a particular type of force on the sample. Option to be selected from a controlled list consisting of - Compression, Diamond indentation 90° cone, Diamond indentation cube corner, Diamond indentation wedge, Tension, Other. If 'Other' is selected, specify the name of the anvil with a description in the field 'otherAnvil'.",
+                  "enum": [
+                    "Compression",
+                    "Diamond indentation 90° cone",
+                    "Diamond indentation cube corner",
+                    "Diamond indentation wedge",
+                    "Tension",
+                    "Other"
+                  ]
+                },
+                "otherAnvil": {
+                  "type": "string",
+                  "description": "(Optional) - If 'anvil' was selected as 'Other' from the controlled list as it was not listed, please specify the name of the anvil with a description in this field."
+                },
+                "maximumDisplacement": {
+                  "$ref": "#/$defs/distanceDetails",
+                  "description": "(Optional) - The maximum displacement allowed in the selected configuration. Typical unit - µm."
+                },
+                "displacement": {
+                  "type": "object",
+                  "description": "(Optional) - Specification on how displacement is applied on the sample. Either 'displacementRate' in µm/min or 'displacementIncrement' in µm/acquisition need to be selected.",
+                  "additionalProperties": false,
+                  "properties": {
+                    "displacementRate": {
+                      "type": "number",
+                      "description": "(Optional) - The rate at which displacement is applied on the sample in µm/min."
+                    },
+                    "displacementIncrement": {
+                      "type": "number",
+                      "description": "(Optional) - The step at which displacement is changed per acquisition in µm/acquisition."
+                    }
+                  }
+                },
+                "maximumForce": {
+                  "type": "number",
+                  "description": "(Optional) - The maximum force that can be applied to the sample in N."
+                },
+                "rotationRange": {
+                  "type": "object",
+                  "description": "(Optional) - The range of rotation of the sample during the CT with the load frame (stage) to be specified as startAngle and endAngle. Typical unit - degree.",
+                  "additionalProperties": false,
+                  "properties": {
+                    "startAngle": {
+                      "$ref": "#/$defs/angleDetails",
+                      "description": "(Required) - Start angle of the range of rotation of the sample during the CT with the load frame (stage). If the range is -70°/70°, then startAngle is -70°. Note that, this parameter can be different from the minimum possible angle of rotation of the sample. Typical unit - degree."
+                    },
+                    "endAngle": {
+                      "$ref": "#/$defs/angleDetails",
+                      "description": "(Required) - End angle of the range of rotation of the sample during the CT with the load frame (stage). If the range is -70°/70°, then endAngle is 70°. Note that, this parameter can be different from the maximum possible angle of rotation of the sample. Typical unit - degree."
+                    }
+                  }
                 },
                 "loadFrameDetails": {
                   "type": "string",
@@ -569,7 +624,7 @@
     },
     "flowRateDetails": {
       "type": "object",
-      "description": "(Optional) - Describes the rate (volume/unit time) of a flow.",
+      "description": "(Optional) - Describes the rate (volume/  time) of a flow.",
       "additionalProperties": false,
       "properties": {
         "value": {
@@ -717,7 +772,7 @@
       "properties": {
         "preparationDate": {
           "type": "string",
-          "description": "(Optional) - Date of the sample preparation.",
+          "description": "(Optional) - Date of the sample preparation in the ISO 8601 format.",
           "format": "date"
         },
         "preparationDescription": {
@@ -900,45 +955,34 @@
                       "type": "string",
                       "description": "(Optional) - Material of the anode. e.g. - Cr."
                     },
-                    "targetCurrent":{
+                    "targetCurrent": {
                       "$ref": "#/$defs/currentDetails",
-                       "description": "(Optional) - the current measured at the X-ray target, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)"
+                      "description": "(Optional) - the current measured at the X-ray target, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)"
                     }
                   }
                 },
-                "sourceDrift":{
-                  "description":"(Optional) - Distance by which the source is shifted during the measurement (i.e., end position - start position).",
-                  "type":"object",
+                "sourceDrift": {
+                  "description": "(Optional) - Distance by which the source is shifted during the measurement (i.e., end position - start position).",
+                  "type": "object",
                   "additionalProperties": false,
-                  "properties":{
-                    "xDrift":{
-                      "description":"(Required) - Drift in the x direction. Typical unit - µm.",
-                      "$ref":"#/$defs/distanceDetails"
+                  "properties": {
+                    "xDrift": {
+                      "description": "(Required) - Drift in the x direction. Typical unit - µm.",
+                      "$ref": "#/$defs/distanceDetails"
                     },
-                    "yDrift":{
-                      "description":"(Required) - Drift in the y direction. Typical unit - µm.",
-                      "$ref":"#/$defs/distanceDetails"
+                    "yDrift": {
+                      "description": "(Required) - Drift in the y direction. Typical unit - µm.",
+                      "$ref": "#/$defs/distanceDetails"
                     }
                   },
-                  "required":[
+                  "required": [
                     "xDrift",
                     "yDrift"
                   ]
                 },
-                "motorPositions":{
-                  "description":"(Optional) - Positions in cartesian coordinates and tilt angles of the source.",
-                  "type":"object",
-                  "additionalProperties":false,
-                  "properties":{
-                    "sourcePosition":{
-                        "$ref": "#/$defs/coordinateSet",
-                        "description": "(Optional) - The xyz coordinates decribing the motor positions of the source."
-                    },
-                    "sourceTilt":{
-                      "description":"(Optional) - The three tilt angles alpha, beta and gamma describing the motor positions of the source.",
-                      "$ref": "#/$defs/angleSet"
-                    }
-                  }
+                "sourcePositions": {
+                  "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the source.",
+                  "$ref": "#/$defs/motorPositions"
                 }
               },
               "required": [
@@ -952,70 +996,71 @@
               "type": "object",
               "additionalProperties": false,
               "properties": {
-                "chamberPressure":{
+                "chamberPressure": {
                   "$ref": "#/$defs/pressureDetails",
                   "description": "(Required) - Details of the pressure maintained in the chamber of the SEM."
                 },
-                "electronBeamShift":{
-                  "description":"(Required) - The distance by which the electron beam is shifted in the x and y directions.",
-                  "type":"object",
+                "electronBeamShift": {
+                  "description": "(Required) - The distance by which the electron beam is shifted in the x and y directions.",
+                  "type": "object",
                   "additionalProperties": false,
-                  "properties":{
-                    "xShift":{
-                      "description":"(Required) - Beam shift in the x direction. Typical unit - µm.",
-                      "$ref":"#/$defs/distanceDetails"
+                  "properties": {
+                    "xShift": {
+                      "description": "(Required) - Beam shift in the x direction. Typical unit - µm.",
+                      "$ref": "#/$defs/distanceDetails"
                     },
-                    "yShift":{
-                      "description":"(Required) - Beam shift in the y direction. Typical unit - µm.",
-                      "$ref":"#/$defs/distanceDetails"
+                    "yShift": {
+                      "description": "(Required) - Beam shift in the y direction. Typical unit - µm.",
+                      "$ref": "#/$defs/distanceDetails"
                     }
                   },
-                  "required":[
+                  "required": [
                     "xShift",
                     "yShift"
                   ]
                 },
-                "workingDistance":{
+                "workingDistance": {
                   "$ref": "#/$defs/distanceDetails",
                   "description": "(Required)- Distance which is determined along the optical axis within the column from  (1) the lower end of the final optical element between the source and the  specimen stage; to (2) the point where the beam is focused. In SEM based CT, the beam is focussed on the target material which emits the X-rays upon interaction with the electrons. Default unit - µm."
                 },
-                "targetDriftCorrection":{
-                  "type":"boolean",
-                  "description":"(Required) - If drift correction is activated for the target, this parameter has to be set to true."
-                },
-                "objectiveLensAperture":{
+                "objectiveLensAperture": {
                   "$ref": "#/$defs/apertureSettingType",
                   "description": "(Required) - The setting for controlling the aperture size, using either the aperture size (directly) or the beam current (indirectly). Typically the diameter of the aperture is set in µm."
                 },
-                "electronProbeCurrent":{
+                "electronProbeCurrent": {
                   "$ref": "#/$defs/currentDetails",
-                  "description":"(Required) - The electron current measured at the probe. Typical unit - µA."
+                  "description": "(Required) - The electron current measured at the probe. Typical unit - µA."
                 },
-                "target":{
-                  "type":"object",
-                  "description":"(Required) - Details regarding the target in SEM based CT, which upon interaction with the e-beam produces the X-rays.",
-                  "additionalProperties":false,
-                  "properties":{
-                    "targetShape":{
-                      "type":"string",
-                      "description":"(Optional) - Description of the shape or geometry of the target. e.g. - bulk, foil, needle."
+                "target": {
+                  "type": "object",
+                  "description": "(Required) - Details regarding the target in SEM based CT, which upon interaction with the e-beam produces the X-rays.",
+                  "additionalProperties": false,
+                  "properties": {
+                    "targetShape": {
+                      "type": "string",
+                      "description": "(Optional) - Description of the shape or geometry of the target. e.g. - bulk, foil, needle."
                     },
-                    "targetMaterial":{
-                      "type":"string",
-                      "description":"(Required) - Material with which the target is made."
+                    "targetMaterial": {
+                      "type": "string",
+                      "description": "(Required) - Material with which the target is made."
                     },
-                    "targetThickness":{
+                    "targetThickness": {
                       "$ref": "#/$defs/distanceDetails",
                       "description": "(Required)- Thickness of the target (dimension in Z direction). Default unit - µm."
                     },
-                    "targetTiltAngle":{
+                    "targetDriftCorrection": {
+                      "type": "boolean",
+                      "description": "(Required) - If drift correction is activated for the target, this parameter has to be set to true."
+                    },
+                    "targetTiltAngle": {
                       "$ref": "#/$defs/angleDetails",
                       "description": "(Required) - angle by which the target is tilted. Typical unit - degree."
                     }
                   },
-                  "required":[
+                  "required": [
                     "targetMaterial",
                     "targetThickness",
+                    "targetDriftCorrection",
                     "targetTiltAngle",
                     "targetCurrent"
                   ]
@@ -1025,20 +1070,310 @@
                 "chamberPressure",
                 "electronBeamShift",
                 "workingDistance",
-                "targetDriftCorrection",
                 "objectiveLensAperture",
                 "electronProbeCurrent",
                 "target"
               ]
             }
           }
+        },
+        "focalSpotMode": {
+          "type":"object",
+          "description":"(Optional) - Option for setting the size of the focal spot. Some sources have the option to select the target spot size, or focal spot size absolutely by setting a value, while some others give the option of selecting 'small', 'medium' or 'large'. Smaller spot size = higher resolution.  Note that the power/current will change with this value. In addition, the detector settings will usually be selected in conjunction. (different scintillator/lens/magnification).",
+          "additionalProperties":false,
+          "properties":{
+            "selection":{
+              "type":"string",
+              "description":"(Optional) - Selection of the setting of the size of the focal spot when the option for setting the size of the focal spot by selecting 'small', 'medium' or 'large' according to predefined values set by the manufacturer.",
+              "enum":[
+                "small",
+                "medium",
+                "large"
+              ]
+            },
+            "size":{
+              "$ref": "#/$defs/distanceDetails",
+              "description": "(Optional) - Size of the target spot when the option for setting the size of the focal spot absolutely by setting a value is available."
+            }
+          }
+        },
+        "optics": {
+          "$ref": "#/$defs/optics",
+          "description": "(Optional) - Details about the optics and individual motor positions."
+        },
+        "calibration": {
+          "type":"object",
+          "description":"(Optional) - Details regarding the calibration and the scaling factor.",
+          "additionalProperties":false,
+          "properties":{
+            "systemScaling": {
+              "type":"object",
+              "description":"(Optional) - Details regarding the scaling factor.",
+              "additionalProperties":false,
+              "properties":{
+                "adjustSystemScaling":{
+                  "type":"boolean",
+                  "description":"(Required) - To be set to true if system scaling is adjusted, else false."
+                },
+                "measuredScalingFactor":{
+                  "type":"number",
+                  "description":"(Optional) - Value of the measured scaling factor."
+                },
+                "referenceScalingFactor":{
+                  "type":"number",
+                  "description":"(Optional) - Value of the reference scaling factor, determined ususally during the data processing."
+                }
+              },
+              "required":[
+                "adjustSystemScaling"
+              ]
+            },
+            "calibrationType":{
+              "type":"string",
+              "description":"(Optional) - Type of calibration as a string."
+            },
+            "lastCalibration":{
+              "type": "string",
+              "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$",
+              "description": "(Optional) - date and time of last calibration (YYYY-MM-DDThh:mm:ss.sss) in the ISO 8601 date-time format"
+            }
+          }
+        },
+        "CTAquisition": {
+          "$ref": "#/$defs/CTAquisition",
+          "description": "(Optional) - Details regarding the acquisition."
+        },
+        "geometry": {
+          "$ref": "#/$defs/geometry",
+          "description": "(Optional) - Details regarding the geometry."
+        },
+        "sampleStage": {
+          "$ref": "#/$defs/sampleStageDetails",
+          "description": "(Optional) - Details regarding the sample stage."
+        },
+        "detector": {
+          "$ref": "#/$defs/detectorDetails",
+          "description": "(Optional) - Details regarding the detector."
         }
       },
       "required": [
         "instrumentName",
         "instrumentManufacturer",
         "instrumentType",
-        "source"
+        "source",
+        "focalSpotMode",
+        "CTAquisition",
+        "geometry",
+        "sampleStage",
+        "detector"
+      ]
+    },
+    "optics":{
+      "type": "object",
+      "description": "(Optional) - Details about the optics and individual motor positions.",
+      "additionalProperties": false,
+      "properties":{
+        "collimator":{
+          "type": "object",
+          "description": "(Optional) - Details about the collimator and its individual motor positions.",
+          "additionalProperties": false,
+          "properties":{
+            "collimatorDetails":{
+              "type":"string",
+              "description":"(Optional) - Details about the collimator relevant for the measurement."
+            },
+            "collimatorPositions":{
+              "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the collimator.",
+              "$ref": "#/$defs/motorPositions"
+            }
+          }
+        },
+        "monochromator":{
+          "type": "object",
+          "description": "(Optional) - Details about the monochromator and individual motor positions, if used.",
+          "additionalProperties": false,
+          "properties":{
+            "monochromatorDetails":{
+              "type":"object",
+              "additionalProperties":false,
+              "description":"(Optional) - Details of the monochromator type type, material, energy and notes.",
+              "properties":{
+                "monochromatorType":{
+                  "type":"string",
+                  "description":"(Optional) - Type of the monochromator."
+                },
+                "material":{
+                  "type":"string",
+                  "description":"(Optional) - Material of the monochromator."
+                },
+                "energy":{
+                  "description": "(Optional) - Energy set in the monochromator. Typical unit - eV",
+                  "$ref": "#/$defs/energyDetails"
+                },
+                "notes":{
+                  "description":"(Optional) - Additional information about the monochromator relevant for the measurement."
+                }
+              }
+            },
+            "monochromatorPositions":{
+              "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the monochromator.",
+              "$ref": "#/$defs/motorPositions"
+            }
+          }
+        },
+        "condenser":{
+          "type": "object",
+          "description": "(Optional) - Details about the condenser lens and its individual motor positions, if used.",
+          "additionalProperties": false,
+          "properties":{
+            "condenserDetails":{
+              "type":"string",
+              "description":"(Optional) - Details about the condenser relevant for the measurement."
+            },
+            "condenserPositions":{
+              "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the condenser.",
+              "$ref": "#/$defs/motorPositions"
+            }
+          }
+        },
+        "fresnelZonePlate":{
+          "type": "object",
+          "description": "(Optional) - Details about the fresnel zone plate and its individual motor positions, if used.",
+          "additionalProperties": false,
+          "properties":{
+            "fresnelZonePlateDetails":{
+              "type":"string",
+              "description":"(Optional) - Details about the fresnel zone plate relevant for the measurement."
+            },
+            "fresnelZonePlatePositions":{
+              "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the fresnel zone plate.",
+              "$ref": "#/$defs/motorPositions"
+            }
+          }
+        },
+        "phaseRing":{
+          "type": "object",
+          "description": "(Required) - Details about the phase ring and its individual motor positions, if inserted.",
+          "additionalProperties": false,
+          "properties":{
+            "phaseRingDetails":{
+              "type":"string",
+              "description":"(Optional) - Details about the phase ring relevant for the measurement."
+            },
+            "phaseRingPositions":{
+              "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the phase ring.",
+              "$ref": "#/$defs/motorPositions"
+            }
+          }
+        }
+      }
+    },
+    "CTAquisition":{
+      "type":"object",
+      "description":"(Required) - Details about the acquisition.",
+      "additionalProperties":false,
+      "properties":{
+        "acquisitionScriptName":{
+          "description":"(Required) - Name of the script used for acquisition.",
+          "type":"string"
+        },
+        "numberOfProjections":{
+          "description":"(Required) - Number of projections acquired during the CT.",
+          "type":"number"
+        },
+        "startAngle":{
+          "$ref": "#/$defs/angleDetails",
+          "description": "(Required) - Start angle of the rotation of the sample during the CT. If the range is -180°/180°, then startAngle is -180°. Typical unit - degree."
+        },
+        "endAngle":{
+          "$ref": "#/$defs/angleDetails",
+          "description": "(Required) - End angle of the rotation of the sample during the CT. If the range is -180°/180°, then endAngle is 180°. Typical unit - degree."
+        },
+        "angularStepSize":{
+          "$ref": "#/$defs/angleDetails",
+          "description": "(Required) - Step size of the rotation of the sample during the CT. Typical unit - degree."
+        },
+        "useBadPixelMap":{
+          "type":"boolean",
+          "description": "(Optional) - To be set to true if bad pixel map is used. This parameter is relevant for SEM based CT."
+        },
+        "referenceImages":{
+          "type":"object",
+          "description":"(Optional) - Details on the reference images (if used) - number of flats/bright images and number of dark images.",
+          "additionalProperties":false,
+          "properties":{
+            "numberOfBrightImages":{
+              "type":"number",
+              "description": "(Optional) - Number of flats or bright images used as reference."
+            },
+            "numberOfDarkImages":{
+              "type":"number",
+              "description": "(Optional) - Number of dark images used as reference."
+            }
+          }
+        },
+        "acquisitionTimePerProjection":{
+          "$ref": "#/$defs/timeDetails",
+          "description": "(Required) - Time taken for acquisition of a single projection. Typical unit - s."
+        },
+        "totalAcquisitionTime":{
+          "type":"string",
+          "description": "(Required) - Time taken for acquisition for the entire scan. This is the total scan time, i.e. number of projections multipled by exposure time, but including read-out time. calculated as EndTime-StartTime. Format: hh:mm:ss.",
+          "pattern":"^(\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,3})?)$",
+          "format":"time"
+        },
+        "largeFOV":{
+          "type":"boolean",
+          "description": "(Required) - To be set to true if large field of view or wide field of view is used."
+        },
+        "scanningMode":{
+          "type":"string",
+          "description":"(Optional) - The scanning mode used during acquisition - helical, raster scanning, fast CT.",
+          "enum":[
+            "Helical",
+            "Raster Scanning",
+            "Fast CT"
+          ]
+        },
+        "phaseContrastMode":{
+          "type":"string",
+          "description":"(Required) - The phase contrast mode used during acquisition - Zernike phase contrast, propagation-based, grating-based(Hartmann), grating-based(Talbot).",
+          "enum":[
+            "Zernike phase contrast",
+            "Propagation-based",
+            "Grating-based(Hartmann)",
+            "Grating-based(Talbot)"
+          ]
+        }
+      },
+      "required":[
+        "acquisitionScriptName",
+        "startAngle",
+        "endAngle",
+        "angularStepSize",
+        "acquisitionTimePerProjection",
+        "totalAcquisitionTime",
+        "largeFOV",
+        "phaseContrastMode"
+      ]
+    },
+    "geometry":{
+      "type": "object",
+      "description": "Describes the geometry of the CT instrument",
+      "additionalProperties": false,
+      "properties":{
+        "sourceToObjectDistance":{},
+        "objectToDetectorDistance":{},
+        "beamGeometry":{},
+        "geometricMagnification":{},
+        "opticalMagnification":{}
+      },
+      "required":[
+        "sourceToObjectDistance",
+        "objectToDetectorDistance",
+        "beamGeometry",
+        "geometricMagnification",
+        "opticalMagnification"
       ]
     },
     "manufacturerDetails": {
@@ -1146,48 +1481,6 @@
         "value"
       ]
     },
-    "sourceDetails": {
-      "type": "object",
-      "description": "gives details about the electron beam source.",
-      "additionalProperties": false,
-      "properties": {
-        "sourceName": {
-          "type": "string",
-          "description": "(Optional) - name of the e-beam source of datatype string"
-        },
-        "sourceID": {
-          "$ref": "#/$defs/identifier",
-          "description": "(Optional) - identifier for the e-beam source"
-        },
-        "accelerationVoltage": {
-          "$ref": "#/$defs/voltageDetails",
-          "description": "(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV)"
-        },
-        "beamCurrent": {
-          "$ref": "#/$defs/currentDetails",
-          "description": "(Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)"
-        },
-        "highCurrent": {
-          "type": "boolean",
-          "description": "(Optional) - Is special control of the electron optics enabled to increase the specimen current? true or false"
-        },
-        "sourceLifetime": {
-          "$ref": "#/$defs/lifetimeDetails",
-          "description": "(Optional) - lifetime of the source (default value - uAh) of datatype string"
-        },
-        "gunVacuum": {
-          "$ref": "#/$defs/pressureDetails",
-          "description": "(Optional) - Gives the pressure maintained in the electron gun"
-        },
-        "gunPressure": {
-          "$ref": "#/$defs/pressureDetails",
-          "description": "(Optional) - Gives the pressure maintained in the FIB gun"
-        }
-      },
-      "required": [
-        "accelerationVoltage"
-      ]
-    },
     "rampDetails": {
       "type": "object",
       "description": "(Optional) - Describes a rate at which temperature is increased or decreased.",
@@ -1287,6 +1580,21 @@
         "unit",
         "value"
       ]
+    },
+    "motorPositions": {
+      "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the item.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "itemPosition": {
+          "$ref": "#/$defs/coordinateSet",
+          "description": "(Optional) - The xyz coordinates decribing the motor positions of the item."
+        },
+        "itemTilt": {
+          "description": "(Optional) - The three tilt angles alpha, beta and gamma describing the motor positions of the item.",
+          "$ref": "#/$defs/angleSet"
+        }
+      }
     },
     "voltageDetails": {
       "type": "object",
@@ -1570,11 +1878,11 @@
         },
         "beta": {
           "type": "number",
-          "description": "(Optional) - Tilt angle beta of the item."
+          "description": "(Optional) - Rotation angle beta of the item."
         },
         "gamma": {
           "type": "number",
-          "description": "(Optional) - Tilt angle gamma of the item."
+          "description": "(Optional) - Angle gamma of the item."
         },
         "anglesUnit": {
           "type": "string",
@@ -1804,8 +2112,8 @@
         },
         "lastCalibration": {
           "type": "string",
-          "pattern": "(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)",
-          "description": "(Optional) - date and time of last calibration (CCYY-MM-DDThh:mm:ss.sss) of the date-time format"
+          "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$",
+          "description": "(Optional) - date and time of last calibration (YYYY-MM-DDThh:mm:ss.sss) in the ISO 8601 date-time format"
         },
         "detectorBias": {
           "$ref": "#/$defs/voltageDetails",
@@ -1842,7 +2150,6 @@
         },
         "unit": {
           "type": "string",
-          "default": "keV",
           "enum": [
             "meV",
             "eV",
@@ -1875,81 +2182,6 @@
         "unit",
         "value"
       ]
-    },
-    "FIBDetails": {
-      "type": "object",
-      "description": "Details about the focussed ion beam (FIB) extension if present.",
-      "additionalProperties": false,
-      "properties": {
-        "FIBColumn": {
-          "type": "string",
-          "description": "(Optional) - The name of the I-beam column used"
-        },
-        "angleToEBeam": {
-          "$ref": "#/$defs/angleDetails",
-          "description": "(Optional) - angle between e-beam and i-beam defined separately as angleDetails (Allowed units: degree, radian)"
-        },
-        "iBeamSource": {
-          "$ref": "#/$defs/sourceDetails",
-          "description": "(Required) - describes the details of the FIB source, defined separately as sourceDetails in which it is important to note the accelerating voltage and beam current of the i-beam"
-        },
-        "FIBExtractor": {
-          "$ref": "#/$defs/voltageDetails",
-          "description": "(Required) - The extractor voltage used for the I-Beam"
-        },
-        "FIBProbe": {
-          "type": "string",
-          "description": "(Required) - The settings used for the probe, extractor voltage:milling current. eg. 30kV:50pA"
-        },
-        "gasInjectionSystem": {
-          "$ref": "#/$defs/GISDetails",
-          "description": "(Optional) - Details about the gas injection system (GIS) defined separately as GISDetails"
-        },
-        "iBeamWorkingDistance": {
-          "$ref": "#/$defs/distanceDetails",
-          "description": "(Optional) - Working distance of the ion beam (i-beam) defined separately as distanceDetails - this value needs to be entered if the i-beam focus has to be set independently from the e-beam focus (Allowed units: nm, um, mm, cm, m)"
-        },
-        "FIBSpotSize": {
-          "$ref": "#/$defs/distanceDetails",
-          "description": "(Optional) - spot size of the i-beam at the focus when the sample is in focus (also the spot size on the sample) defined separately as distanceDetails (Allowed units: nm, um, mm, cm, m)"
-        }
-      },
-      "required": [
-        "iBeamSource",
-        "FIBExtractor",
-        "FIBProbe"
-      ]
-    },
-    "GISDetails": {
-      "type": "object",
-      "description": "gives the details of the gas injection system (GIS).",
-      "additionalProperties": false,
-      "properties": {
-        "GISName": {
-          "type": "string",
-          "description": "(Optional) - Name of the GIS system of datatype string"
-        },
-        "beamDepositionType": {
-          "type": "string",
-          "enum": [
-            "E-beam Deposition",
-            "I-beam Deposition"
-          ],
-          "description": "(Optional) - type of beam deposition of datatype string to choose between e-beam deposition and i-beam deposition"
-        },
-        "depositionCurrent": {
-          "$ref": "#/$defs/currentDetails",
-          "description": "(Optional) - the current used for performing beam deposition defined separately as currentDetails (Allowed units pA,nA,uA,mA,A)"
-        },
-        "depositionSize": {
-          "$ref": "#/$defs/distanceDetails",
-          "description": "(Optional) - the size of the deposition defined separately as distanceDetails (Allowed units nm,um,mm,cm,m)"
-        },
-        "depositionTime": {
-          "$ref": "#/$defs/timeDetails",
-          "description": "(Optional) - total time for deposition defined separately as timeDetails (Allowed units ps,ns,us,ms,s)"
-        }
-      }
     }
   }
 }
