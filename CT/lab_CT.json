@@ -1160,7 +1160,7 @@
           "description": "(Optional) - Details regarding the sample stage."
         },
         "detector": {
-          "$ref": "#/$defs/detectorDetails",
+          "$ref": "#/$defs/detector",
           "description": "(Optional) - Details regarding the detector."
         }
       },
@@ -1447,7 +1447,7 @@
           "additionalProperties": false,
           "properties":{
             "beamDirection":{
-              "description":"(Required) - The beam direction expressed as a vector in cartesian coordinates. e.g. - [-2.1 3.0 4.5].",
+              "description":"(Required) - The beam direction expressed as a vector in cartesian coordinates. e.g. - If the beam is parallel to the Y-stage and perpendicular to the X-stage. then beam direction = [0 1 0].",
               "type": "array",
                "items": {
                 "type": "number"
@@ -1456,27 +1456,27 @@
               "maxItems": 3
             },
             "xMotor":{
-              "description": "(Required) - Heirarchical level and direction of the X motor as a vector in cartesian coordiantes.",
+              "description": "(Required) - Hierarchical level and direction of the X motor (stage) as a vector in cartesian coordinates.",
               "$ref": "#/$defs/motorHeirarchy"
             },
             "yMotor":{
-              "description": "(Required) - Heirarchical level and direction of the Y motor as a vector in cartesian coordiantes.",
+              "description": "(Required) - Hierarchical level and direction of the Y motor (stage) as a vector in cartesian coordinates.",
               "$ref": "#/$defs/motorHeirarchy"
             },
             "zMotor":{
-              "description": "(Required) - Heirarchical level and direction of the Z motor as a vector in cartesian coordiantes.",
+              "description": "(Required) - Hierarchical level and direction of the Z motor (stage) as a vector in cartesian coordinates.",
               "$ref": "#/$defs/motorHeirarchy"
             },
             "rMotor":{
-              "description": "(Required) - Heirarchical level and direction of the R motor as a vector in cartesian coordiantes. R motor has rotation around z axis +1 (for anticlockwise).",
+              "description": "(Required) - Hierarchical level and direction of the R motor (stage) as a vector in cartesian coordiantes. R motor has rotation around z axis +1 (for anticlockwise).",
               "$ref": "#/$defs/motorHeirarchy"
             },
             "tMotor":{
-              "description": "(Optional) - Heirarchical level and direction of the T motor as a vector in cartesian coordiantes. The T motor is usually relevant only for SEM based CT.",
+              "description": "(Optional) - Hierarchical level and direction of the T motor (stage) as a vector in cartesian coordiantes. The T motor is usually relevant only for SEM based CT.",
               "$ref": "#/$defs/motorHeirarchy"
             },
             "mMotor":{
-              "description": "(Optional) - Heirarchical level and direction of the M motor as a vector in cartesian coordiantes. The M motor is usually relevant only for SEM based CT. It is a special motor which counteracts the Z motor.",
+              "description": "(Optional) - Hierarchical level and direction of the M motor (stage) as a vector in cartesian coordiantes. The M motor is usually relevant only for SEM based CT. It is a special motor which counteracts the Z motor.",
               "$ref": "#/$defs/motorHeirarchy"
             }
           },
@@ -1503,7 +1503,7 @@
           "description":"(Required) - Hierarchy of the motor expressed as an integer."
         },
         "motorDirection":{
-          "description":"(Required) - The direction of movement (for X,Y,Z,M motors) or axis of rotation (for rotating motors) expressed as a vector in cartesian coordinates. e.g. - [-2.1 3.0 4.5].",
+          "description":"(Required) - The direction of movement (for X,Y,Z,M motors) or axis of rotation (for rotating motors) expressed as a vector in cartesian coordinates. e.g. - If the beam is parallel to the X-stage and perpendicular to the Y-stage. then beam direction = [1 0 0], X-stage-direction = [1 0 0] (positive movement direction away from source towards detector) or can be (-1 0 0) (towards source) and Y-stage-direction = [0 1 0] or can be [0 -1 0] (analogous interpretation). The parameters need to be individually determined for each instrument.",
           "type": "array",
            "items": {
             "type": "number"
@@ -2194,87 +2194,61 @@
         "value"
       ]
     },
-    "detectorSetDetails": {
+    "detector": {
       "type": "object",
-      "description": "gives information about signal mixing between two detectors and provides the information about the detector(s).",
+      "description": "gives the settings of a detector or multiple detectors.",
       "additionalProperties": false,
       "properties": {
-        "signalMixingDone": {
-          "type": "boolean",
-          "default": false,
-          "description": "(Optional) - whether the detector signals are mixed, true or false, of datatype boolean"
-        },
-        "signalMixingDescription": {
-          "type": "string",
-          "description": "(Optional) - Describes the purpose and technique of signal mixing of datatype string"
-        },
-        "detector1": {
-          "$ref": "#/$defs/detectorDetails",
-          "description": "(Required) - gives the settings of one detector defined separately as detectorDetails; entering the details of at least one detector is compulsory"
-        },
-        "detector2": {
-          "$ref": "#/$defs/detectorDetails",
-          "description": "(Optional) - gives the settings of a second detector defined separately as detectorDetails"
+        "detectorSettings":{
+          "oneOf":[
+            {"$ref": "#/$defs/detectorSettings"},
+            {
+              "type":"array",
+              "items":{
+                "$ref": "#/$defs/detectorSettings"
+              }
+            }
+          ]
         }
       },
-      "required": [
-        "detector1"
+      "required":[
+        "detectorSettings"
       ]
     },
-    "detectorDetails": {
-      "type": "object",
-      "description": "gives the settings of a detector.",
-      "additionalProperties": false,
-      "properties": {
+    "detectorSettings":{
+      "type":"object",
+      "description":"(Required) - Gives the settings of a single detector.",
+      "additionalProperties":false,
+      "properties":{
         "detectorType": {
           "type": "string",
-          "default": "Secondary Electron",
-          "description": "(Optional) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron) of datatype string"
+          "description": "(Optional) - The type of detector to be selected from a controlled list consisting of CCD, Panel, PCXD, CMOS, Time-Delay Integration (TDI) and Direct Conversion.",
+          "enum":[
+            "CCD",
+            "Panel",
+            "PCXD",
+            "CMOS",
+            "Time-Delay Integration (TDI)",
+            "Direct Conversion"
+          ]
         },
         "detectorName": {
           "type": "string",
-          "description": "(Required) -Name of the detector of datatype string"
-        },
-        "detectorID": {
-          "$ref": "#/$defs/identifier",
-          "description": "(Optional) - Identifier for the detector"
+          "description": "(Optional) - Name of the detector of datatype string."
         },
         "detectorManufacturer": {
           "$ref": "#/$defs/manufacturerDetails",
-          "description": "(Optional) - describes the details of the detector (manufacturerName, modelName and detectorID) as part of manufacturerDetails"
+          "description": "(Required) - Describes the details of the detector (manufacturerName, modelName and detectorID) as part of manufacturerDetails."
         },
-        "componentGeometry": {
-          "$ref": "#/$defs/coordinateSet",
-          "description": "(Optional) - xyz coordinates describing the position of the detector defined separately as coordinateSet"
-        },
-        "lastCalibration": {
-          "type": "string",
-          "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$",
-          "description": "(Optional) - date and time of last calibration (YYYY-MM-DDThh:mm:ss.sss) in the ISO 8601 date-time format"
-        },
-        "detectorBias": {
-          "$ref": "#/$defs/voltageDetails",
-          "description": "(Optional) - bias voltage applied to the detector defined separately as voltageDetails. Allowed units nV, uV, mV, V, kV"
+        "detectorID": {
+          "$ref": "#/$defs/identifier",
+          "description": "(Optional) - Identifier for the detector."
         }
       },
-      "required": [
-        "detectorName"
+      "required":[
+        "detectorType",
+        "detectorManufacturer"
       ]
-    },
-    "eBeamDecelerationDetails": {
-      "type": "object",
-      "description": "Details about deceleration of the e- beam.",
-      "additionalProperties": false,
-      "properties": {
-        "landingEnergy": {
-          "$ref": "#/$defs/energyDetails",
-          "description": "(Optional) - Landing energy of the e-beam defined separately as energyDetails (allowed units - meV, eV, keV, nJ, mJ, J, kJ, MJ)"
-        },
-        "stageBias": {
-          "$ref": "#/$defs/voltageDetails",
-          "description": "(Optional) - Bias voltage applied to the stage defined separately biasDetails (allowed units - nV, uV, mV, V, kV, nA, uA, mA, A, kA)"
-        }
-      }
     },
     "energyDetails": {
       "type": "object",
