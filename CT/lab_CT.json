@@ -18,6 +18,96 @@
       "description": "Required) - The entry level is the root element of the schema. It contains all the metadata describing a CT measurement.",
       "additionalProperties": false,
       "properties": {
+        "technique": {
+          "type": "string",
+          "description": "(Optional) - Any experimental, theoretical or computational method used during Data Acquisition or during any of the processes included in the Data Analysis Lifecycle to acquire, process or analyse Research Data about a System or a set of them with an Instrument, whihc is used to generate this metadata."
+        },
+        "measurementPurpose": {
+          "type": "string",
+          "description": "Measurement is experimental Data Acquisition, typically performed on a Sample using an experimental Technique. It may also be performed during Fabrication or Sample Preparation, e.g., to characterise the intermediate stages and/or the final resulting Precursor(s) or Sample(s), respectively. A Measurement may require the use of Consumables.",
+          "enum": [
+            "assessment (to given categories or values)",
+            "completeness check (presence or absence of given properties)",
+            "correlative characterization (dedicated sample treatment to emphasise given features)",
+            "exploratory (routine check of known properties)",
+            "feasibility (quick check, rough estimate)",
+            "high quality measurement (precise, careful treatment)",
+            "test specific hypothesis (focus only on given aspects)",
+            "other (please specify in the comment)"
+          ]
+        },
+        "measurementDescription": {
+          "type": "string",
+          "description": "(Optional) - Description about the measurement."
+        },
+        "instrument": {
+          "$ref": "#/$defs/instrumentDetails",
+          "description": "(Required)- Details concerning the instrument settings. Instrument is a physical or virtual identifiable piece of Equipment used to perform a Data Acquisition and to generate Raw Data. The Instrument is located in a Laboratory hosted by an Institution and/or can be virtually or remotely accessed. A virtual Instrument may be any computational resource or HPC infrastructure (cloud infrastructure or supercomputer) needed to perform Calculations or Simulations."
+        },
+        "equipment": {
+          "type": "string",
+          "description": "(Optional) - Any kind of physical or virtual item, device, machine or other tools used to perform one or more Fabrication(s), Sample Preparation(s), Model Preparation(s), Data Acquisition(s) and/or any of the processes included in the Data Analysis Lifecycle. Usually, the Equipment is located in a Laboratory hosted by an Institution and/or can be virtually or remotely accessed. Equipment is usually an investment. According to this definition, an Instrument is a particular type of Equipment."
+        },
+        "consumables": {
+          "type": "array",
+          "description": "Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "parents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "parentType": {
+                "type": "string",
+                "enum": [
+                  "not applicable",
+                  "sample"
+                ]
+              },
+              "parentReferenceType": {
+                "type": "string",
+                "enum": [
+                  "plain text",
+                  "external URL",
+                  "MetaStore URI"
+                ]
+              },
+              "parentReference": {
+                "type": "string",
+                "description": "If type is 'MetaStore URI' it is possible to easily fill this field in a later stage",
+                "anyOf": [
+                  {
+                    "format": "uri"
+                  },
+                  {
+                    "format": "url"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "parentType"
+            ],
+            "if": {
+              "properties": {
+                "parentType": {
+                  "not": {
+                    "const": "not applicable"
+                  }
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "parentReferenceType",
+                "parentReference"
+              ]
+            }
+          }
+        },
         "entryID": {
           "$ref": "#/$defs/identifier",
           "description": "entryID (Optional) - Identifier of the metadata entry usually provided by the project or the laboratory"
@@ -58,17 +148,9 @@
           "$ref": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/user_description.json",
           "description": "(Required)- The contact information of the user responsible for the measurement"
         },
-        "sample": {
-          "$ref": "#/$defs/sample",
-          "description": "(Required)- Details concerning the sample"
-        },
         "measurementConditions": {
           "$ref": "#/$defs/measurementConditions",
           "description": "(Optional)- Details concerning the measurement conditions like details of in situ cell, temperature and gas enviroment and pressure"
-        },
-        "instrument": {
-          "$ref": "#/$defs/instrumentDetails",
-          "description": "(Required)- Details concerning the instrument settings"
         }
       },
       "required": [
@@ -131,69 +213,6 @@
         "revisionComment": {
           "type": "string",
           "description": "(Optional)- Any comments to the revision"
-        }
-      }
-    },
-    "institutionDetails": {
-      "type": "object",
-      "additionalProperties": false,
-      "description": "(Optional) - Details of the institution to which the user is affiliated.",
-      "properties": {
-        "institutionName": {
-          "type": "string",
-          "description": "(Optional) - Full name of the institution"
-        },
-        "institutionAcronym": {
-          "type": "string",
-          "description": "(Recommended) - Acronym of the institution"
-        },
-        "institutionDepartment": {
-          "type": "string",
-          "description": "(Optional) - Department within an institution"
-        },
-        "institutionID": {
-          "$ref": "#/$defs/identifier",
-          "description": "(Optional) - Identifier pertaining to the institution (e.g. ROR)"
-        }
-      }
-    },
-    "sample": {
-      "type": "object",
-      "additionalProperties": false,
-      "description": "(Required) - Details concerning the sample.",
-      "properties": {
-        "sampleName": {
-          "type": "string",
-          "description": "(Optional) - Name of the sample"
-        },
-        "sampleID": {
-          "$ref": "#/$defs/identifier",
-          "description": "(Optional) - Identifier for the sample"
-        },
-        "sampleForm": {
-          "type": "string",
-          "description": "(Optional) - Description of the sample form (e.g., bulk, nanostructured, powder, pellet)"
-        },
-        "sampleSize": {
-          "$ref": "#/$defs/distanceDetails",
-          "description": "(Optional) - Size of the sample"
-        },
-        "sampleWeight": {
-          "$ref": "#/$defs/weightDetails",
-          "description": "(Optional) - Weight of the sample"
-        },
-        "sampleHolder": {
-          "type": "string",
-          "description": "(Optional) - Type of sample holder used"
-        },
-        "storageConditions": {
-          "type": "string",
-          "description": "(Optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure).",
-          "default": "Ambient, dry environment"
-        },
-        "samplePreparation": {
-          "$ref": "#/$defs/samplePrepType",
-          "description": "(Optional) - Details pertaining to the sample prepapration like date, ID, etc"
         }
       }
     },
@@ -275,24 +294,13 @@
                   "type": "number",
                   "description": "(Optional) - The maximum force that can be applied to the sample in N."
                 },
-                "rotationRange": {
-                  "type": "object",
-                  "description": "(Optional) - The range of rotation of the sample during the CT with the load frame (stage) to be specified as startAngle and endAngle. Typical unit - degree.",
-                  "additionalProperties": false,
-                  "properties": {
-                    "startAngle": {
-                      "$ref": "#/$defs/angleDetails",
-                      "description": "(Required) - Start angle of the range of rotation of the sample during the CT with the load frame (stage). If the range is -70°/70°, then startAngle is -70°. Note that, this parameter can be different from the minimum possible angle of rotation of the sample. Typical unit - degree."
-                    },
-                    "endAngle": {
-                      "$ref": "#/$defs/angleDetails",
-                      "description": "(Required) - End angle of the range of rotation of the sample during the CT with the load frame (stage). If the range is -70°/70°, then endAngle is 70°. Note that, this parameter can be different from the maximum possible angle of rotation of the sample. Typical unit - degree."
-                    }
-                  }
+                "blindAngle": {
+                  "$ref": "#/$defs/angleDetails",
+                  "description": "(Required) - ed by the load frame(stage). Example: for a CT normally scanned over 180° (e.g. -90°/+90°), a blind angle of 40° due to the in situ cell implies that only 180°-40°=140° (e.g. -70°/70°) is visible. NOTE: for a CT normally scanned over 360° (e.g. -180°/+180°), a blind angle of 40° would require the subtraction of the blind angle twice, implying two scan ranges of 140° each (e.g. -160°/-20° and +20°/+160°). Typical unit - degree."
                 },
                 "loadFrameDetails": {
                   "type": "string",
-                  "description": "(Optional) - Additional details about the load frame relevant for the measurement."
+                  "description": "(Optional) - Additional details about the load frame or anvil (e.g. - size of anvil) relevant for the measurement."
                 }
               }
             },
@@ -1078,20 +1086,20 @@
           }
         },
         "focalSpotMode": {
-          "type":"object",
-          "description":"(Optional) - Option for setting the size of the focal spot. Some sources have the option to select the target spot size, or focal spot size absolutely by setting a value, while some others give the option of selecting 'small', 'medium' or 'large'. Smaller spot size = higher resolution.  Note that the power/current will change with this value. In addition, the detector settings will usually be selected in conjunction. (different scintillator/lens/magnification).",
-          "additionalProperties":false,
-          "properties":{
-            "selection":{
-              "type":"string",
-              "description":"(Optional) - Selection of the setting of the size of the focal spot when the option for setting the size of the focal spot by selecting 'small', 'medium' or 'large' according to predefined values set by the manufacturer.",
-              "enum":[
+          "type": "object",
+          "description": "(Optional) - Option for setting the size of the focal spot. Some sources have the option to select the target spot size, or focal spot size absolutely by setting a value, while some others give the option of selecting 'small', 'medium' or 'large'. Smaller spot size = higher resolution.  Note that the power/current will change with this value. In addition, the detector settings will usually be selected in conjunction. (different scintillator/lens/magnification).",
+          "additionalProperties": false,
+          "properties": {
+            "selection": {
+              "type": "string",
+              "description": "(Optional) - Selection of the setting of the size of the focal spot when the option for setting the size of the focal spot by selecting 'small', 'medium' or 'large' according to predefined values set by the manufacturer.",
+              "enum": [
                 "small",
                 "medium",
                 "large"
               ]
             },
-            "size":{
+            "size": {
               "$ref": "#/$defs/distanceDetails",
               "description": "(Optional) - Size of the target spot when the option for setting the size of the focal spot absolutely by setting a value is available."
             }
@@ -1102,37 +1110,37 @@
           "description": "(Optional) - Details about the optics and individual motor positions."
         },
         "calibration": {
-          "type":"object",
-          "description":"(Optional) - Details regarding the calibration and the scaling factor.",
-          "additionalProperties":false,
-          "properties":{
+          "type": "object",
+          "description": "(Optional) - Details regarding the calibration and the scaling factor.",
+          "additionalProperties": false,
+          "properties": {
             "systemScaling": {
-              "type":"object",
-              "description":"(Optional) - Details regarding the scaling factor.",
-              "additionalProperties":false,
-              "properties":{
-                "adjustSystemScaling":{
-                  "type":"boolean",
-                  "description":"(Required) - To be set to true if system scaling is adjusted, else false."
+              "type": "object",
+              "description": "(Optional) - Details regarding the scaling factor.",
+              "additionalProperties": false,
+              "properties": {
+                "adjustSystemScaling": {
+                  "type": "boolean",
+                  "description": "(Required) - To be set to true if system scaling is adjusted, else false."
                 },
-                "measuredScalingFactor":{
-                  "type":"number",
-                  "description":"(Optional) - Value of the measured scaling factor."
+                "measuredScalingFactor": {
+                  "type": "number",
+                  "description": "(Optional) - Value of the measured scaling factor."
                 },
-                "referenceScalingFactor":{
-                  "type":"number",
-                  "description":"(Optional) - Value of the reference scaling factor, determined ususally during the data processing."
+                "referenceScalingFactor": {
+                  "type": "number",
+                  "description": "(Optional) - Value of the reference scaling factor, determined ususally during the data processing."
                 }
               },
-              "required":[
+              "required": [
                 "adjustSystemScaling"
               ]
             },
-            "calibrationType":{
-              "type":"string",
-              "description":"(Optional) - Type of calibration as a string."
+            "calibrationType": {
+              "type": "string",
+              "description": "(Optional) - Type of calibration as a string."
             },
-            "lastCalibration":{
+            "lastCalibration": {
               "type": "string",
               "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$",
               "description": "(Optional) - date and time of last calibration (YYYY-MM-DDThh:mm:ss.sss) in the ISO 8601 date-time format"
@@ -1148,7 +1156,7 @@
           "description": "(Optional) - Details regarding the geometry."
         },
         "sampleStage": {
-          "$ref": "#/$defs/sampleStageDetails",
+          "$ref": "#/$defs/sampleStage",
           "description": "(Optional) - Details regarding the sample stage."
         },
         "detector": {
@@ -1168,177 +1176,195 @@
         "detector"
       ]
     },
-    "optics":{
+    "optics": {
       "type": "object",
       "description": "(Optional) - Details about the optics and individual motor positions.",
       "additionalProperties": false,
-      "properties":{
-        "collimator":{
+      "properties": {
+        "collimator": {
           "type": "object",
           "description": "(Optional) - Details about the collimator and its individual motor positions.",
           "additionalProperties": false,
-          "properties":{
-            "collimatorDetails":{
-              "type":"string",
-              "description":"(Optional) - Details about the collimator relevant for the measurement."
+          "properties": {
+            "collimatorDetails": {
+              "type": "string",
+              "description": "(Optional) - Details about the collimator relevant for the measurement."
             },
-            "collimatorPositions":{
+            "collimatorPositions": {
               "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the collimator.",
               "$ref": "#/$defs/motorPositions"
             }
           }
         },
-        "monochromator":{
+        "monochromator": {
           "type": "object",
-          "description": "(Optional) - Details about the monochromator and individual motor positions, if used.",
+          "description": "(Required) - Details about the monochromator and individual motor positions, if used.",
           "additionalProperties": false,
-          "properties":{
-            "monochromatorDetails":{
-              "type":"object",
-              "additionalProperties":false,
-              "description":"(Optional) - Details of the monochromator type type, material, energy and notes.",
-              "properties":{
-                "monochromatorType":{
-                  "type":"string",
-                  "description":"(Optional) - Type of the monochromator."
+          "properties": {
+            "monochromatorUsed": {
+              "type": "boolean",
+              "description": "(Required) - To be set to true if monochromator is used, else false."
+            },
+            "monochromatorDetails": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "(Optional) - Details of the monochromator type type, material, energy and notes.",
+              "properties": {
+                "monochromatorType": {
+                  "type": "string",
+                  "description": "(Optional) - Type of the monochromator."
                 },
-                "material":{
-                  "type":"string",
-                  "description":"(Optional) - Material of the monochromator."
+                "material": {
+                  "type": "string",
+                  "description": "(Optional) - Material of the monochromator."
                 },
-                "energy":{
+                "energy": {
                   "description": "(Optional) - Energy set in the monochromator. Typical unit - eV",
                   "$ref": "#/$defs/energyDetails"
                 },
-                "notes":{
-                  "description":"(Optional) - Additional information about the monochromator relevant for the measurement."
+                "notes": {
+                  "description": "(Optional) - Additional information about the monochromator relevant for the measurement."
                 }
               }
             },
-            "monochromatorPositions":{
+            "monochromatorPositions": {
               "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the monochromator.",
               "$ref": "#/$defs/motorPositions"
             }
-          }
+          },
+          "required": [
+            "monochromatorUsed"
+          ]
         },
-        "condenser":{
+        "condenser": {
           "type": "object",
           "description": "(Optional) - Details about the condenser lens and its individual motor positions, if used.",
           "additionalProperties": false,
-          "properties":{
-            "condenserDetails":{
-              "type":"string",
-              "description":"(Optional) - Details about the condenser relevant for the measurement."
+          "properties": {
+            "condenserDetails": {
+              "type": "string",
+              "description": "(Optional) - Details about the condenser relevant for the measurement."
             },
-            "condenserPositions":{
+            "condenserPositions": {
               "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the condenser.",
               "$ref": "#/$defs/motorPositions"
             }
           }
         },
-        "fresnelZonePlate":{
+        "fresnelZonePlate": {
           "type": "object",
           "description": "(Optional) - Details about the fresnel zone plate and its individual motor positions, if used.",
           "additionalProperties": false,
-          "properties":{
-            "fresnelZonePlateDetails":{
-              "type":"string",
-              "description":"(Optional) - Details about the fresnel zone plate relevant for the measurement."
+          "properties": {
+            "fresnelZonePlateDetails": {
+              "type": "string",
+              "description": "(Optional) - Details about the fresnel zone plate relevant for the measurement."
             },
-            "fresnelZonePlatePositions":{
+            "fresnelZonePlatePositions": {
               "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the fresnel zone plate.",
               "$ref": "#/$defs/motorPositions"
             }
           }
         },
-        "phaseRing":{
+        "phaseRing": {
           "type": "object",
           "description": "(Required) - Details about the phase ring and its individual motor positions, if inserted.",
           "additionalProperties": false,
-          "properties":{
-            "phaseRingDetails":{
-              "type":"string",
-              "description":"(Optional) - Details about the phase ring relevant for the measurement."
+          "properties": {
+            "phaseRingDetails": {
+              "type": "string",
+              "description": "(Optional) - Details about the phase ring relevant for the measurement."
             },
-            "phaseRingPositions":{
+            "phaseRingPositions": {
               "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the phase ring.",
               "$ref": "#/$defs/motorPositions"
             }
           }
         }
-      }
+      },
+      "required": [
+        "monochromator"
+      ]
     },
-    "CTAquisition":{
-      "type":"object",
-      "description":"(Required) - Details about the acquisition.",
-      "additionalProperties":false,
-      "properties":{
-        "acquisitionScriptName":{
-          "description":"(Required) - Name of the script used for acquisition.",
-          "type":"string"
+    "CTAquisition": {
+      "type": "object",
+      "description": "(Required) - Details about the acquisition.",
+      "additionalProperties": false,
+      "properties": {
+        "acquisitionScriptName": {
+          "description": "(Required) - Name of the script used for acquisition.",
+          "type": "string"
         },
-        "numberOfProjections":{
-          "description":"(Required) - Number of projections acquired during the CT.",
-          "type":"number"
+        "numberOfProjections": {
+          "description": "(Required) - Number of projections acquired during the CT.",
+          "type": "number"
         },
-        "startAngle":{
+        "startAngle": {
           "$ref": "#/$defs/angleDetails",
           "description": "(Required) - Start angle of the rotation of the sample during the CT. If the range is -180°/180°, then startAngle is -180°. Typical unit - degree."
         },
-        "endAngle":{
+        "endAngle": {
           "$ref": "#/$defs/angleDetails",
           "description": "(Required) - End angle of the rotation of the sample during the CT. If the range is -180°/180°, then endAngle is 180°. Typical unit - degree."
         },
-        "angularStepSize":{
+        "angularStepSize": {
           "$ref": "#/$defs/angleDetails",
           "description": "(Required) - Step size of the rotation of the sample during the CT. Typical unit - degree."
         },
-        "useBadPixelMap":{
-          "type":"boolean",
+        "useBadPixelMap": {
+          "type": "boolean",
           "description": "(Optional) - To be set to true if bad pixel map is used. This parameter is relevant for SEM based CT."
         },
-        "referenceImages":{
-          "type":"object",
-          "description":"(Optional) - Details on the reference images (if used) - number of flats/bright images and number of dark images.",
-          "additionalProperties":false,
-          "properties":{
-            "numberOfBrightImages":{
-              "type":"number",
+        "referenceImages": {
+          "type": "object",
+          "description": "(Optional) - Details on the reference images (if used) - number of flats/bright images and number of dark images.",
+          "additionalProperties": false,
+          "properties": {
+            "numberOfBrightImages": {
+              "type": "number",
               "description": "(Optional) - Number of flats or bright images used as reference."
             },
-            "numberOfDarkImages":{
-              "type":"number",
+            "numberOfDarkImages": {
+              "type": "number",
               "description": "(Optional) - Number of dark images used as reference."
             }
           }
         },
-        "acquisitionTimePerProjection":{
+        "acquisitionTimePerProjection": {
           "$ref": "#/$defs/timeDetails",
           "description": "(Required) - Time taken for acquisition of a single projection. Typical unit - s."
         },
-        "totalAcquisitionTime":{
-          "type":"string",
+        "totalAcquisitionTime": {
+          "type": "string",
           "description": "(Required) - Time taken for acquisition for the entire scan. This is the total scan time, i.e. number of projections multipled by exposure time, but including read-out time. calculated as EndTime-StartTime. Format: hh:mm:ss.",
-          "pattern":"^(\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,3})?)$",
-          "format":"time"
+          "pattern": "^(\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,3})?)$",
+          "format": "time"
         },
-        "largeFOV":{
-          "type":"boolean",
+        "largeFOV": {
+          "type": "boolean",
           "description": "(Required) - To be set to true if large field of view or wide field of view is used."
         },
-        "scanningMode":{
-          "type":"string",
-          "description":"(Optional) - The scanning mode used during acquisition - helical, raster scanning, fast CT.",
-          "enum":[
+        "scanningMode": {
+          "type": "string",
+          "description": "(Optional) - The scanning mode used during acquisition - helical, raster scanning, fast CT.",
+          "enum": [
             "Helical",
             "Raster Scanning",
             "Fast CT"
           ]
         },
-        "phaseContrastMode":{
-          "type":"string",
-          "description":"(Required) - The phase contrast mode used during acquisition - Zernike phase contrast, propagation-based, grating-based(Hartmann), grating-based(Talbot).",
-          "enum":[
+        "contrastType": {
+          "type": "string",
+          "description": "(Required) - The contrast type(mode) used - Absorption Contrast or Phase Contrast. If 'Phase Contrast' is selected, please indicate the used Phase Contrast Mode under the field phaseContrastMode.",
+          "enum": [
+            "Absorption Contrast",
+            "Phase Contrast"
+          ]
+        },
+        "phaseContrastMode": {
+          "type": "string",
+          "description": "(Optional) - The phase contrast mode used during acquisition - Zernike phase contrast, propagation-based, grating-based(Hartmann), grating-based(Talbot).",
+          "enum": [
             "Zernike phase contrast",
             "Propagation-based",
             "Grating-based(Hartmann)",
@@ -1346,7 +1372,7 @@
           ]
         }
       },
-      "required":[
+      "required": [
         "acquisitionScriptName",
         "startAngle",
         "endAngle",
@@ -1354,21 +1380,51 @@
         "acquisitionTimePerProjection",
         "totalAcquisitionTime",
         "largeFOV",
-        "phaseContrastMode"
+        "contrastType"
       ]
     },
-    "geometry":{
+    "geometry": {
       "type": "object",
       "description": "Describes the geometry of the CT instrument",
       "additionalProperties": false,
-      "properties":{
-        "sourceToObjectDistance":{},
-        "objectToDetectorDistance":{},
-        "beamGeometry":{},
-        "geometricMagnification":{},
-        "opticalMagnification":{}
+      "properties": {
+        "sourceToObjectDistance": {
+          "$ref": "#/$defs/distanceDetails",
+          "description": "(Required) - Distance between the source and the object. Typical unit - µm."
+        },
+        "objectToDetectorDistance": {
+          "$ref": "#/$defs/distanceDetails",
+          "description": "(Required) - Distance between the object and the detector. Typical unit - µm."
+        },
+        "beamGeometry": {
+          "type": "object",
+          "description": "(Required) - Details about beam geometry like beam geometry type and divergence angle.",
+          "additionalProperties": false,
+          "properties": {
+            "beamGeometryType": {
+              "type": "string",
+              "enum": [
+                "collimated",
+                "divergent"
+              ],
+              "description": "(Required) - The type of the beam geometry to be selected between 'collimated' and 'divergent'."
+            },
+            "divergenceAngle": {
+              "$ref": "#/$defs/angleDetails",
+              "description": "(Optional) - Angle of divergence when the beam geometry is divergent. Typical unit - degree."
+            }
+          }
+        },
+        "geometricMagnification": {
+          "type": "number",
+          "description": "(Required) - Geometric magnification refers to the ratio of the size of an object's image to the size of the object itself. It is a measure of how much larger the image appears compared to the actual object. Geometric magnification (M) is calculated using the formula M = (SID + SOD) / SID, where SID is the source-to-image distance and SOD is the source-to-object distance."
+        },
+        "opticalMagnification": {
+          "type": "number",
+          "description": "(Required) - Optical magnification is calculated as the ratio of the focal length of the objective lens to the focal length of the eyepiece (if an eyepiece is present) in a traditional optical microscope."
+        }
       },
-      "required":[
+      "required": [
         "sourceToObjectDistance",
         "objectToDetectorDistance",
         "beamGeometry",
@@ -1376,9 +1432,90 @@
         "opticalMagnification"
       ]
     },
+    "sampleStage":{
+      "type": "object",
+      "description": "(Required) - Details about sample stage.",
+      "additionalProperties": false,
+      "properties":{
+        "stageMotorPositions":{ 
+          "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the stage motors.",
+          "$ref": "#/$defs/motorPositions"
+        },
+        "stageMotorHierarchy":{
+          "type": "object",
+          "description": "(Required) - Details about the hierarchy of the stage motors. This information is required to know how the motor movements affect the positions of the samples, particularly relevant for correlative characterization.",
+          "additionalProperties": false,
+          "properties":{
+            "beamDirection":{
+              "description":"(Required) - The beam direction expressed as a vector in cartesian coordinates. e.g. - [-2.1 3.0 4.5].",
+              "type": "array",
+               "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "xMotor":{
+              "description": "(Required) - Heirarchical level and direction of the X motor as a vector in cartesian coordiantes.",
+              "$ref": "#/$defs/motorHeirarchy"
+            },
+            "yMotor":{
+              "description": "(Required) - Heirarchical level and direction of the Y motor as a vector in cartesian coordiantes.",
+              "$ref": "#/$defs/motorHeirarchy"
+            },
+            "zMotor":{
+              "description": "(Required) - Heirarchical level and direction of the Z motor as a vector in cartesian coordiantes.",
+              "$ref": "#/$defs/motorHeirarchy"
+            },
+            "rMotor":{
+              "description": "(Required) - Heirarchical level and direction of the R motor as a vector in cartesian coordiantes. R motor has rotation around z axis +1 (for anticlockwise).",
+              "$ref": "#/$defs/motorHeirarchy"
+            },
+            "tMotor":{
+              "description": "(Optional) - Heirarchical level and direction of the T motor as a vector in cartesian coordiantes. The T motor is usually relevant only for SEM based CT.",
+              "$ref": "#/$defs/motorHeirarchy"
+            },
+            "mMotor":{
+              "description": "(Optional) - Heirarchical level and direction of the M motor as a vector in cartesian coordiantes. The M motor is usually relevant only for SEM based CT. It is a special motor which counteracts the Z motor.",
+              "$ref": "#/$defs/motorHeirarchy"
+            }
+          },
+          "required":[
+            "beamDirection",
+            "xMotor",
+            "yMotor",
+            "zMotor",
+            "rMotor"
+          ]
+        }
+      },
+      "required":[
+        "stageMotorHierarchy"
+      ]
+    },
+    "motorHeirarchy":{
+      "type": "object",
+      "description": "(Required) - Details about the hierarchical level and direction of a motor.",
+      "additionalProperties": false,
+      "properties":{
+        "motorLevel":{
+          "type":"number",
+          "description":"(Required) - Hierarchy of the motor expressed as an integer."
+        },
+        "motorDirection":{
+          "description":"(Required) - The direction of movement (for X,Y,Z,M motors) or axis of rotation (for rotating motors) expressed as a vector in cartesian coordinates. e.g. - [-2.1 3.0 4.5].",
+          "type": "array",
+           "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      }
+    },
     "manufacturerDetails": {
       "type": "object",
-      "description": "(Optional) - Details about the manufacturer or vendor of the instrument. Properties: manufacturerName (Optional) - Name of the manufacturer, modelName (Optional) - Model of the instrument, manufacturerID (Optional) - Identifier of the manufacturer",
+      "description": "(Optional) - Details about the manufacturer or vendor of the instrument. Properties: manufacturerName (Optional) - Name of the manufacturer, modelName (Optional) - Model of the instrument, manufacturerID (Optional) - Identifier of the manufacturer.",
       "additionalProperties": false,
       "properties": {
         "manufacturerName": {
@@ -1582,16 +1719,16 @@
       ]
     },
     "motorPositions": {
-      "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the item.",
+      "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the motor.",
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "itemPosition": {
+        "xyzPositions": {
           "$ref": "#/$defs/coordinateSet",
           "description": "(Optional) - The xyz coordinates decribing the motor positions of the item."
         },
-        "itemTilt": {
-          "description": "(Optional) - The three tilt angles alpha, beta and gamma describing the motor positions of the item.",
+        "angles": {
+          "description": "(Optional) - The three tilt angles alpha, beta and gamma of the motors controlling the position of the item.",
           "$ref": "#/$defs/angleSet"
         }
       }
