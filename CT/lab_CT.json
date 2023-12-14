@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/CT/lab_CT.json",
   "type": "object",
-  "description": "This JSON Schema describes a nano or micro - computed tomography (CT) measurement done using the instrumentation in a lab using an x-ray tube as a source. The same schema can also be used for an SEM based CT measurement where the x-rays emitted by a material upon interaction with the electron beam from the electron microscope, are used for generating CT images of a sample. For synchrotron based CT, use the synchrotron CT schema provided separately in the same folder as this schema. The cardinality (required or optional) of all metadata is defined and wherever possible a list of controlled vocabularies is provided. Contributors (in alphabetical order of last names): Alexey Boubnov, Rafaela Debastiani, Jonas Fell, Sarah Irvine, Reetu Elza Joseph",
+  "description": "This JSON Schema describes a nano or micro - computed tomography (CT) measurement done using the instrumentation in a lab using an x-ray tube as a source. The same schema can also be used for an SEM based CT measurement where the x-rays emitted by a material upon interaction with the electron beam from the electron microscope, are used for generating CT images of a sample. For synchrotron based CT, use the synchrotron CT schema provided separately in the same folder as this schema. The cardinality (required or optional) of all metadata is defined and wherever possible a list of controlled vocabularies is provided. Contributors (in alphabetical order of last names): Alexey Boubnov, Rafaela Debastiani, Jonas Fell, Sarah Irvine, Reetu Elza Joseph.",
   "properties": {
     "entry": {
       "$ref": "#/$defs/entry"
@@ -589,21 +589,21 @@
               }
             },
             "vacuumChamber": {
-              "description": "(Optional) - Details regarding a degradation cell relevant for the measurement.",
+              "description": "(Optional) - Details regarding the vacuum chamber relevant for the measurement.",
               "type": "object",
               "additionalProperties": false,
               "properties": {
                 "chamberName": {
                   "type": "string",
-                  "description": "(Optional) - Name of the degradation cell."
+                  "description": "(Optional) - Name of the vacuum chamber."
                 },
                 "chamberManufacturer": {
                   "$ref": "#/$defs/manufacturerDetails",
-                  "description": "(Optional) - Details about the manufacturer or vendor of the degradation cell."
+                  "description": "(Optional) - Details about the manufacturer or vendor of the vacuum chamber."
                 },
                 "chamberDetails": {
                   "type": "string",
-                  "description": "(Optional) - Additional details about the degradation cell relevant for the measurement."
+                  "description": "(Optional) - Additional details about the vacuum chamber relevant for the measurement."
                 },
                 "pressure": {
                   "$ref": "#/$defs/pressureDetails",
@@ -734,66 +734,6 @@
         "uncertaintyType",
         "value"
       ]
-    },
-    "weightDetails": {
-      "type": "object",
-      "description": "(Optional) - Describes a weight.",
-      "additionalProperties": false,
-      "properties": {
-        "value": {
-          "type": "number",
-          "description": "(Required) - Value of the weight"
-        },
-        "unit": {
-          "type": "string",
-          "description": "(Required) - Unit of the value to be selected from a controlled list (ng, µg, mg, g, kg, default value - ug)",
-          "default": "µg",
-          "enum": [
-            "ng",
-            "µg",
-            "mg",
-            "g",
-            "kg"
-          ]
-        },
-        "qualifier": {
-          "type": "string",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-          "default": "max"
-        },
-        "uncertainty": {
-          "$ref": "#/$defs/uncertaintyDetails",
-          "description": "(Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative"
-        },
-        "notes": {
-          "type": "string",
-          "description": "(Optional) - Further notes about the value"
-        }
-      },
-      "required": [
-        "value",
-        "unit"
-      ]
-    },
-    "samplePrepType": {
-      "type": "object",
-      "description": "(Optional) - Describes the sample preparation process.",
-      "additionalProperties": false,
-      "properties": {
-        "preparationDate": {
-          "type": "string",
-          "description": "(Optional) - Date of the sample preparation in the ISO 8601 format.",
-          "format": "date"
-        },
-        "preparationDescription": {
-          "type": "string",
-          "description": "(Optional) - Short description of the sample preparation."
-        },
-        "preparationID": {
-          "$ref": "#/$defs/identifier",
-          "description": "(Optional) - Identifier of the sample preparation."
-        }
-      }
     },
     "instrumentDetails": {
       "type": "object",
@@ -1687,39 +1627,6 @@
         "unit"
       ]
     },
-    "lifetimeDetails": {
-      "type": "object",
-      "description": "describes a lifetime.",
-      "additionalProperties": false,
-      "properties": {
-        "value": {
-          "type": "number",
-          "description": "(Required) - The lifetime of the source expressed as an integer or floating point value of datatype number"
-        },
-        "unit": {
-          "type": "string",
-          "default": "µAh",
-          "description": "(Required) - the unit of the value (default value - µAh) of datatype string"
-        },
-        "qualifier": {
-          "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
-        },
-        "uncertainty": {
-          "$ref": "#/$defs/uncertaintyDetails",
-          "description": "(Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number"
-        },
-        "notes": {
-          "type": "string",
-          "description": "(Optional) - Further notes about the value of datatype string"
-        }
-      },
-      "required": [
-        "unit",
-        "value"
-      ]
-    },
     "motorPositions": {
       "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the motor.",
       "type": "object",
@@ -1813,55 +1720,6 @@
       "required": [
         "unit",
         "value"
-      ]
-    },
-    "stageDetails": {
-      "type": "object",
-      "description": "describes the stage settings during a measurement.",
-      "additionalProperties": false,
-      "properties": {
-        "stageAlignmentDone": {
-          "type": "boolean",
-          "description": "(Optional) - was stage alignment done? (check if true)"
-        },
-        "isCorrelationImage": {
-          "type": "boolean",
-          "description": "(Optional) - Whether the image is used for correlating in xyz coordinates with another image? Check if true. If true the coordinates have to be entered for the sake of correlative characterization of datatype boolean"
-        },
-        "coordinates": {
-          "$ref": "#/$defs/coordinateSet",
-          "description": "(Optional) - the xyz coordinates of a point expressed separately as coordinateSet which allows entering each of the xyz coordinates along with their optional uncertainties. If correllation images (two reference spots) are available, the coordinates enable correlative microscopy and they need to be entered"
-        },
-        "coordinateReference": {
-          "type": "string",
-          "default": "origin at centre of sample",
-          "description": "(Optional) - description of the reference used for defining the coordinates (for eg. - origin at centre of sample, distances from two edges, etc.)"
-        },
-        "stageTiltAngle": {
-          "$ref": "#/$defs/angleDetails",
-          "description": "(Required) - angle by which the stage is actually tilted (Stage at T) defined separately as angleDetails with the angle value, optional uncertainty, optional notes, optional qualifier and choice of units between degree and radian"
-        },
-        "preTilt": {
-          "$ref": "#/$defs/angleDetails",
-          "description": "(Optional) - predefined angle of a tilted sample holder which is tilted by design defined separately as angleDetails with the angle value, optional uncertainty, optional notes, optional qualifier and choice of units between degree and radian"
-        },
-        "tiltCorrectionAngle": {
-          "$ref": "#/$defs/angleDetails",
-          "description": "(Optional) - angle used to correct the tilt of the sample defined separately as angleDetails with the angle value, optional uncertainty, optional notes, optional qualifier and choice of units between degree and radian"
-        },
-        "tiltCorrectionType": {
-          "type": "string",
-          "default": "none",
-          "description": "(Optional) - the tilt correction type applied to the image to compensate for the tilting, for e.g., sample surface, cross-section, none or manual, default value- none of datatype string"
-        },
-        "eBeamWorkingDistance": {
-          "$ref": "#/$defs/distanceDetails",
-          "description": "(Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, um, mm, cm and m"
-        }
-      },
-      "required": [
-        "eBeamWorkingDistance",
-        "stageTiltAngle"
       ]
     },
     "angleDetails": {
@@ -2091,39 +1949,6 @@
             "s"
           ],
           "description": "(Required) - the unit of the value to be selected from a controlled list (ps, ns, µs, ms, s default value - µs) of datatype string"
-        },
-        "qualifier": {
-          "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
-        },
-        "uncertainty": {
-          "$ref": "#/$defs/uncertaintyDetails",
-          "description": "(Optional) - Uncertainty in the value defined as a complex type uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number"
-        },
-        "notes": {
-          "type": "string",
-          "description": "(Optional) - Further notes about the value of datatype string"
-        }
-      },
-      "required": [
-        "unit",
-        "value"
-      ]
-    },
-    "voxelDetails": {
-      "type": "object",
-      "description": "describes the size of a voxel.",
-      "additionalProperties": false,
-      "properties": {
-        "value": {
-          "type": "number",
-          "description": "(Required) - The voxel-size expressed as an integer or floating point value of datatype number"
-        },
-        "unit": {
-          "type": "string",
-          "default": "mm",
-          "description": "(Required) - the unit of the value of datatype string"
         },
         "qualifier": {
           "type": "string",
