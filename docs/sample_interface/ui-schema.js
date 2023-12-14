@@ -90,9 +90,7 @@ var uiSchema = {
                 },
                 {"title": "Sample Mass", "key": "sampleDescription.sampleMass"},
                 {"title": "Sample Volume", "key": "sampleDescription.sampleMass"},
-                {"title": "Sample Density", "key": "sampleDescription.sampleDensity"},
                 {"title": "Sample Pressure", "key": "sampleDescription.samplePressure"},
-                {"title": "Sample Temperature", "key": "sampleDescription.sampleTemperature"},
                 {
                     "title": "Sample Surface Roughness", 
                     "type": "selectfieldset", 
@@ -179,8 +177,7 @@ var uiSchema = {
                             "type": "tab",
                             "items": 
                             [
-                                {"title": "Multiple choice is allowed", "key": "sampleCharacterization.materialType.materialTypeOptions", "type": "checkboxes"},
-                                {"title": "Material Data Sheet", "key": "sampleCharacterization.materialType.materialDataSheet"}
+                                {"title": "Multiple choice is allowed", "key": "sampleCharacterization.materialType.materialTypeOptions", "type": "checkboxes"}
                             ]
                         },
                         {
