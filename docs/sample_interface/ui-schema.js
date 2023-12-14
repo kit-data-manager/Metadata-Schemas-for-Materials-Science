@@ -425,7 +425,8 @@ var uiSchema = {
                                 {"title": "Shock Protection", "key": "sampleHandlingPrecaution.sampleHandling.shockProtection"},
                                 {"title": "Clean Room Conditions", "key": "sampleHandlingPrecaution.sampleHandling.cleanRoomConditions"},
                                 {"title": "Humidity", "key": "sampleHandlingPrecaution.sampleHandling.humidity"},
-                                {"title": "Gas Atmosphere", "key": "sampleHandlingPrecaution.sampleHandling.gasAtmosphere"},
+                                {"title": "Gas Atmosphere", "key": "sampleHandlingPrecaution.sampleHandling.gasAtmosphere.gasAtmosphereOptions", "type": "radios"},
+                                {"title": "Other Gas Atmosphere","key": "sampleHandlingPrecaution.sampleHandling.gasAtmosphere.otherGasAtmosphere"},
                                 {"title": "Additional Notes", "key": "sampleHandlingPrecaution.sampleHandling.additionalNotes"},
                             ]
                         },
@@ -451,13 +452,14 @@ var uiSchema = {
                                     ]
                                 },
                                 {"title": "Storage Humidity", "key": "sampleHandlingPrecaution.storageConditions.storageHumidity"},
-                                {"title": "Storage Gas Atmosphere", "key": "sampleHandlingPrecaution.storageConditions.storageGasAtmosphere"},
+                                {"title": "Storage Gas Atmosphere", "key": "sampleHandlingPrecaution.storageConditions.storageGasAtmosphere.storageGasAtmosphereOptions", "type": "radios"},
+                                {"title": "Other Storage Gas Atmosphere","key": "sampleHandlingPrecaution.storageConditions.storageGasAtmosphere.otherStorageGasAtmosphere"},
                                 {
                                     "title": "Storage Equipment", 
                                     "key": "sampleHandlingPrecaution.storageConditions.storageEquipment.storageEquipmentOptions",
                                     "type": "checkboxes"
                                 },
-                                {"title": "Comments", "key": "sampleHandlingPrecaution.storageConditions.storageEquipment.comments"},
+                                {"title": "Other Storage Equipment", "key": "sampleHandlingPrecaution.storageConditions.storageEquipment.otherStorageEquipment"},
                                 {"title": "Additional Notes", "key": "sampleHandlingPrecaution.storageConditions.additionalNotes"}
                             ]
                         },

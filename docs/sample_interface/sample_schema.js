@@ -1464,12 +1464,26 @@ var dataModel = {
                         },
                         "gasAtmosphere": 
                         {
-                            "description": "The sample has a reactive top layer and needs the given inert gas around it during treatment (e.g. Nitrogen).",
+                            "description": "(Optional) - The sample has a reactive top layer and needs the given inert gas around it during treatment.",
                             "type": "object",
                             "properties":
                             {
-                                "value": {"type": "number"},
-                                "unit": {"type": "string"}                              
+                                "gasAtmosphereOptions":
+                                {
+                                    "description": "(Optional) - The sample has a reactive top layer and needs the given inert gas around it during treatment.",
+                                    "type":"string",
+                                    "enum":
+                                    [
+                                        "Not applicable",
+                                        "air",
+                                        "dry air",
+                                        "vacuum",
+                                        "Ar",
+                                        "N",
+                                        "other (please add in the comments)"
+                                    ]
+                                },
+                                "otherGasAtmosphere": {"type": "string"}                            
                             }
                         },
                         "additionalNotes": 
@@ -1544,17 +1558,26 @@ var dataModel = {
                         "storageGasAtmosphere": 
                         {
                             "description": "(Optional) - To be indicated only if different from the gas atmosphere required for sample handling. It can be a numerical value or a range of numerical values",
-                            "type":"string",
-                            "enum":
-                            [
-                                "Not applicable",
-                                "air",
-                                "dry air",
-                                "vacuum",
-                                "Ar",
-                                "N",
-                                "other (please add in the comments)"
-                            ]
+                            "type": "object",
+                            "properties":
+                            {
+                                "storageGasAtmosphereOptions":
+                                {
+                                    "description": "(Optional) - To be indicated only if different from the gas atmosphere required for sample handling. It can be a numerical value or a range of numerical values",
+                                    "type":"string",
+                                    "enum":
+                                    [
+                                        "Not applicable",
+                                        "air",
+                                        "dry air",
+                                        "vacuum",
+                                        "Ar",
+                                        "N",
+                                        "other (please add in the comments)"
+                                    ]
+                                },
+                                "otherStorageGasAtmosphere": {"type": "string"}
+                            }
                         },
                         "storageEquipment": 
                         {
@@ -1564,6 +1587,7 @@ var dataModel = {
                             {
                                 "storageEquipmentOptions":
                                 {
+                                    "description": "(Optional) - Equipment used for storing the sample. Multiple selection is allowed.",
                                     "type":"array",
                                     "items":
                                     {
@@ -1584,7 +1608,7 @@ var dataModel = {
                                         ]
                                     }
                                 },
-                                "comments": {"type": "string"}
+                                "otherStorageEquipment": {"type": "string"}
                             }
                         },
                         "additionalNotes":
