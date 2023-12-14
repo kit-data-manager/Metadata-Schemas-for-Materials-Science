@@ -1025,7 +1025,6 @@ var dataModel = {
                                 "ultra high vacuum"
                             ]
                         }
-
                     }
                 },
                 "sampleSurfaceRoughness":
@@ -1501,8 +1500,35 @@ var dataModel = {
                             "type": "object",
                             "properties":
                             {
-                                "value": {"type": "number"},
-                                "unit": {"type": "string"}                              
+                                "estimate": 
+                                {
+                                    "type": "string",
+                                    "enum": 
+                                    [
+                                        "quantitative",
+                                        "qualitative"
+                                    ]
+                                },
+                                "quantitative":
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "value": {"type": "number"},
+                                        "unit": {"type": "string"}
+                                    }
+                                },
+                                "qualitative":
+                                {
+                                    "type": "string",
+                                    "enum": 
+                                    [
+                                        "non applicable",
+                                        "vacuum", 
+                                        "high vacuum", 
+                                        "ultra high vacuum"
+                                    ]
+                                }
                             }
                         },
                         "storageHumidity": 

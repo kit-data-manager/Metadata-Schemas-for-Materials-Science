@@ -91,7 +91,7 @@ var uiSchema = {
                 {"title": "Sample Mass", "key": "sampleDescription.sampleMass"},
                 {"title": "Sample Volume", "key": "sampleDescription.sampleVolume"},
                 {
-                    "title": "Gas Pressure", 
+                    "title": "Sample Gas Pressure", 
                     "type": "selectfieldset", 
                     "htmlClass": "myclass",
                     "titleMap": 
@@ -435,7 +435,21 @@ var uiSchema = {
                             "items":
                             [
                                 {"title": "Storage Temperature", "key": "sampleHandlingPrecaution.storageConditions.storageTemperature"},
-                                {"title": "Storage Pressure", "key": "sampleHandlingPrecaution.storageConditions.storagePressure"},
+                                {
+                                    "title": "Storage Pressure", 
+                                    "type": "selectfieldset", 
+                                    "htmlClass": "myclass",
+                                    "titleMap": 
+                                    {
+                                        "qualitative": "Quantitative",
+                                        "quantitative": "Qualitative"
+                                    },
+                                    "items":
+                                    [
+                                        {"title": "Quantitative", "key": "sampleHandlingPrecaution.storageConditions.storagePressure.quantitative"},
+                                        {"title": "Qualitative", "key": "sampleHandlingPrecaution.storageConditions.storagePressure.qualitative"}
+                                    ]
+                                },
                                 {"title": "Storage Humidity", "key": "sampleHandlingPrecaution.storageConditions.storageHumidity"},
                                 {"title": "Storage Gas Atmosphere", "key": "sampleHandlingPrecaution.storageConditions.storageGasAtmosphere"},
                                 {
