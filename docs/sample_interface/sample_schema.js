@@ -313,7 +313,80 @@ var dataModel = {
                     {
                         "description": "(Optional) - Description of the missing relevant features describing the Sample Component, if any.",
                         "type": "string"
-                    }
+                    },
+                    "sampleCharacterization":
+                    {
+                        "type": "object",
+                        "properties":
+                        {
+                            "phaseOfMatter":
+                            {
+                                "description": "A matter object throughout which all physical properties of a material are essentially uniform.",
+                                "type": "string",
+                                "enum": 
+                                [
+                                    "not applicable",
+                                    "solid - definition: https://en.wikipedia.org/wiki/Solid",
+                                    "liquid - definition: https://en.wikipedia.org/wiki/Liquid",
+                                    "gas - definition: https://en.wikipedia.org/wiki/Gas",
+                                    "plasma - definition: https://en.wikipedia.org/wiki/Plasma_(physics)",
+                                    "mixture - definition: https://en.wikipedia.org/wiki/Mixture"
+                                ]
+                            },
+                            "materialType": 
+                            {
+                                "type": "string",
+                                "enum":
+                                [
+                                    "notApplicable",
+                                    "alloy",
+                                    "biological",
+                                    "biomaterial",
+                                    "ceramic",
+                                    "composite",
+                                    "glass",
+                                    "metal",
+                                    "metamaterial",
+                                    "molecularFluid",
+                                    "organicCompound",
+                                    "organometallic",
+                                    "polymer",
+                                    "smartMaterial"
+                                ]
+                            },
+                            "materialProperties":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "propertiesOptions":
+                                    {
+                                        "type": "array",
+                                        "items":
+                                        {
+                                            "type": "string",
+                                            "enum":
+                                            [
+                                                "diamagnetic",
+                                                "paramagnetic",
+                                                "ferromagnetic",
+                                                "antiferromagnetic",
+                                                "ferrimagnetic",
+                                                "nonmagnetic",
+                                                "conductor",
+                                                "semiconductor",
+                                                "superconductor",
+                                                "insulator",
+                                                "dielectric",
+                                                "other (please add in the comment)"
+                                            ]
+                                        }
+                                    },
+                                    "comment": {"type": "string"}
+                                }
+                            }
+                        }
+                    },
                 }
             }
         },
@@ -338,35 +411,24 @@ var dataModel = {
                 },
                 "materialType": 
                 {
-                    "type": "object",
-                    "properties":
-                    {
-                        "materialTypeOptions":
-                        {
-                            "type": "array",
-                            "items":
-                            {
-                                "type": "string",
-                                "enum":
-                                [
-                                    "notApplicable",
-                                    "alloy",
-                                    "biological",
-                                    "biomaterial",
-                                    "ceramic",
-                                    "composite",
-                                    "glass",
-                                    "metal",
-                                    "metamaterial",
-                                    "molecularFluid",
-                                    "organicCompound",
-                                    "organometallic",
-                                    "polymer",
-                                    "smartMaterial"
-                                ]
-                            }
-                        }
-                    }
+                    "type": "string",
+                    "enum":
+                    [
+                        "notApplicable",
+                        "alloy",
+                        "biological",
+                        "biomaterial",
+                        "ceramic",
+                        "composite",
+                        "glass",
+                        "metal",
+                        "metamaterial",
+                        "molecularFluid",
+                        "organicCompound",
+                        "organometallic",
+                        "polymer",
+                        "smartMaterial"
+                    ]
                 },
                 "materialProperties":
                 {
