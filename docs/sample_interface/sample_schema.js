@@ -982,6 +982,7 @@ var dataModel = {
                 },
                 "sampleVolume": 
                 {
+                    "description": "(Optional) - Relevant for gas, liquid and powder",
                     "type": "object",
                     "properties":
                     {
@@ -989,13 +990,42 @@ var dataModel = {
                         "unit": {"type": "string"}
                     }
                 },
-                "samplePressure":
+                "gasPressure":
                 {
+                    "description": "(Optional) - Only relevant for gas",
                     "type": "object",
                     "properties":
                     {
-                        "value": {"type": "number"},
-                        "unit": {"type": "string"}
+                        "estimate": 
+                        {
+                            "type": "string",
+                            "enum": 
+                            [
+                                "quantitative",
+                                "qualitative"
+                            ]
+                        },
+                        "quantitative":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}
+                            }
+                        },
+                        "qualitative":
+                        {
+                            "type": "string",
+                            "enum": 
+                            [
+                                "non applicable",
+                                "vacuum", 
+                                "high vacuum", 
+                                "ultra high vacuum"
+                            ]
+                        }
+
                     }
                 },
                 "sampleSurfaceRoughness":
@@ -1009,19 +1039,8 @@ var dataModel = {
                             "type": "string",
                             "enum": 
                             [
-                                "qualitative",
-                                "quantitative"
-                            ]
-                        },
-                        "qualitative":
-                        {
-                            "type": "string",
-                            "enum": 
-                            [
-                                "not applicable",
-                                "rough",
-                                "smooth",
-                                "polished"
+                                "quantitative",
+                                "qualitative"
                             ]
                         },
                         "quantitative":
@@ -1043,6 +1062,17 @@ var dataModel = {
                                 "value": {"type": "number"},
                                 "unit": {"type": "string"}
                             }
+                        },
+                        "qualitative":
+                        {
+                            "type": "string",
+                            "enum": 
+                            [
+                                "not applicable",
+                                "rough",
+                                "smooth",
+                                "polished"
+                            ]
                         }
                     }
                 }

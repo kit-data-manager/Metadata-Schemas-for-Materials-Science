@@ -89,21 +89,35 @@ var uiSchema = {
                     ]
                 },
                 {"title": "Sample Mass", "key": "sampleDescription.sampleMass"},
-                {"title": "Sample Volume", "key": "sampleDescription.sampleMass"},
-                {"title": "Sample Pressure", "key": "sampleDescription.samplePressure"},
+                {"title": "Sample Volume", "key": "sampleDescription.sampleVolume"},
+                {
+                    "title": "Gas Pressure", 
+                    "type": "selectfieldset", 
+                    "htmlClass": "myclass",
+                    "titleMap": 
+                    {
+                        "qualitative": "Quantitative",
+                        "quantitative": "Qualitative"
+                    },
+                    "items":
+                    [
+                        {"title": "Quantitative", "key": "sampleDescription.gasPressure.quantitative"},
+                        {"title": "Qualitative", "key": "sampleDescription.gasPressure.qualitative"}
+                    ]
+                },
                 {
                     "title": "Sample Surface Roughness", 
                     "type": "selectfieldset", 
                     "htmlClass": "myclass",
                     "titleMap": 
                     {
-                        "qualitative": "Qualitative",
-                        "quantitative": "Quantitative"
+                        "qualitative": "Quantitative",
+                        "quantitative": "Qualitative"
                     },
                     "items":
                     [
-                        {"title": "Qualitative", "key": "sampleDescription.sampleSurfaceRoughness.qualitative"},
                         {"title": "Quantitative", "key": "sampleDescription.sampleSurfaceRoughness.quantitative"},
+                        {"title": "Qualitative", "key": "sampleDescription.sampleSurfaceRoughness.qualitative"}
                     ]
                 }
             ]
