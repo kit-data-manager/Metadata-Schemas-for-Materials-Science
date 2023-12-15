@@ -68,7 +68,8 @@
                 "enum": [
                   "not applicable",
                   "sample"
-                ]
+                ],
+                "default":"sample"
               },
               "parentReferenceType": {
                 "type": "string",
@@ -76,7 +77,8 @@
                   "plain text",
                   "external URL",
                   "MetaStore URI"
-                ]
+                ],
+                "default":"MetaStore URI"
               },
               "parentReference": {
                 "type": "string",
