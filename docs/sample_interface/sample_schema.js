@@ -95,7 +95,7 @@ var dataModel = {
                     {
                         "samplePurposeOptions":
                         {
-                            "description": "The tentative purpose of the sample (e.g., for which measurement(s) or subsequent analysis the sample was prepared). In this context, Correlative Characterization may be intended as a purpose. Multiple selection is allowed.",
+                            "description": "(Required) - The tentative purpose of the sample (e.g., for which measurement(s) or subsequent analysis the sample was prepared). In this context, Correlative Characterization may be intended as a purpose. Multiple selection is allowed.",
                             "type": "array",
                             "items":
                             {
@@ -142,7 +142,7 @@ var dataModel = {
                         "otherSampleIDType": {"type": "string"},
                         "sampleIDPosition":
                         {
-                            "description": "The sample has an ID printed on it. It's important to know its position on the sample. Multiple selection is allowed.",
+                            "description": "(Optional) - The sample has an ID printed on it. It's important to know its position on the sample. Multiple selection is allowed.",
                             "type": "array",
                             "items":
                             {
@@ -321,7 +321,7 @@ var dataModel = {
                         {
                             "phaseOfMatter":
                             {
-                                "description": "A matter object throughout which all physical properties of a material are essentially uniform.",
+                                "description": "(Recommended) - A matter object throughout which all physical properties of a material are essentially uniform.",
                                 "type": "string",
                                 "enum": 
                                 [
@@ -335,6 +335,7 @@ var dataModel = {
                             },
                             "materialType": 
                             {
+                                "description": "(Recommended) - Main group, characterized by common basic attributes, the material can be assigned to.",
                                 "type": "string",
                                 "enum":
                                 [
@@ -356,11 +357,13 @@ var dataModel = {
                             },
                             "materialProperties":
                             {
+                                "description": "(Recommended) - One or more known properties of the material.",
                                 "type": "object",
                                 "properties":
                                 {
                                     "propertiesOptions":
                                     {
+                                        "description": "(Recommended) - One or more known properties of the material.",
                                         "type": "array",
                                         "items":
                                         {
@@ -382,7 +385,7 @@ var dataModel = {
                                             ]
                                         }
                                     },
-                                    "comment": {"type": "string"}
+                                    "otherMaterialProperties": {"type": "string"}
                                 }
                             }
                         }
@@ -397,7 +400,7 @@ var dataModel = {
             {
                 "phaseOfMatter":
                 {
-                    "description": "A matter object throughout which all physical properties of a material are essentially uniform.",
+                    "description": "(Recommended) - A matter object throughout which all physical properties of a material are essentially uniform.",
                     "type": "string",
                     "enum": 
                     [
@@ -411,6 +414,7 @@ var dataModel = {
                 },
                 "materialType": 
                 {
+                    "description": "(Recommended) - Main group, characterized by common basic attributes, the material can be assigned to.",
                     "type": "string",
                     "enum":
                     [
@@ -432,11 +436,13 @@ var dataModel = {
                 },
                 "materialProperties":
                 {
+                    "description": "(Recommended) - One or more known properties of the material.",
                     "type": "object",
                     "properties":
                     {
                         "propertiesOptions":
                         {
+                            "description": "(Recommended) - One or more known properties of the material.",
                             "type": "array",
                             "items":
                             {
@@ -458,7 +464,7 @@ var dataModel = {
                                 ]
                             }
                         },
-                        "comment": {"type": "string"}
+                        "otherMaterialProperties": {"type": "string"}
                     }
                 }
             }
@@ -535,12 +541,13 @@ var dataModel = {
                     {
                         "reinforcementStructures":
                         {
-                            "description": "Constituent of a composite material which increases its stiffness and tensile strength",
+                            "description": " (Optional) - Constituent of a composite material which increases its stiffness and tensile strength.",
                             "type": "object",
                             "properties":
                             {
                                 "reinforcingMaterial": 
                                 {
+                                    "description": "(Optional) - Material supplied as reinforcement.",
                                     "type": "string"
                                 },
                                 "scale":
@@ -560,12 +567,13 @@ var dataModel = {
                         },
                         "clusters":
                         {
-                            "description": "Aggregates of atoms, molecules, ions which adhere together under e.g. van der Waals forces, ionic forces, covalent bonds, metallic bonds, whose properties differ from those of the corresponding bulk",
+                            "description": "(Optional) - Aggregates of atoms, molecules, ions which adhere together under e.g. van der Waals forces, ionic forces, covalent bonds, metallic bonds, whose properties differ from those of the corresponding bulk.",
                             "type": "object",
                             "properties":
                             {
-                                "clusterAtoms":
+                                "clusterComponents":
                                 {
+                                    "description": " (Optional) - Constituent of the clusters.",
                                     "type": "string"
                                 },
                                 "clusterSize": 
@@ -576,7 +584,7 @@ var dataModel = {
                                         "value": {"type": "number"},
                                         "unit": {"type": "string"}
                                     }
-                                },  
+                                }  
                             }
                         },
                         "alignedStructures":
@@ -587,6 +595,7 @@ var dataModel = {
                             {
                                 "alignedElements":
                                 {
+                                    "description": "(Optional) - Constituent of the aligned structure.",
                                     "type": "string"
                                 },
                                 "scale":
@@ -699,12 +708,12 @@ var dataModel = {
                             {
                                 "porosity": 
                                 {
-                                    "description": "Also referred as void fraction. Fraction of the volume of voids over the total volume between 0 (no voids) and 1 (all voids)",
+                                    "description": "(Optional) - Fraction of the volume of voids over the total volume between 0 (no voids) and 1 (all voids). Also referred as void fraction. ",
                                     "type": "number"
                                 },
                                 "percolated":
                                 {
-                                    "description": "A substance (such as a liquid, gas, or particles) passes through a porous material or medium",
+                                    "description": "(Optional) - A substance (such as a liquid, gas, or particles) passes through a porous material or medium",
                                     "type": "boolean"
                                 },
                                 "minPoreSize": 
@@ -734,6 +743,7 @@ var dataModel = {
                             {
                                 "crystallinity":
                                 {
+                                    "description": "(Optional) - Degree of structural order in a solid.",
                                     "type": "string",
                                     "enum":
                                     [
@@ -746,7 +756,7 @@ var dataModel = {
                                 },
                                 "twinned": 
                                 {
-                                    "description": "Two separate crystal domains share some of the same crystal lattice points in a symmetrical manner",
+                                    "description": "(Optional) - Two separate crystal domains share some of the same crystal lattice points in a symmetrical manner",
                                     "type": "boolean"
                                 },
                                 "scale":
@@ -815,6 +825,7 @@ var dataModel = {
                                         },
                                         "aspectRatio":
                                         {
+                                            "description": "(Optional) - Ratio of the lenght to the diameter.",
                                             "type": "number"
                                         }
                                     }
@@ -832,6 +843,11 @@ var dataModel = {
                                                 "value": {"type": "number"},
                                                 "unit": {"type": "string"}
                                             }
+                                        },
+                                        "aspectRatio":
+                                        {
+                                            "description": "(Optional) - Ratio of the lateral dimension to sheet thickness.",
+                                            "type": "number"
                                         }
                                     }
                                 }
@@ -869,11 +885,13 @@ var dataModel = {
                     },
                 "sampleVisibleElements":
                 {
+                    "description": "(Optional) - Elements (if any) useful e.g. for coarse alignement, which are visible by eye or with optical magnification equipment",
                     "type": "object",
                     "properties":
                     {
                         "visibleElementsOptions":
                         {
+                            "description": "(Optional) - One or more elements (if any) useful e.g. for coarse alignment, which are visible by eye or with optical magnification equipment",
                             "type": "array",
                             "items":
                             {
@@ -889,11 +907,12 @@ var dataModel = {
                                 ]
                             } 
                         },
-                        "comment": {"type": "string"}
+                        "otherVisibleElements": {"type": "string"}
                     }   
                 },
                 "sampleShape":
                 {
+                    "description": "(Optional) - Shape of the solid/mixture sample.",
                     "type": "object",
                     "properties":
                     {
@@ -933,6 +952,11 @@ var dataModel = {
                                         "value": {"type": "number"},
                                         "unit": {"type": "string"}
                                     }
+                                },
+                                "aspectRatio":
+                                {
+                                    "description": "(Optional) - Ratio of the lateral dimension to sheet thickness.",
+                                    "type": "number"
                                 }
                             }
                         },
@@ -989,6 +1013,7 @@ var dataModel = {
                                 },
                                 "aspectRatio":
                                 {
+                                    "description": "(Optional) - Ratio of the lenght to the diameter.",
                                     "type": "number"
                                 }
                             }
@@ -997,13 +1022,13 @@ var dataModel = {
                 },
                 "sampleSize":
                 {
-                    "description":  "(Optional) - Size of the sample, mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY).",
+                    "description":  "(Optional) - Size of the sample. Relevant in case of solid/mixture samples. Mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY). Not intended to be used for the container of a liquid/gasous sample (use holder or carrier size in this case).",
                     "type": "object",
                     "properties":
                     {
                         "sizeX":
                         {
-                            "description": "(Optional) - Size of the sample in the x dimension. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX).",
+                            "description": "(Optional) - Size of the sample in the x dimension. Relevant in case of solid/mixture samples. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX). Not intended to be used for the container of a liquid/gasous sample (use holder or carrier size in this case).",
                             "type": "object",
                             "properties":
                             {
@@ -1013,7 +1038,7 @@ var dataModel = {
                         },
                         "sizeY":
                         {
-                            "description": "(Optional) - Size of the sample in the y dimension. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeY).",
+                            "description": "(Optional) - Size of the sample in the y dimension. Relevant in case of solid/mixture samples. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeY). Not intended to be used for the container of a liquid/gasous sample (use holder or carrier size in this case).",
                             "type": "object",
                             "properties":
                             {
@@ -1023,7 +1048,7 @@ var dataModel = {
                         },
                         "sizeZ":
                         {
-                            "description": "(Optional) - Size of the sample in the z dimension. Regardless of the shape, the sample size can be approximated (e.g. the hight of a cylinder can be indicated as sizeZ).",
+                            "description": "(Optional) - Size of the sample in the z dimension. Relevant in case of solid/mixture samples. Regardless of the shape, the sample size can be approximated (e.g. the hight of a cylinder can be indicated as sizeZ). Not intended to be used for the container of a liquid/gasous sample (use holder or carrier size in this case).",
                             "type": "object",
                             "properties":
                             {
@@ -1035,6 +1060,7 @@ var dataModel = {
                 },
                 "sampleMass": 
                 {
+                    "description": "(Optional) - Mass of the sample.",
                     "type": "object",
                     "properties":
                     {
@@ -1044,7 +1070,7 @@ var dataModel = {
                 },
                 "sampleVolume": 
                 {
-                    "description": "(Optional) - Relevant for gas, liquid and powder",
+                    "description": "(Optional) - Relevant for gas, liquid and powder.",
                     "type": "object",
                     "properties":
                     {
@@ -1054,7 +1080,7 @@ var dataModel = {
                 },
                 "gasPressure":
                 {
-                    "description": "(Optional) - Only relevant for gas",
+                    "description": "(Optional) - Only relevant for gas.",
                     "type": "object",
                     "properties":
                     {
@@ -1111,6 +1137,7 @@ var dataModel = {
                             {
                                 "amplitudeParameter":
                                 {
+                                    "description": "(Optional) - Parameter characterizing the surface based on the vertical deviations of the roughness profile from the mean line.",
                                     "type": "string",
                                     "enum":
                                     [
@@ -1136,286 +1163,6 @@ var dataModel = {
                             ]
                         }
                     }
-                }
-            }
-        },
-        "samplePreparation":
-        {
-            "type": "object",
-            "properties":
-            {
-                "researchUser":
-                {
-                    "type": "object",
-                    "properties":
-                    {
-                        "userName": {"type": "string"},
-                        "userRole":
-                        {
-                            "type": "string",
-                            "enum": ["Data Curator", "Instrument Scientist", "Team Leader", "Team Member"]
-                        }
-                    }
-                },
-                "preparationDate":
-                {
-                    "description": "(Optional) - Date of preparation",
-                    "type": "string",
-                    "format": "date"
-                },
-                "consumables":
-                {
-                    "description": "Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
-                    "type": "array",
-                    "items":
-                    {
-                        "type": "string" 
-                    }
-                },
-                "preparationMethod":
-                {
-                    "type": "array",
-                    "items":
-                    {
-                        "type": "object",
-                        "properties":
-                        {
-                            "preparationStep":
-                            {
-                                "type": "string",
-                                "enum":
-                                [
-                                    "notApplicable",
-                                    "annealingHomogenization",
-                                    "depositionCoating",
-                                    "joining",
-                                    "mechanicalAndSurface",
-                                    "powderProcessing",
-                                    "cooling",
-                                    "reactive",
-                                    "other (please add in the comments)"
-                                ]
-                            },
-                            "notApplicable":
-                            {
-                                "type": "object",
-                                "properties":
-                                {
-                                    "comments": {"type": "string"}
-                                }
-                            },
-                            "annealingHomogenization":
-                            {
-                                "type": "object",
-                                "properties":
-                                {
-                                    "annealingHomogenizationMethod":
-                                    {
-                                        "type": "string",
-                                        "enum":
-                                        [
-                                            "unspecified annealing and homogenization",
-                                            "aging",
-                                            "dry blending",
-                                            "homogenization",
-                                            "mechanical mixing",
-                                            "melt mixing",
-                                            "normalizing",
-                                            "recrystallization",
-                                            "stress relieving",
-                                            "tempering",
-                                            "twin screw excrusion",
-                                            "ultrasonication",
-                                            "vacuum annealing/heating",
-                                            "curing/hardening",
-                                            "other (please add in the comments)"
-                                        ]
-                                    },
-                                    "comments": {"type": "string"}
-                                }
-                            },
-                            "depositionCoating":
-                            {
-                                "type": "object",
-                                "properties":
-                                {
-                                    "depositionCoatingMethod":
-                                    {
-                                        "type": "string",
-                                        "enum":
-                                        [
-                                            "unspecified deposition and coating",
-                                            "chemical vapour deposition",
-                                            "atomic layer deposition",
-                                            "gas dosing/gas exposure",
-                                            "sputter coating",
-                                            "ion implantation",
-                                            "electrodeposition",
-                                            "evaporation/physical vapor deposition",
-                                            "electron beam deposition",
-                                            "ion beam deposition",
-                                            "beam epitaxy",
-                                            "ink-jet deposition",
-                                            "pulsed laser deposition",
-                                            "Langmuir-Blodgett film deposition",
-                                            "plasma spraying",
-                                            "carbon evaporation coating",
-                                            "spin coating",
-                                            "other (please add in the comments)"
-                                        ]
-                                    },
-                                    "comments": {"type": "string"}
-                                }
-                            },
-                            "joining":
-                            {
-                                "type": "object",
-                                "properties":
-                                {
-                                    "joiningMethod":
-                                    {
-                                        "type": "string",
-                                        "enum":
-                                        [
-                                            "unspecified joining",
-                                            "adhesive bonding",
-                                            "soldering/brazing/wire bonding",
-                                            "resistance welding",
-                                            "clamping",
-                                            "other (please add in the comments)"
-                                        ]
-                                    },
-                                    "comments": {"type": "string"}
-                                }
-                            },
-                            "mechanicalAndSurface":
-                            {
-                                "type": "object",
-                                "properties":
-                                {
-                                    "mechanicalAndSurfaceMethod":
-                                    {
-                                        "type": "string",
-                                        "enum":
-                                        [
-                                            "unspecified mechanical and surface",
-                                            "focused ion beam",
-                                            "lithography",
-                                            "polishing",
-                                            "sectioning",
-                                            "sputtering",
-                                            "thermal plasma processing",
-                                            "exfoliation/cleavage/decapping",
-                                            "grinding",
-                                            "etching",
-                                            "grit blasting",
-                                            "sterilization",
-                                            "Laser Surface Texturing (LST)",
-                                            "dimpling",
-                                            "other (please add in the comments)"
-                                        ]
-                                    },
-                                    "comments": {"type": "string"}
-                                }
-                            },
-                            "powderProcessing":
-                            {
-                                "type": "object",
-                                "properties":
-                                {
-                                    "powderProcessingMethod":
-                                    {
-                                        "type": "string",
-                                        "enum":
-                                        [
-                                            "unspecified powder processing",
-                                            "sieve fraction preparation",
-                                            "pressing",
-                                            "other (please add in the comments)"
-                                        ]
-                                    },
-                                    "comments": {"type": "string"}
-                                }
-                            },
-                            "cooling":
-                            {
-                                "type": "object",
-                                "properties":
-                                {
-                                    "coolingMethod":
-                                    {
-                                        "type": "string",
-                                        "enum":
-                                        [
-                                            "unspecified cooling",
-                                            "gas cooling",
-                                            "vacuum cooling",
-                                            "other (please add in the comments)"
-                                        ]
-                                    },
-                                    "comments": {"type": "string"}
-                                }
-                            },
-                            "reactive":
-                            {
-                                "type": "object",
-                                "properties":
-                                {
-                                    "reactiveMethod":
-                                    {
-                                        "type": "string",
-                                        "enum":
-                                        [
-                                            "unspecified reactive",
-                                            "addition polymerization",
-                                            "condensation polymerization",
-                                            "curing",
-                                            "dissolving/etching",
-                                            "drying",
-                                            "in-situ polymerization",
-                                            "post-polymerization modification",
-                                            "reductive roasting",
-                                            "solution processing",
-                                            "reactive ion etching (RIE/IBE)",
-                                            "other (please specify in the comments)"
-                                        ]
-                                    },
-                                    "comments": {"type": "string"}
-                                }
-                            },
-                            "other": 
-                            {
-                                "type": "object",
-                                "properties": 
-                                {
-                                    "comments": {"type": "string"}
-                                }
-                            }
-                        }
-                    }
-                },
-                "preparationDescription":
-                {
-                    "description": "(Optional) - Short description to keep track of the preparation procedures and treatments required to obtain the Sample.",
-                    "type": "string"
-                },
-                "preparationHistoryFile":
-                {
-                    "description": "(Optional) - Type of file, if any, where the complete Sample Preparation history is described",
-                    "type": "string",
-                    "enum":
-                    [
-                        "Not Applicable",
-                        "ELN",
-                        "Data Repository",
-                        "Included in the Raw Data file",
-                        "Paper log book"
-                    ]
-                },
-                "preparationHistoryFileReference":
-                {
-                    "description": "(Optional) - Reference to the location of the file where the complete Sample Preparation history is described. Ideally, the unique identifier to the ELN or to a data repository. Not needed in case of a paper log book, or if sample preparation history is included in the raw data",
-                    "type": "string"   
                 }
             }
         },
@@ -1494,29 +1241,29 @@ var dataModel = {
                     "type": "object",
                     "properties":
                     {
-                        "noTweezers": 
-                        {
-                            "description": "The sample has regions which cannot be touched or reached.",
-                            "type":"boolean"
-                        },
                         "gloves":
                         {
-                            "description": "The sample must be handled using gloves.",
+                            "description": "(Optional) - The sample must be handled using gloves.",
                             "type": "boolean"
                         },
                         "shockProtection":
                         {
-                            "description": "The sample must be protected against shocks.",
+                            "description": "(Optional) - The sample must be protected against shocks.",
                             "type": "boolean"
+                        },
+                        "noTweezersRegions": 
+                        {
+                            "description": "(Optional) - Regions on the sample which cannot be touched or reached by tweezers.",
+                            "type":"string"
                         },
                         "cleanRoomConditions": 
                         {
-                            "description": "The sample should be treated only under the given specific clean room conditions.",
+                            "description": "(Optional) - Specific clean room conditions under which the sample should be treated.",
                             "type":"string"
                         },
-                        "humidity": 
+                        "minHumidity": 
                         {
-                            "description": "The sample should be handled at the given humidity. It can be a numerical value or a range of numerical values.",
+                            "description": "(Optional) - Minimal humidity at which the sample should be handled.",
                             "type": "object",
                             "properties":
                             {
@@ -1524,15 +1271,25 @@ var dataModel = {
                                 "unit": {"type": "string"}                              
                             }
                         },
+                        "maxHumidity": 
+                        {
+                            "description": "(Optional) - Maximal humidity at which the sample should be handled.",
+                            "type": "object",
+                            "properties": 
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}
+                            }
+                        },
                         "gasAtmosphere": 
                         {
-                            "description": "(Optional) - The sample has a reactive top layer and needs the given inert gas around it during treatment.",
+                            "description": "(Optional) - Type of inert gas required around the sample due e.g. to the presence of a reactive top layer.",
                             "type": "object",
                             "properties":
                             {
                                 "gasAtmosphereOptions":
                                 {
-                                    "description": "(Optional) - The sample has a reactive top layer and needs the given inert gas around it during treatment.",
+                                    "description": "(Optional) - Type of inert gas required around the sample to handle it, due e.g. to the presence of a reactive top layer.",
                                     "type":"string",
                                     "enum":
                                     [
@@ -1560,9 +1317,19 @@ var dataModel = {
                     "type": "object",
                     "properties":
                     {
-                        "storageTemperature": 
+                        "minStorageTemperature": 
                         {
-                            "description": "(Optional) - Commonly known as sample temperature. It can be a numerical value, a range of numerical values, or some text (e.g., room temperature).",
+                            "description": "(Optional) - Minimal temperature at which the sample should be stored.",
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}                              
+                            }
+                        },
+                        "maxStorageTemperature": 
+                        {
+                            "description": "(Optional) - Maximal temperature at which the sample should be stored.",
                             "type": "object",
                             "properties":
                             {
@@ -1572,7 +1339,7 @@ var dataModel = {
                         },
                         "storagePressure": 
                         {
-                            "description": "(Optional) - Generally it does not refer to gas pressure, because usually gas pressure = storage pressure. It can be a numerical value, a range of numerical values, or some text (e.g., vacuum, high vacuum, ultra high vacuum, …)",
+                            "description": "(Optional) - Storage pressure, to be indicated only if different from gas pressure.",
                             "type": "object",
                             "properties":
                             {
@@ -1593,6 +1360,7 @@ var dataModel = {
                                         "value": {"type": "number"},
                                         "unit": {"type": "string"}
                                     }
+                                    
                                 },
                                 "qualitative":
                                 {
@@ -1607,9 +1375,19 @@ var dataModel = {
                                 }
                             }
                         },
-                        "storageHumidity": 
+                        "minStorageHumidity": 
                         {
-                            "description": "(Optional) - To be indicated only if different from the humidity required for sample handling. It can be a numerical value or a range of numerical values.",
+                            "description": "(Optional) - Minimal torage humidity, to be indicated only if different from the humidity required for sample handling.",
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}                              
+                            }
+                        },
+                        "maxStorageHumidity": 
+                        {
+                            "description": "(Optional) - Maximal storage humidity, to be indicated only if different from the humidity required for sample handling.",
                             "type": "object",
                             "properties":
                             {
@@ -1619,13 +1397,13 @@ var dataModel = {
                         },
                         "storageGasAtmosphere": 
                         {
-                            "description": "(Optional) - To be indicated only if different from the gas atmosphere required for sample handling. It can be a numerical value or a range of numerical values",
+                            "description": "(Optional) - Storage gas atmosphere, to be indicated only if different from the gas atmosphere required for sample handling.",
                             "type": "object",
                             "properties":
                             {
                                 "storageGasAtmosphereOptions":
                                 {
-                                    "description": "(Optional) - To be indicated only if different from the gas atmosphere required for sample handling. It can be a numerical value or a range of numerical values",
+                                    "description": "(Optional) - Storage gas atmosphere, to be indicated only if different from the gas atmosphere required for sample handling.",
                                     "type":"string",
                                     "enum":
                                     [
@@ -1643,13 +1421,13 @@ var dataModel = {
                         },
                         "storageEquipment": 
                         {
-                            "description": "(Optional) - Equipment used for storing the sample. Multiple selection is allowed.",
+                            "description": "(Optional) - One or more pieces of equipment used for storing the sample.",
                             "type": "object",
                             "properties":
                             {
                                 "storageEquipmentOptions":
                                 {
-                                    "description": "(Optional) - Equipment used for storing the sample. Multiple selection is allowed.",
+                                    "description": "(Optional) - One or more pieces of equipment used for storing the sample.",
                                     "type":"array",
                                     "items":
                                     {
@@ -1682,6 +1460,340 @@ var dataModel = {
                 }
             }
         },
+        "samplePreparation":
+        {
+            "type": "object",
+            "properties":
+            {
+                "researchUser":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "userName": {"type": "string"},
+                        "userRole":
+                        {
+                            "type": "string",
+                            "enum": ["Data Curator", "Instrument Scientist", "Team Leader", "Team Member"]
+                        }
+                    }
+                },
+                "preparationDate":
+                {
+                    "description": "(Optional) - Date of preparation",
+                    "type": "string",
+                    "format": "date"
+                },
+                "preparationMethod":
+                {
+                    "type": "array",
+                    "items":
+                    {
+                        "type": "object",
+                        "properties":
+                        {
+                            "preparationStep":
+                            {
+                                "type": "string",
+                                "enum":
+                                [
+                                    "notApplicable",
+                                    "annealingHomogenization",
+                                    "depositionCoating",
+                                    "joining",
+                                    "mechanicalAndSurface",
+                                    "powderProcessing",
+                                    "cooling",
+                                    "reactive",
+                                    "other (please add in the comments)"
+                                ]
+                            },
+                            "notApplicable":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "comments": {"type": "string"}
+                                }
+                            },
+                            "annealingHomogenization":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "annealingHomogenizationMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified annealing and homogenization",
+                                            "aging",
+                                            "dry blending",
+                                            "homogenization",
+                                            "mechanical mixing",
+                                            "melt mixing",
+                                            "normalizing",
+                                            "recrystallization",
+                                            "stress relieving",
+                                            "tempering",
+                                            "twin screw excrusion",
+                                            "ultrasonication",
+                                            "vacuum annealing/heating",
+                                            "curing/hardening",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"},
+                                    "consumables":
+                                    {
+                                        "description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
+                                        "type": "array",
+                                        "items":
+                                        {
+                                            "type": "string" 
+                                        }
+                                    }
+                                }
+                            },
+                            "depositionCoating":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "depositionCoatingMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified deposition and coating",
+                                            "chemical vapour deposition",
+                                            "atomic layer deposition",
+                                            "gas dosing/gas exposure",
+                                            "sputter coating",
+                                            "ion implantation",
+                                            "electrodeposition",
+                                            "evaporation/physical vapor deposition",
+                                            "electron beam deposition",
+                                            "ion beam deposition",
+                                            "beam epitaxy",
+                                            "ink-jet deposition",
+                                            "pulsed laser deposition",
+                                            "Langmuir-Blodgett film deposition",
+                                            "plasma spraying",
+                                            "carbon evaporation coating",
+                                            "spin coating",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"},
+                                    "consumables":
+                                    {
+                                        "description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
+                                        "type": "array",
+                                        "items":
+                                        {
+                                            "type": "string" 
+                                        }
+                                    }
+                                }
+                            },
+                            "joining":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "joiningMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified joining",
+                                            "adhesive bonding",
+                                            "soldering/brazing/wire bonding",
+                                            "resistance welding",
+                                            "clamping",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"},
+                                    "consumables":
+                                    {
+                                        "description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
+                                        "type": "array",
+                                        "items":
+                                        {
+                                            "type": "string" 
+                                        }
+                                    }
+                                }
+                            },
+                            "mechanicalAndSurface":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "mechanicalAndSurfaceMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified mechanical and surface",
+                                            "focused ion beam",
+                                            "lithography",
+                                            "polishing",
+                                            "sectioning",
+                                            "sputtering",
+                                            "thermal plasma processing",
+                                            "exfoliation/cleavage/decapping",
+                                            "grinding",
+                                            "etching",
+                                            "grit blasting",
+                                            "sterilization",
+                                            "Laser Surface Texturing (LST)",
+                                            "dimpling",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"},
+                                    "consumables":
+                                    {
+                                        "description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
+                                        "type": "array",
+                                        "items":
+                                        {
+                                            "type": "string" 
+                                        }
+                                    }
+                                }
+                            },
+                            "powderProcessing":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "powderProcessingMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified powder processing",
+                                            "sieve fraction preparation",
+                                            "pressing",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"},
+                                    "consumables":
+                                    {
+                                        "description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
+                                        "type": "array",
+                                        "items":
+                                        {
+                                            "type": "string" 
+                                        }
+                                    }
+                                }
+                            },
+                            "cooling":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "coolingMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified cooling",
+                                            "gas cooling",
+                                            "vacuum cooling",
+                                            "other (please add in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"},
+                                    "consumables":
+                                    {
+                                        "description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
+                                        "type": "array",
+                                        "items":
+                                        {
+                                            "type": "string" 
+                                        }
+                                    }
+                                }
+                            },
+                            "reactive":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "reactiveMethod":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "unspecified reactive",
+                                            "addition polymerization",
+                                            "condensation polymerization",
+                                            "curing",
+                                            "dissolving/etching",
+                                            "drying",
+                                            "in-situ polymerization",
+                                            "post-polymerization modification",
+                                            "reductive roasting",
+                                            "solution processing",
+                                            "reactive ion etching (RIE/IBE)",
+                                            "other (please specify in the comments)"
+                                        ]
+                                    },
+                                    "comments": {"type": "string"},
+                                    "consumables":
+                                    {
+                                        "description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
+                                        "type": "array",
+                                        "items":
+                                        {
+                                            "type": "string" 
+                                        }
+                                    }
+                                }
+                            },
+                            "other": 
+                            {
+                                "type": "object",
+                                "properties": 
+                                {
+                                    "comments": {"type": "string"}
+                                }
+                            }
+                        }
+                    }
+                },
+                "preparationDescription":
+                {
+                    "description": "(Optional) - Short description to keep track of the preparation procedures and treatments required to obtain the Sample.",
+                    "type": "string"
+                },
+                "preparationHistoryFile":
+                {
+                    "description": "(Optional) - Location of the file, if any, where the complete Sample Preparation history is described",
+                    "type": "string",
+                    "enum":
+                    [
+                        "Not Applicable",
+                        "ELN",
+                        "Data Repository",
+                        "Included in the Raw Data file",
+                        "Paper log book"
+                    ]
+                },
+                "preparationHistoryFileReference":
+                {
+                    "description": "(Optional) - Reference to the location of the file where the complete Sample Preparation history is described. Ideally, the unique identifier to the ELN or to a data repository. Not needed in case of a paper log book, or if sample preparation history is included in the raw data.",
+                    "type": "string"   
+                }
+            }
+        },
         "sampleHolder":
         {
             "type": "object",
@@ -1689,7 +1801,7 @@ var dataModel = {
             {
                 "sampleHolderType":
                 {
-                    "description": "Type of sample holder",
+                    "description": "(Optional) - Type of sample holder.",
                     "type": "string",
                     "enum":
                     [
@@ -1705,9 +1817,47 @@ var dataModel = {
                     ]
                 },
                 "otherHolderType": {"type": "string"},
+                "sampleHolderSize":
+                {
+                    "description":  "(Optional) - Size of the sample holder. Relevant especially in case of a liquid/gasous sample. Mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample holder size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY).",
+                    "type": "object",
+                    "properties":
+                    {
+                        "sizeX":
+                        {
+                            "description":  "(Optional) - Size of the sample holder in the x dimension. Relevant especially in case of a liquid/gasous sample. Regardless of the shape, the sample holder size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX).",
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}
+                            }
+                        },
+                        "sizeY":
+                        {
+                            "description":  "(Optional) - Size of the sample holder in the y dimension. Relevant especially in case of a liquid/gasous sample. Regardless of the shape, the sample holder size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeY).",
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}
+                            }
+                        },
+                        "sizeZ":
+                        {
+                            "description": "(Optional) - Size of the sample holder in the z dimension. Relevant especially in case of a liquid/gasous sample. Regardless of the shape, the sample holder size can be approximated (e.g. the hight of a cylinder can be indicated as sizeZ).",
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}
+                            }
+                        }
+                    }
+                },
                 "sampleHolderDescription":
                 {
-                    "description": "Any additional description which might be useful to identify the sample holder",
+                    "description": "(Optional) - Any additional description which might be useful to identify the sample holder.",
                     "type": "string"
                 },
                 "fixingMethod":
@@ -1735,12 +1885,50 @@ var dataModel = {
             {
                 "sampleCarrierType": 
                 {
-                    "description": "Type of sample carrier. It may include the substrate, in case it is used as Sample Carrier.",
+                    "description": "(Optional) - Type of sample carrier. It may include the substrate, in case it is used as sample carrier.",
                     "type": "string",
+                },
+                "sampleCarrierSize":
+                {
+                    "description":  "(Optional) - Size of the sample carrier. Relevant especially in case of a liquid/gasous sample. Mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample carrier size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY).",
+                    "type": "object",
+                    "properties":
+                    {
+                        "sizeX":
+                        {
+                            "description":  "(Optional) - Size of the sample carrier in the x dimension. Relevant especially in case of a liquid/gasous sample. Regardless of the shape, the sample carrier size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX).",
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}
+                            }
+                        },
+                        "sizeY":
+                        {
+                            "description":  "(Optional) - Size of the sample carrier in the y dimension. Relevant especially in case of a liquid/gasous sample. Regardless of the shape, the sample carrier size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeY).",
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}
+                            }
+                        },
+                        "sizeZ":
+                        {
+                            "description": "(Optional) - Size of the sample carrier in the z dimension. Relevant especially in case of a liquid/gasous sample. Regardless of the shape, the sample carrier size can be approximated (e.g. the hight of a cylinder can be indicated as sizeZ).",
+                            "type": "object",
+                            "properties":
+                            {
+                                "value": {"type": "number"},
+                                "unit": {"type": "string"}
+                            }
+                        }
+                    }
                 },
                 "sampleCarrierDescription":
                 {
-                    "description": "Any additional description which might be useful to identify the sample carrier",
+                    "description": "(Optional) - Any additional description which might be useful to identify the sample carrier.",
                     "type": "string"
                 }
             }
@@ -1753,7 +1941,7 @@ var dataModel = {
                 "axisOrientation": {"type": "string"},
                 "sampleReference":
                 {
-                    "description": "Coordinates of the markers in the sample reference system.",
+                    "description": "(Optional) - Coordinates of the markers in the sample reference system.",
                     "type": "array",
                     "enum": 
                     [
@@ -1783,7 +1971,7 @@ var dataModel = {
                     {
                         "samplePositionOnHolder":
                         {
-                            "description": "Sample position in the holder reference system.",
+                            "description": "(Optional) - Sample position in the holder reference system.",
                             "type": "array",
                             "enum": 
                             [
@@ -1806,7 +1994,7 @@ var dataModel = {
                     {
                         "holderReference":
                         {
-                            "description": "Coordinates of the markers in the holder reference system.",
+                            "description": "(Optional) - Coordinates of the markers in the holder reference system.",
                             "type": "array",
                             "enum": 
                             [
@@ -1838,7 +2026,7 @@ var dataModel = {
                     {
                         "holderPositionOnCarrier":
                         {
-                            "description": "Holder position in the carrier reference system.",
+                            "description": "(Optional) - Holder position in the carrier reference system.",
                             "type": "array",
                             "enum": 
                             [
@@ -1861,7 +2049,7 @@ var dataModel = {
                     {
                         "carrierReference":
                         {
-                            "description": "Coordinates of the markers in the carrier reference system.",
+                            "description": "(Optional) - Coordinates of the markers in the carrier reference system.",
                             "type": "array",
                             "enum": 
                             [
@@ -1888,7 +2076,7 @@ var dataModel = {
                 "axisOrientation": {"type": "string"},
                 "ROIReference":
                 {
-                    "description": "Coordinates of the points defining the sample ROI (Region of Interest) in the sample reference system.",
+                    "description": "(Optional) - Coordinates of the points defining the sample ROI (Region of Interest) in the sample reference system.",
                     "type": "array",
                     "enum": 
                     [
@@ -1907,7 +2095,8 @@ var dataModel = {
         },
         "parents": 
         {
-			"type": "array",
+			"description": "(Required) - One or more entities which were used as input of the processes to obtain the output entity described in this schema. This field is needed to reconstruct the provenance.",
+            "type": "array",
 			"items": 
             {
 				"type": "object",
@@ -1915,7 +2104,8 @@ var dataModel = {
                 {
 					"parentType": 
                     {
-						"type": "string",
+						"description": "(Required) - Type of parent used as input of the process to obtain the output entity described in this schema.",
+                        "type": "string",
 						"default": "not applicable",
 						"enum": 
                         [
@@ -1926,7 +2116,8 @@ var dataModel = {
 					},
 					"parentReferenceType": 
                     {
-						"type": "string",
+						"description": "(Required) - Type of reference to the file where the parent is described, if any. Ideally, this is the MetaStore URI.",
+                        "type": "string",
 						"enum": 
                         [
 							"plain text",
@@ -1937,7 +2128,7 @@ var dataModel = {
 					"parentReference": 
                     {
 						"type": "string",
-						"description": "If type is 'MetaStore URI' it is possible to easily fill this field in a later stage"
+						"description": "Reference to the file where the parent is described. Ideally, this is the URI of the parent metadata document in MetaStore. If parentReferenceType is 'MetaStore URI' it is possible to easily fill this field in a later stage"
 					}
 				},
 				"required": 

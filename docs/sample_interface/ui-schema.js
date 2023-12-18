@@ -19,110 +19,6 @@ var uiSchema = {
             ]
         },
         {
-            "title": "Sample Description",
-            "type": "fieldset",
-            "htmlClass": "myclass",
-            "items":
-            [
-                {"title": "Sample Expiration Date", "key": "sampleDescription.expirationDate"},
-                {"title": "Sample Chemical Formula", "key": "sampleDescription.sampleChemicalFormula"},
-                {"title": "Sample CAS Number", "key": "sampleDescription.sampleCASNumber"},
-                {"title": "Sample Materials Data Sheet", "key": "sampleDescription.sampleMaterialDataSheet"},
-                {
-                    "type": "section",
-                    "items":
-                    [
-                        {"title": "Sample Visible Elements", "key": "sampleDescription.sampleVisibleElements.visibleElementsOptions", "type": "checkboxes"},
-                        {"title": "Comment", "key": "sampleDescription.sampleVisibleElements.comment"}
-                    ]
-                },
-                {
-                    "title": "Sample Shape",
-                    "type": "fieldset", 
-                    "htmlClass": "myclass",
-                    "items":
-                    [
-                        {"title": "One choice is allowed", "key": "sampleDescription.sampleShape.shapeOptions", "type": "radios"},
-                        {
-                            "title": "Sheet",
-                            "type": "advancedfieldset",
-                            "htmlClass": "myclass",
-                            "items":
-                            [
-                                {"title": "Sheet Type", "key": "sampleDescription.sampleShape.sheet.sheetType"},
-                                {"title": "Sheet Thickness", "key": "sampleDescription.sampleShape.sheet.sheetThickness"},
-                            ]
-                        },
-                        {
-                            "title": "Layer",
-                            "type": "advancedfieldset",
-                            "htmlClass": "myclass",
-                            "items":
-                            [
-                                {"title": "Layer Type", "key": "sampleDescription.sampleShape.layer.layerType"},
-                                {"title": "Layer Thickness", "key": "sampleDescription.sampleShape.layer.layerThickness"},
-                                {"title": "Interlayer Spacing", "key": "sampleDescription.sampleShape.layer.interlayerSpacing"},
-                                {"title": "Number of Layers", "key": "sampleDescription.sampleShape.layer.numberOfLayers"}
-                            ]
-                        },
-                        {
-                            "title": "Wire",
-                            "type": "advancedfieldset",
-                            "htmlClass": "myclass",
-                            "items":
-                            [
-                                {"title": "Wire Diameter", "key": "sampleDescription.sampleShape.wire.diameter"},
-                                {"title": "Aspect Ratio", "key": "sampleDescription.sampleShape.wire.aspectRatio"}
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "title": "Sample Size",
-                    "type": "fieldset", 
-                    "htmlClass": "myclass",
-                    "items":
-                    [
-                        {"title": "Size x", "key": "sampleDescription.sampleSize.sizeX"},
-                        {"title": "Size y", "key": "sampleDescription.sampleSize.sizeY"},
-                        {"title": "Size z", "key": "sampleDescription.sampleSize.sizeZ"}
-                    ]
-                },
-                {"title": "Sample Mass", "key": "sampleDescription.sampleMass"},
-                {"title": "Sample Volume", "key": "sampleDescription.sampleVolume"},
-                {
-                    "title": "Sample Gas Pressure", 
-                    "type": "selectfieldset", 
-                    "htmlClass": "myclass",
-                    "titleMap": 
-                    {
-                        "qualitative": "Quantitative",
-                        "quantitative": "Qualitative"
-                    },
-                    "items":
-                    [
-                        {"title": "Quantitative", "key": "sampleDescription.gasPressure.quantitative"},
-                        {"title": "Qualitative", "key": "sampleDescription.gasPressure.qualitative"}
-                    ]
-                },
-                {
-                    "title": "Sample Surface Roughness", 
-                    "type": "selectfieldset", 
-                    "htmlClass": "myclass",
-                    "titleMap": 
-                    {
-                        "qualitative": "Quantitative",
-                        "quantitative": "Qualitative"
-                    },
-                    "items":
-                    [
-                        {"title": "Quantitative", "key": "sampleDescription.sampleSurfaceRoughness.quantitative"},
-                        {"title": "Qualitative", "key": "sampleDescription.sampleSurfaceRoughness.qualitative"}
-                    ]
-                }
-            ]
-        },
-        {
             "legend": "Sample Components",
             "type": "fieldset",
             "htmlClass": "myclass",
@@ -165,7 +61,7 @@ var uiSchema = {
                             "items":
                             [
                                 {"title": "Multiple choice is allowed", "key": "sampleCharacterization.materialProperties.propertiesOptions", "type": "checkboxes"},
-                                {"title": "Comment", "key": "sampleCharacterization.materialProperties.comment"}
+                                {"title": "otherMaterialProperties", "key": "sampleCharacterization.materialProperties.otherMaterialProperties"}
                             ]
                         }
                     ]
@@ -231,7 +127,7 @@ var uiSchema = {
                                     "htmlClass": "myclass",
                                     "items":
                                     [
-                                        {"title": "Cluster Atoms", "key": "featuresOfInterest.dominantStructures.clusters.clusterAtoms"},
+                                        {"title": "Cluster Components", "key": "featuresOfInterest.dominantStructures.clusters.clusterComponents"},
                                         {"title": "Cluster Size", "key": "featuresOfInterest.dominantStructures.clusters.clusterSize"}
                                     ]
                                 },
@@ -331,13 +227,121 @@ var uiSchema = {
                                             "htmlClass": "myclass",
                                             "items":
                                             [
-                                                {"title": "Thickness", "key": "featuresOfInterest.dominantStructures.nanostructures.nanosheets.thickness"}
+                                                {"title": "Thickness", "key": "featuresOfInterest.dominantStructures.nanostructures.nanosheets.thickness"},
+                                                {"title": "Aspect Ratio", "key": "featuresOfInterest.dominantStructures.nanostructures.nanosheets.aspectRatio"}
                                             ]
                                         }
                                     ]
                                 }
                             ]
                         }  
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Sample Description",
+            "type": "fieldset",
+            "htmlClass": "myclass",
+            "items":
+            [
+                {"title": "Sample Expiration Date", "key": "sampleDescription.expirationDate"},
+                {"title": "Sample Chemical Formula", "key": "sampleDescription.sampleChemicalFormula"},
+                {"title": "Sample CAS Number", "key": "sampleDescription.sampleCASNumber"},
+                {"title": "Sample Materials Data Sheet", "key": "sampleDescription.sampleMaterialDataSheet"},
+                {
+                    "type": "section",
+                    "items":
+                    [
+                        {"title": "Sample Visible Elements", "key": "sampleDescription.sampleVisibleElements.visibleElementsOptions", "type": "checkboxes"},
+                        {"title": "Other Visible Elements", "key": "sampleDescription.sampleVisibleElements.otherVisibleElements"}
+                    ]
+                },
+                {
+                    "title": "Sample Shape",
+                    "description": "(Optional) - Shape of the sample. Relevant in case of solid/mixture samples",
+                    "type": "fieldset", 
+                    "htmlClass": "myclass",
+                    "items":
+                    [
+                        {"title": "One choice is allowed", "key": "sampleDescription.sampleShape.shapeOptions", "type": "radios"},
+                        {
+                            "title": "Sheet",
+                            "type": "advancedfieldset",
+                            "htmlClass": "myclass",
+                            "items":
+                            [
+                                {"title": "Sheet Type", "key": "sampleDescription.sampleShape.sheet.sheetType"},
+                                {"title": "Sheet Thickness", "key": "sampleDescription.sampleShape.sheet.sheetThickness"},
+                                {"title": "Aspect Ratio", "key": "sampleDescription.sampleShape.sheet.aspectRatio"}
+                            ]
+                        },
+                        {
+                            "title": "Layer",
+                            "type": "advancedfieldset",
+                            "htmlClass": "myclass",
+                            "items":
+                            [
+                                {"title": "Layer Type", "key": "sampleDescription.sampleShape.layer.layerType"},
+                                {"title": "Layer Thickness", "key": "sampleDescription.sampleShape.layer.layerThickness"},
+                                {"title": "Interlayer Spacing", "key": "sampleDescription.sampleShape.layer.interlayerSpacing"},
+                                {"title": "Number of Layers", "key": "sampleDescription.sampleShape.layer.numberOfLayers"}
+                            ]
+                        },
+                        {
+                            "title": "Wire",
+                            "type": "advancedfieldset",
+                            "htmlClass": "myclass",
+                            "items":
+                            [
+                                {"title": "Wire Diameter", "key": "sampleDescription.sampleShape.wire.diameter"},
+                                {"title": "Aspect Ratio", "key": "sampleDescription.sampleShape.wire.aspectRatio"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Sample Size",
+                    "description":  "(Optional) - Size of the sample. Relevant in case of solid/mixture samples. Mainly needed to evaluate whether the sample fits a certain measurement. Regardless of the shape, the sample size can be approximated (e.g. the diameter of a cylinder can be indicated as sizeX and sizeY). Not intended to be used for the container of a liquid/gasous sample (use holder or carrier size in this case).",
+                    "type": "fieldset", 
+                    "htmlClass": "myclass",
+                    "items":
+                    [
+                        {"title": "Size x", "key": "sampleDescription.sampleSize.sizeX"},
+                        {"title": "Size y", "key": "sampleDescription.sampleSize.sizeY"},
+                        {"title": "Size z", "key": "sampleDescription.sampleSize.sizeZ"}
+                    ]
+                },
+                {"title": "Sample Mass", "key": "sampleDescription.sampleMass"},
+                {"title": "Sample Volume", "key": "sampleDescription.sampleVolume"},
+                {
+                    "title": "Sample Gas Pressure", 
+                    "type": "selectfieldset", 
+                    "htmlClass": "myclass",
+                    "titleMap": 
+                    {
+                        "qualitative": "Quantitative",
+                        "quantitative": "Qualitative"
+                    },
+                    "items":
+                    [
+                        {"title": "Quantitative", "key": "sampleDescription.gasPressure.quantitative"},
+                        {"title": "Qualitative", "key": "sampleDescription.gasPressure.qualitative"}
+                    ]
+                },
+                {
+                    "title": "Sample Surface Roughness", 
+                    "type": "selectfieldset", 
+                    "htmlClass": "myclass",
+                    "titleMap": 
+                    {
+                        "qualitative": "Quantitative",
+                        "quantitative": "Qualitative"
+                    },
+                    "items":
+                    [
+                        {"title": "Quantitative", "key": "sampleDescription.sampleSurfaceRoughness.quantitative"},
+                        {"title": "Qualitative", "key": "sampleDescription.sampleSurfaceRoughness.qualitative"}
                     ]
                 }
             ]
@@ -385,11 +389,12 @@ var uiSchema = {
                             "type": "tab",
                             "items":
                             [
-                                {"title": "No Tweezers", "key": "sampleHandlingPrecaution.sampleHandling.noTweezers"},
                                 {"title": "Gloves", "key": "sampleHandlingPrecaution.sampleHandling.gloves"},
                                 {"title": "Shock Protection", "key": "sampleHandlingPrecaution.sampleHandling.shockProtection"},
+                                {"title": "No Tweezers Regions", "key": "sampleHandlingPrecaution.sampleHandling.noTweezersRegions"},
                                 {"title": "Clean Room Conditions", "key": "sampleHandlingPrecaution.sampleHandling.cleanRoomConditions"},
-                                {"title": "Humidity", "key": "sampleHandlingPrecaution.sampleHandling.humidity"},
+                                {"title": "Min Humidity", "key": "sampleHandlingPrecaution.sampleHandling.minHumidity"},
+                                {"title": "Max Humidity", "key": "sampleHandlingPrecaution.sampleHandling.maxHumidity"},
                                 {"title": "Gas Atmosphere", "key": "sampleHandlingPrecaution.sampleHandling.gasAtmosphere.gasAtmosphereOptions", "type": "radios"},
                                 {"title": "Other Gas Atmosphere","key": "sampleHandlingPrecaution.sampleHandling.gasAtmosphere.otherGasAtmosphere"},
                                 {"title": "Additional Notes", "key": "sampleHandlingPrecaution.sampleHandling.additionalNotes"},
@@ -400,7 +405,8 @@ var uiSchema = {
                             "type": "tab",
                             "items":
                             [
-                                {"title": "Storage Temperature", "key": "sampleHandlingPrecaution.storageConditions.storageTemperature"},
+                                {"title": "Min Storage Temperature", "key": "sampleHandlingPrecaution.storageConditions.minStorageTemperature"},
+                                {"title": "Max Storage Temperature", "key": "sampleHandlingPrecaution.storageConditions.maxStorageTemperature"},
                                 {
                                     "title": "Storage Pressure", 
                                     "type": "selectfieldset", 
@@ -416,7 +422,8 @@ var uiSchema = {
                                         {"title": "Qualitative", "key": "sampleHandlingPrecaution.storageConditions.storagePressure.qualitative"}
                                     ]
                                 },
-                                {"title": "Storage Humidity", "key": "sampleHandlingPrecaution.storageConditions.storageHumidity"},
+                                {"title": "Min Storage Humidity", "key": "sampleHandlingPrecaution.storageConditions.minStorageHumidity"},
+                                {"title": "Max Storage Humidity", "key": "sampleHandlingPrecaution.storageConditions.maxStorageHumidity"},
                                 {"title": "Storage Gas Atmosphere", "key": "sampleHandlingPrecaution.storageConditions.storageGasAtmosphere.storageGasAtmosphereOptions", "type": "radios"},
                                 {"title": "Other Storage Gas Atmosphere","key": "sampleHandlingPrecaution.storageConditions.storageGasAtmosphere.otherStorageGasAtmosphere"},
                                 {
@@ -450,7 +457,6 @@ var uiSchema = {
                 {"title": "User Name", "key": "samplePreparation.researchUser.userName"},
                 {"title": "User Role", "key": "samplePreparation.researchUser.userRole", "type": "radios"},
                 {"title": "Sample Preparation Date", "key": "samplePreparation.preparationDate"},
-                {"title": "Use the + to insert each Consumable", "key": "samplePreparation.consumables", "htmlClass": "myclass"},
                 {
                     "title": "Use the + to insert each Sample Preparation Step",
                     "type": "array",
@@ -489,6 +495,9 @@ var uiSchema = {
             [
                 {"title": "Sample Holder Type", "key": "sampleHolder.sampleHolderType"},
                 {"title": "Other Sample Holder Type", "key": "sampleHolder.otherHolderType"},
+                {"title": "Sample Holder size x",  "key": "sampleHolder.sampleHolderSize.sizeX"},
+                {"title": "Sample Holder size y",  "key": "sampleHolder.sampleHolderSize.sizeY"},
+                {"title": "Sample Holder size z",  "key": "sampleHolder.sampleHolderSize.sizeZ"},
                 {"title": "Sample Holder Description", "key": "sampleHolder.sampleHolderDescription"},
                 {"title": "Fixing Method", "key": "sampleHolder.fixingMethod"},
                 {"title": "Other Fixing Method", "key": "sampleHolder.otherFixingMethod"}
@@ -501,6 +510,9 @@ var uiSchema = {
             "items":
             [
                 {"title": "Sample Carrier Type", "key": "sampleCarrier.sampleCarrierType"},
+                {"title": "Sample Carrier size x",  "key": "sampleCarrier.sampleCarrierSize.sizeX"},
+                {"title": "Sample Carrier size y",  "key": "sampleCarrier.sampleCarrierSize.sizeY"},
+                {"title": "Sample Carrier size z",  "key": "sampleCarrier.sampleCarrierSize.sizeZ"},
                 {"title": "Sample Carrier Description", "key": "sampleCarrier.sampleCarrierDescription"},
             ]
         },
