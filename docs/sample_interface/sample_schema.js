@@ -474,6 +474,18 @@ var dataModel = {
             "type": "object",
             "properties":
             {
+                "functionalTest":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "specifiedElements":
+                        {
+                            "type": "array",
+                            "items": {"type": "string"}
+                        }
+                    }
+                },
                 "defects":
                 {
                     "type": "object",

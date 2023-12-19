@@ -81,6 +81,14 @@ var uiSchema = {
                     "items":
                     [
                         {
+                            "title": "Functional Test",
+                            "type": "tab",
+                            "items":
+                            [
+                                {"title": "Use the + to insert each specified element to be examined during the functional test", "key": "featuresOfInterest.functionalTest.specifiedElements"}
+                            ]
+                        },
+                        {
                             "title": "Defects",
                             "type": "tab",
                             "items": 
