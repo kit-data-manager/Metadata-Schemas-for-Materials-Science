@@ -523,7 +523,7 @@ var dataModel = {
                     {
                         "interfacesOptions":
                         {
-                            "description": "Bidimensional region through which a discontinuity occurs in one or more parameter of the material",
+                            "description": "(Optional)- Bidimensional region through which a discontinuity occurs in one or more parameter of the material",
                             "type": "array",
                             "items":
                             {
