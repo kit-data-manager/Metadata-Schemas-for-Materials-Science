@@ -525,6 +525,7 @@ var uiSchema = {
             ]
         },
         {
+            "title": "Referencing",
             "type": "fieldset",
             "htmlClass": "myclass",
             "items":
