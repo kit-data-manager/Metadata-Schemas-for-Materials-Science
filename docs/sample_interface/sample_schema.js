@@ -1504,7 +1504,7 @@ var dataModel = {
                         "type": "object",
                         "properties":
                         {
-                            "preparationStep":
+                            "preparationAction":
                             {
                                 "type": "string",
                                 "enum":

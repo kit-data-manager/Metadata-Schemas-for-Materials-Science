@@ -466,15 +466,15 @@ var uiSchema = {
                 {"title": "User Role", "key": "samplePreparation.researchUser.userRole", "type": "radios"},
                 {"title": "Sample Preparation Date", "key": "samplePreparation.preparationDate"},
                 {
-                    "title": "Use the + to insert each Sample Preparation Step",
+                    "title": "Use the + to insert each Sample Preparation Action",
                     "type": "array",
                     "htmlClass": "myclass",
                     "items": 
                     [
                         {
                             "type": "selectfieldset",
-                            "title": "Sample Preparation Step",
-                            "key": "samplePreparation.preparationMethod[].preparationStep",
+                            "title": "Sample Preparation Action",
+                            "key": "samplePreparation.preparationMethod[].preparationAction",
                             "items": 
                             [
                                 "samplePreparation.preparationMethod[].notApplicable", 
