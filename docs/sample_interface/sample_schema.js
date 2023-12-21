@@ -1,5 +1,5 @@
 var dataModel = {
-    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "sample_schema",
     "description":"Basic schema for sample description. It can be extended. According to the MDMC-NEP glossary, a Sample is Physical System (typically a piece of material) composed by one or more Sample Components, exposed to the Instrument during a Measurement, typically after a Sample Preparation. Sample may be held by a Sample Holder and/or carried by a Sample Carrier during the Measurement.",
     "type":"object",
