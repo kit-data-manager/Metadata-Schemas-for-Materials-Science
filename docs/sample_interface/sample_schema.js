@@ -3,7 +3,6 @@ var dataModel = {
     "title": "sample_schema",
     "description":"Basic schema for sample description. It can be extended. According to the MDMC-NEP glossary, a Sample is Physical System (typically a piece of material) composed by one or more Sample Components, exposed to the Instrument during a Measurement, typically after a Sample Preparation. Sample may be held by a Sample Holder and/or carried by a Sample Carrier during the Measurement.",
     "type":"object",
-    "required": [],
     "$defs":
     {
         "cartesianType":
@@ -161,124 +160,8 @@ var dataModel = {
                         }
                     }    
                 }
-            }
-        },
-        "test":
-        {
-            "type": "object",
-            "properties":
-            {
-                "sampleComponents":
-                {
-                    "description": "Physical System (typically a piece of material) which constitutes a part of a Sample. It may include one or more substrates, layers, masks, embedding or filler or evaporation materials, coatings, conducting powders and molecules.",
-                    "type": "array",
-                    "items": 
-                    {
-                        "type": "object",
-                        "properties":
-                        {
-                             "componentName":
-                            {
-                                "description": "(Required) - Name of the sample component",
-                                "type": "string"
-                            },
-                            "componentChemicalFormula":
-                            {
-                                "description": "(Recommended) - Chemical formula of the sample component",
-                                "type": "string"
-                            },
-                            "componentCASNumber":
-                            {
-                                "description": "(Optional) - CAS number of the sample component, if known and applicable",
-                                "type": "string"
-                            },
-                            "componentMaterialDataSheet":
-                            {
-                                "description": "(Optional) - Link to the file describing the composition specification, usually called Material Data Sheet, if available.",
-                                "type": "string"
-                            },
-                            "componentAdditionalFeatures": 
-                            {
-                                "description": "(Optional) - Description of the missing relevant features describing the Sample Component, if any.",
-                                "type": "string"
-                            },
-                            "sampleCharacterization":
-                            {
-                                "type": "object",
-                                "properties":
-                                {
-                                    "phaseOfMatter":
-                                    {
-                                        "description": "A matter object throughout which all physical properties of a material are essentially uniform.",
-                                        "type": "string",
-                                        "enum": 
-                                        [
-                                            "not applicable",
-                                            "solid - definition: https://en.wikipedia.org/wiki/Solid",
-                                            "liquid - definition: https://en.wikipedia.org/wiki/Liquid",
-                                            "gas - definition: https://en.wikipedia.org/wiki/Gas",
-                                            "plasma - definition: https://en.wikipedia.org/wiki/Plasma_(physics)",
-                                            "mixture - definition: https://en.wikipedia.org/wiki/Mixture"
-                                        ]
-                                    },
-                                    "materialType": 
-                                    {
-                                        "type": "object",
-                                        "properties":
-                                        {
-                                            "notApplicable": {"type": "boolean"},
-                                            "alloy": {"type": "boolean"},
-                                            "biological": {"type": "boolean"},
-                                            "biomaterial": {"type": "boolean"},
-                                            "ceramic": {"type": "boolean"},
-                                            "composite": {"type": "boolean"},
-                                            "glass": {"type": "boolean"},
-                                            "metal": {"type": "boolean"},
-                                            "metamaterial": {"type": "boolean"},
-                                            "molecularFluid": {"type": "boolean"},
-                                            "organicCompound": {"type": "boolean"},
-                                            "organometallic": {"type": "boolean"},
-                                            "polymer": {"type": "boolean"},
-                                            "smartMaterial": {"type": "boolean"}
-                                        }
-                                    },
-                                    "materialProperties":
-                                    {
-                                        "type": "object",
-                                        "properties":
-                                        {
-                                            "propertiesOptions":
-                                            {
-                                                "type": "array",
-                                                "items":
-                                                {
-                                                    "type": "string",
-                                                    "enum":
-                                                    [
-                                                        "diamagnetic",
-                                                        "paramagnetic",
-                                                        "ferromagnetic",
-                                                        "antiferromagnetic",
-                                                        "ferrimagnetic",
-                                                        "nonmagnetic",
-                                                        "conductor",
-                                                        "semiconductor",
-                                                        "superconductor",
-                                                        "insulator",
-                                                        "dielectric",
-                                                        "other (please add in the comment)"
-                                                    ]
-                                                }
-                                            },
-                                            "comment": {"type": "string"}
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }               
-            }
+            },
+            "required": ["sampleName", "sampleProducer", "samplePurpose"]
         },
         "sampleComponents":
         {
@@ -390,7 +273,8 @@ var dataModel = {
                             }
                         }
                     }
-                }
+                },
+                "required": ["componentName"]
             }
         },
         "sampleCharacterization":
@@ -1954,7 +1838,7 @@ var dataModel = {
                 "sampleReference":
                 {
                     "description": "(Optional) - Coordinates of the markers in the sample reference system.",
-                    "type": "array",
+                    "type": "string",
                     "enum": 
                     [
                         "notApplicable",
@@ -1984,7 +1868,7 @@ var dataModel = {
                         "samplePositionOnHolder":
                         {
                             "description": "(Optional) - Sample position in the holder reference system.",
-                            "type": "array",
+                            "type": "string",
                             "enum": 
                             [
                                 "notApplicable",
@@ -2007,7 +1891,7 @@ var dataModel = {
                         "holderReference":
                         {
                             "description": "(Optional) - Coordinates of the markers in the holder reference system.",
-                            "type": "array",
+                            "type": "string",
                             "enum": 
                             [
                                 "notApplicable",
@@ -2039,7 +1923,7 @@ var dataModel = {
                         "holderPositionOnCarrier":
                         {
                             "description": "(Optional) - Holder position in the carrier reference system.",
-                            "type": "array",
+                            "type": "string",
                             "enum": 
                             [
                                 "notApplicable",
@@ -2062,7 +1946,7 @@ var dataModel = {
                         "carrierReference":
                         {
                             "description": "(Optional) - Coordinates of the markers in the carrier reference system.",
-                            "type": "array",
+                            "type": "string",
                             "enum": 
                             [
                                 "notApplicable",
@@ -2089,7 +1973,7 @@ var dataModel = {
                 "ROIReference":
                 {
                     "description": "(Optional) - Coordinates of the points defining the sample ROI (Region of Interest) in the sample reference system.",
-                    "type": "array",
+                    "type": "string",
                     "enum": 
                     [
                         "notApplicable",
