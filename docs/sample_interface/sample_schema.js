@@ -389,7 +389,7 @@ var dataModel = {
                                 }
                             }
                         }
-                    },
+                    }
                 }
             }
         },
@@ -1898,7 +1898,7 @@ var dataModel = {
                 "sampleCarrierType": 
                 {
                     "description": "(Optional) - Type of sample carrier. It may include the substrate, in case it is used as sample carrier.",
-                    "type": "string",
+                    "type": "string"
                 },
                 "sampleCarrierSize":
                 {
