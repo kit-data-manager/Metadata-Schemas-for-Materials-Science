@@ -52,7 +52,7 @@ var uiSchema = {
                             "type": "tab",
                             "items": 
                             [
-                                {"title": "Multiple choice is allowed", "key": "sampleCharacterization.materialType", "type": "radios"}
+                                {"title": "One choice is allowed", "key": "sampleCharacterization.materialType", "type": "radios"}
                             ]
                         },
                         {
