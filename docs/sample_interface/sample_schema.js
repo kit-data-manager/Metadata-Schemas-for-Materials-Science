@@ -1327,6 +1327,7 @@ var dataModel = {
                                     "type":"array",
                                     "items":
                                     {
+                                        "type": "string",
                                         "enum":
                                         [
                                             "None",
