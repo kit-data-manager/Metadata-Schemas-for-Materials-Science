@@ -4,171 +4,157 @@
   "type": "object",
   "description": "This JSON Schema describes a nano or micro - computed tomography (CT) measurement done using the instrumentation in a lab using an x-ray tube as a source. The same schema can also be used for an SEM based CT measurement where the x-rays emitted by a material upon interaction with the electron beam from the electron microscope, are used for generating CT images of a sample. For synchrotron based CT, use the synchrotron CT schema provided separately in the same folder as this schema. The cardinality (required or optional) of all metadata is defined and wherever possible a list of controlled vocabularies is provided. Contributors (in alphabetical order of last names): Alexey Boubnov, Rafaela Debastiani, Jonas Fell, Sarah Irvine, Reetu Elza Joseph.",
   "properties": {
-    "entry": {
-      "$ref": "#/$defs/entry"
-    }
-  },
-  "required": [
-    "entry"
-  ],
-  "title": "lab_CT",
-  "$defs": {
-    "entry": {
-      "type": "object",
-      "description": "Required) - The entry level is the root element of the schema. It contains all the metadata describing a CT measurement.",
-      "additionalProperties": false,
-      "properties": {
-        "technique": {
-          "type": "string",
-          "description": "(Required) - Any experimental, theoretical or computational method used during Data Acquisition or during any of the processes included in the Data Analysis Lifecycle to acquire, process or analyse Research Data about a System or a set of them with an Instrument, whihc is used to generate this metadata."
-        },
-        "measurementPurpose": {
-          "type": "string",
-          "description": "(Required) - Measurement is experimental Data Acquisition, typically performed on a Sample using an experimental Technique. It may also be performed during Fabrication or Sample Preparation, e.g., to characterise the intermediate stages and/or the final resulting Precursor(s) or Sample(s), respectively. A Measurement may require the use of Consumables.",
-          "enum": [
-            "assessment (to given categories or values)",
-            "completeness check (presence or absence of given properties)",
-            "correlative characterization (dedicated sample treatment to emphasise given features)",
-            "exploratory (routine check of known properties)",
-            "feasibility (quick check, rough estimate)",
-            "high quality measurement (precise, careful treatment)",
-            "test specific hypothesis (focus only on given aspects)",
-            "other (please specify in the comment)"
-          ]
-        },
-        "measurementDescription": {
-          "type": "string",
-          "description": "(Optional) - Description about the measurement."
-        },
-        "instrument": {
-          "$ref": "#/$defs/instrumentDetails",
-          "description": "(Required)- Details concerning the instrument settings. Instrument is a physical or virtual identifiable piece of Equipment used to perform a Data Acquisition and to generate Raw Data. The Instrument is located in a Laboratory hosted by an Institution and/or can be virtually or remotely accessed. A virtual Instrument may be any computational resource or HPC infrastructure (cloud infrastructure or supercomputer) needed to perform Calculations or Simulations."
-        },
-        "equipment": {
-          "type": "string",
-          "description": "(Optional) - Any kind of physical or virtual item, device, machine or other tools used to perform one or more Fabrication(s), Sample Preparation(s), Model Preparation(s), Data Acquisition(s) and/or any of the processes included in the Data Analysis Lifecycle. Usually, the Equipment is located in a Laboratory hosted by an Institution and/or can be virtually or remotely accessed. Equipment is usually an investment. According to this definition, an Instrument is a particular type of Equipment."
-        },
-        "consumables": {
-          "type": "array",
-          "minItems": 1,
-          "description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
-          "items": {
-            "type": "string"
+    "technique": {
+      "type": "string",
+      "description": "(Required) - Any experimental, theoretical or computational method used during Data Acquisition or during any of the processes included in the Data Analysis Lifecycle to acquire, process or analyse Research Data about a System or a set of them with an Instrument, whihc is used to generate this metadata."
+    },
+    "measurementPurpose": {
+      "type": "string",
+      "description": "(Required) - Measurement is experimental Data Acquisition, typically performed on a Sample using an experimental Technique. It may also be performed during Fabrication or Sample Preparation, e.g., to characterise the intermediate stages and/or the final resulting Precursor(s) or Sample(s), respectively. A Measurement may require the use of Consumables.",
+      "enum": [
+        "assessment (to given categories or values)",
+        "completeness check (presence or absence of given properties)",
+        "correlative characterization (dedicated sample treatment to emphasise given features)",
+        "exploratory (routine check of known properties)",
+        "feasibility (quick check, rough estimate)",
+        "high quality measurement (precise, careful treatment)",
+        "test specific hypothesis (focus only on given aspects)",
+        "other (please specify in the comment)"
+      ]
+    },
+    "measurementDescription": {
+      "type": "string",
+      "description": "(Optional) - Description about the measurement."
+    },
+    "instrument": {
+      "$ref": "#/$defs/instrumentDetails",
+      "description": "(Required)- Details concerning the instrument settings. Instrument is a physical or virtual identifiable piece of Equipment used to perform a Data Acquisition and to generate Raw Data. The Instrument is located in a Laboratory hosted by an Institution and/or can be virtually or remotely accessed. A virtual Instrument may be any computational resource or HPC infrastructure (cloud infrastructure or supercomputer) needed to perform Calculations or Simulations."
+    },
+    "equipment": {
+      "type": "string",
+      "description": "(Optional) - Any kind of physical or virtual item, device, machine or other tools used to perform one or more Fabrication(s), Sample Preparation(s), Model Preparation(s), Data Acquisition(s) and/or any of the processes included in the Data Analysis Lifecycle. Usually, the Equipment is located in a Laboratory hosted by an Institution and/or can be virtually or remotely accessed. Equipment is usually an investment. According to this definition, an Instrument is a particular type of Equipment."
+    },
+    "consumables": {
+      "type": "array",
+      "minItems": 1,
+      "description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "parents": {
+      "type": "array",
+      "minItems": 1,
+      "description": "(Required) - Parents of this metadata like the metadata document of the sample with which the measurement was performed.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "parentType": {
+            "type": "string",
+            "enum": [
+              "not applicable",
+              "sample"
+            ],
+            "default": "sample"
+          },
+          "parentReferenceType": {
+            "type": "string",
+            "enum": [
+              "plain text",
+              "external URL",
+              "MetaStore URI"
+            ],
+            "default": "MetaStore URI"
+          },
+          "parentReference": {
+            "type": "string",
+            "description": "If type is 'MetaStore URI' it is possible to easily fill this field in a later stage",
+            "format": "uri-reference"
           }
         },
-        "parents": {
-          "type": "array",
-          "minItems": 1,
-          "description": "(Required) - Parents of this metadata like the metadata document of the sample with which the measurement was performed.",
-          "items": {
-            "type": "object",
-            "properties": {
-              "parentType": {
-                "type": "string",
-                "enum": [
-                  "not applicable",
-                  "sample"
-                ],
-                "default":"sample"
-              },
-              "parentReferenceType": {
-                "type": "string",
-                "enum": [
-                  "plain text",
-                  "external URL",
-                  "MetaStore URI"
-                ],
-                "default":"MetaStore URI"
-              },
-              "parentReference": {
-                "type": "string",
-                "description": "If type is 'MetaStore URI' it is possible to easily fill this field in a later stage",
-                "format": "uri-reference"
+        "required": [
+          "parentType"
+        ],
+        "if": {
+          "properties": {
+            "parentType": {
+              "not": {
+                "const": "not applicable"
               }
-            },
-            "required": [
-              "parentType"
-            ],
-            "if": {
-              "properties": {
-                "parentType": {
-                  "not": {
-                    "const": "not applicable"
-                  }
-                }
-              }
-            },
-            "then": {
-              "required": [
-                "parentReferenceType",
-                "parentReference"
-              ]
             }
           }
         },
-        "entryID": {
-          "$ref": "#/$defs/identifier",
-          "description": "(Optional) - Identifier of the metadata entry usually provided by the project or the laboratory."
-        },
-        "experimentID": {
-          "$ref": "#/$defs/identifier",
-          "description": "(Optional) - Identifier of the measurement usually provided by the project or the laboratory."
-        },
-        "title": {
-          "type": "string",
-          "description": "(Required) - Extended title of the measurement."
-        },
-        "startTime": {
-          "type": "string",
-          "description": "(Required) - Start time of the measurement in the ISO 8601 format CCYY-MM-DDThh:mm:ss.sss.",
-          "format": "date-time",
-          "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$"
-        },
-        "endTime": {
-          "type": "string",
-          "description": "(Required) - End time of the measurement in the ISO 8601 format CCYY-MM-DDThh:mm:ss.sss.",
-          "format": "date-time",
-          "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$"
-        },
-        "definition": {
-          "type": "string",
-          "description": "(Required) - Name of the schema to which this entry conforms. In this case, lab_CT should be written."
-        },
-        "program": {
-          "$ref": "#/$defs/program",
-          "description": "(Required) - Details concerning the program (or software) used for aquisition."
-        },
-        "revision": {
-          "$ref": "#/$defs/revision",
-          "description": "(Optional) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format."
-        },
-        "user": {
-          "$ref": "#/$defs/user",
-          "description": "(Required)- The contact information of the user responsible for the measurement."
-        },
-        "measurementConditions": {
-          "$ref": "#/$defs/measurementConditions",
-          "description": "(Optional)- Details concerning the measurement conditions like details of in situ cell, temperature and gas enviroment and pressure."
-        },
-        "data": {
-          "$ref": "#/$defs/data",
-          "description": "(Optional)- Details concerning the data section of the measurement."
+        "then": {
+          "required": [
+            "parentReferenceType",
+            "parentReference"
+          ]
         }
-      },
-      "required": [
-        "title",
-        "technique",
-        "definition",
-        "parents",
-        "measurementPurpose",
-        "startTime",
-        "endTime",
-        "program",
-        "user",
-        "instrument",
-        "data"
-      ]
+      }
     },
+    "entryID": {
+      "$ref": "#/$defs/identifier",
+      "description": "(Optional) - Identifier of the metadata entry usually provided by the project or the laboratory."
+    },
+    "experimentID": {
+      "$ref": "#/$defs/identifier",
+      "description": "(Optional) - Identifier of the measurement usually provided by the project or the laboratory."
+    },
+    "title": {
+      "type": "string",
+      "description": "(Required) - Extended title of the measurement."
+    },
+    "startTime": {
+      "type": "string",
+      "description": "(Required) - Start time of the measurement in the ISO 8601 format CCYY-MM-DDThh:mm:ss.sss.",
+      "format": "date-time",
+      "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$"
+    },
+    "endTime": {
+      "type": "string",
+      "description": "(Required) - End time of the measurement in the ISO 8601 format CCYY-MM-DDThh:mm:ss.sss.",
+      "format": "date-time",
+      "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$"
+    },
+    "definition": {
+      "type": "string",
+      "description": "(Required) - Name of the schema to which this entry conforms. In this case, lab_CT should be written."
+    },
+    "program": {
+      "$ref": "#/$defs/program",
+      "description": "(Required) - Details concerning the program (or software) used for aquisition."
+    },
+    "revision": {
+      "$ref": "#/$defs/revision",
+      "description": "(Optional) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format."
+    },
+    "user": {
+      "$ref": "#/$defs/user",
+      "description": "(Required)- The contact information of the user responsible for the measurement."
+    },
+    "measurementConditions": {
+      "$ref": "#/$defs/measurementConditions",
+      "description": "(Optional)- Details concerning the measurement conditions like details of in situ cell, temperature and gas enviroment and pressure."
+    },
+    "data": {
+      "$ref": "#/$defs/data",
+      "description": "(Optional)- Details concerning the data section of the measurement."
+    }
+  },
+  "required": [
+    "title",
+    "technique",
+    "definition",
+    "parents",
+    "measurementPurpose",
+    "startTime",
+    "endTime",
+    "program",
+    "user",
+    "instrument",
+    "data"
+  ],
+  "$defs": {
     "identifier": {
       "type": "object",
       "description": "(Optional) - Details of an identifier element.",
