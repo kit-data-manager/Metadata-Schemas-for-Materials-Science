@@ -96,6 +96,7 @@ var dataModel = {
                         {
                             "description": "(Required) - The tentative purpose of the sample (e.g., for which measurement(s) or subsequent analysis the sample was prepared). In this context, Correlative Characterization may be intended as a purpose. Multiple selection is allowed.",
                             "type": "array",
+                            "uniqueItems": true,
                             "items":
                             {
                                 "type": "string",
@@ -143,6 +144,7 @@ var dataModel = {
                         {
                             "description": "(Optional) - The sample has an ID printed on it. It's important to know its position on the sample. Multiple selection is allowed.",
                             "type": "array",
+                            "uniqueItems": true,
                             "items":
                             {
                                 "type": "string",
@@ -248,6 +250,7 @@ var dataModel = {
                                     {
                                         "description": "(Recommended) - One or more known properties of the material.",
                                         "type": "array",
+                                        "uniqueItems": true,
                                         "items":
                                         {
                                             "type": "string",
@@ -328,6 +331,7 @@ var dataModel = {
                         {
                             "description": "(Recommended) - One or more known properties of the material.",
                             "type": "array",
+                            "uniqueItems": true,
                             "items":
                             {
                                 "type": "string",
@@ -378,6 +382,7 @@ var dataModel = {
                         "defectsOptions":
                         {
                             "type": "array",
+                            "uniqueItems": true,
                             "items":
                             {
                                 "type": "string",
@@ -409,6 +414,7 @@ var dataModel = {
                         {
                             "description": "(Optional)- Bidimensional region through which a discontinuity occurs in one or more parameter of the material",
                             "type": "array",
+                            "uniqueItems": true,
                             "items":
                             {
                                 "type": "string",
@@ -789,6 +795,7 @@ var dataModel = {
                         {
                             "description": "(Optional) - One or more elements (if any) useful e.g. for coarse alignment, which are visible by eye or with optical magnification equipment",
                             "type": "array",
+                            "uniqueItems": true,
                             "items":
                             {
                                 "type": "string",
@@ -1076,6 +1083,7 @@ var dataModel = {
                         "sensitivityList":
                         {
                             "type": "array",
+                            "uniqueItems": true,
                             "items":
                             {
                                 "type": "string",
@@ -1108,6 +1116,7 @@ var dataModel = {
                         "hazard":
                         {
                             "type": "array",
+                            "uniqueItems": true,
                             "items":
                             {
                                 "type": "string",
@@ -1325,6 +1334,7 @@ var dataModel = {
                                 {
                                     "description": "(Optional) - One or more pieces of equipment used for storing the sample.",
                                     "type":"array",
+                                    "uniqueItems": true,
                                     "items":
                                     {
                                         "type": "string",
