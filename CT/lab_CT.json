@@ -6,7 +6,7 @@
   "properties": {
     "technique": {
       "type": "string",
-      "description": "(Required) - Any experimental, theoretical or computational method used during Data Acquisition or during any of the processes included in the Data Analysis Lifecycle to acquire, process or analyse Research Data about a System or a set of them with an Instrument, whihc is used to generate this metadata."
+      "description": "(Required) - Any experimental, theoretical or computational method used during Data Acquisition or during any of the processes included in the Data Analysis Lifecycle to acquire, process or analyse Research Data about a System or a set of them with an Instrument, which is used to generate this metadata."
     },
     "measurementPurpose": {
       "type": "string",
@@ -25,10 +25,6 @@
     "measurementDescription": {
       "type": "string",
       "description": "(Optional) - Description about the measurement."
-    },
-    "instrument": {
-      "$ref": "#/$defs/instrumentDetails",
-      "description": "(Required)- Details concerning the instrument settings. Instrument is a physical or virtual identifiable piece of Equipment used to perform a Data Acquisition and to generate Raw Data. The Instrument is located in a Laboratory hosted by an Institution and/or can be virtually or remotely accessed. A virtual Instrument may be any computational resource or HPC infrastructure (cloud infrastructure or supercomputer) needed to perform Calculations or Simulations."
     },
     "equipment": {
       "type": "string",
@@ -136,9 +132,13 @@
       "$ref": "#/$defs/measurementConditions",
       "description": "(Optional)- Details concerning the measurement conditions like details of in situ cell, temperature and gas enviroment and pressure."
     },
+    "instrument": {
+      "$ref": "#/$defs/instrumentDetails",
+      "description": "(Required)- Details concerning the instrument settings. Instrument is a physical or virtual identifiable piece of Equipment used to perform a Data Acquisition and to generate Raw Data. The Instrument is located in a Laboratory hosted by an Institution and/or can be virtually or remotely accessed. A virtual Instrument may be any computational resource or HPC infrastructure (cloud infrastructure or supercomputer) needed to perform Calculations or Simulations."
+    },
     "data": {
       "$ref": "#/$defs/data",
-      "description": "(Optional)- Details concerning the data section of the measurement."
+      "description": "(Required)- Details concerning the data section of the measurement."
     }
   },
   "required": [
