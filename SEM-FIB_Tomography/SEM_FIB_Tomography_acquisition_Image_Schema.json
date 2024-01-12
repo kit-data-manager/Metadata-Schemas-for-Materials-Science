@@ -161,17 +161,15 @@
     },
     "pressureDetails": {
       "type": "object",
-      "description": "(Required) - Describes a pressure.",
+      "description": "Describes a pressure.",
       "additionalProperties": false,
       "properties": {
         "value": {
           "type": "number",
-          "default": -9999,
-          "description": "(Required) - Value of the pressure"
+          "description": "(Required) - Value of the pressure."
         },
         "unit": {
           "type": "string",
-          "default": "Pa",
           "enum": [
             "Pa",
             "hPa",
@@ -182,16 +180,15 @@
             "bar",
             "psi"
           ],
-          "description": "(Optional) - Unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi, default value - Pa)"
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -200,31 +197,28 @@
     },
     "angleDetails": {
       "type": "object",
-      "description": "describes an angle.",
+      "description": "Describes an angle.",
       "additionalProperties": false,
       "properties": {
         "value": {
           "type": "number",
-          "default": -9999,
-          "description": "(Required) - The angle expressed as an integer or floating point value of datatype number"
+          "description": "(Required) - The angle expressed as an integer or floating point value."
         },
         "unit": {
           "type": "string",
-          "default": "degree",
           "enum": [
             "degree",
             "radian"
           ],
-          "description": "(Optional) - the unit of the value to be selected from a controlled list (degree, radian; default value - degree) of datatype string"
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (degree, radian)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value of datatype string"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -233,18 +227,16 @@
     },
     "distanceDetails": {
       "type": "object",
-      "description": "(Optional) - Describes a distance, size or length.",
+      "description": "Describes a distance, size or length.",
       "additionalProperties": false,
       "properties": {
         "value": {
           "type": "number",
-          "description": "(Required) - Value of the distance, size or length",
-          "default": -9999
+          "description": "(Required) - Value of the distance, size or length."
         },
         "unit": {
           "type": "string",
-          "description": "(Optional) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
-          "default": "mm",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m).",
           "enum": [
             "nm",
             "um",
@@ -255,12 +247,11 @@
         },
         "qualifier": {
           "type": "string",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-          "default": "max"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -274,13 +265,11 @@
       "properties": {
         "value": {
           "type": "number",
-          "description": "(Required) - Value of the temperature",
-          "default": -9999
+          "description": "(Required) - Value of the temperature."
         },
         "unit": {
           "type": "string",
-          "description": "(Optional) - Unit of the value to be selected from a controlled list (K, ºC, ºF)",
-          "default": "mm",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (K, ºC, ºF).",
           "enum": [
             "K",
             "ºC",
@@ -289,12 +278,11 @@
         },
         "qualifier": {
           "type": "string",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-          "default": "max"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -303,18 +291,16 @@
     },
     "currentDetails": {
       "type": "object",
-      "description": "(Optional) - Describes a current.",
+      "description": "Describes a current.",
       "additionalProperties": false,
       "properties": {
         "value": {
           "type": "number",
-          "description": "(Required) - Value of the current",
-          "default": -9999
+          "description": "(Required) - Value of the current."
         },
         "unit": {
           "type": "string",
-          "description": "(Optional) - Unit of the value to be selected from a controlled list (pA, nA, µA, mA, A)",
-          "default": "mm",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (pA, nA, µA, mA, A).",
           "enum": [
             "pA",
             "nA",
@@ -325,12 +311,11 @@
         },
         "qualifier": {
           "type": "string",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-          "default": "max"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [

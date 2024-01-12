@@ -27,7 +27,6 @@
     "datasetType": {
       "type": "string",
       "description": "(Optional) - To be selected from the enumerated list depending on the detector and the angle at which the sample is measured: * SEM Image * SEM Image 2 * EDS * EBSD * BSE * ISE * ISI * SI * InLens * SESI",
-      "default": "SEM",
       "enum": [
         "SEM Image",
         "SEM Image 2",
@@ -575,24 +574,21 @@
       "properties": {
         "value": {
           "type": "number",
-          "default": -9999,
-          "description": "(Required) - The resistance expressed as an integer or floating point value of datatype number"
+          "description": "(Required) - The resistance expressed as an integer or floating point value."
         },
         "unit": {
           "type": "string",
-          "default": "ohm",
           "enum": [
             "abohm",
             "ohm",
             "k ohm",
             "M ohm"
           ],
-          "description": "(Optional) - the unit of the value to be selected from a controlled list (abohm, ohm, k ohm, M ohm default value - ohm) of datatype string; default unit is ohm"
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (abohm, ohm, k ohm, M ohm)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "notes": {
           "type": "string",
@@ -610,12 +606,10 @@
       "properties": {
         "value": {
           "type": "number",
-          "default": -9999,
-          "description": "(Required) - The power expressed as an integer or floating point value of datatype number"
+          "description": "(Required) - The power expressed as an integer or floating point value."
         },
         "unit": {
           "type": "string",
-          "default": "W",
           "enum": [
             "µW",
             "mW",
@@ -623,12 +617,11 @@
             "kW",
             "MW"
           ],
-          "description": "(Optional) - the unit of the value to be selected from a controlled list (µW, mW, W, kW, MW default value - W) of datatype string"
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (µW, mW, W, kW, MW)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "notes": {
           "type": "string",
@@ -646,12 +639,10 @@
       "properties": {
         "value": {
           "type": "number",
-          "default": -9999,
-          "description": "(Required) - The voltage expressed as an integer or floating point value of datatype number"
+          "description": "(Required) - The voltage expressed as an integer or floating point value."
         },
         "unit": {
           "type": "string",
-          "default": "kV",
           "enum": [
             "uV",
             "mV",
@@ -659,12 +650,11 @@
             "kV",
             "MV"
           ],
-          "description": "(Optional) - the unit of the value to be selected from a controlled list (uV, mV, V, kV, MV, GV default value - V) of datatype string"
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (uV, mV, V, kV, MV, GV)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "notes": {
           "type": "string",
@@ -682,12 +672,10 @@
       "properties": {
         "value": {
           "type": "number",
-          "default": -9999,
-          "description": "(Optional) - Further notes about the value of datatype string"
+          "description": "(Optional) - Further notes about the value."
         },
         "unit": {
           "type": "string",
-          "default": "pA",
           "enum": [
             "pA",
             "nA",
@@ -695,16 +683,15 @@
             "mA",
             "A"
           ],
-          "description": "(Optional) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A default value - pA) of datatype string"
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value of datatype string"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -718,12 +705,10 @@
       "properties": {
         "value": {
           "type": "number",
-          "default": -9999,
-          "description": "(Required) - Value of the pressure"
+          "description": "(Required) - Value of the pressure."
         },
         "unit": {
           "type": "string",
-          "default": "Pa",
           "enum": [
             "Pa",
             "hPa",
@@ -734,16 +719,15 @@
             "bar",
             "psi"
           ],
-          "description": "(Optional) - Unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi, default value - Pa)"
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -757,22 +741,19 @@
       "properties": {
         "value": {
           "type": "number",
-          "default": -9999,
-          "description": "(Required) - The angle expressed as an integer or floating point value of datatype number"
+          "description": "(Required) - The angle expressed as an integer or floating point value."
         },
         "unit": {
           "type": "string",
-          "default": "degree",
           "enum": [
             "degree",
             "radian"
           ],
-          "description": "(Unit) - the unit of the value to be selected from a controlled list (degree, radian; default value - degree) of datatype string"
+          "description": "(Unit) - the unit of the value to be selected from a controlled list (degree, radian)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "notes": {
           "type": "string",
@@ -790,13 +771,11 @@
       "properties": {
         "value": {
           "type": "number",
-          "description": "(Required) - Value of the distance, size or length",
-          "default": -9999
+          "description": "(Required) - Value of the distance, size or length."
         },
         "unit": {
           "type": "string",
-          "description": "(Optional) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
-          "default": "mm",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m).",
           "enum": [
             "nm",
             "um",
@@ -807,12 +786,11 @@
         },
         "qualifier": {
           "type": "string",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-          "default": "max"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -826,13 +804,11 @@
       "properties": {
         "value": {
           "type": "number",
-          "description": "(Required) - Value of the temperature",
-          "default": -9999
+          "description": "(Required) - Value of the temperature."
         },
         "unit": {
           "type": "string",
-          "description": "(Optional) - Unit of the value to be selected from a controlled list (K, ºC, ºF)",
-          "default": "mm",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (K, ºC, ºF).",
           "enum": [
             "K",
             "ºC",
@@ -841,12 +817,11 @@
         },
         "qualifier": {
           "type": "string",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-          "default": "max"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -860,12 +835,10 @@
       "properties": {
         "value": {
           "type": "number",
-          "default": -9999,
-          "description": "(Required) - The energy expressed as an integer or floating point value of datatype number"
+          "description": "(Required) - The energy expressed as an integer or floating point value"
         },
         "unit": {
           "type": "string",
-          "default": "J",
           "enum": [
             "nJ",
             "mJ",
@@ -874,12 +847,11 @@
             "eV",
             "meV"
           ],
-          "description": "(Optional) - the unit of the value to be selected from a controlled list (nJ, mJ, J, kJ, eV, meV default value - J) of datatype string"
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (nJ, mJ, J, kJ, eV, meV)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "notes": {
           "type": "string",
@@ -897,12 +869,10 @@
       "properties": {
         "value": {
           "type": "number",
-          "default": -9999,
-          "description": "(Required) - The time expressed as an integer or floating point value of datatype number"
+          "description": "(Required) - The time expressed as an integer or floating point value."
         },
         "unit": {
           "type": "string",
-          "default": "us",
           "enum": [
             "ps",
             "ns",
@@ -910,12 +880,11 @@
             "ms",
             "s"
           ],
-          "description": "(Optional) - the unit of the value to be selected from a controlled list (ps, ns, us, ms, s default value - us) of datatype string"
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (ps, ns, us, ms, s)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "notes": {
           "type": "string",

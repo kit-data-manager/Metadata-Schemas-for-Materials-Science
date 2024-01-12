@@ -183,13 +183,11 @@
       "properties": {
         "value": {
           "type": "number",
-          "description": "(Required) - Value of the distance, size or length",
-          "default": -9999
+          "description": "(Required) - Value of the distance, size or length."
         },
         "unit": {
           "type": "string",
-          "description": "(Optional) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m, default value - mm)",
-          "default": "mm",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m).",
           "enum": [
             "nm",
             "um",
@@ -200,12 +198,11 @@
         },
         "qualifier": {
           "type": "string",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-          "default": "max"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -219,12 +216,10 @@
       "properties": {
         "value": {
           "type": "number",
-          "default": -9999,
-          "description": "(Optional) - Further notes about the value of datatype string"
+          "description": "(Optional) - Further notes about the value."
         },
         "unit": {
           "type": "string",
-          "default": "pA",
           "enum": [
             "pA",
             "nA",
@@ -232,16 +227,15 @@
             "mA",
             "A"
           ],
-          "description": "(Optional) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A default value - pA) of datatype string"
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value of datatype string"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -255,26 +249,23 @@
       "properties": {
         "value": {
           "type": "number",
-          "default": -9999,
-          "description": "(Required) - The angle expressed as an integer or floating point value of datatype number"
+          "description": "(Required) - The angle expressed as an integer or floating point value."
         },
         "unit": {
           "type": "string",
-          "default": "degree",
           "enum": [
             "degree",
             "radian"
           ],
-          "description": "(Optional) - the unit of the value to be selected from a controlled list (degree, radian; default value - degree) of datatype string"
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (degree, radian)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)"
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value of datatype string"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [

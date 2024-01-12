@@ -715,8 +715,7 @@
         },
         "unit": {
           "type": "string",
-          "description": "(Required) - Unit of the value to be selected from a controlled list (mL/min, µL/min, cm3/min ( or cc/min) default value - cm3/min).",
-          "default": "mm",
+          "description": "(Required) - Unit of the value to be selected from a controlled list (mL/min, µL/min, cm3/min ( or cc/min). Typical unit - cm3/min).",
           "enum": [
             "cm3/min",
             "mL/min",
@@ -725,8 +724,7 @@
         },
         "qualifier": {
           "type": "string",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max).",
-          "default": "max"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
@@ -753,8 +751,7 @@
         },
         "unit": {
           "type": "string",
-          "description": "(Required) - Unit of the value to be selected from a controlled list (fm, pm, nm, µm, mm, cm, m, default value - mm)",
-          "default": "mm",
+          "description": "(Required) - Unit of the value to be selected from a controlled list (fm, pm, nm, µm, mm, cm, m).",
           "enum": [
             "fm",
             "pm",
@@ -767,16 +764,15 @@
         },
         "qualifier": {
           "type": "string",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-          "default": "max"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": "(Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative"
+          "description": "(Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -1233,7 +1229,7 @@
                   "description": "(Optional) - Material of the monochromator."
                 },
                 "energy": {
-                  "description": "(Optional) - Energy set in the monochromator. Typical unit - eV",
+                  "description": "(Optional) - Energy set in the monochromator. Typical unit - eV.",
                   "$ref": "#/$defs/energyDetails"
                 },
                 "notes": {
@@ -1553,12 +1549,11 @@
       "properties": {
         "value": {
           "type": "number",
-          "description": "(required, NAE) - The power expressed as an integer or floating point value of datatype number"
+          "description": "(required, NAE) - The power expressed as an integer or floating point value."
         },
         "unit": {
           "type": "string",
-          "default": "W",
-          "description": "(required, NAE) - the unit of the value to be selected from a controlled list (mW, W, kW, default value - W) of datatype string.",
+          "description": "(required, NAE) - the unit of the value to be selected from a controlled list (mW, W, kW).",
           "enum": [
             "mW",
             "W",
@@ -1567,8 +1562,7 @@
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min, default value - max) of datatype string.",
+          "description": "(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min).",
           "enum": [
             "max",
             "min",
@@ -1600,7 +1594,6 @@
         },
         "unit": {
           "type": "string",
-          "default": "Pa",
           "enum": [
             "Pa",
             "hPa",
@@ -1611,20 +1604,19 @@
             "bar",
             "psi"
           ],
-          "description": "(Required) - Unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi, default value - Pa)"
+          "description": "(Required) - Unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": "(Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative"
+          "description": "(Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -1643,8 +1635,7 @@
         },
         "unit": {
           "type": "string",
-          "description": "(Optional) - Unit of the value to be selected from a controlled list (K/min, K/s)",
-          "default": "K/min",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (K/min, K/s).",
           "enum": [
             "K/min",
             "K/s"
@@ -1652,12 +1643,11 @@
         },
         "qualifier": {
           "type": "string",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-          "default": "max"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -1677,7 +1667,6 @@
         "unit": {
           "type": "string",
           "description": "(Optional) - Unit of the value to be selected from a controlled list (K, ºC, ºF)",
-          "default": "K",
           "enum": [
             "K",
             "ºC",
@@ -1686,12 +1675,11 @@
         },
         "qualifier": {
           "type": "string",
-          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum, default value - max)",
-          "default": "max"
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value"
+          "description": "(Optional) - Further notes about the value."
         }
       },
       "required": [
@@ -1721,11 +1709,10 @@
       "properties": {
         "value": {
           "type": "number",
-          "description": "(Required) - The voltage expressed as an integer or floating point value of datatype number."
+          "description": "(Required) - The voltage expressed as an integer or floating point value."
         },
         "unit": {
           "type": "string",
-          "default": "kV",
           "enum": [
             "µV",
             "mV",
@@ -1733,12 +1720,11 @@
             "kV",
             "MV"
           ],
-          "description": "(Required) - the unit of the value to be selected from a controlled list (µV, mV, V, kV, MV, GV default value - V) of datatype string."
+          "description": "(Required) - the unit of the value to be selected from a controlled list (µV, mV, V, kV, MV, GV)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string."
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
@@ -1765,7 +1751,6 @@
         },
         "unit": {
           "type": "string",
-          "default": "pA",
           "enum": [
             "pA",
             "nA",
@@ -1773,12 +1758,11 @@
             "mA",
             "A"
           ],
-          "description": "(Required) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A default value - pA) of datatype string."
+          "description": "(Required) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string."
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
@@ -1801,29 +1785,27 @@
       "properties": {
         "value": {
           "type": "number",
-          "description": "(Required) - The angle expressed as an integer or floating point value of datatype number"
+          "description": "(Required) - The angle expressed as an integer or floating point value of datatype number."
         },
         "unit": {
           "type": "string",
-          "default": "degree",
           "enum": [
             "degree",
             "radian"
           ],
-          "description": "(Required) - the unit of the value to be selected from a controlled list (degree, radian; default value - degree) of datatype string"
+          "description": "(Required) - the unit of the value to be selected from a controlled list (degree, radian) of datatype string."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": "(Optional) - Uncertainty in the value defined separately as uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number"
+          "description": "(Optional) - Uncertainty in the value defined separately as uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value of datatype string"
+          "description": "(Optional) - Further notes about the value of datatype string."
         }
       },
       "required": [
@@ -1862,7 +1844,6 @@
         },
         "coordinatesUnit": {
           "type": "string",
-          "default": "µm",
           "enum": [
             "nm",
             "µm",
@@ -1899,7 +1880,6 @@
         },
         "anglesUnit": {
           "type": "string",
-          "default": "degree",
           "enum": [
             "degree",
             "radian"
@@ -1975,7 +1955,6 @@
         },
         "unit": {
           "type": "string",
-          "default": "nm",
           "description": "(Required) - the unit of the size of a single pixel (typical value - nm, µm) of datatype string",
           "enum": [
             "nm",
@@ -1984,16 +1963,15 @@
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": "(Optional) - Uncertainty in the value defined as a complex type uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number"
+          "description": "(Optional) - Uncertainty in the value defined as a complex type uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value of datatype string"
+          "description": "(Optional) - Further notes about the value of datatype string."
         }
       },
       "required": [
@@ -2012,7 +1990,6 @@
         },
         "unit": {
           "type": "string",
-          "default": "µs",
           "enum": [
             "ps",
             "ns",
@@ -2020,12 +1997,11 @@
             "ms",
             "s"
           ],
-          "description": "(Required) - the unit of the value to be selected from a controlled list (ps, ns, µs, ms, s default value - µs) of datatype string"
+          "description": "(Required) - the unit of the value to be selected from a controlled list (ps, ns, µs, ms, s)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
@@ -2695,20 +2671,19 @@
             "kJ",
             "MJ"
           ],
-          "description": "(Required) - the unit of the value to be selected from a controlled list (meV, eV, keV, MeV, nJ, µJ, mJ, J, kJ, MJ; default value - keV) of datatype string"
+          "description": "(Required) - the unit of the value to be selected from a controlled list (meV, eV, keV, MeV, nJ, µJ, mJ, J, kJ, MJ)."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string"
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": "(Optional) - Uncertainty in the value defined separately as uncertaintyDetails giving the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number"
+          "description": "(Optional) - Uncertainty in the value defined separately as uncertaintyDetails giving the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
         },
         "notes": {
           "type": "string",
-          "description": "(Optional) - Further notes about the value of datatype string"
+          "description": "(Optional) - Further notes about the value of datatype string."
         }
       },
       "required": [

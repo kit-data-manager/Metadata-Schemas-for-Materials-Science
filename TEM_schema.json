@@ -284,8 +284,7 @@
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min, default value - max) of datatype string.",
+          "description": "(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min) of datatype string.",
           "enum": [
             "max",
             "min",
@@ -416,18 +415,19 @@
         },
         "unit": {
           "type": "string",
-          "default": "W",
-          "description": "(required, NAE) - the unit of the value to be selected from a controlled list (mW, W, kW, default value - W) of datatype string.",
+          "description": "(required, NAE) - the unit of the value to be selected from a controlled list (mW, W, kW, typical unit - W) of datatype string.",
           "enum": [
+            "nW",
+            "µW",
             "mW",
             "W",
-            "kW"
+            "kW",
+            "GW"
           ]
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
-          "description": "(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min, default value - max) of datatype string.",
+          "description": "(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min) of datatype string.",
           "enum": [
             "max",
             "min",
@@ -574,25 +574,25 @@
           "$ref": "#/$defs/pressureDetails",
           "description": "(required, AE) - pressure maintained inside the chamber (in which the sample is housed) during the measurement."
         },
-        "monochromator": {
-          "$ref": "#/$defs/monochromatorDetails",
-          "description": "(Optional, AE) - details pertaining to the monochromator expressed separately as monochromatorDetails"
+        "stage": {
+          "$ref": "#/$defs/stageDetails",
+          "description": "(required, AE) - details pertaining to the stage."
         },
         "source": {
           "$ref": "#/$defs/sourceDetails",
-          "description": "(required, NAE) - details pertaining to the source of the electron beam expressed separately as sourceDetails"
+          "description": "(required, NAE) - details pertaining to the source of the electron beam."
         },
-        "stage": {
-          "$ref": "#/$defs/stageDetails",
-          "description": "(required, AE) - details pertaining to the stage expressed separately as stageDetails"
+        "monochromator": {
+          "$ref": "#/$defs/monochromatorDetails",
+          "description": "(Optional, AE) - details pertaining to the monochromator."
         },
         "aperture": {
           "$ref": "#/$defs/apertureDetails",
-          "description": "(optional, AE) - details pertaining to the apertures used expressed separately as apertureDetails"
+          "description": "(optional, AE) - details pertaining to the apertures used."
         },
         "lens": {
           "$ref": "#/$defs/lensDetails",
-          "description": "(required, AE) - details pertaining to the lenses used expressed separately as lensDetails"
+          "description": "(required, AE) - details pertaining to the lenses used."
         },
         "ASTAR": {
           "$ref": "#/$defs/ASTARdetails",
@@ -604,7 +604,7 @@
         },
         "detector": {
           "$ref": "#/$defs/detectorDetails",
-          "description": "(required, NAE) - details pertaining to the detector used expressed separately as detectorDetails"
+          "description": "(required, NAE) - details pertaining to the detector used."
         }
       },
       "required": [
@@ -612,9 +612,9 @@
         "setMagnification",
         "setCameraLength",
         "operationMode",
+        "imageMode",
         "spotSize",
         "defocus",
-        "chamberPressure",
         "source",
         "stage",
         "aperture",
@@ -636,26 +636,26 @@
     },
     "manufacturerDetails": {
       "type": "object",
-      "description": "gives details like the name of the manufacturer and model of the instrument and an ID",
+      "description": "gives details like the name of the manufacturer and model of the instrument and an identifier.",
       "additionalProperties": false,
       "properties": {
         "manufacturerName": {
           "type": "string",
-          "description": "(optional, AE) - Name of the manufacturer of datatype string"
+          "description": "(optional, AE) - Name of the manufacturer of datatype string."
         },
         "modelName": {
           "type": "string",
-          "description": "(optional, AE) - Model of the instrument of datatype string"
+          "description": "(optional, AE) - Model of the instrument of datatype string."
         },
         "manufacturerID": {
           "$ref": "#/$defs/identifier",
-          "description": "(optional, NAE) - Identifier for the manufacturer"
+          "description": "(optional, NAE) - Identifier for the manufacturer."
         }
       }
     },
     "precessionDetails": {
       "type": "object",
-      "description": "(Optional, AE) - Gives details about the precession",
+      "description": "(Optional, AE) - Gives details about the precession.",
       "additionalProperties": false,
       "properties": {
         "precessionAngle": {
@@ -668,27 +668,27 @@
         },
         "beamScanAlignment": {
           "type": "string",
-          "description": "(Optional, AE) - description of how the beam scan is aligned, of datatype string"
+          "description": "(Optional, AE) - description of how the beam scan is aligned, of datatype string."
         },
         "precessionAlignment": {
           "type": "string",
-          "description": "(Optional, AE) - Description of how precession is aligned, of datatype string"
+          "description": "(Optional, AE) - Description of how precession is aligned, of datatype string."
         },
         "precessionOn": {
           "type": "boolean",
-          "description": "(Optional, AE) - To be set to True if precession is turned on"
+          "description": "(Optional, AE) - To be set to True if precession is turned on."
         },
         "descanOn": {
           "type": "boolean",
-          "description": "(Optional, AE) - To be set to True if descan is turned on"
+          "description": "(Optional, AE) - To be set to True if descan is turned on."
         },
         "precessionsPerFrame": {
           "type": "number",
-          "description": "(Optional, AE) - Number of precessions per frame, of datatype integer"
+          "description": "(Optional, AE) - Number of precessions per frame, of datatype integer."
         },
         "interactionMode": {
           "type": "string",
-          "description": "(Optional, AE) - Manual or Auto interaction mode",
+          "description": "(Optional, AE) - Manual or Auto interaction mode.",
           "enum": [
             "Auto",
             "Manual"
@@ -696,27 +696,27 @@
         },
         "Optimization": {
           "type": "object",
-          "description": "(Optional, AE) - Description of the optimization done in terms of x and y compensation points",
+          "description": "(Optional, AE) - Description of the optimization done in terms of x and y compensation points.",
           "additionalProperties": false,
           "properties": {
             "xCompensationPoints": {
               "type": "number",
-              "description": "(Optional, AE) - Number of compensation points in x dimension"
+              "description": "(Optional, AE) - Number of compensation points in x dimension."
             },
             "yCompensationPoints": {
               "type": "number",
-              "description": "(Optional, AE) - Number of compensation points in y dimension"
+              "description": "(Optional, AE) - Number of compensation points in y dimension."
             }
           }
         },
         "diffraction": {
           "type": "object",
-          "description": "(Optional, AE) - Description of the diffraction",
+          "description": "(Optional, AE) - Description of the diffraction.",
           "additionalProperties": false,
           "properties": {
             "frameSize": {
               "type": "number",
-              "description": "(Optional, AE) - Size of the frame eg:- 512, 256, 128",
+              "description": "(Optional, AE) - Size of the frame eg:- 512, 256, 128.",
               "default": 512,
               "enum": [
                 1024,
@@ -727,26 +727,26 @@
             },
             "frameTime": {
               "$ref": "#/$defs/timeDetails",
-              "description": "(Optional, AE) - Time per frame"
+              "description": "(Optional, AE) - Time per frame, typical unit - s."
             },
             "CameraLength": {
               "$ref": "#/$defs/distanceDetails",
-              "description": "(Optional, AE) - Distance which is present between the specimen surface and the detector plane, iri: https://purls.helmholtz-metadaten.de/EMG/00000005"
+              "description": "(Optional, AE) - Distance which is present between the specimen surface and the detector plane, iri: https://purls.helmholtz-metadaten.de/EMG/00000005."
             }
           }
         },
         "thresholdOverlayEnabled": {
           "type": "boolean",
-          "description": "(Optional, AE) - Set to True if threshold overlay is Enabled"
+          "description": "(Optional, AE) - Set to True if threshold overlay is enabled."
         },
         "scanning": {
           "type": "object",
-          "description": "(Optional, AE) - Description of scanning with respect to precession",
+          "description": "(Optional, AE) - Description of scanning with respect to precession.",
           "additionalProperties": false,
           "properties": {
             "frameSize": {
               "type": "number",
-              "description": "(Optional, AE) - Size of the frame eg:- 512, 256, 128",
+              "description": "(Optional, AE) - Size of the frame eg:- 512, 256, 128.",
               "default": 512,
               "enum": [
                 1024,
@@ -756,7 +756,7 @@
               ]
             },
             "rotation": {
-              "description": "(Optional -AE) - Angle of rotation",
+              "description": "(Optional -AE) - Angle of rotation.",
               "$ref": "#/$defs/angleDetails"
             },
             "virtualSTEMSignal": {
@@ -771,12 +771,12 @@
         },
         "focus": {
           "type": "object",
-          "description": "(Optional, AE) - Description of focus with respect to precession",
+          "description": "(Optional, AE) - Description of focus with respect to precession.",
           "additionalProperties": false,
           "properties": {
             "frameSize": {
               "type": "number",
-              "description": "(Optional, AE) - Size of the frame eg:- 512, 256, 128",
+              "description": "(Optional, AE) - Size of the frame eg:- 512, 256, 128.",
               "default": 512,
               "enum": [
                 1024,
@@ -787,18 +787,18 @@
             },
             "frameTime": {
               "$ref": "#/$defs/timeDetails",
-              "description": "(Optional, AE) - Time per frame, default unit - s"
+              "description": "(Optional, AE) - Time per frame, typical unit - s."
             }
           }
         },
         "capture": {
           "type": "object",
-          "description": "(Optional, AE) - Description of capture with respect to precession",
+          "description": "(Optional, AE) - Description of capture with respect to precession.",
           "additionalProperties": false,
           "properties": {
             "frameSize": {
               "type": "number",
-              "description": "(Optional, AE) - Size of the frame eg:- 512, 256, 128",
+              "description": "(Optional, AE) - Size of the frame eg:- 512, 256, 128.",
               "default": 512,
               "enum": [
                 1024,
@@ -809,26 +809,26 @@
             },
             "frameTime": {
               "$ref": "#/$defs/timeDetails",
-              "description": "(Optional, AE) - Time per frame, default unit - s "
+              "description": "(Optional, AE) - Time per frame, typical unit - s."
             }
           }
         },
         "scanRange": {
           "type": "object",
-          "description": "(Optional - AE) - Details regarding STEM with respect to precession",
+          "description": "(Optional - AE) - Details regarding STEM with respect to precession.",
           "additionalProperties": false,
           "properties": {
             "alignmentPlatform": {
               "type": "boolean",
-              "description": "(Optional - AE) - To be set True if alignment platform is used"
+              "description": "(Optional - AE) - To be set True if alignment platform is used."
             },
             "STEMMagnification": {
               "type": "number",
-              "description": "(Optional -AE) - Set Magnification of the STEM"
+              "description": "(Optional -AE) - Set Magnification of the STEM."
             },
             "scanrotation": {
               "$ref": "#/$defs/angleDetails",
-              "description": "(Optional - AE) - Angle of scan rotation, default unit - degree"
+              "description": "(Optional - AE) - Angle of scan rotation, typical unit - degree."
             }
           }
         }
@@ -836,39 +836,38 @@
     },
     "frequencyDetails": {
       "type": "object",
-      "description": "describes a frequency",
+      "description": "Describes a frequency.",
       "additionalProperties": false,
       "properties": {
         "value": {
           "type": "number",
-          "description": "(required, AE) - The frequency expressed as an integer or floating point value of datatype number"
+          "description": "(required, AE) - The frequency expressed as an integer or floating point value of datatype number."
         },
         "unit": {
           "type": "string",
-          "default": "Pa",
           "enum": [
             "Hz",
-            "kHz"
+            "kHz",
+            "MHz"
           ],
-          "description": "(required, AE) - the unit of the value to be selected from a controlled list (Hz, kHz, default value - Hz) of datatype string"
+          "description": "(required, AE) - the unit of the value to be selected from a controlled list (Hz, kHz, default value - Hz) of datatype string."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
           "enum": [
             "max",
             "min",
             "average"
           ],
-          "description": "(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min), default value - max) of datatype string"
+          "description": "(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min), default value - max) of datatype string."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": "(optional, NAE) - Uncertainty in the value, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number"
+          "description": "(optional, NAE) - Uncertainty in the value, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
         },
         "notes": {
           "type": "string",
-          "description": "(optional, NAE) - Further notes about the value of datatype string"
+          "description": "(optional, NAE) - Further notes about the value of datatype string."
         }
       },
       "required": [
@@ -878,16 +877,15 @@
     },
     "pressureDetails": {
       "type": "object",
-      "description": "describes a pressure measurement. Properties: value (required, AE) - The pressure expressed as an integer or floating point value of datatype number, unit (required, AE) - the unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi, default value - Pa) of datatype string, qualifier (optional, NAE) - A qualifier to describe the value (e.g., avg, max, min), default value - max) of datatype string, uncertainty (optional, NAE) - Uncertainty in the value, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (optional, NAE) - Further notes about the value of datatype string",
+      "description": "Describes a pressure measurement.",
       "additionalProperties": false,
       "properties": {
         "value": {
           "type": "number",
-          "description": ""
+          "description": "(required, AE) - The pressure expressed as an integer or floating point value of datatype number."
         },
         "unit": {
           "type": "string",
-          "default": "Pa",
           "enum": [
             "Pa",
             "hPa",
@@ -898,25 +896,24 @@
             "bar",
             "psi"
           ],
-          "description": ""
+          "description": "(required, AE) - The unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi, default value - Pa) of datatype string."
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
           "enum": [
             "max",
             "min",
             "average"
           ],
-          "description": ""
+          "description": "(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min)."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": ""
+          "description": "(optional, NAE) - Uncertainty in the value, which gives the option of choosing between an absolute uncertainty or relative uncertainty."
         },
         "notes": {
           "type": "string",
-          "description": ""
+          "description": "(optional, NAE) - Further notes about the value of datatype string."
         }
       },
       "required": [
@@ -926,32 +923,50 @@
     },
     "EFTEMdetails": {
       "type": "object",
-      "description": "",
+      "description": "(Optional, AE) - Details about energy filtered transmission electron microscopy (EFTEM).",
       "additionalProperties": false,
       "properties": {
         "enabled": {
           "type": "boolean",
-          "description": ""
+          "description": "(Optional, AE) - To be set to true if EFTEM mode is enabled."
         },
         "zeroEnergyLoss": {
           "type": "boolean",
-          "description": ""
+          "description": "(Optional, AE) - To be set to true if energy loss is set at zero."
         },
         "setEnergyLoss": {
           "$ref": "#/$defs/energyDetails",
-          "description": ""
+          "description": "(Optional, AE) - The value of the specific non-zero energy loss selected for the filter."
         },
         "inColumnFilter": {
           "type": "object",
-          "description": "",
+          "description": "(Optional, AE) -  Description about the in-column filter used between the intermediate and projector lenses.",
           "additionalProperties": false,
-          "properties": {}
+          "properties": {
+            "inColumnFilterType":{
+              "description":"(Optional, AE) -  Type of the in-column filter used. eg. JEOL omega filter",
+              "type":"string"
+            },
+            "slitOffset":{
+              "description":"(Optional, AE) -  Offset used to adjust the slit position when an omega filter allows only positive energy shifts.",
+              "$ref": "#/$defs/energyDetails"
+            },
+            "slitWidth":{
+              "description":"(Optional, AE) -  Slit width in electron volts (It also represents a physical slit opening in µm).",
+              "$ref": "#/$defs/energyDetails"
+            }
+          }
         },
         "postColumnFilter": {
           "type": "object",
           "description": "",
           "additionalProperties": false,
-          "properties": {}
+          "properties": {
+            "energyOffset":{},
+            "slitWidth":{},
+            "matchPixelSizeON":{},
+            "matchIntensityON":{}
+          }
         }
       }
     },
@@ -1018,7 +1033,6 @@
         },
         "unit": {
           "type": "string",
-          "default": "kV",
           "enum": [
             "µV",
             "mV",
@@ -1030,7 +1044,6 @@
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
           "enum": [
             "max",
             "min",
@@ -1054,7 +1067,7 @@
     },
     "sourceDetails": {
       "type": "object",
-      "description": "gives details about the electron beam source. Properties: sourceName (optional, AE) - name of the e-beam source of datatype string, sourceID (optional, NAE) - identifier for the e-beam source, accelerationVoltage (required, AE) - the voltage with which the e-beam is accelerated,(includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV), beamCurrent (optional, NAE) - the measured current of the e-beam, (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, µA, mA, A, kA), currentDensity (optional, NAE) - the current density on the filament, which also indicates the brightness of the gun with default unit pA/cm2, beamEnergy (optional, NAE) - energy of the e-beam, sourceLifetime (optional, NAE) - lifetime of the e-beam source (default value - uAh) of datatype string, gunType (optional, NAE) - the type of the electron gun used as source for the e-beam which is to be selected froma  controlled list of values ( normal thermal FEG, extra bright FEG, cold FEG, LaB6, W) of the datatype string, gunLens (optional, AE) - A string which gives the serial number of the lens used in front of the electron gun, extractorVoltage (optional, NAE)- the extractor voltage used for the electorn gun.",
+      "description": "gives details about the electron beam source. Properties: sourceName (optional, AE) - name of the e-beam source of datatype string, sourceID (optional, NAE) - identifier for the e-beam source, accelerationVoltage (required, AE) - the voltage with which the e-beam is accelerated,(includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV), beamCurrent (optional, NAE) - the measured current of the e-beam, (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, µA, mA, A, kA), currentDensity (optional, NAE) - the current density on the filament, which also indicates the brightness of the gun with typical unit pA/cm2, beamEnergy (optional, NAE) - energy of the e-beam, sourceLifetime (optional, NAE) - lifetime of the e-beam source (default value - uAh) of datatype string, gunType (optional, NAE) - the type of the electron gun used as source for the e-beam which is to be selected froma  controlled list of values ( normal thermal FEG, extra bright FEG, cold FEG, LaB6, W) of the datatype string, gunLens (optional, AE) - A string which gives the serial number of the lens used in front of the electron gun, extractorVoltage (optional, NAE)- the extractor voltage used for the electorn gun.",
       "additionalProperties": false,
       "properties": {
         "sourceName": {
@@ -1120,7 +1133,6 @@
         },
         "unit": {
           "type": "string",
-          "default": "pA",
           "enum": [
             "pA",
             "nA",
@@ -1132,7 +1144,6 @@
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
           "enum": [
             "max",
             "min",
@@ -1165,7 +1176,6 @@
         },
         "unit": {
           "type": "string",
-          "default": "pA/cm2",
           "enum": [
             "pA/cm2",
             "nA/cm2",
@@ -1179,7 +1189,6 @@
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
           "description": ""
         },
         "uncertainty": {
@@ -1207,7 +1216,6 @@
         },
         "unit": {
           "type": "string",
-          "default": "keV",
           "enum": [
             "meV",
             "eV",
@@ -1223,7 +1231,6 @@
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
           "enum": [
             "max",
             "min",
@@ -1256,12 +1263,10 @@
         },
         "unit": {
           "type": "string",
-          "default": "µAh",
           "description": ""
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
           "enum": [
             "max",
             "min",
@@ -1387,7 +1392,6 @@
         },
         "coordinatesUnit": {
           "type": "string",
-          "default": "um",
           "enum": [
             "nm",
             "um",
@@ -1416,7 +1420,6 @@
         },
         "unit": {
           "type": "string",
-          "default": "degree",
           "enum": [
             "degree",
             "radian"
@@ -1425,7 +1428,6 @@
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
           "enum": [
             "max",
             "min",
@@ -1503,7 +1505,7 @@
     },
     "lensDetails": {
       "type": "object",
-      "description": "describes of the excitation percentage of the lenses used in the system. Properties: c1 (optional, AE) - percentage of excitation of condenser1 of the datatype number, c2 (optional, AE) - percentage of excitation of condenser2 of the datatype number, c3 (optional, AE) - percentage of excitation of condenser3 of the datatype number, minicondenser (optional, AE) - percentage of excitation of minicondenser of the datatype number, objective (optional, AE) - percentage of excitation of objective lens of the datatype number, lorentz (optional, AE) - percentage of excitation of the lorentz lens of the datatype number, diffraction (optional, AE) - percentage of excitation of diffraction lens of the datatype number, intermediate (optional, AE) - percentage of excitation of intermediate lens of the datatype number, p1 (optional, AE) - percentage of excitation of projector lens 1 of the datatype number, p2 (optional, AE) - percentage of excitation of projector lens 2 of the datatype number, beamConvergence (required, AE) - the angle of the electron beam as it enters the objective lens with default unit as mrad",
+      "description": "describes of the excitation percentage of the lenses used in the system. Properties: c1 (optional, AE) - percentage of excitation of condenser1 of the datatype number, c2 (optional, AE) - percentage of excitation of condenser2 of the datatype number, c3 (optional, AE) - percentage of excitation of condenser3 of the datatype number, minicondenser (optional, AE) - percentage of excitation of minicondenser of the datatype number, objective (optional, AE) - percentage of excitation of objective lens of the datatype number, lorentz (optional, AE) - percentage of excitation of the lorentz lens of the datatype number, diffraction (optional, AE) - percentage of excitation of diffraction lens of the datatype number, intermediate (optional, AE) - percentage of excitation of intermediate lens of the datatype number, p1 (optional, AE) - percentage of excitation of projector lens 1 of the datatype number, p2 (optional, AE) - percentage of excitation of projector lens 2 of the datatype number, beamConvergence (required, AE) - the angle of the electron beam as it enters the objective lens with typical unit as mrad",
       "additionalProperties": false,
       "properties": {
         "c1": {
@@ -1620,8 +1622,7 @@
       "properties": {
         "detectorType": {
           "type": "string",
-          "default": "Secondary Electron",
-          "description": ""
+          "description": "(Required, NAE) - Description of the detector type, e.g., direct electron detector, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, He3 gas cylinder, He3 PSD… of the datatype string"
         },
         "detectorName": {
           "type": "string",
@@ -1793,12 +1794,10 @@
         },
         "unit": {
           "type": "string",
-          "default": "nm/pixel",
           "description": ""
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
           "enum": [
             "max",
             "min",
@@ -1831,12 +1830,10 @@
         },
         "unit": {
           "type": "string",
-          "default": "pixels/nm",
           "description": ""
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
           "enum": [
             "max",
             "min",
@@ -1884,7 +1881,6 @@
         },
         "unit": {
           "type": "string",
-          "default": "us",
           "enum": [
             "ps",
             "ns",
@@ -1896,7 +1892,6 @@
         },
         "qualifier": {
           "type": "string",
-          "default": "max",
           "enum": [
             "max",
             "min",
@@ -1995,7 +1990,6 @@
         },
         "unit": {
           "type": "string",
-          "default": "us",
           "enum": [
             "dB",
             "%"
