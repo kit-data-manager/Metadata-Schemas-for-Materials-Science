@@ -1045,7 +1045,10 @@
                   "$ref": "#/$defs/currentDetails",
                   "description": "(Required) - The electron current measured at the probe. Typical unit - µA."
                 },
-                "voltage": {},
+                "voltage": {
+                  "description": "(Optional) - Acceleration Voltage set in the SEM. Default unit - kV.",
+                  "$ref": "#/$defs/voltageDetails"
+                },
                 "workingDistance": {
                   "$ref": "#/$defs/distanceDetails",
                   "description": "(Required)- Distance which is determined along the optical axis within the column from  (1) the lower end of the final optical element between the source and the  specimen stage; to (2) the point where the beam is focused. In SEM based CT, the beam is focussed on the target material which emits the X-rays upon interaction with the electrons. Default unit - µm."
