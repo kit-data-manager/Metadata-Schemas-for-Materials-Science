@@ -885,7 +885,7 @@
                   "$ref": "#/$defs/voltageDetails"
                 },
                 "xrayEnergySpectrum": {
-                  "description": "(Required) - Details regarding the X-ray enrgy spectrum like chromaticity, characteristic line, filters used, etc.",
+                  "description": "(Required) - Details regarding the X-ray energy spectrum like chromaticity, characteristic line, filters used, etc.",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -1014,9 +1014,41 @@
               "type": "object",
               "additionalProperties": false,
               "properties": {
-                "chamberPressure": {
-                  "$ref": "#/$defs/pressureDetails",
-                  "description": "(Required) - Details of the pressure maintained in the chamber of the SEM."
+                "SEMName": {
+                  "type": "string",
+                  "description": "(Required) - Name of the scanning electron microscope used for SEM based CT."
+                },
+                "SEMManufacturer": {
+                  "description": "(Optional) - Details regarding the manufacturer of the scanning electron microscope used for SEM based CT.",
+                  "$ref": "#/$defs/manufacturerDetails"
+                },
+                "cathode": {
+                  "description": "(Optional) - Details regarding the material which acts as the cathode in SEM based CT",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "cathodeMaterial": {
+                      "type": "string",
+                      "description": "(Optional) - Material with which the cathode is made. e.g. - tungsten (W)"
+                    },
+                    "cathodeDetails": {
+                      "type": "string",
+                      "description": "(Optional) - Additional details regarding the cathode relevant for the measurement."
+                    }
+                  }
+                },
+                "objectiveLensAperture": {
+                  "$ref": "#/$defs/apertureSettingType",
+                  "description": "(Required) - The setting for controlling the aperture size, using either the aperture size (directly) or the beam current (indirectly). Typically the diameter of the aperture is set in µm."
+                },
+                "electronProbeCurrent": {
+                  "$ref": "#/$defs/currentDetails",
+                  "description": "(Required) - The electron current measured at the probe. Typical unit - µA."
+                },
+                "voltage": {},
+                "workingDistance": {
+                  "$ref": "#/$defs/distanceDetails",
+                  "description": "(Required)- Distance which is determined along the optical axis within the column from  (1) the lower end of the final optical element between the source and the  specimen stage; to (2) the point where the beam is focused. In SEM based CT, the beam is focussed on the target material which emits the X-rays upon interaction with the electrons. Default unit - µm."
                 },
                 "electronBeamShift": {
                   "description": "(Required) - The distance by which the electron beam is shifted in the x and y directions.",
@@ -1037,17 +1069,24 @@
                     "yShift"
                   ]
                 },
-                "workingDistance": {
-                  "$ref": "#/$defs/distanceDetails",
-                  "description": "(Required)- Distance which is determined along the optical axis within the column from  (1) the lower end of the final optical element between the source and the  specimen stage; to (2) the point where the beam is focused. In SEM based CT, the beam is focussed on the target material which emits the X-rays upon interaction with the electrons. Default unit - µm."
-                },
-                "objectiveLensAperture": {
-                  "$ref": "#/$defs/apertureSettingType",
-                  "description": "(Required) - The setting for controlling the aperture size, using either the aperture size (directly) or the beam current (indirectly). Typically the diameter of the aperture is set in µm."
-                },
-                "electronProbeCurrent": {
-                  "$ref": "#/$defs/currentDetails",
-                  "description": "(Required) - The electron current measured at the probe. Typical unit - µA."
+                "xrayEnergySpectrum": {
+                  "description": "(Required) - Details regarding the X-ray energy spectrum like chromaticity, characteristic line, filters used, etc.",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "chromaticity": {
+                      "description": "(Required) - Describes if the x-rays are monochromatic or polychromatic. Default value is polychromatic.",
+                      "type": "string",
+                      "enum": [
+                        "monochromatic",
+                        "polychromatic"
+                      ],
+                      "default": "polychromatic"
+                    }
+                  },
+                  "required": [
+                    "chromaticity"
+                  ]
                 },
                 "target": {
                   "type": "object",
@@ -1079,9 +1118,12 @@
                     "targetMaterial",
                     "targetThickness",
                     "targetDriftCorrection",
-                    "targetTiltAngle",
-                    "targetCurrent"
+                    "targetTiltAngle"
                   ]
+                },
+                "chamberPressure": {
+                  "$ref": "#/$defs/pressureDetails",
+                  "description": "(Required) - Details of the pressure maintained in the chamber of the SEM."
                 }
               },
               "required": [
