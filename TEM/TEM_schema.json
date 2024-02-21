@@ -1129,12 +1129,12 @@
     },
     "currentDetails": {
       "type": "object",
-      "description": "describes a current. Properties: value (Required) - The voltage expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value to be selected from a controlled list (pA, nA, µA, mA, A default value - pA) of datatype string, qualifier (Optional, NAE) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional, NAE) - Uncertainty in the value, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional, NAE) - Further notes about the value of datatype string",
+      "description": "Describes a current.",
       "additionalProperties": false,
       "properties": {
         "value": {
           "type": "number",
-          "description": ""
+          "description": "(Required, AE) - The voltage expressed as an integer or floating point value of datatype number."
         },
         "unit": {
           "type": "string",
@@ -1145,7 +1145,7 @@
             "mA",
             "A"
           ],
-          "description": ""
+          "description": "(Required, AE) - Unit of the value to be selected from a controlled list - pA, nA, µA, mA, A."
         },
         "qualifier": {
           "type": "string",
@@ -1154,15 +1154,15 @@
             "min",
             "average"
           ],
-          "description": ""
+          "description": "(Optional, NAE) - A qualifier to describe the value (e.g., avg, max, min) of the datatype string."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": ""
+          "description": "(Optional, NAE) - Uncertainty in the value, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
         },
         "notes": {
           "type": "string",
-          "description": ""
+          "description": "(Optional, NAE) - Further notes about the value of datatype string."
         }
       },
       "required": [
@@ -1172,12 +1172,12 @@
     },
     "currentDensityDetails": {
       "type": "object",
-      "description": "describes a current density. Properties: value (Required) - The current density expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value to be selected from a controlled list (pA/cm2, nA/cm2, nA/nm2, µA/cm2 mA/cm2, A/cm2, A/m2) of datatype string, qualifier (Optional, NAE) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional, NAE) - Uncertainty in the value, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional, NAE) - Further notes about the value of datatype string",
+      "description": "Describes a current density.",
       "additionalProperties": false,
       "properties": {
         "value": {
           "type": "number",
-          "description": ""
+          "description": "(Required, AE) - The current density expressed as an integer or floating point value of datatype number"
         },
         "unit": {
           "type": "string",
@@ -1190,19 +1190,19 @@
             "A/cm2",
             "A/m2"
           ],
-          "description": ""
+          "description": "(Required) - Unit of the value to be selected from a controlled list - pA/cm2, nA/cm2, nA/nm2, µA/cm2 mA/cm2, A/cm2, A/m2."
         },
         "qualifier": {
           "type": "string",
-          "description": ""
+          "description": "(Optional, NAE) - A qualifier to describe the value (e.g., avg, max, min) of datatype string."
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": ""
+          "description": "(Optional, NAE) - Uncertainty in the value, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
         },
         "notes": {
           "type": "string",
-          "description": ""
+          "description": "(Optional, NAE) - Further notes about the value of datatype string."
         }
       },
       "required": [
@@ -1212,12 +1212,12 @@
     },
     "energyDetails": {
       "type": "object",
-      "description": "describes an energy. Properties: value (Required) - The energy expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value to be selected from a controlled list (meV, eV, keV, MeV, nJ, mJ, J, kJ, MJ; default value - keV) of datatype string, qualifier (Optional, NAE) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional, NAE) - Uncertainty in the value with an option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional, NAE) - Further notes about the value of datatype string",
+      "description": "describes an energy. Properties: value , unit ; default value - keV) of datatype string, qualifier , uncertainty , notes ",
       "additionalProperties": false,
       "properties": {
         "value": {
           "type": "number",
-          "description": ""
+          "description": "(Required,AE) - The energy expressed as an integer or floating point value of datatype number"
         },
         "unit": {
           "type": "string",
@@ -1232,7 +1232,7 @@
             "kJ",
             "MJ"
           ],
-          "description": ""
+          "description": "(Required, AE) - Unit of the value to be selected from a controlled list - meV, eV, keV, MeV, nJ, mJ, J, kJ, MJ."
         },
         "qualifier": {
           "type": "string",
@@ -1241,15 +1241,15 @@
             "min",
             "average"
           ],
-          "description": ""
+          "description": "(Optional, NAE) - A qualifier to describe the value (e.g., avg, max, min) of datatype string"
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": ""
+          "description": "(Optional, NAE) - Uncertainty in the value with an option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
         },
         "notes": {
           "type": "string",
-          "description": ""
+          "description": "(Optional, NAE) - Further notes about the value of datatype string."
         }
       },
       "required": [
@@ -1259,16 +1259,16 @@
     },
     "lifetimeDetails": {
       "type": "object",
-      "description": "describes a lifetime. Properties: value (Required) - The lifetime of the source expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value (default value - µAh) of datatype string, qualifier (Optional, NAE) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional, NAE) - Uncertainty in the value, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional, NAE) - Further notes about the value of datatype string",
+      "description": "Describes the lifetime of a source.",
       "additionalProperties": false,
       "properties": {
         "value": {
           "type": "number",
-          "description": ""
+          "description": "(Required, AE) - The lifetime of the source expressed as an integer or floating point value of datatype number."
         },
         "unit": {
           "type": "string",
-          "description": ""
+          "description": "(Required, AE) - the unit of the value (default value - µAh) of datatype string."
         },
         "qualifier": {
           "type": "string",
@@ -1277,15 +1277,15 @@
             "min",
             "average"
           ],
-          "description": ""
+          "description": "(Optional, NAE) - A qualifier to describe the value (e.g., avg, max, min) of datatype string"
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": ""
+          "description": "(Optional, NAE) - Uncertainty in the value, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
         },
         "notes": {
           "type": "string",
-          "description": ""
+          "description": "(Optional, NAE) - Further notes about the value of datatype string."
         }
       },
       "required": [
@@ -1295,7 +1295,7 @@
     },
     "stageDetails": {
       "type": "object",
-      "description": "(Required, NAE) - describes the stage settings during a measurement.",
+      "description": "(Required, NAE) - Describes the stage settings during a measurement.",
       "additionalProperties": false,
       "properties": {
         "specimenPosition": {
@@ -1621,52 +1621,52 @@
     },
     "lensDetails": {
       "type": "object",
-      "description": "describes of the excitation percentage of the lenses used in the system. Properties: c1 (Optional, AE) - percentage of excitation of condenser1 of the datatype number, c2 (Optional, AE) - percentage of excitation of condenser2 of the datatype number, c3 (Optional, AE) - percentage of excitation of condenser3 of the datatype number, minicondenser (Optional, AE) - percentage of excitation of minicondenser of the datatype number, objective (Optional, AE) - percentage of excitation of objective lens of the datatype number, lorentz (Optional, AE) - percentage of excitation of the lorentz lens of the datatype number, diffraction (Optional, AE) - percentage of excitation of diffraction lens of the datatype number, intermediate (Optional, AE) - percentage of excitation of intermediate lens of the datatype number, p1 (Optional, AE) - percentage of excitation of projector lens 1 of the datatype number, p2 (Optional, AE) - percentage of excitation of projector lens 2 of the datatype number, beamConvergence (Required, AE) - the angle of the electron beam as it enters the objective lens with typical unit as mrad",
+      "description": "describes of the excitation percentage of the lenses used in the system.",
       "additionalProperties": false,
       "properties": {
         "c1": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - percentage of excitation of condenser1 of the datatype number."
         },
         "c2": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - percentage of excitation of condenser2 of the datatype number."
         },
         "c3": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - percentage of excitation of condenser3 of the datatype number."
         },
         "minicondenser": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - percentage of excitation of minicondenser of the datatype number."
         },
         "objective": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - percentage of excitation of objective lens of the datatype number."
         },
         "lorentz": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - percentage of excitation of the lorentz lens of the datatype number."
         },
         "diffraction": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - percentage of excitation of diffraction lens of the datatype number."
         },
         "intermediate": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - percentage of excitation of intermediate lens of the datatype number."
         },
         "p1": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - percentage of excitation of projector lens 1 of the datatype number."
         },
         "p2": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - percentage of excitation of projector lens 2 of the datatype number."
         },
         "beamConvergence": {
           "$ref": "#/$defs/angleDetails",
-          "description": ""
+          "description": "(Required, AE) - the angle of the electron beam as it enters the objective lens with typical unit as mrad."
         }
       },
       "required": [
@@ -1675,25 +1675,25 @@
     },
     "ASTARdetails": {
       "type": "object",
-      "description": "details pertaining to an ASTAR attachment used for orientation-phase imaging. Properties: ASTARactive (Required, NAE) - set to be true if ASTAR attchment is used of the datatype boolean, ASTARname (Optional, AE) - name or nickname of the ASTAR system used of the datatype string, ASTARmanufacturer (Optional, AE) - details pertaining to the manufacturer of the ASTAR system, bufferSize (Optional, AE) - size of the buffer in bits expressed as a number-eg. 1024, speedRate (Optional, AE) - rate of acquision (fast, medium) of the datatype string, operationMode (Optional, AE) - operation Mode of the ASTAR such as normal of the datatype string, systemClockLocked (Optional, AE) - to be set to true if system clock is locked of the datatype boolean, objectiveApertureRetracted (Optional, NAE) - to be set as true if the objective aperture is retracted for using the ASTAR of the datatype boolean",
+      "description": "Details pertaining to an ASTAR attachment used for orientation-phase imaging.",
       "additionalProperties": false,
       "properties": {
         "ASTARactive": {
           "type": "boolean",
           "default": true,
-          "description": ""
+          "description": "(Required, NAE) - Set to be true if ASTAR attchment is used of the datatype boolean."
         },
         "ASTARname": {
           "type": "string",
-          "description": ""
+          "description": "(Optional, AE) - Name or nickname of the ASTAR system used of the datatype string."
         },
         "ASTARmanufacturer": {
           "$ref": "#/$defs/manufacturerDetails",
-          "description": ""
+          "description": "(Optional, AE) - Details pertaining to the manufacturer of the ASTAR system."
         },
         "bufferSize": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - Size of the buffer in bits expressed as a number-eg. 1024."
         },
         "speedRate": {
           "type": "string",
@@ -1702,7 +1702,7 @@
             "medium",
             "fast"
           ],
-          "description": ""
+          "description": "(Optional, AE) - Rate of acquision (fast, medium) of the datatype string."
         },
         "operationMode": {
           "type": "string",
@@ -1710,17 +1710,17 @@
             "normal",
             "other"
           ],
-          "description": ""
+          "description": "(Optional, AE) - Operation Mode of the ASTAR such as normal of the datatype string."
         },
         "systemClockLocked": {
           "type": "boolean",
           "default": true,
-          "description": ""
+          "description": "(Optional, AE) - To be set to true if system clock is locked of the datatype boolean."
         },
         "objectiveApertureRetracted": {
           "type": "boolean",
           "default": true,
-          "description": ""
+          "description": "(Optional, NAE) - To be set as true if the objective aperture is retracted for using the ASTAR of the datatype boolean."
         },
         "precession": {
           "$ref": "#/$defs/precessionDetails",
@@ -1733,86 +1733,104 @@
     },
     "detectorDetails": {
       "type": "object",
-      "description": "gives the settings of a detector. Properties: detectorType (Required, NAE) - Description of the detector type, e.g., direct electron detector, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, He3 gas cylinder, He3 PSD… of the datatype string, detectorID (Optional, NAE) - identifier for the detector/camera, detectorName (Required, AE) -Name of the detector of datatype string, detectorManufacturer (Optional, NAE) - describes the details of the detector (manufacturerName, modelName and detectorID) as part of manufacturerDetails, lastCalibration (Optional, NAE) - date and time of last calibration (YYYY-MM-DDThh:mm:ss.sssZ) of the date-time format, isCorrelationImage (Required, NAE) - set to be true if the acquired image is to be correlated with other data for correlative characterization of the datatype boolean, coordinates (Optional, NAE) - xyz coordinates describing the position of the detector, coordinateReferenceType (Optional, NAE) - description on the type of reference point on the sample used for defining the coordinates of the datatype string. For eg.- origin at fixed distances from two edges, origin at centre of the sample, etc., bitDepthReadout (Optional, AE) - gives the number of bits read by the electronics per pixel defined to be of the datatype number (can be an integer or floating point number depending on the type of the detector), numberOfPixelsCamera (Optional, AE) - gives the number of (CCD) pixels of the camera in the x and y dimensions defined as pixelNumberType, pixelSizeImage (Optional, NAE) - gives the distance on the image represented by a single pixel in each of the three dimensions - (x, y, z) defines separately as pixelSize3D,  pixelCalibration (Required, NAE) - gives the resolution of the image usually in pixels/nm, pixelOffset (Optional, AE) - pixel offset in x and y dimensions, verticallyFlipped (Required, AE) - Set to be true if the image is vertically flipped because of the camera setting defined to be of the datatype boolean, horizontallyFlipped (Required, AE) - Set to be true if the image is horizontally flipped because of the camera setting defined to be of the datatype boolean, diagonallyFlipped (Required, AE) - Set to be true if the image is diagonally flipped because of the camera setting defined to be of the datatype boolean, rotationAngle (Optional, AE) - angle by which the image is rotated, exposureTime (Optional, AE) - gives the time for which a camera pixel is exposed usually with units µs or ms, binning (Optional, NAE) - gives the number of detector counts binned together of the datatype number - usually 1, 8 or 16, collectionMethod (Required, NAE) - type of collection method- normal, averaging, integration, summation defined to be of the datatype string, numberOfCycles (Optional, NAE) - No. of CCD images used for averaging, integration or summation defined to be of the datatype number, darkReferenceCorrection (Optional, NAE) - dark field correction data as a 2D array of numbers, STEM (Optional, NAE) - Settings pertaining to scanning transmission electron microscopy measurement, EELS (Optional) - details pertaining to Electron Energy Loss Spectroscopy (EELS) expressed separately as EELSdetails, EDXS (Optional) - details pertaining to Energy-Dispersive X-Ray Spectroscopy (EDXS) used expressed separately as EDXSDetails",
+      "description": "Settings of a detector.",
       "additionalProperties": false,
       "properties": {
         "detectorType": {
           "type": "string",
-          "description": "(Required, NAE) - Description of the detector type, e.g., direct electron detector, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, He3 gas cylinder, He3 PSD… of the datatype string"
+          "description": "(Required, NAE) - Detector type to be selected from a controlled list - direct electron detector, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, He3 gas cylinder, He3 PSD, other… of the datatype string. If 'other' is selected, the detector type can be specified under the field 'otherDetectorType'.",
+          "enum":[
+            "direct electron detector",
+            "scintillator",
+            "fission chamber",
+            "proportion counter",
+            "ion chamber",
+            "ccd",
+            "pixel",
+            "image plate",
+            "CMOS",
+            "He3 gas cylinder",
+            "He3 PSD",
+            "other"
+          ]
+        },
+        "otherDetectorType":{
+          "type":"string",
+          "description":"(Optional, NAE) - Specific yype of the detector when it is not already listed under 'detectorType', of the datatype string."
         },
         "detectorName": {
           "type": "string",
-          "description": ""
+          "description": "(Required, AE) - Name of the detector of datatype string."
         },
         "detectorID": {
           "$ref": "#/$defs/identifier",
-          "description": ""
+          "description": "(Optional, NAE) - Identifier for the detector/camera."
         },
         "detectorManufacturer": {
           "$ref": "#/$defs/manufacturerDetails",
-          "description": ""
+          "description": "(Optional, NAE) - Details of the detector (manufacturerName, modelName and detectorID)."
         },
         "lastCalibration": {
           "type": "string",
           "format": "date-time",
           "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$",
-          "description": "date and time of last calibration (YYYY-MM-DDThh:mm:ss.sssZ) of the date-time format ISO 8601"
+          "description": "(Optional, NAE) - Date and time of last calibration (YYYY-MM-DDThh:mm:ss.sssZ) of the date-time format ISO 8601."
         },
         "isCorrelationImage": {
           "type": "boolean",
           "default": false,
-          "description": ""
+          "description": "(Required, NAE) - Set to be true if the acquired image is to be correlated with other data for correlative characterization of the datatype boolean."
         },
         "coordinates": {
           "$ref": "#/$defs/coordinateSet",
-          "description": ""
+          "description": "(Optional, NAE) - XYZ coordinates describing the position of the detector."
         },
         "coordinateReferenceType": {
           "type": "string",
-          "description": ""
+          "description": "(Optional, NAE) - Type of reference point on the sample used for defining the coordinates of the datatype string. For eg.- origin at fixed distances from two edges, origin at centre of the sample, etc."
         },
         "bitDepthReadout": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - Number of bits read by the electronics per pixel defined to be of the datatype number (can be an integer or floating point number depending on the type of the detector)"
         },
         "numberOfPixelsCamera": {
           "$ref": "#/$defs/pixelNumberType",
-          "description": ""
+          "description": "(Optional, AE) - Number of (CCD) pixels of the camera in the x and y dimensions."
         },
         "pixelSizeImage": {
           "$ref": "#/$defs/pixelSize3D",
-          "description": ""
+          "description": "(Optional, NAE) - Distance on the image represented by a single pixel in each of the three dimensions - X, Y, and Z."
         },
         "pixelCalibration": {
           "$ref": "#/$defs/pixelResolutionDetails",
-          "description": ""
+          "description": "(Required, NAE) - Resolution of the image usually in pixels/nm."
         },
         "pixelOffset": {
           "$ref": "#/$defs/pixelOffsetDetails",
-          "description": ""
+          "description": "(Optional, AE) - Pixel offset in x and y dimensions."
         },
         "verticallyFlipped": {
           "type": "boolean",
           "default": false,
-          "description": ""
+          "description": "(Required, AE) - Set to be true if the image is vertically flipped because of the camera setting defined to be of the datatype boolean."
         },
         "horizontallyFlipped": {
           "type": "boolean",
           "default": false,
-          "description": ""
+          "description": "(Required, AE) - Set to be true if the image is horizontally flipped because of the camera setting defined to be of the datatype boolean."
         },
         "diagonallyFlipped": {
           "type": "boolean",
           "default": false,
-          "description": ""
+          "description": "(Required, AE) - Set to be true if the image is diagonally flipped because of the camera setting defined to be of the datatype boolean."
         },
         "rotationAngle": {
           "$ref": "#/$defs/angleDetails",
-          "description": ""
+          "description": "(Optional, AE) - Angle by which the image is rotated."
         },
         "exposureTime": {
           "$ref": "#/$defs/timeDetails",
-          "description": ""
+          "description": "(Optional, AE) - Time for which a camera pixel is exposed usually with units µs or ms."
         },
         "binning": {
           "type": "number",
@@ -1825,7 +1843,7 @@
             128,
             256
           ],
-          "description": ""
+          "description": "(Optional, NAE) - Number of detector counts binned together of the datatype number - usually 1, 8 or 16."
         },
         "collectionMethod": {
           "type": "string",
@@ -1835,15 +1853,15 @@
             "integration",
             "summation"
           ],
-          "description": ""
+          "description": "(Required, NAE) - Type of collection method- normal, averaging, integration, summation defined to be of the datatype string."
         },
         "numberOfCycles": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, NAE) - Number of CCD images used for averaging."
         },
         "darkReferenceCorrection": {
           "type": "array",
-          "description": "",
+          "description": "(Optional, NAE) - Dark field correction data as a 2D array of numbers.",
           "items": {
             "type": "array",
             "items": {
@@ -1937,16 +1955,16 @@
     },
     "pixelResolutionDetails": {
       "type": "object",
-      "description": "describes the size of a pixel. Properties: value (Required) - The pixel-size expressed as an integer or floating point value of datatype number, unit (Required) - the unit of the value (default value - nm/pixel) of datatype string, qualifier (Optional) - A qualifier to describe the value (e.g., avg, max, min; default value - max) of datatype string, uncertainty (Optional) - Uncertainty in the value defined as a complex type uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number, notes (Optional) - Further notes about the value of datatype string",
+      "description": "Describes the size of a pixel. Properties: value , unit , qualifier , uncertainty r, notes ",
       "additionalProperties": false,
       "properties": {
         "value": {
           "type": "number",
-          "description": ""
+          "description": "(Required, AE) - The pixel-size expressed as an integer or floating point value of datatype number."
         },
         "unit": {
           "type": "string",
-          "description": ""
+          "description": "(Required, AE) - the unit of the value (default value - nm/pixel) of datatype string."
         },
         "qualifier": {
           "type": "string",
@@ -1955,15 +1973,15 @@
             "min",
             "average"
           ],
-          "description": ""
+          "description": "(Optional, NAE) - A qualifier to describe the value (e.g., avg, max, min) of datatype string"
         },
         "uncertainty": {
           "$ref": "#/$defs/uncertaintyDetails",
-          "description": ""
+          "description": "(Optional, NAE) - Uncertainty in the value defined as a complex type uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
         },
         "notes": {
           "type": "string",
-          "description": ""
+          "description": "(Optional, NAE) - Further notes about the value of datatype string."
         }
       },
       "required": [
@@ -1973,16 +1991,16 @@
     },
     "pixelOffsetDetails": {
       "type": "object",
-      "description": "describes the offset applied to a pixel in x and y dimensions normally expressed in nm. Properties: xPixelOffset (Optional, AE) - the offset applied to a pixel in x dimension, yPixelOffset (Optional, AE) - the offset applied to a pixel in y dimension",
+      "description": "Offset applied to a pixel in x and y dimensions normally expressed in nm. Properties: xPixelOffset , yPixelOffset ",
       "additionalProperties": false,
       "properties": {
         "xPixelOffset": {
           "$ref": "#/$defs/distanceDetails",
-          "description": ""
+          "description": "(Optional, AE) - Offset applied to a pixel in x dimension."
         },
         "yPixelOffset": {
           "$ref": "#/$defs/distanceDetails",
-          "description": ""
+          "description": "(Optional, AE) - the offset applied to a pixel in y dimension."
         }
       }
     },
@@ -2031,7 +2049,7 @@
     },
     "STEMdetails": {
       "type": "object",
-      "description": "gives the settings and parameters pertaining to scanning transmission electron microscopy measurement. Properties: gainCorrection (Optional, NAE) - the flat field correction data applied to correct the gain as an array of numbers, darkGainCorrectionType (Optional, NAE) - description of the kind of correction used of the datatype string, ADF (Optional, NAE) - details about an annular dark field detector (ADF)",
+      "description": "Settings and parameters pertaining to scanning transmission electron microscopy measurement. Properties: gainCorrection (Optional, NAE) - the flat field correction data applied to correct the gain as an array of numbers, darkGainCorrectionType (Optional, NAE) - description of the kind of correction used of the datatype string, ADF (Optional, NAE) - details about an annular dark field detector (ADF)",
       "additionalProperties": false,
       "properties": {
         "gainCorrection": {
