@@ -573,31 +573,31 @@
         },
         "chamberPressure": {
           "$ref": "#/$defs/pressureDetails",
-          "description": "(Required, AE) - pressure maintained inside the chamber (in which the sample is housed) during the measurement."
+          "description": "(Required, AE) - Pressure maintained inside the chamber (in which the sample is housed) during the measurement."
         },
         "stage": {
           "$ref": "#/$defs/stageDetails",
-          "description": "(Required, AE) - details pertaining to the stage."
+          "description": "(Required, AE) - Details pertaining to the stage."
         },
         "source": {
           "$ref": "#/$defs/sourceDetails",
-          "description": "(Required, NAE) - details pertaining to the source of the electron beam."
+          "description": "(Required, NAE) - Details pertaining to the source of the electron beam."
         },
         "aperture": {
           "$ref": "#/$defs/apertureDetails",
-          "description": "(Optional, AE) - details pertaining to the apertures used."
+          "description": "(Optional, AE) - Details pertaining to the apertures used."
         },
         "lens": {
           "$ref": "#/$defs/lensDetails",
-          "description": "(Required, AE) - details pertaining to the lenses used."
+          "description": "(Required, AE) - Details pertaining to the lenses used."
         },
         "scan": {
           "$ref": "#/$defs/scanDetails",
-          "description": "(Required, AE) - details pertaining to the scanning."
+          "description": "(Required, AE) - Details pertaining to the scanning."
         },
         "ASTAR": {
           "$ref": "#/$defs/ASTARdetails",
-          "description": "(Optional, AE) - details about an ASTAR attachment used with the microscope for orientation-phase imaging."
+          "description": "(Optional, AE) - Details about an ASTAR attachment used with the microscope for orientation-phase imaging."
         },
         "EFTEM": {
           "$ref": "#/$defs/EFTEMdetails",
@@ -605,11 +605,11 @@
         },
         "monochromator": {
           "$ref": "#/$defs/monochromatorDetails",
-          "description": "(Optional, AE) - details pertaining to the monochromator."
+          "description": "(Optional, AE) - Details pertaining to the monochromator."
         },
         "detector": {
           "$ref": "#/$defs/detectorDetails",
-          "description": "(Required, NAE) - details pertaining to the detector used."
+          "description": "(Required, NAE) - Details pertaining to the detector used."
         }
       },
       "required": [
@@ -641,7 +641,7 @@
     },
     "manufacturerDetails": {
       "type": "object",
-      "description": "gives details like the name of the manufacturer and model of the instrument and an identifier.",
+      "description": "Details like the name of the manufacturer and model of the instrument and an identifier.",
       "additionalProperties": false,
       "properties": {
         "manufacturerName": {
@@ -660,7 +660,7 @@
     },
     "precessionDetails": {
       "type": "object",
-      "description": "(Optional, AE) - Gives details about the precession.",
+      "description": "(Optional, AE) - Details about the precession.",
       "additionalProperties": false,
       "properties": {
         "precessionAngle": {
@@ -673,7 +673,7 @@
         },
         "beamScanAlignment": {
           "type": "string",
-          "description": "(Optional, AE) - description of how the beam scan is aligned, of datatype string."
+          "description": "(Optional, AE) - Description of how the beam scan is aligned, of datatype string."
         },
         "precessionAlignment": {
           "type": "string",
@@ -855,7 +855,7 @@
             "kHz",
             "MHz"
           ],
-          "description": "(Required, AE) - the unit of the value to be selected from a controlled list (Hz, kHz, default value - Hz) of datatype string."
+          "description": "(Required, AE) - The unit of the value to be selected from a controlled list (Hz, kHz, default value - Hz) of datatype string."
         },
         "qualifier": {
           "type": "string",
@@ -945,19 +945,19 @@
         },
         "inColumnFilter": {
           "type": "object",
-          "description": "(Optional, AE) -  Description about the in-column filter used between the intermediate and projector lenses.",
+          "description": "(Optional, AE) - Description about the in-column filter used between the intermediate and projector lenses.",
           "additionalProperties": false,
           "properties": {
             "inColumnFilterType": {
-              "description": "(Optional, AE) -  Type of the in-column filter used. eg. JEOL omega filter",
+              "description": "(Optional, AE) - Type of the in-column filter used. eg. JEOL omega filter",
               "type": "string"
             },
             "slitOffset": {
-              "description": "(Optional, AE) -  Offset used to adjust the slit position when an omega filter allows only positive energy shifts.",
+              "description": "(Optional, AE) - Offset used to adjust the slit position when an omega filter allows only positive energy shifts.",
               "$ref": "#/$defs/energyDetails"
             },
             "slitWidth": {
-              "description": "(Optional, AE) -  Slit width in electron volts (It also represents a physical slit opening in µm).",
+              "description": "(Optional, AE) - Slit width in electron volts (It also represents a physical slit opening in µm).",
               "$ref": "#/$defs/energyDetails"
             }
           }
@@ -977,45 +977,45 @@
     },
     "monochromatorDetails": {
       "type": "object",
-      "description": "gives the details about the monochromator if it is used in the measurement. Properties: monochromatorActive (Required, AE) - to be set as true if the monochromator is active in the measurement (of the datatype boolean), monoShiftX (Required, AE) - Voltage shift applied in the X dimension, monoShiftY (Required, AE) - Voltage shift applied in the Y dimension, monoStigmatorX (Required, AE) - strength of monochromator stigmator X applied to correct for astigmatism (of the datatype number), monoStigmatorY (Required, AE) - strength of monochromator stigmator Y applied to correct for astigmatism (of the datatype number), monoFocus (Required, AE) - the value of the mono Focus used by the monochromator (of the datatype number), selectedSlitNo (Optional, AE) - Serial number of the selected slit (of the datatype number), monoPotential (Optional, AE) - Voltage applied to the monochromator, monoExcitation (Optional, AE) - A number which indicats how sensitive is the monochromator (of the datatype number)",
+      "description": "Details about the monochromator if it is used in the measurement.",
       "additionalProperties": false,
       "properties": {
         "monochromatorActive": {
           "type": "boolean",
           "default": false,
-          "description": ""
+          "description": "(Required, AE) - To be set as true if the monochromator is active in the measurement (of the datatype boolean)"
         },
         "monoShiftX": {
           "$ref": "#/$defs/voltageDetails",
-          "description": ""
+          "description": "(Required, AE) - Voltage shift applied in the X dimension."
         },
         "monoShiftY": {
           "$ref": "#/$defs/voltageDetails",
-          "description": ""
+          "description": "(Required, AE) - Voltage shift applied in the Y dimension."
         },
         "monoStigmatorX": {
           "type": "number",
-          "description": ""
+          "description": "(Required, AE) - strength of monochromator stigmator X applied to correct for astigmatism (of the datatype number)."
         },
         "monoStigmatorY": {
           "type": "number",
-          "description": ""
+          "description": "(Required, AE) - strength of monochromator stigmator Y applied to correct for astigmatism (of the datatype number)."
         },
         "monoFocus": {
           "type": "number",
-          "description": ""
+          "description": "(Required, AE) - the value of the mono Focus used by the monochromator (of the datatype number)."
         },
         "selectedSlitNo": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - Serial number of the selected slit (of the datatype number)."
         },
         "monoPotential": {
           "$ref": "#/$defs/voltageDetails",
-          "description": ""
+          "description": "(Optional, AE) - Voltage applied to the monochromator."
         },
         "monoExcitation": {
           "type": "number",
-          "description": ""
+          "description": "(Optional, AE) - A number which indicats how sensitive is the monochromator (of the datatype number)."
         }
       },
       "required": [
