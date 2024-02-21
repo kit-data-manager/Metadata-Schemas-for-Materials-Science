@@ -1072,36 +1072,36 @@
     },
     "sourceDetails": {
       "type": "object",
-      "description": "gives details about the electron beam source. Properties: sourceName (Optional, AE) - name of the e-beam source of datatype string, sourceID (Optional, NAE) - identifier for the e-beam source, accelerationVoltage (Required, AE) - the voltage with which the e-beam is accelerated,(includes the voltage value, Optional uncertainty, Optional qualifier like max or min, Optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV), beamCurrent (Optional, NAE) - the measured current of the e-beam, (includes the current value, Optional uncertainty, Optional qualifier like max or min, Optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, µA, mA, A, kA), currentDensity (Optional, NAE) - the current density on the filament, which also indicates the brightness of the gun with typical unit pA/cm2, beamEnergy (Optional, NAE) - energy of the e-beam, sourceLifetime (Optional, NAE) - lifetime of the e-beam source (default value - uAh) of datatype string, gunType (Optional, NAE) - the type of the electron gun used as source for the e-beam which is to be selected froma  controlled list of values ( normal thermal FEG, extra bright FEG, cold FEG, LaB6, W) of the datatype string, gunLens (Optional, AE) - A string which gives the serial number of the lens used in front of the electron gun, extractorVoltage (Optional, NAE)- the extractor voltage used for the electorn gun.",
+      "description": "Details about the electron beam source.",
       "additionalProperties": false,
       "properties": {
         "sourceName": {
           "type": "string",
-          "description": ""
+          "description": "(Optional, AE) - Name of the e-beam source of datatype string."
         },
         "sourceID": {
           "$ref": "#/$defs/identifier",
-          "description": ""
+          "description": " (Optional, NAE) - Identifier for the e-beam source."
         },
         "accelerationVoltage": {
           "$ref": "#/$defs/voltageDetails",
-          "description": ""
+          "description": "(Required, AE) - Voltage with which the e-beam is accelerated. Includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV."
         },
         "beamCurrent": {
           "$ref": "#/$defs/currentDetails",
-          "description": ""
+          "description": "(Optional, NAE) - Measured current of the e-beam. Includes the current value, Optional uncertainty, Optional qualifier like max or min, Optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, µA, mA, A, kA."
         },
         "currentDensity": {
           "$ref": "#/$defs/currentDensityDetails",
-          "description": ""
+          "description": "(Optional, NAE) - Current density on the filament, which also indicates the brightness of the gun with typical unit pA/cm^2."
         },
         "beamEnergy": {
           "$ref": "#/$defs/energyDetails",
-          "description": ""
+          "description": "(Optional, NAE) - Energy of the e-beam.  Includes the energy value, Optional uncertainty, Optional qualifier like max or min, Optional note of the type string, and a controlled list of units from which one can be chosen - meV, eV, keV, MeV, nJ, mJ, J, kJ, MJ."
         },
         "sourceLifetime": {
           "$ref": "#/$defs/lifetimeDetails",
-          "description": ""
+          "description": "(Optional, NAE) - Lifetime of the e-beam source (typical unit - uAh) of datatype string."
         },
         "gunType": {
           "type": "string",
@@ -1112,15 +1112,15 @@
             "LaB6",
             "W"
           ],
-          "description": ""
+          "description": "(Optional, NAE) - Type of the electron gun used as source for the e-beam which is to be selected from a controlled list of values - normal thermal FEG, extra bright FEG, cold FEG, LaB6, W (of the datatype string)."
         },
         "gunLens": {
           "type": "string",
-          "description": ""
+          "description": "(Optional, AE) - Serial number of the lens used in front of the electron gun (datatype string)."
         },
-        "extractor": {
+        "extractorVoltage": {
           "$ref": "#/$defs/voltageDetails",
-          "description": ""
+          "description": "(Optional, NAE)- Extractor voltage used for the electorn gun."
         }
       },
       "required": [
