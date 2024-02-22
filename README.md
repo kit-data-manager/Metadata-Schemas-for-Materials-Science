@@ -17,7 +17,7 @@ Sample files are also provided which are written according to the respective sch
 
   
 2. Schema for transmission electron microscopy (TEM)
-  * [JSON Schema](TEM_schema.json)
+  * [JSON Schema](TEM/TEM_schema.json)
 
 3. Schema for Magnetic Resonance Imaging (MRI)
   * [JSON Schema](MRI/MRI_schema.json)
