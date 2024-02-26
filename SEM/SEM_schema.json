@@ -840,8 +840,6 @@
       },
       "required": [
         "xValue",
-        "yValue",
-        "zValue",
         "coordinatesUnit"
       ]
     },
