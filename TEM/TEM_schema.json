@@ -101,13 +101,13 @@
       "type": "string",
       "description": "(Required, NAE) - Start time of the measurement in the ISO 8601 format YYYY-MM-DDThh:mm:ss.sss.",
       "format": "date-time",
-      "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$"
+      "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z?)$"
     },
     "endTime": {
       "type": "string",
       "description": "(Required, AE) - End time of the measurement in the ISO 8601 format YYYY-MM-DDThh:mm:ss.sss.",
       "format": "date-time",
-      "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$"
+      "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z?)$"
     },
     "program": {
       "$ref": "#/$defs/program",
@@ -1785,7 +1785,7 @@
         "lastCalibration": {
           "type": "string",
           "format": "date-time",
-          "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z)$",
+          "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z?)$",
           "description": "(Optional, NAE) - Date and time of last calibration (YYYY-MM-DDThh:mm:ss.sssZ) of the date-time format ISO 8601."
         },
         "isCorrelationImage": {
