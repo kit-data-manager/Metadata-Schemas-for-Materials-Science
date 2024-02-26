@@ -17,9 +17,9 @@ Sample files are also provided which are written according to the respective sch
 
   
 2. Schema for transmission electron microscopy (TEM)
-  * [JSON Schema](TEM_schema.json)
+  * [JSON Schema](TEM/TEM_schema.json)
 
-3. Schema for Magnetic Resonance Imaging (MRI)
+3. Schema for magnetic resonance imaging (MRI)
   * [JSON Schema](MRI/MRI_schema.json)
   
 4. General Schema for describing a user
@@ -29,7 +29,7 @@ Sample files are also provided which are written according to the respective sch
   * [JSON Schema for Datset](Reference_Dataset_Zenodo/PP18_dataset_metadata_Schema.json)
   * [JSON Schem for Files](Reference_Dataset_Zenodo/pp18_file_schema.json)
 
-6. Schemas for FIB/SEM Serial Sectioning Tomography
+6. Schemas for FIB/SEM serial sectioning tomography
  * [Acquistion Main JSON](SEM-FIB%20Tomography/SEM_FIB_Tomography_Acquisition_Main.json)
  * [Acquistion Dataset JSON](SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json)
  * [Acquistion Image JSON](SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json)
