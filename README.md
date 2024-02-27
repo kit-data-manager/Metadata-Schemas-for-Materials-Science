@@ -30,6 +30,6 @@ Sample files are also provided which are written according to the respective sch
   * [JSON Schem for Files](Reference_Dataset_Zenodo/pp18_file_schema.json)
 
 6. Schemas for FIB/SEM serial sectioning tomography
- * [Acquistion Main JSON](SEM-FIB%20Tomography/SEM_FIB_Tomography_Acquisition_Main.json)
- * [Acquistion Dataset JSON](SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json)
- * [Acquistion Image JSON](SEM-FIB%20Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json)
+ * [Acquistion Main JSON](SEM-FIB_Tomography/SEM_FIB_Tomography_Acquisition_Main.json)
+ * [Acquistion Dataset JSON](SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json)
+ * [Acquistion Image JSON](SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json)
