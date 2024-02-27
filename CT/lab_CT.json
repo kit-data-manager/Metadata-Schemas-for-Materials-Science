@@ -1016,7 +1016,7 @@
               "properties": {
                 "SEMName": {
                   "type": "string",
-                  "description": "(Required) - Name of the scanning electron microscope used for SEM based CT."
+                  "description": "(Optional) - Name of the scanning electron microscope used for SEM based CT."
                 },
                 "SEMManufacturer": {
                   "description": "(Optional) - Details regarding the manufacturer of the scanning electron microscope used for SEM based CT.",
@@ -1046,7 +1046,7 @@
                   "description": "(Required) - The electron current measured at the probe. Typical unit - µA."
                 },
                 "voltage": {
-                  "description": "(Optional) - Acceleration Voltage set in the SEM. Default unit - kV.",
+                  "description": "(Required) - Acceleration Voltage set in the SEM. Default unit - kV.",
                   "$ref": "#/$defs/voltageDetails"
                 },
                 "workingDistance": {
@@ -1054,42 +1054,39 @@
                   "description": "(Required)- Distance which is determined along the optical axis within the column from  (1) the lower end of the final optical element between the source and the  specimen stage; to (2) the point where the beam is focused. In SEM based CT, the beam is focussed on the target material which emits the X-rays upon interaction with the electrons. Default unit - µm."
                 },
                 "electronBeamShift": {
-                  "description": "(Required) - The distance by which the electron beam is shifted in the x and y directions.",
+                  "description": "(Optional) - The distance by which the electron beam is shifted in the x and y directions.",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
                     "xShift": {
-                      "description": "(Required) - Beam shift in the x direction. Typical unit - µm.",
+                      "description": "(Optional) - Beam shift in the x direction. Typical unit - µm.",
                       "$ref": "#/$defs/distanceDetails"
                     },
                     "yShift": {
-                      "description": "(Required) - Beam shift in the y direction. Typical unit - µm.",
+                      "description": "(Optional) - Beam shift in the y direction. Typical unit - µm.",
                       "$ref": "#/$defs/distanceDetails"
                     }
-                  },
-                  "required": [
-                    "xShift",
-                    "yShift"
-                  ]
+                  }
                 },
                 "xrayEnergySpectrum": {
-                  "description": "(Required) - Details regarding the X-ray energy spectrum like chromaticity, characteristic line, filters used, etc.",
+                  "description": "(Optional) - Details regarding the X-ray energy spectrum like chromaticity, characteristic line, filters used, etc.",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
                     "chromaticity": {
-                      "description": "(Required) - Describes if the x-rays are monochromatic or polychromatic. Default value is polychromatic.",
+                      "description": "(Optional) - Describes if the x-rays are monochromatic or polychromatic. Default value is polychromatic.",
                       "type": "string",
                       "enum": [
                         "monochromatic",
                         "polychromatic"
                       ],
                       "default": "polychromatic"
+                    },
+                    "xrayCharacteristicLine": {
+                      "description": "(Optional) - Describes the characteristic line of the X-ray spectrum. e.g.- Cr K alpha, W K alpha.",
+                      "type": "string"
                     }
-                  },
-                  "required": [
-                    "chromaticity"
-                  ]
+                  }
                 },
                 "target": {
                   "type": "object",
@@ -1126,15 +1123,14 @@
                 },
                 "chamberPressure": {
                   "$ref": "#/$defs/pressureDetails",
-                  "description": "(Required) - Details of the pressure maintained in the chamber of the SEM."
+                  "description": "(Optional) - Details of the pressure maintained in the chamber of the SEM."
                 }
               },
               "required": [
-                "chamberPressure",
-                "electronBeamShift",
                 "workingDistance",
                 "objectiveLensAperture",
                 "electronProbeCurrent",
+                "voltage",
                 "target"
               ]
             }
