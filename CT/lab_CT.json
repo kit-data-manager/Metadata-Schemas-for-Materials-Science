@@ -112,10 +112,6 @@
       "format": "date-time",
       "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z?)$"
     },
-    "definition": {
-      "type": "string",
-      "description": "(Required) - Name of the schema to which this entry conforms. In this case, lab_CT should be written."
-    },
     "program": {
       "$ref": "#/$defs/program",
       "description": "(Required) - Details concerning the program (or software) used for aquisition."
@@ -144,7 +140,6 @@
   "required": [
     "title",
     "technique",
-    "definition",
     "parents",
     "measurementPurpose",
     "startTime",

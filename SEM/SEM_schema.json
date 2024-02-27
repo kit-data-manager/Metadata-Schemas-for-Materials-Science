@@ -122,10 +122,6 @@
           "format": "date-time",
           "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z?)$"
         },
-        "definition": {
-          "type": "string",
-          "description": "(Optional)- Name of the schema to which this entry conforms. In this case, SEM should be written"
-        },
         "program": {
           "$ref": "#/$defs/program",
           "description": "(Optional)- Details concerning the program (or software) used for aquisition"
@@ -145,7 +141,12 @@
       },
       "required": [
         "title",
+        "technique",
+        "parents",
+        "measurementPurpose",
+        "startTime",
         "endTime",
+        "program",
         "user",
         "instrument"
       ]
