@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://mdmc.kit.edu/schemas/sem_metadata",
+  "$id": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM/SEM_schema.json",
   "type": "object",
   "description": "This JSON Schema describes a Scanning Electron Microscopy (SEM) image in order to reproduce the measurement. The cardinality (required or optional) of all metadata is defined and wherever possible a list of controlled vocabularies is provided.",
   "properties": {
