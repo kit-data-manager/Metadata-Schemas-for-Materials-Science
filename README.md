@@ -11,7 +11,7 @@ Sample files are also provided which are written according to the respective sch
   * [JSON Schema](SEM/SEM_schema.json)
   * [Sample SEM Image](SEM/SCeO5_00.tif)
   * [Example JSON file](SEM/SCEO5_00.json)
-  * [XSD Schema](SEM/SEM_Schema.xsd)
+  * [XSD Schema](SEM/SEM_Schema.xsd) - old version
   * [Example XML file](SEM/SEM_example.xml)
   * [Example XML file which is populated only with the required fields](SEM/SEM_example_minimum.xml)
 
