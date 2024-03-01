@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM/SEM_schema.json",
   "type": "object",
-  "description": "This JSON Schema describes a Scanning Electron Microscopy (SEM) image in order to reproduce the measurement. The cardinality (required or optional) of all metadata is defined and wherever possible a list of controlled vocabularies is provided.",
+  "description": "This JSON Schema describes the metadata of a Scanning Electron Microscopy (SEM) image in order to reproduce the measurement. The cardinality (required or optional) of all metadata is defined and wherever possible a list of controlled vocabularies is provided. Contributors: Reetu Elza Joseph (KIT - SCC), Aditya Chauhan (KIT-IMT), Catriona Eschke (Hereon - Institute of Metallic Biomaterials), Ahmad Zainul Ihsan(Forschungszentrum Jülich - IAS-9), Mehrdad Jalali (KIT - INT), Ute Jäntsch (KIZT - IAM-AWP), Nicole Jung (KIT - IBCS-FMS), C.N. Shyam Kumar (CEA Saclay - SRMP), Christian Kübel (KIT -INT, TU-Darmstadt, KNMF), Christian Lucas (Hereon - Institute of Metallic Biomaterials), Matthias Mail(KIT - INT, KNMF), Andrey Maziliin (KIT - INT), Charlotte Neidiger (KIT - INT), Mirco Panighel (CNR-IOM Trieste), Stefan Sandfeld (Forschungszentrum Jülich - IAS-9), Rainer Stotzka (KIT - SCC), Richard Thelen (KIT -IMT), Rossella Aversa (KIT - SCC), ",
   "properties": {
     "entry": {
       "$ref": "#/$defs/entry"
