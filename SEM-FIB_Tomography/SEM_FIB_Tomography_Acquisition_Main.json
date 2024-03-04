@@ -15,7 +15,7 @@
   "$defs": {
     "acquisition": {
       "type": "object",
-      "description": "The entry level is the root element of the schema. It contains all the metadata describing an acquisition as part of an SEM/FIB Tomography measurement which might include multiple detectors.",
+      "description": "This level is the root element of the schema. It contains all the metadata describing an acquisition as part of an SEM/FIB Tomography measurement which might include multiple detectors.",
       "additionalProperties": false,
       "properties": {
         "genericMetadata": {
