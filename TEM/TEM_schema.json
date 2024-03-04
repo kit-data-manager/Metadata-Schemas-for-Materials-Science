@@ -381,7 +381,7 @@
     },
     "plasmaCleaningDetails": {
       "type": "object",
-      "description": "Describes the details of the plasma cleaning procedure if performed.",
+      "description": "(Optional, NAE) -  Details of the plasma cleaning procedure if performed.",
       "properties": {
         "gasComposition": {
           "type": "string",
@@ -397,11 +397,11 @@
         },
         "duration": {
           "$ref": "#/$defs/timeDetails",
-          "description": "(Optional, NAE) - duration of time (in seconds) for which plasma cleaning is performed."
+          "description": "(Optional, NAE) - Duration of time (in seconds) for which plasma cleaning is performed."
         },
         "noOfCycles": {
           "type": "number",
-          "description": "(Optional, NAE) - number of cycles of plasma cleaning performed, of datatype integer."
+          "description": "(Optional, NAE) - Number of cycles of plasma cleaning performed, of datatype integer."
         }
       }
     },
@@ -569,7 +569,7 @@
         },
         "probeSize": {
           "$ref": "#/$defs/distanceDetails",
-          "description": "(Optional, NAE) - Size of the beam at the sample."
+          "description": "(Optional, NAE) - Size of the beam at the sample. Typical unit - nm."
         },
         "chamberPressure": {
           "$ref": "#/$defs/pressureDetails",
@@ -689,7 +689,7 @@
         },
         "precessionsPerFrame": {
           "type": "number",
-          "description": "(Optional, AE) - Number of precessions per frame, of datatype integer."
+          "description": "(Optional, AE) - Number of precessions per frame, of datatype number."
         },
         "interactionMode": {
           "type": "string",
@@ -716,7 +716,7 @@
         },
         "diffraction": {
           "type": "object",
-          "description": "(Optional, AE) - Description of the diffraction.",
+          "description": "(Optional, AE) - Settings of the diffraction.",
           "additionalProperties": false,
           "properties": {
             "frameSize": {
@@ -734,15 +734,15 @@
               "$ref": "#/$defs/timeDetails",
               "description": "(Optional, AE) - Time per frame, typical unit - s."
             },
-            "CameraLength": {
+            "cameraLength": {
               "$ref": "#/$defs/distanceDetails",
-              "description": "(Optional, AE) - Distance which is present between the specimen surface and the detector plane, iri: https://purls.helmholtz-metadaten.de/EMG/00000005."
+              "description": "(Optional, AE) - Distance which is present between the specimen surface and the detector plane."
             }
           }
         },
         "thresholdOverlayEnabled": {
           "type": "boolean",
-          "description": "(Optional, AE) - Set to True if threshold overlay is enabled."
+          "description": "(Optional, AE) - To be set to true if threshold overlay is enabled."
         },
         "scanning": {
           "type": "object",
@@ -825,7 +825,7 @@
           "properties": {
             "alignmentPlatform": {
               "type": "boolean",
-              "description": "(Optional - AE) - To be set True if alignment platform is used."
+              "description": "(Optional - AE) - To be set to true if alignment platform is used."
             },
             "STEMMagnification": {
               "type": "number",
@@ -968,20 +968,20 @@
           "additionalProperties": false,
           "properties": {
             "energyOffset": {
-              "description":"(Optional, NAE) - The centroid or the middel of the energy range used for forming the EFTEM. This offset is normally expressed in eV.",
+              "description": "(Optional, NAE) - The centroid or the middle of the energy range used for forming the EFTEM. This offset is normally expressed in eV.",
               "$ref": "#/$defs/energyDetails"
             },
             "slitWidth": {
-              "description":"(Optional, NAE) - The width of the slit used in EFTEM normally expressed in eV.",
+              "description": "(Optional, NAE) - The width of the slit used in EFTEM normally expressed in eV.",
               "$ref": "#/$defs/energyDetails"
             },
             "matchPixelSizeON": {
-              "type":"boolean",
-              "description":"(Optional, NAE) - To be set to true if the function to adjust the magnification to minimize the change in pixel size when switching between EFTEM and regular magnification is enabled."
+              "type": "boolean",
+              "description": "(Optional, NAE) - To be set to true if the function to adjust the magnification to minimize the change in pixel size when switching between EFTEM and regular magnification is enabled."
             },
             "matchIntensityON": {
-              "type":"boolean",
-              "description":"(Optional, NAE) - To be set to true if the program changes the beam intensity when switching between regular and EFTEM magnifications, so as to maintain a constant electron flux per camera pixel."
+              "type": "boolean",
+              "description": "(Optional, NAE) - To be set to true if the program changes the beam intensity when switching between regular and EFTEM magnifications, so as to maintain a constant electron flux per camera pixel."
             }
           }
         }
@@ -989,7 +989,7 @@
     },
     "monochromatorDetails": {
       "type": "object",
-      "description": "Details about the monochromator if it is used in the measurement.",
+      "description": "(Optional, AE) - Details about the monochromator if it is used in the measurement.",
       "additionalProperties": false,
       "properties": {
         "monochromatorActive": {
@@ -1007,15 +1007,15 @@
         },
         "monoStigmatorX": {
           "type": "number",
-          "description": "(Required, AE) - strength of monochromator stigmator X applied to correct for astigmatism (of the datatype number)."
+          "description": "(Required, AE) - Strength of monochromator stigmator X applied to correct for astigmatism (of the datatype number)."
         },
         "monoStigmatorY": {
           "type": "number",
-          "description": "(Required, AE) - strength of monochromator stigmator Y applied to correct for astigmatism (of the datatype number)."
+          "description": "(Required, AE) - Strength of monochromator stigmator Y applied to correct for astigmatism (of the datatype number)."
         },
         "monoFocus": {
           "type": "number",
-          "description": "(Required, AE) - the value of the mono Focus used by the monochromator (of the datatype number)."
+          "description": "(Required, AE) - Value of the mono focus used by the monochromator (of the datatype number)."
         },
         "selectedSlitNo": {
           "type": "number",
@@ -1023,11 +1023,11 @@
         },
         "monoPotential": {
           "$ref": "#/$defs/voltageDetails",
-          "description": "(Optional, AE) - Voltage applied to the monochromator."
+          "description": "(Optional, AE) - Voltage (potential) applied to the monochromator."
         },
         "monoExcitation": {
           "type": "number",
-          "description": "(Optional, AE) - A number which indicats how sensitive is the monochromator (of the datatype number)."
+          "description": "(Optional, AE) - A number which indicates how sensitive the monochromator is (of the datatype number)."
         }
       },
       "required": [
@@ -1089,7 +1089,7 @@
       "properties": {
         "sourceName": {
           "type": "string",
-          "description": "(Optional, AE) - Name of the e-beam source of datatype string."
+          "description": "(Optional, AE) - Local name of the e-beam source of datatype string."
         },
         "sourceID": {
           "$ref": "#/$defs/identifier",
@@ -1128,7 +1128,7 @@
         },
         "gunLens": {
           "type": "string",
-          "description": "(Optional, AE) - Serial number of the lens used in front of the electron gun (datatype string)."
+          "description": "(Optional, AE) - Serial number of the lens used in front of the electron gun (datatype string) which is a control parameter for the field emission gun (FEG)."
         },
         "extractorVoltage": {
           "$ref": "#/$defs/voltageDetails",
@@ -1224,7 +1224,7 @@
     },
     "energyDetails": {
       "type": "object",
-      "description": "describes an energy. Properties: value , unit ; default value - keV) of datatype string, qualifier , uncertainty , notes ",
+      "description": "Describes an energy.",
       "additionalProperties": false,
       "properties": {
         "value": {
@@ -1389,7 +1389,7 @@
         },
         "measurementConditions": {
           "type": "string",
-          "description": "(Optional, NAE) - Conditions to be maintained during the measurement inside the machine (e.g., water vapor, cryogenic temperature, gas atmosphere) of datatype string"
+          "description": "(Optional, NAE) - Conditions to be maintained during the measurement inside the machine (e.g., water vapor, cryogenic temperature, gas atmosphere) - of datatype string"
         }
       },
       "required": [
@@ -1491,7 +1491,7 @@
     },
     "coordinateSet": {
       "type": "object",
-      "description": "The set of xyz values describing a point of reference for correlative characterization.",
+      "description": "The set of xyz values describing a point of reference which is important for correlative characterization.",
       "additionalProperties": false,
       "properties": {
         "xValue": {
@@ -1539,12 +1539,12 @@
     },
     "angleDetails": {
       "type": "object",
-      "description": "describes an angle.",
+      "description": "Describes an angle.",
       "additionalProperties": false,
       "properties": {
         "value": {
           "type": "number",
-          "description": "(Required) - The angle expressed as an integer or floating point value of datatype number"
+          "description": "(Required, AE) - The angle expressed as an integer or floating point value of datatype number"
         },
         "unit": {
           "type": "string",
@@ -1552,7 +1552,7 @@
             "degree",
             "radian"
           ],
-          "description": "(Required) - the unit of the value to be selected from a controlled list (degree, radian; default value - degree) of datatype string"
+          "description": "(Required, AE) - the unit of the value to be selected from a controlled list (degree, radian; default value - degree) of datatype string"
         },
         "qualifier": {
           "type": "string",
@@ -1584,27 +1584,27 @@
       "properties": {
         "condenser1": {
           "$ref": "#/$defs/distanceDetails",
-          "description": "(Optional, AE) - the size of condenser1 normally expressed in micrometers."
+          "description": "(Required, AE) - Size of condenser1 normally expressed in micrometers."
         },
         "condenser2": {
           "$ref": "#/$defs/distanceDetails",
-          "description": "(Optional, AE) - the size of condenser2 normally expressed in micrometers."
+          "description": "(Required, AE) - Size of condenser2 normally expressed in micrometers."
         },
         "condenser3": {
           "$ref": "#/$defs/distanceDetails",
-          "description": "(Optional, AE) - the size of condenser3 normally expressed in micrometers."
+          "description": "(Optional, AE) - Size of condenser3 normally expressed in micrometers (when used)"
         },
         "grating": {
           "$ref": "#/$defs/gratingDetails",
-          "description": "(Optional, NAE) - details of any additional grating used and its position."
+          "description": "(Optional, NAE) - Details of any additional grating used and its position."
         },
         "objectiveAperture": {
           "$ref": "#/$defs/distanceDetails",
-          "description": "(Optional, AE) - size of the objective aperture normally expressed in micrometers."
+          "description": "(Optional, AE) - Size of the objective aperture normally expressed in micrometers."
         },
         "selectedAreaAperture": {
           "$ref": "#/$defs/distanceDetails",
-          "description": "(Optional, AE) - the size of the aperture used for selected area diffraction pattern (SADP) normally expressed in micrometers."
+          "description": "(Optional, AE) - Size of the aperture used for selected area diffraction pattern (SADP) normally expressed in micrometers."
         }
       }
     },
@@ -1615,70 +1615,70 @@
       "properties": {
         "description": {
           "type": "string",
-          "description": "(Optional, NAE) - Description of a grating used in addition and where it is placed - objective or condenser  (or biprism in case of holography) for beam shaping or similar use."
+          "description": "(Optional, NAE) - Description of a grating used in addition and where it is placed - objective or condenser (or biprism in case of holography) for beam shaping or similar use."
         },
         "position": {
           "$ref": "#/$defs/coordinateSet",
-          "description": "(Optional, NAE) - The position of the additional grating."
+          "description": "(Optional, NAE) - Position of the additional grating."
         },
         "azimuthAngle": {
           "$ref": "#/$defs/angleDetails",
-          "description": "(Optional, NAE) - The azimuth angle if a biprism is used as an additional gratig normally expressed in degrees."
+          "description": "(Optional, NAE) - Azimuth angle if a biprism is used as an additional grating normally expressed in degrees."
         },
         "voltage": {
           "$ref": "#/$defs/voltageDetails",
-          "description": "(Optional, NAE) - The voltage applied to the addiitonal grating."
+          "description": "(Optional, NAE) - Voltage applied to the addiitonal grating. Typical unit - V."
         }
       }
     },
     "lensDetails": {
       "type": "object",
-      "description": "describes of the excitation percentage of the lenses used in the system.",
+      "description": "(Required, AE) - Describes of the excitation percentage of the lenses used in the system.",
       "additionalProperties": false,
       "properties": {
         "c1": {
           "type": "number",
-          "description": "(Optional, AE) - percentage of excitation of condenser1 of the datatype number."
+          "description": "(Optional, AE) - Percentage of excitation of condenser1 of the datatype number."
         },
         "c2": {
           "type": "number",
-          "description": "(Optional, AE) - percentage of excitation of condenser2 of the datatype number."
+          "description": "(Optional, AE) - Percentage of excitation of condenser2 of the datatype number."
         },
         "c3": {
           "type": "number",
-          "description": "(Optional, AE) - percentage of excitation of condenser3 of the datatype number."
+          "description": "(Optional, AE) - Percentage of excitation of condenser3 of the datatype number."
         },
         "minicondenser": {
           "type": "number",
-          "description": "(Optional, AE) - percentage of excitation of minicondenser of the datatype number."
+          "description": "(Optional, AE) - Percentage of excitation of minicondenser of the datatype number."
         },
         "objective": {
           "type": "number",
-          "description": "(Optional, AE) - percentage of excitation of objective lens of the datatype number."
+          "description": "(Optional, AE) - Percentage of excitation of objective lens of the datatype number."
         },
         "lorentz": {
           "type": "number",
-          "description": "(Optional, AE) - percentage of excitation of the lorentz lens of the datatype number."
+          "description": "(Optional, AE) - Percentage of excitation of the lorentz lens of the datatype number."
         },
         "diffraction": {
           "type": "number",
-          "description": "(Optional, AE) - percentage of excitation of diffraction lens of the datatype number."
+          "description": "(Optional, AE) - Percentage of excitation of diffraction lens of the datatype number."
         },
         "intermediate": {
           "type": "number",
-          "description": "(Optional, AE) - percentage of excitation of intermediate lens of the datatype number."
+          "description": "(Optional, AE) - Percentage of excitation of intermediate lens of the datatype number."
         },
         "p1": {
           "type": "number",
-          "description": "(Optional, AE) - percentage of excitation of projector lens 1 of the datatype number."
+          "description": "(Optional, AE) - Percentage of excitation of projector lens 1 of the datatype number."
         },
         "p2": {
           "type": "number",
-          "description": "(Optional, AE) - percentage of excitation of projector lens 2 of the datatype number."
+          "description": "(Optional, AE) - Percentage of excitation of projector lens 2 of the datatype number."
         },
         "beamConvergence": {
           "$ref": "#/$defs/angleDetails",
-          "description": "(Required, AE) - the angle of the electron beam as it enters the objective lens with typical unit as mrad."
+          "description": "(Required, AE) - Angle of the electron beam as it enters the objective lens with typical unit mrad."
         }
       },
       "required": [
@@ -1687,7 +1687,7 @@
     },
     "ASTARdetails": {
       "type": "object",
-      "description": "Details pertaining to an ASTAR attachment used for orientation-phase imaging.",
+      "description": "(Optional) - Details pertaining to an ASTAR attachment used for orientation-phase imaging.",
       "additionalProperties": false,
       "properties": {
         "ASTARactive": {
@@ -1697,7 +1697,7 @@
         },
         "ASTARname": {
           "type": "string",
-          "description": "(Optional, AE) - Name or nickname of the ASTAR system used of the datatype string."
+          "description": "(Optional, AE) - Name or nickname of the ASTAR system used, of the datatype string."
         },
         "ASTARmanufacturer": {
           "$ref": "#/$defs/manufacturerDetails",
@@ -1722,21 +1722,21 @@
             "normal",
             "other"
           ],
-          "description": "(Optional, AE) - Operation Mode of the ASTAR such as normal of the datatype string."
+          "description": "(Optional, AE) - Operation Mode of the ASTAR. Eg.- normal, of the datatype string."
         },
         "systemClockLocked": {
           "type": "boolean",
           "default": true,
-          "description": "(Optional, AE) - To be set to true if system clock is locked of the datatype boolean."
+          "description": "(Optional, AE) - To be set to true if system clock is locked, of the datatype boolean."
         },
         "objectiveApertureRetracted": {
           "type": "boolean",
           "default": true,
-          "description": "(Optional, NAE) - To be set as true if the objective aperture is retracted for using the ASTAR of the datatype boolean."
+          "description": "(Optional, NAE) - To be set as true if the objective aperture is retracted for using the ASTAR of the datatype boolean. Normally the smallest condenser should be used and the objective aperture has to be retracted while using ASTAR."
         },
         "precession": {
           "$ref": "#/$defs/precessionDetails",
-          "description": "(Optional, AE) - Details about precession like the angle and frequency of precession."
+          "description": "(Optional, AE) - Details about precession like the angle and frequency of precession, when precession electron diffraction (PED) is used."
         }
       },
       "required": [
@@ -1751,7 +1751,7 @@
         "detectorType": {
           "type": "string",
           "description": "(Required, NAE) - Detector type to be selected from a controlled list - direct electron detector, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, He3 gas cylinder, He3 PSD, other… of the datatype string. If 'other' is selected, the detector type can be specified under the field 'otherDetectorType'.",
-          "enum":[
+          "enum": [
             "direct electron detector",
             "scintillator",
             "fission chamber",
@@ -1766,9 +1766,9 @@
             "other"
           ]
         },
-        "otherDetectorType":{
-          "type":"string",
-          "description":"(Optional, NAE) - Specific yype of the detector when it is not already listed under 'detectorType', of the datatype string."
+        "otherDetectorType": {
+          "type": "string",
+          "description": "(Optional, NAE) - Specific type of the detector when it is not already listed under 'detectorType', of the datatype string."
         },
         "detectorName": {
           "type": "string",
@@ -1795,7 +1795,7 @@
         },
         "coordinates": {
           "$ref": "#/$defs/coordinateSet",
-          "description": "(Optional, NAE) - XYZ coordinates describing the position of the detector."
+          "description": "(Optional, NAE) - XYZ coordinates describing the region of interest (position where measurement is done)."
         },
         "coordinateReferenceType": {
           "type": "string",
@@ -1856,6 +1856,16 @@
             256
           ],
           "description": "(Optional, NAE) - Number of detector counts binned together of the datatype number - usually 1, 8 or 16."
+        },
+        "measurementModeDectris": {
+          "description": " (Optional, AE) - For the Dectris Camera: Option to select internal trigger (INTE) or external trigger (EXTE) and the aquisition time of the signal. (INTS, EXTS -> acquisition time = image Time, for the other options, acquisition time = Frame Time )",
+          "type": "string",
+          "enum": [
+            "INTE",
+            "INTS",
+            "EXTE",
+            "EXTS"
+          ]
         },
         "collectionMethod": {
           "type": "string",
@@ -2061,7 +2071,7 @@
     },
     "STEMdetails": {
       "type": "object",
-      "description": "Settings and parameters pertaining to scanning transmission electron microscopy measurement. Properties: gainCorrection , darkGainCorrectionType , ADF ",
+      "description": "Settings and parameters when a scanning transmission electron microscopy measurement is performed. Properties: gainCorrection , darkGainCorrectionType , ADF ",
       "additionalProperties": false,
       "properties": {
         "gainCorrection": {
@@ -2076,22 +2086,53 @@
         },
         "darkGainCorrectionType": {
           "type": "string",
-          "description": "(Optional, NAE) - Description of the kind of correction used of the datatype string."
+          "description": "(Optional, NAE) - Description of the kind of correction used, of the datatype string."
         },
-        "ADF": {
-          "$ref": "#/$defs/ADFdetails",
-          "description": "(Optional, NAE) - Details about an annular dark field detector (ADF)."
+        "detectorName": {
+          "type": "array",
+          "description": "(Optional, NAE) - The list of the names of the detectors used, in the form of an array.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "BF",
+              "DF1",
+              "DF2",
+              "DF3",
+              "DF4",
+              "DF5",
+              "DF6",
+              "DF7",
+              "DF8",
+              "HAADF"
+            ]
+          }
+        },
+        "BF": {
+          "$ref": "#/$defs/fieldDetectorDetails",
+          "description": "(Optional, NAE) - Details about a bright field detector (ADF)."
+        },
+        "DF": {
+          "type": "array",
+          "description": "(Optional, NAE) - Details about an annular dark field detector (ADF).",
+          "items": {
+            "type": "object",
+            "$ref": "#/$defs/fieldDetectorDetails"
+          }
+        },
+        "HAADF": {
+          "$ref": "#/$defs/fieldDetectorDetails",
+          "description": "(Optional, NAE) - Details about an high angle annular dark field detector (HAADF)."
         }
       }
     },
-    "ADFdetails": {
+    "fieldDetectorDetails": {
       "type": "object",
-      "description": "details about an annular dark field detector (ADF).",
+      "description": "details about an field detector, could be bright field, dark field or HAADF.",
       "additionalProperties": false,
       "properties": {
         "description": {
           "type": "string",
-          "description": "(Optional, NAE) - Optional additional description about the ADF detector like if it is segmented or not of the datatype string."
+          "description": "(Optional, NAE) - Name and description about the detector detector like if it is segmented or not of the datatype string."
         },
         "enabledHAADF": {
           "type": "boolean",
@@ -2179,21 +2220,22 @@
     },
     "scanDetails": {
       "type": "object",
-      "description": "describes the scanning parameters.",
+      "description": "(Required, AE) - Describes the scanning parameters.",
       "additionalProperties": false,
       "properties": {
         "dwellTime": {
           "$ref": "#/$defs/timeDetails",
-          "description": "(Required, AE) - The time for which a pixel is scanned."
+          "description": "(Required, AE) - Time for which the electron beam stays on a pixel during the scanning process."
         },
         "scanType": {
           "type": "string",
           "enum": [
             "0D",
             "1D",
-            "2D"
+            "2D",
+            "4D-STEM"
           ],
-          "description": "(Required, NAE) - Choice between type of scan as 0D, 1D or 2D defined to be of the datatype string."
+          "description": "(Required, NAE) - Choice between type of scan as 0D (spot), 1D (line), 2D (area) or 4D STEM, defined to be of the datatype string."
         },
         "scanSize": {
           "$ref": "#/$defs/pixelNumberType",
@@ -2202,11 +2244,11 @@
         "mainsLock": {
           "type": "boolean",
           "default": false,
-          "description": " (Optional, AE) - To be set as true if the mains lock is engaged of the datatype boolean."
+          "description": " (Optional, AE) - To be set as true if the mains lock is engaged, of the datatype boolean."
         },
         "frameTime": {
           "$ref": "#/$defs/timeDetails",
-          "description": "( Optional, AE) - The time taken to acquire a frame defines separately as timeDetails."
+          "description": "( Optional, AE) - The time taken to acquire a frame, defined separately as timeDetails."
         },
         "scanRotation": {
           "$ref": "#/$defs/angleDetails",
