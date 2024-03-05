@@ -27,7 +27,7 @@
         "acquisition.dataset.instrument.eBeam.accelerationVoltage.value":"Images.SemImage.EBeam.HV",
         "acquisition.dataset.instrument.eBeam.beamCurrent.value":"Images.SemImage.EBeam.BeamCurrent",
         "acquisition.dataset.instrument.eBeam.scanRotation.value":"Images.SemImage.EBeam.ScanRotation",
-        "acquisition.dataset.instrument.eBeam.imageMode.value":"Images.SemImage.EBeam.ImageMode",
+        "acquisition.dataset.instrument.eBeam.imageMode":"Images.SemImage.EBeam.ImageMode",
         "acquisition.dataset.instrument.eBeam.apertureSetting.size.value":"Images.SemImage.EBeam.ApertureDiameter",
         "acquisition.dataset.instrument.eBeam.horizontalFieldWidth.value":"Images.SemImage.EBeam.HFW",
         "acquisition.dataset.instrument.eBeam.verticalFieldWidth.value":"Images.SemImage.EBeam.VFW",

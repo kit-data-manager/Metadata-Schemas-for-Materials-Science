@@ -40,7 +40,12 @@
         "ISI Image",
         "SI Image",
         "InLens",
-        "SESI"
+        "SESI",
+        "FIB Image",
+        "FIB Multi-Detector Image-Q1",
+        "FIB Multi-Detector Image-Q2",
+        "SEM Multi-Detector Image-Q1",
+        "SEM Multi-Detector Image-Q2"
       ]
     },
     "numberOfItems": {
@@ -446,7 +451,7 @@
         },
         "detectorSettings": {
           "$ref": "#/$defs/detectorSettings",
-          "description": "(Required) - Settings of the specific detector used. E.g., the Everhart Thornley detector (ETD), is a secondary electron and back-scattered electron detector used in scanning electron microscopes, whihc has then particular settings"
+          "description": "(Optional) - Settings of the specific detector used. E.g., the Everhart Thornley detector (ETD), is a secondary electron and back-scattered electron detector used in scanning electron microscopes, whihc has then particular settings"
         }
       },
       "required": [
