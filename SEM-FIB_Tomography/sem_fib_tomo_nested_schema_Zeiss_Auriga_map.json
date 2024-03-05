@@ -2,7 +2,7 @@
     "acquisition_main_schema":{
         "acquisition.genericMetadata.program.programName":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.Name",
         "acquisition.genericMetadata.program.programVersion":"ATLAS3D-Run-bak.ATLAS3D-Job.@version",
-        "acquisition.genericMetadata.applicationId.identifierValue":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.ID",
+        "acquisition.genericMetadata.applicationID.identifierValue":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.ID",
         "acquisition.genericMetadata.userDescription":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.Description",
         "acquisition.genericMetadata.projectName":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.JobName",
         "acquisition.genericMetadata.projectDesccription":"ATLAS3D-Run-bak.ATLAS3D-Job.ATLAS3D-Setup.JobDescription",

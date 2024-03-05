@@ -19,8 +19,7 @@
     "creationTime": {
       "type": "string",
       "description": "(Required)- Time of creation of the image",
-      "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z?)$",
-      "format": "date-time"
+      "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z?)$"
     },
     "definition": {
       "type": "string",
