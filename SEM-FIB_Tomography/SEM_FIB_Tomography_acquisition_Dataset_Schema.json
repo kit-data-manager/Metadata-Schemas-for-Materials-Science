@@ -119,7 +119,7 @@
         },
         "eBeam": {
           "$ref": "#/$defs/eBeamDetails",
-          "description": "(Optional - Details about the electron beam"
+          "description": "(Optional) - Details about the electron beam"
         },
         "iBeam": {
           "$ref": "#/$defs/iBeamDetails",
