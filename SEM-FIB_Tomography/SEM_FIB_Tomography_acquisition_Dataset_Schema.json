@@ -119,11 +119,11 @@
         },
         "eBeam": {
           "$ref": "#/$defs/eBeamDetails",
-          "description": "(Required) - Details about the electron beam"
+          "description": "(Optional - Details about the electron beam"
         },
         "iBeam": {
           "$ref": "#/$defs/iBeamDetails",
-          "description": "(Required) - Details about the ion beam"
+          "description": "(Optional) - Details about the ion beam"
         },
         "scan": {
           "$ref": "#/$defs/scanDetails",
@@ -159,7 +159,6 @@
         }
       },
       "required": [
-        "eBeam",
         "scan",
         "imaging",
         "detector"
