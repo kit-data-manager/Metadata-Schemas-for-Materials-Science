@@ -949,7 +949,7 @@
           "additionalProperties": false,
           "properties": {
             "inColumnFilterType": {
-              "description": "(Optional, AE) - Type of the in-column filter used. eg. JEOL omega filter",
+              "description": "(Optional, AE) - Type of the in-column filter used. E.g. JEOL omega filter",
               "type": "string"
             },
             "slitOffset": {
@@ -1705,7 +1705,7 @@
         },
         "bufferSize": {
           "type": "number",
-          "description": "(Optional, AE) - Size of the buffer in bits expressed as a number-eg. 1024."
+          "description": "(Optional, AE) - Size of the buffer in bits expressed as a number. E.g. 1024."
         },
         "speedRate": {
           "type": "string",
@@ -1722,7 +1722,7 @@
             "normal",
             "other"
           ],
-          "description": "(Optional, AE) - Operation Mode of the ASTAR. Eg.- normal, of the datatype string."
+          "description": "(Optional, AE) - Operation Mode of the ASTAR. E.g.- normal, of the datatype string."
         },
         "systemClockLocked": {
           "type": "boolean",
@@ -1799,7 +1799,7 @@
         },
         "coordinateReferenceType": {
           "type": "string",
-          "description": "(Optional, NAE) - Type of reference point on the sample used for defining the coordinates of the datatype string. For eg.- origin at fixed distances from two edges, origin at centre of the sample, etc."
+          "description": "(Optional, NAE) - Type of reference point on the sample used for defining the coordinates of the datatype string. For e.g., origin at fixed distances from two edges, origin at centre of the sample, etc."
         },
         "bitDepthReadout": {
           "type": "number",
@@ -2127,21 +2127,25 @@
     },
     "fieldDetectorDetails": {
       "type": "object",
-      "description": "details about an field detector, could be bright field, dark field or HAADF.",
+      "description": "Details about an field detector, could be bright field (BF), dark field (DF) or HAADF.",
       "additionalProperties": false,
       "properties": {
-        "description": {
+        "name": {
           "type": "string",
-          "description": "(Optional, NAE) - Name and description about the detector detector like if it is segmented or not of the datatype string."
+          "description": "(Required, NAE) - Name of the detector. E.g. - DF1, BF, HAADF, DF4"
         },
-        "enabledHAADF": {
+        "details": {
+          "type": "string",
+          "description": "(Optional, NAE) - Additional details about the detector like if it is segmented or not, of the datatype string."
+        },
+        "enabled": {
           "type": "boolean",
           "default": false,
-          "description": "(Required, AE) - To be set as true is high angle annular dark field detector is enabled of the datatype boolean."
+          "description": "(Required, AE) - To be set as true if the detector is enabled, of the datatype boolean."
         },
         "gain": {
           "$ref": "#/$defs/gainDetails",
-          "description": "(Required, AE) - The gain set for the detector."
+          "description": "(Required, AE) - The set gain for the detector."
         },
         "offset": {
           "type": "number",
@@ -2153,7 +2157,8 @@
         }
       },
       "required": [
-        "enabledHAADF",
+        "enabled",
+        "name",
         "gain",
         "offset",
         "collectionAngleRange"
@@ -2275,15 +2280,15 @@
       "properties": {
         "continuousMode": {
           "type": "number",
-          "description": "(Optional, AE) - An integer indicating the continuous mode defined to be of the datatype number."
+          "description": "(Optional, AE) - An integer indicating the continuous mode, defined to be of the datatype number."
         },
         "dualAcquireEnabled": {
           "type": "boolean",
-          "description": "(Required, AE) - To be set as true if dual Acquire mode is enabled of the datatype boolean."
+          "description": "(Required, AE) - To be set as true if dual Acquire mode is enabled, of the datatype boolean."
         },
         "highQualityDarkReferenceApplied": {
           "type": "boolean",
-          "description": "(Optional, AE) - To be set as true if a high quality dark reference is applied of the datatype boolean."
+          "description": "(Optional, AE) - To be set as true if a high quality dark reference is applied, of the datatype boolean."
         },
         "lowLossDualAcquire": {
           "type": "boolean",
@@ -2295,20 +2300,20 @@
         },
         "saturationFraction": {
           "type": "number",
-          "description": "(Optional, AE) - The fraction of saturated electrons in the scanned image defined to be of the datatype number."
+          "description": "(Optional, AE) - The fraction of saturated electrons in the scanned image, defined to be of the datatype number."
         },
         "collectionSemiAngle": {
           "$ref": "#/$defs/angleDetails",
-          "description": "(Required, AE) - The number of semi-angles of the scattered beam which is collected usually expressed in mrad."
+          "description": "(Required, AE) - The number of semi-angles of the scattered beam which is collected, usually expressed in mrad."
         },
         "convergenceSemiAngle": {
           "$ref": "#/$defs/angleDetails",
-          "description": "(Required, AE) - The convergence semi-angle of the electron beam usually expressed in mrad."
+          "description": "(Required, AE) - The convergence semi-angle of the electron beam, usually expressed in mrad."
         },
         "subPixelAveragingEnabled": {
           "type": "boolean",
           "default": false,
-          "description": "(Optional, AE) - To bet set to true if sub-pixel averaging is enabled defined to be of the datatype boolean."
+          "description": "(Optional, AE) - To bet set to true if sub-pixel averaging is enabled, defined to be of the datatype boolean."
         },
         "spectrometer": {
           "$ref": "#/$defs/spectrometerDetails",
@@ -2323,7 +2328,7 @@
     },
     "spectrometerDetails": {
       "type": "object",
-      "description": "Details about the spectrometer used for EELS. Properties: apertureSize ; , dispersion , driftTubeEnabled , driftTubeVoltage , driftTubeVoltage2  , energyLoss , , HTOffsetEnabled , HTOffset , HTOffset2 , spectrometerID , spectrometerName , prismOffset ",
+      "description": "Details about the spectrometer used for EELS.",
       "additionalProperties": false,
       "properties": {
         "apertureSize": {
@@ -2332,12 +2337,12 @@
         },
         "dispersion": {
           "$ref": "#/$defs/energyDetails",
-          "description": "(Required, AE) - The energy covered by a channel of the CCD normally expressed in eV."
+          "description": "(Required, AE) - The energy covered by a channel of the CCD, normally expressed in eV."
         },
         "driftTubeEnabled": {
           "type": "boolean",
           "default": false,
-          "description": "(Optional, AE) - To be set as true if the drift tube is enabled of the datatype boolean."
+          "description": "(Optional, AE) - To be set as true if the drift tube is enabled, of the datatype boolean."
         },
         "driftTubeVoltage": {
           "$ref": "#/$defs/voltageDetails",
@@ -2389,7 +2394,7 @@
       "properties": {
         "detectorName": {
           "type": "string",
-          "description": "(Optional, AE) - Name or local name of the EDXS detector of the datatype string."
+          "description": "(Optional, AE) - Name or local name of the EDXS detector, of the datatype string. E.g. superXG2"
         },
         "detectorID": {
           "$ref": "#/$defs/identifier",
@@ -2397,19 +2402,19 @@
         },
         "dispersion": {
           "$ref": "#/$defs/energyDetails",
-          "description": "(Required, AE) - The energy covered by a channel of the CCD normally expressed in eV."
+          "description": "(Required, AE) - The energy covered by a channel of the CCD, normally expressed in eV."
         },
         "offset": {
           "$ref": "#/$defs/energyDetails",
-          "description": "(Required, AE) - The offset energy applied to the detector usually expressed in eV defined to be of the type energyDetails."
+          "description": "(Required, AE) - The offset energy applied to the detector, usually expressed in eV defined to be of the type energyDetails."
         },
         "shapingTime": {
           "$ref": "#/$defs/timeDetails",
-          "description": "(Optional, AE) - Time used to shape and smooth EDX peaks defined separatelyas timeDetails."
+          "description": "(Optional, AE) - Time used to shape and smooth EDX peaks, defined separatelyas timeDetails."
         },
         "noOfFrames": {
           "type": "number",
-          "description": " (Required, AE) - The number of frames acquired by the EDXS detector defined to be of the datatype number."
+          "description": " (Required, AE) - The number of frames acquired by the EDXS detector, defined to be of the datatype number."
         },
         "segmentedDetector": {
           "type": "boolean",
@@ -2422,9 +2427,9 @@
         },
         "usedSegments": {
           "type": "array",
+          "description": "(Optional, AE) - Array of properties which describe the characteristics of each segment of the segmented detector.",
           "items": {
-            "$ref": "#/$defs/usedSegmentDetails",
-            "description": "(Optional, AE) - Array of properties which describe the characteristics of each segment of the segmented detector."
+            "$ref": "#/$defs/usedSegmentDetails"
           }
         }
       },
@@ -2436,7 +2441,7 @@
     },
     "usedSegmentDetails": {
       "type": "object",
-      "description": "describes the properties of a segment of the segmented EDXS detector.",
+      "description": "Describes the properties of a segment of the segmented EDXS detector.",
       "additionalProperties": false,
       "properties": {
         "segmentNo": {
