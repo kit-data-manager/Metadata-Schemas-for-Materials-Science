@@ -1309,17 +1309,22 @@ var dataModel = {
                                 "storageGasAtmosphereOptions":
                                 {
                                     "description": "(Optional) - Storage gas atmosphere, to be indicated only if different from the gas atmosphere required for sample handling.",
-                                    "type":"string",
-                                    "enum":
-                                    [
-                                        "Not applicable",
-                                        "air",
-                                        "dry air",
-                                        "vacuum",
-                                        "Ar",
-                                        "N",
-                                        "other (please add in the comments)"
-                                    ]
+                                    "type":"array",
+                                    "uniqueItems": true,
+                                    "items":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "Not applicable",
+                                            "air",
+                                            "dry air",
+                                            "vacuum",
+                                            "Ar",
+                                            "N",
+                                            "other (please add in the comments)"
+                                        ]
+                                    }
                                 },
                                 "otherStorageGasAtmosphere": {"type": "string"}
                             }

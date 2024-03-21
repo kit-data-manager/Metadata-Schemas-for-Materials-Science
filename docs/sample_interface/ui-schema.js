@@ -432,7 +432,10 @@ var uiSchema = {
                                 },
                                 {"title": "Min Storage Humidity", "key": "sampleHandlingPrecaution.storageConditions.minStorageHumidity"},
                                 {"title": "Max Storage Humidity", "key": "sampleHandlingPrecaution.storageConditions.maxStorageHumidity"},
-                                {"title": "Storage Gas Atmosphere", "key": "sampleHandlingPrecaution.storageConditions.storageGasAtmosphere.storageGasAtmosphereOptions", "type": "radios"},
+                                {
+                                    "title": "Storage Gas Atmosphere", 
+                                    "key": "sampleHandlingPrecaution.storageConditions.storageGasAtmosphere.storageGasAtmosphereOptions", 
+                                    "type": "checkboxes"},
                                 {"title": "Other Storage Gas Atmosphere","key": "sampleHandlingPrecaution.storageConditions.storageGasAtmosphere.otherStorageGasAtmosphere"},
                                 {
                                     "title": "Storage Equipment", 
