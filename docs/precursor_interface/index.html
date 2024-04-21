@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>Precursor Schema</title>
+    <!--External dependencies-->
+    <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/jquery/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/opt/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor@0.9.3/deps/opt/fontawesome/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/opt/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/opt/fontawesome/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/opt/validator/ajv/ajv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/underscore/underscore-umd-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor@0.9.3/deps/opt/code-editor/ace/ace.min.js"></script>
+
+
+    <!--Metadata Editor library-->
+    <script src="./js/popper.js"></script>
+    <!--script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/jsonform/jsonform.min.js"></script-->
+    <script type="text/javascript" src="./js/jsonform.js"></script>
+    <!--script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/lib/js/metadataeditor.js"></script-->
+    <script type="text/javascript" src="./js/metadataeditor.js"></script>
+    <script type="text/javascript" src="./js/FileSaver.min.js"></script>
+    <!--Input data-->
+    <script type="text/javascript" src="./precursor_schema.js"></script>
+    <script type="text/javascript" src="./ui-schema.js"></script>
+
+    <!--Basic stylesheet-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/opt/bootstrap/css/bootstrap-theme.min.css"/>
+
+    <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/lib/css/metadataeditor.style.basic.css" /-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+
+<div class="container">
+    <div class="col-12">
+        <div class="boxlist margin-top-30" id="training-box">
+            <div class="box-header bg-green-blue">
+                <h3 class="box-title">Precursor Schema</h3>
+            </div>
+            <div class="row g-3">
+                <div class="col-sm-2">
+                    <button id="loadFileXml" onclick="document.getElementById('jsonfileinput').click();"><i class="fa-solid fa-upload"></i></button>
+                    <input type="file" style="display:none;" id="jsonfileinput" name="file"/>
+                </div>
+                <div class="col-sm-2">
+                    <button id="reset" class="form-control-sg"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-check form-control-sg checkbox">
+                        <input class="form-check-input form-control-sg" type="checkbox" id="validateCheck">
+                        <label class="form-check-label form-control-sg" for="validateCheck">Validation</label>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="box-body">
+                <form id="plain"></form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+   /* var editor = ace.edit("editor");
+    editor.setOptions({
+        autoScrollEditorIntoView: true,
+        copyWithEmptySelection: true,
+    });*/
+   const urlSearchParams = new URLSearchParams(window.location.search);
+   const params = Object.fromEntries(urlSearchParams.entries());
+   const cb = document.querySelector('#validateCheck')
+   const doValidate = (params.validate == "true");
+   if(doValidate){
+       cb.checked = true;
+   }else{
+       cb.checked = false;
+   }
+
+   resolveRefs(dataModel, dataModel.$defs);
+
+   var options = {
+       operation: "CREATE",
+       buttonTitle: "Download",
+       uiForm: this.uiSchema,
+       dataModel: this.dataModel,
+       validate: doValidate
+   };
+
+   var data = localStorage.getItem("resource");
+   var resource = undefined;
+   if(data){
+       options.operation = "UPDATE";
+       resource = JSON.parse(data);
+       options.resource = this.resource;
+   }
+
+   document.getElementById("validateCheck").addEventListener("click", function() {
+       const cb = document.querySelector('#validateCheck')
+       window.location.href = window.location.pathname+"?validate=" + cb.checked;
+   });
+
+   document.getElementById("reset").addEventListener("click", function() {
+       localStorage.removeItem('resource');
+       window.location.reload();
+   });
+
+   document.getElementById("jsonfileinput").addEventListener("change", function() {
+       var file_to_read = document.getElementById("jsonfileinput").files[0];
+       var fileread = new FileReader();
+       fileread.onload = function(e) {
+           var content = e.target.result;
+           var intern = JSON.parse(content); // parse json
+           localStorage.setItem('resource', JSON.stringify(intern));
+           window.location.reload();
+       };
+       fileread.readAsText(file_to_read);
+   });
+
+    $('body').initializeModals();
+
+
+    $('#plain').metadataeditorForm(options, (value) => {
+        var fileName = 'precursor_description_metadata.json';
+
+        // Create a blob of the data
+        var fileToSave = new Blob([value], {
+            type: 'application/json'
+        });
+
+        // Save the file
+        saveAs(fileToSave, fileName);
+    });
+</script>
+</body>
+</html>
