@@ -1487,7 +1487,16 @@ var dataModel = {
                                 "type": "object",
                                 "properties": 
                                 {
-                                    "comments": {"type": "string"}
+                                    "comments": {"type": "string"},
+                                    "consumables":
+                                    {
+                                        "description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
+                                        "type": "array",
+                                        "items":
+                                        {
+                                            "type": "string" 
+                                        }
+                                    }
                                 }
                             }
                         }
