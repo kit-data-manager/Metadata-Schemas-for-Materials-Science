@@ -1080,17 +1080,22 @@ var dataModel = {
                                 "gasAtmosphereOptions":
                                 {
                                     "description": "(Optional) - Type of inert gas required around the Precursor to handle it, due e.g. to the presence of a reactive top layer.",
-                                    "type":"string",
-                                    "enum":
-                                    [
-                                        "Not applicable",
-                                        "air",
-                                        "dry air",
-                                        "vacuum",
-                                        "Ar",
-                                        "N",
-                                        "other (please add in the comments)"
-                                    ]
+                                    "type":"array",
+                                    "uniqueItems": true,
+                                    "items":
+                                    {
+                                        "type": "string",
+                                        "enum":
+                                        [
+                                            "Not applicable",
+                                            "air",
+                                            "dry air",
+                                            "vacuum",
+                                            "Ar",
+                                            "N",
+                                            "other (please add in the comments)"
+                                        ]
+                                    }
                                 },
                                 "otherGasAtmosphere": {"type": "string"}                            
                             }

@@ -394,7 +394,11 @@ var uiSchema = {
                                 {"title": "Clean Room Conditions", "key": "precursorHandlingPrecaution.precursorHandling.cleanRoomConditions"},
                                 {"title": "Min Humidity", "key": "precursorHandlingPrecaution.precursorHandling.minHumidity"},
                                 {"title": "Max Humidity", "key": "precursorHandlingPrecaution.precursorHandling.maxHumidity"},
-                                {"title": "Gas Atmosphere", "key": "precursorHandlingPrecaution.precursorHandling.gasAtmosphere.gasAtmosphereOptions", "type": "radios"},
+                                {
+                                    "title": "Gas Atmosphere", 
+                                    "key": "precursorHandlingPrecaution.precursorHandling.gasAtmosphere.gasAtmosphereOptions", 
+                                    "type": "checkboxes"
+                                },
                                 {"title": "Other Gas Atmosphere","key": "precursorHandlingPrecaution.precursorHandling.gasAtmosphere.otherGasAtmosphere"},
                                 {"title": "Additional Notes", "key": "precursorHandlingPrecaution.precursorHandling.additionalNotes"},
                             ]
@@ -426,7 +430,8 @@ var uiSchema = {
                                 {
                                     "title": "Storage Gas Atmosphere", 
                                     "key": "precursorHandlingPrecaution.storageConditions.storageGasAtmosphere.storageGasAtmosphereOptions", 
-                                    "type": "checkboxes"},
+                                    "type": "checkboxes"
+                                },
                                 {"title": "Other Storage Gas Atmosphere","key": "precursorHandlingPrecaution.storageConditions.storageGasAtmosphere.otherStorageGasAtmosphere"},
                                 {
                                     "title": "Storage Equipment", 
