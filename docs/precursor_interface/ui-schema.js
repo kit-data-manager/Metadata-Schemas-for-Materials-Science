@@ -3,7 +3,7 @@ var uiSchema = {
     "items":
     [
         {
-            "legend": "Sample Identification",
+            "legend": "Precursor Identification",
             "type": "fieldset",
             "htmlClass": "myclass",
             "items": 
