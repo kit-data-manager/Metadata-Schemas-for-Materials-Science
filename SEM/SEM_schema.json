@@ -434,7 +434,7 @@
         },
         "FIB": {
           "$ref": "#/$defs/FIBDetails",
-          "description": "(Optional) - Details about an additional Focused Oon Beam (FIB) extension to the instrument"
+          "description": "(Optional) - Details about an additional Focused Ion Beam (FIB) extension to the instrument"
         }
       },
       "required": [
