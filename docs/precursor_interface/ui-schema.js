@@ -12,10 +12,18 @@ var uiSchema = {
                 {"title": "Precursor Producer", "key": "precursorIdentification.precursorProducer"},
                 {"title": "Precursor Purpose", "key": "precursorIdentification.precursorPurpose.precursorPurposeOptions", "type": "checkboxes"},
                 {"title": "Other Precursor Purpose", "key": "precursorIdentification.precursorPurpose.otherPrecursorPurpose"},
-                {"title": "Precursor ID", "key": "precursorIdentification.precursorID.precursorID"},
-                {"title": "Precursor ID Type", "key": "precursorIdentification.precursorID.precursorIDType", "type": "radios"},
-                {"title": "Other Precursor ID", "key": "precursorIdentification.precursorID.otherPrecursorIDType"},
-                {"title": "Precursor ID Position", "key": "precursorIdentification.precursorID.precursorIDPosition","type": "checkboxes"}
+                {
+                    "title": "Precursor ID",
+                    "type": "advancedfieldset", 
+                    "htmlClass": "myclass",
+                    "items":
+                    [
+                        {"title": "Precursor ID Value", "key": "precursorIdentification.precursorID.precursorIDValue"},
+                        {"title": "Precursor ID Type", "key": "precursorIdentification.precursorID.precursorIDType", "type": "radios"},
+                        {"title": "Other Precursor ID Type", "key": "precursorIdentification.precursorID.otherPrecursorIDType"},
+                        {"title": "Precursor ID Position", "key": "precursorIdentification.precursorID.precursorIDPosition","type": "checkboxes"}
+                    ]
+                }    
             ]
         },
         {

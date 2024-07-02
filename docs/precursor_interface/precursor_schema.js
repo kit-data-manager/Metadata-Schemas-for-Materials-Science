@@ -121,7 +121,7 @@ var dataModel = {
                     "type": "object",
                     "properties":
                     {
-                        "precursorID": 
+                        "precursorIDValue": 
                         {
                             "description": "(Optional) - Identifier of the Precursor. The naming is not univocal among laboratories, thus the conventions may differ. It may be the internal ID or the number on the box containing the Precursor; in other cases a convention is established. The choice of how to identify a specific Precursor is given to the laboratory.",
                             "type": "string"
@@ -132,7 +132,6 @@ var dataModel = {
                             "type": "string",
                             "enum":
                             [
-                                "not applicable",
                                 "text",
                                 "code",
                                 "value",
