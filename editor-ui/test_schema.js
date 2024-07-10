@@ -2,24 +2,33 @@ var dataModel = {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "$defs": {
 
-        "UserName": {
+        "userName": {
+        
             "type": "object",
 
             "properties": {
 
-                "UserNameValues": {
-                    "type": "string"
+                "userNameValues": {
+                    'termURI':'http://matwerk.datamanager.kit.edu:8001/rest/v1/DemoTerms-1/data?uri=http://matwerk.datamanager.kit.edu:8001/DemoTerms-1/en/page/username&format=application%2Fjson', 
+                    "type": "string",
+                    'title' : '',
+                    'description' : ''
+                
                 }
             }
         }, 
 
-        "UserRole": {
+        "userRole": {
+            
             "type": "object",
 
             "properties": {
 
-                "UserRoleValues": {
+                "userRoleValues": {
+                    'termURI' : 'http://matwerk.datamanager.kit.edu:8001/rest/v1/DemoTerms-1/data?uri=http://matwerk.datamanager.kit.edu:8001/DemoTerms-1/en/page/userrole&format=application%2Fjson',
                     "type": "string",
+                    'title' : '',
+                    'description' : '',
                     "enum": []
                 }
             }
@@ -31,15 +40,20 @@ var dataModel = {
     "type": "object",
     "properties": {
 
-        'UserName': {
-            "$ref": "#/$defs/UserName"
+        'userName': {
+            "$ref": "#/$defs/userName"
         }, 
 
-        'UserRole': {
-            "$ref": "#/$defs/UserRole"
-        }
+        'userRole': {
+            "$ref": "#/$defs/userRole"
+        },
+
+        'physStatus': {
+            "$ref": "#/$defs/physStatus"
+        },
+
     },
-    "required": ['UserName', 'UserRole']
+    "required": ['userName', 'userRole']
 
 }
 

@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>rdflib: Introduction material</title>
+<style type="text/css">
+body {
+font-family: Trebuchet MS, Palatino, sans-serif;
+color: black;
+background: white;
+margin-left: 3em ;  margin-right: 2em;
+}
+p , ul, ol { text-indent : 0em ;
+margin-left: 0em  ; /* a bit of white space */ }
+pre { margin-left: 1em; background-color: #eee; padding: 1em; font-size: 120%;}
+
+table { border: collapse; }
+td { background-color: #eee; padding: 0.3em;}
+
+li { text-indent: 0; margin-bottom: 0.5em;}
+h1 { text-align: center  }
+h2 { font-style: bold;  margin-left: -1em; }
+h3 { font-style: bold;  margin-left: 0em; }
+h4 { font-style: italic;  margin-left: 0em; }
+
+address { text-align: right }
+a:link, a:active { color: #00e; background: transparent; text-decoration: none; }
+
+a:visited {color: #529; background: transparent;}
+div.intro {margin-left: 5%; margin-right: 5%; font-style: italic}
+pre { font-family: monospace }
+a:link img, a:visited img { border-style: none }
+
+tt { font-size: 120%; background-color: #eee; padding: 0.1em }
+</style>
+</head>
+<body>
+<h1>Block diagrams</h1>
+
+<div>
+  <p>See also</p>
+<ul>
+
+  <li><a href="https://linkeddata.github.io/rdflib.js/doc/">rdflib documentation home page</a></li>
+  <li><a href="webapp-intro.html">Introduction to using rdflib in a Solid WebApp</a></li>
+  <li><a href="turtle-intro.html">Introduction to Turtle</a>.  Learn to chat in, and think in, this basic data language</li>
+
+</ul>
+
+<p>The rdflib library is modular.  Higher level functions such as the Update Manager and the Fetcher depend on the
+  core modules such as the Store, which depends on low level parts such as the basic RDF model.
+</p>
+ 
+<img src="diagrams/rdflib-block-diagram.svg" alt="Separate modules perform different functions to provide local query, web access, and live update." />
+
+<p>
+  The Fetcher module adds an awareness of the web of linked data, rather than just abstract RDF.
+  It implements http(s): and file: URIs and tracks the metadata from the HTTP transaction and stores that also in the store.
+  This diagram points out that the responsibility for retrying access attempts which fail because of different HTTP errors and/or browser blocking in CORS
+  are handled in various different places.
+</p>
+
+ <img src="diagrams/fetcher-block-diagram-2.svg" alt="In the Fetcher, separate modules perform different functions." />
+
+<p>
+The Fetcher does not handle PATCH - that is done by the Update Manager.
+</p>
+  <img src="diagrams/update-manager-diagram.svg" alt="In the Update Manager, separate modules perform different functions, calling loower level modules like the Fetcher." />
+<p>
+  The update manager has two sides, for upstream and downstream patches.
+  Upstream patches are when athe user changes something in the UI and the patch goes up to the server to change the web od data.
+  Downstream patches are when someione else out there changes the resopurce, and the UI has to be updated. 
+  For this, (currenlty) a WebSocket proctol is used, in whihc the client is sent a 'pub' flag and reloads the file.
+  In future, the server may send a patch directly to the client, which can then  update the quad store without having to reload the document.
+  </p>
+  </div>
+</body>
+</html>

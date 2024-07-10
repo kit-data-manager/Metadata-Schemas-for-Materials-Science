@@ -16,9 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/opt/validator/ajv/ajv.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/underscore/underscore-umd-min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor@0.9.3/deps/opt/code-editor/ace/ace.min.js"></script>
-
-
-
+    
     
     <!--Metadata Editor library-->
     <script src="./js/popper.js"></script>
@@ -70,7 +68,7 @@
     </div>
 </div>
 
-
+<script src="/Users/bl1752/Desktop/KIT/MetadataEditor/TermWithURI/editor-ui/node_modules/rdflib/dist/rdflib.min.js"></script>
 <script>
 
 
@@ -85,58 +83,159 @@
         cb.checked = false;
             }
 
-    var dataObjList = []
-
-    //var urlLinkPhysStatusValues = "http://localhost:8001/rest/v1/TestJson-1/narrower?uri=http%3A%2F%2Flocalhost%3A8001%2FMDMCfirst-1%2Fen%2Fpage%2Fphysicalstatus"
-    //var uriLinkPhysStatus = 'http://localhost:8001/rest/v1/TestJson-1/label?uri=http%3A%2F%2Flocalhost%3A8001%2FMDMCfirst-1%2Fen%2Fpage%2Fphysicalstatus'
-    //var physStatusValues = []
-    //var dataModelName = "Physical Status"
-
-    var urlLinkUserRole = 'http://matwerk.datamanager.kit.edu:8001/rest/v1/DemoTerms-1/narrower?uri=http://matwerk.datamanager.kit.edu:8001/DemoTerms-1/en/page/userrole'
-    //var userRoleValues = []
-    var dataModelUserRole = "UserRole" 
     
-  
-    const readValues = (uriTerm, dataModelName, dataObjList) => {
-        return new Promise(resolve => {
-            fetch(uriTerm).then(response => {
-            return response.json()
-        }).then(data => {
+    let termsToResolve = [
+                {
 
-            var jsonValues
-            var dataModelValues = []
-            var narrower_terms = data.narrower
-            console.log(narrower_terms) 
-            jsonValues = narrower_terms.slice()
-            console.log("Json Values1", jsonValues)       
+            "termId":"userName",
+            'termDataUri': dataModel.$defs.userName.properties.userNameValues.termURI ,
+            "replacementFunction": (userName, termTitle, termDescription) => {
+                                    dataModel.$defs.userName.properties.userNameValues.title   = termTitle;
+                                    dataModel.$defs.userName.properties.userNameValues.description = termDescription
 
-            narrower_terms.forEach(term => {
-                console.log(term.prefLabel)
-                dataModelValues.push(term.prefLabel)})
+                                    }
+            },
 
-            dataObj = {
-                "dataModelName" : dataModelName,
-                "dataModelValues" : dataModelValues,
-                "jsonValues" : jsonValues
+            {
+            "termId":"userRole",
+            'termDataUri': dataModel.$defs.userRole.properties.userRoleValues.termURI,
+            "termUriNarrower":"yes",
+            "replacementFunction": (userRolesList, termTitle, termDescription) => {
+                                    dataModel.$defs.userRole.properties.userRoleValues.enum   = userRolesList;
+                                    dataModel.$defs.userRole.properties.userRoleValues.title   = termTitle;
+                                    dataModel.$defs.userRole.properties.userRoleValues.description = termDescription
+                                    }
+            }
+            
+        ]
+   
+
+    async function getTermsList (termsToResolveObj) {
+        
+
+        for (let i=0;i<termsToResolveObj.length;i++){
+
+
+            var jsonValues = []  //saves links for creating and downloading json schema
+            var dataModelValues = [] //saves narrower terms list
+
+            termInfos = await fetchDataFromURI(termsToResolveObj[i]["termDataUri"])
+
+            if ("graph" in termInfos){
+
+                termDataGraph = termInfos.graph
+                //console.log("Key", termInfos.graph)
+                
+                for (var j = 0; j < termDataGraph.length; j++){
+
+                    if (termsToResolveObj[i]["termTitle"] === termDataGraph[j]["prefLabel"]){
+
+                        termWithNarrowerTerms = termDataGraph[j]
+                        console.log("mainTerm",termDataGraph[j]);
+
+                        narrowerTerms = termWithNarrowerTerms.narrower
+                        console.log("Narrower terms", narrowerTerms)
+
+                        for (var k = 0; k < narrowerTerms.length; k++) {
+
+                            const termObject = termDataGraph.find(item => item.uri === narrowerTerms[k].uri);
+                            console.log("TermTerm1",termObject.prefLabel )
+                            console.log("Nar Term Uri", narrowerTerms[k].uri)
+                            narTermPrefLabel = termObject.prefLabel 
+                            narTermUri = termObject.uri 
+
+                            newObject = {"uri" : narTermUri, "prefLabel":narTermPrefLabel}
+                            dataModelValues.push(narTermPrefLabel)
+                            jsonValues.push(newObject)
+                        }
+
+                        
+
+                    }  
+                    }
+                termsToResolveObj[i]["jsonValues"] = jsonValues  //links for creating and downloading json schema
+                termsToResolveObj[i]["dataModelValues"] = dataModelValues  //narrower terms values
+                console.log("Data Model Values", dataModelValues)
+                console.log("json Values", jsonValues)
+
+                
             }
 
-            dataObjList.push(dataObj)
-
-            resolve(dataObjList)})
-        })
+        }
+        
     }
 
-    Promise.all([readValues(urlLinkUserRole,dataModelUserRole, dataObjList)])
+   
+
+    //function which gets the term's prefLable and description
+    const getTermsTitleDescr = (termInfos, termsToResolveObj) =>{
+
+        //results from fetch for pref terms with narrower terms are different, because of this it is procced seperatly
+        if (termsToResolveObj["termId"] == "userRole") {
+
+            const userRole = termInfos.graph.find(item => item.prefLabel === "User Role");
+            const prefLabel = userRole.prefLabel;
+            termsToResolveObj["termTitle"] = prefLabel
+            const definition = userRole["skos:definition"].value;    
+            termsToResolveObj["termDescription"]  = definition
+           
+    
+        }
+        else {
+        
+            var term_title = termInfos.prefLabel
+            termsToResolveObj["termTitle"] = term_title
+
+            definition = termInfos["skos:definition"].value
+            termsToResolveObj["termDescription"] = definition
+        }
+
+       
+            
+
+    }
+
+    //reads URIs
+    function fetchDataFromURI(uri) {
+        return new Promise((resolve, reject) => {
+            // Perform async operation to fetch data from the given URI
+            // and resolve the promise with the fetched data
+            // or reject the promise with an error if something goes wrong
+            
+            // Example of using Fetch API:
+            fetch(uri)
+            .then(response => response.json())
+            .then(data => resolve(data))
+        });
+        }
+
+
+    //reads URIs of the terms and defines new values for dataModel
+    //the list termsToResolve has parameters of each term and hier will be defined another needed parameters like:prefLable, description, narrower terms and links for generating json metadata document
+    async function getValues (termsToResolve) {
+
+        
+       
+        for (let i=0;i<termsToResolve.length;i++){
+            
+            termInfos = await fetchDataFromURI(termsToResolve[i]["termDataUri"]) //consists prefLabel and description of the term
+            await getTermsTitleDescr(termInfos,  termsToResolve[i])  //defines prefLabel and description in the termsToResolve object
+            await getTermsList(termsToResolve)  //
+            
+            termsToResolve[i].replacementFunction(termsToResolve[i]["dataModelValues"], termsToResolve[i]["termTitle"],termsToResolve[i]["termDescription"] )
+
+        }
+
+        
+        return termsToResolve
+    }
+    
+
+    //first we call the function getValues and read term values from the vocabuöary, add values to the dataModel and than do another metadata editor actions
+    getValues(termsToResolve)
         .then(dataObj => {
-                
-
-            //const dataObjValue = dataObjList.find(obj => obj.dataModelName === "Physical Status")
-            //var physStatusValuesArr = dataObjValue.jsonValues
-            //dataModel.$defs.Physicalstatus.properties.PhysicalstatusValues.enum  = dataObjValue.dataModelValues
-
-            const dataUserRole = dataObjList.find(obj => obj.dataModelName === "UserRole")
-            var dataUserRoleValuesArr = dataUserRole.jsonValues
-            dataModel.$defs.UserRole.properties.UserRoleValues.enum  = dataUserRole.dataModelValues
+            
+            console.log('TERMS INFO', termsToResolve)
             
 
             resolveRefs(dataModel, dataModel.$defs);
@@ -185,11 +284,37 @@
 
 
             $('#plain').metadataeditorForm(options, (value) => {
-
+               
                 var value_new = JSON.parse(value)
 
-                const userrole = dataUserRoleValuesArr.find(terms => terms.prefLabel === value_new.UserRole.UserRoleValues);
-                value_new.UserRole.UserRoleValues = userrole.uri
+                //takes keys of the Value: User Name, User Role etc.
+                keys = Object.keys(value_new)  
+
+                //for each keys repplaces Value with the URI: solid - http://.../solid
+                keys.forEach((key, index) => {
+                    
+                    //finds in termsToResolve Obj with this key, and takes JsonValues Arr, where there is uri of the Value
+                    for (let i=0;i<termsToResolve.length;i++){
+
+
+                        if (key === termsToResolve[i].termId && termsToResolve[i].termUriNarrower) {
+
+                            
+                            //in the value_new each Field Values are separate obj
+                            fieldData = value_new[key]
+                            keys_data =  Object.keys(fieldData)
+            
+                            keys_data.forEach((key, index) => {
+
+                                const jsonValuesData = termsToResolve[i].jsonValues.find(terms => terms.prefLabel === fieldData[key] );
+                                fieldData[key]  = jsonValuesData.uri
+                            })
+
+
+                        }
+                    }
+
+                })
 
                 const valueWithUri = JSON.stringify(value_new)
 

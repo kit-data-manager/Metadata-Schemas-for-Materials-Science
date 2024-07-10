@@ -8,8 +8,9 @@ var uiSchema =
                 "description":"Information about the User",
                 "htmlClass": "myclass",
                 "items": [
-                    {"title": "User Name", "key": "UserName.UserNameValues"},
-                    {"title": "User Role", "key": "UserRole.UserRoleValues"}
+                    { "key": "userName.userNameValues"},
+                    { "key": "userRole.userRoleValues"},
+                    //{"title": "Phys Status", "key": "PhysStatus.PhysStatusValues"}
                 ]
             }
         ]

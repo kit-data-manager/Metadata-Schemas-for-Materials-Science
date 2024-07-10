@@ -1,0 +1,2 @@
+<http://localhost/t5.n3#subj> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://localhost/t5.n3#TestCase> <http://localhost/t5.n3> .
+<http://localhost/t5.n3#subj> <http://www.w3.org/2002/07/owl#sameAs> <http://localhost/t5.n3#other> <http://localhost/t5.n3> .
