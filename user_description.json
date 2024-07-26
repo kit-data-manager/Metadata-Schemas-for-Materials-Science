@@ -32,11 +32,8 @@
            [
                 "Data Curator",
                 "Instrument Scientist",
-                "Principal Investigator",
-                "Project Member",
-                "Research user",
-                "Site Leader",
-                "Work Package Leader"
+                "Team Leader",
+                "Team Member"
            ]
         },
         "affiliation":
