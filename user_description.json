@@ -24,6 +24,11 @@
            "type":"string",
            "description":"(Optional) - Family name of the user"
         },
+        "age": 
+        {
+          "type": "number",
+          "description": "(Optional) - Age of the user"
+        },
         "role":
         {
            "type":"string",
