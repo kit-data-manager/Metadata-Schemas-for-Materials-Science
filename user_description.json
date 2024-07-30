@@ -89,17 +89,22 @@
                 }
             }
         },
-        "email":
-        {
-            "type":"string",
-            "description":"(Optional) - Email of the user",
-            "format":"email"
-        },
-        "ORCID":
-        {
-            "type":"string",
-            "description":"(Optional) - Open Researcher and Contributor ID expressed as a URI",
-            "pattern":"^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
+        "contact": {
+    	    "type": "array",
+    	    "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "(Optional) - Contact Type of the user",
+                  "enum": ["ORCID", "email"]
+                },
+                "value": {
+                  "type": "string",
+                  "description": "(Optional) - Value of the Contact Type"
+                }
+              }
+          }
         }
     }
 }
