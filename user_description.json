@@ -32,7 +32,7 @@
         "role":
         {
            "type":"string",
-           "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
+           "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Team Leader *Team Member",
            "enum":
            [
                 "Data Curator",
