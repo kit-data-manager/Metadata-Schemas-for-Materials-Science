@@ -89,22 +89,36 @@
                 }
             }
         },
-        "contact": {
-    	    "type": "array",
-    	    "items": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "description": "(Optional) - Contact Type of the user",
-                  "enum": ["ORCID", "email"]
-                },
-                "value": {
-                  "type": "string",
-                  "description": "(Optional) - Value of the Contact Type"
-                }
+  "contact": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "required": [
+              "email", "orcid"
+            ],          
+            "title": "Email",
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "(Optional) - Email Address"
               }
+            }
+          },
+          {
+            "title": "ORCID",
+            "type": "object",
+            "properties": {
+              "orcid": {
+                "type": "string",
+                "description": "(Optional) - ORCID URL",
+                "pattern": "^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
+              }
+            }
           }
-        }
+        ]
+      }
+    }
     }
 }
