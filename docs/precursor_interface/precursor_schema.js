@@ -1337,6 +1337,11 @@ var dataModel = {
                                             "other (please add in the comments)"
                                         ]
                                     },
+                                    "doping": 
+                                    {
+                                        "description": "(Optional) - True if the fabrication action is performed to dope the material.",
+                                        "type": "boolean"
+                                    },
                                     "comments": {"type": "string"},
                                     "consumables":
                                     {
@@ -1379,6 +1384,11 @@ var dataModel = {
                                             "other (please add in the comments)"
                                         ]
                                     },
+                                    "doping": 
+                                    {
+                                        "description": "(Optional) - True if the fabrication action is performed to dope the material.",
+                                        "type": "boolean"
+                                    },
                                     "comments": {"type": "string"},
                                     "consumables":
                                     {
@@ -1407,6 +1417,11 @@ var dataModel = {
                                             "other (please add in the comments)"
                                         ]
                                     },
+                                    "doping": 
+                                    {
+                                        "description": "(Optional) - True if the fabrication action is performed to dope the material.",
+                                        "type": "boolean"
+                                    },
                                     "comments": {"type": "string"},
                                     "consumables":
                                     {
@@ -1431,7 +1446,7 @@ var dataModel = {
                                         [
                                             "unspecified mechanical and surface",
                                             "focused ion beam",
-                                            "lithography",
+                                            "lithography/patterning",
                                             "polishing",
                                             "sputtering",
                                             "thermal plasma processing",
@@ -1440,6 +1455,11 @@ var dataModel = {
                                             "etching",
                                             "other (please add in the comments)"
                                         ]
+                                    },
+                                    "doping": 
+                                    {
+                                        "description": "(Optional) - True if the fabrication action is performed to dope the material.",
+                                        "type": "boolean"
                                     },
                                     "comments": {"type": "string"},
                                     "consumables":
@@ -1474,6 +1494,11 @@ var dataModel = {
                                             "other (please specify in the comments)"
                                         ]
                                     },
+                                    "doping": 
+                                    {
+                                        "description": "(Optional) - True if the fabrication action is performed to dope the material.",
+                                        "type": "boolean"
+                                    },
                                     "comments": {"type": "string"},
                                     "consumables":
                                     {
@@ -1491,6 +1516,11 @@ var dataModel = {
                                 "type": "object",
                                 "properties": 
                                 {
+                                    "doping": 
+                                    {
+                                        "description": "(Optional) - True if the fabrication action is performed to dope the material.",
+                                        "type": "boolean"
+                                    },
                                     "comments": {"type": "string"},
                                     "consumables":
                                     {
