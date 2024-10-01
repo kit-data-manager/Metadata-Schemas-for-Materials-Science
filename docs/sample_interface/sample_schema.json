@@ -134,15 +134,18 @@
 							"items": {
 								"type": "string",
 								"enum": [
-									"assessment (to given categories or values)",
-									"completeness check (presence or absence of given properties)",
-									"correlative characterization (dedicated sample treatment to emphasise given features)",
-									"exploratory (routine check of known properties)",
-									"feasibility (quick check, rough estimate)",
-									"high quality measurement (precise, careful treatment)",
-									"test specific hypothesis (focus only on given aspects)",
-									"other (please specify in the comment)"
-								]
+                                    "feasibility check (quick and dirty, rough estimate)",
+                                    "parameter calibration",
+                                    "optimization of parameters/properties",
+                                    "fullfilment of given requirements",
+                                    "assessment (check presence or absence of given properties)",
+                                    "investigation of properties (which are unknown before measurements)",
+                                    "test of a specific hypothesis (focus only on given aspects)",
+                                    "correlative characterization (dedicated sample treatment to emphasise given features)",
+                                    "high quality sample (precise, careful treatment)",
+                                    "further preparations",
+                                    "other (please specify in the comment)"
+                                ]
 							}
 						},
 						"otherSamplePurpose": {

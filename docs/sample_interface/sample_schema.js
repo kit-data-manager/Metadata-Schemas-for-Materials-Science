@@ -94,7 +94,7 @@ var dataModel = {
                     {
                         "samplePurposeOptions":
                         {
-                            "description": "(Required) - The tentative purpose of the sample (e.g., for which measurement(s) or subsequent analysis the sample was prepared). In this context, Correlative Characterization may be intended as a purpose. Multiple selection is allowed.",
+                            "description": "(Required) - The purpose of the sample (why the sample was prepared). In this context, Correlative Characterization may be intended as a purpose. Multiple selection is allowed.",
                             "type": "array",
                             "uniqueItems": true,
                             "items":
@@ -102,13 +102,16 @@ var dataModel = {
                                 "type": "string",
                                 "enum":
                                 [
-                                    "assessment (to given categories or values)",
-                                    "completeness check (presence or absence of given properties)",
+                                    "feasibility check (quick and dirty, rough estimate)",
+                                    "parameter calibration",
+                                    "optimization of parameters/properties",
+                                    "fullfilment of given requirements",
+                                    "assessment (check presence or absence of given properties)",
+                                    "investigation of properties (which are unknown before measurements)",
+                                    "test of a specific hypothesis (focus only on given aspects)",
                                     "correlative characterization (dedicated sample treatment to emphasise given features)",
-                                    "exploratory (routine check of known properties)",
-                                    "feasibility (quick check, rough estimate)",
-                                    "high quality measurement (precise, careful treatment)",
-                                    "test specific hypothesis (focus only on given aspects)" ,
+                                    "high quality sample (precise, careful treatment)",
+                                    "further preparations",
                                     "other (please specify in the comment)"
                                 ]
                             }
