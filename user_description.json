@@ -24,10 +24,15 @@
            "type":"string",
            "description":"(Optional) - Family name of the user"
         },
+        "age": 
+        {
+          "type": "number",
+          "description": "(Optional) - Age of the user"
+        },
         "role":
         {
            "type":"string",
-           "description":"(Required) - Role of the research user",
+           "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Team Leader *Team Member",
            "enum":
            [
                 "Data Curator",
@@ -58,45 +63,63 @@
                     "description":"(Optional) - Department within an institution"
                 },
                 "institutionID":
-                {   
-                    "type": "object",
-                    "description": "(Optional) -Identifier of the institution to which the user is affiliated",
-                    "properties":
-                    {
-                      "identifierValue": 
-                      {
-                        "type": "string",
-                        "description": "(Optional) - String containing the value of an identifier"
-                      },
-                      "identifierType": 
-                      {
-                        "type": "string",
-                        "description": "(Optional) - Type of the identifier to be chosen from a controlled list of values (*ROR *GRID *ISNI *URL *DOI *Handle)",
-                        "enum":
-                        [
-                            "ROR",
-                            "GRID",
-                            "ISNI",
-                            "URL",
-                            "DOI",
-                            "Handle"
-                        ]
-                      }
+                {
+                     "type": "object",
+                     "description": "(Optional) -Identifier of the institution to which the user is affiliated",
+                      "properties": {
+                        "identifierValue": 
+                        {
+                            "type": "string",
+                            "description": "(Optional) - String containing the value of an identifier"
+                        },
+                        "identifierType": 
+                        {
+                            "type": "string",
+                            "description": "(Optional) - Type of the identifier to be chosen from a controlled list of values (*ROR *GRID *ISNI *URL *DOI *Handle)",
+                            "enum":
+                            [
+                                "ROR",
+                                "GRID",
+                                "ISNI",
+                                "URL",
+                                "DOI",
+                                "Handle"
+                            ]
+                        }
                     }
                 }
            }
         },
-        "email":
-        {
-            "type":"string",
-            "description":"(Optional) - Email of the user",
-            "format":"email"
-        },
-        "ORCID":
-        {
-            "type":"string",
-            "description":"(Optional) - Open Researcher and Contributor ID expressed as a URI",
-            "pattern":"^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
-        }
+  "contact": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "required": [
+              "email", "orcid"
+            ],          
+            "title": "Email",
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "(Optional) - Email Address"
+              }
+            }
+          },
+          {
+            "title": "ORCID",
+            "type": "object",
+            "properties": {
+              "orcid": {
+                "type": "string",
+                "description": "(Optional) - ORCID URL",
+                "pattern": "^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
+              }
+            }
+          }
+        ]
+      }
+    }
     }
 }
