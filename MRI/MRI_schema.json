@@ -1,0 +1,360 @@
+{
+	"$schema": "https://json-schema.org/draft/2019-09/schema",
+	"title": "Magnetic Resonance Imaging (MRI) schema",
+	"description": "This schema provides the description of an MRI study with at least one series.",
+	"definitions": {},
+	"required": [
+		"study"
+	],
+	"type": "object",
+	"properties": {
+		"study": {
+			"required": [
+				"studyID",
+				"studyDateTime"
+			],
+			"type": "object",
+			"description": "A collection of one or more Series that are scientifically related (depending on the research context) for the purpose of the Experiment",
+			"properties": {
+				"studyID": {
+					"type": "string",
+					"description": "ID of the Study"
+				},
+				"studyTitle": {
+					"type": "string",
+					"description": "Title of the Study"
+				},
+				"studyDateTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"program": {
+					"type": "string",
+					"description": "Details concerning the program (or software) used for aquisition"
+				},
+				"user": {
+					"type": "object",
+					"description": "Contact information of the user responsible for the measurement",
+					"properties": {
+						"name": {
+							"type": "string"
+						},
+						"role": {
+							"type": "string",
+							"description": "Role of the user to be selected from: *data curator, *instrument scientist, *team leader, *team member"
+						},
+						"affiliation": {
+							"type": "object",
+							"properties": {
+								"institutionName": {
+									"type": "string"
+								},
+								"institutionAcronym": {
+									"type": "string"
+								},
+								"institutionDepartment": {
+									"type": "string"
+								},
+								"institutionID": {
+									"type": "string"
+								}
+							}
+						},
+						"email": {
+							"type": "string"
+						}
+					}
+				},
+				"sample": {
+					"type": "object",
+					"description": "A physical object (or a collection of objects) which is considered as a single discrete, uniquely identified unit which is exposed to the Instrument during one or more Measurements. MRI Samples are usually managed or being placed in a container. The term is equivalent to Specimen",
+					"properties": {
+						"sampleName": {
+							"type": "string"
+						},
+						"sampleID": {
+							"type": "string"
+						},
+						"sampleSize": {
+							"type": "object",
+							"description": "Length or size of the sample, in meters.",
+							"properties": {
+								"value": {
+									"type": "number"
+								},
+								"unit": {
+									"type": "string",
+									"default": "m",
+									"enum": [
+										"nm",
+										"um",
+										"mm",
+										"cm",
+										"m"
+									]
+								}
+							}
+						},
+						"sampleWeight": {
+							"type": "object",
+							"description": "Weight of the sample, in kilograms.",
+							"properties": {
+								"value": {
+									"type": "number"
+								},
+								"unit": {
+									"type": "string",
+									"default": "kg",
+									"enum": [
+										"kg",
+										"g"
+									]
+								}
+							}
+						},
+						"measurementConditions": {
+							"type": "object",
+							"description": "Nominal field strength of the MR Magnet, in Tesla.",
+							"properties": {
+								"value": {
+									"type": "number"
+								},
+								"unit": {
+									"type": "string",
+									"default": "T",
+									"enum": [
+										"T"
+									]
+								}
+							}
+						}
+					}
+				},
+				"instrument": {
+					"type": "object",
+					"description": "Identifiable piece of equipment used by one or more Users to perform one or more Measurements and to generate Raw Data. The Instrument is located in a laboratory hosted by an institution",
+					"properties": {
+						"instrumentName": {
+							"type": "string"
+						},
+						"instrumentID": {
+							"type": "string"
+						},
+						"instrumentManufacturer": {
+							"type": "object",
+							"properties": {
+								"manufacturerName": {
+									"type": "string"
+								},
+								"modelName": {
+									"type": "string"
+								},
+								"manufacturerID": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"series": {
+					"type": "array",
+					"description": "A set of one or more Images or Spectra (i.e. Processed Data) generated after the processing of Raw Data collected during Measurements along the z-axis of a Sample as part of the same Study and stored in one or multiple DICOM Files",
+					"items": {
+						"type": "object",
+						"properties": {
+							"seriesID": {
+								"type": "string"
+							},
+							"seriesTitle": {
+								"type": "string"
+							},
+							"sequenceProtocol": {
+								"type": "object",
+								"description": "The parameters of the Instrument which define the conditions under which one or more Measurements are performed and a Series is generated. Usually, there is a set of Protocols that are applied on a routine basis. The choice of a Protocol mainly depends on the Sample, the Instrument and the research question addressed by an Experiment",
+								"properties": {
+									"sequenceProtocolName": {
+										"type": "string"
+									},
+									"effectiveEchoTime": {
+										"type": "object",
+										"description": "Time in ms between the middle of the excitation pulse and the peak of the echo signal produced",
+										"properties": {
+											"value": {
+												"type": [
+													"number",
+													"array"
+												]
+											},
+											"unit": {
+												"type": "string",
+												"default": "ms",
+												"enum": [
+													"ms"
+												]
+											}
+										}
+									},
+									"repetitionTime": {
+										"type": "object",
+										"description": "Time in ms between the beginning of a pulse sequence and the beginning of the subsequent (essentially identical) pulse sequence",
+										"properties": {
+											"value": {
+												"type": [
+													"number",
+													"array"
+												]
+											},
+											"unit": {
+												"type": "string",
+												"default": "ms",
+												"enum": [
+													"ms"
+												]
+											}
+										}
+									},
+									"flipAngle": {
+										"type": "object",
+										"description": "The amount of rotation in degree the net magnetization experiences during application of a pulse",
+										"properties": {
+											"value": {
+												"type": [
+													"number",
+													"array"
+												]
+											},
+											"unit": {
+												"type": "string",
+												"default": "degree",
+												"enum": [
+													"degree",
+													"°"
+												]
+											}
+										}
+									}
+								}
+							},
+							"images": {
+								"type": "object",
+								"description": "The Fourier transformation of spatially encoded signals collected in k-space (Raw Data) as an array of pixel values representing the intensity of mainly the H-atom signals from the Sample.",
+								"properties": {
+									"allImages": {
+										"type": "object",
+										"properties": {
+											"numberOfImages": {
+												"type": "string"
+											},
+											"imageOrientation": {
+												"type": "array",
+												"items": {
+													"type": [
+														"number",
+														"array"
+													]
+												}
+											},
+											"pixelSpacing": {
+												"type": "object",
+												"properties": {
+													"value": {
+														"type": "array",
+														"items": {
+															"type": "number"
+														}
+													},
+													"unit": {
+														"type": "string",
+														"default": "mm",
+														"enum": [
+															"mm"
+														]
+													}
+												}
+											},
+											"sliceThickness": {
+												"type": "object",
+												"properties": {
+													"value": {
+														"type": "number"
+													},
+													"unit": {
+														"type": "string",
+														"default": "mm",
+														"enum": [
+															"mm"
+														]
+													}
+												}
+											},
+											"imageSize": {
+												"type": "object",
+												"properties": {
+													"rows": {
+														"type": "integer"
+													},
+													"columns": {
+														"type": "integer"
+													}
+												}
+											},
+											"pixelRange": {
+												"type": "object",
+												"properties": {
+													"pixelBandwidth": {
+														"type": "object",
+														"properties": {
+															"value": {
+																"type": "number"
+															},
+															"unit": {
+																"type": "string",
+																"default": "Hz",
+																"enum": [
+																	"Hz"
+																]
+															}
+														}
+													},
+													"smallestImagePixelValue": {
+														"type": "integer"
+													},
+													"largestImagePixelValue": {
+														"type": "integer"
+													},
+													"pixelRepresentation": {
+														"type": "integer"
+													}
+												}
+											}
+										}
+									},
+									"perImage": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"imageNumber": {
+													"type": "integer"
+												},
+												"sampleImagePosition": {
+													"type": "array",
+													"items": {
+														"type": [
+															"number",
+															"array"
+														]
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
