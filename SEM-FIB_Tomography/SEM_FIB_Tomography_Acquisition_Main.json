@@ -1,6 +1,5 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_Acquisition_Main.json",
   "type": "object",
   "description": "This JSON Schema describes the entire acquisition process during an SEM_FIB_Tomography measurement.  The acquisition comprises of multiple datasets which are described using the schema located at https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json. The images in each dataset is taken using a detector (SE, BSE, EDS, EBSD) using a specific configuration. Each image is described by the schema located at https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json. The units are by default to be considered as the SI units unless otherwise specified",
   "properties": {
@@ -219,7 +218,7 @@
           "type": "array",
           "description": "Array of all the dataset-metadata acquired using multiple detectors",
           "items": {
-            "$ref": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json"
+            "$ref": "./SEM_FIB_Tomography_acquisition_Dataset_Schema.json"
           }
         }
       }
