@@ -1,0 +1,363 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_Acquisition_Main.json",
+  "type": "object",
+  "description": "This JSON Schema describes the entire acquisition process during an SEM_FIB_Tomography measurement.  The acquisition comprises of multiple datasets which are described using the schema located at https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json. The images in each dataset is taken using a detector (SE, BSE, EDS, EBSD) using a specific configuration. Each image is described by the schema located at https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json. The units are by default to be considered as the SI units unless otherwise specified",
+  "properties": {
+    "acquisition": {
+      "$ref": "#/$defs/acquisition"
+    }
+  },
+  "required": [
+    "acquisition"
+  ],
+  "title": "acquisition_main",
+  "$defs": {
+    "acquisition": {
+      "type": "object",
+      "description": "This level is the root element of the schema. It contains all the metadata describing an acquisition as part of an SEM/FIB Tomography measurement which might include multiple detectors.",
+      "additionalProperties": false,
+      "properties": {
+        "genericMetadata": {
+          "type": "object",
+          "description": "Describes all the generic metadata common to the acquisition",
+          "additionalProperties": false,
+          "properties": {
+            "technique": {
+              "type": "string",
+              "description": "(Required) - Any experimental, theoretical or computational method used during Data Acquisition or during any of the processes included in the Data Analysis Lifecycle to acquire, process or analyse Research Data about a System or a set of them with an Instrument, which is used to generate this metadata."
+            },
+            "measurementPurpose": {
+              "type": "string",
+              "description": "(Required) - Measurement is experimental Data Acquisition, typically performed on a Sample using an experimental Technique. It may also be performed during Fabrication or Sample Preparation, e.g., to characterise the intermediate stages and/or the final resulting Precursor(s) or Sample(s), respectively. A Measurement may require the use of Consumables.",
+              "enum": [
+                "assessment (to given categories or values)",
+                "completeness check (presence or absence of given properties)",
+                "correlative characterization (dedicated sample treatment to emphasise given features)",
+                "exploratory (routine check of known properties)",
+                "feasibility (quick check, rough estimate)",
+                "high quality measurement (precise, careful treatment)",
+                "test specific hypothesis (focus only on given aspects)",
+                "other (please specify in the comment)"
+              ]
+            },
+            "measurementDescription": {
+              "type": "string",
+              "description": "(Optional) - Description about the measurement."
+            },
+            "equipment": {
+              "type": "string",
+              "description": "(Optional) - Any kind of physical or virtual item, device, machine or other tools used to perform one or more Fabrication(s), Sample Preparation(s), Model Preparation(s), Data Acquisition(s) and/or any of the processes included in the Data Analysis Lifecycle. Usually, the Equipment is located in a Laboratory hosted by an Institution and/or can be virtually or remotely accessed. Equipment is usually an investment. According to this definition, an Instrument is a particular type of Equipment."
+            },
+            "consumables": {
+              "type": "array",
+              "minItems": 1,
+              "description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "parents": {
+              "type": "array",
+              "minItems": 1,
+              "description": "(Required) - Parents of this metadata like the metadata document of the sample with which the measurement was performed.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "parentType": {
+                    "type": "string",
+                    "enum": [
+                      "not applicable",
+                      "sample"
+                    ],
+                    "default": "sample"
+                  },
+                  "parentReferenceType": {
+                    "type": "string",
+                    "enum": [
+                      "plain text",
+                      "external URL",
+                      "MetaStore URI"
+                    ],
+                    "default": "MetaStore URI"
+                  },
+                  "parentReference": {
+                    "type": "string",
+                    "description": "If type is 'MetaStore URI' it is possible to easily fill this field in a later stage",
+                    "format": "uri-reference"
+                  }
+                },
+                "required": [
+                  "parentType"
+                ],
+                "if": {
+                  "properties": {
+                    "parentType": {
+                      "not": {
+                        "const": "not applicable"
+                      }
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "parentReferenceType",
+                    "parentReference"
+                  ]
+                }
+              }
+            },
+            "program": {
+              "$ref": "#/$defs/program",
+              "description": "(Optional)- Details concerning the program (or software) used for aquisition"
+            },
+            "applicationID": {
+              "$ref": "#/$defs/identifier",
+              "description": "(Optional)- Details concerning the program (or software) used for aquisition"
+            },
+            "fileVersion": {
+              "type": "string",
+              "description": "The file version of the measurement data of the project"
+            },
+            "projectName": {
+              "type": "string",
+              "description": "The name of the project containing the acquistion datasets"
+            },
+            "projectID": {
+              "$ref": "#/$defs/identifier",
+              "description": "(Optional)- Details concerning the program (or software) used for aquisition"
+            },
+            "projectDescription": {
+              "type": "string",
+              "description": "Description about the project containing the acquistion datasets"
+            },
+            "userDescription": {
+              "type": "string",
+              "description": "Additional description provided by the user about the measurement or the sample"
+            },
+            "zCutSpacing": {
+              "$ref": "#/$defs/distanceDetails",
+              "description": "The spacing between individual slices in z dimension"
+            },
+            "millingLocationHeight": {
+              "$ref": "#/$defs/distanceDetails",
+              "description": "The total height of the area which is cut into slices in the z dimension"
+            },
+            "millingLocationWidth": {
+              "$ref": "#/$defs/distanceDetails",
+              "description": "The total width of the area which is cut into slices in the x dimension"
+            },
+            "millingLocationDepth": {
+              "$ref": "#/$defs/distanceDetails",
+              "description": "The total width of the area which is cut into slices in the y dimension"
+            },
+            "millingLocationX": {
+              "$ref": "#/$defs/distanceDetails",
+              "description": "X coordinate begin of the milling location from the origin."
+            },
+            "millingLocationY": {
+              "$ref": "#/$defs/distanceDetails",
+              "description": "Y coordinate of the begin of the milling location from the origin."
+            },
+            "millingMaterial": {
+              "type": "string",
+              "description": "Material which is milled"
+            },
+            "millingCurrent": {
+              "$ref": "#/$defs/currentDetails",
+              "description": "The total height of the area which is cut into slices in the z dimension. IRI: https://purls.helmholtz-metadaten.de/EMG/00000003"
+            },
+            "numberOfCuts": {
+              "type": "number",
+              "description": "The number of slices into which the sample is cut during the course of the SEM/FIB Tomography"
+            },
+            "pump": {
+              "type": "string",
+              "description": "The name of the pump used in the instrument"
+            },
+            "column": {
+              "type": "string",
+              "description": "The name of the column used in the instrument"
+            },
+            "source": {
+              "type": "string",
+              "description": "The type of the source used in the instrument. The source is a physical part of an electron or ion microscope from which the particles that form the beam are emitted. IRI: https://purls.helmholtz-metadaten.de/EMG/00000021"
+            },
+            "eucentricWorkingDistance": {
+              "$ref": "#/$defs/distanceDetails",
+              "description": "The Working Distance when the smaple is at the eucentric height"
+            },
+            "ESEM": {
+              "type": "boolean",
+              "description": "To be set to true if environmental SEM is used"
+            },
+            "systemType": {
+              "type": "string",
+              "description": "Describes the system type used - the name of the instrument"
+            },
+            "angleToEBeam": {
+              "$ref": "#/$defs/angleDetails",
+              "description": "(Optional) - angle between e-beam and i-beam defined separately as angleDetails (Allowed units: degree, radian). It is specified by the manufacturer and a property of the geometry of the instrument."
+            },
+            "stage": {
+              "type": "string",
+              "description": "The dimensions of the stage used in the instrument"
+            }
+          },
+          "required": [
+            "angleToEBeam",
+            "zCutSpacing",
+            "projectName",
+            "applicationID",
+            "program",
+            "technique",
+            "measurementPurpose",
+            "parents"
+          ]
+        },
+        "dataset": {
+          "type": "array",
+          "description": "Array of all the dataset-metadata acquired using multiple detectors",
+          "items": {
+            "$ref": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json"
+          }
+        }
+      }
+    },
+    "program": {
+      "type": "object",
+      "description": "(Optional) - Details concerning the program (or software) used for aquisition.",
+      "additionalProperties": false,
+      "properties": {
+        "programName": {
+          "type": "string",
+          "description": "(Optional) - Name of the program (or software) used for acquisition"
+        },
+        "programVersion": {
+          "type": "string",
+          "description": "(Optional) - Program (or software) version number"
+        }
+      }
+    },
+    "identifier": {
+      "type": "object",
+      "description": "(Optional) - Details of an identifier element.",
+      "additionalProperties": false,
+      "properties": {
+        "identifierValue": {
+          "type": "string",
+          "description": "(Optional) - String containing the value of an identifier"
+        },
+        "identifierType": {
+          "type": "string",
+          "description": "(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle *String",
+          "enum": [
+            "ROR",
+            "GRID",
+            "ISNI",
+            "URL",
+            "DOI",
+            "Handle",
+            "String"
+          ]
+        }
+      }
+    },
+    "distanceDetails": {
+      "type": "object",
+      "description": "(Optional) - Describes a distance, size or length.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - Value of the distance, size or length."
+        },
+        "unit": {
+          "type": "string",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m).",
+          "enum": [
+            "nm",
+            "um",
+            "mm",
+            "cm",
+            "m"
+          ]
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value."
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "currentDetails": {
+      "type": "object",
+      "description": "Describes a current.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Optional) - Further notes about the value."
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "pA",
+            "nA",
+            "uA",
+            "mA",
+            "A"
+          ],
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value."
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "angleDetails": {
+      "type": "object",
+      "description": "describes an angle.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - The angle expressed as an integer or floating point value."
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "degree",
+            "radian"
+          ],
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (degree, radian)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)"
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value."
+        }
+      },
+      "required": [
+        "value"
+      ]
+    }
+  }
+}

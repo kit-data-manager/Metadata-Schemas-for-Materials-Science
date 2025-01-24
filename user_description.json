@@ -65,6 +65,7 @@
                 "institutionID":
                 {
                      "type": "object",
+                     "description": "(Optional) -Identifier of the institution to which the user is affiliated",
                       "properties": {
                         "identifierValue": 
                         {
@@ -87,7 +88,7 @@
                         }
                     }
                 }
-            }
+           }
         },
   "contact": {
       "type": "array",

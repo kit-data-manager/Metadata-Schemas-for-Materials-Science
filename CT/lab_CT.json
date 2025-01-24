@@ -1,0 +1,2729 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/CT/lab_CT.json",
+  "type": "object",
+  "description": "This JSON Schema describes a nano or micro - computed tomography (CT) measurement done using the instrumentation in a lab using an x-ray tube as a source. The same schema can also be used for an SEM based CT measurement where the x-rays emitted by a material upon interaction with the electron beam from the electron microscope, are used for generating CT images of a sample. For synchrotron based CT, use the synchrotron CT schema provided separately in the same folder as this schema. The cardinality (required or optional) of all metadata is defined and wherever possible a list of controlled vocabularies is provided. Contributors (in alphabetical order of last names): Alexey Boubnov, Rafaela Debastiani, Jonas Fell, Sarah Irvine, Reetu Elza Joseph.",
+  "properties": {
+    "technique": {
+      "type": "string",
+      "description": "(Required) - Any experimental, theoretical or computational method used during Data Acquisition or during any of the processes included in the Data Analysis Lifecycle to acquire, process or analyse Research Data about a System or a set of them with an Instrument, which is used to generate this metadata."
+    },
+    "measurementPurpose": {
+      "type": "string",
+      "description": "(Required) - Measurement is experimental Data Acquisition, typically performed on a Sample using an experimental Technique. It may also be performed during Fabrication or Sample Preparation, e.g., to characterise the intermediate stages and/or the final resulting Precursor(s) or Sample(s), respectively. A Measurement may require the use of Consumables.",
+      "enum": [
+        "assessment (to given categories or values)",
+        "completeness check (presence or absence of given properties)",
+        "correlative characterization (dedicated sample treatment to emphasise given features)",
+        "exploratory (routine check of known properties)",
+        "feasibility (quick check, rough estimate)",
+        "high quality measurement (precise, careful treatment)",
+        "test specific hypothesis (focus only on given aspects)",
+        "other (please specify in the comment)"
+      ]
+    },
+    "measurementDescription": {
+      "type": "string",
+      "description": "(Optional) - Description about the measurement."
+    },
+    "equipment": {
+      "type": "string",
+      "description": "(Optional) - Any kind of physical or virtual item, device, machine or other tools used to perform one or more Fabrication(s), Sample Preparation(s), Model Preparation(s), Data Acquisition(s) and/or any of the processes included in the Data Analysis Lifecycle. Usually, the Equipment is located in a Laboratory hosted by an Institution and/or can be virtually or remotely accessed. Equipment is usually an investment. According to this definition, an Instrument is a particular type of Equipment."
+    },
+    "consumables": {
+      "type": "array",
+      "minItems": 1,
+      "description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "parents": {
+      "type": "array",
+      "minItems": 1,
+      "description": "(Required) - Parents of this metadata like the metadata document of the sample with which the measurement was performed.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "parentType": {
+            "type": "string",
+            "enum": [
+              "not applicable",
+              "sample"
+            ],
+            "default": "sample"
+          },
+          "parentReferenceType": {
+            "type": "string",
+            "enum": [
+              "plain text",
+              "external URL",
+              "MetaStore URI"
+            ],
+            "default": "MetaStore URI"
+          },
+          "parentReference": {
+            "type": "string",
+            "description": "If type is 'MetaStore URI' it is possible to easily fill this field in a later stage",
+            "format": "uri-reference"
+          }
+        },
+        "required": [
+          "parentType"
+        ],
+        "if": {
+          "properties": {
+            "parentType": {
+              "not": {
+                "const": "not applicable"
+              }
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "parentReferenceType",
+            "parentReference"
+          ]
+        }
+      }
+    },
+    "entryID": {
+      "$ref": "#/$defs/identifier",
+      "description": "(Optional) - Identifier of the metadata entry usually provided by the project or the laboratory."
+    },
+    "experimentID": {
+      "$ref": "#/$defs/identifier",
+      "description": "(Optional) - Identifier of the measurement usually provided by the project or the laboratory."
+    },
+    "title": {
+      "type": "string",
+      "description": "(Required) - Extended title of the measurement."
+    },
+    "startTime": {
+      "type": "string",
+      "description": "(Required) - Start time of the measurement in the ISO 8601 format YYYY-MM-DDThh:mm:ss.sss.",
+      "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z?)$"
+    },
+    "endTime": {
+      "type": "string",
+      "description": "(Required) - End time of the measurement in the ISO 8601 format YYYY-MM-DDThh:mm:ss.sss.",
+      "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z?)$"
+    },
+    "program": {
+      "$ref": "#/$defs/program",
+      "description": "(Required) - Details concerning the program (or software) used for aquisition."
+    },
+    "revision": {
+      "$ref": "#/$defs/revision",
+      "description": "(Optional) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format."
+    },
+    "user": {
+      "$ref": "#/$defs/user",
+      "description": "(Required)- The contact information of the user responsible for the measurement."
+    },
+    "measurementConditions": {
+      "$ref": "#/$defs/measurementConditions",
+      "description": "(Optional)- Details concerning the measurement conditions like details of in situ cell, temperature and gas enviroment and pressure."
+    },
+    "instrument": {
+      "$ref": "#/$defs/instrumentDetails",
+      "description": "(Required)- Details concerning the instrument settings. Instrument is a physical or virtual identifiable piece of Equipment used to perform a Data Acquisition and to generate Raw Data. The Instrument is located in a Laboratory hosted by an Institution and/or can be virtually or remotely accessed. A virtual Instrument may be any computational resource or HPC infrastructure (cloud infrastructure or supercomputer) needed to perform Calculations or Simulations."
+    },
+    "data": {
+      "$ref": "#/$defs/data",
+      "description": "(Required)- Details concerning the data section of the measurement."
+    }
+  },
+  "required": [
+    "title",
+    "technique",
+    "parents",
+    "measurementPurpose",
+    "startTime",
+    "endTime",
+    "program",
+    "user",
+    "instrument",
+    "data"
+  ],
+  "$defs": {
+    "identifier": {
+      "type": "object",
+      "description": "(Optional) - Details of an identifier element.",
+      "additionalProperties": false,
+      "properties": {
+        "identifierValue": {
+          "type": "string",
+          "description": "(Optional) - String containing the value of an identifier"
+        },
+        "identifierType": {
+          "type": "string",
+          "description": "(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
+          "enum": [
+            "ROR",
+            "GRID",
+            "ISNI",
+            "URL",
+            "DOI",
+            "Handle"
+          ]
+        }
+      }
+    },
+    "program": {
+      "type": "object",
+      "description": "(Optional) - Details concerning the program (or software) used for aquisition.",
+      "additionalProperties": false,
+      "properties": {
+        "programName": {
+          "type": "string",
+          "description": "(Optional) - Name of the program (or software) used for acquisition"
+        },
+        "programVersion": {
+          "type": "string",
+          "description": "(Optional) - Program (or software) version number"
+        }
+      }
+    },
+    "revision": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "(Optional) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format.",
+      "properties": {
+        "revisonID": {
+          "$ref": "#/$defs/identifier",
+          "description": "(Optional) - Identifier of the file"
+        },
+        "revisionComment": {
+          "type": "string",
+          "description": "(Optional)- Any comments to the revision"
+        }
+      }
+    },
+    "user": {
+      "description": "Basic schema for user description. It can be extended.",
+      "type": "object",
+      "required": [
+        "userName",
+        "role"
+      ],
+      "properties": {
+        "userName": {
+          "type": "string",
+          "description": "(Required) - Full name of the user in the format (Family Name, Given Name)"
+        },
+        "givenName": {
+          "type": "string",
+          "description": "(Optional) - Given name of the user"
+        },
+        "familyName": {
+          "type": "string",
+          "description": "(Optional) - Family name of the user"
+        },
+        "role": {
+          "type": "string",
+          "description": "(Required) - Role of the research user",
+          "enum": [
+            "Data Curator",
+            "Instrument Scientist",
+            "Team Leader",
+            "Team Member"
+          ]
+        },
+        "affiliation": {
+          "type": "object",
+          "description": "(Optional) - Details of the institution to which the user is affiliated",
+          "properties": {
+            "institutionName": {
+              "type": "string",
+              "description": "(Optional) - Full name of the institution"
+            },
+            "institutionAcronym": {
+              "type": "string",
+              "description": "(Recommended) - Acronym of the institution"
+            },
+            "institutionDepartment": {
+              "type": "string",
+              "description": "(Optional) - Department within an institution"
+            },
+            "institutionID": {
+              "type": "object",
+              "description": "(Optional) -Identifier of the institution to which the user is affiliated",
+              "properties": {
+                "identifierValue": {
+                  "type": "string",
+                  "description": "(Optional) - String containing the value of an identifier"
+                },
+                "identifierType": {
+                  "type": "string",
+                  "description": "(Optional) - Type of the identifier to be chosen from a controlled list of values (*ROR *GRID *ISNI *URL *DOI *Handle)",
+                  "enum": [
+                    "ROR",
+                    "GRID",
+                    "ISNI",
+                    "URL",
+                    "DOI",
+                    "Handle"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "email": {
+          "type": "string",
+          "description": "(Optional) - Email of the user",
+          "format": "email"
+        },
+        "ORCID": {
+          "type": "string",
+          "description": "(Optional) - Open Researcher and Contributor ID expressed as a URI",
+          "pattern": "^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
+        }
+      }
+    },
+    "measurementConditions": {
+      "type": "object",
+      "description": "(Optional) - Details concerning the measurement conditions like details of in situ cell, temperature and gas enviroment and pressure.",
+      "additionalProperties": false,
+      "properties": {
+        "sampleEnvironment": {
+          "type": "object",
+          "description": "Details concerning the measurement conditions specific to the sample as opposed to the ambient conditions.",
+          "properties": {
+            "inSituCellType": {
+              "type": "string",
+              "description": "(Optional) - The type of the in situ cell used, which is to be selected from a controlled list (enum). Based on the selected in situ cell type, the corresponding cell details can be populated or identified by other applications using the schema.",
+              "enum": [
+                "load frame",
+                "furnace",
+                "humidification cell",
+                "corrosion cell",
+                "cooling cell",
+                "micro manipulator",
+                "batch cell",
+                "flow cell",
+                "bio reactor",
+                "degradation cell",
+                "vacuum chamber"
+              ]
+            },
+            "loadFrame": {
+              "type": "object",
+              "description": "(Optional) - Details about a load frame which is a high stiffness support structure used to apply different types of test forces on the sample.",
+              "additionalProperties": false,
+              "properties": {
+                "loadFrameName": {
+                  "type": "string",
+                  "description": "(Optional) - Name of the load frame."
+                },
+                "loadFrameManufacturer": {
+                  "$ref": "#/$defs/manufacturerDetails",
+                  "description": "(Optional) - Details about the manufacturer or vendor of the load frame."
+                },
+                "anvil": {
+                  "type": "string",
+                  "description": "(Optional) - The type of anvil used in the in situ load frame (stage) for applying a particular type of force on the sample. Option to be selected from a controlled list consisting of - Compression, Diamond indentation 90° cone, Diamond indentation cube corner, Diamond indentation wedge, Tension, Other. If 'Other' is selected, specify the name of the anvil with a description in the field 'otherAnvil'.",
+                  "enum": [
+                    "Compression",
+                    "Diamond indentation 90° cone",
+                    "Diamond indentation cube corner",
+                    "Diamond indentation wedge",
+                    "Tension",
+                    "Other"
+                  ]
+                },
+                "otherAnvil": {
+                  "type": "string",
+                  "description": "(Optional) - If 'anvil' was selected as 'Other' from the controlled list as it was not listed, please specify the name of the anvil with a description in this field."
+                },
+                "maximumDisplacement": {
+                  "$ref": "#/$defs/distanceDetails",
+                  "description": "(Optional) - The maximum displacement allowed in the selected configuration. Typical unit - µm."
+                },
+                "displacement": {
+                  "type": "object",
+                  "description": "(Optional) - Specification on how displacement is applied on the sample. Either 'displacementRate' in µm/min or 'displacementIncrement' in µm/acquisition need to be selected.",
+                  "additionalProperties": false,
+                  "properties": {
+                    "displacementRate": {
+                      "type": "number",
+                      "description": "(Optional) - The rate at which displacement is applied on the sample in µm/min."
+                    },
+                    "displacementIncrement": {
+                      "type": "number",
+                      "description": "(Optional) - The step at which displacement is changed per acquisition in µm/acquisition."
+                    }
+                  }
+                },
+                "maximumForce": {
+                  "type": "number",
+                  "description": "(Optional) - The maximum force that can be applied to the sample in N."
+                },
+                "blindAngle": {
+                  "$ref": "#/$defs/angleDetails",
+                  "description": "(Required) - ed by the load frame(stage). Example: for a CT normally scanned over 180° (e.g. -90°/+90°), a blind angle of 40° due to the in situ cell implies that only 180°-40°=140° (e.g. -70°/70°) is visible. NOTE: for a CT normally scanned over 360° (e.g. -180°/+180°), a blind angle of 40° would require the subtraction of the blind angle twice, implying two scan ranges of 140° each (e.g. -160°/-20° and +20°/+160°). Typical unit - degree."
+                },
+                "loadFrameDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the load frame or anvil (e.g. - size of anvil) relevant for the measurement."
+                }
+              }
+            },
+            "furnace": {
+              "type": "object",
+              "description": "(Optional) - Details about a furnace used to heat the sample or to keep it at a particular temperature.",
+              "additionalProperties": false,
+              "properties": {
+                "furnaceName": {
+                  "type": "string",
+                  "description": "(Optional) - Name of the furnace."
+                },
+                "furnaceManufacturer": {
+                  "$ref": "#/$defs/manufacturerDetails",
+                  "description": "(Optional) - Details about the manufacturer or vendor of the furnace."
+                },
+                "furnaceDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the furnace relevant for the measurement."
+                },
+                "setPointTemperature": {
+                  "description": "(Required) - Final Temperature or temperature at which the furnace is to be maintained.",
+                  "$ref": "#/$defs/temperatureDetails"
+                },
+                "ramp": {
+                  "description": "(Optional) - The rate at which temperature is increased, typically in K/min.",
+                  "$ref": "#/$defs/rampDetails"
+                }
+              },
+              "required": [
+                "setPointTemperature"
+              ]
+            },
+            "humidificationCell": {
+              "type": "object",
+              "description": "(Optional) - Details about a humidification cell used to keep the sample in a controlled humid environment.",
+              "additionalProperties": false,
+              "properties": {
+                "cellName": {
+                  "type": "string",
+                  "description": "(Optional) - Name of the humidification cell."
+                },
+                "cellManufacturer": {
+                  "$ref": "#/$defs/manufacturerDetails",
+                  "description": "(Optional) - Details about the manufacturer or vendor of the humidification cell."
+                },
+                "cellDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the humidification cell relevant for the measurement."
+                }
+              }
+            },
+            "corrosionCell": {
+              "type": "object",
+              "description": "(Optional) - Details about a corrosion cell used to expose the sample to a controlled corrosive environment.",
+              "additionalProperties": false,
+              "properties": {
+                "corrosionCelltype": {
+                  "description": "(Required) - Type of the corrosion cell based on the environment inside - liquid or gas.",
+                  "type": "string",
+                  "enum": [
+                    "liquid",
+                    "gas"
+                  ]
+                },
+                "cellName": {
+                  "type": "string",
+                  "description": "(Optional) - Name of the corrosion cell."
+                },
+                "cellManufacturer": {
+                  "$ref": "#/$defs/manufacturerDetails",
+                  "description": "(Optional) - Details about the manufacturer or vendor of the corrosion cell."
+                },
+                "cellDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the corrosion cell relevant for the measurement."
+                },
+                "pHValue": {
+                  "type": "number",
+                  "description": "(Optional) - The pH value maintained in the in situ cell."
+                },
+                "pHDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the pH in the in situ cell."
+                }
+              },
+              "required": [
+                "corrosionCelltype"
+              ]
+            },
+            "coolingCell": {
+              "type": "object",
+              "description": "(Optional) - Details about a cocooling cell used to cool the sample to a lower temperature.",
+              "additionalProperties": false,
+              "properties": {
+                "coolingTemperature": {
+                  "description": "(Required) - Final Temperature or temperature at which the cooling furnace is to be maintained.",
+                  "$ref": "#/$defs/temperatureDetails"
+                },
+                "ramp": {
+                  "description": "(Optional) - The rate at which temperature is decreased. Typical unit - K/min.",
+                  "$ref": "#/$defs/rampDetails"
+                },
+                "cellName": {
+                  "type": "string",
+                  "description": "(Optional) - Name of the cooling cell."
+                },
+                "cellManufacturer": {
+                  "$ref": "#/$defs/manufacturerDetails",
+                  "description": "(Optional) - Details about the manufacturer or vendor of the cooling cell."
+                },
+                "cellDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the cooling cell relevant for the measurement."
+                }
+              },
+              "required": [
+                "coolingTemperature"
+              ]
+            },
+            "micromanipulator": {
+              "type": "object",
+              "description": "(Optional) - Details about a micromanipulator used to work with the sample during the measurement.",
+              "additionalProperties": false,
+              "properties": {
+                "micromanipulatorName": {
+                  "description": "(Optional) - Name of the micromanipulator.",
+                  "type": "string"
+                },
+                "micromanipulatorManufacturer": {
+                  "$ref": "#/$defs/manufacturerDetails",
+                  "description": "(Optional) - Details about the manufacturer or vendor of the micromanipulator."
+                },
+                "micromanipulatorDetails": {
+                  "description": "(Required) - Details about the micromanipulator relevant for the measurement."
+                }
+              },
+              "required": [
+                "micromanipulatorDetails"
+              ]
+            },
+            "batchCell": {
+              "type": "object",
+              "description": "(Optional) - Details about an in situ batch cell.",
+              "additionalProperties": false,
+              "properties": {
+                "cellName": {
+                  "description": "(Optional) - Name of the batch cell",
+                  "type": "string"
+                },
+                "batchCellType": {
+                  "description": "(Required) - Type of the batch cell - liquid or gas.",
+                  "type": "string",
+                  "enum": [
+                    "liquid",
+                    "gas"
+                  ]
+                },
+                "cellManufacturer": {
+                  "$ref": "#/$defs/manufacturerDetails",
+                  "description": "(Optional) - Details about the manufacturer or vendor of the batch cell."
+                },
+                "medium": {
+                  "description": "(Required) - Name of the liquid of gas used in the batch cell.",
+                  "type": "string"
+                },
+                "cellDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the batch cell relevant for the measurement."
+                },
+                "pHValue": {
+                  "type": "number",
+                  "description": "(Optional) - The pH value maintained in the in situ cell."
+                },
+                "pHDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the pH in the in situ cell."
+                }
+              },
+              "required": [
+                "medium",
+                "batchCellType"
+              ]
+            },
+            "bioReactor": {
+              "type": "object",
+              "description": "(Optional) - Details of an in situ bioreactor.",
+              "additionalProperties": false,
+              "properties": {
+                "pHValue": {
+                  "type": "number",
+                  "description": "(Required) - The pH value maintained in the in situ cell."
+                },
+                "pHDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the pH in the in situ cell."
+                },
+                "sterileConditions": {
+                  "type": "boolean",
+                  "description": "(Optional) - To be set to true if the sample has to be handled in sterile conditions."
+                }
+              },
+              "required": [
+                "pHValue"
+              ]
+            },
+            "flowCell": {
+              "type": "object",
+              "description": "(Optional) - Details about an in situ flow cell.",
+              "additionalProperties": false,
+              "properties": {
+                "cellName": {
+                  "type": "string",
+                  "description": "(Optional) - Name of the flow cell."
+                },
+                "flowCellType": {
+                  "description": "(Required) - Type of the flow cell - liquid or gas.",
+                  "type": "string",
+                  "enum": [
+                    "liquid",
+                    "gas"
+                  ]
+                },
+                "cellManufacturer": {
+                  "$ref": "#/$defs/manufacturerDetails",
+                  "description": "(Optional) - Details about the manufacturer or vendor of the flow cell."
+                },
+                "cellDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the flow cell relevant for the measurement."
+                },
+                "flowRate": {
+                  "description": "(Required) - Rate of flow of the liquid or gas in the flow cell.",
+                  "$ref": "#/$defs/flowRateDetails"
+                },
+                "flowComposition": {
+                  "description": "(Required) - Composition of the gas or liquid in the flow cell.",
+                  "type": "string"
+                },
+                "pHValue": {
+                  "type": "number",
+                  "description": "(Optional) - The pH value maintained in the in situ cell."
+                },
+                "pHDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the pH in the in situ cell."
+                }
+              },
+              "required": [
+                "flowRate",
+                "flowComposition",
+                "flowCellType"
+              ]
+            },
+            "mediumSpecification": {
+              "type": "string",
+              "description": "(Optional) - Specification or details of the medium of the in situ cell relevant for the measurement. "
+            },
+            "degradationCell": {
+              "description": "(Optional) - Details regarding a degradation cell relevant for the measurement.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "cellName": {
+                  "type": "string",
+                  "description": "(Optional) - Name of the degradation cell."
+                },
+                "cellManufacturer": {
+                  "$ref": "#/$defs/manufacturerDetails",
+                  "description": "(Optional) - Details about the manufacturer or vendor of the degradation cell."
+                },
+                "cellDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the degradation cell relevant for the measurement."
+                },
+                "pHValue": {
+                  "type": "number",
+                  "description": "(Optional) - The pH value maintained in the in situ cell."
+                },
+                "pHDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the pH in the in situ cell."
+                }
+              }
+            },
+            "vacuumChamber": {
+              "description": "(Optional) - Details regarding the vacuum chamber relevant for the measurement.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "chamberName": {
+                  "type": "string",
+                  "description": "(Optional) - Name of the vacuum chamber."
+                },
+                "chamberManufacturer": {
+                  "$ref": "#/$defs/manufacturerDetails",
+                  "description": "(Optional) - Details about the manufacturer or vendor of the vacuum chamber."
+                },
+                "chamberDetails": {
+                  "type": "string",
+                  "description": "(Optional) - Additional details about the vacuum chamber relevant for the measurement."
+                },
+                "pressure": {
+                  "$ref": "#/$defs/pressureDetails",
+                  "description": "(Required)- Details of the pressure maintained in the vacuum chamber."
+                }
+              },
+              "required": [
+                "pressure"
+              ]
+            }
+          }
+        },
+        "roomTemperature": {
+          "description": "(Optional) - Details about the room temperature in the lab.",
+          "$ref": "#/$defs/temperatureDetails"
+        },
+        "ambientPressure": {
+          "description": "(Optional) - Details about the ambient pressure in the lab.",
+          "$ref": "#/$defs/pressureDetails"
+        },
+        "roomHumidity": {
+          "description": "(Optional) - Details about the humidity in the lab expressed in percentage.",
+          "type": "number",
+          "maximum": 100,
+          "minimum": 0
+        }
+      }
+    },
+    "flowRateDetails": {
+      "type": "object",
+      "description": "(Optional) - Describes the rate (volume/time) of a flow.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - Value of the rate of flow (volume/unit time)."
+        },
+        "unit": {
+          "type": "string",
+          "description": "(Required) - Unit of the value to be selected from a controlled list (mL/min, µL/min, cm3/min ( or cc/min). Typical unit - cm3/min).",
+          "enum": [
+            "cm3/min",
+            "mL/min",
+            "µL/min"
+          ]
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value."
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ]
+    },
+    "distanceDetails": {
+      "type": "object",
+      "description": "(Optional) - Describes a distance, size or length.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - Value of the distance, size or length"
+        },
+        "unit": {
+          "type": "string",
+          "description": "(Required) - Unit of the value to be selected from a controlled list (fm, pm, nm, µm, mm, cm, m).",
+          "enum": [
+            "fm",
+            "pm",
+            "nm",
+            "µm",
+            "mm",
+            "cm",
+            "m"
+          ]
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value."
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ]
+    },
+    "uncertaintyDetails": {
+      "type": "object",
+      "description": "(Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative. Properties: type (Required) - Type of the uncertainty to be chosen between absolute or relative, value (Required) - value of the uncertainty",
+      "additionalProperties": false,
+      "properties": {
+        "uncertaintyType": {
+          "type": "string",
+          "description": "(Required) - Type of the uncertainty to be chosen between absolute or relative",
+          "enum": [
+            "absolute",
+            "relative"
+          ]
+        },
+        "value": {
+          "type": "number",
+          "description": "(Required) - Value of the uncertainty"
+        }
+      },
+      "required": [
+        "uncertaintyType",
+        "value"
+      ]
+    },
+    "instrumentDetails": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "(Required) - Details giving the relevant components and settings of the instrument.",
+      "properties": {
+        "instrumentName": {
+          "type": "string",
+          "description": "(Required) - Name of the instrument."
+        },
+        "instrumentID": {
+          "$ref": "#/$defs/identifier",
+          "description": "(Optional) - Identifier of the instrument."
+        },
+        "instrumentManufacturer": {
+          "$ref": "#/$defs/manufacturerDetails",
+          "description": "(Required) - Details about the manufacturer or vendor of the instrument"
+        },
+        "instrumentType": {
+          "type": "string",
+          "description": "(Required) - Type of the instrument used for CT - Regular Lab-CT or SEM based CT. Applications working with the schema can then enable selected fields based on this choice.",
+          "enum": [
+            "Regular Lab-CT",
+            "SEM based CT"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "description": "(Required) - Details regarding the X-ray source, separated in two groups - regular Lab CT and SEM based CT.",
+          "additionalProperties": false,
+          "properties": {
+            "regularLabCT": {
+              "description": "(Optional) - Details regarding the X-ray source in a lab scale CT instrument",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "tubeName": {
+                  "description": "(Optional) - Name of the X-ray tube.",
+                  "type": "string"
+                },
+                "tubeID": {
+                  "description": "(Optional) - Identifier of the X-ray tube.",
+                  "$ref": "#/$defs/identifier"
+                },
+                "tubeManufacturer": {
+                  "description": "(Optional) - Details regarding the manufacturer of the X-ray tube.",
+                  "$ref": "#/$defs/manufacturerDetails"
+                },
+                "cathode": {
+                  "description": "(Optional) - Details regarding the cathode of the X-ray tube",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "cathodeMaterial": {
+                      "type": "string",
+                      "description": "(Optional) - Material with which the cathode is made. e.g. - tungsten (W)"
+                    },
+                    "cathodeDetails": {
+                      "type": "string",
+                      "description": "(Optional) - Additional details regarding the cathode relevant for the measurement."
+                    }
+                  }
+                },
+                "PowerOrCurrentSetting": {
+                  "description": "(Required) - The power or current setiing set on the X-ray tube. Depending on the manufacturer either one of power or current can be set and one of these values is required.",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "power": {
+                      "description": "(Optional) - Power set in the X-ray source. Default unit - W.",
+                      "$ref": "#/$defs/powerDetails"
+                    },
+                    "current": {
+                      "description": "(Optional) - Current set in the X-ray source (Tube Current). Default unit - µA.",
+                      "$ref": "#/$defs/currentDetails"
+                    }
+                  }
+                },
+                "voltage": {
+                  "description": "(Optional) - Voltage set in the X-ray source (Tube Voltage)Please specify in the notes if peak kilovoltage(kVp) is only known instead of tube voltage. Default unit - kV.",
+                  "$ref": "#/$defs/voltageDetails"
+                },
+                "xrayEnergySpectrum": {
+                  "description": "(Required) - Details regarding the X-ray energy spectrum like chromaticity, characteristic line, filters used, etc.",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "chromaticity": {
+                      "description": "(Required) - Describes if the x-rays are monochromatic or polychromatic. Default value is polychromatic.",
+                      "type": "string",
+                      "enum": [
+                        "monochromatic",
+                        "polychromatic"
+                      ],
+                      "default": "polychromatic"
+                    },
+                    "xrayCharacteristicLine": {
+                      "description": "(Required) - Describes the characteristic line of the X-ray spectrum. e.g.- Cr K alpha, W K alpha.",
+                      "type": "string"
+                    },
+                    "xrayCharacteristicEnergy": {
+                      "description": "(Required) - Describes the characteristic energy of the X-ray spectrum. Default unit - keV.",
+                      "$ref": "#/$defs/energyDetails"
+                    },
+                    "energyFilter": {
+                      "description": "(Required) - Description of the filter(s) used. If no energy filter is used, the material of the primary energy filter is to be set as none/air.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "filter1": {
+                          "description": "(Required) - Description of the primary energy filter. When no filter is used, the material of the primary energy filter is to be set as none/air.",
+                          "type": "object",
+                          "properties": {
+                            "filterMaterial": {
+                              "type": "string",
+                              "default": "none/air",
+                              "description": "(Required) - Material of the primary energy filter. default - none/air."
+                            },
+                            "filterThickness": {
+                              "description": "(Optional) - Thickness of the primary energy filter.",
+                              "$ref": "#/$defs/distanceDetails"
+                            }
+                          },
+                          "required": [
+                            "filterMaterial"
+                          ]
+                        },
+                        "filter2": {
+                          "description": "(Optional) - Description of a second energy filter used in addition to the primary energy filter. ",
+                          "type": "object",
+                          "properties": {
+                            "filterMaterial": {
+                              "type": "string",
+                              "description": "(Optional) - Material of the additional energy filter."
+                            },
+                            "filterThickness": {
+                              "description": "(Optional) - Thickness of the additional energy filter.",
+                              "$ref": "#/$defs/distanceDetails"
+                            }
+                          }
+                        },
+                        "comments": {
+                          "type": "string",
+                          "description": "(Optional) - Additional comments to include relevant information for the measurement. Sometimes energy filter specifications are confidential, in this case, this field can be used to give the link to the list of energy filters provided by the manufacturer."
+                        }
+                      },
+                      "required": [
+                        "filter1"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "chromaticity",
+                    "xrayCharacteristicLine",
+                    "xrayCharacteristicEnergy",
+                    "energyFilter"
+                  ]
+                },
+                "anode": {
+                  "description": "(Optional) - Details about the anode.",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "anodeType": {
+                      "type": "string",
+                      "description": "(Optional) - Type of anode in the X-ray tube. e.g. - rotating anode, liquid jet anode, etc."
+                    },
+                    "anodeMaterial": {
+                      "type": "string",
+                      "description": "(Optional) - Material of the anode. e.g. - Cr."
+                    },
+                    "targetCurrent": {
+                      "$ref": "#/$defs/currentDetails",
+                      "description": "(Optional) - the current measured at the X-ray target, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)"
+                    }
+                  }
+                },
+                "sourceDrift": {
+                  "description": "(Optional) - Distance by which the source is shifted during the measurement (i.e., end position - start position).",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "xDrift": {
+                      "description": "(Required) - Drift in the x direction. Typical unit - µm.",
+                      "$ref": "#/$defs/distanceDetails"
+                    },
+                    "yDrift": {
+                      "description": "(Required) - Drift in the y direction. Typical unit - µm.",
+                      "$ref": "#/$defs/distanceDetails"
+                    }
+                  },
+                  "required": [
+                    "xDrift",
+                    "yDrift"
+                  ]
+                },
+                "sourcePositions": {
+                  "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the source.",
+                  "$ref": "#/$defs/motorPositions"
+                }
+              },
+              "required": [
+                "PowerOrCurrentSetting",
+                "voltage",
+                "xrayEnergySpectrum"
+              ]
+            },
+            "SEMBasedCT": {
+              "description": "(Optional) - Details regarding the E-Beam source and X-ray target in an SEM based CT set-up.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "SEMName": {
+                  "type": "string",
+                  "description": "(Optional) - Name of the scanning electron microscope used for SEM based CT."
+                },
+                "SEMManufacturer": {
+                  "description": "(Optional) - Details regarding the manufacturer of the scanning electron microscope used for SEM based CT.",
+                  "$ref": "#/$defs/manufacturerDetails"
+                },
+                "cathode": {
+                  "description": "(Optional) - Details regarding the material which acts as the cathode in SEM based CT",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "cathodeMaterial": {
+                      "type": "string",
+                      "description": "(Optional) - Material with which the cathode is made. e.g. - tungsten (W)"
+                    },
+                    "cathodeDetails": {
+                      "type": "string",
+                      "description": "(Optional) - Additional details regarding the cathode relevant for the measurement."
+                    }
+                  }
+                },
+                "objectiveLensAperture": {
+                  "$ref": "#/$defs/apertureSettingType",
+                  "description": "(Required) - The setting for controlling the aperture size, using either the aperture size (directly) or the beam current (indirectly). Typically the diameter of the aperture is set in µm."
+                },
+                "electronProbeCurrent": {
+                  "$ref": "#/$defs/currentDetails",
+                  "description": "(Required) - The electron current measured at the probe. Typical unit - µA."
+                },
+                "voltage": {
+                  "description": "(Required) - Acceleration Voltage set in the SEM. Default unit - kV.",
+                  "$ref": "#/$defs/voltageDetails"
+                },
+                "workingDistance": {
+                  "$ref": "#/$defs/distanceDetails",
+                  "description": "(Required)- Distance which is determined along the optical axis within the column from  (1) the lower end of the final optical element between the source and the  specimen stage; to (2) the point where the beam is focused. In SEM based CT, the beam is focussed on the target material which emits the X-rays upon interaction with the electrons. Default unit - µm."
+                },
+                "electronBeamShift": {
+                  "description": "(Optional) - The distance by which the electron beam is shifted in the x and y directions.",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "xShift": {
+                      "description": "(Optional) - Beam shift in the x direction. Typical unit - µm.",
+                      "$ref": "#/$defs/distanceDetails"
+                    },
+                    "yShift": {
+                      "description": "(Optional) - Beam shift in the y direction. Typical unit - µm.",
+                      "$ref": "#/$defs/distanceDetails"
+                    }
+                  }
+                },
+                "xrayEnergySpectrum": {
+                  "description": "(Optional) - Details regarding the X-ray energy spectrum like chromaticity, characteristic line, filters used, etc.",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "chromaticity": {
+                      "description": "(Optional) - Describes if the x-rays are monochromatic or polychromatic. Default value is polychromatic.",
+                      "type": "string",
+                      "enum": [
+                        "monochromatic",
+                        "polychromatic"
+                      ],
+                      "default": "polychromatic"
+                    },
+                    "xrayCharacteristicLine": {
+                      "description": "(Optional) - Describes the characteristic line of the X-ray spectrum. e.g.- Cr K alpha, W K alpha.",
+                      "type": "string"
+                    }
+                  }
+                },
+                "target": {
+                  "type": "object",
+                  "description": "(Required) - Details regarding the target in SEM based CT, which upon interaction with the e-beam produces the X-rays.",
+                  "additionalProperties": false,
+                  "properties": {
+                    "targetShape": {
+                      "type": "string",
+                      "description": "(Optional) - Description of the shape or geometry of the target. e.g. - bulk, foil, needle."
+                    },
+                    "targetMaterial": {
+                      "type": "string",
+                      "description": "(Required) - Material with which the target is made."
+                    },
+                    "targetThickness": {
+                      "$ref": "#/$defs/distanceDetails",
+                      "description": "(Required)- Thickness of the target (dimension in Z direction). Default unit - µm."
+                    },
+                    "targetDriftCorrection": {
+                      "type": "boolean",
+                      "description": "(Required) - If drift correction is activated for the target, this parameter has to be set to true."
+                    },
+                    "targetTiltAngle": {
+                      "$ref": "#/$defs/angleDetails",
+                      "description": "(Required) - angle by which the target is tilted. Typical unit - degree."
+                    }
+                  },
+                  "required": [
+                    "targetMaterial",
+                    "targetThickness",
+                    "targetDriftCorrection",
+                    "targetTiltAngle"
+                  ]
+                },
+                "chamberPressure": {
+                  "$ref": "#/$defs/pressureDetails",
+                  "description": "(Optional) - Details of the pressure maintained in the chamber of the SEM."
+                }
+              },
+              "required": [
+                "workingDistance",
+                "objectiveLensAperture",
+                "electronProbeCurrent",
+                "voltage",
+                "target"
+              ]
+            }
+          }
+        },
+        "focalSpotMode": {
+          "type": "object",
+          "description": "(Optional) - Option for setting the size of the focal spot. Some sources have the option to select the target spot size, or focal spot size absolutely by setting a value, while some others give the option of selecting 'small', 'medium' or 'large'. Smaller spot size = higher resolution.  Note that the power/current will change with this value. In addition, the detector settings will usually be selected in conjunction. (different scintillator/lens/magnification).",
+          "additionalProperties": false,
+          "properties": {
+            "selection": {
+              "type": "string",
+              "description": "(Optional) - Selection of the setting of the size of the focal spot when the option for setting the size of the focal spot by selecting 'small', 'medium' or 'large' according to predefined values set by the manufacturer.",
+              "enum": [
+                "small",
+                "medium",
+                "large"
+              ]
+            },
+            "size": {
+              "$ref": "#/$defs/distanceDetails",
+              "description": "(Optional) - Size of the target spot when the option for setting the size of the focal spot absolutely by setting a value is available."
+            }
+          }
+        },
+        "optics": {
+          "$ref": "#/$defs/optics",
+          "description": "(Optional) - Details about the optics and individual motor positions."
+        },
+        "calibration": {
+          "type": "object",
+          "description": "(Optional) - Details regarding the calibration and the scaling factor.",
+          "additionalProperties": false,
+          "properties": {
+            "systemScaling": {
+              "type": "object",
+              "description": "(Optional) - Details regarding the scaling factor.",
+              "additionalProperties": false,
+              "properties": {
+                "adjustSystemScaling": {
+                  "type": "boolean",
+                  "description": "(Required) - To be set to true if system scaling is adjusted, else false."
+                },
+                "measuredScalingFactor": {
+                  "type": "number",
+                  "description": "(Optional) - Value of the measured scaling factor."
+                },
+                "referenceScalingFactor": {
+                  "type": "number",
+                  "description": "(Optional) - Value of the reference scaling factor, determined ususally during the data processing."
+                }
+              },
+              "required": [
+                "adjustSystemScaling"
+              ]
+            },
+            "calibrationType": {
+              "type": "string",
+              "description": "(Optional) - Type of calibration as a string."
+            },
+            "lastCalibration": {
+              "type": "string",
+              "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z?)$",
+              "description": "(Optional) - date and time of last calibration (YYYY-MM-DDThh:mm:ss.sss) in the ISO 8601 date-time format"
+            }
+          }
+        },
+        "CTAquisition": {
+          "$ref": "#/$defs/CTAquisition",
+          "description": "(Optional) - Details regarding the acquisition."
+        },
+        "geometry": {
+          "$ref": "#/$defs/geometry",
+          "description": "(Optional) - Details regarding the geometry."
+        },
+        "sampleStage": {
+          "$ref": "#/$defs/sampleStage",
+          "description": "(Optional) - Details regarding the sample stage."
+        },
+        "detector": {
+          "$ref": "#/$defs/detector",
+          "description": "(Optional) - Details regarding the detector."
+        }
+      },
+      "required": [
+        "instrumentName",
+        "instrumentManufacturer",
+        "instrumentType",
+        "source",
+        "focalSpotMode",
+        "CTAquisition",
+        "geometry",
+        "sampleStage",
+        "detector"
+      ]
+    },
+    "optics": {
+      "type": "object",
+      "description": "(Optional) - Details about the optics and individual motor positions.",
+      "additionalProperties": false,
+      "properties": {
+        "collimator": {
+          "type": "object",
+          "description": "(Optional) - Details about the collimator and its individual motor positions.",
+          "additionalProperties": false,
+          "properties": {
+            "collimatorDetails": {
+              "type": "string",
+              "description": "(Optional) - Details about the collimator relevant for the measurement."
+            },
+            "collimatorPositions": {
+              "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the collimator.",
+              "$ref": "#/$defs/motorPositions"
+            }
+          }
+        },
+        "monochromator": {
+          "type": "object",
+          "description": "(Required) - Details about the monochromator and individual motor positions, if used.",
+          "additionalProperties": false,
+          "properties": {
+            "monochromatorUsed": {
+              "type": "boolean",
+              "description": "(Required) - To be set to true if monochromator is used, else false."
+            },
+            "monochromatorDetails": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "(Optional) - Details of the monochromator type type, material, energy and notes.",
+              "properties": {
+                "monochromatorType": {
+                  "type": "string",
+                  "description": "(Optional) - Type of the monochromator."
+                },
+                "material": {
+                  "type": "string",
+                  "description": "(Optional) - Material of the monochromator."
+                },
+                "energy": {
+                  "description": "(Optional) - Energy set in the monochromator. Typical unit - eV.",
+                  "$ref": "#/$defs/energyDetails"
+                },
+                "notes": {
+                  "description": "(Optional) - Additional information about the monochromator relevant for the measurement."
+                }
+              }
+            },
+            "monochromatorPositions": {
+              "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the monochromator.",
+              "$ref": "#/$defs/motorPositions"
+            }
+          },
+          "required": [
+            "monochromatorUsed"
+          ]
+        },
+        "condenser": {
+          "type": "object",
+          "description": "(Optional) - Details about the condenser lens and its individual motor positions, if used.",
+          "additionalProperties": false,
+          "properties": {
+            "condenserDetails": {
+              "type": "string",
+              "description": "(Optional) - Details about the condenser relevant for the measurement."
+            },
+            "condenserPositions": {
+              "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the condenser.",
+              "$ref": "#/$defs/motorPositions"
+            }
+          }
+        },
+        "fresnelZonePlate": {
+          "type": "object",
+          "description": "(Optional) - Details about the fresnel zone plate and its individual motor positions, if used.",
+          "additionalProperties": false,
+          "properties": {
+            "fresnelZonePlateDetails": {
+              "type": "string",
+              "description": "(Optional) - Details about the fresnel zone plate relevant for the measurement."
+            },
+            "fresnelZonePlatePositions": {
+              "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the fresnel zone plate.",
+              "$ref": "#/$defs/motorPositions"
+            }
+          }
+        },
+        "phaseRing": {
+          "type": "object",
+          "description": "(Required) - Details about the phase ring and its individual motor positions, if inserted.",
+          "additionalProperties": false,
+          "properties": {
+            "phaseRingDetails": {
+              "type": "string",
+              "description": "(Optional) - Details about the phase ring relevant for the measurement."
+            },
+            "phaseRingPositions": {
+              "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the phase ring.",
+              "$ref": "#/$defs/motorPositions"
+            }
+          }
+        }
+      },
+      "required": [
+        "monochromator"
+      ]
+    },
+    "CTAquisition": {
+      "type": "object",
+      "description": "(Required) - Details about the acquisition.",
+      "additionalProperties": false,
+      "properties": {
+        "acquisitionScriptName": {
+          "description": "(Required) - Name of the script used for acquisition.",
+          "type": "string"
+        },
+        "numberOfProjections": {
+          "description": "(Required) - Number of projections acquired during the CT.",
+          "type": "number"
+        },
+        "startAngle": {
+          "$ref": "#/$defs/angleDetails",
+          "description": "(Required) - Start angle of the rotation of the sample during the CT. If the range is -180°/180°, then startAngle is -180°. Typical unit - degree."
+        },
+        "endAngle": {
+          "$ref": "#/$defs/angleDetails",
+          "description": "(Required) - End angle of the rotation of the sample during the CT. If the range is -180°/180°, then endAngle is 180°. Typical unit - degree."
+        },
+        "angularStepSize": {
+          "$ref": "#/$defs/angleDetails",
+          "description": "(Required) - Step size of the rotation of the sample during the CT. Typical unit - degree."
+        },
+        "useBadPixelMap": {
+          "type": "boolean",
+          "description": "(Optional) - To be set to true if bad pixel map is used. This parameter is relevant for SEM based CT."
+        },
+        "referenceImages": {
+          "type": "object",
+          "description": "(Optional) - Details on the reference images (if used) - number of flats/bright images and number of dark images.",
+          "additionalProperties": false,
+          "properties": {
+            "numberOfBrightImages": {
+              "type": "number",
+              "description": "(Optional) - Number of flats or bright images used as reference."
+            },
+            "numberOfDarkImages": {
+              "type": "number",
+              "description": "(Optional) - Number of dark images used as reference."
+            }
+          }
+        },
+        "acquisitionTimePerProjection": {
+          "$ref": "#/$defs/timeDetails",
+          "description": "(Required) - Time taken for acquisition of a single projection. Typical unit - s."
+        },
+        "totalAcquisitionTime": {
+          "type": "string",
+          "description": "(Required) - Time taken for acquisition for the entire scan. This is the total scan time, i.e. number of projections multipled by exposure time, but including read-out time. calculated as EndTime-StartTime. Format: hh:mm:ss.",
+          "pattern": "^(\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,3})?)$",
+          "format": "time"
+        },
+        "largeFOV": {
+          "type": "boolean",
+          "description": "(Required) - To be set to true if large field of view or wide field of view is used."
+        },
+        "scanningMode": {
+          "type": "string",
+          "description": "(Optional) - The scanning mode used during acquisition - helical, raster scanning, fast CT.",
+          "enum": [
+            "Helical",
+            "Raster Scanning",
+            "Fast CT"
+          ]
+        },
+        "contrastType": {
+          "type": "string",
+          "description": "(Required) - The contrast type(mode) used - Absorption Contrast or Phase Contrast. If 'Phase Contrast' is selected, please indicate the used Phase Contrast Mode under the field phaseContrastMode.",
+          "enum": [
+            "Absorption Contrast",
+            "Phase Contrast"
+          ]
+        },
+        "phaseContrastMode": {
+          "type": "string",
+          "description": "(Optional) - The phase contrast mode used during acquisition - Zernike phase contrast, propagation-based, grating-based(Hartmann), grating-based(Talbot).",
+          "enum": [
+            "Zernike phase contrast",
+            "Propagation-based",
+            "Grating-based(Hartmann)",
+            "Grating-based(Talbot)"
+          ]
+        }
+      },
+      "required": [
+        "acquisitionScriptName",
+        "startAngle",
+        "endAngle",
+        "angularStepSize",
+        "acquisitionTimePerProjection",
+        "totalAcquisitionTime",
+        "largeFOV",
+        "contrastType"
+      ]
+    },
+    "geometry": {
+      "type": "object",
+      "description": "Describes the geometry of the CT instrument",
+      "additionalProperties": false,
+      "properties": {
+        "sourceToObjectDistance": {
+          "$ref": "#/$defs/distanceDetails",
+          "description": "(Required) - Distance between the source and the object. Typical unit - µm."
+        },
+        "objectToDetectorDistance": {
+          "$ref": "#/$defs/distanceDetails",
+          "description": "(Required) - Distance between the object and the detector. Typical unit - µm."
+        },
+        "beamGeometry": {
+          "type": "object",
+          "description": "(Required) - Details about beam geometry like beam geometry type and divergence angle.",
+          "additionalProperties": false,
+          "properties": {
+            "beamGeometryType": {
+              "type": "string",
+              "enum": [
+                "collimated",
+                "divergent"
+              ],
+              "description": "(Required) - The type of the beam geometry to be selected between 'collimated' and 'divergent'."
+            },
+            "divergenceAngle": {
+              "$ref": "#/$defs/angleDetails",
+              "description": "(Optional) - Angle of divergence when the beam geometry is divergent. Typical unit - degree."
+            }
+          }
+        },
+        "geometricMagnification": {
+          "type": "number",
+          "description": "(Required) - Geometric magnification refers to the ratio of the size of an object's image to the size of the object itself. It is a measure of how much larger the image appears compared to the actual object. Geometric magnification (M) is calculated using the formula M = (SID + SOD) / SID, where SID is the source-to-image distance and SOD is the source-to-object distance."
+        },
+        "opticalMagnification": {
+          "type": "number",
+          "description": "(Required) - Optical magnification is calculated as the ratio of the focal length of the objective lens to the focal length of the eyepiece (if an eyepiece is present) in a traditional optical microscope."
+        }
+      },
+      "required": [
+        "sourceToObjectDistance",
+        "objectToDetectorDistance",
+        "beamGeometry",
+        "geometricMagnification",
+        "opticalMagnification"
+      ]
+    },
+    "sampleStage": {
+      "type": "object",
+      "description": "(Required) - Details about sample stage.",
+      "additionalProperties": false,
+      "properties": {
+        "stageMotorPositions": {
+          "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the stage motors.",
+          "$ref": "#/$defs/motorPositions"
+        },
+        "stageMotorHierarchy": {
+          "type": "object",
+          "description": "(Required) - Details about the hierarchy of the stage motors. This information is required to know how the motor movements affect the positions of the samples, particularly relevant for correlative characterization.",
+          "additionalProperties": false,
+          "properties": {
+            "beamDirection": {
+              "description": "(Required) - The beam direction expressed as a vector in cartesian coordinates. e.g. - If the beam is parallel to the Y-stage and perpendicular to the X-stage. then beam direction = [0 1 0].",
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "xMotor": {
+              "description": "(Required) - Hierarchical level and direction of the X motor (stage) as a vector in cartesian coordinates.",
+              "$ref": "#/$defs/motorHierarchy"
+            },
+            "yMotor": {
+              "description": "(Required) - Hierarchical level and direction of the Y motor (stage) as a vector in cartesian coordinates.",
+              "$ref": "#/$defs/motorHierarchy"
+            },
+            "zMotor": {
+              "description": "(Required) - Hierarchical level and direction of the Z motor (stage) as a vector in cartesian coordinates.",
+              "$ref": "#/$defs/motorHierarchy"
+            },
+            "rMotor": {
+              "description": "(Required) - Hierarchical level and direction of the R motor (stage) as a vector in cartesian coordiantes. R motor has rotation around z axis +1 (for anticlockwise).",
+              "$ref": "#/$defs/motorHierarchy"
+            },
+            "tMotor": {
+              "description": "(Optional) - Hierarchical level and direction of the T motor (stage) as a vector in cartesian coordiantes. The T motor is usually relevant only for SEM based CT.",
+              "$ref": "#/$defs/motorHierarchy"
+            },
+            "mMotor": {
+              "description": "(Optional) - Hierarchical level and direction of the M motor (stage) as a vector in cartesian coordiantes. The M motor is usually relevant only for SEM based CT. It is a special motor which counteracts the Z motor.",
+              "$ref": "#/$defs/motorHierarchy"
+            }
+          },
+          "required": [
+            "beamDirection",
+            "xMotor",
+            "yMotor",
+            "zMotor",
+            "rMotor"
+          ]
+        }
+      },
+      "required": [
+        "stageMotorHierarchy"
+      ]
+    },
+    "motorHierarchy": {
+      "type": "object",
+      "description": "(Required) - Details about the hierarchical level and direction of a motor.",
+      "additionalProperties": false,
+      "properties": {
+        "motorLevel": {
+          "type": "number",
+          "description": "(Required) - Hierarchy of the motor expressed as an integer."
+        },
+        "motorDirection": {
+          "description": "(Required) - The direction of movement (for X,Y,Z,M motors) or axis of rotation (for rotating motors) expressed as a vector in cartesian coordinates. e.g. - If the beam is parallel to the X-stage and perpendicular to the Y-stage. then beam direction = [1 0 0], X-stage-direction = [1 0 0] (positive movement direction away from source towards detector) or can be (-1 0 0) (towards source) and Y-stage-direction = [0 1 0] or can be [0 -1 0] (analogous interpretation). The parameters need to be individually determined for each instrument. For rotating motors, the directional vector of axis of rotation should be given in Cartesian coordinates (counterclockwise, right-hand rule).",
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      }
+    },
+    "manufacturerDetails": {
+      "type": "object",
+      "description": "(Optional) - Details about the manufacturer or vendor of the instrument. Properties: manufacturerName (Optional) - Name of the manufacturer, modelName (Optional) - Model of the instrument, manufacturerID (Optional) - Identifier of the manufacturer.",
+      "additionalProperties": false,
+      "properties": {
+        "manufacturerName": {
+          "type": "string",
+          "description": "(Optional) - Name of the manufacturer"
+        },
+        "modelName": {
+          "type": "string",
+          "description": "(Optional) - Model of the instrument"
+        },
+        "manufacturerID": {
+          "$ref": "#/$defs/identifier",
+          "description": "(Optional) - Identifier of the manufacturer"
+        }
+      }
+    },
+    "powerDetails": {
+      "type": "object",
+      "description": "Describes a power",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(required, NAE) - The power expressed as an integer or floating point value."
+        },
+        "unit": {
+          "type": "string",
+          "description": "(required, NAE) - the unit of the value to be selected from a controlled list (mW, W, kW).",
+          "enum": [
+            "mW",
+            "W",
+            "kW"
+          ]
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(optional, NAE) - A qualifier to describe the value (e.g., avg, max, min).",
+          "enum": [
+            "max",
+            "min",
+            "average"
+          ]
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(optional, NAE) - Uncertainty in the value defined separately as uncertaintyDetails,(allows choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(optional, NAE) - Further notes about the value of datatype string."
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ]
+    },
+    "pressureDetails": {
+      "type": "object",
+      "description": "(Required) - Describes a pressure.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - Value of the pressure"
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "Pa",
+            "hPa",
+            "kPa",
+            "MPa",
+            "GPa",
+            "mbar",
+            "bar",
+            "psi"
+          ],
+          "description": "(Required) - Unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(Optional) - Uncertainty of the value. Allows to specify whether the uncertainty is absolute or relative."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value."
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "rampDetails": {
+      "type": "object",
+      "description": "(Optional) - Describes a rate at which temperature is increased or decreased.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - Value of the rate of temperature increase or decrease."
+        },
+        "unit": {
+          "type": "string",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (K/min, K/s).",
+          "enum": [
+            "K/min",
+            "K/s"
+          ]
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value."
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ]
+    },
+    "temperatureDetails": {
+      "type": "object",
+      "description": "(Optional) - Describes a temperature.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - Value of the temperature"
+        },
+        "unit": {
+          "type": "string",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (K, ºC, ºF)",
+          "enum": [
+            "K",
+            "ºC",
+            "ºF"
+          ]
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value."
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ]
+    },
+    "motorPositions": {
+      "description": "(Optional) - Positions in cartesian coordinates and tilt angles of the motor.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "xyzPositions": {
+          "$ref": "#/$defs/coordinateSet",
+          "description": "(Optional) - The xyz coordinates describing the motor positions of the item."
+        },
+        "angles": {
+          "description": "(Optional) - The three tilt angles alpha, beta and gamma of the motors controlling the position of the item.",
+          "$ref": "#/$defs/angleSet"
+        }
+      }
+    },
+    "voltageDetails": {
+      "type": "object",
+      "description": "describes a voltage.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - The voltage expressed as an integer or floating point value."
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "µV",
+            "mV",
+            "V",
+            "kV",
+            "MV"
+          ],
+          "description": "(Required) - the unit of the value to be selected from a controlled list (µV, mV, V, kV, MV, GV)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string."
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "currentDetails": {
+      "type": "object",
+      "description": "Describes a current.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Optional) - Further notes about the value of datatype string."
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "pA",
+            "nA",
+            "µA",
+            "mA",
+            "A"
+          ],
+          "description": "(Required) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(Optional) - Uncertainty in the value defined separately as  uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string."
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "angleDetails": {
+      "type": "object",
+      "description": "describes an angle.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - The angle expressed as an integer or floating point value of datatype number."
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "degree",
+            "radian"
+          ],
+          "description": "(Required) - the unit of the value to be selected from a controlled list (degree, radian) of datatype string."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(Optional) - Uncertainty in the value defined separately as uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string."
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "coordinateSet": {
+      "type": "object",
+      "description": "The set of xyz values describing a point of reference for correlative characterization.",
+      "additionalProperties": false,
+      "properties": {
+        "xValue": {
+          "type": "number",
+          "description": "(Optional) - value of the x coordinate of datatype number"
+        },
+        "xUncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(Optional) - uncertainty in the x value defined separately as uncertaintyDetails"
+        },
+        "yValue": {
+          "type": "number",
+          "description": "(Optional) - value of the y coordinate of datatype number"
+        },
+        "yUncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(Optional) -uncertainty in the y value defined separately as uncertaintyDetails"
+        },
+        "zValue": {
+          "type": "number",
+          "description": "(Optional) - value of the zcoordinate of datatype number"
+        },
+        "zUncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(Optional) -uncertainty in the z value defined separately as uncertaintyDetails"
+        },
+        "coordinatesUnit": {
+          "type": "string",
+          "enum": [
+            "nm",
+            "µm",
+            "mm",
+            "cm",
+            "m"
+          ],
+          "description": "(Optional) - unit of the coordinates (allowed units - nm, µm, mm, cm, m)"
+        }
+      },
+      "required": [
+        "xValue",
+        "yValue",
+        "zValue",
+        "coordinatesUnit"
+      ]
+    },
+    "angleSet": {
+      "type": "object",
+      "description": "(Optional) - Tilt angles alpha, beta and gamma decribing the three angular positions of an item.",
+      "additionalProperties": false,
+      "properties": {
+        "alpha": {
+          "type": "number",
+          "description": "(Optional) - Tilt angle alpha of the item."
+        },
+        "beta": {
+          "type": "number",
+          "description": "(Optional) - Rotation angle beta of the item."
+        },
+        "gamma": {
+          "type": "number",
+          "description": "(Optional) - Angle gamma of the item."
+        },
+        "anglesUnit": {
+          "type": "string",
+          "enum": [
+            "degree",
+            "radian"
+          ],
+          "description": "(Optional) - unit of the angles (allowed units - degree or radian)"
+        }
+      }
+    },
+    "pixelNumberType": {
+      "type": "object",
+      "description": "describes a parameter which can be split into number of pixels in x and y directions like the resolution",
+      "additionalProperties": false,
+      "properties": {
+        "xPixels": {
+          "type": "number",
+          "description": "(Required) - no. of pixels in horizontal direction of datatype number"
+        },
+        "yPixels": {
+          "type": "number",
+          "description": "(Required) - no. of pixels in vertical direction of datatype number"
+        }
+      },
+      "required": [
+        "xPixels",
+        "yPixels"
+      ]
+    },
+    "apertureSettingType": {
+      "type": "object",
+      "description": "The setting for controlling the aperture size, using either the aperture size directly or indirectly using the beam current. Therefore one of the two properties must be selected: size or current.",
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/distanceDetails",
+          "description": "(Optional) - the size of the aperture which can be directly controlled using the instrument settings defined separately as distanceDetails"
+        },
+        "current": {
+          "$ref": "#/$defs/currentDetails",
+          "description": "(Optional) - the beam current setting which would indirectly control the size of the aperture defined separately as currentDetails"
+        }
+      }
+    },
+    "pixelSize3D": {
+      "type": "object",
+      "description": "the distance on the sample imaged by a single pixel, normally expressed in nm or µm, is expressed in 3D for the mapping along x,y and z directions.",
+      "additionalProperties": false,
+      "properties": {
+        "xPixelSize": {
+          "$ref": "#/$defs/pixelSizeDetails",
+          "description": "(Required) -  distance on the sample covered by a pixel in the x direction defined separately as pixelSizeDetails"
+        },
+        "yPixelSize": {
+          "$ref": "#/$defs/pixelSizeDetails",
+          "description": "(Optional) - distance on the sample covered by a pixel in the y direction defined separately as pixelSizeDetails; The y-pixel-size is to be given only if it is different from the x-pixel-size"
+        },
+        "zPixelSize": {
+          "$ref": "#/$defs/pixelSizeDetails",
+          "description": "(Optional) - distance on the sample covered by a pixel in the z direction defined separately as pixelSizeDetails; The z-pixel-size can be ignored if it is greater than the voxel size"
+        }
+      },
+      "required": [
+        "xPixelSize"
+      ]
+    },
+    "pixelSizeDetails": {
+      "type": "object",
+      "description": "describes the size of a pixel.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - The pixel-size expressed as an integer or floating point value of datatype number"
+        },
+        "unit": {
+          "type": "string",
+          "description": "(Required) - the unit of the size of a single pixel (typical value - nm, µm) of datatype string",
+          "enum": [
+            "nm",
+            "µm"
+          ]
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(Optional) - Uncertainty in the value defined as a complex type uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string."
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "timeDetails": {
+      "type": "object",
+      "description": "describes a time.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - The time expressed as an integer or floating point value of datatype number"
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "ps",
+            "ns",
+            "µs",
+            "ms",
+            "s"
+          ],
+          "description": "(Required) - the unit of the value to be selected from a controlled list (ps, ns, µs, ms, s)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(Optional) - Uncertainty in the value defined as a complex type uncertaintyDetails, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number"
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    },
+    "detector": {
+      "type": "object",
+      "description": "gives the settings of a detector or multiple detectors.",
+      "additionalProperties": false,
+      "properties": {
+        "detectorSettings": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/detectorSettings"
+            },
+            {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "$ref": "#/$defs/detectorSettings"
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "detectorSettings"
+      ]
+    },
+    "detectorSettings": {
+      "type": "object",
+      "description": "(Required) - Gives the settings of a single detector.",
+      "additionalProperties": false,
+      "properties": {
+        "detectorName": {
+          "type": "string",
+          "description": "(Optional) - Name of the detector of datatype string."
+        },
+        "detectorManufacturer": {
+          "$ref": "#/$defs/manufacturerDetails",
+          "description": "(Required) - Describes the details of the manufacturer of the detector (manufacturerName, modelName and manufacturerID) as part of manufacturerDetails."
+        },
+        "detectorID": {
+          "$ref": "#/$defs/identifier",
+          "description": "(Optional) - Identifier for the detector."
+        },
+        "detectorType": {
+          "type": "string",
+          "description": "(Optional) - The type of detector to be selected from a controlled list consisting of CCD, Panel, PCXD, CMOS, Time-Delay Integration (TDI) and Direct Conversion.",
+          "enum": [
+            "CCD",
+            "Panel",
+            "PCXD",
+            "CMOS",
+            "Time-Delay Integration (TDI)",
+            "Direct Conversion"
+          ]
+        },
+        "detectorCoolingTemperature": {
+          "$ref": "#/$defs/temperatureDetails",
+          "description": "(Optional) - Cooling temperature of the detector, if it cooled. Relevant for SEM based CT. Typical unit - K."
+        },
+        "binning": {
+          "type": "object",
+          "description": "(Required) - Details regarding the binning which is the process of grouping or combining adjacent pixels or voxels into larger units to reduce the amount of data and improve image quality or processing speed.",
+          "additionalProperties": false,
+          "properties": {
+            "binningType": {
+              "type": "string",
+              "description": "(Optional) - Type of the binning to be chosen between Summation and Averaging.",
+              "enum": [
+                "Summation",
+                "Averaging"
+              ]
+            },
+            "noOfBinnedPixels": {
+              "type": "number",
+              "description": "(Required) - No. of adjacent pixels which are binned together."
+            }
+          },
+          "required": [
+            "noOfBinnedPixels"
+          ]
+        },
+        "bitDepth": {
+          "type": "number",
+          "description": "(Required) - The number of bits used to represent the intensity values of each pixel or voxel in an image. The bit depth determines the number of possible intensity levels that can be assigned to each pixel or voxel. The formula to calculate the number of possible intensity levels is given by 2^n, where 'n' is the bit depth."
+        },
+        "detectorMotorPositions": {
+          "$ref": "#/$defs/motorPositions",
+          "description": "(Optional) - The motor positions of the detector in cartesian coordinates and tilt angles."
+        },
+        "sensor": {
+          "type": "object",
+          "description": "(Optional) - Details about a sensor, if present.",
+          "additionalProperties": false,
+          "properties": {
+            "hasSensor": {
+              "type": "boolean",
+              "description": "(Required) - To be set to true if the detector has a sensor."
+            },
+            "sensorType": {
+              "type": "string",
+              "description": "(Optional) - The type of sensor as a string."
+            },
+            "sensorName": {
+              "type": "string",
+              "description": "(Optional) - Name of the sensor of datatype string."
+            },
+            "sensorID": {
+              "$ref": "#/$defs/identifier",
+              "description": "(Optional) - Identifier for the sensor."
+            },
+            "sensorManufacturer": {
+              "$ref": "#/$defs/manufacturerDetails",
+              "description": "(Required) - Describes the details of the manufacturer of the sensor (manufacturerName, modelName and manufacturerID) as part of manufacturerDetails."
+            },
+            "sensorMaterial": {
+              "type": "string",
+              "description": "(Optional) - Material of the sensor of datatype string."
+            },
+            "sensorThickness": {
+              "description": "(Optional) - Thickness of the sensor.",
+              "$ref": "#/$defs/distanceDetails"
+            }
+          },
+          "required": [
+            "hasSensor"
+          ]
+        },
+        "lens": {
+          "type": "object",
+          "description": "(Optional) - Details of a lens, if used with the detector.",
+          "additionalProperties": false,
+          "properties": {
+            "hasLens": {
+              "type": "boolean",
+              "description": "(Required) - To be set to true if the detector has a lens."
+            },
+            "lensName": {
+              "type": "string",
+              "description": "(Optional) - Name of the lens of datatype string."
+            },
+            "lensID": {
+              "$ref": "#/$defs/identifier",
+              "description": "(Optional) - Identifier for the lens."
+            },
+            "lensManufacturer": {
+              "$ref": "#/$defs/manufacturerDetails",
+              "description": "(Required) - Describes the details of the manufacturer of the lens (manufacturerName, modelName and manufacturerID) as part of manufacturerDetails."
+            },
+            "lensMagnification": {
+              "type": "number",
+              "description": "(Optional) - Magnification of the lens as a floating point number."
+            },
+            "lensFocalLength": {
+              "description": "(Optional) - Focal length of the lens.",
+              "$ref": "#/$defs/distanceDetails"
+            }
+          },
+          "required": [
+            "lensMagnification",
+            "lensFocalLength"
+          ]
+        },
+        "detectorDimensions": {
+          "$ref": "#/$defs/pixelNumberType",
+          "description": "(Optional) - The dimensions of the detector in integer values of xPixels and yPixels."
+        },
+        "detectorPixelSize": {
+          "$ref": "#/$defs/pixelSize3D",
+          "description": "(Optional) - Physical length in cartesian coordinates imaged by a single pixel of the detector. The y-pixel-size is to be given only if it is different from the x-pixel-size. Typical pixel size - µm."
+        },
+        "imagePixelSize": {
+          "$ref": "#/$defs/pixelSize3D",
+          "description": "(Required) - Physical length in cartesian coordinates imaged by a single pixel of the image. It is the native pixel size divided by the total magnification. The y-pixel-size is to be given only if it is different from the x-pixel-size. Typical pixel size - µm."
+        },
+        "numberOfAveragedFramesPerProjection": {
+          "type": "number",
+          "description": "(Optional) - The number of averaged frames per projection, if averaging is done."
+        },
+        "exposureTimePerFrame": {
+          "$ref": "#/$defs/timeDetails",
+          "description": "(Optional) - Time for which the sample is exposed per frame. Typical unit - s."
+        },
+        "totalCountsPerProjection": {
+          "type": "number",
+          "description": "(Optional) - The sum of the intensity values recorded by the X-ray detector for a single projection during a scan."
+        },
+        "cameraGain": {
+          "type": "number",
+          "description": "(Optional) - The amplification (gain) of the signal from an image sensor in a camera."
+        },
+        "energyThreshold": {
+          "$ref": "#/$defs/energyDetails",
+          "description": "(Optional) - A specific energy level used to filter the detected radiation."
+        },
+        "temperature": {
+          "description": "(Required) - Temperature of the detector.",
+          "$ref": "#/$defs/temperatureDetails"
+        },
+        "framesPerSecond": {
+          "type": "number",
+          "description": "(Optional) - The number of frames captured in a second."
+        },
+        "frameSkip": {
+          "type": "object",
+          "description": "(Optional) - A numerical representation indicating the number of frames that are skipped or omitted during the acquisition or recording process. E.g. - If every other frame is skipped, the value is 2. If every third frame is skipped, the value is 3. If frames are skipped at irregular intervals, the value might be a list or pattern indicating the specific frames to be skipped.",
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "description": "(Optional) - Number of frames skipped during acquisition. E.g. - If every other frame is skipped, the value is 2. If every third frame is skipped, the value is 3."
+                },
+                {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "(Optional) - Pattern of frames skipped during acquisition. E.g. - If frames are skipped at irregular intervals, the value might be a list or pattern indicating the specific frames to be skipped like [1,3,5]"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "detectorType",
+        "detectorManufacturer",
+        "binning",
+        "detectorMotorPositions",
+        "imagePixelSize"
+      ]
+    },
+    "data": {
+      "type": "object",
+      "description": "(Required) - Details about the data section of the measurement.",
+      "additionalProperties": false,
+      "properties": {
+        "projections": {
+          "type": "object",
+          "description": "(Required) - Details about the projections.",
+          "additionalProperties": false,
+          "properties": {
+            "projectionImageDataStructure": {
+              "type": "object",
+              "description": "(Required) - Details about the data structure of the image data of the projections.",
+              "additionalProperties": false,
+              "properties": {
+                "fileLocation": {
+                  "type": "string",
+                  "description": "(Required) - The location where the data file is stored. A URL is preferred if available."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "(Required) - Name of the Projection Image Data."
+                },
+                "imageID": {
+                  "$ref": "#/$defs/identifier",
+                  "description": "(Optional) - Identifier of the Image Data."
+                },
+                "imageFormats": {
+                  "type": "object",
+                  "description": "(Required) - The file formats of the images - tiff, png, jpeg. When more than one file formats are there, then the formats are to be entered as an array of strings.",
+                  "additionalProperties": false,
+                  "properties": {
+                    "fileFormats": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "tiff",
+                            "jpeg",
+                            "png"
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "minItems": 1,
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "tiff",
+                              "jpeg",
+                              "png"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "fileFormats"
+                  ]
+                },
+                "dimensions": {
+                  "$ref": "#/$defs/pixelNumberType",
+                  "description": "(Required) - The dimension of the image as for integer values of xPixels and yPixels."
+                },
+                "numberOfImages": {
+                  "type": "number",
+                  "description": "(Required) - Number of images in the data set. It is same as the number of projections."
+                },
+                "IOValue": {
+                  "type": "number",
+                  "description": "(Required) - The IO value obtained from the metadata."
+                },
+                "header": {
+                  "type": "object",
+                  "description": "(Required) - Details about the header of the data.",
+                  "additionalProperties": false,
+                  "properties": {
+                    "headerName": {
+                      "type": "string",
+                      "description": "(Required) - Name of the header."
+                    },
+                    "headerSize": {
+                      "type": "number",
+                      "description": "(Required) - Size of the header."
+                    },
+                    "headerLocation": {
+                      "type": "string",
+                      "description": "(Required) - Location of the header."
+                    }
+                  },
+                  "required": [
+                    "headerName",
+                    "headerLocation"
+                  ]
+                },
+                "greyValueRepresentation": {
+                  "type": "string",
+                  "description": "(Optional) -  Description about the grey value representation."
+                },
+                "imageCorrection": {
+                  "type": "object",
+                  "description": "(Optional) - Details about the image correction.",
+                  "additionalProperties": false,
+                  "properties": {
+                    "isImageCorrected": {
+                      "type": "boolean",
+                      "description": "(Required) - To be set as true if image is corrected."
+                    },
+                    "linkToReferenceImages": {
+                      "type": "string",
+                      "format": "uri-reference",
+                      "description": "(Required) - Link to the reference images (flats/darks)."
+                    }
+                  },
+                  "required": [
+                    "isImageCorrected",
+                    "linkToReferenceImages"
+                  ]
+                },
+                "isPreFiltered": {
+                  "type": "boolean",
+                  "description": "(Optional) - To be set as true if image is prefiltered."
+                },
+                "pixelSize": {
+                  "$ref": "#/$defs/pixelSize3D",
+                  "description": "(Optional) - Physical x,y length imaged by a single pixel, normally expressed in µm."
+                }
+              },
+              "required": [
+                "fileLocation",
+                "name",
+                "imageFormats",
+                "header"
+              ]
+            },
+            "cropping": {
+              "type": "object",
+              "description": "(Optional) - Details about cropping or clipping to select a region of interest(ROI).",
+              "additionalProperties": false,
+              "properties": {
+                "ROI": {
+                  "$ref": "#/$defs/pixelNumberType",
+                  "description": "(Required) - The size of the region of interest (ROI) in integer values of xPixels and yPixels."
+                },
+                "offset": {
+                  "$ref": "#/$defs/pixelNumberType",
+                  "description": "(Required) - The offset applied to the origin (i.e., centre of the image) to select the region of interest in x and y coordinates."
+                }
+              },
+              "required": [
+                "ROI",
+                "offset"
+              ]
+            }
+          },
+          "required": [
+            "projectionImageDataStructure"
+          ]
+        },
+        "reconstructedData": {
+          "type": "object",
+          "description": "(Required) - Details about the reconstructed slices. When multiple reconstructions of the same raw data (projections) are present, the corresponding data can be combined as an array of reconstruction data sets, else as a single reconstruction data set.",
+          "additionalProperties": false,
+          "properties": {
+            "reconstruction": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/reconstruction"
+                },
+                {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": {
+                    "$ref": "#/$defs/reconstruction"
+                  }
+                }
+              ]
+            }
+          },
+          "required": [
+            "reconstruction"
+          ]
+        }
+      },
+      "required": [
+        "projections",
+        "reconstructedData"
+      ]
+    },
+    "reconstruction": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Data from one single reconstruction.",
+      "properties": {
+        "volumeStructure": {
+          "type": "object",
+          "description": "(Required) - Details about the projections.",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "(Required) - Name of the 3D volume structure (dataset)."
+            },
+            "volumeID": {
+              "$ref": "#/$defs/identifier",
+              "description": "(Optional) - Identifier of the metadata entry of the 3D reconstructed volume usually provided by the project or the laboratory."
+            },
+            "dimensions": {
+              "$ref": "#/$defs/coordinateSet",
+              "description": "(Required) - The dimension of the 3D volume in XYZ coordinates. If the length in Z dimension is not known and instead only the number of slices are known, they need to be separately entered in the field 'numberOfSlices'. Typical unit - µm."
+            },
+            "numberOfSlices": {
+              "type": "number",
+              "description": "(Optional) - No. of slices which make up the 3D volume."
+            },
+            "bitDepth": {
+              "type": "number",
+              "description": "(Required) - The number of bits used to represent the intensity values of each voxel in the 3D volume. The bit depth determines the number of possible intensity levels that can be assigned to each voxel. The formula to calculate the number of possible intensity levels is given by 2^n, where 'n' is the bit depth."
+            },
+            "header": {
+              "type": "object",
+              "description": "(Optional) - Details about the header of the data.",
+              "additionalProperties": false,
+              "properties": {
+                "headerName": {
+                  "type": "string",
+                  "description": "(Required) - Name of the header."
+                },
+                "headerSize": {
+                  "type": "number",
+                  "description": "(Optional) - Size of the header."
+                },
+                "headerLocation": {
+                  "type": "string",
+                  "description": "(Required) - Location of the header."
+                }
+              },
+              "required": [
+                "headerName",
+                "headerLocation"
+              ]
+            },
+            "pixelSize": {
+              "$ref": "#/$defs/pixelSize3D",
+              "description": "(Required) - Physical x,y,z length imaged by a single pixel/voxel, normally expressed in µm."
+            }
+          },
+          "required": [
+            "name",
+            "dimensions",
+            "bitDepth",
+            "pixelSize"
+          ]
+        },
+        "reconstructionDetails": {
+          "type": "object",
+          "description": "(Required) - Details about the projections.",
+          "additionalProperties": false,
+          "properties": {
+            "reconstructionSoftware": {
+              "$ref": "#/$defs/program",
+              "description": "(Required) - Details concerning the program (or software) used for reconstruction. It may be the same as the acquisition software or a different one."
+            },
+            "startImage": {
+              "type": "string",
+              "description": "(Required) - Image-Number(of the projection) which is used as the start image for the reconstruction of the 3D Volume."
+            },
+            "lastImage": {
+              "type": "string",
+              "description": "(Required) - Image-Number(of the projection) which is used as the last image for the reconstruction of the 3D Volume, typically an integer."
+            },
+            "startAngle": {
+              "$ref": "#/$defs/angleDetails",
+              "description": "(Required) - Scan angle at which the reconstruction of the 3D Volume starts. Typical unit - degree."
+            },
+            "bitDepthConversionMin": {
+              "type": "number",
+              "description": "(Required) - Minimum cut-off value selected for bit-depth conversion during reconstruction."
+            },
+            "bitDepthConversionMax": {
+              "type": "number",
+              "description": "(Required) - Maximum cut-off value selected for bit-depth conversion during reconstruction."
+            },
+            "binning": {
+              "type": "object",
+              "description": "(Required) - Details regarding the binning which is the process of grouping or combining adjacent pixels or voxels into larger units to reduce the amount of data and improve image quality or processing speed.",
+              "additionalProperties": false,
+              "properties": {
+                "binningType": {
+                  "type": "string",
+                  "description": "(Optional) - Type of the binning to be chosen between Summation and Averaging.",
+                  "enum": [
+                    "Summation",
+                    "Averaging"
+                  ]
+                },
+                "noOfBinnedPixels": {
+                  "type": "number",
+                  "description": "(Required) - No. of adjacent pixels which are binned together."
+                }
+              },
+              "required": [
+                "noOfBinnedPixels"
+              ]
+            },
+            "algorithm": {
+              "type": "string",
+              "description": "(Required) - Algorithm used for reconstruction to be selected from FBP - Filtered Back Projection, ART - Algebraic Reconstruction Technique, 3dCT - 3D Computed Tomography and Gridrec.",
+              "enum": [
+                "FBP - Filtered Back Projection",
+                "ART - Algebraic Reconstruction Technique",
+                "3dCT - 3D Computed Tomography",
+                "Gridrec"
+              ]
+            },
+            "hardwarePlatform": {
+              "type": "string",
+              "description": "(Optional) - Hardware platform used for reconstruction to be selected between CPU and GPU.",
+              "enum": [
+                "CPU",
+                "GPU"
+              ]
+            },
+            "tomographicProjectionFilter": {
+              "type": "string",
+              "description": "(Optional) - Name of the tomographic projection filter used to be selected from Ram-Lak Filter, Butterworth Filter, Shepp-Logan Filter, Hann (Hanning) Filter, Gaussian Filter, Cosine Filter, Soft Filtration Method and Hard Filtration Method.",
+              "enum": [
+                "Ram-Lak Filter",
+                "Butterworth Filter",
+                "Shepp-Logan Filter",
+                "Hann (Hanning) Filter",
+                "Gaussian Filter",
+                "Cosine Filter",
+                "Soft Filtration Method",
+                "Hard Filtration Method"
+              ]
+            },
+            "projectionPadding": {
+              "type": "object",
+              "description": "(Optional) - Details regarding the projection padding applied to the raw projection data to address certain issues in the reconstruction process.",
+              "additionalProperties": false,
+              "properties": {
+                "paddingType": {
+                  "type": "string",
+                  "description": "(Required) - Type of the projection padding used - Zero Padding, Linear Interpolation Padding, Sinc Interpolation Padding, Shepp-Logan Filtered Back Projection (SL-FBP), Gridding and Extended Field of View (FOV) Padding.",
+                  "enum": [
+                    "Zero Padding",
+                    "Linear Interpolation Padding",
+                    "Sinc Interpolation Padding",
+                    "Shepp-Logan Filtered Back Projection (SL-FBP)",
+                    "Gridding",
+                    "Extended Field of View (FOV) Padding"
+                  ]
+                },
+                "paddingSize": {
+                  "$ref": "#/$defs/pixelNumberType",
+                  "description": "(Required) - Size of the projection padding used in pixels."
+                }
+              }
+            },
+            "additionalFilters": {
+              "filterType": {
+                "type": "string",
+                "description": "(Optional) - Type of the additional filter - Median or Gauss",
+                "enum": [
+                  "Median",
+                  "Gauss"
+                ]
+              },
+              "ringFilter": {
+                "type": "string",
+                "description": "(Optional) - Relevant parameters as a string."
+              },
+              "beamHardeningCorrection": {
+                "type": "string",
+                "description": "(Optional) - Relevant parameters as a string."
+              },
+              "phaseRetrieval": {
+                "type": "string",
+                "description": "(Optional) - Relevant parameters as a string."
+              }
+            }
+          },
+          "required": [
+            "startImage",
+            "lastImage",
+            "startAngle",
+            "hardwarePlatform",
+            "algorithm",
+            "binning"
+          ]
+        }
+      },
+      "required": [
+        "volumeStructure",
+        "reconstructionDetails"
+      ]
+    },
+    "energyDetails": {
+      "type": "object",
+      "description": "describes an energy.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - The energy expressed as an integer or floating point value of datatype number"
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "meV",
+            "eV",
+            "keV",
+            "MeV",
+            "nJ",
+            "mJ",
+            "µJ",
+            "J",
+            "kJ",
+            "MJ"
+          ],
+          "description": "(Required) - the unit of the value to be selected from a controlled list (meV, eV, keV, MeV, nJ, µJ, mJ, J, kJ, MJ)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertaintyDetails",
+          "description": "(Optional) - Uncertainty in the value defined separately as uncertaintyDetails giving the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a number."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string."
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    }
+  }
+}
