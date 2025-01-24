@@ -1,0 +1,10 @@
+{
+    "links": {
+      "self": "https://zenodo.org/api/files/2e8ca55b-dfe8-45fd-93a1-d79d5500528f/BCR425-280-1.LIS"
+    }, 
+    "checksum": "md5:d1a83d135eb91011c1a68cfaaeff96d1", 
+    "bucket": "2e8ca55b-dfe8-45fd-93a1-d79d5500528f", 
+    "key": "BCR425-280-1.LIS", 
+    "type": "lis", 
+    "size": 177197
+  }
