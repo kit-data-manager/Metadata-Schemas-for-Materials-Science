@@ -257,7 +257,7 @@
           "$ref": "#/$defs/angleDetails",
           "description": "(Optional) - If the sample is tilted, the image is compressed in the vertical direction, i.e. the pixels are not isotropic anymore. Tilt correction adapts the line spacing of the scanning to compensate for this. IRI:https://purls.helmholtz-metadaten.de/emg/00000037"
         },
-        "preTilt ": {
+        "preTilt": {
           "$ref": "#/$defs/angleDetails",
           "description": "(Optional) - Sometimes, pre-tilted holders are used and the pretilt angle must be given in the acquisition software because actual tilt = stage tilt plus pretilt."
         },
