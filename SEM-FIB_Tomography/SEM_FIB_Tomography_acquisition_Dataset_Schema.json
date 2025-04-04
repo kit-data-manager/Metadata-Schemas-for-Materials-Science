@@ -782,7 +782,7 @@
           "description": "(Optional) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m).",
           "enum": [
             "nm",
-            "um",
+            "µm",
             "mm",
             "cm",
             "m"
