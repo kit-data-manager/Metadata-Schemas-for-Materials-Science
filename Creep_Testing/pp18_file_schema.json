@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/blob/faeeb3856a267e10bd94c904a5e763ba3ad1e9fe/Reference_Dataset_Zenodo/pp18_file_schema.json",
+  "type": "object",
+  "description": "This JSON Schema describes the metadata of a single file in the reference dataset by BAM on Zenodo",
+  "title": "Metadata Schema of BAM reference data (individual files)",
+  "properties": {
+    "links": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "string",
+          "description": "(Required) - URL/ link to the document"
+        }
+      },
+      "required": [
+        "self"
+      ]
+    },
+    "checksum": {
+      "type": "string",
+      "description": "(Required) - checksum of the document"
+    },
+    "bucket": {
+      "type": "string",
+      "description": "(Required) - string indicating the dataset in which the document is contained"
+    },
+    "key": {
+      "type": "string",
+      "description": "(Required) - key of the document (File name)"
+    },
+    "type": {
+      "type": "string",
+      "description": "(Required) - File type of the document"
+    },
+    "size": {
+      "type": "number",
+      "description": "(Required) - Size of the document in bytes"
+    }
+  },
+  "required": [
+    "links",
+    "checksum",
+    "bucket",
+    "key",
+    "type",
+    "size"
+  ]
+}
