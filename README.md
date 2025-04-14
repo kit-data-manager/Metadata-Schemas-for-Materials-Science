@@ -33,3 +33,6 @@ Sample files are also provided which are written according to the respective sch
  * [Acquistion Main JSON](SEM-FIB_Tomography/SEM_FIB_Tomography_Acquisition_Main.json)
  * [Acquistion Dataset JSON](SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json)
  * [Acquistion Image JSON](SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json)
+
+7. Schema for Advanced Photoelectric Effect - High Energy (APE-HE)
+  * [JSON Schema](APE-HE/APE_HE_Schema.json)
