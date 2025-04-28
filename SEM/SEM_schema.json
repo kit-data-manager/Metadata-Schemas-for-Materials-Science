@@ -524,11 +524,13 @@
         },
         "accelerationVoltage": {
           "$ref": "#/$defs/voltageDetails",
-          "description": "(Required) - the voltage with which the e-beam is accelerated, defined separately as voltageDetails, (includes the voltage value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - µV, mv, V, kV, MV)"
+          "URI": "https://purls.helmholtz-metadaten.de/emg/EMG_00000004",
+          "description": "The potential difference between anode and cathode."
         },
         "beamCurrent": {
           "$ref": "#/$defs/currentDetails",
-          "description": "(Optional) - the measured current of the e-beam, defined separately as currentDetails (includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)"
+          "URI": "https://purls.helmholtz-metadaten.de/emg/EMG_00000006",
+					"description": "Electrical current which flows along the beam path."
         },
         "highCurrent": {
           "type": "boolean",
@@ -699,7 +701,8 @@
         },
         "eBeamWorkingDistance": {
           "$ref": "#/$defs/distanceDetails",
-          "description": "(Required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample) defined separately as distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, um, mm, cm and m"
+          "URI": "https://purls.helmholtz-metadaten.de/emg/EMG_00000050",
+					"description": "Distance which is determined along the optical axis within the column from (1) the lower end of the final optical element between the source and the specimen stage; to (2) the point where the beam is focused."
         }
       },
       "required": [
@@ -770,7 +773,8 @@
         },
         "dwellTime": {
           "$ref": "#/$defs/timeDetails",
-          "description": "(Optional) - the dwell time of the beam per pixel, defined separately as  timeDetails"
+          "URI": "https://purls.helmholtz-metadaten.de/emg/EMG_00000015",
+					"description": "Time period during which the beam remains at one position."
         },
         "cycleTime": {
           "$ref": "#/$defs/timeDetails",
