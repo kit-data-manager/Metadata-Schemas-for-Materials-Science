@@ -53,13 +53,13 @@
 				},
 				"equipment": {
 					"type": "string",
-          "IRI": "https://purls.helmholtz-metadaten.de/evoks/mng/equipment",
+          			"IRI": "https://purls.helmholtz-metadaten.de/evoks/mng/equipment",
 					"description": "(Optional) - Any kind of physical or virtual item, device, machine or other tools used to perform one or more Fabrication(s), Sample Preparation(s), Model Preparation(s), Data Acquisition(s) and/or any of the processes included in the Data Analysis Lifecycle. Usually, the Equipment is located in a Laboratory hosted by an Institution and/or can be virtually or remotely accessed. Equipment is usually an investment. According to this definition, an Instrument is a particular type of Equipment."
 				},
 				"consumables": {
 					"type": "array",
 					"minItems": 1,
-          "IRI": "https://purls.helmholtz-metadaten.de/evoks/mng/consumable",
+         		 	"IRI": "https://purls.helmholtz-metadaten.de/evoks/mng/consumable",
 					"description": "(Optional) - Auxiliary entity used during Fabrication, Sample Preparation or Measurement which has a limited time capacity or is limited in its number of uses before it is disposed of, necessary to the process itself and normally bought from third party manufacturers. Examples are: gloves, syringes, wipes, etching solutions, glass slides, spatulas, weighing paper, two-sided tape.",
 					"items": {
 						"type": "string"
@@ -142,7 +142,7 @@
 				},
 				"instrument": {
 					"$ref": "#/$defs/instrumentDetails",
-          "IRI": "https://purls.helmholtz-metadaten.de/evoks/mng/instrument",
+          			"IRI": "https://purls.helmholtz-metadaten.de/evoks/mng/instrument",
 					"description": "(Required)- Details concerning the instrument settings"
 				}
 			},
@@ -779,7 +779,7 @@
 				},
 				"dwellTime": {
 					"$ref": "#/$defs/timeDetails",				
-          "IRI": "https://purls.helmholtz-metadaten.de/emg/EMG_00000015",
+         		 	"IRI": "https://purls.helmholtz-metadaten.de/emg/EMG_00000015",
 					"description": "Time period during which the beam remains at one position."
 				},
 				"cycleTime": {
