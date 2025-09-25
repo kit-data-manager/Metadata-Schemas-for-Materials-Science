@@ -1,6 +1,5 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/CT/lab_CT.json",
   "type": "object",
   "description": "This JSON Schema describes a nano or micro - computed tomography (CT) measurement done using the instrumentation in a lab using an x-ray tube as a source. The same schema can also be used for an SEM based CT measurement where the x-rays emitted by a material upon interaction with the electron beam from the electron microscope, are used for generating CT images of a sample. For synchrotron based CT, use the synchrotron CT schema provided separately in the same folder as this schema. The cardinality (required or optional) of all metadata is defined and wherever possible a list of controlled vocabularies is provided. Contributors (in alphabetical order of last names): Alexey Boubnov, Rafaela Debastiani, Jonas Fell, Sarah Irvine, Reetu Elza Joseph.",
   "properties": {
