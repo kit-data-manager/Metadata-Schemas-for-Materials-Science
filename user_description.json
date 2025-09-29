@@ -62,31 +62,9 @@
                     "type":"string",
                     "description":"(Optional) - Department within an institution"
                 },
-                "institutionID":
-                {
-                     "type": "object",
-                     "description": "(Optional) -Identifier of the institution to which the user is affiliated",
-                      "properties": {
-                        "identifierValue": 
-                        {
-                            "type": "string",
-                            "description": "(Optional) - String containing the value of an identifier"
-                        },
-                        "identifierType": 
-                        {
-                            "type": "string",
-                            "description": "(Optional) - Type of the identifier to be chosen from a controlled list of values (*ROR *GRID *ISNI *URL *DOI *Handle)",
-                            "enum":
-                            [
-                                "ROR",
-                                "GRID",
-                                "ISNI",
-                                "URL",
-                                "DOI",
-                                "Handle"
-                            ]
-                        }
-                    }
+                "institutionID": {
+                    "$ref": "./identifier_description",
+                    "description": "(Optional) - Identifier of the institution to which the user is affiliated"
                 }
            }
         },
