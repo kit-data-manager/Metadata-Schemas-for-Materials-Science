@@ -89,7 +89,7 @@
       }
     },
     "entryID": {
-      "$ref": "#/$defs/identifier",
+      "$ref": "../identifier_description",
       "description": "(Optional, NAE) - Identifier of the metadata entry usually provided by the project or the laboratory."
     },
     "measurementTitle": {
@@ -115,7 +115,7 @@
       "description": "(Optional, NAE) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format."
     },
     "user": {
-      "$ref": "#/$defs/user",
+      "$ref": "../user_description",
       "description": "(Required, NAE)- The contact information of the user responsible for the measurement."
     },
     "instrument": {
@@ -136,30 +136,6 @@
     "instrument"
   ],
   "$defs": {
-    "identifier": {
-      "type": "object",
-      "description": "(Optional, NAE) - Details of an identifier element",
-      "additionalProperties": false,
-      "properties": {
-        "identifierValue": {
-          "type": "string",
-          "description": "(Optional, NAE) - a string containing the value of an identifier."
-        },
-        "identifierType": {
-          "type": "string",
-          "description": "(Optional, NAE) - type of the identifier to be chosen from a controlled list of values -*ROR *GRID *ISNI *URL *DOI *Handle *Internal.",
-          "enum": [
-            "ROR",
-            "GRID",
-            "ISNI",
-            "URL",
-            "DOI",
-            "Handle",
-            "Internal"
-          ]
-        }
-      }
-    },
     "program": {
       "type": "object",
       "description": "(Optional, NAE) - Details concerning the program (or software) used for aquisition.",
@@ -181,81 +157,12 @@
       "description": "(Optional, NAE) - Details concerning any revision to the xml document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format.",
       "properties": {
         "revisonID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional, NAE) - Identifier of the file."
         },
         "revisionComment": {
           "type": "string",
           "description": "(Optional, NAE)- any comments to the revision of the datatype string."
-        }
-      }
-    },
-    "user": {
-      "type": "object",
-      "additionalProperties": false,
-      "description": "Lists the contact information of the user responsible for the measurement.",
-      "properties": {
-        "userName": {
-          "type": "string",
-          "description": "(Required, NAE) - the full name of the user preferrably written in the order (familyName, givenName) defined to be of the datatype string."
-        },
-        "givenName": {
-          "type": "string",
-          "description": "(Optional, NAE)-Given name (first name) of the user."
-        },
-        "familyName": {
-          "type": "string",
-          "description": "(Optional, NAE) - Family name or last name of the user."
-        },
-        "role": {
-          "type": "string",
-          "description": "(Optional, NAE) - Role of the user to be selected from an enumerated list - *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader.",
-          "enum": [
-            "Data Curator",
-            "Instrument Scientist",
-            "Team Leader",
-            "Team Member"
-          ]
-        },
-        "affiliation": {
-          "$ref": "#/$defs/institutionDetails",
-          "description": "(Optional, NAE) - Details of the institution to which the user is affiliated."
-        },
-        "email": {
-          "type": "string",
-          "format": "email",
-          "description": "(Optional, NAE) - Email of the userof datatype string (only valid email-ids are acceptable)."
-        },
-        "ORCID": {
-          "type": "string",
-          "description": "(Optional, NAE) - Open Researcher and Contributor ID expressed as a URI.",
-          "pattern": "^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
-        }
-      },
-      "required": [
-        "userName"
-      ]
-    },
-    "institutionDetails": {
-      "type": "object",
-      "additionalProperties": false,
-      "description": "Details of the institution to which the user is affiliated.",
-      "properties": {
-        "institutionName": {
-          "type": "string",
-          "description": "(Optional, NAE) - Full name of an institution of datatype string."
-        },
-        "institutionAcronym": {
-          "type": "string",
-          "description": "(Optional, NAE) - Acronym of the institution of datatype string. Note that authors often cite with acronyms, so this information can be important in matching a query."
-        },
-        "institutionDepartment": {
-          "type": "string",
-          "description": "(Optional, NAE)- The department within an institution of datatype string."
-        },
-        "institutionID": {
-          "$ref": "#/$defs/identifier",
-          "description": "(Optional, NAE) - Identifier pertaining to the institution."
         }
       }
     },
@@ -456,7 +363,7 @@
           "description": "(Required, AE) - Name of the instrument of datatype string."
         },
         "instrumentID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional, NAE) - Identifier for the instrument."
         },
         "instrumentManufacturer": {
@@ -650,7 +557,7 @@
           "description": "(Optional, AE) - Model of the instrument of datatype string."
         },
         "manufacturerID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional, NAE) - Identifier for the manufacturer."
         }
       }
@@ -1089,7 +996,7 @@
           "description": "(Optional, AE) - Local name of the e-beam source of datatype string."
         },
         "sourceID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": " (Optional, NAE) - Identifier for the e-beam source."
         },
         "accelerationVoltage": {
@@ -1772,7 +1679,7 @@
           "description": "(Required, AE) - Name of the detector of datatype string."
         },
         "detectorID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional, NAE) - Identifier for the detector/camera."
         },
         "detectorManufacturer": {
@@ -2366,7 +2273,7 @@
           "description": "(Optional, AE) - The high tension offset applied for dual acquire sibling (if used)."
         },
         "spectrometerID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional, NAE) - Identifier for the spectrometer."
         },
         "spectrometerName": {
@@ -2393,7 +2300,7 @@
           "description": "(Optional, AE) - Name or local name of the EDXS detector, of the datatype string. E.g. superXG2"
         },
         "detectorID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional, NAE) - Identifier for the EDXS detector."
         },
         "dispersion": {

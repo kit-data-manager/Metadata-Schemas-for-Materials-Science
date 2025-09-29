@@ -4,7 +4,7 @@
   "description": "This JSON Schema describes an individual image acquired during the course of a SEM/FIB Tomography experiment.  Each image is taken using a detector (SE, BSE, EDS, EBSD) at each slice cut using FIB. This Schema contains only the parameters which are specific to the individual image. The parameters which are common to the entire set are described by another schema which describes the dataset as a whole and is located at ./SEM_FIB_Tomography_acquisition_Dataset_Schema.json.",
   "properties": {
     "entryID": {
-      "$ref": "#/$defs/identifier",
+      "$ref": "../identifier_description",
       "description": "(Optional)- Identifier of the image produced by the machine"
     },
     "fileName": {
@@ -12,7 +12,7 @@
       "description": "(Optional)- File name of the image"
     },
     "fileLink": {
-      "$ref": "#/$defs/identifier",
+      "$ref": "../identifier_description",
       "description": "(Optional)- Link to the location of the image"
     },
     "creationTime": {
@@ -130,30 +130,6 @@
         "humidity": {
           "type": "string",
           "description": "(Required)- Describes the humidity in the chamber during the measurement"
-        }
-      }
-    },
-    "identifier": {
-      "type": "object",
-      "description": "(Optional) - Details of an identifier element.",
-      "additionalProperties": false,
-      "properties": {
-        "identifierValue": {
-          "type": "string",
-          "description": "(Optional) - String containing the value of an identifier"
-        },
-        "identifierType": {
-          "type": "string",
-          "description": "(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle *String",
-          "enum": [
-            "ROR",
-            "GRID",
-            "ISNI",
-            "URL",
-            "DOI",
-            "Handle",
-            "String"
-          ]
         }
       }
     },

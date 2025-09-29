@@ -88,11 +88,11 @@
       }
     },
     "entryID": {
-      "$ref": "#/$defs/identifier",
+      "$ref": "../identifier_description",
       "description": "(Optional) - Identifier of the metadata entry usually provided by the project or the laboratory."
     },
     "experimentID": {
-      "$ref": "#/$defs/identifier",
+      "$ref": "../identifier_description",
       "description": "(Optional) - Identifier of the measurement usually provided by the project or the laboratory."
     },
     "title": {
@@ -118,7 +118,7 @@
       "description": "(Optional) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format."
     },
     "user": {
-      "$ref": "#/$defs/user",
+      "$ref": "../user_description",
       "description": "(Required)- The contact information of the user responsible for the measurement."
     },
     "measurementConditions": {
@@ -147,29 +147,6 @@
     "data"
   ],
   "$defs": {
-    "identifier": {
-      "type": "object",
-      "description": "(Optional) - Details of an identifier element.",
-      "additionalProperties": false,
-      "properties": {
-        "identifierValue": {
-          "type": "string",
-          "description": "(Optional) - String containing the value of an identifier"
-        },
-        "identifierType": {
-          "type": "string",
-          "description": "(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
-          "enum": [
-            "ROR",
-            "GRID",
-            "ISNI",
-            "URL",
-            "DOI",
-            "Handle"
-          ]
-        }
-      }
-    },
     "program": {
       "type": "object",
       "description": "(Optional) - Details concerning the program (or software) used for aquisition.",
@@ -191,94 +168,12 @@
       "description": "(Optional) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format.",
       "properties": {
         "revisonID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional) - Identifier of the file"
         },
         "revisionComment": {
           "type": "string",
           "description": "(Optional)- Any comments to the revision"
-        }
-      }
-    },
-    "user": {
-      "description": "Basic schema for user description. It can be extended.",
-      "type": "object",
-      "required": [
-        "userName",
-        "role"
-      ],
-      "properties": {
-        "userName": {
-          "type": "string",
-          "description": "(Required) - Full name of the user in the format (Family Name, Given Name)"
-        },
-        "givenName": {
-          "type": "string",
-          "description": "(Optional) - Given name of the user"
-        },
-        "familyName": {
-          "type": "string",
-          "description": "(Optional) - Family name of the user"
-        },
-        "role": {
-          "type": "string",
-          "description": "(Required) - Role of the research user",
-          "enum": [
-            "Data Curator",
-            "Instrument Scientist",
-            "Team Leader",
-            "Team Member"
-          ]
-        },
-        "affiliation": {
-          "type": "object",
-          "description": "(Optional) - Details of the institution to which the user is affiliated",
-          "properties": {
-            "institutionName": {
-              "type": "string",
-              "description": "(Optional) - Full name of the institution"
-            },
-            "institutionAcronym": {
-              "type": "string",
-              "description": "(Recommended) - Acronym of the institution"
-            },
-            "institutionDepartment": {
-              "type": "string",
-              "description": "(Optional) - Department within an institution"
-            },
-            "institutionID": {
-              "type": "object",
-              "description": "(Optional) -Identifier of the institution to which the user is affiliated",
-              "properties": {
-                "identifierValue": {
-                  "type": "string",
-                  "description": "(Optional) - String containing the value of an identifier"
-                },
-                "identifierType": {
-                  "type": "string",
-                  "description": "(Optional) - Type of the identifier to be chosen from a controlled list of values (*ROR *GRID *ISNI *URL *DOI *Handle)",
-                  "enum": [
-                    "ROR",
-                    "GRID",
-                    "ISNI",
-                    "URL",
-                    "DOI",
-                    "Handle"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "email": {
-          "type": "string",
-          "description": "(Optional) - Email of the user",
-          "format": "email"
-        },
-        "ORCID": {
-          "type": "string",
-          "description": "(Optional) - Open Researcher and Contributor ID expressed as a URI",
-          "pattern": "^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
         }
       }
     },
@@ -805,7 +700,7 @@
           "description": "(Required) - Name of the instrument."
         },
         "instrumentID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional) - Identifier of the instrument."
         },
         "instrumentManufacturer": {
@@ -836,7 +731,7 @@
                 },
                 "tubeID": {
                   "description": "(Optional) - Identifier of the X-ray tube.",
-                  "$ref": "#/$defs/identifier"
+                  "$ref": "../identifier_description"
                 },
                 "tubeManufacturer": {
                   "description": "(Optional) - Details regarding the manufacturer of the X-ray tube.",
@@ -1570,7 +1465,7 @@
           "description": "(Optional) - Model of the instrument"
         },
         "manufacturerID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional) - Identifier of the manufacturer"
         }
       }
@@ -2088,7 +1983,7 @@
           "description": "(Required) - Describes the details of the manufacturer of the detector (manufacturerName, modelName and manufacturerID) as part of manufacturerDetails."
         },
         "detectorID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional) - Identifier for the detector."
         },
         "detectorType": {
@@ -2155,7 +2050,7 @@
               "description": "(Optional) - Name of the sensor of datatype string."
             },
             "sensorID": {
-              "$ref": "#/$defs/identifier",
+              "$ref": "../identifier_description",
               "description": "(Optional) - Identifier for the sensor."
             },
             "sensorManufacturer": {
@@ -2189,7 +2084,7 @@
               "description": "(Optional) - Name of the lens of datatype string."
             },
             "lensID": {
-              "$ref": "#/$defs/identifier",
+              "$ref": "../identifier_description",
               "description": "(Optional) - Identifier for the lens."
             },
             "lensManufacturer": {
@@ -2306,7 +2201,7 @@
                   "description": "(Required) - Name of the Projection Image Data."
                 },
                 "imageID": {
-                  "$ref": "#/$defs/identifier",
+                  "$ref": "../identifier_description",
                   "description": "(Optional) - Identifier of the Image Data."
                 },
                 "imageFormats": {
@@ -2487,7 +2382,7 @@
               "description": "(Required) - Name of the 3D volume structure (dataset)."
             },
             "volumeID": {
-              "$ref": "#/$defs/identifier",
+              "$ref": "../identifier_description",
               "description": "(Optional) - Identifier of the metadata entry of the 3D reconstructed volume usually provided by the project or the laboratory."
             },
             "dimensions": {

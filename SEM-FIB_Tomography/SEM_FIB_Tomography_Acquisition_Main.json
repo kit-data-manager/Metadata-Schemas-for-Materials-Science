@@ -111,7 +111,7 @@
               "description": "(Optional)- Details concerning the program (or software) used for aquisition"
             },
             "applicationID": {
-              "$ref": "#/$defs/identifier",
+              "$ref": "../identifier_description",
               "description": "(Optional)- Details concerning the program (or software) used for aquisition"
             },
             "fileVersion": {
@@ -123,7 +123,7 @@
               "description": "The name of the project containing the acquistion datasets"
             },
             "projectID": {
-              "$ref": "#/$defs/identifier",
+              "$ref": "../identifier_description",
               "description": "(Optional)- Details concerning the program (or software) used for aquisition"
             },
             "projectDescription": {
@@ -235,30 +235,6 @@
         "programVersion": {
           "type": "string",
           "description": "(Optional) - Program (or software) version number"
-        }
-      }
-    },
-    "identifier": {
-      "type": "object",
-      "description": "(Optional) - Details of an identifier element.",
-      "additionalProperties": false,
-      "properties": {
-        "identifierValue": {
-          "type": "string",
-          "description": "(Optional) - String containing the value of an identifier"
-        },
-        "identifierType": {
-          "type": "string",
-          "description": "(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle *String",
-          "enum": [
-            "ROR",
-            "GRID",
-            "ISNI",
-            "URL",
-            "DOI",
-            "Handle",
-            "String"
-          ]
         }
       }
     },

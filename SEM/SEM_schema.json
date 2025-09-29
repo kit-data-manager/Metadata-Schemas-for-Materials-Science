@@ -102,7 +102,7 @@
           }
         },
         "entryID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "entryID (Optional)- Identifier of the measurement usually provided by the project or the laboratory"
         },
         "title": {
@@ -128,7 +128,7 @@
           "description": "(Optional)- Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format"
         },
         "user": {
-          "$ref": "#/$defs/user",
+          "$ref": "../user_description",
           "description": "(Required)- The contact information of the user responsible for the measurement"
         },
         "instrument": {
@@ -147,29 +147,7 @@
         "instrument"
       ]
     },
-    "identifier": {
-      "type": "object",
-      "description": "(Optional) - Details of an identifier element.",
-      "additionalProperties": false,
-      "properties": {
-        "identifierValue": {
-          "type": "string",
-          "description": "(Optional) - String containing the value of an identifier"
-        },
-        "identifierType": {
-          "type": "string",
-          "description": "(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
-          "enum": [
-            "ROR",
-            "GRID",
-            "ISNI",
-            "URL",
-            "DOI",
-            "Handle"
-          ]
-        }
-      }
-    },
+    
     "program": {
       "type": "object",
       "description": "(Optional) - Details concerning the program (or software) used for aquisition.",
@@ -191,81 +169,12 @@
       "description": "(Optional) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format.",
       "properties": {
         "revisonID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional) - Identifier of the file"
         },
         "revisionComment": {
           "type": "string",
           "description": "(Optional)- Any comments to the revision"
-        }
-      }
-    },
-    "user": {
-      "type": "object",
-      "additionalProperties": false,
-      "description": "Contact information of the user responsible for the measurement.",
-      "properties": {
-        "userName": {
-          "type": "string",
-          "description": "(Required) - Full name of the user in the format (Family Name, Given Name)"
-        },
-        "givenName": {
-          "type": "string",
-          "description": "(Optional) - Given name of the user"
-        },
-        "familyName": {
-          "type": "string",
-          "description": "(Optional) - Family name of the user"
-        },
-        "role": {
-          "type": "string",
-          "description": "(Optional) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Principal Investigator *Project Member *Research User *Site Leader *Work Package Leader",
-          "enum": [
-            "Data Curator",
-            "Instrument Scientist",
-            "Team Leader",
-            "Team Member"
-          ]
-        },
-        "affiliation": {
-          "$ref": "#/$defs/institutionDetails",
-          "description": "(Optional) - Details of the institution to which the user is affiliated"
-        },
-        "email": {
-          "type": "string",
-          "description": "(Optional) - Email of the user",
-          "format": "email"
-        },
-        "ORCID": {
-          "type": "string",
-          "description": "(Optional) - Open Researcher and Contributor ID expressed as a URI",
-          "pattern": "^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
-        }
-      },
-      "required": [
-        "userName"
-      ]
-    },
-    "institutionDetails": {
-      "type": "object",
-      "additionalProperties": false,
-      "description": "(Optional) - Details of the institution to which the user is affiliated.",
-      "properties": {
-        "institutionName": {
-          "type": "string",
-          "description": "(Optional) - Full name of the institution"
-        },
-        "institutionAcronym": {
-          "type": "string",
-          "description": "(Recommended) - Acronym of the institution"
-        },
-        "institutionDepartment": {
-          "type": "string",
-          "description": "(Optional) - Department within an institution"
-        },
-        "institutionID": {
-          "$ref": "#/$defs/identifier",
-          "description": "(Optional) - Identifier pertaining to the institution (e.g. ROR)"
         }
       }
     },
@@ -385,7 +294,7 @@
           "description": "(Optional) - Short description of the sample preparation"
         },
         "preparationID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional) - Identifier of the sample preparation"
         }
       }
@@ -400,7 +309,7 @@
           "description": "(Required) - Name of the instrument"
         },
         "instrumentID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional) - Identifier of the instrument"
         },
         "instrumentManufacturer": {
@@ -459,7 +368,7 @@
           "description": "(Optional) - Model of the instrument"
         },
         "manufacturerID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional) - Identifier of the manufacturer"
         }
       }
@@ -515,7 +424,7 @@
           "description": "(Optional) - name of the e-beam source of datatype string"
         },
         "sourceID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional) - identifier for the e-beam source"
         },
         "accelerationVoltage": {
@@ -1040,7 +949,7 @@
           "description": "(Required) -Name of the detector of datatype string"
         },
         "detectorID": {
-          "$ref": "#/$defs/identifier",
+          "$ref": "../identifier_description",
           "description": "(Optional) - Identifier for the detector"
         },
         "detectorManufacturer": {
