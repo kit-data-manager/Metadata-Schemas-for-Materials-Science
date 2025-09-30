@@ -22,7 +22,7 @@ jobs:
               SCHEMA_PATH="APE-HE/APE_HE_Schema.json"
               ;;
             "CT")
-              SCHEMA_PATH="CT/lab_ct.json"
+              SCHEMA_PATH="CT/lab_CT.json"
               ;;
             "MRI")
               SCHEMA_PATH="MRI/MRI_schema.json"
