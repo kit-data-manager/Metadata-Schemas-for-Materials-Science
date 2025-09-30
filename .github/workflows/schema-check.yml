@@ -35,7 +35,12 @@ jobs:
             | jq -r '.[] | select(.tag_name | startswith("${{ matrix.tagPrefix }}")) | .tag_name' \
             | sort -rV | head -n 1)
           echo "Latest tag: $LATEST_TAG"
-          echo "previousVersion=$LATEST_TAG" >> $GITHUB_ENV
+          if [ -n "$LATEST_TAG" ]; then
+            echo "previousVersion=$LATEST_TAG" >> $GITHUB_ENV
+          else
+            echo "No matching tag found for prefix: ${{ matrix.tagPrefix }}"
+            echo "previousVersion=unavailable" >> $GITHUB_ENV
+
 
       - name: JSON Schema Check
         uses: kit-data-manager/json-schema-check-action@dev_schema_2019-2020
