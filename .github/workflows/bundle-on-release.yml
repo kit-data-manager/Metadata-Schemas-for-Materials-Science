@@ -15,7 +15,7 @@ jobs:
         id: map_schema
         run: |
           TAG_NAME="${{ github.event.release.tag_name }}"
-          PREFIX=$(echo "$TAG_NAME" | cut -d'/' -f1)
+          PREFIX=$(echo "$TAG_NAME" | cut -d'_' -f1)
 
           case "$PREFIX" in
             "APE-HE")

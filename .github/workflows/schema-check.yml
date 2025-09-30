@@ -12,17 +12,17 @@ jobs:
       matrix:
         include:
           - schemaPath: 'APE-HE/APE_HE_Schema.json'
-            tagPrefix: 'APE-HE/'
+            tagPrefix: 'APE-HE_'
           - schemaPath: 'CT/lab_CT.json'
-            tagPrefix: 'CT/'
+            tagPrefix: 'CT_'
           - schemaPath: 'MRI/MRI_schema.json'
-            tagPrefix: 'MRI/'
+            tagPrefix: 'MRI_'
           - schemaPath: 'SEM-FIB_Tomography/SEM_FIB_Tomography_Acquisition_Main.json'
-            tagPrefix: 'SEM-FIB/'        
+            tagPrefix: 'SEM-FIB_'
           - schemaPath: 'SEM/SEM_schema.json'
-            tagPrefix: 'SEM/'
+            tagPrefix: 'SEM_'
           - schemaPath: 'TEM/TEM_schema.json'
-            tagPrefix: 'TEM/'            
+            tagPrefix: 'TEM_'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v5
