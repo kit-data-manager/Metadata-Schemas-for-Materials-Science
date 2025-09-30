@@ -38,7 +38,7 @@ jobs:
           echo "previousVersion=$LATEST_TAG" >> $GITHUB_ENV
 
       - name: JSON Schema Check
-        uses: kit-data-manager/json-schema-check-action@v0.0.5
+        uses: kit-data-manager/json-schema-check-action@dev_schema_2019-2020
         with:
           schemaPath: ${{ matrix.schemaPath }}
           validate: true
