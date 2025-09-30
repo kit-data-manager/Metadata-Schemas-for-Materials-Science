@@ -1,0 +1,51 @@
+name: Bundle Schema on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  on-release-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Map tag to schema file
+        id: map_schema
+        run: |
+          TAG_NAME="${{ github.event.release.tag_name }}"
+          PREFIX=$(echo "$TAG_NAME" | cut -d'/' -f1)
+
+          case "$PREFIX" in
+            "APE-HE")
+              SCHEMA_PATH="APE-HE/APE_HE_Schema.json"
+              ;;
+            "CT")
+              SCHEMA_PATH="CT/lab_ct.json"
+              ;;
+            "MRI")
+              SCHEMA_PATH="MRI/MRI_schema.json"
+              ;;            
+            "SEM-FIB")
+              SCHEMA_PATH="SEM-FIB_Tomography/SEM_FIB_Tomography_Acquisition_Main.json"
+              ;;
+            "SEM")
+              SCHEMA_PATH="SEM/SEM_schema.json"
+              ;;              
+            "TEM")
+              SCHEMA_PATH="TEM/TEM_schema.json"
+              ;;
+              *)
+              echo "Unknown schema prefix: $PREFIX"
+              exit 1
+              ;;
+          esac
+
+          echo "schema_path=$SCHEMA_PATH" >> $GITHUB_OUTPUT
+
+      - name: JSON Schema Release Bundle
+        uses: kit-data-manager/json-schema-check-action@v0.0.5
+        with:
+          schemaPath: ${{ steps.map_schema.outputs.schema_path }}
+          token: ${{ secrets.GITHUB_TOKEN }}
