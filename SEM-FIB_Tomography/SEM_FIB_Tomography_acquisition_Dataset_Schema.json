@@ -1,0 +1,902 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "type": "object",
+  "description": "This JSON Schema describes a set of images acquired during the course of a SEM/FIB Tomography experiment.  The images in each dataset is taken using a detector (SE, BSE, EDS, EBSD) using a specific configuration. This Schema contains only the parameters which are specific to the entire dataset. The parameters which are particular to each image is located at https://raw.githubusercontent.com/kit-data-manager/Metadata-Schemas-for-Materials-Science/main/SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json. The units are by default to be considred as the SI units unless otherwise specified",
+  "properties": {
+    "entryID": {
+      "$ref": "#/$defs/identifier",
+      "description": "(Optional)- Identifier of the dataset. It could be the PID of location where the entire dataset is stored"
+    },
+    "definition": {
+      "type": "string",
+      "description": "(Optional)- Name of the schema to which this entry conforms. In this case, acquisition_dataset is to be written"
+    },
+    "user": {
+      "$ref": "../user_description.json",
+      "description": "(Optional)- The contact information of the user responsible for the measurement"
+    },
+    "program": {
+      "$ref": "#/$defs/program",
+      "description": "(Required)- Details concerning the program (or software) used for aquisition"
+    },
+    "instrument": {
+      "$ref": "#/$defs/instrumentDetails",
+      "description": "(Required)- Details concerning the instrument settings"
+    },
+    "datasetType": {
+      "type": "string",
+      "description": "(Optional) - To be selected from the enumerated list depending on the detector and the angle at which the sample is measured: * SEM Image * SEM Image 2 * EDS * EBSD * BSE * ISE * ISI * SI * InLens * SESI",
+      "enum": [
+        "SEM Image",
+        "SEM Image 2",
+        "SEM Image 3",
+        "SEM Image 4",
+        "SEM Image 5",
+        "EDS",
+        "EBSD",
+        "BSE",
+        "ISE Image",
+        "ISI Image",
+        "SI Image",
+        "InLens",
+        "SESI",
+        "FIB Image",
+        "FIB Multi-Detector Image-Q1",
+        "FIB Multi-Detector Image-Q2",
+        "SEM Multi-Detector Image-Q1",
+        "SEM Multi-Detector Image-Q2"
+      ]
+    },
+    "numberOfItems": {
+      "description": "(Required) - Number of Items (images, files). Depends on the number of slices",
+      "type": "number"
+    },
+    "rows": {
+      "type": "number",
+      "description": "(Optional) - Number of rows in the tiled image grab setting"
+    },
+    "columns": {
+      "type": "number",
+      "description": "(Optional) - Number of column in the tiled image grab setting"
+    },
+    "tileColumn": {
+      "type": "number",
+      "description": "(Optional) - The selected column in the tiled image grab setting"
+    },
+    "tileRow": {
+      "type": "number",
+      "description": "(Optional) - The selected row in the tiled image grab setting"
+    },
+    "images": {
+      "type": "array",
+      "desription": "(Required) - Array containing the images and their specific parameters. No. of images in the array is described by the numberOfItems parameter at the entry level of this schema",
+      "items": {
+        "$ref": "./SEM_FIB_Tomography_acquisition_Image_Schema.json"
+      }
+    }
+  },
+  "required": [
+    "program",
+    "instrument",
+    "datasetType",
+    "images",
+    "numberOfItems"
+  ],
+  "title": "acquisition_dataset",
+  "$defs": {
+    "program": {
+      "type": "object",
+      "description": "(Optional) - Details concerning the program (or software) used for aquisition.",
+      "additionalProperties": false,
+      "properties": {
+        "programName": {
+          "type": "string",
+          "description": "(Optional) - Name of the program (or software) used for acquisition"
+        },
+        "programVersion": {
+          "type": "string",
+          "description": "(Optional) - Program (or software) version number"
+        }
+      }
+    },
+    "instrumentDetails": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "(Required) - Details giving the relevant components and settings of the instrument.",
+      "properties": {
+        "beamType": {
+          "type": "string",
+          "description": "(Required) - The selected beam",
+          "enum": [
+            "EBeam",
+            "IBeam"
+          ]
+        },
+        "spot": {
+          "type": "number",
+          "description": "(Optional) - Qualitative index for beam current. Varies with current setting, i.e. 1.6 nA is spot = 1, 3.2 nA is spot = 2, 0.1 nA = spot =-3, so it can also be negative. May vary between different microscope models."
+        },
+        "eBeam": {
+          "$ref": "#/$defs/eBeamDetails",
+          "description": "(Optional) - Details about the electron beam"
+        },
+        "iBeam": {
+          "$ref": "#/$defs/iBeamDetails",
+          "description": "(Optional) - Details about the ion beam"
+        },
+        "scan": {
+          "$ref": "#/$defs/scanDetails",
+          "description": "(Required) - Details about the scan settings"
+        },
+        "imaging": {
+          "$ref": "#/$defs/imageDetails",
+          "description": "(Optional) - Details about the imaging settings"
+        },
+        "numberOfDetectors": {
+          "type": "number",
+          "description": "Number of detectors used for the acquisition"
+        },
+        "detector": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/detectorDetails",
+              "description": "(Required) - Details about the detector used for acquisition."
+            },
+            {
+              "type": "array",
+              "description": "(Required) - Details about the detector(s) used for acquisition.",
+              "items": {
+                "$ref": "#/$defs/detectorDetails"
+              },
+              "minItems": 1
+            }
+          ]
+        },
+        "hotStageMEMS": {
+          "$ref": "#/$defs/hotStageMEMSDetails",
+          "description": "(Optional) - Pressure maintained inside the chamber (in which the sample is housed) during the measurement"
+        }
+      },
+      "required": [
+        "scan",
+        "imaging",
+        "detector"
+      ]
+    },
+    "identifier": {
+      "type": "object",
+      "description": "(Optional) - Details of an identifier element.",
+      "additionalProperties": false,
+      "properties": {
+        "identifierValue": {
+          "type": "string",
+          "description": "(Optional) - String containing the value of an identifier"
+        },
+        "identifierType": {
+          "type": "string",
+          "description": "(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle *String",
+          "enum": [
+            "ROR",
+            "GRID",
+            "ISNI",
+            "URL",
+            "DOI",
+            "Handle",
+            "String"
+          ]
+        }
+      }
+    },
+    "eBeamDetails": {
+      "type": "object",
+      "description": "(Required) - Describes the configuration of the electron beam. IRI:https://purls.helmholtz-metadaten.de/EMG/00000007",
+      "additionalProperties": false,
+      "properties": {
+        "accelerationVoltage": {
+          "$ref": "#/$defs/voltageDetails",
+          "description": "(Required) - The potential difference between anode and cathode. The acceleration voltage adds kinetic energy to the particles of the beam. IRI: https://purls.helmholtz-metadaten.de/EMG/00000001 It is defined separately as voltageDetails, (includes the voltage value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)"
+        },
+        "beamCurrent": {
+          "$ref": "#/$defs/currentDetails",
+          "description": "(Optional) - Electrical current which flows along the beam path. IRI: https://purls.helmholtz-metadaten.de/EMG/00000003 It is defined separately as currentDetails (includes the current value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)."
+        },
+        "scanRotation": {
+          "$ref": "#/$defs/angleDetails",
+          "description": "(Required) - Angle by which beam scanning direction is rotated"
+        },
+        "imageMode": {
+          "type": "string",
+          "description": "(Optional) - The type of image mode used. Could be a text or number depending on the instrument."
+        },
+        "apertureSetting": {
+          "type": "object",
+          "description": "(Required) - The setting for controlling the aperture size, using either the aperture size directly or indirectly using the beam current. Therefore one of the two properties must be selected: size or current.",
+          "additionalProperties": false,
+          "properties": {
+            "size": {
+              "$ref": "#/$defs/distanceDetails",
+              "description": "(Optional) - the size (diameter) of the aperture which can be directly controlled using the instrument settings defined separately as distanceDetails."
+            },
+            "current": {
+              "$ref": "#/$defs/currentDetails",
+              "description": "(Optional) - the beam current setting which would indirectly control the size of the aperture defined separately as currentDetails"
+            }
+          }
+        },
+        "horizontalFieldWidth": {
+          "$ref": "#/$defs/distanceDetails",
+          "description": "(Required) - the actual horizontal length scanned on the sample defined separately as distanceDetails."
+        },
+        "verticalFieldWidth": {
+          "$ref": "#/$defs/distanceDetails",
+          "description": "(Required) - the actual vertical length scanned on the sample defined separately as distanceDetails."
+        },
+        "tiltCorrectionIsOn": {
+          "type": "boolean",
+          "description": "(Optional) - To bet set true if tilt correction is on. IRI:https://purls.helmholtz-metadaten.de/emg/00000037"
+        },
+        "dynamicFocusIsOn": {
+          "type": "boolean",
+          "description": "(Optional) - To bet set true if dynamic focus is on. IRI:https://purls.helmholtz-metadaten.de/emg/00000039"
+        },
+        "dynamicWDIsOn": {
+          "type": "boolean",
+          "description": "(Optional) - To bet set true if dynamic working distance is on. IRI: https://purls.helmholtz-metadaten.de/EMG/00000026"
+        },
+        "lensMode": {
+          "type": "string",
+          "description": "(Optional) - The type of image mode used",
+          "enum": [
+            "Field-Free",
+            "Immersion",
+            "EDS"
+          ]
+        },
+        "tiltCorrectionAngle": {
+          "$ref": "#/$defs/angleDetails",
+          "description": "(Optional) - If the sample is tilted, the image is compressed in the vertical direction, i.e. the pixels are not isotropic anymore. Tilt correction adapts the line spacing of the scanning to compensate for this. IRI:https://purls.helmholtz-metadaten.de/emg/00000037"
+        },
+        "preTilt": {
+          "$ref": "#/$defs/angleDetails",
+          "description": "(Optional) - Sometimes, pre-tilted holders are used and the pretilt angle must be given in the acquisition software because actual tilt = stage tilt plus pretilt."
+        },
+        "magnificationCorrection": {
+          "type": "boolean",
+          "description": "(Optional) - To bet set true if magnification correction is on"
+        }
+      },
+      "required": [
+        "accelerationVoltage",
+        "verticalFieldWidth",
+        "horizontalFieldWidth",
+        "apertureSetting",
+        "scanRotation"
+      ]
+    },
+    "iBeamDetails": {
+      "type": "object",
+      "description": "(Required) - Describes the configuration of the ion beam. IRI:https://purls.helmholtz-metadaten.de/EMG/00000016",
+      "additionalProperties": false,
+      "properties": {
+        "accelerationVoltage": {
+          "$ref": "#/$defs/voltageDetails",
+          "description": "(Required) - The potential difference between anode and cathode. The acceleration voltage adds kinetic energy to the particles of the beam. IRI:https://purls.helmholtz-metadaten.de/EMG/00000001 It is defined separately as voltageDetails, (includes the voltage value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - uV, mv, V, kV, MV)"
+        },
+        "millingCurrent": {
+          "$ref": "#/$defs/currentDetails",
+          "description": "(Optional) - Electrical current used in SEM-FIB Tomography to mill/cut the sample. In this case this is the same as the beam current of the ion beam. IRI: https://purls.helmholtz-metadaten.de/EMG/00000003 It is defined separately as currentDetails (includes the current value, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA)."
+        }
+      }
+    },
+    "scanDetails": {
+      "type": "object",
+      "description": "(Optional) - Details regarding the scan settings.",
+      "additionalProperties": false,
+      "properties": {
+        "scanType": {
+          "type": "string",
+          "description": "(Optional) - The type of scan E-Scan or I-Scan",
+          "enum": [
+            "EScan",
+            "IScan"
+          ]
+        },
+        "dwellTime": {
+          "$ref": "#/$defs/timeDetails",
+          "description": "(Required) - Time period during which the beam remains on one position/stationary. IRI: https://purls.helmholtz-metadaten.de/EMG/00000006 "
+        },
+        "internalScan": {
+          "type": "boolean",
+          "description": "(Optional) - To bet set true if internal scan is on"
+        },
+        "pixelWidth": {
+          "$ref": "#/$defs/distanceDetails",
+          "description": "(Required) - the actual width of a pixel"
+        },
+        "pixelHeight": {
+          "$ref": "#/$defs/distanceDetails",
+          "description": "(Required) - the actual width of a pixel"
+        },
+        "horizontalFieldSize": {
+          "$ref": "#/$defs/distanceDetails",
+          "description": "(Optional) -  the actual horizontal length scanned on the sample defined separately as distanceDetails"
+        },
+        "verticalFieldSize": {
+          "$ref": "#/$defs/distanceDetails",
+          "description": "(Optional) -  the actual vertical length scanned on the sample defined separately as distanceDetails"
+        },
+        "average": {
+          "type": "number",
+          "description": "(Optional) - Number of images averaged at each slice"
+        },
+        "integrate": {
+          "type": "number",
+          "description": "(Optional) - Number of images integrated at each slice"
+        },
+        "frameTime": {
+          "$ref": "#/$defs/timeDetails",
+          "description": "(Optional) -Time period during which a frame is fully scanned. IRI: https://purls.helmholtz-metadaten.de/EMG/00000014 "
+        },
+        "eScan": {
+          "type": "object",
+          "description": "gives settings pertaining to electron beam scan",
+          "additionalProperties": false,
+          "properties": {
+            "mainsLock": {
+              "type": "boolean",
+              "description": "(Optional) - To bet set true if mains lock is on"
+            },
+            "lineTime": {
+              "$ref": "#/$defs/timeDetails",
+              "description": "(Optional) -Time period during which a line is fully scanned."
+            },
+            "lineIntegration": {
+              "type": "number",
+              "description": "(Optional) - Number of lines integrated"
+            },
+            "lineAveraging": {
+              "type": "number",
+              "description": "(Optional) - Number of lines averaged"
+            },
+            "scanInterlacing": {
+              "type": "number",
+              "description": "(Optional) - Number of scans interlaced. This setting splits an imaging area into blocks defined by the number of lines (from 2 to 8). In the first instance, the first line of each block is scanned, then the second one, etc. This imaging method significantly reduces charging."
+            }
+          }
+        }
+      }
+    },
+    "imageDetails": {
+      "type": "object",
+      "description": "(Required) - describes the settings related to imaging",
+      "additionalProperties": false,
+      "properties": {
+        "digitalContrast": {
+          "type": "number",
+          "description": "(Required) - A number indicating the setting for digital contrast (a basic post-processing method)"
+        },
+        "digitalBrightness": {
+          "type": "number",
+          "description": "(Required) - A number indicating the setting for digital brightness (a basic post-processing method)"
+        },
+        "digitalGamma": {
+          "type": "number",
+          "description": "(Required) - A number indicating the setting for digital Gamma (a basic post-processing method)"
+        },
+        "numberOfPixels": {
+          "$ref": "#/$defs/pixelNumberType",
+          "description": "(Required) - The number of x, y pixels of the image (Resolution), defined separately as pixelNumberType with separate entries for integer values of xPixels and yPixels"
+        },
+        "driftcorrected": {
+          "type": "boolean",
+          "description": "(Required) - To bet set true if drift correction is on"
+        },
+        "zoomfactor": {
+          "type": "number",
+          "description": "(Required) - A number indicating the zoom factor"
+        },
+        "postprocessing": {
+          "type": "string",
+          "description": "(Optional) - Describes the post-processing performed on the image"
+        },
+        "transformation": {
+          "type": "string",
+          "description": "(Optional) - Describes the transformations performed on the image"
+        }
+      },
+      "required": [
+        "digitalContrast",
+        "digitalBrightness",
+        "digitalGamma",
+        "numberOfPixels",
+        "driftcorrected",
+        "zoomfactor"
+      ]
+    },
+    "detectorDetails": {
+      "type": "object",
+      "description": "(Required) - describes the settings related to the detector with which the image set is acquired",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "(Optional) - Name of the detector used"
+        },
+        "detectorType": {
+          "type": "string",
+          "description": "(Required) - Type of the detector used",
+          "enum": [
+            "ETD",
+            "CDEM",
+            "CBS",
+            "ECD",
+            "External",
+            "GBSD",
+            "GSED",
+            "ICE",
+            "LFD",
+            "LVD",
+            "LVSED",
+            "None",
+            "STEM3",
+            "STEM3_GMode",
+            "STEM4",
+            "T1",
+            "T2",
+            "T3",
+            "TLD"
+          ]
+        },
+        "detectorSettings": {
+          "$ref": "#/$defs/detectorSettings",
+          "description": "(Optional) - Settings of the specific detector used. E.g., the Everhart Thornley detector (ETD), is a secondary electron and back-scattered electron detector used in scanning electron microscopes, whihc has then particular settings"
+        }
+      },
+      "required": [
+        "detectorType"
+      ]
+    },
+    "detectorSettings": {
+      "type": "object",
+      "description": "describes the parameters of a detector such as the Everhart Thornley detector (ETD), which is a secondary electron and back-scattered electron detector used in scanning electron microscopes",
+      "additionalProperties": false,
+      "properties": {
+        "contrast": {
+          "type": "number",
+          "description": "(Optional) - A number indicating the contrast"
+        },
+        "brightness": {
+          "type": "number",
+          "description": "(Optional) - A number indicating the brightness"
+        },
+        "mix": {
+          "type": "number",
+          "description": "(Optional) - Signals from different detectors can be overlaid (mixed) and this should, in theory, be the percentage of this detectors contribution to the end result."
+        },
+        "signal": {
+          "type": "string",
+          "description": "(Optional) - The signal used for detection",
+          "enum": [
+            "SE",
+            "BSE",
+            "SI"
+          ]
+        },
+        "grid": {
+          "type": "number",
+          "description": "(Optional) - A number indicating the number of grid elements"
+        },
+        "gridVoltage": {
+          "$ref": "#/$defs/voltageDetails",
+          "description": "(Optional) - Voltage applied to the grid "
+        },
+        "contrastdB": {
+          "type": "number",
+          "description": "(Optional) - Describes the contrast in dB"
+        },
+        "brightnessdB": {
+          "type": "number",
+          "description": "(Optional) - Describes the brightness in dB"
+        },
+        "setting": {
+          "type": "number",
+          "description": "(Optional) - In case of ETD, this is the bias voltage applied to the detector grid. Note that this block looks different for different detectors. "
+        },
+        "frontEndVoltage": {
+          "$ref": "#/$defs/voltageDetails",
+          "description": "(Optional) - Bias voltage applied to the front end of the detector "
+        },
+        "enhancedContrast": {
+          "type": "number",
+          "description": "(Optional) - Describes the enhancement in contrast"
+        },
+        "minimumDwellTime": {
+          "$ref": "#/$defs/timeDetails",
+          "description": "(Optional) - Minimum possible dwell time for the detector. IRI: https://purls.helmholtz-metadaten.de/EMG/00000006 "
+        }
+      }
+    },
+    "hotStageMEMSDetails": {
+      "type": "object",
+      "description": "describes the parameters related if a hot stage MEMS is used",
+      "additionalProperties": false,
+      "properties": {
+        "heatingCurrent": {
+          "$ref": "#/$defs/currentDetails",
+          "description": "(Optional) - Describes the heating current used in the hot stage MEMS"
+        },
+        "heatingVoltage": {
+          "$ref": "#/$defs/voltageDetails",
+          "description": "(Optional) - Describes the heating voltage used in the hot stage MEMS"
+        },
+        "targetTemperature": {
+          "$ref": "#/$defs/temperatureDetails",
+          "description": "(Optional) - Describes the target Temperature set in the hot stage MEMS"
+        },
+        "actualTemperature": {
+          "$ref": "#/$defs/temperatureDetails",
+          "description": "(Optional) - Describes the actual Temperature measured in the hot stage MEMS"
+        },
+        "heatingPower": {
+          "$ref": "#/$defs/powerDetails",
+          "description": "(Optional) - Describes the heating power used in the hot stage MEMS"
+        },
+        "sampleBias": {
+          "$ref": "#/$defs/voltageDetails",
+          "description": "(Optional) - Describes the bias voltage applied to the sample in the hot stage MEMS"
+        },
+        "sampleResistance": {
+          "$ref": "#/$defs/resistanceDetails",
+          "description": "(Optional) - Describes the target Temperature used in the hot stage MEMS"
+        }
+      }
+    },
+    "pixelNumberType": {
+      "type": "object",
+      "description": "describes the resolution of the image split into number of pixels in x and y directions.",
+      "additionalProperties": false,
+      "properties": {
+        "xPixels": {
+          "type": "number",
+          "description": "(Required) - no. of pixels in horizontal direction of datatype number"
+        },
+        "yPixels": {
+          "type": "number",
+          "description": "(Required) - no. of pixels in vertical direction of datatype number"
+        }
+      },
+      "required": [
+        "xPixels",
+        "yPixels"
+      ]
+    },
+    "resistanceDetails": {
+      "type": "object",
+      "description": "describes a resistance",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - The resistance expressed as an integer or floating point value."
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "abohm",
+            "ohm",
+            "k ohm",
+            "M ohm"
+          ],
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (abohm, ohm, k ohm, M ohm)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "powerDetails": {
+      "type": "object",
+      "description": "describes a power",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - The power expressed as an integer or floating point value."
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "µW",
+            "mW",
+            "W",
+            "kW",
+            "MW"
+          ],
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (µW, mW, W, kW, MW)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "voltageDetails": {
+      "type": "object",
+      "description": "describes a voltage.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - The voltage expressed as an integer or floating point value."
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "uV",
+            "mV",
+            "V",
+            "kV",
+            "MV"
+          ],
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (uV, mV, V, kV, MV, GV)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "currentDetails": {
+      "type": "object",
+      "description": "Describes a current.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Optional) - Further notes about the value."
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "pA",
+            "nA",
+            "uA",
+            "mA",
+            "A"
+          ],
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (pA, nA, uA, mA, A)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value."
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "pressureDetails": {
+      "type": "object",
+      "description": "(Required) - Describes a pressure.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - Value of the pressure."
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "Pa",
+            "hPa",
+            "kPa",
+            "MPa",
+            "GPa",
+            "mbar",
+            "bar",
+            "psi"
+          ],
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (Pa, hPa, kPa, MPa, GPa, mbar, bar, psi)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value."
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "angleDetails": {
+      "type": "object",
+      "description": "describes an angle.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - The angle expressed as an integer or floating point value."
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "degree",
+            "radian"
+          ],
+          "description": "(Unit) - the unit of the value to be selected from a controlled list (degree, radian)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "distanceDetails": {
+      "type": "object",
+      "description": "(Optional) - Describes a distance, size or length.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - Value of the distance, size or length."
+        },
+        "unit": {
+          "type": "string",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (nm, µm, mm, cm, m).",
+          "enum": [
+            "nm",
+            "µm",
+            "mm",
+            "cm",
+            "m"
+          ]
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value."
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "temperatureDetails": {
+      "type": "object",
+      "description": "(Optional) - Describes a temperature.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - Value of the temperature."
+        },
+        "unit": {
+          "type": "string",
+          "description": "(Optional) - Unit of the value to be selected from a controlled list (K, ºC, ºF).",
+          "enum": [
+            "K",
+            "ºC",
+            "ºF"
+          ]
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - Qualifier to describe the value (e.g., average, maximum, minimum)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value."
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "energyDetails": {
+      "type": "object",
+      "description": "describes an energy",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - The energy expressed as an integer or floating point value"
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "nJ",
+            "mJ",
+            "J",
+            "kJ",
+            "eV",
+            "meV"
+          ],
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (nJ, mJ, J, kJ, eV, meV)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "timeDetails": {
+      "type": "object",
+      "description": "describes a time period. IRI:https://purls.helmholtz-metadaten.de/EMG/00000024",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "(Required) - The time expressed as an integer or floating point value."
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "ps",
+            "ns",
+            "us",
+            "ms",
+            "s"
+          ],
+          "description": "(Optional) - the unit of the value to be selected from a controlled list (ps, ns, us, ms, s)."
+        },
+        "qualifier": {
+          "type": "string",
+          "description": "(Optional) - A qualifier to describe the value (e.g., avg, max, min)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "(Optional) - Further notes about the value of datatype string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    }
+  }
+}

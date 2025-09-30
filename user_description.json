@@ -1,0 +1,125 @@
+{
+    "$schema":"https://json-schema.org/draft/2019-09/schema",
+    "title": "user_description",
+    "description":"Basic schema for user description. It can be extended.",
+    "type":"object",
+    "required":
+    [
+        "userName", "role"
+    ],
+    "properties":
+    {
+        "userName":
+        {
+           "type":"string",
+           "description":"(Required) - Full name of the user in the format (Family Name, Given Name)"
+        },
+        "givenName":
+        {
+           "type":"string",
+           "description":"(Optional) - Given name of the user"
+        },
+        "familyName":
+        {
+           "type":"string",
+           "description":"(Optional) - Family name of the user"
+        },
+        "age": 
+        {
+          "type": "number",
+          "description": "(Optional) - Age of the user"
+        },
+        "role":
+        {
+           "type":"string",
+           "description":"(Required) - Role of the user to be selected from: *Data Curator *Instrument Scientist *Team Leader *Team Member",
+           "enum":
+           [
+                "Data Curator",
+                "Instrument Scientist",
+                "Team Leader",
+                "Team Member"
+           ]
+        },
+        "affiliation":
+        {
+           "type": "object",
+           "description": "(Optional) - Details of the institution to which the user is affiliated",
+           "properties":
+           {
+                "institutionName":
+                {
+                    "type":"string",
+                    "description":"(Optional) - Full name of the institution"
+                },
+                "institutionAcronym":
+                {
+                    "type":"string",
+                    "description":"(Recommended) - Acronym of the institution"
+                },
+                "institutionDepartment":
+                {
+                    "type":"string",
+                    "description":"(Optional) - Department within an institution"
+                },
+                "institutionID":
+                {
+                     "type": "object",
+                     "description": "(Optional) -Identifier of the institution to which the user is affiliated",
+                      "properties": {
+                        "identifierValue": 
+                        {
+                            "type": "string",
+                            "description": "(Optional) - String containing the value of an identifier"
+                        },
+                        "identifierType": 
+                        {
+                            "type": "string",
+                            "description": "(Optional) - Type of the identifier to be chosen from a controlled list of values (*ROR *GRID *ISNI *URL *DOI *Handle)",
+                            "enum":
+                            [
+                                "ROR",
+                                "GRID",
+                                "ISNI",
+                                "URL",
+                                "DOI",
+                                "Handle"
+                            ]
+                        }
+                    }
+                }
+           }
+        },
+  "contact": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "required": [
+              "email", "orcid"
+            ],          
+            "title": "Email",
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "(Optional) - Email Address"
+              }
+            }
+          },
+          {
+            "title": "ORCID",
+            "type": "object",
+            "properties": {
+              "orcid": {
+                "type": "string",
+                "description": "(Optional) - ORCID URL",
+                "pattern": "^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
+              }
+            }
+          }
+        ]
+      }
+    }
+    }
+}

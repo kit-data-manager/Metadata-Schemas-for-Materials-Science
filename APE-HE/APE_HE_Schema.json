@@ -1,0 +1,2276 @@
+{
+	"$schema": "https://json-schema.org/draft/2019-09/schema",
+	"type": "object",
+	"description": "This JSON schema defines the metadata for the APE-HE (Advanced Photoelectric Effect - High Energy) experiments. The photoelectric effect is a phenomenon where electrons are emitted from a material when it is exposed to light. In this high energy experiment, X-ray radiation is typically used as the beam light exciter to the sample material. Results from the experiments are generated in a NeXus format. Contributors: Gabin Oumbe (KIT-SCC), Irene Modolo (NFFA-Trieste), Dario De Angelis (NFFA-Trieste), Rossella Aversa (KIT-SCC)",
+	"properties": {
+	  "entry": {
+		"$ref": "#/$defs/entry"
+	  }
+	},
+	"required": [
+	  "entry"
+	],
+	"title": "APE-HE",
+	"$defs": {
+	  "entry": {
+		"type": "object",
+		"description": "This top-level element is the root of the schema. It contains all the metadata describing a sample material measurement using the APE-HE experiment.",
+		"additionalProperties": false,
+		"properties": {
+		  "title": {
+			"type": "string",
+			"description": " (Required)- Experiment title with the format: [YYYY]_[MM]_[DD]_ID"
+		  },
+		  "entry_identifier": {
+			"type": "string",
+			"description": " (Required)- Experiment number automatically assigned by the software"
+		  },
+		  "technique": {
+			"type": "string",
+			"description": " (Required)- Technique applied for the experiment to be selected between enumerated",
+			"enum": [
+			  "STEP-MODE XAS (X-RAY ABSORPTION SPECTROSCOPY)",
+			  "FAST-SCAN XAS (X-RAY ABSORPTION SPECTROSCOPY)",
+			  "XMCD (X-RAY MAGNETIC CIRCULAR DICHROISM)",
+			  "IV CURVES",
+			  "2D MAP"
+			]
+		  },
+		  "start_time": {
+			"type": "string",
+			"format": "date-time",
+			"description": "(Required)- Start time of the measurement in the ISO8601 date/time stamp format [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss]±[hh]:[mm]"
+		  },
+		  "end_time": {
+			"type": "string",
+			"format": "date-time",
+			"description": "(Required)- End time of the measurement in the ISO8601 date/time stamp format [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss]±[hh]:[mm]"
+		  },
+		  "duration": {
+			"type": "object",
+			"description": "(Required) - Duration of single scan",
+			"additionalProperties": false,
+			"properties": {
+			  "value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Duration of single scan by default in seconds"
+			  },
+			  "unit": {
+				"type": "string",
+				"default": "s",
+				"enum": [
+				  "min",
+				  "ms",
+				  "s"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  },
+		  "number_of_scans": {
+			"type": "string",
+			"description": "(Optional) - Number of scans"
+		  },
+		  "definition": {
+			"type": "string",
+			"description": "(Required) - Default value: NXxas",
+			"default": "NXxas"
+		  },
+		  "user": {
+			"$ref": "#/$defs/userDetails",
+			"description": "(Required) - User details"
+		  },
+		  "sample": {
+			"$ref": "#/$defs/sampleDetails",
+			"description": "(Required) - Sample details"
+		  },
+		  "instrument": {
+			"$ref": "#/$defs/instrumentDetails",
+			"description": "(Required) - Instrument details"
+		  }
+		},
+		"required": [
+		  "title",
+		  "entry_identifier",
+		  "technique",
+		  "start_time",
+		  "end_time",
+		  "duration",
+		  "definition",
+		  "user",
+		  "sample",
+		  "instrument"
+		]
+	  },
+	  "userDetails": {
+		"type": "object",
+		"description": "(Required) - User details",
+		"additionalProperties": false,
+		"properties": {
+		  "name": {
+			"type": "string",
+			"description": "(Required) - Full name of the user in the format (Last name, First name)"
+		  },
+		  "affiliation": {
+			"type": "string",
+			"description": "(Optional) - User institution affiliation"
+		  },
+		  "address": {
+			"type": "string",
+			"description": "(Optional) - Full address of the user’s affiliation"
+		  },
+		  "email": {
+			"type": "string",
+			"description": "(Optional)- User email"
+		  },
+		  "orcid": {
+			"type": "string",
+			"description": "(Optional) - Open Researcher and Contributor ID expressed as a URI",
+			"pattern": "^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
+		  }
+		},
+		"required": [
+		  "name"
+		]
+	  },
+	  "sampleDetails": {
+		"type": "object",
+		"description": "(Required) - Sample details",
+		"additionalProperties": false,
+		"properties": {
+		  "name": {
+			"type": "string",
+			"description": "(Required) - Descriptive name of the sample or sample ID"
+		  },
+		  "chemical_formula": {
+			"type": "string",
+			"description": "(Required) - Chemical formular of the measured sample"
+		  },
+		  "start_temperature": {
+			"$ref": "#/$defs/start_temperatureDetails",
+			"description": "(Required) - Details on the start temperature"
+		  },
+		  "end_temperature": {
+			"$ref": "#/$defs/end_temperatureDetails",
+			"description": "(Required) - Details on the end temperature"
+		  },
+		  "voltage_bias": {
+			"type": "object",
+			"description": "(Optional) - A reference link to the voltage bias value located at /entry/instrument/sample_current_electrometer:detector/voltage_bias",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum voltage bias value by default in Volts (V)"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum voltage bias value by default in Volts (V)"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average voltage bias value by default in Volts (V)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the voltage bias, default: V",
+				"default": "V",
+				"enum": [
+				  "mV",
+				  "V"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "min_value",
+			  "max_value",
+			  "average_value"
+			]
+		  },
+		  "magnetic_field": {
+			"type": "object",
+			"description": "(Optional) - A reference link to the value magnetic field located at /entry/instrument/kepco:magnetic_kicker/magnetic_field",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Pulse intensity of the magnetic field applied to switch the magnetization of the sample (Oe: Oersted)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of intensity of the magnetic field, default: Oersted.",
+				"default": "Oe",
+				"enum": [
+				  "A/m",
+				  "Oe"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  },
+		  "remanent_magnetic_field": {
+			"type": "object",
+			"description": "(Optional) - A reference link to the value of the remanent magnetic field located at /entry/instrument/kepco:magnetic_kicker/remanent_magnetic_field",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Magnetic field remaining after removal of the pulse, i.e. during the measurement (Oe: Oersted)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the remanent magnetic field, default: Oe.",
+				"default": "Oe",
+				"enum": [
+				  "A/m",
+				  "Oe"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  },
+		  "situation": {
+			"type": "string",
+			"description": "(Required) - Situation to be selected from the enumerated list",
+			"default": "other",
+			"enum": [
+			  "UHV",
+			  "AMBIENT PRESSURE CELL",
+			  "other"
+			]
+		  },
+		  "gas_flux": {
+			"type": "array",
+			"description": "(Optional) - Details on the gas flux",
+			"items": {
+			  "type": "object",
+			  "properties": {
+				"gas_name": {
+				  "type": "string",
+				  "enum": [
+					"He",
+					"Ar",
+					"N2",
+					"O2",
+					"H2",
+					"CO",
+					"CO2",
+					"CH4",
+					"C2H4",
+					"C2H6",
+					"C3H6",
+					"other"
+				  ],
+				  "description": "Select the gas name from the predefined list. For 'other', specify the molecular formula."
+				},
+				"value": {
+				  "type": "number",
+				  "description": "(Required)- The gas flux value in ml/min",
+				  "default": -9999
+				},
+				"unit": {
+				  "type": "string",
+				  "description": "(Required)- Unit of the measured gas flux",
+				  "default": "ml/min"
+				},
+				"gas_formula": {
+				  "type": "string",
+				  "description": "The molecular formula of the gas if not listed"
+				}
+			  },
+			  "required": [
+				"gas_name",
+				"value",
+				"unit"
+			  ],
+			  "if": {
+				"properties": {
+				  "gas_name": {
+					"const": "other"
+				  }
+				}
+			  },
+			  "then": {
+				"required": [
+				  "gas_formula"
+				]
+			  }
+			}
+		  },
+		  "pressure": {
+			"$ref": "#/$defs/pressureDetails",
+			"description": "(Required) - Details on the pressure in the measurement situation"
+		  },
+		  "transformations": {
+			"$ref": "#/$defs/transformationsDetails",
+			"description": "(Required) - Details on transformations"
+		  }
+		},
+		"required": [
+		  "name",
+		  "chemical_formula",
+		  "start_temperature",
+		  "end_temperature",
+		  "situation",
+		  "pressure",
+		  "transformations"
+		]
+	  },
+	  "instrumentDetails": {
+		"type": "object",
+		"description": "(Required) - Instrument details",
+		"additionalProperties": false,
+		"properties": {
+		  "source": {
+			"$ref": "#/$defs/sourceDetails",
+			"description": "(Required) - Details on the input source"
+		  },
+		  "monochromator": {
+			"$ref": "#/$defs/monochromatorDetails",
+			"description": "(Optional) - Monochromator details"
+		  },
+		  "incoming_beam_electrometer": {
+			"$ref": "#/$defs/sample_current_electrometerDetails",
+			"description": "(Optional ) - Sample current electrometer details"
+		  },
+		  "sample_current_electrometer": {
+			"$ref": "#/$defs/sample_current_electrometerDetails",
+			"description": "(Optional) - Sample current electrometer details"
+		  },
+		  "reference_current_electrometer": {
+			"$ref": "#/$defs/reference_current_electrometerDetails",
+			"description": "(Optional) - Reference current electrometer details"
+		  },
+		  "incoming_beam_picoammeter": {
+			"$ref": "#/$defs/incoming_beam_picoammeterDetails",
+			"description": "(Optional) - Incoming beam picoammeter details"
+		  },
+		  "sample_current_picoammeter": {
+			"$ref": "#/$defs/sample_current_picoammeterDetails",
+			"description": "(Optional) - Sample current picoammeter details"
+		  },
+		  "reference_current_picoammeter": {
+			"$ref": "#/$defs/reference_current_picoammeterDetails",
+			"description": "(Optional) - Reference current picoammeter details"
+		  },
+		  "channeltron_counter": {
+			"$ref": "#/$defs/channeltron_counterDetails",
+			"description": "(Optional) - Channeltron counter details"
+		  },
+		  "exit_slit": {
+			"$ref": "#/$defs/exit_slitDetails",
+			"description": "(Required) - Exit slit details"
+		  },
+		  "kepco": {
+			"$ref": "#/$defs/kepcoDetails",
+			"description": "(Optional) - Kepco details"
+		  },
+		  "prefocusing_mirror": {
+			"$ref": "#/$defs/prefocusing_mirrorDetails",
+			"description": "(Required) - Prefocusing mirror details"
+		  },
+		  "undulator": {
+			"$ref": "#/$defs/undulatorDetails",
+			"description": "(Required) - Undulator details"
+		  }
+		},
+		"required": [
+		  "source",
+		  "exit_slit",
+		  "prefocusing_mirror",
+		  "undulator"
+		]
+	  },
+	  "start_temperatureDetails": {
+		"type": "object",
+		"description": "(Required) - Details of the starting temperature for the measurement.",
+		"properties": {
+		  "value": {
+			"type": "number",
+			"default": -9999,
+			"description": "(Required) - The starting temperature value by default in Kelvin (K)"
+		  },
+		  "unit": {
+			"type": "string",
+			"description": "(Required) - The unit of the starting temperature, default: K.",
+			"enum": [
+			  "°C",
+			  "°F",
+			  "K"
+			],
+			"default": "K"
+		  }
+		},
+		"required": [
+		  "unit",
+		  "value"
+		]
+	  },
+	  "end_temperatureDetails": {
+		"type": "object",
+		"description": "(Required) - Details of the ending temperature for the measurement.",
+		"additionalProperties": false,
+		"properties": {
+		  "value": {
+			"type": "number",
+			"default": -9999,
+			"description": "(Required) - The ending temperature value by default in Kelvin (K)"
+		  },
+		  "unit": {
+			"type": "string",
+			"description": "(Required) - The unit of the ending temperature, default: K.",
+			"default": "K",
+			"enum": [
+			  "°C",
+			  "°F",
+			  "K"
+			]
+		  }
+		},
+		"required": [
+		  "unit",
+		  "value"
+		]
+	  },
+	  "pressureDetails": {
+		"type": "object",
+		"description": "(Required)- Details of Pressure in the measurement situation (Cell pressure or UHV chamber) pressure",
+		"additionalProperties": false,
+		"properties": {
+		  "value": {
+			"type": "number",
+			"default": -9999,
+			"description": "(Required) - Pressure value in the measurement situation by default in mbar"
+		  },
+		  "unit": {
+			"type": "string",
+			"description": "(Required) - Unit of the pressure measurement, default: mbar.",
+			"default": "mbar",
+			"enum": [
+			  "bar",
+			  "Pa",
+			  "kPa",
+			  "Torr",
+			  "atm",
+			  "mbar"
+			]
+		  }
+		},
+		"required": [
+		  "unit",
+		  "value"
+		]
+	  },
+	  "transformationsDetails": {
+		"type": "object",
+		"description": "(Required) - Transformations details",
+		"additionalProperties": false,
+		"properties": {
+		  "x": {
+			"type": "object",
+			"description": "(Optional)- Position along the beam direction by default in mm",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Minimum value of the position along the x-axis"
+			  },
+			  "max_value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Maximum value of the position along the x-axis"
+			  },
+			  "average_value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Average value of the position along the x-axis"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of measurement for the x-axis position, default: mm.",
+				"default": "mm",
+				"enum": [
+				  "m",
+				  "cm",
+				  "mm"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "min_value",
+			  "max_value",
+			  "average_value"
+			]
+		  },
+		  "y": {
+			"type": "object",
+			"description": "(Optional)- Axis perpendicular to the beam by default in millimeters (mm)",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Minimum value of the position along the y-axis"
+			  },
+			  "max_value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Maximum value of the position along the y-axis"
+			  },
+			  "average_value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Average value of the position along the y-axis"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of measurement for the y-axis position, default: mm.",
+				"default": "mm",
+				"enum": [
+				  "m",
+				  "cm",
+				  "mm"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "min_value",
+			  "max_value",
+			  "average_value"
+			]
+		  },
+		  "z": {
+			"type": "object",
+			"description": "(Optional)- Vertical axis position by default in millimeters (mm)",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Position value along the z-axis"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of measurement for the z-axis position, default: mm",
+				"default": "mm",
+				"enum": [
+				  "m",
+				  "cm",
+				  "mm"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  },
+		  "theta": {
+			"type": "object",
+			"description": "(Optional)- Rotation angle around the z-axis by default in degrees",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Rotation angle value"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of measurement for the rotation angle, default: degrees.",
+				"default": "degrees",
+				"enum": [
+				  "radians",
+				  "degrees"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  },
+		  "phi": {
+			"type": "object",
+			"description": "(Optional)- Rotation angle around the x-axis by default in degrees",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Rotation angle value"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of measurement for the rotation angle, default: degrees.",
+				"default": "degrees",
+				"enum": [
+				  "radians",
+				  "degrees"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  }
+		},
+		"required": []
+	  },
+	  "sourceDetails": {
+		"type": "object",
+		"description": "(Required) - Details about the source",
+		"additionalProperties": false,
+		"properties": {
+		  "type": {
+			"type": "string",
+			"description": "(Required)- Default value: Synchrotron X-ray source",
+			"default": "Synchrotron X-ray source"
+		  },
+		  "name": {
+			"type": "string",
+			"description": "(Required)- Default value: Elettra-Sincrotrone Trieste",
+			"default": "Elettra-Sincrotrone Trieste"
+		  },
+		  "probe": {
+			"type": "string",
+			"description": "(Required)- Default value: X-ray",
+			"default": "X-ray"
+		  },
+		  "energy": {
+			"type": "object",
+			"description": "(Required) - Details of the beam energy.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Value of the beam energy by default in giga-electronvolt (GeV)."
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of measurement for the beam energy, default: GeV.",
+				"default": "GeV",
+				"enum": [
+				  "eV",
+				  "keV",
+				  "MeV",
+				  "GeV"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  },
+		  "current": {
+			"type": "object",
+			"description": "(Required) - Details on Ring current measurement",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Ring current value by default in milliamperes (mA)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of measurement for the ring current, default: mA.",
+				"default": "mA",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "A",
+				  "mA"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  }
+		},
+		"required": [
+		  "type",
+		  "name",
+		  "probe",
+		  "energy",
+		  "current"
+		]
+	  },
+	  "monochromatorDetails": {
+		"type": "object",
+		"description": "(Optional) - Details about the monochromator settings",
+		"additionalProperties": false,
+		"properties": {
+		  "energy": {
+			"type": "object",
+			"description": "(Optional) - Photon energy setting for the monochromator",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Optional) - Minimun value of Photon energy by default in electronvolts (eV)."
+			  },
+			  "max_value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Maximum value of Photon energy by default in electronvolts (eV)."
+			  },
+			  "average_value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Average value of Photon energy by default in electronvolts (eV)."
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of measurement for photon energy, default: eV",
+				"default": "eV",
+				"enum": [
+				  "keV",
+				  "MeV",
+				  "GeV",
+				  "eV"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  },
+		  "integration_time": {
+			"type": "object",
+			"description": "(Optional) - Integration time for measurements",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Optional) - Integration time value by default in milliseconds (ms)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of measurement for integration time, default: ms.",
+				"default": "ms",
+				"enum": [
+				  "min",
+				  "s",
+				  "ms"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  },
+		  "grating": {
+			"$ref": "#/$defs/gratingDetails",
+			"description": "(Required) - Grading details"
+		  }
+		},
+		"required": [
+		  "grating"
+		]
+	  },
+	  "gratingDetails": {
+		"type": "object",
+		"description": "(Required) - Details about the grating used in the experiment",
+		"additionalProperties": false,
+		"properties": {
+		  "mirror": {
+			"type": "string",
+			"description": "(Required) - Mirror type used in the grating system",
+			"default": "A",
+			"enum": [
+			  "A",
+			  "B"
+			]
+		  },
+		  "period": {
+			"type": "object",
+			"description": "(Required) - Grating period or spacing",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Period value by default in lines per millimeter",
+				"default": 1800,
+				"enum": [
+				  1800,
+				  900
+				]
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of measurement for the period",
+				"default": "lines/mm",
+				"enum": [
+				  "lines/mm"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  }
+		},
+		"required": [
+		  "mirror",
+		  "period"
+		]
+	  },
+	  "incoming_beam_electrometerDetails": {
+		"type": "object",
+		"description": "(Optional) - Details about the incoming beam electrometer used in the experiment",
+		"additionalProperties": false,
+		"properties": {
+		  "description": {
+			"type": "string",
+			"description": "(Required) - Description of the electrometer, default: 'Keithley 6517b Electrometer'",
+			"default": "Keithley 6517b Electrometer"
+		  },
+		  "NPLC": {
+			"type": "integer",
+			"description": "(Required) - Number of power line cycles"
+		  },
+		  "electrometer_current_range": {
+			"type": "object",
+			"description": "(Required) - Current range of the electrometer",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Current range value by default in amperes (A)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current range",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "data": {
+			"type": "object",
+			"description": "(Optional) - Current at the entry of the endstation, measured from a tantalum (Ta) mesh covered with 200 nm of gold (Au), after the interaction with the X-ray beam",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum current value by default in amperes (A) at the entry of the endstation"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) at the entry of the endstation"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average current value by default in amperes (A) at the entry of the endstation"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current measurement",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  },
+		  "data_positive_magnetic_field": {
+			"type": "object",
+			"description": "(Optional) - Current at the entry of the endstation, measured from a tantalum (Ta) mesh covered with 200 nm of gold (Au), after the interaction with the X-ray beam, with positive magnetic field applied on the sample",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum current value by default in amperes (A) with positive magnetic field"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) with positive magnetic field"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average current value by default in amperes (A) with positive magnetic field"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current measurement",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  },
+		  "data_negative_magnetic_field": {
+			"type": "object",
+			"description": "(Optional) - Current at the entry of the endstation, measured from a tantalum (Ta) mesh covered with 200 nm of gold (Au), after the interaction with the X-ray beam, with negative magnetic field applied on the sample",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum current value by default in amperes (A) with negative magnetic field"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) with negative magnetic field"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average current value by default in amperes (A) with negative magnetic field"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current measurement",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  }
+		},
+		"required": [
+		  "description",
+		  "NPLC",
+		  "electrometer_current_range"
+		]
+	  },
+	  "sample_current_electrometerDetails": {
+		"type": "object",
+		"description": "(Optional) - Details about the sample current electrometer used in the experiment",
+		"additionalProperties": false,
+		"properties": {
+		  "description": {
+			"type": "string",
+			"description": "(Required) - Description of the electrometer, default: 'Keithley 6517b Electrometer'",
+			"default": "Keithley 6517b Electrometer"
+		  },
+		  "NPLC": {
+			"type": "integer",
+			"description": "(Required) - Number of power line cycles"
+		  },
+		  "electrometer_voltage_range": {
+			"type": "object",
+			"description": "(Optional) - Voltage range of the electrometer",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Voltage range value by default in Volts (V)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the voltage range",
+				"default": "V",
+				"enum": [
+				  "mV",
+				  "V"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "voltage_bias": {
+			"type": "object",
+			"description": "(Optional) - Voltage bias",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum voltage bias value by default in Volts (V)"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum voltage bias value by default in Volts (V)"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average voltage bias value by default in Volts (V)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the voltage bias",
+				"default": "V",
+				"enum": [
+				  "mV",
+				  "V"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  },
+		  "electrometer_current_range": {
+			"type": "object",
+			"description": "(Required) - Current range of the electrometer",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Current range value by default in amperes (A)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current range",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "data": {
+			"type": "object",
+			"description": "(Optional) - Current measured from the sample after the interaction with the X-ray beam",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum current value by default in amperes (A) measured from the sample"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) measured from the sample"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average current value by default in amperes (A) measured from the sample"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current measurement",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  },
+		  "data_positive_magnetic_field": {
+			"type": "object",
+			"description": "(Optional) - Current measured from the sample after the interaction with the X-ray beam, with positive magnetic field applied on the sample",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum current value by default in amperes (A) with positive magnetic field applied on the sample"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) with positive magnetic field applied on the sample"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average current value by default in amperes (A) with positive magnetic field applied on the sample"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current measurement",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  },
+		  "data_negative_magnetic_field": {
+			"type": "object",
+			"description": "(Optional) - Minimum current measured from the sample after the interaction with the X-ray beam, with negative magnetic field applied on the sample",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Current value by default in amperes (A) with negative magnetic field applied on the sample"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) with negative magnetic field applied on the sample"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average current value by default in amperes (A) with negative magnetic field applied on the sample"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current measurement",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  }
+		},
+		"required": [
+		  "description",
+		  "NPLC",
+		  "electrometer_current_range"
+		]
+	  },
+	  "reference_current_electrometerDetails": {
+		"type": "object",
+		"description": "(Optional) - Details about the reference current electrometer used in the experiment",
+		"additionalProperties": false,
+		"properties": {
+		  "description": {
+			"type": "string",
+			"description": "(Required) - Description of the electrometer, default: 'Keithley 6517b Electrometer'",
+			"default": "Keithley 6517b Electrometer"
+		  },
+		  "NPLC": {
+			"type": "integer",
+			"description": "(Required) - Number of power line cycles"
+		  },
+		  "electrometer_current_range": {
+			"type": "object",
+			"description": "(Required) - Current range of the electrometer",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Current range value by default in amperes (A)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current range",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "data": {
+			"type": "object",
+			"description": "(Optional) - Current measured on the reference powder after the interaction with the X-ray beam",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum current value by default in amperes (A) measured on the reference powder"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) measured on the reference powder"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average current value by default in amperes (A) measured on the reference powder"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current measurement",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  },
+		  "data_positive_magnetic_field": {
+			"type": "object",
+			"description": "(Optional) - Current measured on the reference powder after the interaction with the X-ray beam, with positive magnetic field applied on the sample",
+			"properties": {
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) with positive magnetic field applied on the sample"
+			  },
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum current value by default in amperes (A) with positive magnetic field applied on the sample"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average current value by default in amperes (A) with positive magnetic field applied on the sample"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current measurement",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  },
+		  "data_negative_magnetic_field": {
+			"type": "object",
+			"description": "(Optional) - Current measured on the reference powder after the interaction with the X-ray beam, with negative magnetic field applied on the sample",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum current value by default in amperes (A) with negative magnetic field applied on the sample"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) with negative magnetic field applied on the sample"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average current value by default in amperes (A) with negative magnetic field applied on the sample"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current measurement",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  }
+		},
+		"required": [
+		  "description",
+		  "NPLC",
+		  "electrometer_current_range"
+		]
+	  },
+	  "incoming_beam_picoammeterDetails": {
+		"type": "object",
+		"description": "(Optional) - Details about the incoming beam picoammeter used in the experiment",
+		"additionalProperties": false,
+		"properties": {
+		  "description": {
+			"type": "string",
+			"description": "(Required) - Description of the picoammeter, default: 'AH501B Picoammeter'",
+			"default": "AH501B Picoammeter"
+		  },
+		  "picoammeter_current_range": {
+			"type": "object",
+			"description": "(Required) - Current range of the picoammeter",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Current range value by default in amperes (A)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current range, default: A.",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "integration_time": {
+			"type": "object",
+			"description": "(Optional) - Amount of time over which data is acquired",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Integration time value by default in milliseconds (ms)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the integration time, default: ms.",
+				"default": "ms",
+				"enum": [
+				  "min",
+				  "s",
+				  "ms"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "data": {
+			"type": "object",
+			"description": "(Required) - Current at the entry of the endstation, measured from a tantalum (Ta) mesh covered with 200 nm of gold (Au), after the interaction with the X-ray beam",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum current value by default in amperes (A) at the entry of the endstation"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) at the entry of the endstation"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average current value by default in amperes (A) at the entry of the endstation"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current measurement, default: A.",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  }
+		},
+		"required": [
+		  "description",
+		  "picoammeter_current_range",
+		  "data"
+		]
+	  },
+	  "sample_current_picoammeterDetails": {
+		"type": "object",
+		"description": "(Optional) - Details about the sample current picoammeter used in the experiment",
+		"additionalProperties": false,
+		"properties": {
+		  "description": {
+			"type": "string",
+			"description": "(Required) - Description of the picoammeter, default: 'AH501B Picoammeter'",
+			"default": "AH501B Picoammeter"
+		  },
+		  "picoammeter_current_range": {
+			"type": "object",
+			"description": "(Required) - Current range of the picoammeter",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Current range value by default in amperes (A)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current range, default: A.",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "integration_time": {
+			"type": "object",
+			"description": "(Optional) - Amount of time over which data is acquired",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Integration time value by default in milliseconds (ms)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the integration time, default: ms.",
+				"default": "ms",
+				"enum": [
+				  "min",
+				  "s",
+				  "ms"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "data": {
+			"type": "object",
+			"description": "(Required) - Current measured from the sample after the interaction with the X-ray beam",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum current value by default in amperes (A) measured from the sample"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) measured from the sample"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) measured from the sample"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current measurement, default: A.",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  }
+		},
+		"required": [
+		  "description",
+		  "picoammeter_current_range",
+		  "data"
+		]
+	  },
+	  "reference_current_picoammeterDetails": {
+		"type": "object",
+		"description": "(Optional) - Details about the reference current picoammeter used in the experiment",
+		"additionalProperties": false,
+		"properties": {
+		  "description": {
+			"type": "string",
+			"description": "(Required) - Description of the picoammeter, default: 'AH501B Picoammeter'",
+			"default": "AH501B Picoammeter"
+		  },
+		  "picoammeter_current_range": {
+			"type": "object",
+			"description": "(Required) - Current range of the picoammeter",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Current range value by default in amperes (A)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current range, default: A.",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "integration_time": {
+			"type": "object",
+			"description": "(Optional) - Amount of time over which data is acquired",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Integration time value by default in milliseconds (ms)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the integration time, default: ms.",
+				"default": "ms",
+				"enum": [
+				  "min",
+				  "s",
+				  "ms"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "data": {
+			"type": "object",
+			"description": "(Required) - Current measured on the reference powder after the interaction with the X-ray beam",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum current value by default in amperes (A) measured on the reference powder"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum current value by default in amperes (A) measured on the reference powder"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average current value by default in amperes (A) measured on the reference powder"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the current measurement, default: A.",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  }
+		},
+		"required": [
+		  "description",
+		  "picoammeter_current_range",
+		  "data"
+		]
+	  },
+	  "channeltron_counterDetails": {
+		"type": "object",
+		"description": "(Optional) - Details about the channeltron counter in the experiment",
+		"additionalProperties": false,
+		"properties": {
+		  "description": {
+			"type": "string",
+			"description": "(Required) - Description of the channeltron counter, default: 'HP53132A Counter'",
+			"default": "HP53132A Counter"
+		  },
+		  "amplifier_type": {
+			"type": "string",
+			"description": "(Required) - Amplifier type, default: 'Channeltron'.",
+			"default": "Channeltron"
+		  },
+		  "impedance": {
+			"type": "object",
+			"description": "(Required) - Impedance details.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Impedance value by default in ohm."
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the impedance, default: ohm.",
+				"default": "ohm",
+				"enum": [
+				  "ohm"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "coupling": {
+			"type": "string",
+			"description": "(Required) - Any of these values (dropdown):",
+			"enum": [
+			  "AC",
+			  "DC"
+			]
+		  },
+		  "count_time": {
+			"type": "object",
+			"description": "(Required) - Count time over which data is acquired",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Count time value by default in milliseconds (ms)"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the count time, default: ms.",
+				"default": "ms",
+				"enum": [
+				  "min",
+				  "s",
+				  "ms"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "threshold": {
+			"type": "object",
+			"description": "(Required) - Threshold details.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Threshold value by default in mV."
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the threshold, default: mV.",
+				"default": "mV",
+				"enum": [
+				  "mV",
+				  "V"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "data": {
+			"type": "object",
+			"description": "(Optional) - Channeltron counts from the sample after the interaction with the X-ray beam.",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum channeltron counts value by default in 'Counts' measured on the reference powder"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum channeltron counts value by default in 'Counts' measured on the reference powder"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average channeltron counts value by default in 'Counts' measured on the reference powder"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the channeltron counts measurement, default: Counts.",
+				"default": "Counts",
+				"enum": [
+				  "Counts"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  },
+		  "data_positive_magnetic_field": {
+			"type": "object",
+			"description": "(Optional) - Channeltron counts from the sample after the interaction with the X-ray beam, with positive magnetic field applied on the sample",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum channeltron count value by default in amperes (A) with positive magnetic field applied on the sample"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum channeltron count value by default in amperes (A) with positive magnetic field applied on the sample"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average channeltron count value by default in amperes (A) with positive magnetic field applied on the sample"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the channeltron count",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  },
+		  "data_negative_magnetic_field": {
+			"type": "object",
+			"description": "(Optional) - Channeltron counts from the sample after the interaction with the X-ray beam, with negative magnetic field applied on the sample",
+			"properties": {
+			  "min_value": {
+				"type": "number",
+				"description": "(Required) - Minimum channeltron count value by default in amperes (A) with negative magnetic field applied on the sample"
+			  },
+			  "max_value": {
+				"type": "number",
+				"description": "(Required) - Maximum channeltron count value by default in amperes (A) with negative magnetic field applied on the sample"
+			  },
+			  "average_value": {
+				"type": "number",
+				"description": "(Required) - Average channeltron count value by default in amperes (A) with negative magnetic field applied on the sample"
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the channeltron count",
+				"default": "A",
+				"enum": [
+				  "pA",
+				  "nA",
+				  "uA",
+				  "mA",
+				  "A"
+				]
+			  }
+			},
+			"required": [
+			  "min_value",
+			  "max_value",
+			  "average_value",
+			  "unit"
+			]
+		  }
+		},
+		"required": [
+		  "description",
+		  "amplifier_type",
+		  "impedance",
+		  "coupling",
+		  "count_time",
+		  "threshold"
+		]
+	  },
+	  "exit_slitDetails": {
+		"type": "object",
+		"description": "(Required) - Details about the exit slit",
+		"additionalProperties": false,
+		"properties": {
+		  "gap": {
+			"type": "object",
+			"description": "(Required) - Gap information about the exit slit.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Gap value by default in millimeters (mm)",
+				"default": -9999
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the gap",
+				"default": "mm",
+				"enum": [
+				  "m",
+				  "cm",
+				  "mm"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  }
+		},
+		"required": [
+		  "gap"
+		]
+	  },
+	  "kepcoDetails": {
+		"type": "object",
+		"description": "(Optional) - Details about kepco",
+		"additionalProperties": false,
+		"properties": {
+		  "amplifier_type": {
+			"type": "string",
+			"description": "(Required) - Amplifier type, default: 'Channeltron'.",
+			"default": "Channeltron"
+		  },
+		  "magnetic_field": {
+			"type": "object",
+			"description": "(Required) - Pulse intensity of the magnetic field applied to switch the magnetization of the sample.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Pulse intensity of the magnetic field by default in Oersted (Oe)."
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the pulse intensity of the magnetic field, default: Oe.",
+				"default": "Oe",
+				"enum": [
+				  "Oe",
+				  "A/m"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "remanent_magnetic_field": {
+			"type": "object",
+			"description": "(Optional) - Magnetic field remaining after removal of the pulse, i.e. during the measurement.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Value of the remanent magnetic field by default in Oersted (Oe)."
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the remanent magnetic field, default: Oe.",
+				"default": "Oe",
+				"enum": [
+				  "Oe",
+				  "A/m"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "pre_pulse_time": {
+			"type": "object",
+			"description": "(Optional) - Waiting time before applying the magnetic field pulse.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Pre-pulse time value by default in milliseconds (ms)."
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the pre-pulse time, default: ms.",
+				"default": "ms",
+				"enum": [
+				  "min",
+				  "s",
+				  "ms"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "pulse_time": {
+			"type": "object",
+			"description": "(Optional) - Time during which the magnetic field pulse is applied.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Pulse time value by default in milliseconds (ms)."
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the pulse time, default: ms.",
+				"default": "ms",
+				"enum": [
+				  "min",
+				  "s",
+				  "ms"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "post_pulse_time": {
+			"type": "object",
+			"description": "(Optional) - Time after removal of the magnetic field pulse, after which the measurement takes place.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Post-pulse time value by default in milliseconds (ms)."
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the post-pulse time, default: ms.",
+				"default": "ms",
+				"enum": [
+				  "min",
+				  "s",
+				  "ms"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  }
+		},
+		"required": [
+		  "magnetic_field"
+		]
+	  },
+	  "prefocusing_mirrorDetails": {
+		"type": "object",
+		"description": "(Required) - Details about the prefocusing mirror.",
+		"additionalProperties": false,
+		"properties": {
+		  "description": {
+			"type": "string",
+			"description": "(Required) - Description of the prefocusing mirror.",
+			"default": "First mirror of the beamline. Spherical shape, radius 302.1 m. Encoder positions of motors 3 and 4 are related to translation and pitch of the mirror."
+		  },
+		  "incident_angle": {
+			"type": "object",
+			"description": "(Required)- Incident angle by default in degrees.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"default": 1.5,
+				"description": "(Required) - Incident angle of the prefocusing mirror."
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the incident angle, default: degrees.",
+				"default": "degrees",
+				"enum": [
+				  "radians",
+				  "degrees"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  },
+		  "motor3_encoder_position": {
+			"type": "object",
+			"description": "(Required) - Information about the motor 3 encoder position.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Motor 3 encoder position by default in millimeters (mm).",
+				"default": -9999
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the motor 3 encoder position.",
+				"default": "mm",
+				"enum": [
+				  "m",
+				  "cm",
+				  "mm"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "motor4_encoder_position": {
+			"type": "object",
+			"description": "(Required) - Information about the motor 4 encoder position.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Motor 4 encoder position by default in millimeters (mm).",
+				"default": -9999
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the motor 4 encoder position.",
+				"default": "mm",
+				"enum": [
+				  "m",
+				  "cm",
+				  "mm"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "pressure": {
+			"type": "object",
+			"description": "(Required)- Pressure in the prefocusing mirror.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Pressure value in the prefocussing mirror by default in mbar."
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the pressure in the prefocusing mirror, default: mbar.",
+				"default": "mbar",
+				"enum": [
+				  "bar",
+				  "Pa",
+				  "kPa",
+				  "Torr",
+				  "atm",
+				  "mbar"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  },
+		  "temperature": {
+			"type": "object",
+			"description": "(Required)- Temperature of the prefocusing mirror by default in degree celcius.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"default": -9999,
+				"description": "(Required) - Temperature value of the prefocusing mirror."
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the temperature, default: °C.",
+				"default": "°C",
+				"enum": [
+					"°C",
+			  		"°F",
+			  		"K"
+				]
+			  }
+			},
+			"required": [
+			  "unit",
+			  "value"
+			]
+		  }
+		},
+		"required": [
+		  "description",
+		  "incident_angle",
+		  "motor3_encoder_position",
+		  "motor4_encoder_position",
+		  "pressure",
+		  "temperature"
+		]
+	  },
+	  "undulatorDetails": {
+		"type": "object",
+		"description": "(Required) - Details about the undulator.",
+		"additionalProperties": false,
+		"properties": {
+		  "type": {
+			"type": "string",
+			"description": "(Required) - Type of device.",
+			"default": "undulator"
+		  },
+		  "gap": {
+			"type": "object",
+			"description": "(Required) - Gap information about the undulator.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Gap value by default in millimeters (mm)",
+				"default": -9999
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the gap",
+				"default": "mm",
+				"enum": [
+				  "m",
+				  "cm",
+				  "mm"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "phase": {
+			"type": "object",
+			"description": "(Required) - Phase information about the undulator.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Phase value by default in millimeters (mm)",
+				"default": -9999
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the phase",
+				"default": "mm",
+				"enum": [
+				  "m",
+				  "cm",
+				  "mm"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  },
+		  "magnetic_wavelength": {
+			"type": "object",
+			"description": "(Required) - Information about the magnetic wavelength.",
+			"properties": {
+			  "value": {
+				"type": "number",
+				"description": "(Required) - Magnetic wavelength by default in millimeters (cm).",
+				"default": 6
+			  },
+			  "unit": {
+				"type": "string",
+				"description": "(Required) - Unit of the magnetic wavelength.",
+				"default": "cm",
+				"enum": [
+				  "m",
+				  "cm",
+				  "mm"
+				]
+			  }
+			},
+			"required": [
+			  "value",
+			  "unit"
+			]
+		  }
+		},
+		"required": [
+		  "type",
+		  "gap",
+		  "phase",
+		  "magnetic_wavelength"
+		]
+	  }
+	}
+  }
