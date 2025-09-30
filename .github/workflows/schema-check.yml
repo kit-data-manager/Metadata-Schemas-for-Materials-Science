@@ -1,0 +1,47 @@
+name: JSON Schema Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  schema_check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - schemaPath: 'APE-HE/APE_HE_Schema.json'
+            tagPrefix: 'APE-HE/'
+          - schemaPath: 'CT/lab_ct.json'
+            tagPrefix: 'CT/'
+          - schemaPath: 'MRI/MRI_schema.json'
+            tagPrefix: 'MRI/'
+          - schemaPath: 'SEM-FIB_Tomography/SEM_FIB_Tomography_Acquisition_Main.json'
+            tagPrefix: 'SEM-FIB/'        
+          - schemaPath: 'SEM/SEM_schema.json'
+            tagPrefix: 'SEM/'
+          - schemaPath: 'TEM/TEM_schema.json'
+            tagPrefix: 'TEM/'            
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Get latest tag for ${{ matrix.schemaPath }}
+        id: get_tag
+        run: |
+          echo "Fetching latest release tag for prefix: ${{ matrix.tagPrefix }}"
+          LATEST_TAG=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases \
+            | jq -r '.[] | select(.tag_name | startswith("${{ matrix.tagPrefix }}")) | .tag_name' \
+            | sort -rV | head -n 1)
+          echo "Latest tag: $LATEST_TAG"
+          echo "previousVersion=$LATEST_TAG" >> $GITHUB_ENV
+
+      - name: JSON Schema Check
+        uses: kit-data-manager/json-schema-check-action@v0.0.5
+        with:
+          schemaPath: ${{ matrix.schemaPath }}
+          schemaVersion: 'draft-07'
+          validate: true
+          createDiff: true
+          previousVersion: ${{ env.previousVersion }}
+          token: ${{ secrets.GITHUB_TOKEN }}
