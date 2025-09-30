@@ -40,8 +40,7 @@ jobs:
           else
             echo "No matching tag found for prefix: ${{ matrix.tagPrefix }}"
             echo "previousVersion=unavailable" >> $GITHUB_ENV
-
-
+          fi
       - name: JSON Schema Check
         uses: kit-data-manager/json-schema-check-action@dev_schema_2019-2020
         with:
