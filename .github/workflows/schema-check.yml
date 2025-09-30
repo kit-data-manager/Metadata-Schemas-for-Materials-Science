@@ -42,7 +42,7 @@ jobs:
         with:
           schemaPath: ${{ matrix.schemaPath }}
           validate: true
-          schemaVersion: 2019
+          schemaVersion: '2019'
           createDiff: true
           previousVersion: ${{ env.previousVersion }}
           token: ${{ secrets.GITHUB_TOKEN }}
