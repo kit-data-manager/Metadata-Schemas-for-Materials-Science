@@ -55,7 +55,7 @@
       "properties": {
         "workingDistance": {
           "$ref": "#/$defs/distanceDetails",
-          "description": "(Required)- Distance which is determined along the optical axis within the column from  (1) the lower end of the final optical element between the source and the  specimen stage; to (2) the point where the beam is focused. IRI: https://purls.helmholtz-metadaten.de/EMG/00000026"
+          "description": "(Required)- Distance which is determined along the optical axis within the column from  (1) the lower end of the final optical element between the source and the  specimen stage; to (2) the point where the beam is focused. IRI: https://purls.helmholtz-metadaten.de/emg/EMG_00000050"
         },
         "stageX": {
           "$ref": "#/$defs/distanceDetails",
