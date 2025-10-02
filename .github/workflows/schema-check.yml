@@ -60,5 +60,6 @@ jobs:
             ## 📋 Schema Check Report
             **Schema Path:** `${{ matrix.schemaPath }}`
             **Tag Prefix:** `${{ matrix.tagPrefix }}`
+            **Latest Tag for Comparison:** `${{ env.previousVersion }}`
       
             ${{ steps.schema_check_step.outputs.message }}
