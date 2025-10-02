@@ -56,4 +56,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
-          body: ${{ steps.schema_check_step.outputs.message }}
+          body: |
+            ## 📋 Schema Check Report
+            **Schema Path:** `${{ matrix.schemaPath }}`
+            **Tag Prefix:** `${{ matrix.tagPrefix }}`
+      
+            ${{ steps.schema_check_step.outputs.message }}
