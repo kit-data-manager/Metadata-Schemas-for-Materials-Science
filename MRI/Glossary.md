@@ -53,6 +53,9 @@ A collection of one or more [Series](#series) that are scientifically related (d
 ### User
 A scientist who performs [Measurements](#measurement) in order to collect and/or analyse [Raw Data](#raw-data) or [Processed Data](#processed-data), or is interested in reusing them with the final aim to extract insights that support the answer to a specific research question. This term is the equivalent, adapted to our case, of "Physician of Record"[^2] and of "Research User"[^3][^4].
 
+# Usage
+This schema is used in the development of the map file(s) in [JaMMaTo](https://github.com/kit-data-manager/JaMMaTo/tree/main/example/metadata_maps).
+
 -----
 
 [^1]: D. R. Varma: Managing DICOM images: Tips and tricks for the radiologist In: Indian Journal of Radiology and Imaging, vol. 22(1), pp. 4-13. 2012. 10.4103/0971-3026.95396
