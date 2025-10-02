@@ -118,7 +118,7 @@
       "description": "(Optional) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format."
     },
     "user": {
-      "$ref": "../user_description",
+      "$ref": "../user_description.json",
       "description": "(Required)- The contact information of the user responsible for the measurement."
     },
     "measurementConditions": {
