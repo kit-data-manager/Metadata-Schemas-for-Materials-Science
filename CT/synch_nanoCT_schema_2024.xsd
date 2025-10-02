@@ -1,0 +1,2718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://mdmc.kit.edu/schema/nanoCT_metadata" xmlns="http://mdmc.kit.edu/schema/nanoCT_metadata">
+ <xsd:annotation>
+  <xsd:documentation>
+			*******************************Documentation for nano-CT measurements*************************************
+
+			The purpose of this XML Schema is to provide describe a nanometer computer tomography (CT) measurement.
+
+			The cardinality of all parameters are either defined as required or optional and wherever possible a list of controlled vocabularies is provided.
+		</xsd:documentation>
+ </xsd:annotation>
+ <xsd:element name="entry" type="nanoCT">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*******************************entry*******************************
+
+				The entry level contains all the metadata describing a single measurement. The design of the schema is modular: in case of multiple measurements, an entry for each measurement can be included.
+
+				It is the root element of the schema.
+			</xsd:documentation>
+  </xsd:annotation>
+ </xsd:element>
+ <xsd:complexType name="nanoCT">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************complexType nanoCT*************************
+
+				This type defines the elements of the entry level:
+
+				Children:
+
+				entryID (required) - Identifier of the measurement or scan, usually provided by the project or the laboratory. It is defined to be of the complex type Identifier.
+
+				title (required) - Extended title of the measurement, datatype string
+				
+				experimentID (required) - Identifier for the experiment (i.e., beamtime ID), defined by the facility, possibly linked to the proposals. It is defined to be of the complex type Identifier. 
+
+				technique (required) - Describing the technique of the measurement, from a restricted list of possible techniques. It is defined to be of the complex type measurementTechniqueDetails. 
+
+				definition (optional) - Name of the schema to which this entry conforms, datatype string. E.g., &quot;synchrotron_nano_CT&quot;
+
+				parents (required) - Details of the parents of this metadata, for example the sample schema. 
+
+				proposal (required) -Details of the proposal linked to the experiment. 
+
+				measurementPurpose (required) - Details of the purpose of the measurement, select from a list.
+
+				measurementDescription (optional) - Additional description of the measurement.
+
+				startTime (required) - Start time of the measurement, datatype xsd:dateTime in the format CCYY-MM-DDThh:mm:ss.sss
+
+				endTime (required) - End time of the measurement, datatype xsd:dateTime in the format CCYY-MM-DDThh:mm:ss.sss
+
+				program (optional) - details concerning the program (or software) used for aquisition. It is defined to be of the complex type programDetails.
+
+				revision (optional) - details concerning any revision to the xml document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format. It is defined to be of the complex type revisionDetails.
+
+				user (required) - the contact information of the lead user responsible for the measurement. It is defined to be of the complex type userDetails.
+
+				contact (required) - the contact information of the local instrument scientist assigned to assist with the experiment. 
+
+				sample (required) - details concerning the sample. Refer to the parent sample schema.
+				
+				measurementConditions (required) - describes the conditions during the measurement.
+				
+				instrument (required) - details concerning the instrument settings, i.e. all components of the beamline. It is defined to be of the complex type instrumentDetails.
+
+				data (required) - details concerning the acquired data. It is defined to be of the complex type data Details.
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="entryID" type="entryIdentifier" minOccurs="0"/>
+   <xsd:element name="title" type="xsd:string"/>
+   <xsd:element name="experimentID" type="experimentIdentifier"/>
+   <xsd:element name="technique" type="measurementTechniqueDetails"/>
+   <xsd:element name="definition" type="xsd:string"/>
+   <xsd:element name="parents" type="parentsDetails"/>
+   <xsd:element name="proposal" type="proposalDetails"/>
+   <xsd:element name="measurementPurpose" type="measurementPurposeDetails"/>
+   <xsd:element name="measurementDescription" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="startTime" type="xsd:dateTime"/>
+   <xsd:element name="endTime" type="xsd:dateTime"/>
+   <xsd:element name="program" type="programDetails" minOccurs="0"/>
+   <xsd:element name="revision" type="revisionDetails" minOccurs="0"/>
+   <xsd:element name="user" type="leadUserDetails"/>
+   <xsd:element name="contact" type="localContactDetails"/>
+   <xsd:element name="sample" type="seeSampleSchema(parent)"/>
+   <xsd:element name="measurementConditions" type="measurementConditionsDetails" minOccurs="0"/>
+   <xsd:element name="instrument" type="instrumentDetails"/>
+   <xsd:element name="data" type="dataDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="identifier">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				****************************identifier****************************
+
+				complex type describing the details of an identifier element
+
+				children:
+
+				identifierValue (optional) - a string containing the value of an identifier
+
+				identifierType (optional) - type of the identifier to be chosen from a controlled list of values
+				ROR
+				GRID
+				ISNI
+				URL
+				DOI
+				Handle
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="identifierValue" type="xsd:string"/>
+   <xsd:element name="identifierType" type="idType" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="entryIdentifier">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				****************************identifier****************************
+
+				Identifier of the metadata entry usually provided by the project or the laboratory (e.g. scan number)
+
+				children:
+
+				identifierValue (optional) - a string containing the value of an identifier
+
+				identifierType (optional) - type of the identifier to be chosen from a controlled list of values
+				ROR
+				GRID
+				ISNI
+				URL
+				DOI
+				Handle
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="identifierValue" type="xsd:string"/>
+   <xsd:element name="identifierType" type="idType" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="experimentIdentifier">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				****************************experimentIdentifier****************************
+
+				This is the beamtime ID.
+
+				children:
+
+				identifierValue (optional) - a string containing the value of an identifier
+
+				identifierType (optional) - type of the identifier to be chosen from a controlled list of values
+				ROR
+				GRID
+				ISNI
+				URL
+				DOI
+				Handle
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="identifierValue" type="xsd:string"/>
+   <xsd:element name="identifierType" type="idType" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="idType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="ROR"/>
+   <xsd:enumeration value="GRID"/>
+   <xsd:enumeration value="ISNI"/>
+   <xsd:enumeration value="URL"/>
+   <xsd:enumeration value="DOI"/>
+   <xsd:enumeration value="Handle"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="programDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				****************************programDetails********************************
+				complex type describing the details of the software used for image acquisition
+
+				Children:
+
+				programName (optional) - Name of the program (or software) used for acquisition, datatype string.
+				If the element program is used, programName is required
+
+				programVersion (optional)- Program (or software) version number, datatype string.
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="programName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="programVersion" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="revisionDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				****************************revisionDetails****************************
+
+				complex type describing details about revision
+
+				children:
+
+				revisionID (optional) - Identifier of the file due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format. It is defined to be of the complex type identifier.
+
+				revisionComment (optional)- any comments to the revision, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="revisionID" type="identifier" minOccurs="0"/>
+   <xsd:element name="revisionComment" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="parentsDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+	****************************parentsDetails****************************
+
+				(Required) - Parents of this metadata like the metadata document of the sample with which the measurement was performed.
+				children:
+				
+				Parent Type:
+				&quot;enum&quot;: [
+					&quot;not applicable&quot;,
+					&quot;sample&quot; ]
+				&quot;default&quot;: 	&quot;sample&quot;
+				Parent Reference Type:
+				&quot;enum&quot;: [
+					&quot;plain text&quot;,
+					&quot;external URL&quot;,
+					&quot;MetaStore URI&quot; ]
+
+
+
+
+
+
+
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="parentsReference" type="ParentsReferenceType" minOccurs="0"/>
+   <xsd:element name="parentsComment" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="leadUserDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				****************************leadUserDetails****************************
+
+				This complex type lists the contact information of the lead user responsible for the measurement, of the complex datatype: leadUserDetails
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="leadUser" type="userDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="userDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				****************************userDetails****************************
+
+				This complex type lists the contact information of the user(s) responsible for the measurement.
+
+				children:
+
+				userName (required) - Name of the user account as registered at the institute (facility) for measurement (e.g. DOOR for DESY) , datatype string
+				
+				userID (required) - User ID provided by DOOR of the complex type identifier, datatype string
+
+				familyName - Family name or last name of the user, datatype string
+
+				givenName (optional) - Given name (first name) of the user, datatype string
+
+				role (optional) - Role of the user to be selected from a controlled list
+				*Data Curator
+				*Instrument Scientist
+				*Principal Investigator
+				*Project Member
+				*Research User
+				*Site Leader
+				*Work Package Leader
+
+				affiliation (optional) - Details of the institution to which the user is affiliated to defined as a complex type institutionDetails
+
+				email (optional)- Email of the user, datatype string (only valid email-ids are acceptable)
+
+				ORCID (optional) - Open Researcher and Contributor ID expressed as a URI
+
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="Username" type="xsd:string"/>
+   <xsd:element name="UserID" type="identifier"/>
+   <xsd:element name="familyName" type="xsd:string"/>
+   <xsd:element name="givenName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="role" type="roleType" minOccurs="0"/>
+   <xsd:element name="affiliation" type="institutionDetails" minOccurs="0"/>
+   <xsd:element name="email" type="emailType" minOccurs="0"/>
+   <xsd:element name="ORCID" type="ORCIDType" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="localContactDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				****************************localContactDetails****************************
+
+				This complex type lists the contact information of the beamline scientist assisting with setup/running of the beamline etc.
+
+				children:
+
+				userName (required) - Name of the user account as registered at the institute (facility) for measurement (e.g. DOOR for DESY) , datatype string
+				
+				userID (required) - User ID provided by DOOR of the complex type identifier, datatype string
+
+				familyName - Family name or last name of the user, datatype string
+
+				givenName (optional) - Given name (first name) of the user, datatype string
+
+				role (optional) - Role of the user to be selected from a controlled list
+				*Data Curator
+				*Instrument Scientist
+				*Principal Investigator
+				*Project Member
+				*Research User
+				*Site Leader
+				*Work Package Leader
+
+				affiliation (optional) - Details of the institution to which the user is affiliated to defined as a complex type institutionDetails
+
+				email (optional)- Email of the user, datatype string (only valid email-ids are acceptable)
+
+				ORCID (optional) - Open Researcher and Contributor ID expressed as a URI
+
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="localContact" type="userDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="proposalUsersDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				****************************proposalUsersDetails****************************
+
+				This complex type lists all users linked with the proposal.
+
+				children:
+
+				user1
+
+				user2
+
+				etc (to edit as list)
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="User1" type="userDetails"/>
+   <xsd:element name="User2" type="userDetails"/>
+   <xsd:element name="User3" type="userDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="proposalDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				****************************proposalDetails****************************
+
+				This complex type lists the details of the proposal for the beamtime.
+				children:
+
+				proposalID (required) - Proposal ID provided by DOOR of the complex type identifier, datatype string
+				
+				proposalType (required) - type of proposal (ENUM), datatype string
+
+				proposalTitle (required) - Title of the proposal, datatype string
+
+			
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="proposalID" type="identifier"/>
+   <xsd:element name="proposalType" type="xsd:string"/>
+   <xsd:element name="proposalTitle" type="xsd:string"/>
+   <xsd:element name="proposalUsers" type="proposalUsersDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="institutionDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*****************************institutionDetails*****************************
+				complex type describing the details of an institution
+
+				institutionName (optional) - The full name of an institution, datatype string
+
+				institutionAcronym (optional) - The acronym of the institution. Note that authors often cite with acronyms, so this information can be important in matching a query, datatype string
+
+				institutionDepartment (optional)- The department within an institution, datatype string
+
+				institutionIdentifier (optional) - Identifier for the institution defined as the complex type identifier with the following sub-elements:
+				IdentifierValue: Identifier for an institution or organization, datatype string
+				IdentifierType: controlled list with ROR, GRID, ISNI, DOI, Handle as options
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="institutionName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="institutionAcronym" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="institutionDepartment" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="institutionID" type="identifier" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="roleType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="Data Curator"/>
+   <xsd:enumeration value="Instrument Scientist"/>
+   <xsd:enumeration value="Principal Investigator"/>
+   <xsd:enumeration value="Project Member"/>
+   <xsd:enumeration value="Research User"/>
+   <xsd:enumeration value="Site Leader"/>
+   <xsd:enumeration value="Work Package Leader"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="measurementPurposeDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*****************************MeasurementPurposeType*****************************
+				Describing the purpose of the measurement.
+				&quot;Measurement is experimental Data Acquisition, typically performed on a Sample using an experimental Technique. It may also be performed during Fabrication or Sample Preparation, e.g., to characterise the intermediate stages and/or the final 						resulting Precursor(s) or Sample(s), respectively. A Measurement may require the use of Consumables.&quot;
+  	
+    				  &quot;enum&quot;: [
+     					   &quot;assessment (to given categories or values)&quot;,
+     					   &quot;completeness check (presence or absence of given properties)&quot;,
+     					   &quot;correlative characterization (dedicated sample treatment to emphasise given features)&quot;,
+      					   &quot;exploratory (routine check of known properties)&quot;,
+     					   &quot;feasibility (quick check, rough estimate)&quot;,
+       					   &quot;high quality measurement (precise, careful treatment)&quot;,
+      					   &quot;test specific hypothesis (focus only on given aspects)&quot;,
+       					   &quot;other (please specify in the comment)&quot;
+
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="measurementPurpose" type="measurementPurposeType"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="measurementPurposeType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="assessment (to given categories or values)"/>
+   <xsd:enumeration value="completeness check (presence or absence of given properties"/>
+   <xsd:enumeration value="correlative characterisation (dedicated sample treatment to emphasise given features)"/>
+   <xsd:enumeration value="exploratory (routine check of known properties)"/>
+   <xsd:enumeration value="feasibility (quick check, rough estimate)"/>
+   <xsd:enumeration value="high quality measurement (precise, careful treatment)"/>
+   <xsd:enumeration value="teast specific hypothesis (focus only on given aspects)"/>
+   <xsd:enumeration value="other (please specify in the comment)"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="measurementTechniqueDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*****************************MeasurementTechniqueType*****************************
+				Describing the technique of the measurement.
+				(Required) - Any experimental, theoretical or computational method used during Data Acquisition or during any of the processes included in the Data Analysis Lifecycle to acquire, process or analyse Research Data about a System or a set of them with 						an Instrument, which is used to generate this metadata.&quot;
+  	
+    				  &quot;enum&quot;: [
+     					   &quot;Radiography- Full field&quot;,
+     					   &quot;TXM -Absorption contrast&quot;,
+     					   &quot;TXM- Zernike phase contrast&quot;,
+      					   &quot;Tomography - Grating based phase contrast&quot;,
+     					   &quot;TXM- inline phase contrast&quot;,
+       					   &quot;Holotomography -Near field&quot;]
+
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="measurementTechnique" type="measurementTechniqueType"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="measurementTechniqueType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="Radiography - Full field"/>
+   <xsd:enumeration value="TXM - Absorption contrast"/>
+   <xsd:enumeration value="TXM - Zernike phase contrast"/>
+   <xsd:enumeration value="Tomography - Grating based phase contast"/>
+   <xsd:enumeration value="TXM- Inline phase contrast"/>
+   <xsd:enumeration value="Holotomography - Near field"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="parentsReferenceType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="plain text"/>
+   <xsd:enumeration value="external URL"/>
+   <xsd:enumeration value="metastore URI"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="emailType">
+  <xsd:restriction base="xsd:string">
+   <xsd:pattern value="[\p{L}\p{N}!/+\-_]+(\.[\p{L}\p{N}!/+\-_]+)*@[\p{L}\p{N}!/+\-_]+(\.[\p{L}_-]+)+"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="ORCIDType">
+  <xsd:restriction base="xsd:string">
+   <xsd:pattern value="https?://orcid.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="sampleDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************sampleDetails*************************
+
+				complex type describing the sample on which the measurement is performed
+
+				sampleName (required) - Name of the sample, datatype string
+
+				sampleID (optional) - Identifier for the sample of the complex type identifier
+
+				material (optional) - Description of the sample material, datatype sampleMaterialDetails
+
+				conductive (required) - Indicates whether the sample  is conductive, datatype boolean
+
+				magnetic (required) - Indicates whether the sample is magnetic, datatype boolean
+
+				eBeamSensitive (required) - Indicates whether the sample is not stable under electron beam, datatype boolean
+
+				iBeamSensitive (required) - Indicates whether the sample is not stable under ion beam, datatype boolean
+
+				xRaySensitive (required) - Indicates whether the sample is not stable under x-ray beam, datatype boolean
+
+				embeddingMedium (required) - Supporting medium in which the specimen are embedded, (e.g., none, demotec 30, 70, Epoxy), datatype string, default value none
+
+				sampleForm (optional) - Description of the sample form (e.g., bulk, nanostructured, powder, pellet), datatype string
+
+				sampleSize (optional) - Size of the sample defined as the complex type distanceDetails, which includes the value, optional uncertainty, optional qualifier, optional notes and a controlled list of units for length - nm, um, mm, cm, m
+
+				sampleWeight (optional) - Weight of the sample defined as the complex type weightDetails, which includes the value, optional uncertainty, optional qualifier, optional notes and a controlled list of units for weight - ng, ug, mg, g, kg
+
+				finalSpecimen (optional) - Type of the specimen to be prepared (eg. TEM lamella, APT tip, cross-section, slide&amp;view experiment), datatype string
+
+				sampleHolder (optional) - Type of sample holder used (e.g., stub, dish, cylinder), datatype string
+
+				fixingMethod (optional) - The method used to attach the sample to the sample holder (e.g., silver tape, silver paint, carbon paint, aluminum tape, glue), datatype string
+
+				conductiveCoatingApplied (optional) - Whether a conductive coating is applied, datatype boolean
+
+				conductiveCoating (optional) - Conductive coating material used, datatype string
+
+				storageConditions (optional) - Environment conditions in which the sample has to be stored before and after the measurement (e.g., nitrogen atmosphere, hermetically sealed, controlled temperature and pressure etc), datatype string
+
+				samplePreparation (optional) - Details about the sample preparation defined as a complex type samplePrepType, which includes details like date of preparation, description of preparation and preparationID, datatype string
+
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="sampleName" type="xsd:string"/>
+   <xsd:element name="sampleID" type="identifier" minOccurs="0"/>
+   <xsd:element name="material" type="sampleMaterialDetails" minOccurs="0"/>
+   <xsd:element name="conductive" type="xsd:boolean"/>
+   <xsd:element name="magnetic" type="xsd:boolean"/>
+   <xsd:element name="eBeamSensitive" type="xsd:boolean"/>
+   <xsd:element name="iBeamSensitive" type="xsd:boolean"/>
+   <xsd:element name="xRaySensitive" type="xsd:boolean"/>
+   <xsd:element name="embeddingMedium" type="xsd:string" default="none"/>
+   <xsd:element name="sampleForm" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="sampleSize" type="sampleSize3D" minOccurs="0"/>
+   <xsd:element name="sampleWeight" type="weightDetails" minOccurs="0"/>
+   <xsd:element name="finalSpecimen" default="full implant" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="sampleHolder" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="fixingMethod" type="xsd:string" minOccurs="0" default="carbon Tape"/>
+   <xsd:element name="conductiveCoatingApplied" type="xsd:boolean" minOccurs="0"/>
+   <xsd:element name="conductiveCoating" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="storageConditions" type="xsd:string" minOccurs="0" default="Ambient, dry environment"/>
+   <xsd:element name="samplePreparation" type="samplePrepType" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="distanceDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************distanceDetails*************************
+				complex type describing a distance, size or length
+
+				children:
+
+				value (required) - The distance, size or length expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list nm, µm, mm, cm, m, default value - mm, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="distanceUnitType" default="mm"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="sampleSize3D">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************distanceDetails3D*************************
+				complex type describing a distance, size or length in 3D
+
+				children:
+
+				xSampleSize (required) - The distance, size or length in the first dimension expressed as a complex type, datatype distanceDetails
+
+				ySampleSize (required) - The distance, size or length in the second dimension expressed as a complex type, datatype distanceDetails
+
+				zSampleSize (required) - The distance, size or length in the third dimension expressed as a complex type, datatype distanceDetails
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="xSampleSize" type="distanceDetails"/>
+   <xsd:element name="ySampleSize" type="distanceDetails"/>
+   <xsd:element name="zSampleSize" type="distanceDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="fileSizeDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************fileSizeDetails*************************
+
+				complex type describing a file size
+
+				children:
+
+				value (required) - The file size expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list Bytes, KB, MB, GB, TB, default value - MB, datatype string
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="fileSizeUnitType" default="MB"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="distanceUnitType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="nm"/>
+   <xsd:enumeration value="um"/>
+   <xsd:enumeration value="mm"/>
+   <xsd:enumeration value="cm"/>
+   <xsd:enumeration value="m"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="fileSizeUnitType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="Bytes"/>
+   <xsd:enumeration value="KB"/>
+   <xsd:enumeration value="MB"/>
+   <xsd:enumeration value="GB"/>
+   <xsd:enumeration value="TB"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="uncertaintyType">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				***********************uncertaintyDetails***********************
+				describes an uncertainty
+
+				children:
+
+				type (required) - type of the uncertainty to be chosen between absolute or relative, datatype string
+
+				value (required) -  value of the uncertainty expressed as a floating point or double type
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="type">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="absolute"/>
+      <xsd:enumeration value="relative"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="value" type="xsd:double"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="weightDetails">
+  <xsd:annotation>
+   <xsd:documentation>
+				*************************weightDetails*************************
+				complex type describing a weight
+
+				children:
+
+				value (required) - The weight expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list ng, µg, mg, g, kg, default value - ug, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="weightUnitType" default="ug"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="weightUnitType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="ng"/>
+   <xsd:enumeration value="ug"/>
+   <xsd:enumeration value="mg"/>
+   <xsd:enumeration value="g"/>
+   <xsd:enumeration value="kg"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="samplePrepType">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************samplePrepType************************
+				describes the sample preparation process
+
+				children:
+
+				preparationDate (optional) - Date of preparation of the type xsd:date in the form CCYY-MM-DD
+
+				preparationDescription (optional) -Short description of the preparation, datatype string
+
+				preparationID (optional) - Identifier for the sample preparation of the complex type identifier, datatype string
+
+				FIB (optional) - Details about a focussed ion beam (FIB) preparation of the sample, defined to be of the type FIBDetails&lt;/xsd:documentation&gt;
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element type="xsd:date" name="preparationDate" minOccurs="0"/>
+   <xsd:element name="preparationDescription" type="xsd:string" minOccurs="0"/>
+   <xsd:element type="identifier" name="preparationID" minOccurs="0"/>
+   <xsd:element name="FIB" type="FIBDetails" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="instrumentDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************instrumentDetails************************
+
+				describes the collection of the components of the instrument (beamline)
+
+				children:
+
+				instrumentName (required) - Name of the instrument (beamline), datatype string
+
+				instrumentID (optional) - Identifier for the instrument defined to be of the complex type identifier
+
+				instrumentManufacturer (optional) - details like manufacturer name, model name and manufacturer ID, grouped together and defined to be of the complex type manufacturerDetails
+
+				instrumentType (optional) - to be defined
+
+				facility (required) - Details of the (synchrotron) facility, e.g. PETRA III
+
+				configuration - Description of the setup or configuration of the measurement defined to be of the complex type configurationDetails				
+
+				source (required) - Details about the x-ray beam source defined to be of the complex type sourceDetails
+
+				optics (required) - Details about the x-ray optics defined to be of the complex type opticalElementDetails
+
+				sampleStages (required) - Details about the sample stage(s) defined to be of the complex type sampleStagesDetails
+
+				detector (required) - Details about the imaging sensor defined to be of the complex type detectorDetails.
+
+				tomoAcquisition (required) - Details about the tomographic acquisition settings of the instrument defined to be of the complex type imagingDetails
+
+previous:				
+measurementTechnique (required) - Details about the measurement technique used, datatype measurementTechniqueType
+
+				
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="instrumentName" type="xsd:string"/>
+   <xsd:element name="instrumentID" type="identifier" minOccurs="0"/>
+   <xsd:element name="instrumentManufacturer" type="manufacturerDetails" minOccurs="0"/>
+   <xsd:element name="instrumentType" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="facility" type="facilityDetails"/>
+   <xsd:element name="configuration" type="configurationDetails"/>
+   <xsd:element name="source" type="sourceDetails"/>
+   <xsd:element name="optics" type="opticalElementDetails"/>
+   <xsd:element name="sampleStages" type="sampleStagesDetails"/>
+   <xsd:element name="detector" type="detectorDetails"/>
+   <xsd:element name="tomoAcquisition" type="tomoAcquisitionDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="manufacturerDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************manufacturerDetails*************************
+				gives details like the name of the manufacturer and model of the instrument and an ID
+
+				children:
+
+				manufacturerName (optional) - Name of the manufacturer, datatype string
+
+				modelName (optional) - Model of the instrument, datatype string
+
+				manufacturerID (optional) - Identifier for the manufacturer, defined to be of the complex type identifier
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="manufacturerName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="modelName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="manufacturerID" type="identifier" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="facilityDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************facilityDetails*************************
+				gives details of the (synchrotron) facility, e.g. PETRA III
+
+			children:
+				facilityName (required) - Name of the facility, datatype string
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="facilityName" type="xsd:string"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="pressureDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************pressureDetails*************************
+				complex type describing a pressure
+
+				children:
+
+				value (required) - The pressure expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list Pa, hPa, kPa, MPa, GPa, mbar, bar, psi, default value - Pa, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="pressureUnitType" default="Pa"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="sampleStagesDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************sampleStagesDetails**************************
+				gives details about the motor stages which the sample is mounted upon. 
+
+				children:
+				
+				baseStage -    Describing the base (1st) stage. Details are defined to be of the complex type motorSetDetails.
+
+				rotationStage -  Describing the rotation stage. Usually this is on top of the base stage.  Details are defined to be of the complex type motorSetDetails.
+
+				sampleStage - Describing the sample stage. Usually this is on top of the rotation stage. Details are defined to be of the complex type motorSetDetails. 
+
+	</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="baseStage" type="motorSetDetails"/>
+   <xsd:element name="rotationStage" type="motorSetDetails"/>
+   <xsd:element name="sampleStage" type="motorSetDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="sourceDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************sourceDetails**************************
+				gives details about the source, including both the storage ring and the insertion device
+
+				children:
+
+				storageRing (optional) - details of the electron storage ring, defined to be of the complex type storageRingDetails
+ 
+				insertionDevice (optional) -details of the insertion device which generates the x-rays used for the experiment, defined to be of the complex type insertionDeviceDetails
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="storageRing" type="storageRingDetails"/>
+   <xsd:element name="insertionDevice" type="insertionDeviceDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="storageRingDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************storageRingDetails**************************
+				if source is a synchrotron, gives details about the storage ring
+				children:
+
+				sourceName (optional) - name of the x-ray beam source, datatype string
+
+				sourceID (optional) - identifier for thex-ray beam source, defined to be of the complex type identifier
+
+				ringCurrent (optional) - the measured current of the x-ray beam, defined to be of the complex type currentDetails, which includes the current value, optional uncertainty, optional qualifier like max or min, optional note of the type string, and a controlled list of units from which one can be chosen - pA, nA, uA, mA, A, kA
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="ringCurrent" type="currentDetails" minOccurs="0"/>
+   <xsd:element name="ringEnergy" type="energyDetails" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="lifetimeDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************lifetimeDetails*************************
+				complex type describing a voltage.
+
+				children:
+
+				value (required) - The lifetime of the source expressed as an integer or floating point value, datatype float.
+
+				unit (required) - the unit of the value, default value - uAh, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="xsd:string" default="uAh"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="voltageDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************voltageDetails*************************
+				complex type describing a voltage
+
+				children:
+
+				value (required) - The voltage expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list uV, mV, V, kV, MV, GV default value - V, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="voltageUnitType" default="kV"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="temperatureDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************temperatureDetails*************************
+				complex type describing a temperature
+
+				children:
+
+				value (required) - The temperature expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list °C, °F, default value - °C, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="temperatureUnitType" default="°C"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="humidityDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************humidityDetails*************************
+				complex type describing humidity
+
+				children:
+
+				value (required) - The humidity expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list %, default value - %, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="humidityUnitType" default="%"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="flowDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************flowDetails*************************
+				complex type describing a flow
+
+				children:
+
+				value (required) - The flow expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list mm³/s, cm³/s, m³/s, default value - cm³/s, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="flowUnitType" default="cm³/s"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="rotationSpeedDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+			
+				************************rotationSpeedDetails***************************
+
+				describes the rotation speed of the sample during measurement.
+
+				children:
+
+				unit (required) - the unit of the value to be selected from a controlled list degrees/s, default value - degrees/s, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="unit" type="rotationSpeedUnitType" default="degree/s"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="alloyDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************alloyDetails*************************
+				complex type describing the sample material alloy
+
+				children:
+
+				materialComponent (required) - At least one material concentration has to be given to describe the alloy, datatype materialConcentrationDetails
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:choice minOccurs="1" maxOccurs="unbounded">
+   <xsd:element name="materialComponent" type="materialConcentrationDetails"/>
+  </xsd:choice>
+ </xsd:complexType>
+ <xsd:complexType name="sampleMaterialDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************sampleMaterialDetails*************************
+				complex type describing the sample material as an alloy of materials of different concentrations
+
+				children:
+
+				materialID (optional) - Identifier for the implant material of the complex type identifier, as used in Herbie ELN
+
+				materialAlloy (required) - The sample material alloy's component(s) expressed as a complex type describing the single component's concentration, datatype alloyDetails
+
+				materialFabrication (optional) - Details of the fabrication process as provided in the ELN, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="materialID" type="identifier" minOccurs="0"/>
+   <xsd:element name="materialAlloy" type="alloyDetails"/>
+   <xsd:element name="materialFabrication" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="opticMaterialDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************opticMaterialDetails*************************
+				complex type describing the optic material. (To finish) 
+
+				children:
+
+				materialID (optional) - Identifier for the implant material of the complex type identifier, as used in Herbie ELN
+
+				materialAlloy (required) - The sample material alloy's component(s) expressed as a complex type describing the single component's concentration, datatype alloyDetails
+
+				materialFabrication (optional) - Details of the fabrication process as provided in the ELN, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="materialID" type="identifier" minOccurs="0"/>
+   <xsd:element name="materialAlloy" type="alloyDetails"/>
+   <xsd:element name="materialFabrication" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="materialConcentrationDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************materialConcentrationDetails*************************
+				complex type describing the concentration of a material in an alloy
+
+				children:
+
+				material (required) - The material expressed as a string, datatype materialType
+
+				concentration (required) - The concentration as percentage, datatype float
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="material" type="materialType"/>
+   <xsd:element name="concentration" type="xsd:float" default="100"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="phDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************phDetails*************************
+				complex type describing a pH value
+
+				children:
+
+				value (required) - The pH expressed as an integer or floating point value in the pH scale
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="humidityUnitType" default="%"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="voltageUnitType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="uV"/>
+   <xsd:enumeration value="mV"/>
+   <xsd:enumeration value="V"/>
+   <xsd:enumeration value="kV"/>
+   <xsd:enumeration value="MV"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="currentDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="es">
+				*************************currentDetails*************************
+				complex type describing a current
+
+				children:
+
+				value (required) - The current expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list pA, nA, uA, mA, A default value - pA, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="currentUnitType" default="pA"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="currentUnitType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="pA"/>
+   <xsd:enumeration value="nA"/>
+   <xsd:enumeration value="uA"/>
+   <xsd:enumeration value="mA"/>
+   <xsd:enumeration value="A"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="motorSetDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************motorDetails**************************
+				describes the stage settings during a measurement (these may be read out automatically from the experiment logs)
+
+				children:
+
+				translateXmotor (optional) -
+				
+				translateYmotor (optional) -
+
+				translateZmotor (optional) -
+
+				rotXmotor (optional) -
+
+				rotYmotor (optional) -
+
+				rotZmotor (optional) -
+
+				stageHierarchy (optional) - </xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="translateXmotor" type="motorDetails" minOccurs="0"/>
+   <xsd:element name="translateYmotor" type="motorDetails" minOccurs="0"/>
+   <xsd:element name="translateZmotor" type="motorDetails" minOccurs="0"/>
+   <xsd:element name="rotXmotor" type="motorDetails" minOccurs="0"/>
+   <xsd:element name="rotYmotor" type="motorDetails" minOccurs="0"/>
+   <xsd:element name="rotZmotor" type="motorDetails" minOccurs="0"/>
+   <xsd:element name="stageHierarchy" type="HierarchyDetails" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="distanceSetDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************distanceSetDetails**************************
+				describes the key distances necessary for this measurement
+
+				children:
+
+				stageAlignmentDone (optional) - was stage alignment done? true or false, datatype boolean
+
+				tiltAngle (required) - angle by which the stage is tilted defined to be of the complex type angleDetails, with the angle value, optional uncertainty, optional notes, optional qualifier and choice of units between degree and radian
+
+				beamFocusWorkingDistance (required) - the distance at which the beam is focussed (when the sample is in focus, this will be the distance between the bottom end of the pole-piece of the objective lens and the sample), defined to be of the complex type distanceDetails, with the distance value, optional uncertainty, optional notes, optional qualifier and choice of units between nm, um, mm, cm and m
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="distance1" type="distanceDetails"/>
+   <xsd:element name="distance2" type="distanceDetails"/>
+   <xsd:element name="distance3" type="distanceDetails"/>
+   <xsd:element name="distance4" type="distanceDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="filterDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************filterDetails*************************
+				gives details on the filters used to condition the x-ray beam.
+
+				children:
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="filterMaterial" type="filterMaterialDetails" minOccurs="0"/>
+   <xsd:element name="filterName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="filterID" type="identifier" minOccurs="0"/>
+   <xsd:element name="filterThickness" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="filterPosition" type="coodinateSet" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="filterSetDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************filterSetDetails**************************
+				describes a set of optical filters.
+
+				children:
+
+				filter1 (optional)
+				filter2 (optional)
+				filter3 (optional)</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="filter1" type="filterDetails"/>
+   <xsd:element name="filter2" type="filterDetails"/>
+   <xsd:element name="filter3" type="filterDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="slitSetDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************slitSetDetails**************************
+				gives details on a set of slits. 
+
+				children:
+
+				slit1
+				slit2</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="slit1" type="slitDetails"/>
+   <xsd:element name="slit2" type="slitDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="configurationDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************configurationDetails**************************
+				describes the setup or configuration of the measurement
+
+				children:
+
+				setupType restricted to either NFH (Near Field Holography) cone beam, or TXM (Transmission X-ray) Microscopy 
+
+				ifNFHconebeam- the list of optical elements if the setup type is NFH cone beam
+				ifTXMmicroscopy- the list of optical elements if the setup type is TXM microscopy
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="setupType" type="opticalSetupType"/>
+   <xsd:element name="geometry" type="geometryDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="geometryDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************configurationGeometryDetails**************************
+				describes key geometry of the measurement
+
+				children:
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="imagingDistanceDetails" type="imagingDistanceDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="opticalElementDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************opticalElementDetails**************************
+				describes the various x-ray optical elements of the optical setup.
+
+				children:
+
+				</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="ifNFHconebeam" type="NFHOpticsDetails"/>
+   <xsd:element name="ifTXMmicroscopy" type="TXMOpticsDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="TXMOpticsDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************TXMOpticsDetails**************************
+				describes the x-ray optical elements of the TXM microscopy layout. Note that this requires fewer optical elements than the NFH cone beam layout.
+
+				children:
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="monochromator" type="monochromatorDetails"/>
+   <xsd:element name="decoherer" type="decohererDetails"/>
+   <xsd:element name="beamshaper" type="beamshaperDetails"/>
+   <xsd:element name="beamstop" type="beamstopDetails"/>
+   <xsd:element name="OSA" type="OSADetails"/>
+   <xsd:element name="FZP" type="FZPDetails"/>
+   <xsd:element name="condenserLens" type="condenserLensDetails"/>
+   <xsd:element name="filters" type="filterSetDetails"/>
+   <xsd:element name="slits" type="slitSetDetails"/>
+   <xsd:element name="shutters" type="shutterSetDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="NFHOpticsDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************NFHOpticsDetails**************************
+				describes the x-ray optical elements used for the NFH cone beam setup.
+
+				children:</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="monochromator" type="monochromatorDetails"/>
+   <xsd:element name="FZP" type="FZPDetails"/>
+   <xsd:element name="beamstop" type="beamstopDetails"/>
+   <xsd:element name="OSA" type="OSADetails"/>
+   <xsd:element name="slits" type="slitSetDetails"/>
+   <xsd:element name="filters" type="filterSetDetails"/>
+   <xsd:element name="shutters" type="shutterSetDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="angleDetails">
+  <xsd:annotation>
+   <xsd:documentation>
+				*************************angleDetails*************************
+				complex type describing an angle
+
+				children:
+
+				value (required) - The angle expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list degree, radian default value - degree datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="angleUnitType" default="degree"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="motorDetails">
+  <xsd:annotation>
+   <xsd:documentation>
+				*************************motorLogDetails*************************
+				complex type describing an angle
+
+				children:
+
+				value (required) - The angle expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list degree, radian default value - degree datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="motorName" type="xsd:string"/>
+   <xsd:element name="motorID" type="identifier" minOccurs="0"/>
+   <xsd:element name="motorManufacturer" type="manufacturerDetails" minOccurs="0"/>
+   <xsd:element name="motorHierarchy" type="HierarchyDetails" minOccurs="0"/>
+   <xsd:element name="positionScanStart" type="motorValueDetails"/>
+   <xsd:element name="positionScanEnd" type="motorValueDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="imagingDistanceDetails">
+  <xsd:annotation>
+   <xsd:documentation>
+				*************************imagingDistanceDetails*************************
+				complex type describing the distance(s) between the sample and detector. Multiple distances may be used in NFH. 
+				children:
+
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all/>
+ </xsd:complexType>
+ <xsd:simpleType name="angleUnitType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="degree"/>
+   <xsd:enumeration value="radian"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="temperatureUnitType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="°C"/>
+   <xsd:enumeration value="°F"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="flowUnitType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="mm³/s"/>
+   <xsd:enumeration value="cm³/s"/>
+   <xsd:enumeration value="m³/s"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="materialType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="Calcium"/>
+   <xsd:enumeration value="Gadolinium"/>
+   <xsd:enumeration value="Magnesium"/>
+   <xsd:enumeration value="PEEK"/>
+   <xsd:enumeration value="Stainless Steel"/>
+   <xsd:enumeration value="Titanium"/>
+   <xsd:enumeration value="Zinc"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="humidityUnitType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="%"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="researchQuestionType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="exploratory"/>
+   <xsd:enumeration value="feasability"/>
+   <xsd:enumeration value="capability check"/>
+   <xsd:enumeration value="specific hypothesis"/>
+   <xsd:enumeration value="high quality"/>
+   <xsd:enumeration value="publication"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="tomoAcquisitionDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************TomoAcquisitionDetails***************************
+
+				Details regarding key parameters of the tomographic acquisition process.
+
+				children:
+
+				stepOrFlyScan (required): select from 2 options to denote whether the scan type is : step scan 	 (pause rotation at each desired angle) or   
+									                      fly scan	 (continuous rotation) 
+
+				scanMode
+
+				acquisitionScriptName
+
+				largeFOV
+
+				rotationStageAlignmentDone
+
+				detectorAlignmentDone
+
+				coordinateReference
+
+				referenceImages
+
+				effectivePixelSize
+
+				numberOfProjections
+
+				acquisitionTimePerProjection
+
+				totalAcquisitionTime
+
+				rotationSpeed
+
+				rotationAngles
+
+				sampleInPosition
+
+				sampleOutPosition
+
+				smearing
+				
+				</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="acquisitionScriptName" type="xsd:string"/>
+   <xsd:element name="stepOrFlyScan" type="scanType"/>
+   <xsd:element name="largeFOV" type="xsd:boolean" default="false"/>
+   <xsd:element name="otherScanningMode" type="otherScanningModeDetails"/>
+   <xsd:element name="rotationStageAlignmentDone" type="xsd:boolean" minOccurs="0"/>
+   <xsd:element name="detectorAlignmentDone" type="xsd:boolean" minOccurs="0"/>
+   <xsd:element name="coordinateReference" type="xsd:string" default="origin at centre of sample" minOccurs="0"/>
+   <xsd:element name="referenceImages" type="referenceImageDetails"/>
+   <xsd:element name="effectivePixelSize" type="pixelSize3D"/>
+   <xsd:element name="numberOfProjections" type="xsd:integer"/>
+   <xsd:element name="acquisitionTimePerProjection" type="timeDetails"/>
+   <xsd:element name="totalAcquisitionTime" type="timeDetails" minOccurs="0"/>
+   <xsd:element name="rotationSpeed" type="rotationSpeedDetails"/>
+   <xsd:element name="rotationAngles" type="rotationAnglesDetails"/>
+   <xsd:element name="sampleInPosition" type="coordinateSet"/>
+   <xsd:element name="sampleOutPosition" type="coordinateSet"/>
+   <xsd:element name="smearing" type="xsd:integer"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="degradationDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************degradationDetails***************************
+
+				describes the degradation details of the sample during the measurement.
+
+				children:
+
+				startTime (required)- Start time of the degradation, datatype xsd:dateTime in the format CCYY-MM-DDThh:mm:ss.sss
+
+				endTime (required)- End time of the degradation, datatype xsd:dateTime in the format CCYY-MM-DDThh:mm:ss.sss
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="startTime" type="xsd:dateTime"/>
+   <xsd:element name="endTime" type="xsd:dateTime"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="rotationAnglesDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************rotationAnglesDetails***************************
+
+				describes the angles of the sample rotation during measurement (EDIT: THIS IS A LINK to a data array of length equal to the number of frames or projections)
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="rotationAnglesReference" type="xsd:array"/>
+   <xsd:element name="startAngle" type="xsd:angle"/>
+   <xsd:element name="endAngle" type="xsd:angle"/>
+   <xsd:element name="angularStepSize" type="xsd:float"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="referenceImageDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************referenceImageDetails***************************
+
+				details on the reference images (if used) - number of flats/bright images and number of dark images
+			exposure time of reference images, if different to projections. </xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="numberOfFlats" type="xsd:integer"/>
+   <xsd:element name="numberOfDarks" type="xsd:integer"/>
+   <xsd:element name="acquisitionTimePerFlat" type="xsd:time" minOccurs="0"/>
+   <xsd:element name="acquisitionTimePerDark" minOccurs="0" type="xsd:time"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="sampleEnvironmentDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************sampleEnvironmentDetails***************************
+
+				describes a special environment details of the sample during the measurement.
+
+				children:
+
+				bioReactor (optional) - describes a bio reactor setup, datatype string
+
+				loadFrame (optional) - describes a load frame setup, datatype string
+
+				furnace (optional) - describes a furnace setup, datatype string
+
+				humidificationCell (optional) - describes a humidification cell setup, datatype string
+
+				corrosionCell (optional) - describes a corrosion cell setup, datatype string
+
+				coolingCell (optional) - describes a cooling cell setup, datatype string
+				
+				micromanipulator (optional) - describes a micromanipulator setup, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="bioReactor" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="loadFrame" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="furnace" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="humidificationCell" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="corrosionCell" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="coolingCell" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="micromanipulator" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="dataDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************dataDetails***************************
+
+				describing the acquired datasets
+
+				children:
+
+				rawData (required) - describes the raw data output from the detector (i.e., projection images)
+
+				processedData (required) - describes various processed data sets. Includes phase retrieval (optional), tomographic reconstruction (required), filtered (optional) and segmented tomographic data (optional).
+
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="rawData" type="rawDataDetails"/>
+   <xsd:element name="processedData" type="processedDataDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="rawDataDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************rawDataDetails***************************
+
+	Details about the data structure of the image data of the projections.
+
+		children: 
+			projectionImageDataStructure (required), defined to be of the complex data type projectionImageDataStructureDetails
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="projectionImageDataStructure" type="projectionImageDataStructureDetails"/>
+   <xsd:element name="projectionImageDataNotes" type="xsd:string"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="projectionImageDataStructureDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************projectionImageDataStructureDetails***************************
+
+				Details about the data structure of the image data of the projections
+
+				children:
+
+				fileLocation (required)
+				name (required)
+				ImageFormats (required)
+				header (required)
+				imageID (optional)
+				dimensions (optional)
+				numberOfImages (optional)
+				IOValues (optional)
+				greyValueRepresentation (optional)
+				imageCorrection (optional)
+				isPreFiltered (optional)
+				pixelSize (optional)
+				cropping (optional)
+
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="fileLocation" type="xsd:string"/>
+   <xsd:element name="name" type="xsd:string"/>
+   <xsd:element name="imageID" type="xsd:string"/>
+   <xsd:element name="imageFormats" type="xsd:string"/>
+   <xsd:element name="dimensions" type="xsd:string"/>
+   <xsd:element name="numberOfImages" type="xsd:string"/>
+   <xsd:element name="IOValue" type="xsd:string"/>
+   <xsd:element name="header" type="xsd:string"/>
+   <xsd:element name="greyValueRepresentation" type="xsd:string"/>
+   <xsd:element name="imageCorrection" type="xsd:string"/>
+   <xsd:element name="isPreFiltered" type="xsd:string"/>
+   <xsd:element name="pixelSize" type="pixelSizeDetails"/>
+   <xsd:element name="cropping" type="croppingDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="phaseRetrievedProjectionDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************phaseRetrievedProjectionDetails***************************
+
+				describes the phase retrieved projections (optional).
+
+				children:
+
+				phaseRetrievedProjectionDataStructure - data structure of the phase retrieved projection data
+				
+				phaseRetrieval - details of the phase retrieval</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="phaseRetrievedProjectionDataStructure" type="phaseRetrievedProjectionDataStructureDetails"/>
+   <xsd:element name="phaseRetrieval" type="phaseRetrievalDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="phaseRetrievedProjectionDataStructureDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************phaseRetrievedProjectionDataStructureDetails***************************
+
+				Details about the data structure of the image data of the phase retrieved projections
+
+				children:
+
+				fileLocation (required)
+				name (required)
+				ImageFormats (required)
+				header (required)
+				imageID (optional)
+				dimensions (optional)
+				numberOfImages (optional)
+				IOValues (optional)
+				greyValueRepresentation (optional)
+				imageCorrection (optional)
+				isPreFiltered (optional)
+				pixelSize (optional)
+				cropping (optional)
+
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="fileLocation" type="xsd:string"/>
+   <xsd:element name="name" type="xsd:string"/>
+   <xsd:element name="imageID" type="xsd:string"/>
+   <xsd:element name="imageFormats" type="xsd:string"/>
+   <xsd:element name="dimensions" type="xsd:string"/>
+   <xsd:element name="numberOfImages" type="xsd:string"/>
+   <xsd:element name="IOValue" type="xsd:string"/>
+   <xsd:element name="header" type="xsd:string"/>
+   <xsd:element name="greyValueRepresentation" type="xsd:string"/>
+   <xsd:element name="imageCorrection" type="xsd:string"/>
+   <xsd:element name="isPreFiltered" type="xsd:string"/>
+   <xsd:element name="pixelSize" type="pixelSizeDetails"/>
+   <xsd:element name="cropping" type="croppingDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="phaseRetrievalDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************phaseRetrievalDetails*************************
+				gives details on the phase retrieval parameters.
+
+				children:
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all/>
+ </xsd:complexType>
+ <xsd:complexType name="tomoReconstructedDataDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************tomoReconstructedDataDetails***************************
+
+				describes the tomographic reconstructions
+
+				children:
+
+				tomoReconstructedDataStructure
+				tomoReconstruction
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="tomoReconstructedDataStructure" type="tomoReconstructedDataStructureDetails"/>
+   <xsd:element name="tomoReconstruction" type="tomoReconstructionDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="tomoReconstructedDataStructureDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************tomoReconstructedDataStructureDetails***************************
+
+				Details about the data structure of the image data of the reconstructions
+
+				children:
+
+				fileLocation (required)
+				name (required)
+				ImageFormats (required)
+				header (required)
+				imageID (optional)
+				dimensions (optional)
+				numberOfImages (optional)
+				IOValues (optional)
+				greyValueRepresentation (optional)
+				imageCorrection (optional)
+				isPreFiltered (optional)
+				pixelSize (optional)
+				cropping (optional)
+
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="fileLocation" type="xsd:string"/>
+   <xsd:element name="name" type="xsd:string"/>
+   <xsd:element name="volumeID" type="xsd:string"/>
+   <xsd:element name="volumeFormats" type="xsd:string"/>
+   <xsd:element name="dimensions" type="xsd:string"/>
+   <xsd:element name="numberOfSlices" type="xsd:string"/>
+   <xsd:element name="bitdepth" type="xsd:integer"/>
+   <xsd:element name="header" type="xsd:string"/>
+   <xsd:element name="greyValueRepresentation" type="xsd:string"/>
+   <xsd:element name="pixelSize" type="pixelSizeDetails"/>
+   <xsd:element name="cropping" type="croppingDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="tomoReconstructionDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************tomoReconstructionDetails*************************
+				gives details on the tomographic reconstruction.
+
+				children:
+				reconstructionSoftware
+				startImage
+				lastImage
+				startAngle
+				hardwarePlatform
+				algorithm
+				binning
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="reconstructionSoftware" type="reconstructionSoftwareDetails"/>
+   <xsd:element name="startImage" type="xsd:integer"/>
+   <xsd:element name="lastImage" type="xsd:integer"/>
+   <xsd:element name="startAngle" type="xsd:integer"/>
+   <xsd:element name="hardwarePlatform" type="hardwarePlatformDetails"/>
+   <xsd:element name="algorithm" type="algorithmDetails"/>
+   <xsd:element name="binning" type="xsd:integer"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="filteredTomoDataDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************filteredTomoDataDetails***************************
+
+				describes any filtered tomographic reconstructions (e.g. destriping, denoising) (optional)
+
+				children:
+
+					filteredTomoDataStructure
+					tomoFiltering
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="filteredTomoDataStructure" type="filteredTomoDataStructureDetails"/>
+   <xsd:element name="tomoFiltering" type="tomoFilteringDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="filteredTomoDataStructureDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************filteredTomoDataStructureDetails***************************
+
+				Details about the data structure of the image data of any filtered reconstructions
+
+				children:
+
+				fileLocation (required)
+				name (required)
+				ImageFormats (required)
+				header (required)
+				imageID (optional)
+				dimensions (optional)
+				numberOfImages (optional)
+				IOValues (optional)
+				greyValueRepresentation (optional)
+				imageCorrection (optional)
+				isPreFiltered (optional)
+				pixelSize (optional)
+				cropping (optional)
+
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="fileLocation" type="xsd:string"/>
+   <xsd:element name="name" type="xsd:string"/>
+   <xsd:element name="volumeID" type="xsd:string"/>
+   <xsd:element name="volumeFormats" type="xsd:string"/>
+   <xsd:element name="dimensions" type="xsd:string"/>
+   <xsd:element name="numberOfSlices" type="xsd:string"/>
+   <xsd:element name="bitdepth" type="xsd:integer"/>
+   <xsd:element name="header" type="xsd:string"/>
+   <xsd:element name="greyValueRepresentation" type="xsd:string"/>
+   <xsd:element name="pixelSize" type="pixelSizeDetails"/>
+   <xsd:element name="cropping" type="croppingDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="segmentedTomoDataDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************segmentedTomoDataDetails***************************
+
+				describes any segmented tomographic data (optional)
+
+						children:
+							segmentedTomoDataStructure
+							tomoSegmentation</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="segmentedTomoDataStructure" type="segmentedTomoDataStructureDetails"/>
+   <xsd:element name="tomoSegmentation" type="tomoSegmentationDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="segmentedTomoDataStructureDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************tomoReconstructedDataStructureDetails***************************
+
+				Details about the data structure of the image data of the reconstructions
+
+				children:
+
+				fileLocation (required)
+				name (required)
+				ImageFormats (required)
+				header (required)
+				imageID (optional)
+				dimensions (optional)
+				numberOfImages (optional)
+				IOValues (optional)
+				greyValueRepresentation (optional)
+				imageCorrection (optional)
+				isPreFiltered (optional)
+				pixelSize (optional)
+				cropping (optional)
+
+
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="fileLocation" type="xsd:string"/>
+   <xsd:element name="name" type="xsd:string"/>
+   <xsd:element name="volumeID" type="xsd:string"/>
+   <xsd:element name="volumeFormats" type="xsd:string"/>
+   <xsd:element name="dimensions" type="xsd:string"/>
+   <xsd:element name="numberOfSlices" type="xsd:string"/>
+   <xsd:element name="bitdepth" type="xsd:integer"/>
+   <xsd:element name="header" type="xsd:string"/>
+   <xsd:element name="greyValueRepresentation" type="xsd:string"/>
+   <xsd:element name="pixelSize" type="pixelSizeDetails"/>
+   <xsd:element name="cropping" type="croppingDetails"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="processedDataDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************dataProcessingDetails***************************
+
+				details about the various processed data.
+
+				children:
+
+				phaseRetrievedProjections (optional) - 
+				tomoReconstructedData (required) - 
+				filteredTomoData (optional) -
+				segmentedTomoData (optional) -
+
+					</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="phaseRetrievedProjections" type="phaseRetrievedProjectionDetails" minOccurs="0"/>
+   <xsd:element name="tomoReconstructedData" type="tomoReconstructedDataDetails"/>
+   <xsd:element name="filteredTomoData" type="filteredTomoDataDetails" minOccurs="0"/>
+   <xsd:element name="segmentedTomoData" type="segmentedTomoDataDetails" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="measurementConditionsDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************measurementConditionsDetails***************************
+
+				describes the conditions during the measurement.
+
+				children:
+
+				isVacuumChamber (required) - if the measurement of the sample is taken within a vacuum chamber
+
+				roomTemperature (optional) - temperature in the lab room
+
+				systemTemperature (optional) - temperature within the measurement system
+
+				humidity (optional) - humidity within the measurement system
+
+				pH (optional) - pH conditions of the sample during measurement
+
+				flowRate (optional) - flow rate of the medium that the sample is embedded in
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="sampleEnvironment" type="sampleEnvironmentDetails"/>
+   <xsd:element minOccurs="0" name="isVacuumChamber" type="xsd:boolean"/>
+   <xsd:element name="roomTemperature" type="temperatureDetails"/>
+   <xsd:element name="systemTemperature" type="temperatureDetails"/>
+   <xsd:element name="humidity" type="humidityDetails"/>
+   <xsd:element name="pH" type="phDetails" minOccurs="0"/>
+   <xsd:element name="flowRate" type="flowDetails" minOccurs="0"/>
+   <xsd:element name="mediumSpecification" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="degradationConditions" type="degradationDetails" minOccurs="0"/>
+   <xsd:element name="sterileConditions" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="coordinateSet">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************coordinateSet**************************
+				The set of xyz values describing a point of reference for correlative characterization
+
+				children:
+
+				xValue (optional) - value of the x coordinate, datatype float
+
+				xUncertainty (optional) - uncertainty in the x value expressed as complex type uncertainty
+
+				yValue (optional) - value of the y coordinate, datatype float
+
+				yUncertainty (optional) -uncertainty in the y value expressed as complex type uncertainty
+
+				zValue (optional) - value of the zcoordinate, datatype float
+
+				zUncertainty (optional) -uncertainty in the z value expressed as complex type uncertainty
+
+				coordinatesUnit (optional) - unit of the coordinates, allowed units - nm, um, mm, cm, m, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="xValue" type="xsd:float"/>
+   <xsd:element name="xUncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="yValue" type="xsd:float"/>
+   <xsd:element name="yUncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="zValue" type="xsd:float"/>
+   <xsd:element name="zUncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="coordinatesUnit" type="distanceUnitType" default="um"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="imageDimensionsType">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**************************pixelNumberType**************************
+				the resolution of the image split into number of pixels in x, y, and z directions
+
+				children:
+
+				xPixels (required) - no. of pixels in horizontal direction, datatype integer
+
+				yPixels (required) - no. of pixels in vertical direction, datatype integer
+
+				zPixels (optional) - no. of pixels in depth direction, datatype integer
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="xPixels" type="xsd:integer"/>
+   <xsd:element name="yPixels" type="xsd:integer"/>
+   <xsd:element name="zPixels" type="xsd:integer" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="apertureSettingType">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************apertureSettingType************************
+				The setting for controlling the aperture size, using either the aperture size directly or indirectly using beam current. Therefore one of the two choices must be selected: size or current
+
+				children:
+
+				size (optional) - the size of the aperture which can be directly controlled using the instrument settings expressed as the complex type distanceDetails
+
+				OR
+
+				current (optional) - the beam current setting which would indirectly control the size of the aperture expressed as complex type currentDetails
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:choice>
+   <xsd:element name="size" type="distanceDetails"/>
+   <xsd:element name="current" type="currentDetails"/>
+  </xsd:choice>
+ </xsd:complexType>
+ <xsd:complexType name="pixelSize3D">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				************************pixelSize3D************************
+				the distance on the sample imaged by a single pixel, normally expressed in nm/pixel, is expressed in 3D for the mapping along x, y and z directions.
+
+				children:
+
+				xPixelSize (required) -  distance on the sample covered by a pixel in the x direction expressed as complex type distanceDetails.
+
+				yPixelSize (optional) - distance on the sample covered by a pixel in the y direction expressed as complex type distanceDetails.
+				The y-pixel-size is to be given only if it is different from the x-pixel-size.
+
+				zPixelSize (optional) - distance on the sample covered by a pixel in the z direction expressed as complex type distanceDetails.
+				The z-pixel-size can be ignored if it is greater than voxel size.
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="xPixelSize" type="distanceDetails"/>
+   <xsd:element name="yPixelSize" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="zPixelSize" type="distanceDetails" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="timeDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************timeDetails*************************
+				complex type describing a time
+
+				children:
+
+				value (required) - The time expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list ps, ns, us, ms, s default value - us, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="timeUnitType" default="us"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="timeUnitType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="ns"/>
+   <xsd:enumeration value="us"/>
+   <xsd:enumeration value="ms"/>
+   <xsd:enumeration value="s"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="monochromatorType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="Double Crystal Monochromator"/>
+   <xsd:enumeration value="Double Multilayer Monochromator"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="opticalSetupType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="NFH cone beam"/>
+   <xsd:enumeration value="TXM microscopy"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="XraySourceType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="Synchrotron Xray Source"/>
+   <xsd:enumeration value="LaboratoryXraySource"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="detectorType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="CCD"/>
+   <xsd:enumeration value="CMOS"/>
+   <xsd:enumeration value="sCMOS"/>
+   <xsd:enumeration value="photonCounting"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="detectorDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************detectorDetails*************************
+				describes the settings and components of a detector.
+
+				children:
+
+				detectorType (required) - The type of detector (e.g., surface electron detection,  secondary electron, back-scattered electron), datatype string.
+
+				detectorName (required) -Name of the detector, datatype string.
+
+				detectorID (optional) - Identifier for the detector expressed as the complex type identifier.
+
+				detectorManufacturer (optional) - describes the details of the detector like manufacturerName, modelName and detectorID as part of the complex type manufacturerDetails.
+
+				detectorMotorPositions - xyz coordinates describing the position of the detector expressed as the complex group motorSetDetails.
+
+				lastCalibration (optional) - date and time of last calibration expressed as CCYY-MM-DDThh:mm:ss.sss conforming to xsd:dateTime.
+
+				detectorCoolingTemperature (optional) - 
+
+				cameraGain (optional) -
+
+				detectorBias (optional) - bias voltage applied to the detector expressed as complex type voltageDetails. Allowed units nV, uV, mV, V, kV.
+
+				energyThreshold (optional) -
+
+				detectorPixelSize (required) -
+
+				imagePixelSize (required) -
+				
+				detectorDimensions  (required) -
+
+				sensor (required) -
+
+				lens (required) -
+
+				bitDepth (required) -
+
+				binning (required) -
+
+				numberofAveragedFramesPerProjection (required) -
+
+				exposureTimePerFrame (required) -
+
+				framesPerSecond (optional) -
+
+				frameSkip (optional) -
+				
+				totalCountsPerProjection (optional) -
+
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="detectorType" type="detectorType" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="detectorName" type="xsd:string"/>
+   <xsd:element name="detectorID" type="identifier" minOccurs="0"/>
+   <xsd:element name="detectorManufacturer" type="manufacturerDetails" minOccurs="0"/>
+   <xsd:element name="detectorMotorPositions" type="motorSetDetails"/>
+   <xsd:element name="lastCalibration" type="xsd:dateTime" minOccurs="0"/>
+   <xsd:element name="detectorCoolingTemperature" type="temperatureDetails" minOccurs="0"/>
+   <xsd:element name="cameraGain" type="cameraGainDetails" minOccurs="0"/>
+   <xsd:element name="detectorBias" type="voltageDetails" minOccurs="0"/>
+   <xsd:element name="energyThreshold" type="energyDetails" minOccurs="0"/>
+   <xsd:element name="detectorPixelSize" type="pixelSize3D"/>
+   <xsd:element name="imagePixelSize" type="pixelSize3D"/>
+   <xsd:element name="detectorDimensions" type="imageDimensionsType"/>
+   <xsd:element name="sensor" type="sensorDetails"/>
+   <xsd:element name="lens" type="lensDetails"/>
+   <xsd:element name="bitDepth" type="xsd:string"/>
+   <xsd:element name="binning" type="binningDetails"/>
+   <xsd:element name="numberOfAveragedFramesPerProjection" type="xsd:integer"/>
+   <xsd:element name="exposureTimePerFrame" type="timeDetails"/>
+   <xsd:element name="framesPerSecond" type="xsd:float"/>
+   <xsd:element name="frameSkip" type="xsd:integer"/>
+   <xsd:element name="totalCountsPerProjection" type="xsd:integer"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="sensorDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************sensorDetails*************************
+				gives details on the detector sensor. May also be known as the scintillator.
+
+				children:
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="hasSensor" type="xsd:boolean"/>
+   <xsd:element name="sensorType" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="sensorName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="sensorID" type="identifier" minOccurs="0"/>
+   <xsd:element name="sensorManufacturer" type="manufacturerDetails" minOccurs="0"/>
+   <xsd:element name="sensorMaterial" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="sensorThickness" type="distanceDetails" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="lensDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************lensDetails*************************
+				gives details on the detector lens.
+
+				children:
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="hasLens" type="xsd:boolean"/>
+   <xsd:element name="lensName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="lensID" type="identifier" minOccurs="0"/>
+   <xsd:element name="lensManufacturer" type="manufacturerDetails" minOccurs="0"/>
+   <xsd:element name="lensMagnification" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="lensFocus" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="FZPDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************FZPDetails*************************
+				gives details on the FZP (Fresnel Zone Plate).
+
+				children:
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="FZPMaterial" type="opticMaterialDetails" minOccurs="0"/>
+   <xsd:element name="FZPName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="FZPID" type="identifier" minOccurs="0"/>
+   <xsd:element name="FZPDiameter" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="FZPOutermostZonewidth" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="FZPPosition" type="coodinateSet" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="beamshaperDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************beamshaperDetails*************************
+				gives details on the beamshaper.
+
+				children:
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="beamshaperMaterial" type="opticMaterialDetails" minOccurs="0"/>
+   <xsd:element name="beamshaperName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="beamshaperID" type="identifier" minOccurs="0"/>
+   <xsd:element name="beamshaperDiameter" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="beamshaperOutermostZonewidth" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="beamshaperPosition" type="coodinateSet" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="slitDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************slitDetails*************************
+				gives details on the slits used to cut down the x-ray beam size.
+
+				children:
+			slitID
+			slitXcenter
+			slitXsize
+			slitYcenter
+			slitYsize
+			slitPosition</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="slitID" type="identifier" minOccurs="0"/>
+   <xsd:element name="slitXcenter" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="slitXsize" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="slitYcenter" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="slitYsize" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="slitPosition" type="coodinateSet" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="beamstopDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************beamstopDetails*************************
+				gives details on the beamstop.
+
+				children:
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="beamstopMaterial" type="opticMaterialDetails" minOccurs="0"/>
+   <xsd:element name="beamstopName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="beamstopID" type="identifier" minOccurs="0"/>
+   <xsd:element name="beamstopDiameter" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="BeamstopPosition" type="coodinateSet" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="OSADetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">				*************************OSADetails*************************
+				gives details on the OSA parameters.
+
+				children:</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="OSAName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="OSAType" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="OSAID" type="identifier" minOccurs="0"/>
+   <xsd:element name="OSAMaterial" type="opticMaterialDetails" minOccurs="0"/>
+   <xsd:element name="OSADiameter" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="OSAPosition" type="coodinateSet" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="monochromatorDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************monochromatorDetails*************************
+				gives details on the monochromator.
+
+				children:
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="monochromatorType" type="monochromatorType"/>
+   <xsd:element name="monochromatorStripe" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="monochromatorEnergy" type="energyDetails"/>
+   <xsd:element name="monochromatorPosition" type="coodinateSet" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="tomoFilteringDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************filteringDetails*************************
+				gives details on the post processing filtering process
+
+				children:
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all/>
+ </xsd:complexType>
+ <xsd:complexType name="tomoSegmentationDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************segmentationDetails*************************
+				gives details on the segmentation procedure.
+
+				children:
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all/>
+ </xsd:complexType>
+ <xsd:complexType name="eBeamDecelerationDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				**********************eBeamDecelerationDetails**********************
+				Details about deceleration of the e- beam.
+
+				children:
+
+				eBeamDecelerationOn (required) - Is deceleration applied to the e-beam? true-false, datatype boolean
+
+				landingEnergy (optional) - Landing energy of the e-beam expressed as the complex type energyDetails, allowed units - meV, eV, keV, nJ, mJ, J, kJ, MJ
+
+				stageBias (optional) - Bias voltage applied to the stage expressed as the complex type biasDetails, allowed units - nV, uV, mV, V, kV, nA, uA, mA, A, kA
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="landingEnergy" type="energyDetails" minOccurs="0"/>
+   <xsd:element name="stageBias" type="voltageDetails" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="energyDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************energyDetails*************************
+				complex type describing an energy
+
+				children:
+
+				value (required) - The energy expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list meV, eV, keV, MeV, nJ, mJ, J, kJ, MJ default value - keV, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="energyUnitType" default="keV"/>
+   <xsd:element name="qualifier" type="xsd:string" minOccurs="0" default="max"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="motorValueDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************motorValueDetails*************************
+				complex type describing an energy
+
+				children:
+
+				value (required) - The energy expressed as an integer or floating point value, datatype float
+
+				unit (required) - the unit of the value to be selected from a controlled list meV, eV, keV, MeV, nJ, mJ, J, kJ, MJ default value - keV, datatype string
+
+				qualifier (optional) - A qualifier to describe the value (e.g., avg, max, min), default value - max, datatype string
+
+				uncertainty (optional) - Uncertainty in the value defined as a complex type uncertaintyType, which gives the option of choosing between an absolute uncertainty or relative uncertainty and entering the value of uncertainty as a double value.
+
+				notes (optional) - Further notes about the value, datatype string
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="value" type="xsd:float"/>
+   <xsd:element name="unit" type="distanceUnitType"/>
+   <xsd:element name="uncertainty" type="uncertaintyType" minOccurs="0"/>
+   <xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="energyUnitType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="meV"/>
+   <xsd:enumeration value="eV"/>
+   <xsd:enumeration value="keV"/>
+   <xsd:enumeration value="MeV"/>
+   <xsd:enumeration value="nJ"/>
+   <xsd:enumeration value="mJ"/>
+   <xsd:enumeration value="J"/>
+   <xsd:enumeration value="kJ"/>
+   <xsd:enumeration value="MJ"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="FIBDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*********************FIBDetails*********************
+				Details about the focussed ion beam (FIB) extension if present
+
+				children:
+
+				iBeamSource (required) - describes the details of the FIB source, defined as the complex type fibSourceDetails. It is important to note the accelerating voltage and beam current of the i-beam.
+
+				gunPressure (required) - pressure of the FIB gun, expressed as the complex type pressureDetails, Allowed units Pa, hPa, kPa, MPa, GPa, mbar, bar, psi
+
+				gasInjectionSystem (optional) - Details about the gas injection system (GIS) expressed as GISDetails.
+
+				iBeamWorkingDistance (optional) - Working distance of the ion beam (i-beam), expressed as complex type distanceDetails. This value needs to be entered if the i-beam focus has to be set independently from the e-beam focus. Allowed units: nm, um, mm, cm, m
+
+				FIBSpotSize (optional) - spot size of the i-beam at the focus, when the sample is in focus, this will be also the spot size on the sample, expressed as the complexType distanceDetails, Allowed units: nm, um, mm, cm, m
+
+				angleToEBeam (optional) - angle between e-beam and i-beam expressed as the complex type angleDetails, Allowed units: degree, radian
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="iBeamSource" type="fibSourceDetails"/>
+   <xsd:element name="gunPressure" type="pressureDetails"/>
+   <xsd:element name="gasInjectionSystem" type="GISDetails" minOccurs="0"/>
+   <xsd:element name="iBeamWorkingDistance" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="FIBSpotSize" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="angleToEBeam" type="angleDetails" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="pressureUnitType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="Pa"/>
+   <xsd:enumeration value="hPa"/>
+   <xsd:enumeration value="kPa"/>
+   <xsd:enumeration value="MPa"/>
+   <xsd:enumeration value="GPa"/>
+   <xsd:enumeration value="mbar"/>
+   <xsd:enumeration value="bar"/>
+   <xsd:enumeration value="psi"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="GISDetails">
+  <xsd:annotation>
+   <xsd:documentation>
+				**********************GISDetails**********************
+				gives the details of the gas injection system (GIS)
+
+				children:
+
+				GISName (optional) - Name of the GIS system, datatype string
+
+				beamDepositionType (optional) - type of beam deposition, datatype string, choice between e-beam deposition and i-beam deposition
+
+				depositionCurrent (optional) - the current used for performing beam deposition, expressed as the complex type currentDetails, Allowed units pA,nA,uA,mA,A
+
+				depositionSize (optional) - the size of the deposition, expressed as the complex type distanceDetails. Allowed units nm,um,mm,cm,m
+
+				depositionTime (optional) - total time for deposition, expressed as the complex type timeDetails. Allowed units ps,ns,us,ms,s
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="GISName" type="xsd:string" minOccurs="0"/>
+   <xsd:element name="beamDepositionType" type="depositionType" minOccurs="0"/>
+   <xsd:element name="depositionCurrent" type="currentDetails" minOccurs="0"/>
+   <xsd:element name="depositionSize" type="distanceDetails" minOccurs="0"/>
+   <xsd:element name="depositionTime" type="timeDetails" minOccurs="0"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="depositionType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="E-beam Deposition"/>
+   <xsd:enumeration value="I-Beam Deposition"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="scanType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="fly scan"/>
+   <xsd:enumeration value="step scan"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="otherScanningModeDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*****************************otherScanningModeDetails*****************************
+				(optional) : Detailing any other/special scanning modes used during acquisition - helical, raster scanning, fast scan pattern, other.
+				
+
+						children:	 otherScanningModeType (select from list)
+  	
+    						&quot;enum&quot;: [
+     							   &quot;helical&quot;,
+     							   &quot;raster scanning&quot;,
+     							   &quot;fast scan pattern&quot;,
+      							   &quot;other&quot; ]
+
+			            				  otherScanningModeDescription: give details of the mode, especially if 'other' is selected.  Data type xsd:string 
+
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="otherScanningModeType" type="otherScanningModeType"/>
+   <xsd:element name="otherScanningModeDescription" type="xsd:string"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:simpleType name="otherScanningModeType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="helical"/>
+   <xsd:enumeration value="raster scanning"/>
+   <xsd:enumeration value="fast scan pattern"/>
+   <xsd:enumeration value="other"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:complexType name="insertionDeviceDetails">
+  <xsd:annotation>
+   <xsd:documentation xml:lang="en">
+				*************************insertionDeviceDetails*************************
+				gives details on the insertion device parameters.
+
+				children:
+			</xsd:documentation>
+  </xsd:annotation>
+  <xsd:all>
+   <xsd:element name="insertionDeviceType" type="insertionDeviceType" default="2m Undulator">
+    <xsd:restriction base="xsd:string">
+     <xsd:enumeration value="undulator"/>
+     <xsd:enumeration value="wiggler"/>
+     <xsd:enumeration value="bendingMagnet"/>
+    </xsd:restriction>
+   </xsd:element>
+   <xsd:element name="InsertionDeviceGap" type="xsd:string"/>
+  </xsd:all>
+ </xsd:complexType>
+</xsd:schema>
