@@ -18,10 +18,4 @@ This folder contains three modular JSON schema definitions used for SEM FIB tomo
 
 ## Usage
 
-- These schemas is used in the development of the map file(s):
-  - [TOMO_zeiss_setup.json](https://github.com/kit-data-manager/tomo_mapper/blob/main/src/resources/maps/mapping/TOMO_zeiss_setup.json)
-  - [TOMO_zeiss_image.json](https://github.com/kit-data-manager/tomo_mapper/blob/main/src/resources/maps/mapping/TOMO_zeiss_image.json)
-  - [TOMO_thermofisher_setup.json](https://github.com/kit-data-manager/tomo_mapper/blob/main/src/resources/maps/mapping/TOMO_thermofisher_setup.json)
-  - [TOMO_thermofisher_image.json](https://github.com/kit-data-manager/tomo_mapper/blob/main/src/resources/maps/mapping/TOMO_thermofisher_image.json)
-  - [TOMO_tescan_setup.json](https://github.com/kit-data-manager/tomo_mapper/blob/main/src/resources/maps/mapping/TOMO_tescan_setup.json)
-  - [TOMO_tescan_image.json](https://github.com/kit-data-manager/tomo_mapper/blob/main/src/resources/maps/mapping/TOMO_tescan_image.json)
+- This schema is used in the development of the TOMO map file(s) in [tomo_mapper](https://github.com/kit-data-manager/tomo_mapper/tree/main/src/resources/maps/mapping).
