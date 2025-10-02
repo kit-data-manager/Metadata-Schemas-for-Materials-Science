@@ -89,7 +89,7 @@
       }
     },
     "entryID": {
-      "$ref": "../identifier_description",
+      "$ref": "../identifier_description.json",
       "description": "(Optional, NAE) - Identifier of the metadata entry usually provided by the project or the laboratory."
     },
     "measurementTitle": {
@@ -157,7 +157,7 @@
       "description": "(Optional, NAE) - Details concerning any revision to the xml document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format.",
       "properties": {
         "revisonID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional, NAE) - Identifier of the file."
         },
         "revisionComment": {
@@ -363,7 +363,7 @@
           "description": "(Required, AE) - Name of the instrument of datatype string."
         },
         "instrumentID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional, NAE) - Identifier for the instrument."
         },
         "instrumentManufacturer": {
@@ -557,7 +557,7 @@
           "description": "(Optional, AE) - Model of the instrument of datatype string."
         },
         "manufacturerID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional, NAE) - Identifier for the manufacturer."
         }
       }
@@ -996,7 +996,7 @@
           "description": "(Optional, AE) - Local name of the e-beam source of datatype string."
         },
         "sourceID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": " (Optional, NAE) - Identifier for the e-beam source."
         },
         "accelerationVoltage": {
@@ -1679,7 +1679,7 @@
           "description": "(Required, AE) - Name of the detector of datatype string."
         },
         "detectorID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional, NAE) - Identifier for the detector/camera."
         },
         "detectorManufacturer": {
@@ -2273,7 +2273,7 @@
           "description": "(Optional, AE) - The high tension offset applied for dual acquire sibling (if used)."
         },
         "spectrometerID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional, NAE) - Identifier for the spectrometer."
         },
         "spectrometerName": {
@@ -2300,7 +2300,7 @@
           "description": "(Optional, AE) - Name or local name of the EDXS detector, of the datatype string. E.g. superXG2"
         },
         "detectorID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional, NAE) - Identifier for the EDXS detector."
         },
         "dispersion": {

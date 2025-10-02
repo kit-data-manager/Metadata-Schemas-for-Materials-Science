@@ -63,7 +63,7 @@
                     "description":"(Optional) - Department within an institution"
                 },
                 "institutionID": {
-                    "$ref": "./identifier_description",
+                    "$ref": "./identifier_description.json",
                     "description": "(Optional) - Identifier of the institution to which the user is affiliated"
                 }
            }

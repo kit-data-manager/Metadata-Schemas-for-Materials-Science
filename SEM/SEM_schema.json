@@ -102,7 +102,7 @@
           }
         },
         "entryID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "entryID (Optional)- Identifier of the measurement usually provided by the project or the laboratory"
         },
         "title": {
@@ -169,7 +169,7 @@
       "description": "(Optional) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format.",
       "properties": {
         "revisonID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional) - Identifier of the file"
         },
         "revisionComment": {
@@ -294,7 +294,7 @@
           "description": "(Optional) - Short description of the sample preparation"
         },
         "preparationID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional) - Identifier of the sample preparation"
         }
       }
@@ -309,7 +309,7 @@
           "description": "(Required) - Name of the instrument"
         },
         "instrumentID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional) - Identifier of the instrument"
         },
         "instrumentManufacturer": {
@@ -368,7 +368,7 @@
           "description": "(Optional) - Model of the instrument"
         },
         "manufacturerID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional) - Identifier of the manufacturer"
         }
       }
@@ -424,7 +424,7 @@
           "description": "(Optional) - name of the e-beam source of datatype string"
         },
         "sourceID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional) - identifier for the e-beam source"
         },
         "accelerationVoltage": {
@@ -949,7 +949,7 @@
           "description": "(Required) -Name of the detector of datatype string"
         },
         "detectorID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional) - Identifier for the detector"
         },
         "detectorManufacturer": {

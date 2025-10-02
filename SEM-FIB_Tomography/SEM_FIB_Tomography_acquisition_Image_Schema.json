@@ -4,7 +4,7 @@
   "description": "This JSON Schema describes an individual image acquired during the course of a SEM/FIB Tomography experiment.  Each image is taken using a detector (SE, BSE, EDS, EBSD) at each slice cut using FIB. This Schema contains only the parameters which are specific to the individual image. The parameters which are common to the entire set are described by another schema which describes the dataset as a whole and is located at ./SEM_FIB_Tomography_acquisition_Dataset_Schema.json.",
   "properties": {
     "entryID": {
-      "$ref": "../identifier_description",
+      "$ref": "../identifier_description.json",
       "description": "(Optional)- Identifier of the image produced by the machine"
     },
     "fileName": {
@@ -12,7 +12,7 @@
       "description": "(Optional)- File name of the image"
     },
     "fileLink": {
-      "$ref": "../identifier_description",
+      "$ref": "../identifier_description.json",
       "description": "(Optional)- Link to the location of the image"
     },
     "creationTime": {

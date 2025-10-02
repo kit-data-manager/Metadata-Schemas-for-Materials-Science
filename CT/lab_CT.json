@@ -88,11 +88,11 @@
       }
     },
     "entryID": {
-      "$ref": "../identifier_description",
+      "$ref": "../identifier_description.json",
       "description": "(Optional) - Identifier of the metadata entry usually provided by the project or the laboratory."
     },
     "experimentID": {
-      "$ref": "../identifier_description",
+      "$ref": "../identifier_description.json",
       "description": "(Optional) - Identifier of the measurement usually provided by the project or the laboratory."
     },
     "title": {
@@ -168,7 +168,7 @@
       "description": "(Optional) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format.",
       "properties": {
         "revisonID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional) - Identifier of the file"
         },
         "revisionComment": {
@@ -700,7 +700,7 @@
           "description": "(Required) - Name of the instrument."
         },
         "instrumentID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional) - Identifier of the instrument."
         },
         "instrumentManufacturer": {
@@ -731,7 +731,7 @@
                 },
                 "tubeID": {
                   "description": "(Optional) - Identifier of the X-ray tube.",
-                  "$ref": "../identifier_description"
+                  "$ref": "../identifier_description.json"
                 },
                 "tubeManufacturer": {
                   "description": "(Optional) - Details regarding the manufacturer of the X-ray tube.",
@@ -1465,7 +1465,7 @@
           "description": "(Optional) - Model of the instrument"
         },
         "manufacturerID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional) - Identifier of the manufacturer"
         }
       }
@@ -1983,7 +1983,7 @@
           "description": "(Required) - Describes the details of the manufacturer of the detector (manufacturerName, modelName and manufacturerID) as part of manufacturerDetails."
         },
         "detectorID": {
-          "$ref": "../identifier_description",
+          "$ref": "../identifier_description.json",
           "description": "(Optional) - Identifier for the detector."
         },
         "detectorType": {
@@ -2050,7 +2050,7 @@
               "description": "(Optional) - Name of the sensor of datatype string."
             },
             "sensorID": {
-              "$ref": "../identifier_description",
+              "$ref": "../identifier_description.json",
               "description": "(Optional) - Identifier for the sensor."
             },
             "sensorManufacturer": {
@@ -2084,7 +2084,7 @@
               "description": "(Optional) - Name of the lens of datatype string."
             },
             "lensID": {
-              "$ref": "../identifier_description",
+              "$ref": "../identifier_description.json",
               "description": "(Optional) - Identifier for the lens."
             },
             "lensManufacturer": {
@@ -2201,7 +2201,7 @@
                   "description": "(Required) - Name of the Projection Image Data."
                 },
                 "imageID": {
-                  "$ref": "../identifier_description",
+                  "$ref": "../identifier_description.json",
                   "description": "(Optional) - Identifier of the Image Data."
                 },
                 "imageFormats": {
@@ -2382,7 +2382,7 @@
               "description": "(Required) - Name of the 3D volume structure (dataset)."
             },
             "volumeID": {
-              "$ref": "../identifier_description",
+              "$ref": "../identifier_description.json",
               "description": "(Optional) - Identifier of the metadata entry of the 3D reconstructed volume usually provided by the project or the laboratory."
             },
             "dimensions": {

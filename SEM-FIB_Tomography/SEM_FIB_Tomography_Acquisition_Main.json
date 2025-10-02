@@ -111,7 +111,7 @@
               "description": "(Optional)- Details concerning the program (or software) used for aquisition"
             },
             "applicationID": {
-              "$ref": "../identifier_description",
+              "$ref": "../identifier_description.json",
               "description": "(Optional)- Details concerning the program (or software) used for aquisition"
             },
             "fileVersion": {
@@ -123,7 +123,7 @@
               "description": "The name of the project containing the acquistion datasets"
             },
             "projectID": {
-              "$ref": "../identifier_description",
+              "$ref": "../identifier_description.json",
               "description": "(Optional)- Details concerning the program (or software) used for aquisition"
             },
             "projectDescription": {
