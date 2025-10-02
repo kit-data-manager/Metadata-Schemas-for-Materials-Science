@@ -15,14 +15,14 @@ jobs:
         id: map_schema
         run: |
           TAG_NAME="${{ github.event.release.tag_name }}"
-          PREFIX=$(echo "$TAG_NAME" | cut -d'/' -f1)
+          PREFIX=$(echo "$TAG_NAME" | cut -d'_' -f1)
 
           case "$PREFIX" in
             "APE-HE")
               SCHEMA_PATH="APE-HE/APE_HE_Schema.json"
               ;;
             "CT")
-              SCHEMA_PATH="CT/lab_ct.json"
+              SCHEMA_PATH="CT/lab_CT.json"
               ;;
             "MRI")
               SCHEMA_PATH="MRI/MRI_schema.json"
