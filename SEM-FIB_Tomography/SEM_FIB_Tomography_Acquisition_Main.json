@@ -111,7 +111,7 @@
               "description": "(Optional)- Details concerning the program (or software) used for aquisition"
             },
             "applicationID": {
-              "$ref": "#/$defs/identifier",
+              "$ref": "../identifier_description.json",
               "description": "(Optional)- Details concerning the program (or software) used for aquisition"
             },
             "fileVersion": {
@@ -123,7 +123,7 @@
               "description": "The name of the project containing the acquistion datasets"
             },
             "projectID": {
-              "$ref": "#/$defs/identifier",
+              "$ref": "../identifier_description.json",
               "description": "(Optional)- Details concerning the program (or software) used for aquisition"
             },
             "projectDescription": {
@@ -164,7 +164,7 @@
             },
             "millingCurrent": {
               "$ref": "#/$defs/currentDetails",
-              "description": "The total height of the area which is cut into slices in the z dimension. IRI: https://purls.helmholtz-metadaten.de/EMG/00000003"
+              "description": "The total height of the area which is cut into slices in the z dimension. IRI: https://purls.helmholtz-metadaten.de/emg/EMG_00000006"
             },
             "numberOfCuts": {
               "type": "number",
@@ -180,7 +180,7 @@
             },
             "source": {
               "type": "string",
-              "description": "The type of the source used in the instrument. The source is a physical part of an electron or ion microscope from which the particles that form the beam are emitted. IRI: https://purls.helmholtz-metadaten.de/EMG/00000021"
+              "description": "The type of the source used in the instrument. The source is a physical part of an electron or ion microscope from which the particles that form the beam are emitted. IRI: https://purls.helmholtz-metadaten.de/emg/EMG_00000045"
             },
             "eucentricWorkingDistance": {
               "$ref": "#/$defs/distanceDetails",
@@ -235,30 +235,6 @@
         "programVersion": {
           "type": "string",
           "description": "(Optional) - Program (or software) version number"
-        }
-      }
-    },
-    "identifier": {
-      "type": "object",
-      "description": "(Optional) - Details of an identifier element.",
-      "additionalProperties": false,
-      "properties": {
-        "identifierValue": {
-          "type": "string",
-          "description": "(Optional) - String containing the value of an identifier"
-        },
-        "identifierType": {
-          "type": "string",
-          "description": "(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle *String",
-          "enum": [
-            "ROR",
-            "GRID",
-            "ISNI",
-            "URL",
-            "DOI",
-            "Handle",
-            "String"
-          ]
         }
       }
     },
