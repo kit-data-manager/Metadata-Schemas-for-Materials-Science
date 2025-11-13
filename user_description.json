@@ -64,7 +64,7 @@
                 },
                 "institutionID":
                 {
-                    "$ref": "../identifier_description.json"
+                    "$ref": "./identifier_description.json"
                 }
            }
         },
