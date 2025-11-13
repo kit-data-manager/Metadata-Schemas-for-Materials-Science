@@ -9,14 +9,16 @@
       },
       "identifierType": {
         "type": "string",
-        "description": "(Optional) - Type of the identifier to be selected from: *ROR *GRID *ISNI *URL *DOI *Handle",
+        "description": "(Optional) - Type of the identifier to be selected from a control list of values.",
         "enum": [
           "ROR",
           "GRID",
           "ISNI",
           "URL",
           "DOI",
-          "Handle"
+          "Handle",
+          "Internal",
+          "String"
         ]
       }
     }
