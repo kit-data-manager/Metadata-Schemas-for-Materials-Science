@@ -1,6 +1,4 @@
 {
-    "$schema":"https://json-schema.org/draft/2019-09/schema",
-    "title": "user_description",
     "description":"Basic schema for user description. It can be extended.",
     "type":"object",
     "required":
