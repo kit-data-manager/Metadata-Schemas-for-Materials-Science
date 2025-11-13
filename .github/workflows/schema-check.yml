@@ -2,7 +2,7 @@ name: JSON Schema Check
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, development]
 
 jobs:
   schema_check:
@@ -13,22 +13,16 @@ jobs:
         include:
           - schemaPath: 'APE-HE/APE_HE_Schema.json'
             tagPrefix: 'APE-HE_'
-            schemaVersion: '2019'
           - schemaPath: 'CT/lab_CT.json'
             tagPrefix: 'CT_'
-            schemaVersion: '2020'
           - schemaPath: 'MRI/MRI_schema.json'
             tagPrefix: 'MRI_'
-            schemaVersion: '2019'
           - schemaPath: 'SEM-FIB_Tomography/SEM_FIB_Tomography_Acquisition_Main.json'
             tagPrefix: 'SEM-FIB_'
-            schemaVersion: '2019'
           - schemaPath: 'SEM/SEM_schema.json'
             tagPrefix: 'SEM_'
-            schemaVersion: '2019'
           - schemaPath: 'TEM/TEM_schema.json'
             tagPrefix: 'TEM_'
-            schemaVersion: '2019'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v5
@@ -49,11 +43,10 @@ jobs:
           fi
       - name: JSON Schema Check
         id: schema_check_step
-        uses: kit-data-manager/json-schema-check-action@dev_schema_2019-2020
+        uses: kit-data-manager/json-schema-check-action@v0.0.8
         with:
           schemaPath: ${{ matrix.schemaPath }}
           validate: true
-          schemaVersion: ${{ matrix.schemaVersion }}
           createDiff: true
           previousVersion: ${{ env.previousVersion }}
           token: ${{ secrets.GITHUB_TOKEN }}
