@@ -164,7 +164,7 @@
             },
             "millingCurrent": {
               "$ref": "#/$defs/currentDetails",
-              "description": "The total height of the area which is cut into slices in the z dimension. IRI: https://purls.helmholtz-metadaten.de/EMG/00000003"
+              "description": "The total height of the area which is cut into slices in the z dimension. IRI: https://purls.helmholtz-metadaten.de/emg/EMG_00000006"
             },
             "numberOfCuts": {
               "type": "number",
@@ -180,7 +180,7 @@
             },
             "source": {
               "type": "string",
-              "description": "The type of the source used in the instrument. The source is a physical part of an electron or ion microscope from which the particles that form the beam are emitted. IRI: https://purls.helmholtz-metadaten.de/EMG/00000021"
+              "description": "The type of the source used in the instrument. The source is a physical part of an electron or ion microscope from which the particles that form the beam are emitted. IRI: https://purls.helmholtz-metadaten.de/emg/EMG_00000045"
             },
             "eucentricWorkingDistance": {
               "$ref": "#/$defs/distanceDetails",
