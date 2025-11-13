@@ -1,6 +1,4 @@
 {
-    "$schema":"https://json-schema.org/draft/2019-09/schema",
-    "title": "identifier_description",
     "type":"object",
     "description": "(Optional) - Details of an identifier element.",
     "additionalProperties": false,
