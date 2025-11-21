@@ -39,7 +39,7 @@ If you want to contribute to this repository, please adhere to the steps and inf
 ### Schema-specific Practices
 
 - `$id`: Do not include an id in your schema. An ID (ideally a persistant identifier) can and should be added on publication of the schema in a repository.
-- `$schema`: The schema suite currently contains schemas compliant with json schema spec 2019. It is recommended (due to limitations in the CI pipelines for automatic validation) to keep all schemas aligned with this spec version. If you consider this a restriction unfit for your necessary changes, please raise this discussion in an issue or in your specific PR.
+- `$schema`: Please specify a schema spec version in your schema files. It may be beneficial to choose the minimal (oldest) necessary schema spec for your functionalities for compatibility with validators and tooling.
 
 ### Hints for accepting PRs (for repo owners/maintainers)
 - new schemas or moved schema files: add new to/change tag mapping in the CI workflows before proceeding
