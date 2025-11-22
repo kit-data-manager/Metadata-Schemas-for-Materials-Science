@@ -1,0 +1,10 @@
+{
+    "links": {
+      "self": "https://zenodo.org/api/files/2e8ca55b-dfe8-45fd-93a1-d79d5500528f/BCR-425_cert.pdf"
+    }, 
+    "checksum": "md5:6353de153830c0a28b3ffafedf59ec23", 
+    "bucket": "2e8ca55b-dfe8-45fd-93a1-d79d5500528f", 
+    "key": "BCR-425_cert.pdf", 
+    "type": "pdf", 
+    "size": 37659
+  }

@@ -1,0 +1,10 @@
+{
+    "links": {
+      "self": "https://zenodo.org/api/files/2e8ca55b-dfe8-45fd-93a1-d79d5500528f/Pruefmittel_Messmittel-Kriechversuche.pdf"
+    }, 
+    "checksum": "md5:4e1344ef5b0b06b9cfd2ee796d6baf59", 
+    "bucket": "2e8ca55b-dfe8-45fd-93a1-d79d5500528f", 
+    "key": "Pruefmittel_Messmittel-Kriechversuche.pdf", 
+    "type": "pdf", 
+    "size": 86021
+  }
