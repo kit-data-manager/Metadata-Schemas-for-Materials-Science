@@ -1,6 +1,4 @@
 {
-    "$schema":"https://json-schema.org/draft/2019-09/schema",
-    "title": "user_description",
     "description":"Basic schema for user description. It can be extended.",
     "type":"object",
     "required":
@@ -64,29 +62,7 @@
                 },
                 "institutionID":
                 {
-                     "type": "object",
-                     "description": "(Optional) -Identifier of the institution to which the user is affiliated",
-                      "properties": {
-                        "identifierValue": 
-                        {
-                            "type": "string",
-                            "description": "(Optional) - String containing the value of an identifier"
-                        },
-                        "identifierType": 
-                        {
-                            "type": "string",
-                            "description": "(Optional) - Type of the identifier to be chosen from a controlled list of values (*ROR *GRID *ISNI *URL *DOI *Handle)",
-                            "enum":
-                            [
-                                "ROR",
-                                "GRID",
-                                "ISNI",
-                                "URL",
-                                "DOI",
-                                "Handle"
-                            ]
-                        }
-                    }
+                    "$ref": "./identifier_description.json"
                 }
            }
         },
