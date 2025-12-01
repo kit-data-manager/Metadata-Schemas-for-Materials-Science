@@ -1,143 +1,224 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Metadata Schemas for Materials-Science</title>
+  <meta name="description" content="Info hub for Metadata-Schemas-for-Materials-Science" />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1f2937; /* slate-800 */
+      --muted: #6b7280; /* gray-500 */
+      --primary: #2563eb; /* blue-600 */
+      --primary-hover: #1d4ed8; /* blue-700 */
+      --card: #f8fafc; /* slate-50 */
+      --border: #e5e7eb; /* gray-200 */
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1220;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --primary: #60a5fa;
+        --primary-hover: #93c5fd;
+        --card: #0f172a;
+        --border: #1f2937;
+      }
+    }
 
-    <title>Getting started with Metadata Editor</title>
-    <!--External dependencies-->
-    <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/jquery/jquery.min.js"></script>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/opt/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor@0.9.3/deps/opt/fontawesome/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/opt/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/opt/fontawesome/css/all.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/opt/validator/ajv/ajv.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/underscore/underscore-umd-min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor@0.9.3/deps/opt/code-editor/ace/ace.min.js"></script>
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(37,99,235,.12), transparent 40%),
+                  radial-gradient(800px 400px at 110% 10%, rgba(99,102,241,.10), transparent 40%),
+                  var(--bg);
+      line-height: 1.6;
+    }
 
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem 4rem; }
 
-    <!--Metadata Editor library-->
-    <script src="./js/popper.js"></script>
-    <!--script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/jsonform/jsonform.min.js"></script-->
-    <script type="text/javascript" src="./js/jsonform.js"></script>
-    <!--script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/lib/js/metadataeditor.js"></script-->
-    <script type="text/javascript" src="./js/metadataeditor.js"></script>
-    <script type="text/javascript" src="./js/FileSaver.min.js"></script>
-    <!--Input data-->
-    <script type="text/javascript" src="./SEM_schema.js"></script>
-    <script type="text/javascript" src="./ui-schema.js"></script>
+    header {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .brand { display: flex; align-items: center; gap: .75rem; }
+    .brand .logo {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+      color: white; font-weight: 700; letter-spacing: .5px; box-shadow: 0 8px 24px rgba(0,0,0,.15);
+    }
+    .brand h1 { font-size: 1.25rem; margin: 0; }
+    .brand p { margin: 0; font-size: .95rem; color: var(--muted); }
 
-    <!--Basic stylesheet-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/deps/opt/bootstrap/css/bootstrap-theme.min.css"/>
+    .controls { display: flex; align-items: center; gap: .5rem; }
+    .btn { appearance: none; border: 1px solid var(--border); background: var(--card); color: var(--text);
+           padding: .5rem .75rem; border-radius: .6rem; cursor: pointer; font: inherit; }
+    .btn.primary { background: var(--primary); border-color: transparent; color: #fff; }
+    .btn.primary:hover { background: var(--primary-hover); }
 
-    <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kit-data-manager/metadata-editor/lib/css/metadataeditor.style.basic.css" /-->
-    <link rel="stylesheet" href="./css/styles.css">
+    .hero {
+      margin: 2rem 0 2.5rem; padding: 1.25rem 1rem; border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(37,99,235,.08), rgba(37,99,235,0) 50%), var(--card);
+      border-radius: 1rem;
+    }
+    .hero h2 { margin: 0 0 .5rem; font-size: 1.6rem; }
+    .hero p { margin: 0; color: var(--muted); }
+
+    .grid {
+      display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1rem;
+    }
+    @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .card {
+      display: flex; flex-direction: column; gap: .5rem; padding: 1rem; border-radius: .9rem;
+      border: 1px solid var(--border); background: var(--card);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.15); }
+    .card .title { display: flex; align-items: center; gap: .6rem; font-weight: 600; }
+    .card .title svg { width: 22px; height: 22px; }
+    .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+    .card a { text-decoration: none; color: inherit; }
+    .chip {
+      margin-top: .75rem; display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .85rem; color: var(--muted); border: 1px dashed var(--border);
+      padding: .3rem .5rem; border-radius: .5rem;
+    }
+
+    footer { margin-top: 2rem; color: var(--muted); font-size: .9rem; }
+    footer a { color: var(--primary); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Accessibility helpers */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+  </style>
 </head>
-
 <body>
-
-
-<div class="container">
-    <div class="col-12">
-        <div class="boxlist margin-top-30" id="training-box">
-            <div class="box-header bg-green-blue">
-                <h3 class="box-title">SEM Metadata Editor</h3>
-            </div>
-            <div class="row g-3">
-                <div class="col-sm-2">
-                    <button id="loadFileXml" onclick="document.getElementById('jsonfileinput').click();"><i class="fa-solid fa-upload"></i></button>
-                    <input type="file" style="display:none;" id="jsonfileinput" name="file"/>
-                </div>
-                <div class="col-sm-2">
-                    <button id="reset" class="form-control-sg"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
-                <div class="col-sm-2">
-                    <div class="form-check form-control-sg checkbox">
-                        <input class="form-check-input form-control-sg" type="checkbox" id="validateCheck">
-                        <label class="form-check-label form-control-sg" for="validateCheck">Validation</label>
-                    </div>
-                </div>
-            </div>
-            <hr/>
-            <div class="box-body">
-                <form id="plain"></form>
-            </div>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">MD</div>
+        <div>
+          <h1>Schema Info Hub</h1>
+          <p>Links to archived demos & tools</p>
         </div>
-    </div>
-</div>
+      </div>
+      <div class="controls">
+        <button class="btn" id="toggleTheme" aria-label="Toggle color theme">🌓 Theme</button>
+      </div>
+    </header>
 
-<script>
-   /* var editor = ace.edit("editor");
-    editor.setOptions({
-        autoScrollEditorIntoView: true,
-        copyWithEmptySelection: true,
-    });*/
-   const urlSearchParams = new URLSearchParams(window.location.search);
-   const params = Object.fromEntries(urlSearchParams.entries());
-   const cb = document.querySelector('#validateCheck')
-   const doValidate = (params.validate == "true");
-   if(doValidate){
-       cb.checked = true;
-   }else{
-       cb.checked = false;
-   }
+    <section class="hero" aria-label="Introduction">
+      <h2>Welcome back</h2>
+      <p>
+        You may be looking for one of the metadata editor forms formerly hosted under this address.
+          We have archived those forms due to them being developed for a purpose quite different from their latest usage.
+          You may still find them under the links below. However, if you still need them, it may be worth contacting us to discuss your needs.
 
-   resolveRefs(dataModel, dataModel.$defs);
+          Alternatively if you are looking for an editor and a validator for json based on json schema, we recommend downloading the standalone <a href="https://metadata-editor.gitlab.io/documentation/">Metadata Editor</a>.
+      </p>
+    </section>
 
-   var options = {
-       operation: "CREATE",
-       buttonTitle: "Download",
-       uiForm: this.uiSchema,
-       dataModel: this.dataModel,
-       validate: doValidate
-   };
+    <section id="links" aria-labelledby="links-heading">
+      <h2 id="links-heading" class="sr-only">Project Links</h2>
+      <div class="grid">
+        <!-- Card 1 -->
+        <article class="card">
+          SEM
+            <a href="./sem">
+            <div class="title">
+              <!-- Link icon -->
+              <span>🔗 SEM Metadata Editor 🔗</span>
+            </div>
+            </a>
+            <p>for metadata compliant to a basic schema for SEM results</a></p>
+            <span class="chip">Legacy • HTML/JS</span>
+        </article>
 
-   var data = localStorage.getItem("sem_resource");
-   var resource = undefined;
-   if(data){
-       options.operation = "UPDATE";
-       resource = JSON.parse(data);
-       options.resource = this.resource;
-   }
+        <!-- Card 2 -->
+        <article class="card">
+          Sample
+            <a href="./sample_interface">
+            <div class="title">
+              <span>🔗 Sample Metadata Editor 🔗</span>
+            </div>
+            </a>
+            <p>for metadata compliant to a basic schema for sample description</p>
+            <span class="chip">Legacy • HTML/JS</span>
+        </article>
 
-   document.getElementById("validateCheck").addEventListener("click", function() {
-       const cb = document.querySelector('#validateCheck')
-       window.location.href = window.location.pathname+"?validate=" + cb.checked;
-   });
+        <!-- Card 3 -->
+        <article class="card">
+          Precursor
+            <a href="./precursor_interface">
+            <div class="title">
+              <span>🔗 Precursor Metadata Editor 🔗</span>
+            </div>
+            </a>
+            <p>for metadata  compliant to a basic schema for precursor description</p>
+            <span class="chip">Legacy • HTML/JS</span>
+        </article>
 
-   document.getElementById("reset").addEventListener("click", function() {
-       localStorage.removeItem('sem_resource');
-       window.location.reload();
-   });
+        <!-- Duplicate and customize more cards as needed -->
+      </div>
+    </section>
 
-   document.getElementById("jsonfileinput").addEventListener("change", function() {
-       var file_to_read = document.getElementById("jsonfileinput").files[0];
-       var fileread = new FileReader();
-       fileread.onload = function(e) {
-           var content = e.target.result;
-           var intern = JSON.parse(content); // parse json
-           localStorage.setItem('sem_resource', JSON.stringify(intern));
-           window.location.reload();
-       };
-       fileread.readAsText(file_to_read);
-   });
+    <footer>
+      <p>
+        © <span id="year"></span> • Hosted on GitHub Pages.
+        View the <a href="https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science">github repository</a>.
+      </p>
+    </footer>
+  </div>
 
-    $('body').initializeModals();
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Optional theme toggle (respects OS preference by default)
+    const btn = document.getElementById('toggleTheme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-    $('#plain').metadataeditorForm(options, (value) => {
-        var fileName = 'sem_metadata.json';
+    function applyTheme(mode) {
+      if (mode === 'light') {
+        document.documentElement.style.colorScheme = 'light';
+        document.documentElement.classList.remove('dark');
+      } else if (mode === 'dark') {
+        document.documentElement.style.colorScheme = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.style.colorScheme = '';
+        document.documentElement.classList.remove('dark');
+      }
+      localStorage.setItem('theme-mode', mode);
+    }
 
-        // Create a blob of the data
-        var fileToSave = new Blob([value], {
-            type: 'application/json'
-        });
+    // Initialize from storage or OS preference
+    const saved = localStorage.getItem('theme-mode');
+    if (saved) {
+      applyTheme(saved);
+    } else {
+      applyTheme(prefersDark.matches ? 'dark' : 'light');
+    }
 
-        // Save the file
-        saveAs(fileToSave, fileName);
+    btn.addEventListener('click', () => {
+      const current = localStorage.getItem('theme-mode');
+      const next = current === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
     });
-</script>
+
+    // Update when OS preference changes
+    prefersDark.addEventListener('change', (e) => {
+      const stored = localStorage.getItem('theme-mode');
+      if (!stored) applyTheme(e.matches ? 'dark' : 'light');
+    });
+  </script>
 </body>
 </html>
