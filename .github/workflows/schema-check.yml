@@ -15,6 +15,8 @@ jobs:
             tagPrefix: 'APE-HE_'
           - schemaPath: 'CT/lab_CT.json'
             tagPrefix: 'CT_'
+          - schemaPath: 'Creep_Testing/Data-Schema_Creep.json'
+            tagPrefix: 'CREEP-TEST_'
           - schemaPath: 'MRI/MRI_schema.json'
             tagPrefix: 'MRI_'
           - schemaPath: 'SEM-FIB_Tomography/SEM_FIB_Tomography_Acquisition_Main.json'
