@@ -115,7 +115,7 @@
       "description": "(Optional, NAE) - Details concerning any revision to the document due to e.g. re-calibration, reprocessing, new analysis, new instrument definition format."
     },
     "user": {
-      "$ref": "../user_description.json",
+      "$ref": "#/$defs/userDetails",
       "description": "(Required, NAE)- The contact information of the user responsible for the measurement."
     },
     "instrument": {
@@ -189,6 +189,9 @@
           "description": "(Optional, NAE)- any comments to the revision of the datatype string."
         }
       }
+    },
+    "userDetails": {
+          "$ref": "../user_description.json"
     },
     "distanceDetails": {
       "type": "object",
