@@ -2,37 +2,45 @@
 *********************************************
 
 The aim of this repository is to house the metadata schemas for different measurement techniques used in Materials Science. 
-The schemas are written according to the XML Schema Definition (XSD) or JavaScript Object Notation (JSON) format.
+The schemas are written according to the JavaScript Object Notation (`JSON`) Schema or the XML Schema Definition (`XSD`) format.
 Sample files are also provided which are written according to the respective schemas.
 
 ## List of available Schemas:
 
-1. Schema for scanning electron microscopy (SEM)
-  * [JSON Schema](SEM/SEM_schema.json)
-  * [Sample SEM Image](SEM/SCeO5_00.tif)
-  * [Example JSON file](SEM/SCEO5_00.json)
-  * [XSD Schema](SEM/SEM_Schema.xsd) - old version
-  * [Example XML file](SEM/SEM_example.xml)
-  * [Example XML file which is populated only with the required fields](SEM/SEM_example_minimum.xml)
+1. Schema for scanning electron microscopy ([SEM](./SEM))
+1. Schema for transmission electron microscopy ([TEM](./TEM))
+1. Schema for magnetic resonance imaging ([MRI](./MRI))
+1. Schemas for [SEM-FIB_Tomography](./SEM-FIB_Tomography)
+1. Schema for nano or micro - computed tomography ([CT](./CT)) 
+1. Schema for Advanced Photoelectric Effect - High Energy ([APE-HE](./APE-HE))
+1. General Schemas
+   * [user description](./user_description.json)
 
-  
-2. Schema for transmission electron microscopy (TEM)
-  * [JSON Schema](TEM/TEM_schema.json)
+## Contribution Guide
 
-3. Schema for magnetic resonance imaging (MRI)
-  * [JSON Schema](MRI/MRI_schema.json)
-  
-4. General Schema for describing a user
-  * [JSON Schema](user_description.json)
+If you want to contribute to this repository, please adhere to the steps and information below
 
-5. Schemas for Metadata contained in [BAM reference dataset for creep tests](https://zenodo.org/record/7764161)
-  * [JSON Schema for Datset](Reference_Dataset_Zenodo/PP18_dataset_metadata_Schema.json)
-  * [JSON Schem for Files](Reference_Dataset_Zenodo/pp18_file_schema.json)
+### Changing or Adding a Schema
 
-6. Schemas for FIB/SEM serial sectioning tomography
- * [Acquistion Main JSON](SEM-FIB_Tomography/SEM_FIB_Tomography_Acquisition_Main.json)
- * [Acquistion Dataset JSON](SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Dataset_Schema.json)
- * [Acquistion Image JSON](SEM-FIB_Tomography/SEM_FIB_Tomography_acquisition_Image_Schema.json)
+1. for changes to a schema or addition of a new schema open a new branch indicating the schema you are working on (if you are an outside collaborator, you need to use a fork)
+1. once you have changes that should prompt a new release of the schema, open a Pull Request (PR) against main
+1. Check the report generated in the PR
+    - is the schema valid?
+    - determine the semantic version update based on the diff to the last release of the schema (if it exists)
+    - Update the PR title with the new schema version you suggest (for example "SEM schema update to v0.2.0")
 
-7. Schema for Advanced Photoelectric Effect - High Energy (APE-HE)
-  * [JSON Schema](APE-HE/APE_HE_Schema.json)
+### General Best Practices
+
+- Schema information is organized in folders based on research topics/areas
+- keep your **PRs schema-specific** and **avoid side effects** in other schemas
+- check the **general schemas** available in the root of this repo before you include similar or identical information in your schema directly (such as user description). If you need a change in those general definitions, open an issue to allow for discussion.
+- Provide a README in the folder of your schemas. Here you can also link to software and projects related to the schema.
+
+### Schema-specific Practices
+
+- `$id`: Do not include an id in your schema. An ID (ideally a persistant identifier) can and should be added on publication of the schema in a repository.
+- `$schema`: Please specify a schema spec version in your schema files. It may be beneficial to choose the minimal (oldest) necessary schema spec for your functionalities for compatibility with validators and tooling.
+
+### Hints for accepting PRs (for repo owners/maintainers)
+- new schemas or moved schema files: add new to/change tag mapping in the CI workflows before proceeding
+- make sure the reports reflect the latest comparison with the main branch (source branch needs to be up-to-date)

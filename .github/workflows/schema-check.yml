@@ -1,0 +1,64 @@
+name: JSON Schema Check
+
+on:
+  pull_request:
+    branches: [main, development]
+
+jobs:
+  schema_check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false    
+      matrix:
+        include:
+          - schemaPath: 'APE-HE/APE_HE_Schema.json'
+            tagPrefix: 'APE-HE_'
+          - schemaPath: 'CT/lab_CT.json'
+            tagPrefix: 'CT_'
+          - schemaPath: 'MRI/MRI_schema.json'
+            tagPrefix: 'MRI_'
+          - schemaPath: 'SEM-FIB_Tomography/SEM_FIB_Tomography_Acquisition_Main.json'
+            tagPrefix: 'SEM-FIB_'
+          - schemaPath: 'SEM/SEM_schema.json'
+            tagPrefix: 'SEM_'
+          - schemaPath: 'TEM/TEM_schema.json'
+            tagPrefix: 'TEM_'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Get latest tag for ${{ matrix.schemaPath }}
+        id: get_tag
+        run: |
+          echo "Fetching latest release tag for prefix: ${{ matrix.tagPrefix }}"
+          LATEST_TAG=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases \
+            | jq -r '.[] | select(.tag_name | startswith("${{ matrix.tagPrefix }}")) | .tag_name' \
+            | sort -rV | head -n 1)
+          echo "Latest tag: $LATEST_TAG"
+          if [ -n "$LATEST_TAG" ]; then
+            echo "previousVersion=$LATEST_TAG" >> $GITHUB_ENV
+          else
+            echo "No matching tag found for prefix: ${{ matrix.tagPrefix }}"
+            echo "previousVersion=unavailable" >> $GITHUB_ENV
+          fi
+      - name: JSON Schema Check
+        id: schema_check_step
+        uses: kit-data-manager/json-schema-check-action@v0.0.8
+        with:
+          schemaPath: ${{ matrix.schemaPath }}
+          validate: true
+          createDiff: true
+          previousVersion: ${{ env.previousVersion }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Post summary to PR
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## 📋 Schema Check Report
+            **Schema Path:** `${{ matrix.schemaPath }}`
+            **Tag Prefix:** `${{ matrix.tagPrefix }}`
+            **Latest Tag for Comparison:** `${{ env.previousVersion }}`
+      
+            ${{ steps.schema_check_step.outputs.message }}
