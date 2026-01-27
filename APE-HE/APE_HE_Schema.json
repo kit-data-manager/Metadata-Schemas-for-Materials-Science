@@ -690,7 +690,7 @@
 			  "min_value": {
 				"type": "number",
 				"default": -9999,
-				"description": "(Optional) - Minimun value of Photon energy by default in electronvolts (eV)."
+				"description": "(required) - Minimum value of Photon energy by default in electronvolts (eV)."
 			  },
 			  "max_value": {
 				"type": "number",
@@ -716,7 +716,9 @@
 			},
 			"required": [
 			  "unit",
-			  "value"
+			  "min_value",
+			  "max_value",
+			  "average_value"
 			]
 		  },
 		  "integration_time": {
