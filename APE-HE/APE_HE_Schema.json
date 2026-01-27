@@ -107,35 +107,7 @@
 		]
 	  },
 	  "userDetails": {
-		"type": "object",
-		"description": "(Required) - User details",
-		"additionalProperties": false,
-		"properties": {
-		  "name": {
-			"type": "string",
-			"description": "(Required) - Full name of the user in the format (Last name, First name)"
-		  },
-		  "affiliation": {
-			"type": "string",
-			"description": "(Optional) - User institution affiliation"
-		  },
-		  "address": {
-			"type": "string",
-			"description": "(Optional) - Full address of the user’s affiliation"
-		  },
-		  "email": {
-			"type": "string",
-			"description": "(Optional)- User email"
-		  },
-		  "orcid": {
-			"type": "string",
-			"description": "(Optional) - Open Researcher and Contributor ID expressed as a URI",
-			"pattern": "^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}$"
-		  }
-		},
-		"required": [
-		  "name"
-		]
+		"$ref": "../user_description.json"
 	  },
 	  "sampleDetails": {
 		"type": "object",
