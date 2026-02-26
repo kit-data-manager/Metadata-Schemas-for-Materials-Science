@@ -1,6 +1,5 @@
 {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "$id": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science",
     "type": "object",
     "title": "NFDI-MatWerk/IUC02 Data schema for creep data of Ni-base superalloys including a comprehensive documentation of test results and metadata",
     "description": "JSON Schema for the NFDI-MatWerk IUC02. (DOI: 10.5281/zenodo.11668375)",
