@@ -21,6 +21,9 @@ jobs:
             "APE-HE")
               SCHEMA_PATH="APE-HE/APE_HE_Schema.json"
               ;;
+            "CREEP-TEST")
+              SCHEMA_PATH="Creep_Testing/Data-Schema_Creep.json"
+              ;;              
             "CT")
               SCHEMA_PATH="CT/lab_CT.json"
               ;;
