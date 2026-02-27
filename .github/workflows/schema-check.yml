@@ -59,7 +59,7 @@ jobs:
           echo '**Tag Prefix:** `${{ matrix.tagPrefix }}`' >> message.txt
           echo '**Latest Tag for Comparison:** `${{ env.previousVersion }}`' >> message.txt
           echo '' >> message.txt
-          printf "%s" "${{ steps.schema_check_step.outputs.message }}" >> message.txt
+          cat <<'EOF' ${{ steps.schema_check_step.outputs.message }} EOF } > message.txt
       - name: Post summary to PR
         uses: peter-evans/create-or-update-comment@v4
         with:
