@@ -9,3 +9,7 @@ With the JSON schema(v1.1), it is intended to define a structured approach for c
 - To define a scope of documentation that allows the assessment of a dataset’s quality by different end users who retrieve datasets from multiple data providers,
 - To foster the exchange of high-quality creep datasets according to the FAIR principles, by providing easy interoperability and full reusability.
 
+Updates to v2.0:
+An agreement on content between national experts was reached. As a result of this community interaction, several amendments were implemented in both the data structure and the individual fields. The data schema (XLSX/CSV/JSON) and related data schema structure, were adapted accordingly. A new column labeled “Entry – Additional Information” has been added to enhance clarity regarding the requested information.
+
+An alignment of the vocabulary with several domain- and application-level ontologies, such as the Reference Dataset Ontology (RDO) with its application-level extension for reference data on creep testing (RDOC), and the PMD Core Ontology (PMDco), was actively pursued.
