@@ -13,3 +13,13 @@ Updates to v2.0:
 An agreement on content between national experts was reached. As a result of this community interaction, several amendments were implemented in both the data structure and the individual fields. The data schema (XLSX/CSV/JSON) and related data schema structure, were adapted accordingly. A new column labeled “Entry – Additional Information” has been added to enhance clarity regarding the requested information.
 
 An alignment of the vocabulary with several domain- and application-level ontologies, such as the Reference Dataset Ontology (RDO) with its application-level extension for reference data on creep testing (RDOC), and the PMD Core Ontology (PMDco), was actively pursued.
+
+With the JSON schema (v2.1):
+
+- A CSV file is not provided. Instead, a *.lis file is provided.
+- The overarching structure of the JSON schema was revised to ensure correct nesting. This change concerns mainly categories I and II.
+- In the JSON schema, the fields corresponding to chemical composition were revised. Since this version, it is possible to report the chemical composition either by entering element by element or by adding a link to an external resource. For the measured chemical composition, the measurement method can be added for each element.
+- Revision of entries “k-Value” and “Ratio reference length to diameter” regarding the units and to cover Lr = Lo and Lr = Le.
+- Entry “Description of the loading system” was revised.
+- Optional entry Leverage ratio added in case of lever arm test machine type.
+- Category III “Elongation values and cross-sectional dimensions” was split into two: “Cross-sectional dimensions” and “Elongation values”.
