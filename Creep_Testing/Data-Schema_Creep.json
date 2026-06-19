@@ -1,1364 +1,2133 @@
 {
-
     "$schema": "https://json-schema.org/draft/2019-09/schema",
-
     "type": "object",
-
     "title": "NFDI-MatWerk/IUC02 Data schema for creep data of Ni-base superalloys including a comprehensive documentation of test results and metadata",
-
-    "description": "JSON Schema for the NFDI-MatWerk IUC02. (DOI: 10.5281/zenodo.17975526)",
+    "description": "JSON Schema for the NFDI-MatWerk IUC02. (DOI: 10.5281/zenodo.11668375)",
     "$defs": {
-        "ComplexValue": {
-            "type": "object",
-            "properties": {
-                "value": {
-                    "type": "string"
-                },
-                "unit": {
-                    "type": "string"
-                }
-            }
+      "ComplexValue": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          }
         }
+      }
     },
-
     "properties": {
-        "MeasurementData": {
-            "description": "Measurement data of creep tests",
+      "MeasurementData": {
+        "description": "Measurement data of creep tests.",
+        "type": "object",
+        "required": [
+          "additionalMetadata",
+          "primaryData",
+          "secondaryData"
+        ],
+        "properties": {
+          "additionalMetadata": {
             "type": "object",
-            "required": [
-                "additionalMetadata",
-                "primaryData",
-                "secondaryData"
-            ],
-
             "properties": {
-                "additionalMetadata": {
+              "testInfo": {
+                "type": "object",
+                "properties": {
+                  "testJobDetails": {
                     "type": "object",
+                    "required": [
+                      "dateOfTestStart",
+                      "dateOfTestEnd",
+                      "testID"
+                    ],
                     "properties": {
-                        "testInfo": {
-                            "type": "object",
-                            "properties": {
-                                "testJobDetails": {
-                                    "type": "object",
-                                    "required": [
-                                        "dateOfTestStart",
-                                        "dateOfTestEnd",
-                                        "testID"
-                                    ],
-                                    "properties": {
-                                        "dateOfTestStart": {
-                                            "type": "string"
-                                        },
-                                        "dateOfTestEnd": {
-                                            "type": "string"
-                                        },
-                                        "testID": {
-                                            "type": "string"
-                                        },
-                                        "project": {
-                                            "type": "string"
-                                        },
-                                        "testOrder": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "testParameters": {
-                                    "type": "object",
-                                    "required": [
-                                        "testStandardApplied",
-                                        "testingStandard",
-                                        "specifiedTemperature",
-                                        "typeOfLoading",
-                                        "loadControlType",
-                                        "initialStress",
-                                        "testType",
-                                        "endOfTestCriterium",
-                                        "endOfTestCriteriumValue",
-                                        "interruptionCourse",
-                                        "preloadTestForce"
-                                    ],
-                                    "properties": {
-                                        "testStandardApplied": {
-                                            "type": "string",
-                                            "enum": [
-                                                "yes",
-                                                "no"
-                                            ],
-                                            "default": "yes"
-                                        },
-                                        "testStandard": {
-                                            "type": "string"
-                                        },
-                                        "specifiedTemperature": {
-                                            "description": "Symbol usually indicated as T",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "typeOfLoading": {
-                                            "type": "string",
-                                            "enum": [
-                                                "tension",
-                                                "compression",
-                                                "bending"
-                                            ]
-                                        },
-                                        "loadControlType": {
-                                            "type": "string",
-                                            "enum": [
-                                                "constant Force",
-                                                "constant Stress"
-                                            ]
-                                        },
-                                        "initialStress": {
-                                            "description": "Symbol usually indicated as $R_{o}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "testType": {
-                                            "type": "string",
-                                            "enum": [
-                                                "Uninterrupted creep tests with continuous monitoring of extension",
-                                                "Interrupted creep tests with periodic measurement of elongation",
-                                                "Stress rupture tests where normally only the time to fracture is measured"
-                                              ]
-                                        },
-                                        "endOfTestCriterium": {
-                                            "type": "string",
-                                            "enum": [
-                                                "Test piece break",
-                                                "Time limit",
-                                                "Extension limit"
-                                            ]
-                                        },
-                                        "endOfTestCriteriumValue": {
-                                            "type": "string",
-                                            "description": "End of test criterium - value (if not test piece break)"
-                                        },
-                                        "interruptionCourse": {
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "testForce": {
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "preloadTestForce": {
-                                            "$ref": "#/$defs/ComplexValue"
-                                        }, 
-                                        "additionalInformation": {
-                                            "type": "string"
-                                        }
-                                    }
+                      "dateOfTestStart": {
+                        "type": "string"
+                      },
+                      "dateOfTestEnd": {
+                        "type": "string"
+                      },
+                      "testID": {
+                        "type": "string"
+                      },
+                      "project": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "testParameters": {
+                    "type": "object",
+                    "required": [
+                      "testStandardApplied",
+                      "testStandard",
+                      "specifiedTemperature",
+                      "typeOfLoading",
+                      "loadControlType",
+                      "initialStress",
+                      "testType",
+                      "endOfTestCriterium",
+                      "timeLimit",
+                      "extensionLimit",
+                      "interruptionCourse",
+                      "preload"
+                    ],
+                    "properties": {
+                      "testStandardApplied": {
+                        "type": "string",
+                        "description": "Was the test performed according to a test standard?",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ],
+                        "default": "yes"
+                      },
+                      "testStandard": {
+                        "type": "object",
+                        "properties": {
+                          "testStandardOptions": {
+                            "type": "string",
+                            "enum": [
+                              "ISO 204",
+                              "ASTM E139",
+                              "Other (Please specify in the comment)"
+                            ]
+                          }
+                        },
+                          "allOf": [
+                            {
+                              "if": {
+                                "properties": {
+                                  "testStandardOptions": {
+                                    "const": "Other (Please specify in the comment)"
+                                  }
+                                }
+                              },
+                              "then": {
+                                "required": [
+                                    "otherTestStandard"
+                                ],
+                                "properties": {
+                                  "otherTestStandard": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        },
+                      "specifiedTemperature": {
+                        "description": "Symbol usually indicated as T.",
+                        "$ref": "#/$defs/ComplexValue"
+                      },
+                      "typeOfLoading": {
+                        "type": "string",
+                        "enum": [
+                          "Tension",
+                          "Compression",
+                          "Bending"
+                        ]
+                      },
+                      "loadControlType": {
+                        "type": "string",
+                        "enum": [
+                          "Constant Force",
+                          "Constant Stress"
+                        ]
+                      },
+                      "initialStress": {
+                        "description": "Symbol usually indicated as $R_{o}$.",
+                        "$ref": "#/$defs/ComplexValue"
+                      },
+                      "testType": {
+                        "type": "string",
+                        "enum": [
+                          "Uninterrupted creep tests with continuous monitoring of extension",
+                          "Interrupted creep tests with periodic measurement of elongation",
+                          "Stress rupture tests where normally only the time to fracture is measured"
+                        ]
+                      },
+                      "endOfTestCriterium": {
+                        "type": "object",
+                        "properties": {
+                          "endOfTestCriteriumOptions": {
+                            "type": "string",
+                            "enum": [
+                              "Test piece break",
+                              "Time limit",
+                              "Extension limit",
+                              "Other (Please specify in the comment)"
+                                ]
+                            }
+                        },
+                        "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "endOfTestCriteriumOptions": {
+                                    "const": "Other (Please specify in the comment)"
+                                  }
                                 }
                             },
-                            "relatedResearchOutcome": {
-                                "type": "object",
+                              "then": {
+                                "required": [
+                                    "otherEndOfTestCriterium"
+                                ],
                                 "properties": {
-                                    "anyRelatedArticles": {
-                                        "type": "string",
-                                        "enum": [
-                                            "yes",
-                                            "no"
-                                        ]
-                                    },
-                                    "article1DOI": {
-                                        "type": "string"
-                                    },
-                                    "shortDescription1": {
-                                        "type": "string"
-                                    },
-                                    "article2DOI": {
-                                        "type": "string"
-                                    },
-                                    "shortDescription2": {
-                                        "type": "string"
-                                    },
-                                    "article3DOI": {
-                                        "type": "string"
-                                    },
-                                    "shortDescription3": {
-                                        "type": "string"
-                                    }
+                                  "otherEndOfTestCriterium": {
+                                    "type": "string"
+                                  }
                                 }
+                              }
                             }
-                        },
-                        "materialRelated": {
-                            "type": "object",
-                            "properties": {
-                                "materialHistoryAndCondition": {
-                                    "type": "object",
-                                    "required": [
-                                        "digitalMaterialID"
-                                    ],
-                                    "properties": {
-                                        "digitalMaterialID": {
-                                            "type": "string"
-                                        },
-                                        "manufacturedMaterial": {
-                                            "type": "object",
-                                            "required": [
-                                                "manufacturedMaterialType",
-                                                "manufacturedMaterialDescription",
-                                                "solidificationType",
-                                                "condition"
-                                            ],
-                                            "properties": {
-                                                "phaseEquilibriumInformation": {
-                                                    "type": "string"
-                                                },
-                                                "manufacturedMaterialType": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "cast",
-                                                        "ingot",
-                                                        "extrusion rod"
-                                                    ]
-                                                },
-                                                "manufacturedMaterialDescription": {
-                                                    "type": "string"
-                                                },
-                                                "manufactoringProcessDescription": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "cast",
-                                                        "melting, casting, and remelting",
-                                                        "induction melting in air, casting into a circular ingot and then electroslag remelting"
-                                                    ]
-                                                },
-                                                "castingTemperature": {
-                                                    "$ref": "#/$defs/ComplexValue"
-                                                }, 
-                                                "castingSpeed": {
-                                                    "type": "string"
-                                                }, 
-                                                "solidificationType": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "single crystal",
-                                                        "polycrystal"
-                                                    ]
-                                                },
-                                                "condition": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "heat treated",
-                                                        "as manufactured"
-                                                    ]
-                                                }
-                                            }
-                                        },
-                                        "testedMaterial": {
-                                            "type": "object",
-                                            "required": [
-                                                "supplier",
-                                                "testedMaterialDescription",
-                                                "manufacturingProcessDescription",
-                                                "supplyDate"
-                                            ],
-                                            "properties": {
-                                                "supplier": {
-                                                    "type": "string"
-                                                },
-                                                "testedMaterialDescription": {
-                                                    "type": "string"
-                                                },
-                                                "manufacturingProcessDescription": {
-                                                    "type": "string"
-                                                },
-                                                "supplyDate": {
-                                                    "type": "string"
-                                                },
-                                                "orderNumber": {
-                                                    "type": "string"
-                                                },
-                                                "supplierSampleID": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        },
-                                        "heatTreatment": {
-                                            "type": "object",
-                                            "required": [
-                                                "heatTreatmentState",
-                                                "heatTreatmentAnnealingDescription",
-                                                "heatTreatmentAgeingDescription"
-                                            ],
-                                            "properties": {
-                                                "heatTreatmentState": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "annealed",
-                                                        "aged",
-                                                        "hardened"
-                                                    ]
-                                                },
-                                                "multistageAnnealing": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "yes",
-                                                        "no",
-                                                        "n/a"
-                                                    ]
-                                                },
-                                                "multistageAgeing": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "yes",
-                                                        "no",
-                                                        "n/a"
-                                                    ]
-                                                },
-                                                "atmosphere": {
-                                                    "type": "string"
-                                                },
-                                                "heatTreatmentAnnealingDescription": {
-                                                    "type": "string"
-                                                },
-                                                "heatTreatmentAgeingDescription": {
-                                                    "type": "string"
-                                                },
-                                                "heatTreatmentProtocolFile": {
-                                                    "type": "string",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                                }
-                                            }
-                                        },
-                                        "chemicalComposition": {
-                                            "type": "object",
-                                            "required": [
-                                                "chemicalCompositionNominal",
-                                                "chemicalCompositionMeasured",
-                                                "measurementMethod"
-                                            ],
-                                            "properties": {
-                                                "chemicalCompositionNominal": {
-                                                    "$ref": "#/$defs/ComplexValue",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data or the possibility of adding the wt.-% value of each element in individual fields."
-                                                },
-                                                "chemicalCompositionMeasured": {
-                                                    "$ref": "#/$defs/ComplexValue",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data or the possibility of adding the wt.-% value of each element in individual fields."
-                                                },
-                                                "measurementMethod": {
-                                                    "type": "string"
-                                                },
-                                                "measuringPoint": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "on test piece",
-                                                        "on as-tested material",
-                                                        "other (please specify)"
-                                                    ]
-                                                },
-                                                "alloyElementsPartitioningInMicrostructure": {
-                                                    "type": "string"
-                                                },
-                                                "gammaRegionsChemicalComposition": {
-                                                    "type": "string",
-                                                    "description":"(Link to) File, preferably with machine-readable (meta)data."
-                                                }
-                                            }
-                                        },
-                                        "microstructure": {
-                                            "type": "object",
-                                            "required": [
-                                                "investigationType",
-                                                "grainSize",
-                                                "grainSizeDeterminationMethod",
-                                                "singleCrystalOrientation",
-                                                "singleCrystalOrientationDeterminationMethod"
-                                            ],
-                                            "properties": {
-                                                "investigationType": {
-                                                    "type": "string",
-                                                    "description": "characterization Method"
-                                                },
-                                                "grainSize": {
-                                                    "$ref": "#/$defs/ComplexValue",
-                                                    "description": "if polycrystal"
-                                                },
-                                                "grainSizeDeterminationMethod": {
-                                                    "type": "string",
-                                                    "description": "Grain size determination method-measuring point"
-                                                },
-                                                "grainSizeDocumentation": {
-                                                    "type": "string",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                                },
-                                                "dissolvedGammaRegions": {
-                                                    "$ref": "#/$defs/ComplexValue",
-                                                    "description": "completely dissolved and re-precipitated gamma-gamma' regions"
-                                                },
-                                                "gammaParticleAverageSize": {
-                                                    "$ref": "#/$defs/ComplexValue"
-                                                },
-                                                "gammaParticleMaximumSize": {
-                                                    "$ref": "#/$defs/ComplexValue"
-                                                },
-                                                "dendriteSpacings": {
-                                                    "type": "string"
-                                                },
-                                                "microstructureAfterTest": {
-                                                    "type": "string",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                                },
-                                                "beforeTestMicrostructureImages": {
-                                                    "type": "string",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                                },
-                                                "afterTestMicrostructureImages": {
-                                                    "type": "string",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                                },
-                                                "proofOfSingleCrystallinity": {
-                                                    "type": "string",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                                },
-                                                "singleCrystalOrientation": {
-                                                    "type": "string",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                                },
-                                                "singleCrystalOrientationDeterminationMethod": {
-                                                    "type": "string",
-                                                    "description": "Single crystal orientation determination method-measuring point"
-                                                },
-                                                "singleCrystalOrientationDeterminationAccuracy": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        },
-                                        "ndtResults": {
-                                            "type": "object",
-                                            "properties": {
-                                                "crackInspection": {
-                                                    "type": "string",
-                                                    "description": "Crack Inspection: e.g., Penetrant certification/Radiographic certification/XCT. (Link to) File, preferably with machine-readable (meta)data."
-                                                },
-                                                "xrayFilm": {
-                                                    "type": "string",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                                }
-                                            }
-                                        },
-                                        "mechTestResults": {
-                                            "type": "object",
-                                            "properties": {
-                                                "proofStrengthRoomTemperature": {
-                                                    "$ref": "#/$defs/ComplexValue",
-                                                    "description": "0.2 % Proof strength at room temperature."
-                                                },
-                                                "proofStrengthCreepTestTemperature": {
-                                                    "$ref": "#/$defs/ComplexValue",
-                                                    "description": "0.2 % Proof strength at creep test temperature."
-                                                },
-                                                "hardness": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }  
-                                },
-                                "testPiece": {
-                                    "type": "object",
-                                    "required": [
-                                        "testPieceItype",
-                                        "testPieceIItype",
-                                        "testPieceIIItype",
-                                        "testPieceTechnicalDrawing",
-                                        "testPieceLocation",
-                                        "positioning"
-                                    ],
-                                    "properties": {
-                                        "testpieceID": {
-                                            "type": "string"
-                                        },
-                                        "workshopOrderID": {
-                                            "type": "string"
-                                        },
-                                        "testPieceHistory": {
-                                            "type": "string",
-                                            "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                        },
-                                        "testPieceItype": {
-                                            "type": "string",
-                                            "enum": [
-                                                "Miniaturized specimen",
-                                                "Specimen according to standard"
-                                            ]
-                                        },
-                                        "testPieceIItype": {
-                                            "type": "string",
-                                            "enum": [
-                                                "Round cross section",
-                                                "Rectangular section"
-                                            ]
-                                        },
-                                        "testPieceIIItype": {
-                                            "type": "string",
-                                            "enum": [
-                                                "Smooth test piece",
-                                                "Notched test piece",
-                                                "Other type (specify)"
-                                            ]
-                                        },
-                                        "testPieceTechnicalDrawing": {
-                                            "type": "string",
-                                            "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                        },
-                                        "testPieceLocation": {
-                                            "type": "string",
-                                            "description": "Location of the test piece within the as-tested material. (Link to) File, preferably with machine-readable (meta)data."
-                                        },
-                                        "positioning": {
-                                            "type": "string",
-                                            "description": "(Laue, precision) Description whether coordinate systems of as-tested material and test piece coincide, and of the alignment in the test machine."
-                                        },
-                                        "furtherInformationOnSample": {
-                                            "type": "string",
-                                            "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                        }
-                                    }      
-                                }
-                            }
-                        },
-                        "measuringAndTestEquipment": {
-                            "type": "object",
-                            "properties": {
-                                "testMachine" : {
-                                    "type": "object",
-                                    "required": [
-                                        "testFrameVerification",
-                                        "descriptionTestFrameVerification",
-                                        "caliberationClass"
-                                    ],
-                                    "properties": {
-                                        "testMachineID": {
-                                            "type": "string"
-                                        },
-                                        "testMachineType": {
-                                            "type": "string",
-                                            "enum": [
-                                                "lever arm",
-                                                "electromechanical drive"
-                                            ]
-                                        },
-                                        "minApplied Force": {
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "maxAppliedForce": {
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "testFrameVerification": {
-                                            "type": "string",
-                                            "description":"Verification of Test Frame and Specimen Alignment according to ASTM E1012?",
-                                            "enum": [
-                                                "yes",
-                                                "no"
-                                            ]
-                                        },
-                                        "descriptionTestFrameVerification": {
-                                            "type": "string",
-                                            "description": "Please provide a description on the procedure followed for the Verification of Test Frame and Specimen Alignment if different from ASTM E1012."
-                                        },
-                                        "caliberationClass": {
-                                            "type": "string",
-                                            "description": "Calibration class (Alignment)"
-                                        },
-                                        "dataAcquisition": {
-                                            "type": "object",
-                                            "required": [
-                                                "dataAcquisitionSoftwareAndVersion",
-                                                "dataAcquisitionDescription"
-                                            ],
-                                            "properties": {
-                                                "dataAcquisitionUnitModelInformation": {
-                                                    "type": "string"
-                                                },
-                                                "dataAcquisitionUnitLabID": {
-                                                    "type": "string"
-                                                },
-                                                "dataAcquisitionSoftwareAndVersion": {
-                                                    "type": "string"
-                                                },
-                                                "dataAcquisitionDescription": {
-                                                    "type": "string"
-                                                },
-                                                "dataAcquisitionTimeCheck": {
-                                                    "type": "string",
-                                                    "description":"Was the time checked during data acquisition?",
-                                                    "enum": [
-                                                        "yes",
-                                                        "no"
-                                                    ]
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "testForce" : {
-                                    "type": "object",
-                                    "loadingSystem": {
-                                        "type": "object",
-                                        "required": [
-                                            "loadingSystemVerified",
-                                            "caliberationDate",
-                                            "calibertaionValidityTimePeriod",
-                                            "caliberationStandard",
-                                            "caliberationClass",
-                                            "caliberationRange",
-                                            "caliberatedWeightsApplied"
-                                        ],
-                                        "properties": {
-                                            "loadingSystemVerified": {
-                                                "type": "string",
-                                                "description": "Was the loading system calibrated/verified?",
-                                                "enum": [
-                                                    "yes",
-                                                    "no"
-                                                ]
-                                            },
-                                            "caliberationCertificate": {
-                                                "type": "string",
-                                                "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                            },
-                                            "caliberationDate": {
-                                                "type": "string"
-                                            },
-                                            "calibertaionValidityTimePeriod": {
-                                                "type": "string"
-                                            },
-                                            "caliberationStandard": {
-                                                "type": "string"
-                                            },
-                                            "caliberationClass": {
-                                                "type": "string"
-                                            },
-                                            "caliberationRange": {
-                                                "$ref": "#/$defs/ComplexValue"
-                                            },
-                                            "caliberatedWeightsApplied": {
-                                                "type": "string",
-                                                "description": "Were calibrated weights used to apply the test force?"
-                                            }
-                                        }
-                                    },
-                                    "loadingSensor": {
-                                        "type": "object",
-                                        "required": [
-                                            "loadSensorUsed",
-                                            "loadSensorCaliberated",
-                                            "caliberationDate",
-                                            "calibertaionValidityTimePeriod",
-                                            "caliberationStandard",
-                                            "caliberationClass",
-                                            "caliberationRange"
-                                        ],
-                                        "properties": {
-                                            "loadSensorUsed": {
-                                                "type": "string",
-                                                "description": "Was the load sensor used during loading?",
-                                                "enum": [
-                                                    "yes",
-                                                    "no"
-                                                ]
-                                            },
-                                            "loadSensorCaliberated": {
-                                                "type": "string",
-                                                "description": "Was the load sensor caliberated?",
-                                                "enum": [
-                                                    "yes",
-                                                    "no"
-                                                ]
-                                            },
-                                            "caliberationCertificate": {
-                                                "type": "string",
-                                                "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                            },
-                                            "caliberationDate": {
-                                                "type": "string"
-                                            },
-                                            "calibertaionValidityTimePeriod": {
-                                                "type": "string"
-                                            },
-                                            "caliberationStandard": {
-                                                "type": "string"
-                                            },
-                                            "caliberationClass": {
-                                                "type": "string"
-                                            },
-                                            "caliberationRange": {
-                                                "$ref": "#/$defs/ComplexValue"
-                                            }
-                                        }
-                                    },
-                                    "dataAcquisition": {
-                                        "type": "object",
-                                        "required": [
-                                            "forceRecording",
-                                            "caliberationTestForce"
-                                        ],
-                                        "properties": {
-                                            "forceRecording": {
-                                                "type": "string"
-                                            },
-                                            "caliberationTestForce": {
-                                                "type": "string",
-                                                "description": "Has a calibration of the test force data acquisition been performed?",
-                                                "enum": [
-                                                    "yes",
-                                                    "no"
-                                                ]
-                                            }
-                                        }
-                                    }
-                                },
-                                "laboratoryConditions": {
-                                    "type": "object",
-                                    "required": [
-                                        "roomTemperature"
-                                    ],
-                                    "properties": {
-                                        "roomTemperature": {
-                                            "type": "string",
-                                            "description": "Was the room temperature recorded and checked?",
-                                            "enum": [
-                                                "yes",
-                                                "no"
-                                            ]
-                                        },
-                                        "humidityCheck": {
-                                            "type": "string",
-                                            "description": "Was the humidity recorded and checked?",
-                                            "enum": [
-                                                "yes",
-                                                "no"
-                                            ]
-                                        }
-                                    }
-                                },
-                                "temperatureMeasuringSystem": {
-                                    "type": "object",
-                                    "required": [
-                                        "sampleControl",
-                                        "furnaceType",
-                                        "metrologicalTraceability"
-                                    ],
-                                    "properties": {
-                                        "sampleControl": {
-                                            "type": "string",
-                                            "description": "Control via thermocouples on sample/via furnace",
-                                            "enum": [
-                                                "On test piece",
-                                                "Via furnace"
-                                            ]
-                                        },
-                                        "furnaceType": {
-                                            "type": "string",
-                                            "enum": [
-                                                "Split Tube Furnace with Two-zones",
-                                                "Split Tube Furnace with Three-zones",
-                                                "Other (specify)"
-                                            ]
-                                        },
-                                        "metrologicalTraceability": {
-                                            "type": "string",
-                                            "description": "Metrological traceability (Yes, if Sensor AND Data acquisition checked)",
-                                            "enum": [
-                                                "yes",
-                                                "no"
-                                            ]
-                                        },
-                                        "measuringInstrument": {
-                                            "type": "object",
-                                            "required": [
-                                                "sensorType",
-                                                "thermocoupleType",
-                                                "thermocoupleCaliberated",
-                                                "caliberationMethod",
-                                                "caliberationStandard",
-                                                "caliberationDate",
-                                                "calibertaionValidityTimePeriod",
-                                                "caliberationRange",
-                                                "contactMethod",
-                                                "numberOfThermocouples",
-                                                "gaugeSectionLocation"
-                                            ],
-                                            "properties": {
-                                                "sensorType": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "Thermocouple",
-                                                        "Thermocamera"
-                                                    ]
-                                                },
-                                                "equipmentID": {
-                                                    "type": "string"
-                                                },
-                                                "thermocoupleType": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "B",
-                                                        "R",
-                                                        "S",
-                                                        "K",
-                                                        "Other (Specify)"
-                                                    ]
-                                                },
-                                                "wireGauge": {
-                                                    "$ref": "#/$defs/ComplexValue"
-                                                },
-                                                "layout": {
-                                                    "type": "string"
-                                                },
-                                                "thermocoupleCaliberated": {
-                                                    "type": "string",
-                                                    "description": "Is/are the thermocouples calibrated?",
-                                                    "enum": [
-                                                        "yes",
-                                                        "no"
-                                                    ]
-                                                },
-                                                "caliberationMethod": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "comparison method",
-                                                        "fix-point method"
-                                                    ]
-                                                },
-                                                "caliberationStandard": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "ASTM E220",
-                                                        "EURAMET cg-08"
-                                                    ]
-                                                },
-                                                "caliberationCertificate": {
-                                                    "type": "string",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                                },
-                                                 "caliberationDate": {
-                                                    "type": "string"
-                                                },
-                                                "calibertaionValidityTimePeriod": {
-                                                    "type": "string"
-                                                },
-                                                "caliberationDeviation": {
-                                                    "description": "Deviation detected during calibration",
-                                                    "$ref": "#/$defs/ComplexValue"
-                                                },
-                                                "caliberationRange": {
-                                                    "$ref": "#/$defs/ComplexValue"
-                                                },
-                                                "contactMethod": {
-                                                    "type": "string",
-                                                    "description": "Application: contact method",
-                                                    "enum": [
-                                                        "welded",
-                                                        "attached",
-                                                        "pressed",
-                                                        "glued",
-                                                        "other (specify)"
-                                                    ]
-                                                },
-                                                "numberOfThermocouples": {
-                                                    "type": "string",
-                                                    "description": "Application: number of thermocouples",
-                                                    "enum": [
-                                                        "1",
-                                                        "2",
-                                                        "3"
-                                                    ]
-                                                },
-                                                "gaugeSectionLocation": {
-                                                    "type": "string",
-                                                    "description": "Application: location with respect to gauge section",
-                                                    "enum": [
-                                                        "inside",
-                                                        "outside"
-                                                    ]
-                                                }
-                                            }
-                                        },
-                                        "dataAcquisition": {
-                                            "type": "object",
-                                            "required": [
-                                                "dataAcquisitionUnitCaliberated",
-                                                "caliberationDate",
-                                                "calibertaionValidityTimePeriod",
-                                                "caliberationMethod",
-                                                "caliberationStandard",
-                                                "caliberationRange"
-                                            ],
-                                            "properties": {
-                                                "dataAcquisitionUnitCaliberated": {
-                                                    "type": "string",
-                                                    "description": "Is/are the data acquisition unit calibrated?",
-                                                    "enum": [
-                                                        "yes",
-                                                        "no"
-                                                    ]
-                                                },
-                                                "referenceJunction": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "internal",
-                                                        "external"
-                                                    ]
-                                                },
-                                                "caliberationCertificate": {
-                                                    "type": "string",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                                },
-                                                "caliberationDate": {
-                                                    "type": "string"
-                                                },
-                                                "calibertaionValidityTimePeriod": {
-                                                    "type": "string"
-                                                },
-                                                "caliberationMethod": {
-                                                    "type": "string"
-                                                },
-                                                "caliberationStandard": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "EURAMET cg-11",
-                                                        "Other (specify)"
-                                                    ]
-                                                },
-                                                "caliberationDeviation": {
-                                                    "description": "Deviation detected during calibration",
-                                                    "$ref": "#/$defs/ComplexValue"
-                                                },
-                                                "caliberationRange": {
-                                                    "$ref": "#/$defs/ComplexValue"
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "extensometerSystem": {
-                                    "type": "object",
-                                    "required": [
-                                        "strainMeasuringDeviceType",
-                                        "contactingExtensometerSensorType",
-                                        "nonContactingExtensometerSensorType"
-                                    ],
-                                    "properties": {
-                                        "strainMeasuringDeviceType": {
-                                            "type": "string",
-                                            "description": "Type of strain measuring device",
-                                            "enum": [
-                                                "contacting extensometer",
-                                                "non-contacting extensometer"
-                                            ]
-                                        },
-                                        "contactingExtensometerSensorType": {
-                                            "type": "string",
-                                            "description": "Sensor type - contacting extensometer",
-                                            "enum": [
-                                                "LVDT with extension legs",
-                                                "Clip-on extensometer"
-                                            ]
-                                        },
-                                        "nonContactingExtensometerSensorType": {
-                                            "type": "string",
-                                            "description": "Sensor type - non-contacting extensometer",
-                                            "enum": [
-                                                "Laserextensometer",
-                                                "Digital image correlation technique"
-                                            ]
-                                        },
-                                        "contactingExtensometer": {
-                                            "type": "object",
-                                            "required": [
-                                                "measurementType",
-                                                "measurementAction",
-                                                "mountingType",
-                                                "extensionRangeUpperLimit",
-                                                "extensionRangeLowerLimit",
-                                                "nominalGaugeLength",
-                                                "extensometerCaliberation",
-                                                "caliberationDate",
-                                                "calibertaionValidityTimePeriod",
-                                                "caliberationClass",
-                                                "caliberationRange",
-                                                "caliberationStandard"
-                                            ],
-                                            "properties": {
-                                                "measurementType": {
-                                                    "type": "string",
-                                                    "description": "Is measurement one-sided or two-sided?",
-                                                    "enum": [
-                                                        "one-sided",
-                                                        "two-sided"
-                                                    ]
-                                                },
-                                                "measurementAction": {
-                                                    "type": "string",
-                                                    "description": "Is measurement axial or diametrical action?",
-                                                    "enum": [
-                                                        "axial action",
-                                                        "diametrical action"
-                                                    ]
-                                                },
-                                                "mountingType": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "at test piece in parallel length",
-                                                        "at collars"
-                                                    ]
-                                                },
-                                                "extensometerModelInformation": {
-                                                    "type": "string"
-                                                },
-                                                "extensometerEquipmentID": {
-                                                    "type": "string"
-                                                },
-                                                "description": {
-                                                    "type": "string",
-                                                    "description": "description of upper/lower legs (LVDT systems)",
-                                                    "enum": [
-                                                        "ceramin legs",
-                                                        "metallic legs"
-                                                    ]
-                                                },
-                                                "measuringAmplifier": {
-                                                    "type": "string"
-                                                },
-                                                "extensionRangeUpperLimit": {
-                                                    "$ref": "#/$defs/ComplexValue"
-                                                },
-                                                "extensionRangeLowerLimit": {
-                                                    "$ref": "#/$defs/ComplexValue"
-                                                },
-                                                "nominalGaugeLength": {
-                                                    "$ref": "#/$defs/ComplexValue"
-                                                },
-                                                "extensometerCaliberation": {
-                                                    "type": "string",
-                                                    "description": "Is extensometer incl. the data acquisition calibrated?",
-                                                    "enum": [
-                                                        "yes",
-                                                        "no"
-                                                    ]
-                                                },
-                                                "caliberationCertificate": {
-                                                    "type": "string",
-                                                    "description": "(Link to) File, preferably with machine-readable (meta)data."
-                                                },
-                                                "caliberationDate": {
-                                                    "type": "string"
-                                                },
-                                                "calibertaionValidityTimePeriod": {
-                                                    "type": "string"
-                                                },
-                                                "caliberationClass": {
-                                                    "type": "string"
-                                                },
-                                                "caliberationRange": {
-                                                    "$ref": "#/$defs/ComplexValue"
-                                                },
-                                                "caliberationStandard": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "dataProcessingProcedures": {
-                            "type": "object",
-                            "required": [
-                                "dataDescription",
-                                "dataProcessingDescription",
-                                "dataAnalysisDescription",
-                                "automatedAnalysisWorkflow",
-                                "software"
-                            ],
-                            "properties": {
-                                "dataDescription": {
-                                    "type": "string",
-                                    "description": "Description of primary and processed data series-  Primary data is data that is directly acquired by sensors or measuring instruments during or after a test. Processed data is obtained as a result of using procedures (equations, algorithms, methods, unit conversions) to transform data."
-                                },
-                                "dataProcessingDescription": {
-                                    "type": "string",
-                                    "description": "Description of primary data series processing (incl. averaging, smoothing)"
-                                },
-                                "dataAnalysisDescription": {
-                                    "type": "string",
-                                    "description": "Description of the data processing and analysis procedures used to obtain specific test results, e.g. percentage elastic extension, $e_{e}$"
-                                },
-                                "automatedAnalysisWorkflow": {
-                                    "type": "string",
-                                    "description": "Were automated (user-independent) analysis workflows used?",
-                                    "enum": [
-                                        "Yes",
-                                        "No"
-                                    ]
-                                },
-                                "software": {
-                                    "type": "string",
-                                    "description": "Software, if applicable, including product and version"
-                                },
-                                "relatedPublications": {
-                                    "type": "string",
-                                    "description": "Related publications, if applicable"
-                                }
-                            }
-                        }
+                        ]
+                    },
+                      "timeLimit": {
+                        "type": "string"
+                      },
+                      "extensionLimit": {
+                        "type": "string"
+                      },
+                      "endOfTest": {
+                        "type": "string",
+                        "description": "Describe the end of test if none of the preset criteria (time or extension limit) could be met."
+                      },
+                      "interruptionCourse": {
+                        "type": "string",
+                        "enum": [
+                          "Unloading before cooling",
+                          "Unloading after cooling"
+                        ]
+                      },
+                      "testForce": {
+                        "$ref": "#/$defs/ComplexValue"
+                      },
+                      "preload": {
+                        "$ref": "#/$defs/ComplexValue",
+                        "description": "Part of the test force."
+                      },
+                      "additionalInformation": {
+                        "type": "string"
+                      }
                     }
-                }, 
-                "primaryData": {
+                  },
+                  "relatedResearchOutcome": {
                     "type": "object",
                     "properties": {
-                        "testResult": {
+                      "anyRelatedArticles": {
+                        "type": "string",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ]
+                      },
+                      "relatedArticle": {
+                        "type": "array",
+                        "description": "Multiple input entries for instance for MSE research article DOI, Zenodo DOI, FDO.",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "DOI": {
+                              "type": "string"
+                            },
+                            "abstract": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "materialHistoryAndCondition": {
+                "type": "object",
+                "required": [
+                  "materialIdentifier"
+                ],
+                "properties": {
+                  "materialIdentifier": {
+                    "type": "string",
+                    "description": "E.g., NIMONIC 75, 2.4630, CMSX-6, CMSX-4, ERBO1,…"
+                  },
+                  "asManufacturedMaterial": {
+                    "type": "object",
+                    "required": [
+                      "formOfAsManufacturedMaterial",
+                      "geometrySizeAsManufacturedMaterial",
+                      "solidification",
+                      "condition"
+                    ],
+                    "properties": {
+                      "phaseTransformationDuringTest": {
+                        "type": "string",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ]
+                      },
+                      "possiblePhaseTransformation": {
+                        "type": "string",
+                        "description": "Is any phase transformation expected due to temperature during the creep test? - Please provide any supporting material, if possible. Answers could be, e.g., a link to a TTT-curve or a DOI of an article."
+                      },
+                      "formOfAsManufacturedMaterial": {
+                        "type": "string",
+                        "description": "E.g., Cast, Ingot, Extrusion rod, ..."
+                      },
+                      "geometrySizeAsManufacturedMaterial": {
+                        "type": "string",
+                        "description": "Please provide a description or/and any supporting material, e.g., link to image or technical drawing, if possible."
+                      },
+                      "manufacturingProcessDescriptionAsManufacturedMaterial": {
+                        "type": "string",
+                        "description": "E.g., Cast/Melting, Casting, and Remelting/Induction melting in air, Casting into a circular ingot and then electroslag remelting."
+                      },
+                      "castingTemperature": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/$defs/ComplexValue"
+                        }
+                      },
+                      "castingSpeed": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/$defs/ComplexValue"
+                        }
+                      },
+                      "solidification": {
+                        "type": "string",
+                        "description": "Single/polycrystal solidified?",
+                        "enum": [
+                          "Single crystal",
+                          "Polycrystal"
+                        ]
+                      },
+                      "condition": {
+                        "type": "string",
+                        "enum": [
+                          "Heat treated",
+                          "As manufactured"
+                        ]
+                      }
+                    }
+                  },
+                  "asTestedMaterial": {
+                    "type": "object",
+                    "required": [
+                      "supplier",
+                      "geometrySizeAsTestedMaterial",
+                      "manufacturingProcessDescriptionAsTestedMaterial",
+                      "supplyDate"
+                    ],
+                    "properties": {
+                      "supplier": {
+                        "type": "string"
+                      },
+                      "geometrySizeAsTestedMaterial": {
+                        "type": "string",
+                        "description": "The test piece is manufactured from the as-tested material. Please add a description or a link to Image or technical drawing. The as-tested material is the material to be tested. The as-tested material can be a component."
+                      },
+                      "manufacturingProcessDescriptionAsTestedMaterial": {
+                        "type": "string"
+                      },
+                      "supplyDate": {
+                        "type": "string"
+                      },
+                      "orderNumber": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "heatTreatment": {
+                    "type": "object",
+                    "required": [
+                      "heatTreatmentState",
+                      "heatTreatmentAnnealingDescription",
+                      "heatTreatmentAgeingDescription"
+                    ],
+                    "properties": {
+                      "heatTreatmentState": {
+                        "type": "object",
+                        "properties": {
+                          "heatTreatmentStateOptions": {
+                            "type": "string",
+                            "enum": [
+                              "None",
+                              "Annealed",
+                              "Hardened",
+                              "Other (Please specify in the comment)"
+                            ]
+                           }
+                        },
+                          "allOf": [
+                            {
+                              "if": {
+                                "properties": {
+                                  "heatTreatmentStateOptions": {
+                                    "const": "Other (Please specify in the comment)"
+                                  }
+                                }
+                              },
+                              "then": {
+                                "required": [
+                                    "otherHeatTreatmentState"
+                                ],
+                                "properties": {
+                                  "otherHeatTreatmentState": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                      },
+                      "multistageAnnealing": {
+                        "type": "string",
+                        "enum": [
+                          "Yes",
+                          "No",
+                          "Not applicable"
+                        ]
+                      },
+                      "multistageAgeing": {
+                        "type": "string",
+                        "enum": [
+                          "Yes",
+                          "No",
+                          "Not applicable"
+                        ]
+                      },
+                      "heatTreatmentAnnealingDescription": {
+                        "type": "string"
+                      },
+                      "heatTreatmentAgeingDescription": {
+                        "type": "string"
+                      },
+                      "heatTreatmentProtocol": {
+                        "type": "string",
+                        "description": "Link to file, preferably with machine-readable (meta)data."
+                      }
+                    }
+                  },
+                  "microstructure": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "microstructureFeature",
+                        "characterizationMethod",
+                        "measuredCondition",
+                        "measuringPosition"
+                      ],
+                      "properties": {
+                        "microstructureFeature": {
+                          "type": "object",
+                          "properties": {
+                            "microstructureFeatureOptions": {
+                                "type": "string",
+                                "enum": [
+                                  "Matrix",
+                                  "Phase",
+                                  "Grain Boundary",
+                                  "Dendrite",
+                                  "Precipitate",
+                                  "Inclusion",
+                                  "Grain",
+                                  "Segregation",
+                                  "Other (Please specify in the comment)"
+                                ]
+                              }
+                            },
+                            "allOf": [
+                              {
+                                "if": {
+                                  "properties": {
+                                    "microstructureFeatureOptions": {
+                                      "const": "Other (Please specify in the comment)"
+                                    }
+                                  }
+                                },
+                                "then": {
+                                  "properties": {
+                                    "otherMicrostructureFeature": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                        },
+                        "characterizationMethod": {
+                          "type": "string",
+                          "description": "E.g., STEM, HRTEM, TEM-EDX, AFM, SEM, SEM-EBSD, …."
+                        },
+                        "measuredCondition": {
+                          "type": "string",
+                          "description": "E.g., as-manufactured, heat-treated, before testing, after testing."
+                        },
+                        "measuringPosition": {
+                          "type": "string",
+                          "description": "Specify position(s) for bulk (middle/top/bottom/surface) and/or microstructure feature (matrix, interdendtitic region, phase,...)"
+                        },
+                        "microstructureFeatureInformation": {
+                          "type": "string",
+                          "description": "Include all relevant characterization results."
+                        },
+                        "microstructureImage": {
+                          "type": "string",
+                          "description": "Link to file, e.g., an optical micrograph, preferably with machine-readable (meta)data."
+                        },
+                        "microstructureReport": {
+                          "type": "string",
+                          "description": "Link to file, preferably with machine-readable (meta)data."
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "microstructureNi-BasedSX": {
+                "type": "object",
+                "description": "The following fields apply to the considered example of single crystal Ni-Based Superalloys.",
+                "required": [
+                  "grainSize",
+                  "grainSizeDeterminationMethod",
+                  "grainSizeMeausuringRegion",
+                  "singleCrystalOrientation",
+                  "singleCrystalOrientationDeterminationMethod",
+                  "singleCrystalOrientationMeasuringPoint"
+                ],
+                "properties": {
+                  "grainSize": {
+                    "$ref": "#/$defs/ComplexValue",
+                    "description": "If polycrystal."
+                  },
+                  "grainSizeDeterminationMethod": {
+                    "type": "object",
+                    "properties": {
+                      "grainSizeDeterminationMethodOptions": {
+                        "type": "string",
+                        "enum": [
+                          "Line Intercept",
+                          "Circular Intercept",
+                          "Other (Please specify in the comment)"
+                           ]
+                          }
+                      },
+                      "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "grainSizeDeterminationMethodOptions": {
+                                  "const": "Other (Please specify in the comment)"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                  "otherGrainSizeDeterminationMethod"
+                              ],
+                              "properties": {
+                                "otherGrainSizeDeterminationMethod": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                      ]
+                  },
+                  "grainSizeMeausuringRegion": {
+                    "type": "string",
+                    "description": "E.g., in the bulk."
+                  },
+                  "grainSizeDistribution": {
+                    "type": "string",
+                    "description": "Link to file, preferably with machine-readable (meta)data."
+                  },
+                  "grainAdditionalInformation": {
+                    "type": "string",
+                    "description": "Include all further relevant characterization results."
+                  },
+                  "reprecipitatedGammaGammaPrimeRegions": {
+                    "$ref": "#/$defs/ComplexValue",
+                    "description": "Completely dissolved and re-precipitated gamma-gamma' regions."
+                  },
+                  "gammaPrimeParticlesAverageSize": {
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "gammaPrimeParticlesMaximumSize": {
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "dendriteSpacings": {
+                    "type": "string",
+                    "description": "Please describe the procedure and add a link to file, preferably with machine-readable (meta)data or add a reference to paper and section."
+                  },
+                  "proofOfSingleCrystallinity": {
+                    "type": "string",
+                    "description": "Link to file, preferably with machine-readable (meta)data."
+                  },
+                  "singleCrystalOrientation": {
+                    "type": "string",
+                    "description": "Link to file, preferably with machine-readable (meta)data. Laue Crystal Verification. Must be documented for each test piece."
+                  },
+                  "singleCrystalOrientationDeterminationMethod": {
+                    "type": "string"
+                  },
+                  "singleCrystalOrientationMeasuringPoint": {
+                    "type": "string"
+                  },
+                  "orientationDeterminationAccuracy": {
+                    "type": "string"
+                  }
+                }
+              },
+              "chemicalComposition": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "measuredCondition",
+                    "measuringPosition",
+                    "chemicalCompositionNominal",
+                    "chemicalCompositionMeasured",
+                    "measurementMethod"
+                  ],
+                  "properties": {
+                    "measuredCondition": {
+                      "type": "object",
+                      "properties": {
+                        "measuredConditionOptions": {
+                          "type": "string",
+                          "enum": [
+                            "As-manufactured",
+                            "Heat-treated",
+                            "As-tested",
+                            "Other (Please specify in the comment)"
+                             ]
+                            }
+                        },
+                        "allOf": [
+                            {
+                              "if": {
+                                "properties": {
+                                  "measuredConditionOptions": {
+                                    "const": "Other (Please specify in the comment)"
+                                  }
+                                }
+                              },
+                              "then": {
+                                "required": [
+                                    "otherMeasuredCondition"
+                                ],
+                                "properties": {
+                                  "otherMeasuredCondition": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                        ]
+                    },
+                    "measuringPosition": {
+                      "type": "string",
+                      "description": "Specify position(s) for bulk (middle/top/bottom/surface) and/or microstructure feature (matrix, interdendtitic region, phase,...)"
+                    },
+                    "chemicalCompositionNominal": {
+                      "type": "array",
+                      "items": {
+                        "allOf": [
+                          {
                             "type": "object",
                             "properties": {
-                                "valuesAtTestStart": {
-                                    "type": "object",
-                                    "required": [
-                                        "minimumTestPieceDiameterAtRoomTemperature",
-                                        "originalGaugeLength",
-                                        "parallelLength",
-                                        "extensometerGaugeLength",
-                                        "referenceLengthToCalculatePercentageElongations",
-                                        "referenceLengthToCalculatePercentageElongationsOutsideParallelLength",
-                                        "referenceLengthToCalculatePercentageExtensions",
-                                        "ratioLrD",
-                                        "kValueLr",
-                                        "ratioLrD1",
-                                        "kValueLr1",
-                                        "ratioLrD2",
-                                        "kValueLr2"
-                                    ],
-                                    "properties": {
-                                        "minimumTestPieceDiameterAtRoomTemperature": {
-                                            "description": "Symbol usually indicated as D",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "originalGaugeLength": {
-                                            "description": "Symbol usually indicated as $L_{o}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "parallelLength": {
-                                            "description": "Symbol usually indicated as $L_{c}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "extensometerGaugeLength": {
-                                            "description": "Symbol usually indicated as $L_{e}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "referenceLengthToCalculatePercentageElongations": {
-                                            "description": "Symbol usually indicated as $L_{r}$ = $L_{o}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "referenceLengthToCalculatePercentageElongationsOutsideParallelLength": {
-                                            "description": "Reference length for calculation of percentage elongations if $L_{o}$ and/or extensometer $L_{e}$ are outside the parallel length. Symbol usually indicated as $L_{r}$, if $L_{r}$ > $L_{c}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "referenceLengthToCalculatePercentageExtensions": {
-                                            "description": "Reference length for calculation of percentage extensions. Symbol usually indicated as $L_{r}$ = $L_{o}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "ratioLrD": {
-                                            "description": "Ratio $L_{r}$ / D ; (if $L_{r}$ = $L_{o}$). Symbol usually indicated as $L_{r}$/D; (if $L_{r}$ = $L_{o}$)",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "kValueLr": {
-                                            "description": "k-value for $L_{r}$ ; (if $L_{r}$ = $L_{o}$). Symbol usually indicated as $L_{r}$ / square root of $S_{o}$; (if $L_{r}$ = $L_{o}$)",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "ratioLrD1": {
-                                            "description": "Ratio $L_{r}$ / D ; (if $L_{r}$ > $L_{c}$). Symbol usually indicated as $L_{r}$/D; (if $L_{r}$ > $L_{c}$)",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "kValueLr1": {
-                                            "description": "k-value for $L_{r}$ ; (if $L_{r}$ > $L_{c}$). Symbol usually indicated as $L_{r}$ / square root of $S_{o}$; (if $L_{r}$ > $L_{c}$)",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "ratioLrD2": {
-                                            "description": "Ratio $L_{r}$ / D ; (if $L_{r}$ = $L_{e}$). Symbol usually indicated as $L_{r}$/D; (if $L_{r}$ = $L_{e}$)",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "kValueLr2": {
-                                            "description": "k-value for $L_{r}$ ; (if $L_{r}$ = $L_{e}$). Symbol usually indicated as $L_{r}$ / square root of $S_{o}$; (if $L_{r}$ = $L_{e}$)",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        }
-                                    }  
-                                },
-                                "valuesDuringTestRun": {
-                                    "type": "object",
-                                    "required": [
-                                        "elapsedTimeFromEndOfLoading",
-                                        "heatingTime",
-                                        "soakTime",
-                                        "testDuration"
-                                    ],
-                                    "properties": {
-                                        "elapsedTimeFromEndOfLoading": {
-                                            "description": "Symbol usually indicated as t",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "extension": {
-                                            "description": "Symbol usually indicated as $L_{et}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "elongation": {
-                                            "description": "Symbol usually indicated as $L_{ot}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "heatingTime": {
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "soakTime": {
-                                            "description": "Soak time before test",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "testDuration": {
-                                            "description": "Symbol usually indicated as t",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        }
-                                    }
-                                },
-                                "valuesAfterTestEnd": {
-                                    "type": "object",
-                                    "required": [
-                                        "creepRuptureTime",
-                                        "positionOfFracture"
-                                    ],
-                                    "properties": {
-                                        "creepRuptureTime": {
-                                            "description": "Symbol usually indicated as $t_{u}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "positionOfFracture": {
-                                            "type": "string",
-                                            "enum": [
-                                                "Centered",
-                                                "At the edge of the upper/lower extensometer gauge length/parallel length",
-                                                "Outside the extensometer gauge length/parallel length"
-                                            ]
-                                        },
-                                        "finalGaugeLengthAfterFracture": {
-                                            "description": "Symbol usually indicated as $L_{u}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        }
+                              "element": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "element"
+                            ]
+                          },
+                          {
+                            "$ref": "#/$defs/ComplexValue",
+                            "description": "Link to file, preferably with machine-readable (meta)data or add the wt.-% value for each element"
+                          }
+                        ]
+                      }
+                    },
+                    "chemicalCompositionMeasured": {
+                      "type": "array",
+                      "items": {
+                        "allOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "element": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "element"
+                            ]
+                          },
+                          {
+                            "$ref": "#/$defs/ComplexValue",
+                            "description": " Include precision, if available. Link to file, preferably with machine-readable (meta)data or add the wt.-% value for each element"
+                          }
+                        ]
+                      }
+                    },
+                    "measurementMethod": {
+                      "type": "string",
+                      "description": "Provide a description of the used method(s) and details about measurement volume/points."
+                    }
+                  }
+                }
+              },
+              "ndtResults": {
+                "type": "object",
+                "properties": {
+                  "crackOrDefectInspectionMethod": {
+                    "type": "string",
+                    "description": "E.g., Penetrant certification/Radiographic certification/XCT/X-Ray film. Link to file, preferably with machine-readable (meta)data."
+                  },
+                  "crackOrDefectInspectionResult": {
+                    "type": "string"
+                  }
+                }
+              },
+              "mechanicalTestResults": {
+                "type": "object",
+                "properties": {
+                  "proofStrengthRoomTemperature": {
+                    "$ref": "#/$defs/ComplexValue",
+                    "description": "0.2 % Proof strength at room temperature."
+                  },
+                  "proofStrengthCreepTestTemperature": {
+                    "$ref": "#/$defs/ComplexValue",
+                    "description": "0.2 % Proof strength at creep test temperature."
+                  },
+                  "hardness": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "testPiece": {
+            "type": "object",
+            "required": [
+              "testPieceTypeI",
+              "testPieceTypeII",
+              "testPieceTypeIII",
+              "testPieceTechnicalDrawing",
+              "testPieceOriginAndOrientation",
+              "testPieceOrientationInTestMachine"
+            ],
+            "properties": {
+              "testpieceID": {
+                "type": "string"
+              },
+              "workshopOrderID": {
+                "type": "string"
+              },
+              "testPieceHistory": {
+                "type": "string",
+                "description": "Link to file, preferably with machine-readable (meta)data. The file(s) can include, e.g., data or documentation from previous experiments."
+              },
+              "testPieceTypeI": {
+                "type": "string",
+                "enum": [
+                  "Miniaturized specimen",
+                  "Specimen according to standard"
+                ]
+              },
+              "testPieceTypeII": {
+                "type": "string",
+                "enum": [
+                  "Round cross section",
+                  "Rectangular section"
+                ]
+              },
+              "testPieceTypeIII": {
+                "type": "object",
+                "properties": {
+                  "testPieceTypeIIIOptions": {
+                    "type": "string",
+                    "enum": [
+                      "Smooth test piece",
+                      "Notched test piece",
+                      "Combined test piece",
+                      "Other (Please specify in the comment)"
+                      ]
+                    }
+                  },
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "testPieceTypeIIIOptions": {
+                            "const": "Other (Please specify in the comment)"
+                          }
+                        }
+                      },
+                      "then": {
+                        "required": [
+                            "otherTestPieceTypeIII"
+                        ],
+                        "properties": {
+                          "otherTestPieceTypeIII": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+              "testPieceTechnicalDrawing": {
+                "type": "string",
+                "description": "Link to file, preferably with machine-readable (meta)data."
+              },
+              "testPieceOriginAndOrientation": {
+                "type": "string",
+                "description": "Describe the exact location/positioning of the test piece within the as-tested material. E.g., Do rolling direction and the longitudinal axis coincide? Is the test piece located on top or bottom? Do coordinate systems of as-tested material and test piece coincide? Add a link to a file, e.g., a technical drawing showing this, preferably with machine-readable (meta)data."
+              },
+              "testPieceOrientationInTestMachine": {
+                "type": "string",
+                "description": "Describe the exact orientation of the test piece within the test machine. E.g., is the longitudinal axis of the test piece exactly parallel to the loading axis of the test machine? Add a link to a file providing evidence, preferably with machine-readable (meta)data. This can be, e.g., a technical drawing."
+              },
+              "additionalInformationTestPiece": {
+                "type": "string",
+                "description": "Add the information or a link to file, preferably with machine-readable (meta)data, e.g., Roughness."
+              }
+            }
+          },
+          "measuringAndTestEquipment": {
+            "type": "object",
+            "properties": {
+              "testMachine": {
+                "type": "object",
+                "required": [
+                  "testFrameAndSpecimenAlignment",
+                  "descriptionTestFrameAndSpecimenAlignment",
+                  "calibrationClass"
+                ],
+                "properties": {
+                  "testMachineID": {
+                    "type": "string"
+                  },
+                  "testMachineType": {
+                    "type": "object",
+                    "properties": {
+                      "testMachineTypeOptions": {
+                        "type": "string",
+                        "enum": [
+                          "Lever arm",
+                          "Electromechanical drive",
+                          "Other (Please specify in the comment)"
+                            ]
+                        }
+                      },
+                      "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "testMachineTypeOptions": {
+                                "const": "Other (Please specify in the comment)"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                                "otherTestMachineType"
+                            ],
+                            "properties": {
+                              "otherTestMachineType": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                  },
+                  "minimumApplicableForce": {
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "maximumApplicableForce": {
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "testFrameAndSpecimenAlignment": {
+                    "type": "string",
+                    "description": "Verification of Test Frame and Specimen Alignment according to ASTM E1012?",
+                    "enum": [
+                      "Yes",
+                      "No"
+                    ]
+                  },
+                  "testFrameAndSpecimenAlignmentDescription": {
+                    "type": "string",
+                    "description": "Please provide a description on the procedure followed for the Verification of Test Frame and Specimen Alignment if different from ASTM E1012."
+                  },
+                  "calibrationClass": {
+                    "type": "string",
+                    "description": "Calibration class of test frame and specimen alignment, e.g., 5 / 5 starting from 3 kN (according to ASTM E1012)."
+                  },
+                  "heatingSystem": {
+                    "type": "object",
+                    "required": [
+                      "furnaceType"
+                    ],
+                    "properties": {
+                      "furnaceType": {
+                        "type": "object",
+                        "properties": {
+                          "furnaceTypeOptions": {
+                            "type": "string",
+                            "enum": [
+                              "Split Tube Furnace with Two-zones",
+                              "Split Tube Furnace with Three-zones",
+                              "Other (Please specify in the comment)"
+                                ]
+                            }
+                          },
+                          "allOf": [
+                            {
+                              "if": {
+                                "properties": {
+                                  "furnaceTypeOptions": {
+                                    "const": "Other (Please specify in the comment)"
+                                  }
+                                }
+                              },
+                              "then": {
+                                "required": [
+                                    "otherFurnaceType"
+                                ],
+                                "properties": {
+                                  "otherFurnaceType": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                        ]
+                     }
+                   }
+                  },
+                  "testPieceHolderSystem": {
+                    "type": "object",
+                    "properties": {
+                      "fixingTechnique": {
+                        "type": "object",
+                        "properties": {
+                          "fixingTechniqueOptions": {
+                            "type": "string",
+                            "enum": [
+                              "Threaded",
+                              "Button-head",
+                              "Other (Please specify in the comment)"
+                                ]
+                            }
+                        },
+                        "allOf": [
+                            {
+                              "if": {
+                                "properties": {
+                                  "fixingTechniqueOptions": {
+                                    "const": "Other (Please specify in the comment)"
+                                  }
+                                }
+                              },
+                              "then": {
+                                "required": [
+                                    "otherFixingTechnique"
+                                ],
+                                "properties": {
+                                  "otherFixingTechnique": {
+                                    "type": "string"      
                                     }
                                 }
                             }
+                          }
+                        ]
+                      }
+                   }
+                  },
+                  "loadingSystem": {
+                    "type": "object",
+                    "required": [
+                      "verificationOfLoadingSystem",
+                      "calibrationDate",
+                      "calibrationValidityTimePeriod",
+                      "calibrationStandard",
+                      "calibrationClass",
+                      "calibrationRange",
+                      "useOfCalibratedWeights",
+                      "descriptionOfTheLoadingSystem"
+                    ],
+                    "properties": {
+                      "verificationOfLoadingSystem": {
+                        "type": "string",
+                        "description": "Was the loading system calibrated/verified?",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ]
+                      },
+                      "calibrationCertificate": {
+                        "type": "string",
+                        "description": "Link to file, preferably with machine-readable (meta)data. Please specify which device/feature/part of the test machine was calibrated."
+                      },
+                      "calibrationDate": {
+                        "type": "string"
+                      },
+                      "calibrationValidityTimePeriod": {
+                        "type": "string"
+                      },
+                      "calibrationStandard": {
+                        "type": "object",
+                        "properties": {
+                            "calibrationStandardOptions": {
+                                "type": "string",
+                                "enum": [
+                                    "DIN EN ISO 7500-2",
+                                    "Other (Please specify in the comment)"
+                                  ]
+                                }
+                            },
+                            "allOf": [
+                                {
+                                  "if": {
+                                    "properties": {
+                                      "calibrationStandardOptions": {
+                                        "const": "Other (Please specify in the comment)"
+                                      }
+                                    }
+                                  },
+                                  "then": {
+                                    "required": [
+                                        "otherCalibrationStandard"
+                                    ],
+                                    "properties": {
+                                      "otherCalibrationStandard": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                            ]
+                      },
+                      "calibrationClass": {
+                        "type": "string"
+                      },
+                      "calibrationRange": {
+                        "$ref": "#/$defs/ComplexValue"
+                      },
+                      "useOfCalibratedWeights": {
+                        "type": "string",
+                        "description": "Were calibrated weights used to apply the test force?",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ]
+                      },
+                      "descriptionOfTheLoadingSystem": {
+                        "type": "string",
+                        "description": "Please describe the loading system and related verification in the case that calibrated weights were not used.",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ]
+                      }
+                    }
+                  },
+                  "dataAcquisition": {
+                    "type": "object",
+                    "required": [
+                      "dataAcquisitionSoftwareAndVersion",
+                      "dataAcquisitionDescription"
+                    ],
+                    "properties": {
+                      "dataAcquisitionUnitModelInformation": {
+                        "type": "string"
+                      },
+                      "dataAcquisitionUnitID": {
+                        "type": "string"
+                      },
+                      "dataAcquisitionSoftwareAndVersion": {
+                        "type": "string"
+                      },
+                      "dataAcquisitionDescription": {
+                        "type": "string"
+                      },
+                      "dataAcquisitionTimeCheck": {
+                        "type": "string",
+                        "description": "Was the time checked during data acquisition?",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "loadMeasuringSystem": {
+                "type": "object",
+                "properties": {
+                  "loadSensor": {
+                    "type": "object",
+                    "required": [
+                      "loadSensorDuringLoading",
+                      "loadSensorCalibration",
+                      "calibrationDate",
+                      "calibrationValidityTimePeriod",
+                      "calibrationStandard",
+                      "calibrationClass",
+                      "calibrationRange"
+                    ],
+                    "properties": {
+                      "loadSensorDuringLoading": {
+                        "type": "string",
+                        "description": "Was a load sensor used during loading?",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ]
+                      },
+                      "loadSensorCalibration": {
+                        "type": "string",
+                        "description": "Was the load sensor calibrated?",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ]
+                      },
+                      "calibrationCertificate": {
+                        "type": "string",
+                        "description": "(Link to) File, preferably with machine-readable (meta)data."
+                      },
+                      "calibrationDate": {
+                        "type": "string"
+                      },
+                      "calibrationValidityTimePeriod": {
+                        "type": "string"
+                      },
+                      "calibrationStandard": {
+                        "type": "string"
+                      },
+                      "calibrationClass": {
+                        "type": "string"
+                      },
+                      "calibrationRange": {
+                        "$ref": "#/$defs/ComplexValue"
+                      }
+                    }
+                  },
+                  "dataAcquisition": {
+                    "type": "object",
+                    "required": [
+                      "forceRecording"
+                    ],
+                    "properties": {
+                      "forceRecording": {
+                        "type": "string",
+                        "description": "Was the force recorded continuously or periodically (e.g., during loading)?"
+                      }
+                    }
+                  }
+                }
+              },
+              "laboratoryConditions": {
+                "type": "object",
+                "required": [
+                  "roomTemperature"
+                ],
+                "properties": {
+                  "roomTemperature": {
+                    "type": "string",
+                    "description": "Was the room temperature recorded and checked?",
+                    "enum": [
+                      "Yes",
+                      "No"
+                    ]
+                  },
+                  "roomHumidity": {
+                    "type": "string",
+                    "description": "Was the room humidity recorded and checked?",
+                    "enum": [
+                      "Yes",
+                      "No"
+                    ]
+                  }
+                }
+              },
+              "temperatureMeasuringSystem": {
+                "type": "object",
+                "required": [
+                  "temperatureSignal",
+                  "metrologicalTraceability"
+                ],
+                "properties": {
+                  "temperatureSignal": {
+                    "type": "object",
+                    "description": "Which temperature signal was used for temperature control?",
+                    "properties": {
+                        "temperatureSignalOptions": {
+                            "type": "string",
+                            "enum": [
+                                "On test piece",
+                                "Via furnace",
+                                "Other (Please specify in the comment)"
+                              ]
+                            }
+                        },
+                        "allOf": [
+                            {
+                              "if": {
+                                "properties": {
+                                  "temperatureSignalOptions": {
+                                    "const": "Other (Please specify in the comment)"
+                                  }
+                                }
+                              },
+                              "then": {
+                                "required": [
+                                    "otherTemperatureSignal"
+                                ],
+                                "properties": {
+                                  "otherTemperatureSignal": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                        ]
+                    },
+                  "metrologicalTraceability": {
+                    "type": "string",
+                    "description": "Yes, if temperature sensor AND data acquisition are calibrated.",
+                    "enum": [
+                      "Yes",
+                      "No"
+                    ]
+                  },
+                  "temperatureSensor": {
+                    "type": "object",
+                    "required": [
+                      "sensorType",
+                      "thermocoupleType",
+                      "calibrationStatus",
+                      "calibrationMethod",
+                      "calibrationStandard",
+                      "calibrationDate",
+                      "calibrationValidityTimePeriod",
+                      "calibrationRange",
+                      "contactMethod",
+                      "numberOfThermocouples",
+                      "thermocoupleLocation"
+                    ],
+                    "properties": {
+                      "sensorType": {
+                        "type": "string",
+                        "enum": [
+                          "Thermocouple",
+                          "Thermocamera"
+                        ]
+                      },
+                      "sensorID": {
+                        "type": "string"
+                      },
+                      "thermocoupleType": {
+                        "type": "object",
+                        "description": "Following fields until /Thermocouple location/ refer exemplarily to a Thermocouple sensor type.",
+                        "properties": {
+                            "thermocoupleTypeOptions": {
+                                "type": "string",
+                                "enum": [
+                                    "B",
+                                    "R",
+                                    "S",
+                                    "K",
+                                    "Other (Please specify in the comment)"
+                                  ]
+                                }
+                            },
+                            "allOf": [
+                                {
+                                  "if": {
+                                    "properties": {
+                                      "thermocoupleTypeOptions": {
+                                        "const": "Other (Please specify in the comment)"
+                                      }
+                                    }
+                                  },
+                                  "then": {
+                                    "required": [
+                                        "otherThermocoupleType"
+                                    ],
+                                    "properties": {
+                                      "otherThermocoupleType": {
+                                        "type": "string"
+                                      }
+                                    }
+                                }
+                            }
+                        ]
+                      },
+                      "wireGauge": {
+                        "$ref": "#/$defs/ComplexValue"
+                      },
+                      "layout": {
+                        "type": "string",
+                        "description": "E.g., wire with 2-hole ceramic beads."
+                      },
+                      "calibrationStatus": {
+                        "type": "string",
+                        "description": "Is/are the thermocouples calibrated?",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ]
+                      },
+                      "calibrationMethod": {
+                        "type": "string",
+                        "enum": [
+                          "Comparison method",
+                          "Fix-point method"
+                        ]
+                      },
+                      "calibrationStandard": {
+                        "type": "object",
+                        "properties": {
+                            "calibrationStandardOptions": {
+                                "type": "string",
+                                "enum": [
+                                    "ASTM E220",
+                                    "EURAMET cg-08",
+                                    "Guideline DKD-R 5-3",
+                                    "Other (Please specify in the comment)"
+                                  ]
+                                }
+                            },
+                            "allOf": [
+                                {
+                                  "if": {
+                                    "properties": {
+                                      "calibrationStandardOptions": {
+                                        "const": "Other (Please specify in the comment)"
+                                      }
+                                    }
+                                  },
+                                  "then": {
+                                    "required": [
+                                        "otherCalibrationStandard"
+                                    ],
+                                    "properties": {
+                                      "otherCalibrationStandard": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                      "calibrationCertificate": {
+                        "type": "string",
+                        "description": "Link to File, preferably with machine-readable (meta)data."
+                      },
+                      "calibrationDate": {
+                        "type": "string"
+                      },
+                      "calibrationValidityTimePeriod": {
+                        "type": "string"
+                      },
+                      "temperatureDeviation": {
+                        "description": "Measurement deviation detected during calibration.",
+                        "$ref": "#/$defs/ComplexValue"
+                      },
+                      "calibrationRange": {
+                        "$ref": "#/$defs/ComplexValue"
+                      },
+                      "contactMethod": {
+                        "type": "object",
+                        "properties": {
+                            "contactMethodOptions": {
+                                "type": "string",
+                                "enum": [
+                                  "Welded",
+                                  "Attached",
+                                  "Pressed",
+                                  "Glued",
+                                  "Other (Please specify in the comment)"
+                                ]
+                            }
+                        },
+                        "allOf": [
+                            {
+                              "if": {
+                                "properties": {
+                                  "contactMethodOptions": {
+                                    "const": "Other (Please specify in the comment)"
+                                  }
+                                }
+                              },
+                              "then": {
+                                "required": [
+                                    "otherContactMethod"
+                                ],
+                                "properties": {
+                                  "otherContactMethod": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        },
+                      "numberOfThermocouples": {
+                        "type": "string",
+                        "enum": [
+                          "1",
+                          "2",
+                          "3"
+                        ]
+                      },
+                      "thermocoupleLocation": {
+                        "type": "string",
+                        "description": "Location with respect to gauge section",
+                        "enum": [
+                          "Inside",
+                          "Outside"
+                        ]
+                      }
+                    }
+                  },
+                  "dataAcquisition": {
+                    "type": "object",
+                    "required": [
+                      "calibrationStatus",
+                      "calibrationDate",
+                      "calibrationValidityTimePeriod",
+                      "calibrationMethod",
+                      "calibrationStandard",
+                      "calibrationRange"
+                    ],
+                    "properties": {
+                      "calibrationStatus": {
+                        "type": "string",
+                        "description": "Is/are the data acquisition unit calibrated?",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ]
+                      },
+                      "referenceJunction": {
+                        "type": "string",
+                        "enum": [
+                          "Internal",
+                          "External"
+                        ]
+                      },
+                      "calibrationCertificate": {
+                        "type": "string",
+                        "description": "Link to File, preferably with machine-readable (meta)data."
+                      },
+                      "calibrationDate": {
+                        "type": "string"
+                      },
+                      "calibrationValidityTimePeriod": {
+                        "type": "string"
+                      },
+                      "calibrationMethod": {
+                        "type": "string"
+                      },
+                      "calibrationStandard": {
+                        "type": "string"
+                      },
+                      "temperatureDeviation": {
+                        "description": "Measurement deviation detected during calibration.",
+                        "$ref": "#/$defs/ComplexValue"
+                      },
+                      "calibrationRange": {
+                        "$ref": "#/$defs/ComplexValue"
+                      }
+                    }
+                  }
+                }
+              },
+              "extensometerSystem": {
+                "type": "object",
+                "required": [
+                  "displacementMeasuringMethod",
+                  "sensorTypeContactingMethod",
+                  "sensorTypeNonContactingMethod"
+                ],
+                "properties": {
+                  "displacementMeasuringMethod": {
+                    "type": "string",
+                    "description": "Type of strain measuring device",
+                    "enum": [
+                      "Contacting method",
+                      "Non-contacting method"
+                    ]
+                  },
+                  "sensorTypeContactingMethod": {
+                    "type": "object",
+                    "properties": {
+                        "sensorTypeContactingMethodOptions": {
+                            "type": "string",
+                            "enum": [
+                                "LVDT with extension legs",
+                                "Clip-on extensometer",
+                                "Analog dial gauges",
+                                "Other (Please specify in the comment)"
+                            ]
+                        }
+                    },
+                    "allOf": [
+                        {
+                            "if": {
+                                "properties": {
+                                  "sensorTypeContactingMethodOptions": {
+                                    "const": "Other (Please specify in the comment)"
+                                  }
+                                }
+                              },
+                              "then": {
+                                "required": [
+                                    "otherSensorTypeContactingMethod"
+                                ],
+                                "properties": {
+                                  "otherSensorTypeContactingMethod": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                        ]
+                    },
+                    "sensorTypeNonContactingMethod": {
+                        "type": "object",
+                        "properties": {
+                            "sensorTypeNonContactingMethodOptions": {
+                                "type": "string",
+                                "enum": [
+                                    "Laserextensometer",
+                                    "Digital image correlation technique",
+                                    "Other (Please specify in the comment)"
+                                ]
+                            }
+                        },
+                        "allOf": [
+                            {
+                                "if": {
+                                    "properties": {
+                                      "sensorTypeNonContactingMethodOptions": {
+                                        "const": "Other (Please specify in the comment)"
+                                      }
+                                    }
+                                  },
+                                  "then": {
+                                    "required": [
+                                        "otherSensorTypeNonContactingMethod"
+                                    ],
+                                    "properties": {
+                                      "otherSensorTypeNonContactingMethod": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                            ]
                         }
                     }
                 },
-                "secondaryData": {
+              "extensionValues": {
+                "type": "object",
+                "properties": {
+                  "contactingExtensometer": {
+                    "type": "object",
+                    "description":"Following fields until /Calibration standard/ refer exemplarily to a contacting measuring method/device.",
+                    "required": [
+                      "measurementSetup",
+                      "extensionAveraging",
+                      "measurementDirection",
+                      "mountingType",
+                      "extensionRangeUpperLimit",
+                      "extensionRangeLowerLimit",
+                      "nominalGaugeLength",
+                      "calibrationStatus",
+                      "calibrationDate",
+                      "calibrationValidityTimePeriod",
+                      "calibrationClass",
+                      "calibrationRange",
+                      "calibrationStandard"
+                    ],
+                    "properties": {
+                      "measurementSetup": {
+                        "type": "string",
+                        "description": "Measurement one-sided or two-sided?",
+                        "enum": [
+                          "One-sided",
+                          "Two-sided"
+                        ]
+                      },
+                      "extensionAveraging": {
+                        "type": "string",
+                        "description": "Was there an averaging of the extension values? (two-sided extensometer)",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ]
+                      },
+                      "measurementDirection": {
+                        "type": "string",
+                        "description": "Measurement axial or diametrical action?",
+                        "enum": [
+                          "Axial action",
+                          "Diametrical action"
+                        ]
+                      },
+                      "mountingType": {
+                        "type": "object",
+                        "properties": {
+                            "mountingTypeOptions": {
+                                "type": "string",
+                                "enum": [
+                                    "At test piece in parallel length",
+                                    "At collars",
+                                    "Other (Please specify in the comment)"
+                                ]
+                            }
+                        },
+                        "allOf": [
+                            {
+                              "if": {
+                                "properties": {
+                                  "mountingTypeOptions": {
+                                    "const": "Other (Please specify in the comment)"
+                                  }
+                                }
+                              },
+                              "then": {
+                                "required": [
+                                    "otherMountingType"
+                                ],
+                                "properties": {
+                                  "otherMountingType": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                        ]
+                      },
+                      "extensometerModelInformation": {
+                        "type": "string"
+                      },
+                      "extensometerID": {
+                        "type": "string",
+                        "description": "The ID used for identification in the laboratory."
+                      },
+                      "extensometerLegMaterial": {
+                        "type": "string",
+                        "description": "Material of upper/lower legs, e.g., in LVDT systems.",
+                        "enum": [
+                          "Ceramic legs",
+                          "Metallic legs"
+                        ]
+                      },
+                      "measuringAmplifierModelInformation": {
+                        "type": "string"
+                      },
+                      "extensionRangeUpperLimit": {
+                        "$ref": "#/$defs/ComplexValue"
+                      },
+                      "extensionRangeLowerLimit": {
+                        "$ref": "#/$defs/ComplexValue"
+                      },
+                      "nominalGaugeLength": {
+                        "$ref": "#/$defs/ComplexValue",
+                        "description": "If applicable."
+                      },
+                      "calibrationStatus": {
+                        "type": "string",
+                        "description": "Is extensometer incl. the data acquisition calibrated?",
+                        "enum": [
+                          "Yes",
+                          "No"
+                        ]
+                      },
+                      "calibrationCertificate": {
+                        "type": "string",
+                        "description": "(Link to) File, preferably with machine-readable (meta)data."
+                      },
+                      "calibrationDate": {
+                        "type": "string"
+                      },
+                      "calibrationValidityTimePeriod": {
+                        "type": "string"
+                      },
+                      "calibrationClass": {
+                        "type": "string"
+                      },
+                      "calibrationRange": {
+                        "$ref": "#/$defs/ComplexValue"
+                      },
+                      "calibrationStandard": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "elongationValuesAndCrossSectionalDimensions": {
+                "type": "object",
+                "required": [
+                  "measuringEquipment",
+                  "measuringEquipmentsUsage",
+                  "resolution",
+                  "calibrationStatus",
+                  "calibrationDate",
+                  "calibrationValidityTimePeriod",
+                  "calibrationResult",
+                  "calibrationRange",
+                  "calibrationStandard"
+                ],
+                "properties": {
+                  "measuringEquipment": {
                     "type": "object",
                     "properties": {
-                        "testResult": {
-                            "type": "object",
-                            "properties": {
-                                "valuesDuringTestRun": {
-                                    "type": "object",
-                                    "required": [
-                                        "correctedMeasuredTemperature",
-                                        "force",
-                                        "percentagePlasticExtension"
-                                    ],
-                                    "properties": {
-                                        "correctedMeasuredTemperature": {
-                                            "description": "Symbol usually indicated as $T_{c})$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "force": {
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "loadingRate": {
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "unloadingRate": {
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "heatingSpeed": {
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "coolingSpeed": {
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "percentagePlasticExtension": {
-                                            "description": "Percentage plastoc extension from end of loading. Symbol usually indicated as e",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        }
-                                    } 
-                                },
-                                "elongationValues": {
-                                    "type": "object",
-                                    "required": [
-                                        "percentagePermanentElongation",
-                                        "percentageElongationAfterCreepFracture",
-                                        "percentageReduction"
-                                    ],
-                                    "properties": {
-                                        "percentagePermanentElongation": {
-                                            "description": "Symbol usually indicated as $A_{per})$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        }, 
-                                        "percentageElongationAfterCreepFracture": {
-                                            "description": "Symbol usually indicated as $A_{u})$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "percentageReduction": {
-                                            "description": "Percentage reduction of area after creep fracture. Symbol usually indicated as $Z_{u})$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        }
-                                    }
-                                },
-                                "extensionValues": {
-                                    "type": "object",
-                                    "required": [
-                                        "averagingValue",
-                                        "percentageTotalExtension",
-                                        "percentageInitialTotalExtension",
-                                        "percentageElasticExtension",
-                                        "percentageInitialPlasticExtension",
-                                        "percentagePlasticExtension",
-                                        "percentageCreepExtension"
-                                    ],
-                                    "properties": {
-                                        "averagingValue": {
-                                            "type": "string",
-                                            "description": "Was there an averaging of the strain/distance values? (two-sided extensometer)",
-                                            "enum": [
-                                                "yes",
-                                                "no"
-                                            ]
-                                        },
-                                        "percentageTotalExtension": {
-                                            "description": "Symbol usually indicated as $e_{t}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "percentageInitialTotalExtension": {
-                                            "description": "Symbol usually indicated as $e_{ti}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "percentageElasticExtension": {
-                                            "description": "Symbol usually indicated as $e_{e}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "percentageInitialPlasticExtension": {
-                                            "description": "Symbol usually indicated as $e_{i}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "percentagePlasticExtension": {
-                                            "description": "Symbol usually indicated as $e_{p}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        },
-                                        "percentageCreepExtension": {
-                                            "description": "Symbol usually indicated as $e_{f}$",
-                                            "$ref": "#/$defs/ComplexValue"
-                                        }
-                                    }
-                                }
-                            }
+                        "measuringEquipmentOptions": {
+                            "type": "string",
+                            "enum": [
+                                "Caliper gauge",
+                                "Measuring microscope",
+                                "Micrometer screw gauge",
+                                "Other (Please specify in the comment)"
+                            ]
                         }
-                    }
+                    },
+                    "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "measuringEquipmentOptions": {
+                                "const": "Other (Please specify in the comment)"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                                "otherMeasuringEquipment"
+                            ],
+                            "properties": {
+                              "otherMeasuringEquipment": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                    ]
+                },
+                "measuringEquipmentsUsage": {
+                  "type": "string"
+                },
+                "resolution": {
+                  "$ref": "#/$defs/ComplexValue"
+                },
+                "type": {
+                  "type": "object",
+                  "properties": {
+                      "typeOptions": {
+                          "type": "string",
+                          "enum": [
+                              "Digital",
+                              "Analog",
+                              "Other (Please specify in the comment)"
+                            ]
+                          }
+                      },
+                      "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "typeOptions": {
+                                  "const": "Other (Please specify in the comment)"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                  "otherType"
+                              ],
+                              "properties": {
+                                "otherType": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                      ]
+                  },
+                  "equipmentModelInformation": {
+                    "type": "string"
+                  },
+                  "equipmentID": {
+                    "type": "string",
+                    "description": "The ID used for identification in the laboratory."
+                  },
+                  "calibrationStatus": {
+                    "type": "string",
+                    "description": "Is the measuring equipment calibrated?",
+                    "enum": [
+                      "Yes",
+                      "No"
+                    ]
+                  },
+                  "calibrationCertificate": {
+                    "type": "string",
+                    "description": "(Link to) File, preferably with machine-readable (meta)data."
+                  },
+                  "calibrationDate": {
+                    "type": "string"
+                  },
+                  "calibrationValidityTimePeriod": {
+                    "type": "string"
+                  },
+                  "calibrationResult": {
+                    "type": "string",
+                    "enum": [
+                      "Meets calibration requirements",
+                      "Does not meet calibration requirements"
+                    ]
+                  },
+                  "calibrationRange": {
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "calibrationStandard": {
+                    "type": "string"
+                  }
                 }
+              }
+            }
+          },
+          "dataProcessingProcedures": {
+            "type": "object",
+            "required": [
+              "primaryDataSeries",
+              "processedDataSeries",
+              "dataAnalysisProcedures",
+              "workflowUsage",
+              "software"
+            ],
+            "properties": {
+              "primaryDataSeries": {
+                "type": "string",
+                "description": "Primary data is data that is directly acquired by sensors or measuring instruments during or after a test. Please add a list of the measured quantities and their corresponding units."
+              },
+              "processedDataSeries": {
+                "type": "string",
+                "description": "Processed data is obtained as a result of using procedures (equations, algorithms, methods, unit conversions) to transform primary data. Please describe the transformed quantities, their corresponding units, and the applied procedures."
+              },
+              "dataAnalysisProcedures": {
+                "type": "string",
+                "description": "Description of the data processing and analysis procedures used to obtain specific test results, e.g. percentage elastic extension, $e_{e}$."
+              },
+              "workflowUsage": {
+                "type": "string",
+                "description": "Were automated (user-independent) analysis workflows used?",
+                "enum": [
+                  "Yes",
+                  "No"
+                ]
+              },
+              "software": {
+                "type": "object",
+                "description": "If applicable, please list the used software, including product and version.",
+                "properties": {
+                    "softwareOptions": {
+                        "type": "string",
+                        "enum": [
+                            "Not applicable",
+                            "Other (Please specify in the comment)"
+                          ]
+                        }
+                    },
+                    "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "softwareOptions": {
+                                "const": "Other (Please specify in the comment)"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                                "otherSoftware"
+                            ],
+                            "properties": {
+                              "otherSoftware": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                    ]
+                },
+                "relatedPublications": {
+                    "type": "array",
+                    "description": "If applicable, please list publications related to the data analysis procedure/software used.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "DOI": {
+                          "type": "string"
+                        },
+                        "abstract": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
         }
+      },
+      "primaryData": {
+        "type": "object",
+        "properties": {
+          "testResult": {
+            "type": "object",
+            "properties": {
+              "valuesRecordedAtTestStart": {
+                "type": "object",
+                "required": [
+                  "minimumTestPieceDiameterAtRoomTemperature",
+                  "originalGaugeLength",
+                  "parallelLength",
+                  "extensometerGaugeLength",
+                  "determinationOfReferenceLength",
+                  "referenceLengthToCalculatePercentageElongations",
+                  "referenceLengthToCalculatePercentageExtensions",
+                  "kValue",
+                  "ratioReferenceLengthToDiameter"
+                ],
+                "properties": {
+                  "minimumTestPieceDiameterAtRoomTemperature": {
+                    "description": "Symbol usually indicated as D.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "originalGaugeLength": {
+                    "description": "Symbol usually indicated as $L_{o}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "parallelLength": {
+                    "description": "Symbol usually indicated as $L_{c}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "extensometerGaugeLength": {
+                    "description": "Symbol usually indicated as $L_{e}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "determinationOfReferenceLength": {
+                    "type": "string",
+                    "description": "Case 1: Reference length for calculation of percentage extensions/elongations if the original gauge length Lo and/or extensometer Le are inside the parallel length, Lc. In this case Lr = Le (percentage extensions) or Lr = Lo (percentage elongations). Case 2: Reference length for calculation of percentage extensions/elongations if the original gauge length Lo and/or extensometer Le are outside the parallel length, Lc. In this case, Lr, for calculation of percentage is corrected to consider the strain contributions of the shoulders/ridges.",
+                    "enum": [
+                        "Case 1",
+                        "Case 2"
+                      ]
+                  },
+                  "referenceLengthToCalculatePercentageElongations": {
+                    "description": "Symbol usually indicated as $L_{r}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "referenceLengthToCalculatePercentageExtensions": {
+                    "description": "Symbol usually indicated as $L_{r}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "kValue": {
+                    "description": "$L_{r}$ / square root of $S_{o}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "ratioReferenceLengthToDiameter": {
+                    "description": "$L_{r}$ / D.",
+                    "$ref": "#/$defs/ComplexValue"
+                  }
+                }
+              },
+              "valuesRecordedDuringTestRun": {
+                "type": "object",
+                "required": [
+                  "elapsedTimeFromEndOfLoading",
+                  "force",
+                  "heatingTime",
+                  "soakTime",
+                  "testDuration"
+                ],
+                "properties": {
+                  "elapsedTimeFromEndOfLoading": {
+                    "description": " Link to file, preferably with machine-readable (meta)data. Symbol usually indicated as t.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "force": {
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "extension": {
+                    "description": " Link to file, preferably with machine-readable (meta)data. Symbol usually indicated as delta $L_{et}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "elongation": {
+                    "description": " Link to file, preferably with machine-readable (meta)data. Symbol usually indicated as delta $L_{ot}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "heatingTime": {
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "soakTime": {
+                    "description": "Soak time before test.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "testDuration": {
+                    "description": "Symbol usually indicated as t.",
+                    "$ref": "#/$defs/ComplexValue"
+                  }
+                }
+              },
+              "valuesRecordedAfterTestEnd": {
+                "type": "object",
+                "required": [
+                  "creepRuptureTime",
+                  "fracturePosition"
+                ],
+                "properties": {
+                  "creepRuptureTime": {
+                    "description": "Symbol usually indicated as $t_{u}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "fracturePosition": {
+                    "type": "string",
+                    "enum": [
+                      "Centered",
+                      "Within the gauge length",
+                      "Within the gauge length and the parallel length",
+                      "At the edge of the upper extensometer gauge length",
+                      "At the edge of the lower extensometer gauge length",
+                      "At the edge of the upper parallel length",
+                      "At the edge of the lower parallel length",
+                      "Outside the extensometer gauge length",
+                      "Outside the extensometer the extensometer gauge length and the parallel length"
+                    ]
+                  },
+                  "finalGaugeLengthAfterFracture": {
+                    "description": "Symbol usually indicated as $L_{u}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "secondaryData": {
+        "type": "object",
+        "properties": {
+          "testResult": {
+            "type": "object",
+            "properties": {
+              "valuesDuringTestRun": {
+                "type": "object",
+                "required": [
+                  "correctedMeasuredTemperature",
+                  "percentageExtension"
+                ],
+                "properties": {
+                  "correctedMeasuredTemperature": {
+                    "description": "Link to file, preferably with machine-readable (meta)data. Symbol usually indicated as $T_{c})$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "loadingRate": {
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "unloadingRate": {
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "heatingSpeed": {
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "coolingSpeed": {
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "percentageExtension": {
+                    "description": "Link to file, preferably with machine-readable (meta)data. Data series corresponds to the percentage plastic extension from end of loading. If the  percentage initial plastic extension is not zero, these data series coresponds to the percentage creep extension from end of loading. Symbol usually indicated as e.",
+                    "$ref": "#/$defs/ComplexValue"
+                  }
+                }
+              },
+              "elongationValues": {
+                "type": "object",
+                "required": [
+                  "percentagePermanentElongation",
+                  "percentageElongationAfterCreepFracture",
+                  "percentageReductionOfAreaAfterCreepFracture"
+                ],
+                "properties": {
+                  "percentagePermanentElongation": {
+                    "description": "Symbol usually indicated as $A_{per})$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "percentageElongationAfterCreepFracture": {
+                    "description": "Symbol usually indicated as $A_{u})$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "percentageReductionOfAreaAfterCreepFracture": {
+                    "description": "Symbol usually indicated as $Z_{u})$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  }
+                }
+              },
+              "extensionValues": {
+                "type": "object",
+                "required": [
+                  "percentageTotalExtension",
+                  "percentageInitialTotalExtension",
+                  "percentageElasticExtension",
+                  "percentageInitialPlasticExtension",
+                  "percentagePlasticExtension",
+                  "percentageCreepExtension"
+                ],
+                "properties": {
+                  "percentageTotalExtension": {
+                    "description": "Symbol usually indicated as $e_{t}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "percentageInitialTotalExtension": {
+                    "description": "Symbol usually indicated as $e_{ti}.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "percentageElasticExtension": {
+                    "description": "Symbol usually indicated as $e_{e}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "percentageInitialPlasticExtension": {
+                    "description": "Symbol usually indicated as $e_{i}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "percentagePlasticExtension": {
+                    "description": "Symbol usually indicated as $e_{p}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  },
+                  "percentageCreepExtension": {
+                    "description": "Symbol usually indicated as $e_{f}$.",
+                    "$ref": "#/$defs/ComplexValue"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
-}
+
+
+  
