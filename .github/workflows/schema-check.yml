@@ -52,15 +52,21 @@ jobs:
           createDiff: true
           previousVersion: ${{ env.previousVersion }}
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Write report header to file
+        run: |
+          echo '## 📋 Schema Check Report' > message.txt
+          echo '**Schema Path:** `${{ matrix.schemaPath }}`' >> message.txt
+          echo '**Tag Prefix:** `${{ matrix.tagPrefix }}`' >> message.txt
+          echo '**Latest Tag for Comparison:** `${{ env.previousVersion }}`' >> message.txt
+          echo '' >> message.txt
+      - name: Append schema output
+        run: |
+          cat >> message.txt <<EOF 
+          ${{ steps.schema_check_step.outputs.message }}
+          EOF
       - name: Post summary to PR
         uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            ## 📋 Schema Check Report
-            **Schema Path:** `${{ matrix.schemaPath }}`
-            **Tag Prefix:** `${{ matrix.tagPrefix }}`
-            **Latest Tag for Comparison:** `${{ env.previousVersion }}`
-      
-            ${{ steps.schema_check_step.outputs.message }}
+          body-path: message.txt
