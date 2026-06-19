@@ -64,6 +64,11 @@ jobs:
           cat >> message.txt <<EOF 
           ${{ steps.schema_check_step.outputs.message }}
           EOF
+      - name: Upload comment body
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: schema-comment-${{ matrix.tagPrefix }}
+          path: message.txt         
       - name: Post summary to PR
         uses: peter-evans/create-or-update-comment@v4
         with:
