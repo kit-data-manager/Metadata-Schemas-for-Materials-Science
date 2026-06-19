@@ -45,7 +45,7 @@ jobs:
           fi
       - name: JSON Schema Check
         id: schema_check_step
-        uses: kit-data-manager/json-schema-check-action@v0.0.8
+        uses: kit-data-manager/json-schema-check-action@main
         with:
           schemaPath: ${{ matrix.schemaPath }}
           validate: true
@@ -61,9 +61,7 @@ jobs:
           echo '' >> message.txt
       - name: Append schema output
         run: |
-          cat >> message.txt <<EOF 
-          ${{ steps.schema_check_step.outputs.message }}
-          EOF
+          cat "${{ steps.schema_check_step.outputs.message-file }}" >> message.txt
       - name: Upload comment body
         uses: actions/upload-artifact@v7.0.1
         with:
