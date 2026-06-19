@@ -9,3 +9,12 @@ With the JSON schema(v1.1), it is intended to define a structured approach for c
 - To define a scope of documentation that allows the assessment of a dataset’s quality by different end users who retrieve datasets from multiple data providers,
 - To foster the exchange of high-quality creep datasets according to the FAIR principles, by providing easy interoperability and full reusability.
 
+With the JSON schema (v2.1):
+
+- A CSV file is not provided. Instead, a *.lis file is provided.
+- The overarching structure of the JSON schema was revised to ensure correct nesting. This change concerns mainly categories I and II.
+- In the JSON schema, the fields corresponding to chemical composition were revised. Since this version, it is possible to report the chemical composition either by entering element by element or by adding a link to an external resource. For the measured chemical composition, the measurement method can be added for each element.
+- Revision of entries “k-Value” and “Ratio reference length to diameter” regarding the units and to cover Lr = Lo and Lr = Le.
+- Entry “Description of the loading system” was revised.
+- Optional entry Leverage ratio added in case of lever arm test machine type.
+- Category III “Elongation values and cross-sectional dimensions” was split into two: “Cross-sectional dimensions” and “Elongation values”.
