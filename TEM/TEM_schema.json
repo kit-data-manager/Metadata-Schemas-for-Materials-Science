@@ -137,28 +137,7 @@
   ],
   "$defs": {
     "identifier": {
-      "type": "object",
-      "description": "(Optional, NAE) - Details of an identifier element",
-      "additionalProperties": false,
-      "properties": {
-        "identifierValue": {
-          "type": "string",
-          "description": "(Optional, NAE) - a string containing the value of an identifier."
-        },
-        "identifierType": {
-          "type": "string",
-          "description": "(Optional, NAE) - type of the identifier to be chosen from a controlled list of values -*ROR *GRID *ISNI *URL *DOI *Handle *Internal.",
-          "enum": [
-            "ROR",
-            "GRID",
-            "ISNI",
-            "URL",
-            "DOI",
-            "Handle",
-            "Internal"
-          ]
-        }
-      }
+      "$ref": "../identifier_description.json"
     },
     "program": {
       "type": "object",
