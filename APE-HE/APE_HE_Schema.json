@@ -575,7 +575,7 @@
 		  },
 		  "theta": {
 			"type": "object",
-			"description": "(Optional)- Rotation angle around the z-axis by default in degrees",
+			"description": "(Optional)- Rotation angle around the z-axis by default in degree",
 			"properties": {
 			  "value": {
 				"type": "number",
@@ -584,11 +584,11 @@
 			  },
 			  "unit": {
 				"type": "string",
-				"description": "(Required) - Unit of measurement for the rotation angle, default: degrees.",
-				"default": "degrees",
+				"description": "(Required) - Unit of measurement for the rotation angle, default: degree.",
+				"default": "degree",
 				"enum": [
-				  "radians",
-				  "degrees"
+				  "radian",
+				  "degree"
 				]
 			  }
 			},
@@ -599,7 +599,7 @@
 		  },
 		  "phi": {
 			"type": "object",
-			"description": "(Optional)- Rotation angle around the x-axis by default in degrees",
+			"description": "(Optional)- Rotation angle around the x-axis by default in degree",
 			"properties": {
 			  "value": {
 				"type": "number",
@@ -608,11 +608,11 @@
 			  },
 			  "unit": {
 				"type": "string",
-				"description": "(Required) - Unit of measurement for the rotation angle, default: degrees.",
-				"default": "degrees",
+				"description": "(Required) - Unit of measurement for the rotation angle, default: degree.",
+				"default": "degree",
 				"enum": [
-				  "radians",
-				  "degrees"
+				  "radian",
+				  "degree"
 				]
 			  }
 			},
@@ -2044,7 +2044,7 @@
 		  },
 		  "incident_angle": {
 			"type": "object",
-			"description": "(Required)- Incident angle by default in degrees.",
+			"description": "(Required)- Incident angle by default in degree.",
 			"properties": {
 			  "value": {
 				"type": "number",
@@ -2053,11 +2053,11 @@
 			  },
 			  "unit": {
 				"type": "string",
-				"description": "(Required) - Unit of the incident angle, default: degrees.",
-				"default": "degrees",
+				"description": "(Required) - Unit of the incident angle, default: degree.",
+				"default": "degree",
 				"enum": [
-				  "radians",
-				  "degrees"
+				  "radian",
+				  "degree"
 				]
 			  }
 			},
